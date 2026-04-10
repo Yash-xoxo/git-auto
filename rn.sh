@@ -1,3 +1,7 @@
+#!/bin/bash
+
+read -p "MSG: " msg
+
 git add .
-git commit -m 'auto-test-push'
+git commit -m '$msg'
 git push origin main
