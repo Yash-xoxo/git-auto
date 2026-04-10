@@ -1,204 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Trending with READMEs</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: #f6f8fa;
-            color: #24292f;
-            line-height: 1.5;
-            padding: 2rem 1rem;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #1f2328;
-            border-bottom: 1px solid #d0d7de;
-            padding-bottom: 0.5rem;
-        }
-        .subtitle {
-            color: #57606a;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-        .repo-card {
-            background: white;
-            border: 1px solid #d0d7de;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-            transition: box-shadow 0.2s;
-        }
-        .repo-card:hover {
-            box-shadow: 0 8px 24px rgba(140,149,159,0.2);
-        }
-        .repo-header {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-        }
-        .repo-name a {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #0969da;
-            text-decoration: none;
-        }
-        .repo-name a:hover {
-            text-decoration: underline;
-        }
-        .repo-stats {
-            display: flex;
-            gap: 1.2rem;
-            color: #57606a;
-            font-size: 0.95rem;
-        }
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .stat.today {
-            color: #1a7f37;
-            font-weight: 500;
-        }
-        .repo-description {
-            margin-bottom: 0.75rem;
-            color: #24292f;
-        }
-        .repo-language {
-            display: inline-block;
-            background: #f3f4f6;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #57606a;
-            margin-bottom: 1rem;
-        }
-        .readme-container {
-            margin-top: 1rem;
-        }
-        details {
-            border-top: 1px solid #eaeef2;
-            padding-top: 1rem;
-        }
-        summary {
-            cursor: pointer;
-            font-weight: 600;
-            color: #0969da;
-            user-select: none;
-        }
-        summary:hover {
-            color: #0550ae;
-        }
-        .readme-content {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: #f6f8fa;
-            border-radius: 8px;
-            border: 1px solid #d0d7de;
-            overflow-x: auto;
-        }
-        /* Markdown rendered styles */
-        .readme-content h1, .readme-content h2, .readme-content h3 {
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        .readme-content h1 { font-size: 1.8rem; border-bottom: 1px solid #d0d7de; padding-bottom: 0.3rem; }
-        .readme-content h2 { font-size: 1.5rem; border-bottom: 1px solid #d0d7de; padding-bottom: 0.3rem; }
-        .readme-content h3 { font-size: 1.25rem; }
-        .readme-content p { margin-bottom: 1rem; }
-        .readme-content pre {
-            background: #1f2328;
-            color: #e6edf3;
-            padding: 1rem;
-            border-radius: 6px;
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-        .readme-content code {
-            background: #eaeef2;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-            font-size: 0.9em;
-        }
-        .readme-content pre code {
-            background: none;
-            padding: 0;
-        }
-        .readme-content table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 1rem 0;
-        }
-        .readme-content th, .readme-content td {
-            border: 1px solid #d0d7de;
-            padding: 0.5rem 1rem;
-        }
-        .readme-content th {
-            background: #f6f8fa;
-            font-weight: 600;
-        }
-        .readme-content a {
-            color: #0969da;
-            text-decoration: none;
-        }
-        .readme-content a:hover {
-            text-decoration: underline;
-        }
-        .readme-content ul, .readme-content ol {
-            padding-left: 2rem;
-            margin-bottom: 1rem;
-        }
-        .footer {
-            margin-top: 2rem;
-            text-align: center;
-            color: #57606a;
-            font-size: 0.9rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — April 10, 2026  06:15</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🔥 GitHub Trending</h1>
-        <div class="subtitle">Today's most popular repositories — with full README content</div>
-        <div class="repo-list">
-            
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/NousResearch/hermes-agent" target="_blank">NousResearch/hermes-agent</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 46,748</span>
-                    <span class="stat">🍴 6,006</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: Python</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <p align="center">
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on April 10, 2026  06:15 &nbsp;·&nbsp; 10 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">NousResearch /</span>
+          <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">hermes-agent</a>
+        </div>
+        <div class="repo-desc">The agent that grows with you</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 46,803</span>
+      <span class="meta-item">🍴 6,015</span>
+      <span class="stars-today">⭐ 6,485 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
   <img src="assets/banner.png" alt="Hermes Agent" width="100%">
 </p>
 
@@ -363,96 +436,39 @@ hermes doctor       # Diagnose any issues
 <td>Project context that shapes every conversation</td>
 </tr>
 <tr>
-<td><a href="https://hermes-agent.nousresearch.com/docs/developer-guide/architecture">Architecture</a></td>
-<td>Project structure, agent loop, key classes</td>
-</tr>
-<tr>
-<td><a href="https://hermes-agent.nousresearch.com/docs/developer-guide/contributing">Contributing</a></td>
-<td>Development setup, PR process, code style</td>
-</tr>
-<tr>
-<td><a href="https://hermes-agent.nousresearch.com/docs/reference/cli-commands">CLI Reference</a></td>
-<td>All commands and flags</td>
-</tr>
-<tr>
-<td><a href="https://hermes-agent.nousresearch.com/docs/reference/environment-variables">Environment Variables</a></td>
-<td>Complete env var reference</td>
+<td>[Architecture]</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2>Migrating from OpenClaw</h2>
-<p>If you're coming from OpenClaw, Hermes can automatically import your settings, memories, skills, and API keys.</p>
-<p><strong>During first-time setup:</strong> The setup wizard (<code>hermes setup</code>) automatically detects <code>~/.openclaw</code> and offers to migrate before configuration begins.</p>
-<p><strong>Anytime after install:</strong></p>
-<pre><code class="language-bash">hermes claw migrate              # Interactive migration (full preset)
-hermes claw migrate --dry-run    # Preview what would be migrated
-hermes claw migrate --preset user-data   # Migrate without secrets
-hermes claw migrate --overwrite  # Overwrite existing conflicts
-</code></pre>
-<p>What gets imported:<br />
-- <strong>SOUL.md</strong> — persona file<br />
-- <strong>Memories</strong> — MEMORY.md and USER.md entries<br />
-- <strong>Skills</strong> — user-created skills → <code>~/.hermes/skills/openclaw-imports/</code><br />
-- <strong>Command allowlist</strong> — approval patterns<br />
-- <strong>Messaging settings</strong> — platform configs, allowed users, working directory<br />
-- <strong>API keys</strong> — allowlisted secrets (Telegram, OpenRouter, OpenAI, Anthropic, ElevenLabs)<br />
-- <strong>TTS assets</strong> — workspace audio files<br />
-- <strong>Workspace instructions</strong> — AGENTS.md (with <code>--workspace-target</code>)</p>
-<p>See <code>hermes claw migrate --help</code> for all options, or use the <code>openclaw-migration</code> skill for an interactive agent-guided migration with dry-run previews.</p>
-<hr />
-<h2>Contributing</h2>
-<p>We welcome contributions! See the <a href="https://hermes-agent.nousresearch.com/docs/developer-guide/contributing">Contributing Guide</a> for development setup, code style, and PR process.</p>
-<p>Quick start for contributors:</p>
-<pre><code class="language-bash">git clone https://github.com/NousResearch/hermes-agent.git
-cd hermes-agent
-curl -LsSf https://astral.sh/uv/install.sh | sh
-uv venv venv --python 3.11
-source venv/bin/activate
-uv pip install -e &quot;.[all,dev]&quot;
-python -m pytest tests/ -q
-</code></pre>
-<blockquote>
-<p><strong>RL Training (optional):</strong> To work on the RL/Tinker-Atropos integration:<br />
-<code>bash
-git submodule update --init tinker-atropos
-uv pip install -e "./tinker-atropos"</code></p>
-</blockquote>
-<hr />
-<h2>Community</h2>
-<ul>
-<li>💬 <a href="https://discord.gg/NousResearch">Discord</a></li>
-<li>📚 <a href="https://agentskills.io">Skills Hub</a></li>
-<li>🐛 <a href="https://github.com/NousResearch/hermes-agent/issues">Issues</a></li>
-<li>💡 <a href="https://github.com/NousResearch/hermes-agent/discussions">Discussions</a></li>
-</ul>
-<hr />
-<h2>License</h2>
-<p>MIT — see <a href="LICENSE">LICENSE</a>.</p>
-<p>Built by <a href="https://nousresearch.com">Nous Research</a>.</p>
-                    </div>
-                </details>
-            </div>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/NousResearch/hermes-agent#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">forrestchang /</span>
+          <a href="https://github.com/forrestchang/andrej-karpathy-skills" target="_blank" rel="noopener">andrej-karpathy-skills</a>
         </div>
-        
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/forrestchang/andrej-karpathy-skills" target="_blank">forrestchang/andrej-karpathy-skills</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 10,853</span>
-                    <span class="stat">🍴 720</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: Unknown</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <h1>Karpathy-Inspired Claude Code Guidelines</h1>
+        <div class="repo-desc">A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&#x27;s observations on LLM coding pitfalls.</div>
+      </div>
+    </div>
+    <div class="meta">
+      
+      <span class="meta-item">⭐ 10,861</span>
+      <span class="meta-item">🍴 722</span>
+      <span class="stars-today">⭐ 1,364 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Karpathy-Inspired Claude Code Guidelines</h1>
 <p>A single <code>CLAUDE.md</code> file to improve Claude Code behavior, derived from <a href="https://x.com/karpathy/status/2015883857489522876">Andrej Karpathy's observations</a> on LLM coding pitfalls.</p>
 <h2>The Problems</h2>
 <p>From Andrej's post:</p>
@@ -601,29 +617,34 @@ curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/
 <p>The goal is reducing costly mistakes on non-trivial work, not slowing down simple tasks.</p>
 <h2>License</h2>
 <p>MIT</p>
-                    </div>
-                </details>
-            </div>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/forrestchang/andrej-karpathy-skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">HKUDS /</span>
+          <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">DeepTutor</a>
         </div>
-        
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/HKUDS/DeepTutor" target="_blank">HKUDS/DeepTutor</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 15,229</span>
-                    <span class="stat">🍴 2,026</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: Python</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <div align="center">
+        <div class="repo-desc">&quot;DeepTutor: Agent-Native Personalized Learning Assistant&quot;</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 15,238</span>
+      <span class="meta-item">🍴 2,026</span>
+      <span class="stars-today">⭐ 1,310 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
 
 <img src="assets/logo-ver2.png" alt="DeepTutor" width="140" style="border-radius: 15px;">
 
@@ -706,602 +727,36 @@ python scripts/start_tour.py
 <p>The tour asks how you'd like to use DeepTutor:</p>
 <ul>
 <li><strong>Web mode</strong> (recommended) — Picks a dependency profile, installs everything (pip + npm), then spins up a temporary server and opens the <strong>Settings</strong> page in your browser. A four-step guided tour walks you through LLM, Embedding, and Search provider setup with live connection testing. Once complete, DeepTutor restarts automatically with your configuration.</li>
-<li><strong>CLI mode</strong> — A fully interactive terminal flow: choose a dependency profile, install dependencies, configure providers, verify connections, and apply — all without leaving the shell.</li>
+<li><strong>CLI mode</strong> — A fully interactive terminal flow: choose a dependency profile, install dependencies, configure providers, verify connections, and apply — all without leaving the s</li>
 </ul>
-<p>Either way, you end up with a running DeepTutor at <a href="http://localhost:3782">http://localhost:3782</a>.</p>
-<h3>Option B — Manual Local Install</h3>
-<p>If you prefer full control, install and configure everything yourself.</p>
-<p><strong>1. Install dependencies</strong></p>
-<pre><code class="language-bash">git clone https://github.com/HKUDS/DeepTutor.git
-cd DeepTutor
-
-conda create -n deeptutor python=3.11 &amp;&amp; conda activate deeptutor
-pip install -e &quot;.[server]&quot;
-
-# Frontend
-cd web &amp;&amp; npm install &amp;&amp; cd ..
-</code></pre>
-<p><strong>2. Configure environment</strong></p>
-<pre><code class="language-bash">cp .env.example .env
-</code></pre>
-<p>Edit <code>.env</code> and fill in at least the required fields:</p>
-<pre><code class="language-dotenv"># LLM (Required)
-LLM_BINDING=openai
-LLM_MODEL=gpt-4o-mini
-LLM_API_KEY=sk-xxx
-LLM_HOST=https://api.openai.com/v1
-
-# Embedding (Required for Knowledge Base)
-EMBEDDING_BINDING=openai
-EMBEDDING_MODEL=text-embedding-3-large
-EMBEDDING_API_KEY=sk-xxx
-EMBEDDING_HOST=https://api.openai.com/v1
-EMBEDDING_DIMENSION=3072
-</code></pre>
-<details>
-<summary><b>Supported LLM Providers</b></summary>
-
-| Provider | Binding | Default Base URL |
-|:--|:--|:--|
-| AiHubMix | `aihubmix` | `https://aihubmix.com/v1` |
-| Anthropic | `anthropic` | `https://api.anthropic.com/v1` |
-| Azure OpenAI | `azure_openai` | — |
-| BytePlus | `byteplus` | `https://ark.ap-southeast.bytepluses.com/api/v3` |
-| BytePlus Coding Plan | `byteplus_coding_plan` | `https://ark.ap-southeast.bytepluses.com/api/coding/v3` |
-| Custom (OpenAI-compat) | `custom` | — |
-| DashScope (Qwen) | `dashscope` | `https://dashscope.aliyuncs.com/compatible-mode/v1` |
-| DeepSeek | `deepseek` | `https://api.deepseek.com` |
-| Gemini | `gemini` | `https://generativelanguage.googleapis.com/v1beta/openai/` |
-| GitHub Copilot | `github_copilot` | `https://api.githubcopilot.com` |
-| Groq | `groq` | `https://api.groq.com/openai/v1` |
-| MiniMax | `minimax` | `https://api.minimax.io/v1` |
-| Mistral | `mistral` | `https://api.mistral.ai/v1` |
-| Moonshot (Kimi) | `moonshot` | `https://api.moonshot.ai/v1` |
-| Ollama | `ollama` | `http://localhost:11434/v1` |
-| OpenAI | `openai` | `https://api.openai.com/v1` |
-| OpenAI Codex | `openai_codex` | `https://chatgpt.com/backend-api` |
-| OpenRouter | `openrouter` | `https://openrouter.ai/api/v1` |
-| OpenVINO Model Server | `ovms` | `http://localhost:8000/v3` |
-| Qianfan (Ernie) | `qianfan` | `https://qianfan.baidubce.com/v2` |
-| SiliconFlow | `siliconflow` | `https://api.siliconflow.cn/v1` |
-| Step Fun | `stepfun` | `https://api.stepfun.com/v1` |
-| vLLM | `vllm` | `http://localhost:8000/v1` |
-| VolcEngine | `volcengine` | `https://ark.cn-beijing.volces.com/api/v3` |
-| VolcEngine Coding Plan | `volcengine_coding_plan` | `https://ark.cn-beijing.volces.com/api/coding/v3` |
-| Xiaomi MIMO | `xiaomi_mimo` | `https://api.xiaomimimo.com/v1` |
-| Zhipu AI (GLM) | `zhipu` | `https://open.bigmodel.cn/api/paas/v4` |
-
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/HKUDS/DeepTutor#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
 </details>
-
-<details>
-<summary><b>Supported Embedding Providers</b></summary>
-
-Embedding uses the same provider list as LLM. Common choices:
-
-| Provider | Binding | Model Example |
-|:--|:--|:--|
-| OpenAI | `openai` | `text-embedding-3-large` |
-| DashScope | `dashscope` | `text-embedding-v3` |
-| Ollama | `ollama` | `nomic-embed-text` |
-| SiliconFlow | `siliconflow` | `BAAI/bge-m3` |
-| vLLM | `vllm` | Any embedding model |
-| Any OpenAI-compatible | `custom` | — |
-
-</details>
-
-<details>
-<summary><b>Supported Web Search Providers</b></summary>
-
-| Provider | Env Key | Notes |
-|:--|:--|:--|
-| Brave | `BRAVE_API_KEY` | Recommended, free tier available |
-| Tavily | `TAVILY_API_KEY` | |
-| Jina | `JINA_API_KEY` | |
-| SearXNG | — | Self-hosted, no API key needed |
-| DuckDuckGo | — | No API key needed |
-| Perplexity | `PERPLEXITY_API_KEY` | Requires API key |
-
-</details>
-
-<p><strong>3. Start services</strong></p>
-<pre><code class="language-bash"># Backend (FastAPI)
-python -m deeptutor.api.run_server
-
-# Frontend (Next.js) — in a separate terminal
-cd web &amp;&amp; npm run dev -- -p 3782
-</code></pre>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Service</th>
-<th style="text-align: center;">Default Port</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">Backend</td>
-<td style="text-align: center;"><code>8001</code></td>
-</tr>
-<tr>
-<td style="text-align: center;">Frontend</td>
-<td style="text-align: center;"><code>3782</code></td>
-</tr>
-</tbody>
-</table>
-<p>Open <a href="http://localhost:3782">http://localhost:3782</a> and you're ready to go.</p>
-<h3>Option C — Docker Deployment</h3>
-<p>Docker wraps the backend and frontend into a single container — no local Python or Node.js required. Two options depending on your preference:</p>
-<p><strong>1. Configure environment variables</strong> (required for both options)</p>
-<pre><code class="language-bash">git clone https://github.com/HKUDS/DeepTutor.git
-cd DeepTutor
-cp .env.example .env
-</code></pre>
-<p>Edit <code>.env</code> and fill in at least the required fields (same as <a href="#option-b--manual-local-install">Option B</a> above).</p>
-<p><strong>2a. Pull official image (recommended)</strong></p>
-<p>Official images are published to <a href="https://github.com/HKUDS/DeepTutor/pkgs/container/deeptutor">GitHub Container Registry</a> on every release, built for <code>linux/amd64</code> and <code>linux/arm64</code>.</p>
-<pre><code class="language-bash">docker compose -f docker-compose.ghcr.yml up -d
-</code></pre>
-<p>To pin a specific version, edit the image tag in <code>docker-compose.ghcr.yml</code>:</p>
-<pre><code class="language-yaml">image: ghcr.io/hkuds/deeptutor:1.0.0  # or :latest
-</code></pre>
-<p><strong>2b. Build from source</strong></p>
-<pre><code class="language-bash">docker compose up -d
-</code></pre>
-<p>This builds the image locally from <code>Dockerfile</code> and starts the container.</p>
-<p><strong>3. Verify &amp; manage</strong></p>
-<p>Open <a href="http://localhost:3782">http://localhost:3782</a> once the container is healthy.</p>
-<pre><code class="language-bash">docker compose logs -f   # tail logs
-docker compose down       # stop and remove container
-</code></pre>
-<details>
-<summary><b>Cloud / remote server deployment</b></summary>
-
-When deploying to a remote server, the browser needs to know the public URL of the backend API. Add one more variable to your `.env`:
-
-
-<pre><code class="language-dotenv"># Set to the public URL where the backend is reachable
-NEXT_PUBLIC_API_BASE_EXTERNAL=https://your-server.com:8001
-</code></pre>
-
-
-The frontend startup script applies this value at runtime — no rebuild needed.
-
-</details>
-
-<details>
-<summary><b>Development mode (hot-reload)</b></summary>
-
-Layer the dev override to mount source code and enable hot-reload for both services:
-
-
-<pre><code class="language-bash">docker compose -f docker-compose.yml -f docker-compose.dev.yml up
-</code></pre>
-
-
-Changes to `deeptutor/`, `deeptutor_cli/`, `scripts/`, and `web/` are reflected immediately.
-
-</details>
-
-<details>
-<summary><b>Custom ports</b></summary>
-
-Override the default ports in `.env`:
-
-
-<pre><code class="language-dotenv">BACKEND_PORT=9001
-FRONTEND_PORT=4000
-</code></pre>
-
-
-Then restart:
-
-
-<pre><code class="language-bash">docker compose up -d     # or docker compose -f docker-compose.ghcr.yml up -d
-</code></pre>
-
-
-</details>
-
-<details>
-<summary><b>Data persistence</b></summary>
-
-User data and knowledge bases are persisted via Docker volumes mapped to local directories:
-
-| Container path | Host path | Content |
-|:---|:---|:---|
-| `/app/data/user` | `./data/user` | Settings, memory, workspace, sessions, logs |
-| `/app/data/knowledge_bases` | `./data/knowledge_bases` | Uploaded documents & vector indices |
-
-These directories survive `docker compose down` and are reused on the next `docker compose up`.
-
-</details>
-
-<details>
-<summary><b>Environment variables reference</b></summary>
-
-| Variable | Required | Description |
-|:---|:---:|:---|
-| `LLM_BINDING` | **Yes** | LLM provider (`openai`, `anthropic`, etc.) |
-| `LLM_MODEL` | **Yes** | Model name (e.g. `gpt-4o`) |
-| `LLM_API_KEY` | **Yes** | Your LLM API key |
-| `LLM_HOST` | **Yes** | API endpoint URL |
-| `EMBEDDING_BINDING` | **Yes** | Embedding provider |
-| `EMBEDDING_MODEL` | **Yes** | Embedding model name |
-| `EMBEDDING_API_KEY` | **Yes** | Embedding API key |
-| `EMBEDDING_HOST` | **Yes** | Embedding endpoint |
-| `EMBEDDING_DIMENSION` | **Yes** | Vector dimension |
-| `SEARCH_PROVIDER` | No | Search provider (`tavily`, `jina`, `serper`, `perplexity`, etc.) |
-| `SEARCH_API_KEY` | No | Search API key |
-| `BACKEND_PORT` | No | Backend port (default `8001`) |
-| `FRONTEND_PORT` | No | Frontend port (default `3782`) |
-| `NEXT_PUBLIC_API_BASE_EXTERNAL` | No | Public backend URL for cloud deployment |
-| `DISABLE_SSL_VERIFY` | No | Disable SSL verification (default `false`) |
-
-</details>
-
-<h3>Option D — CLI Only</h3>
-<p>If you just want the CLI without the web frontend:</p>
-<pre><code class="language-bash">pip install -e &quot;.[cli]&quot;
-deeptutor chat                                   # Interactive REPL
-deeptutor run chat &quot;Explain Fourier transform&quot;   # One-shot capability
-deeptutor run deep_solve &quot;Solve x^2 = 4&quot;         # Multi-agent problem solving
-deeptutor kb create my-kb --doc textbook.pdf     # Build a knowledge base
-</code></pre>
-<blockquote>
-<p>See <a href="#%EF%B8%8F-deeptutor-cli--agent-native-interface">DeepTutor CLI</a> for the full feature guide and command reference.</p>
-</blockquote>
-<hr />
-<h2>📖 Explore DeepTutor</h2>
-<div align="center">
-<img src="assets/figs/deeptutor-architecture.png" alt="DeepTutor Architecture" width="800">
+  </div>
 </div>
-
-<h3>💬 Chat — Unified Intelligent Workspace</h3>
-<div align="center">
-<img src="assets/figs/dt-chat.png" alt="Chat Workspace" width="800">
-</div>
-
-<p>Five distinct modes coexist in a single workspace, bound by a <strong>unified context management system</strong>. Conversation history, knowledge bases, and references persist across modes — switch between them freely within the same topic, whenever the moment calls for it.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Mode</th>
-<th style="text-align: left;">What It Does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Chat</strong></td>
-<td style="text-align: left;">Fluid, tool-augmented conversation. Choose from RAG retrieval, web search, code execution, deep reasoning, brainstorming, and paper search — mix and match as needed.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Deep Solve</strong></td>
-<td style="text-align: left;">Multi-agent problem solving: plan, investigate, solve, and verify — with precise source citations at every step.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Quiz Generation</strong></td>
-<td style="text-align: left;">Generate assessments grounded in your knowledge base, with built-in validation.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Deep Research</strong></td>
-<td style="text-align: left;">Decompose a topic into subtopics, dispatch parallel research agents across RAG, web, and academic papers, and produce a fully cited report.</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Math Animator</strong></td>
-<td style="text-align: left;">Turn mathematical concepts into visual animations and storyboards powered by Manim.</td>
-</tr>
-</tbody>
-</table>
-<p>Tools are <strong>decoupled from workflows</strong> — in every mode, you decide which tools to enable, how many to use, or whether to use any at all. The workflow orchestrates the reasoning; the tools are yours to compose.</p>
-<blockquote>
-<p>Start with a quick chat question, escalate to Deep Solve when it gets hard, generate quiz questions to test yourself, then launch a Deep Research to go deeper — all in one continuous thread.</p>
-</blockquote>
-<h3>✍️ Co-Writer — AI Inside Your Editor</h3>
-<div align="center">
-<img src="assets/figs/dt-cowriter.png" alt="Co-Writer" width="800">
-</div>
-
-<p>Co-Writer brings the intelligence of Chat directly into a writing surface. It is a full-featured Markdown editor where AI is a first-class collaborator — not a sidebar, not an afterthought.</p>
-<p>Select any text and choose <strong>Rewrite</strong>, <strong>Expand</strong>, or <strong>Shorten</strong> — optionally drawing context from your knowledge base or the web. The editing flow is non-destructive with full undo/redo, and every piece you write can be saved straight to your notebooks, feeding back into your learning ecosystem.</p>
-<h3>🎓 Guided Learning — Visual, Step-by-Step Mastery</h3>
-<div align="center">
-<img src="assets/figs/dt-guide.png" alt="Guided Learning" width="800">
-</div>
-
-<p>Guided Learning turns your personal materials into structured, multi-step learning journeys. Provide a topic, optionally link notebook records, and DeepTutor will:</p>
-<ol>
-<li><strong>Design a learning plan</strong> — Identify 3–5 progressive knowledge points from your materials.</li>
-<li><strong>Generate interactive pages</strong> — Each point becomes a rich visual HTML page with explanations, diagrams, and examples.</li>
-<li><strong>Enable contextual Q&amp;A</strong> — Chat alongside each step for deeper exploration.</li>
-<li><strong>Summarize your progress</strong> — Upon completion, receive a learning summary of everything you've covered.</li>
-</ol>
-<p>Sessions are persistent — pause, resume, or revisit any step at any time.</p>
-<h3>📚 Knowledge Management — Your Learning Infrastructure</h3>
-<div align="center">
-<img src="assets/figs/dt-knowledge.png" alt="Knowledge Management" width="800">
-</div>
-
-<p>Knowledge is where you build and manage the document collections that power everything else in DeepTutor.</p>
-<ul>
-<li><strong>Knowledge Bases</strong> — Upload PDF, TXT, or Markdown files to create searchable, RAG-ready collections. Add documents incrementally as your library grows.</li>
-<li><strong>Notebooks</strong> — Organize learning records across sessions. Save insights from Chat, Guided Learning, Co-Writer, or Deep Research into categorized, color-coded notebooks.</li>
-</ul>
-<p>Your knowledge base is not passive storage — it actively participates in every conversation, every research session, and every learning path you create.</p>
-<h3>🧠 Memory — DeepTutor Learns As You Learn</h3>
-<div align="center">
-<img src="assets/figs/dt-memory.png" alt="Memory" width="800">
-</div>
-
-<p>DeepTutor maintains a persistent, evolving understanding of you through two complementary dimensions:</p>
-<ul>
-<li><strong>Summary</strong> — A running digest of your learning progress: what you've studied, which topics you've explored, and how your understanding has developed.</li>
-<li><strong>Profile</strong> — Your learner identity: preferences, knowledge level, goals, and communication style — automatically refined through every interaction.</li>
-</ul>
-<p>Memory is shared across all features and all your TutorBots. The more you use DeepTutor, the more personalized and effective it becomes.</p>
-<hr />
-<h3>🦞 TutorBot — Persistent, Autonomous AI Tutors</h3>
-<div align="center">
-<img src="assets/figs/tutorbot-architecture.png" alt="TutorBot Architecture" width="800">
-</div>
-
-<p>TutorBot is not a chatbot — it is a <strong>persistent, multi-instance agent</strong> built on <a href="https://github.com/HKUDS/nanobot">nanobot</a>. Each TutorBot runs its own agent loop with independent workspace, memory, and personality. Create a Socratic math tutor, a patient writing coach, and a rigorous research advisor — all running simultaneously, each evolving with you.</p>
-<div align="center">
-<img src="assets/figs/tb.png" alt="TutorBot" width="800">
-</div>
-
-<ul>
-<li><strong>Soul Templates</strong> — Define your tutor's personality, tone, and teaching philosophy through editable Soul files. Choose from built-in archetypes (Socratic, encouraging, rigorous) or craft your own — the soul shapes every response.</li>
-<li><strong>Independent Workspace</strong> — Each bot has its own directory with separate memory, sessions, skills, and configuration — fully isolated yet able to access DeepTutor's shared knowledge layer.</li>
-<li><strong>Proactive Heartbeat</strong> — Bots don't just respond — they initiate. The built-in Heartbeat system enables recurring study check-ins, review reminders, and scheduled tasks. Your tutor shows up even when you don't.</li>
-<li><strong>Full Tool Access</strong> — Every bot reaches into DeepTutor's complete toolkit: RAG retrieval, code execution, web search, academic paper search, deep reasoning, and brainstorming.</li>
-<li><strong>Skill Learning</strong> — Teach your bot new abilities by adding skill files to its workspace. As your needs evolve, so does your tutor's capability.</li>
-<li><strong>Multi-Channel Presence</strong> — Connect bots to Telegram, Discord, Slack, Feishu, WeChat Work, DingTalk, Email, and more. Your tutor meets you wherever you are.</li>
-<li><strong>Team &amp; Sub-Agents</strong> — Spawn background sub-agents or orchestrate multi-agent teams within a single bot for complex, long-running tasks.</li>
-</ul>
-<pre><code class="language-bash">deeptutor bot create math-tutor --persona &quot;Socratic math teacher who uses probing questions&quot;
-deeptutor bot create writing-coach --persona &quot;Patient, detail-oriented writing mentor&quot;
-deeptutor bot list                  # See all your active tutors
-</code></pre>
-<hr />
-<h3>⌨️ DeepTutor CLI — Agent-Native Interface</h3>
-<div align="center">
-<img src="assets/figs/cli-architecture.png" alt="DeepTutor CLI Architecture" width="800">
-</div>
-
-<p>DeepTutor is fully CLI-native. Every capability, knowledge base, session, memory, and TutorBot is one command away — no browser required. The CLI serves both humans (with rich terminal rendering) and AI agents (with structured JSON output).</p>
-<p>Hand the <a href="SKILL.md"><code>SKILL.md</code></a> at the project root to any tool-using agent (<a href="https://github.com/HKUDS/nanobot">nanobot</a>, or any LLM with tool access), and it can configure and operate DeepTutor autonomously.</p>
-<p><strong>One-shot execution</strong> — Run any capability directly from the terminal:</p>
-<pre><code class="language-bash">deeptutor run chat &quot;Explain the Fourier transform&quot; -t rag --kb textbook
-deeptutor run deep_solve &quot;Prove that √2 is irrational&quot; -t reason
-deeptutor run deep_question &quot;Linear algebra&quot; --config num_questions=5
-deeptutor run deep_research &quot;Attention mechanisms in transformers&quot;
-</code></pre>
-<p><strong>Interactive REPL</strong> — A persistent chat session with live mode switching:</p>
-<pre><code class="language-bash">deeptutor chat --capability deep_solve --kb my-kb
-# Inside the REPL: /cap, /tool, /kb, /history, /notebook, /config to switch on the fly
-</code></pre>
-<p><strong>Knowledge base lifecycle</strong> — Build, query, and manage RAG-ready collections entirely from the terminal:</p>
-<pre><code class="language-bash">deeptutor kb create my-kb --doc textbook.pdf       # Create from document
-deeptutor kb add my-kb --docs-dir ./papers/         # Add a folder of papers
-deeptutor kb search my-kb &quot;gradient descent&quot;        # Search directly
-deeptutor kb set-default my-kb                      # Set as default for all commands
-</code></pre>
-<p><strong>Dual output mode</strong> — Rich rendering for humans, structured JSON for pipelines:</p>
-<pre><code class="language-bash">deeptutor run chat &quot;Summarize chapter 3&quot; -f rich    # Colored, formatted output
-deeptutor run chat &quot;Summarize chapter 3&quot; -f json    # Line-delimited JSON events
-</code></pre>
-<p><strong>Session continuity</strong> — Resume any conversation right where you left off:</p>
-<pre><code class="language-bash">deeptutor session list                              # List all sessions
-deeptutor session open &lt;id&gt;                         # Resume in REPL
-</code></pre>
-<details>
-<summary><b>Full CLI command reference</b></summary>
-
-**Top-level**
-
-| Command | Description |
-|:---|:---|
-| `deeptutor run <capability> <message>` | Run any capability in a single turn (`chat`, `deep_solve`, `deep_question`, `deep_research`, `math_animator`) |
-| `deeptutor chat` | Interactive REPL with optional `--capability`, `--tool`, `--kb`, `--language` |
-| `deeptutor serve` | Start the DeepTutor API server |
-
-**`deeptutor bot`**
-
-| Command | Description |
-|:---|:---|
-| `deeptutor bot list` | List all TutorBot instances |
-| `deeptutor bot create <id>` | Create and start a new bot (`--name`, `--persona`, `--model`) |
-| `deeptutor bot start <id>` | Start a bot |
-| `deeptutor bot stop <id>` | Stop a bot |
-
-**`deeptutor kb`**
-
-| Command | Description |
-|:---|:---|
-| `deeptutor kb list` | List all knowledge bases |
-| `deeptutor kb info <name>` | Show knowledge base details |
-| `deeptutor kb create <name>` | Create from documents (`--doc`, `--docs-dir`) |
-| `deeptutor kb add <name>` | Add documents incrementally |
-| `deeptutor kb search <name> <query>` | Search a knowledge base |
-| `deeptutor kb set-default <name>` | Set as default KB |
-| `deeptutor kb delete <name>` | Delete a knowledge base (`--force`) |
-
-**`deeptutor memory`**
-
-| Command | Description |
-|:---|:---|
-| `deeptutor memory show [file]` | View memory (`summary`, `profile`, or `all`) |
-| `deeptutor memory clear [file]` | Clear memory (`--force`) |
-
-**`deeptutor session`**
-
-| Command | Description |
-|:---|:---|
-| `deeptutor session list` | List sessions (`--limit`) |
-| `deeptutor session show <id>` | View session messages |
-| `deeptutor session open <id>` | Resume session in REPL |
-| `deeptutor session rename <id>` | Rename a session (`--title`) |
-| `deeptutor session delete <id>` | Delete a session |
-
-**`deeptutor notebook`**
-
-| Command | Description |
-|:---|:---|
-| `deeptutor notebook list` | List notebooks |
-| `deeptutor notebook create <name>` | Create a notebook (`--description`) |
-| `deeptutor notebook show <id>` | View notebook records |
-| `deeptutor notebook add-md <id> <path>` | Import markdown as record |
-| `deeptutor notebook replace-md <id> <rec> <path>` | Replace a markdown record |
-| `deeptutor notebook remove-record <id> <rec>` | Remove a record |
-
-**`deeptutor config` / `plugin` / `provider`**
-
-| Command | Description |
-|:---|:---|
-| `deeptutor config show` | Print current configuration summary |
-| `deeptutor plugin list` | List registered tools and capabilities |
-| `deeptutor plugin info <name>` | Show tool or capability details |
-| `deeptutor provider login <provider>` | Provider auth (`openai-codex` OAuth login; `github-copilot` validates an existing Copilot auth session) |
-
-</details>
-
-<h2>🗺️ Roadmap</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">Status</th>
-<th style="text-align: left;">Milestone</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">🔜</td>
-<td style="text-align: left;"><strong>Authentication &amp; Login</strong> — Optional login page for public deployments with multi-user support</td>
-</tr>
-<tr>
-<td style="text-align: center;">🔜</td>
-<td style="text-align: left;"><strong>Themes &amp; Appearance</strong> — Diverse theme options and customizable UI appearance</td>
-</tr>
-<tr>
-<td style="text-align: center;">🔜</td>
-<td style="text-align: left;"><strong>LightRAG Integration</strong> — Integrate <a href="https://github.com/HKUDS/LightRAG">LightRAG</a> as an advanced knowledge base engine</td>
-</tr>
-<tr>
-<td style="text-align: center;">🔜</td>
-<td style="text-align: left;"><strong>Documentation Site</strong> — Comprehensive docs page with guides, API reference, and tutorials</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>If you find DeepTutor useful, <a href="https://github.com/HKUDS/DeepTutor/stargazers">give us a star</a> — it helps us keep going!</p>
-</blockquote>
-<hr />
-<h2>🌐 Community &amp; Ecosystem</h2>
-<p>DeepTutor stands on the shoulders of outstanding open-source projects:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Project</th>
-<th style="text-align: left;">Role in DeepTutor</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><a href="https://github.com/HKUDS/nanobot"><strong>nanobot</strong></a></td>
-<td style="text-align: left;">Ultra-lightweight agent engine powering TutorBot</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="https://github.com/run-llama/llama_index"><strong>LlamaIndex</strong></a></td>
-<td style="text-align: left;">RAG pipeline and document indexing backbone</td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="https://github.com/Wing900/ManimCat"><strong>ManimCat</strong></a></td>
-<td style="text-align: left;">AI-driven math animation generation for Math Animator</td>
-</tr>
-</tbody>
-</table>
-<p><strong>From the HKUDS ecosystem:</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"><a href="https://github.com/HKUDS/LightRAG">⚡ LightRAG</a></th>
-<th style="text-align: center;"><a href="https://github.com/HKUDS/AutoAgent">🤖 AutoAgent</a></th>
-<th style="text-align: center;"><a href="https://github.com/HKUDS/AI-Researcher">🔬 AI-Researcher</a></th>
-<th style="text-align: center;"><a href="https://github.com/HKUDS/nanobot">🧬 nanobot</a></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">Simple &amp; Fast RAG</td>
-<td style="text-align: center;">Zero-Code Agent Framework</td>
-<td style="text-align: center;">Automated Research</td>
-<td style="text-align: center;">Ultra-Lightweight AI Agent</td>
-</tr>
-</tbody>
-</table>
-<h2>🤝 Contributing</h2>
-<div align="center">
-
-We hope DeepTutor becomes a gift for the community. 🎁
-
-<a href="https://github.com/HKUDS/DeepTutor/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=HKUDS/DeepTutor&max=999" alt="Contributors" />
-</a>
-
-</div>
-
-<p>See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for guidelines on setting up your development environment, code standards, and pull request workflow.</p>
-<h2>⭐ Star History</h2>
-<div align="center">
-
-<a href="https://www.star-history.com/#HKUDS/DeepTutor&type=timeline&legend=top-left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=HKUDS/DeepTutor&type=timeline&theme=dark&legend=top-left" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=HKUDS/DeepTutor&type=timeline&legend=top-left" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=HKUDS/DeepTutor&type=timeline&legend=top-left" />
-  </picture>
-</a>
-
-</div>
-
-<div align="center">
-
-**[Data Intelligence Lab @ HKU](https://github.com/HKUDS)**
-
-[⭐ Star us](https://github.com/HKUDS/DeepTutor/stargazers) · [🐛 Report a bug](https://github.com/HKUDS/DeepTutor/issues) · [💬 Discussions](https://github.com/HKUDS/DeepTutor/discussions)
-
----
-
-Licensed under the [Apache License 2.0](LICENSE).
-
-<p>
-  <img src="https://visitor-badge.laobi.icu/badge?page_id=HKUDS.DeepTutor&style=for-the-badge&color=00d4ff" alt="Views">
-</p>
-
-</div>
-                    </div>
-                </details>
-            </div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">OpenBMB /</span>
+          <a href="https://github.com/OpenBMB/VoxCPM" target="_blank" rel="noopener">VoxCPM</a>
         </div>
-        
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/OpenBMB/VoxCPM" target="_blank">OpenBMB/VoxCPM</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 7,921</span>
-                    <span class="stat">🍴 930</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: Python</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <h2 align="center">VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning</h2>
+        <div class="repo-desc">VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 7,926</span>
+      <span class="meta-item">🍴 931</span>
+      <span class="stars-today">⭐ 496 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h2 align="center">VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning</h2>
 
 <p align="center">
   <b>English</b> | <a href="./README_zh.md">中文</a>
@@ -1446,538 +901,35 @@ wav = model.generate(
 sf.write(&quot;controllable_clone.wav&quot;, wav, model.tts_model.sample_rate)
 </code></pre>
 <h4>🎙️ Ultimate Cloning</h4>
-<p>Provide both the reference audio and its exact transcript for audio-continuation-based cloning with every vocal nuance reproduced. For maximum cloning similarity, pass the same reference clip to both <code>reference_wav_path</code> and <code>prompt_wav_path</code> as shown below:</p>
-<pre><code class="language-python">wav = model.generate(
-    text=&quot;This is an ultimate cloning demonstration using VoxCPM2.&quot;,
-    prompt_wav_path=&quot;path/to/voice.wav&quot;,
-    prompt_text=&quot;The transcript of the reference audio.&quot;,
-    reference_wav_path=&quot;path/to/voice.wav&quot;, # optional, for better simliarity 
-)
-sf.write(&quot;hifi_clone.wav&quot;, wav, model.tts_model.sample_rate)
-</code></pre>
-<details>
-<summary><b>🔄 Streaming API</b></summary>
-
-
-<pre><code class="language-python">import numpy as np
-
-chunks = []
-for chunk in model.generate_streaming(
-    text=&quot;Streaming text to speech is easy with VoxCPM!&quot;,
-):
-    chunks.append(chunk)
-wav = np.concatenate(chunks)
-sf.write(&quot;streaming.wav&quot;, wav, model.tts_model.sample_rate)
-</code></pre>
-
+<p>Provide both the reference audio and its exact transcri</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/OpenBMB/VoxCPM#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
 </details>
-
-<h3>CLI Usage</h3>
-<pre><code class="language-bash"># Voice design (no reference audio needed)
-voxcpm design \
-  --text &quot;VoxCPM2 brings studio-quality multilingual speech synthesis.&quot; \
-  --output out.wav
-
-# Controllable voice cloning with style control
-voxcpm design \
-  --text &quot;VoxCPM2 brings studio-quality multilingual speech synthesis.&quot; \
-  --control &quot;Young female voice, warm and gentle, slightly smiling&quot; \
-  --output out.wav
-
-# Voice cloning (reference audio)
-voxcpm clone \
-  --text &quot;This is a voice cloning demo.&quot; \
-  --reference-audio path/to/voice.wav \
-  --output out.wav
-
-# Ultimate cloning (prompt audio + transcript)
-voxcpm clone \
-  --text &quot;This is a voice cloning demo.&quot; \
-  --prompt-audio path/to/voice.wav \
-  --prompt-text &quot;reference transcript&quot; \
-  --reference-audio path/to/voice.wav \ # optional, for better simliarity
-  --output out.wav
-
-# Batch processing
-voxcpm batch --input examples/input.txt --output-dir outs
-
-# Help
-voxcpm --help
-</code></pre>
-<h3>Web Demo</h3>
-<pre><code class="language-bash">python app.py --port 8808  # then open in browser: http://localhost:8808
-</code></pre>
-<h3>🚢 Production Deployment (Nano-vLLM)</h3>
-<p>For high-throughput serving, use <a href="https://github.com/a710128/nanovllm-voxcpm"><strong>Nano-vLLM-VoxCPM</strong></a> — a dedicated inference engine built on Nano-vLLM with concurrent request support and an async API.</p>
-<pre><code class="language-bash">pip install nano-vllm-voxcpm
-</code></pre>
-<pre><code class="language-python">from nanovllm_voxcpm import VoxCPM
-import numpy as np, soundfile as sf
-
-server = VoxCPM.from_pretrained(model=&quot;/path/to/VoxCPM&quot;, devices=[0])
-chunks = list(server.generate(target_text=&quot;Hello from VoxCPM!&quot;))
-sf.write(&quot;out.wav&quot;, np.concatenate(chunks), 48000)
-server.stop()
-</code></pre>
-<blockquote>
-<p><strong>RTF as low as ~0.13 on NVIDIA RTX 4090</strong> (vs ~0.3 with the standard PyTorch implementation), with support for batched concurrent requests and a FastAPI HTTP server. See the <a href="https://github.com/a710128/nanovllm-voxcpm">Nano-vLLM-VoxCPM repo</a> for deployment details.</p>
-<p><strong>Full parameter reference, multi-scenario examples, and voice cloning tips →</strong> <a href="https://voxcpm.readthedocs.io/en/latest/quickstart.html">Quick Start Guide</a> | <a href="https://voxcpm.readthedocs.io/en/latest/usage_guide.html">Usage Guide</a> | <a href="https://voxcpm.readthedocs.io/en/latest/cookbook.html">Cookbook</a></p>
-</blockquote>
-<hr />
-<h2>📦 Models &amp; Versions</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align: center;"><strong>VoxCPM2</strong></th>
-<th style="text-align: center;"><strong>VoxCPM1.5</strong></th>
-<th style="text-align: center;"><strong>VoxCPM-0.5B</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Status</strong></td>
-<td style="text-align: center;">🟢 Latest</td>
-<td style="text-align: center;">Stable</td>
-<td style="text-align: center;">Legacy</td>
-</tr>
-<tr>
-<td><strong>Backbone Parameters</strong></td>
-<td style="text-align: center;">2B</td>
-<td style="text-align: center;">0.6B</td>
-<td style="text-align: center;">0.5B</td>
-</tr>
-<tr>
-<td><strong>Audio Sample Rate</strong></td>
-<td style="text-align: center;">48kHz</td>
-<td style="text-align: center;">44.1kHz</td>
-<td style="text-align: center;">16kHz</td>
-</tr>
-<tr>
-<td><strong>LM Token Rate</strong></td>
-<td style="text-align: center;">6.25Hz</td>
-<td style="text-align: center;">6.25Hz</td>
-<td style="text-align: center;">12.5Hz</td>
-</tr>
-<tr>
-<td><strong>Languages</strong></td>
-<td style="text-align: center;">30</td>
-<td style="text-align: center;">2 (zh, en)</td>
-<td style="text-align: center;">2 (zh, en)</td>
-</tr>
-<tr>
-<td><strong>Cloning Mode</strong></td>
-<td style="text-align: center;">Isolated Reference &amp; Continuation</td>
-<td style="text-align: center;">Continuation only</td>
-<td style="text-align: center;">Continuation only</td>
-</tr>
-<tr>
-<td><strong>Voice Design</strong></td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td><strong>Controllable Voice Cloning</strong></td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td><strong>SFT / LoRA</strong></td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr>
-<td><strong>RTF (RTX 4090)</strong></td>
-<td style="text-align: center;">~0.30</td>
-<td style="text-align: center;">~0.15</td>
-<td style="text-align: center;">~0.17</td>
-</tr>
-<tr>
-<td><strong>RTF in Nano-VLLM (RTX 4090)</strong></td>
-<td style="text-align: center;">~0.13</td>
-<td style="text-align: center;">~0.08</td>
-<td style="text-align: center;">~0.10</td>
-</tr>
-<tr>
-<td><strong>VRAM</strong></td>
-<td style="text-align: center;">~8 GB</td>
-<td style="text-align: center;">~6 GB</td>
-<td style="text-align: center;">~5 GB</td>
-</tr>
-<tr>
-<td><strong>Weights</strong></td>
-<td style="text-align: center;"><a href="https://huggingface.co/openbmb/VoxCPM2">🤗 HF</a> / <a href="https://modelscope.cn/models/OpenBMB/VoxCPM2">MS</a></td>
-<td style="text-align: center;"><a href="https://huggingface.co/openbmb/VoxCPM1.5">🤗 HF</a> / <a href="https://modelscope.cn/models/OpenBMB/VoxCPM1.5">MS</a></td>
-<td style="text-align: center;"><a href="https://huggingface.co/openbmb/VoxCPM-0.5B">🤗 HF</a> / <a href="https://modelscope.cn/models/OpenBMB/VoxCPM-0.5B">MS</a></td>
-</tr>
-<tr>
-<td><strong>Technical Report</strong></td>
-<td style="text-align: center;">Coming soon</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;"><a href="https://arxiv.org/abs/2509.24650">arXiv</a> <a href="https://openreview.net/forum?id=h5KLpGoqzC">ICLR 2026</a></td>
-</tr>
-<tr>
-<td><strong>Demo Page</strong></td>
-<td style="text-align: center;"><a href="https://openbmb.github.io/voxcpm2-demopage">Audio Samples</a></td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;"><a href="https://openbmb.github.io/VoxCPM-demopage">Audio Samples</a></td>
-</tr>
-</tbody>
-</table>
-<p>VoxCPM2 is built on a <strong>tokenizer-free, diffusion autoregressive</strong> paradigm. The model operates entirely in the latent space of <strong>AudioVAE V2</strong>, following a four-stage pipeline: <strong>LocEnc → TSLM → RALM → LocDiT</strong>, enabling rich expressiveness and 48kHz native audio output.</p>
-<div align="center">
-  <img src="assets/voxcpm_model.png" alt="VoxCPM2 Model Architecture" width="90%">
+  </div>
 </div>
-
-<blockquote>
-<p>For full architectural details, VoxCPM2-specific upgrades, and a model comparison table, see the <a href="https://voxcpm.readthedocs.io/en/latest/models/architecture.html">Architecture Design</a>.</p>
-</blockquote>
-<hr />
-<h2>📊 Performance</h2>
-<p>VoxCPM2 achieves state-of-the-art or comparable results on public zero-shot and controllable TTS benchmarks. </p>
-<h3>Seed-TTS-eval</h3>
-<details>
-<summary><b>Seed-TTS-eval WER(⬇)&SIM(⬆) Results (click to expand)</b></summary>
-
-| Model | Parameters | Open-Source | test-EN | | test-ZH | | test-Hard | |
-|------|------|------|:------------:|:--:|:------------:|:--:|:-------------:|:--:|
-| | | | WER/%⬇ | SIM/%⬆| CER/%⬇| SIM/%⬆ | CER/%⬇ | SIM/%⬆ |
-| MegaTTS3 | 0.5B | ❌ | 2.79 | 77.1 | 1.52 | 79.0 | - | - |
-| DiTAR | 0.6B | ❌ | 1.69 | 73.5 | 1.02 | 75.3 | - | - |
-| CosyVoice3 | 0.5B | ❌ | 2.02 | 71.8 | 1.16 | 78.0 | 6.08 | 75.8 |
-| CosyVoice3 | 1.5B | ❌ | 2.22 | 72.0 | 1.12 | 78.1 | 5.83 | 75.8 |
-| Seed-TTS | - | ❌ | 2.25 | 76.2 | 1.12 | 79.6 | 7.59 | 77.6 |
-| MiniMax-Speech | - | ❌ | 1.65 | 69.2 | 0.83 | 78.3 | - | - |
-| F5-TTS | 0.3B | ✅ | 2.00 | 67.0 | 1.53 | 76.0 | 8.67 | 71.3 |
-| MaskGCT | 1B | ✅ | 2.62 | 71.7 | 2.27 | 77.4 | - | - |
-| CosyVoice | 0.3B | ✅ | 4.29 | 60.9 | 3.63 | 72.3 | 11.75 | 70.9 |
-| CosyVoice2 | 0.5B | ✅ | 3.09 | 65.9 | 1.38 | 75.7 | 6.83 | 72.4 |
-| SparkTTS | 0.5B | ✅ | 3.14 | 57.3 | 1.54 | 66.0 | - | - |
-| FireRedTTS | 0.5B | ✅ | 3.82 | 46.0 | 1.51 | 63.5 | 17.45 | 62.1 |
-| FireRedTTS-2 | 1.5B | ✅ | 1.95 | 66.5 | 1.14 | 73.6 | - | - |
-| Qwen2.5-Omni | 7B | ✅ | 2.72 | 63.2 | 1.70 | 75.2 | 7.97 | 74.7 |
-| Qwen3-Omni | 30B-A3B | ✅ | 1.39 | - | 1.07 | - | - | - |
-| OpenAudio-s1-mini | 0.5B | ✅ | 1.94 | 55.0 | 1.18 | 68.5 | 23.37 | 64.3 |
-| IndexTTS2 | 1.5B | ✅ | 2.23 | 70.6 | 1.03 | 76.5 | 7.12 | 75.5 |
-| VibeVoice | 1.5B | ✅ | 3.04 | 68.9 | 1.16 | 74.4 | - | - |
-| HiggsAudio-v2 | 3B | ✅ | 2.44 | 67.7 | 1.50 | 74.0 | 55.07 | 65.6 |
-| VoxCPM-0.5B | 0.6B | ✅ | 1.85 | 72.9 | 0.93 | 77.2 | 8.87 | 73.0 |
-| VoxCPM1.5 | 0.8B | ✅ | 2.12 | 71.4 | 1.18 | 77.0 | 7.74 | 73.1 |
-| MOSS-TTS |  | ✅ | 1.85 | 73.4 | 1.20 | 78.8 | - | - |
-| Qwen3-TTS | 1.7B | ✅ | 1.23 | 71.7 | 1.22 | 77.0 | 6.76 | 74.8 |
-| FishAudio S2 | 4B | ✅ | 0.99 | - | 0.54 | - | 5.99 | - |
-| LongCat-Audio-DiT | 3.5B | ✅ | 1.50 | 78.6 | 1.09 | 81.8 | 6.04 | 79.7 |
-| **VoxCPM2** | 2B | ✅ | 1.84 | 75.3 | 0.97| 79.5| 8.13 | 75.3 |  
-</details>
-
-<h3>CV3-eval</h3>
-<details>
-<summary><b>CV3-eval Multilingual WER/CER(⬇) Results (click to expand)</b></summary>
-
-| Model | zh | en | hard-zh | hard-en | ja | ko | de | es | fr | it | ru |
-|-------|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-| CosyVoice2 | 4.08 | 6.32 | 12.58| 11.96| 9.13 | 19.7 |- | - | - | - | - |
-| CosyVoice3-1.5B | 3.91 | 4.99 | 9.77 | 10.55 | 7.57 | 5.69 | 6.43 | 4.47 | 11.8 | 10.5 | 6.64 |
-| Fish Audio S2 | 2.65 | 2.43 | 9.10 | 4.40 | 3.96 | 2.76 | 2.22 | 2.00 | 6.26 | 2.04 | 2.78 |
-| **VoxCPM2** | 3.65 | 5.00 | 8.55 | 8.48 | 5.96 | 5.69 | 4.77 | 3.80 | 9.85 | 4.25 | 5.21 |
-</details>
-
-<h3>MiniMax-Multilingual-Test</h3>
-<details>
-<summary><b>Minimax-MLS-test WER(⬇) Results (click to expand)</b></summary>
-
-| Language | Minimax | ElevenLabs | Qwen3-TTS | FishAudio S2 | **VoxCPM2** |
-|----------|:-------:|:----------:|:--------------------:|:------------:|:-----------:|
-| Arabic | **1.665** | 1.666 | – | 3.500 | 13.046 |
-| Cantonese | 34.111 | 51.513 | – | **30.670** | 38.584 |
-| Chinese | 2.252 | 16.026 | 0.928 | **0.730** | 1.136 |
-| Czech | 3.875 | **2.108** | – | 2.840 | 24.132 |
-| Dutch | 1.143 | **0.803** | – | 0.990 | 0.913 |
-| English | 2.164 | 2.339 | **0.934** | 1.620 | 2.289 |
-| Finnish | 4.666 | 2.964 | – | 3.330 | **2.632** |
-| French | 4.099 | 5.216 | **2.858** | 3.050 | 4.534 |
-| German | 1.906 | 0.572 | 1.235 | **0.550** | 0.679 |
-| Greek | 2.016 | **0.991** | – | 5.740 | 2.844 |
-| Hindi | 6.962 | **5.827** | – | 14.640 | 19.699 |
-| Indonesian | 1.237 | **1.059** | – | 1.460 | 1.084 |
-| Italian | 1.543 | 1.743 | **0.948** | 1.270 | 1.563 |
-| Japanese | 3.519 | 10.646 | 3.823 | **2.760** | 4.628 |
-| Korean | 1.747 | 1.865 | 1.755 | **1.180** | 1.962 |
-| Polish | 1.415 | **0.766** | – | 1.260 | 1.141 |
-| Portuguese | 1.877 | 1.331 | 1.526 | **1.140** | 1.938 |
-| Romanian | 2.878 | **1.347** | – | 10.740 | 21.577 |
-| Russian | 4.281 | 3.878 | 3.212 | **2.400** | 3.634 |
-| Spanish | 1.029 | 1.084 | 1.126 | **0.910** | 1.438 |
-| Thai | 2.701 | 73.936 | – | 4.230 | 2.961 |
-| Turkish | 1.52 | 0.699 | – | 0.870 | 0.817 |
-| Ukrainian | 1.082 | **0.997** | – | 2.300 | 6.316 |
-| Vietnamese | **0.88** | 73.415 | – | 7.410 | 3.307 |
-
-</details>
-
-<details>
-<summary><b>Minimax-MLS-test SIM(⬆) Results (click to expand)</b></summary>
-
-| Language | Minimax | ElevenLabs | Qwen3-TTS | FishAudio S2 | **VoxCPM2** |
-|----------|:-------:|:----------:|:--------------------:|:------------:|:-----------:|
-| Arabic | 73.6 | 70.6 | – | 75.0 | **79.1** |
-| Cantonese | 77.8 | 67.0 | – | 80.5 | **83.5** |
-| Chinese | 78.0 | 67.7 | 79.9 | 81.6 | **82.5** |
-| Czech | 79.6 | 68.5 | – | **79.8** | 78.3 |
-| Dutch | 73.8 | 68.0 | – | 73.0 | **80.8** |
-| English | 75.6 | 61.3 | 77.5 | 79.7 | **85.4** |
-| Finnish | 83.5 | 75.9 | – | 81.9 | **89.0** |
-| French | 62.8 | 53.5 | 62.8 | 69.8 | **73.5** |
-| German | 73.3 | 61.4 | 77.5 | 76.7 | **80.3** |
-| Greek | 82.6 | 73.3 | – | 79.5 | **86.0** |
-| Hindi | 81.8 | 73.0 | – | 82.1 | **85.6** |
-| Indonesian | 72.9 | 66.0 | – | 76.3 | **80.0** |
-| Italian | 69.9 | 57.9 | 81.7 | 74.7 | **78.0** |
-| Japanese | 77.6 | 73.8 | 78.8 | 79.6 | **82.8** |
-| Korean | 77.6 | 70.0 | 79.9 | 81.7 | **83.3** |
-| Polish | 80.2 | 72.9 | – | 81.9 | **88.4** |
-| Portuguese | 80.5 | 71.1 | 81.7 | 78.1 | **83.7** |
-| Romanian | **80.9** | 69.9 | – | 73.3 | 79.7 |
-| Russian | 76.1 | 67.6 | 79.2 | 79.0 | **81.1** |
-| Spanish | 76.2 | 61.5 | 81.4 | 77.6 | **83.1** |
-| Thai | 80.0 | 58.8 | – | 78.6 | **84.0** |
-| Turkish | 77.9 | 59.6 | – | 83.5 | **87.1** |
-| Ukrainian | 73.0 | 64.7 | – | 74.7 | **79.8** |
-| Vietnamese | 74.3 | 36.9 | – | 74.0 | **80.6** |
-
-</details>
-
-<h3>Internal 30-Language ASR Benchmark</h3>
-<p>We additionally run an internal multilingual intelligibility benchmark with <strong>30 languages × 500 samples</strong>. ASR transcription is evaluated via <strong>Gemini 3.1 Flash Lite API</strong>.</p>
-<details>
-<summary><b>Internal 30-Language ASR Benchmark (click to expand)</b></summary>
-
-| Language | Metric | VoxCPM2 | Fish S2-Pro |
-|---|---:|---:|---:|
-| ar (Arabic) | CER | 1.23% | 0.30% |
-| da (Danish) | WER | 2.70% | 3.52% |
-| de (German) | WER | 0.96% | 0.64% |
-| el (Greek) | WER | 3.17% | 4.61% |
-| en (English) | WER | 0.42% | 1.03% |
-| es (Spanish) | WER | 1.33% | 0.64% |
-| fi (Finnish) | WER | 2.24% | 2.80% |
-| fr (French) | WER | 2.16% | 2.34% |
-| he (Hebrew) | CER | 2.98% | 15.27% |
-| hi (Hindi) | CER | 0.79% | 0.91% |
-| id (Indonesian) | WER | 1.36% | 1.68% |
-| it (Italian) | WER | 1.65% | 1.08% |
-| ja (Japanese) | CER | 2.40% | 1.82% |
-| km (Khmer) | CER | 2.05% | 75.15% |
-| ko (Korean) | CER | 0.95% | 0.29% |
-| lo (Lao) | CER | 1.90% | 87.40% |
-| ms (Malay) | WER | 1.75% | 1.41% |
-| my (Burmese) | CER | 1.42% | 85.27% |
-| nl (Dutch) | WER | 1.25% | 1.68% |
-| no (Norwegian) | WER | 2.49% | 3.76% |
-| pl (Polish) | WER | 1.90% | 1.65% |
-| pt (Portuguese) | WER | 1.48% | 1.49% |
-| ru (Russian) | WER | 0.90% | 0.86% |
-| sv (Swedish) | WER | 2.22% | 2.63% |
-| sw (Swahili) | CER | 1.07% | 2.02% |
-| th (Thai) | CER | 0.94% | 1.92% |
-| tl (Tagalog) | WER | 2.63% | 4.00% |
-| tr (Turkish) | WER | 1.65% | 1.65% |
-| vi (Vietnamese) | WER | 1.56% | 5.56% |
-| zh (Chinese) | CER | 0.92% | 1.02% |
-| Average (30 languages) |  | **1.68%** | - |
-
-</details>
-
-<h3>InstructTTSEval</h3>
-<details>
-<summary><b>Instruction-Guided Voice Design Results (click to expand)</b></summary>
-
-| Model | InstructTTSEval-ZH | | | InstructTTSEval-EN | | |
-|-------|:---:|:----:|:----:|:----:|:----:|:----:|
-| | APS⬆| DSD⬆ | RP⬆| APS⬆ | DSD⬆ | RP⬆ |
-| Hume | – | – | – | 83.0 | 75.3 | 54.3 |
-| VoxInstruct | 47.5 | 52.3 | 42.6 | 54.9 | 57.0 | 39.3 |
-| Parler-tts-mini | – | – | – | 63.4 | 48.7 | 28.6 |
-| Parler-tts-large | – | – | – | 60.0 | 45.9 | 31.2 |
-| PromptTTS | – | – | – | 64.3 | 47.2 | 31.4 |
-| PromptStyle | – | – | – | 57.4 | 46.4 | 30.9 |
-| VoiceSculptor | 75.7 | 64.7 | 61.5 | – | – | – |
-| Mimo-Audio-7B-Instruct | 75.7 | 74.3 | 61.5 | 80.6 | 77.6 | 59.5 |
-| Qwen3TTS-12Hz-1.7B-VD | **85.2** | **81.1** | **65.1** | 82.9 | 82.4 | 68.4 |
-| **VoxCPM2** | **85.2** | 71.5 | 60.8 | **84.2** | **83.2** | **71.4** |
-
-</details>
-
-<hr />
-<h2>⚙️ Fine-tuning</h2>
-<p>VoxCPM supports both <strong>full fine-tuning (SFT)</strong> and <strong>LoRA fine-tuning</strong>. With as little as <strong>5–10 minutes</strong> of audio, you can adapt to a specific speaker, language, or domain.</p>
-<pre><code class="language-bash"># LoRA fine-tuning (parameter-efficient, recommended)
-python scripts/train_voxcpm_finetune.py \
-    --config_path conf/voxcpm_v2/voxcpm_finetune_lora.yaml
-
-# Full fine-tuning
-python scripts/train_voxcpm_finetune.py \
-    --config_path conf/voxcpm_v2/voxcpm_finetune_all.yaml
-
-# WebUI for training &amp; inference
-python lora_ft_webui.py   # then open http://localhost:7860
-</code></pre>
-<blockquote>
-<p><strong>Full guide →</strong> <a href="https://voxcpm.readthedocs.io/en/latest/finetuning/finetune.html">Fine-tuning Guide</a> (data preparation, configuration, training, LoRA hot-swapping, FAQ)</p>
-</blockquote>
-<hr />
-<h2>📚 Documentation</h2>
-<p>Full documentation: <strong><a href="https://voxcpm.readthedocs.io/en/latest/">voxcpm.readthedocs.io</a></strong></p>
-<table>
-<thead>
-<tr>
-<th>Topic</th>
-<th>Link</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Quick Start &amp; Installation</td>
-<td><a href="https://voxcpm.readthedocs.io/en/latest/quickstart.html">Quick Start</a></td>
-</tr>
-<tr>
-<td>Usage Guide &amp; Cookbook</td>
-<td><a href="https://voxcpm.readthedocs.io/en/latest/usage_guide.html">User Guide</a></td>
-</tr>
-<tr>
-<td>VoxCPM Series</td>
-<td><a href="https://voxcpm.readthedocs.io/en/latest/models/version_history.html">Models</a></td>
-</tr>
-<tr>
-<td>Fine-tuning (SFT &amp; LoRA)</td>
-<td><a href="https://voxcpm.readthedocs.io/en/latest/finetuning/finetune.html">Fine-tuning Guide</a></td>
-</tr>
-<tr>
-<td>FAQ &amp; Troubleshooting</td>
-<td><a href="https://voxcpm.readthedocs.io/en/latest/faq.html">FAQ</a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>🌟 Ecosystem &amp; Community</h2>
-<table>
-<thead>
-<tr>
-<th>Project</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/a710128/nanovllm-voxcpm"><strong>Nano-vLLM</strong></a></td>
-<td>High-throughput and Fast GPU serving</td>
-</tr>
-<tr>
-<td><a href="https://github.com/bluryar/VoxCPM.cpp"><strong>VoxCPM.cpp</strong></a></td>
-<td>GGML/GGUF: CPU, CUDA, Vulkan inference</td>
-</tr>
-<tr>
-<td><a href="https://github.com/bluryar/VoxCPM-ONNX"><strong>VoxCPM-ONNX</strong></a></td>
-<td>ONNX export for CPU inference</td>
-</tr>
-<tr>
-<td><a href="https://github.com/0seba/VoxCPMANE"><strong>VoxCPMANE</strong></a></td>
-<td>Apple Neural Engine backend</td>
-</tr>
-<tr>
-<td><a href="https://github.com/madushan1000/voxcpm_rs"><strong>voxcpm_rs</strong></a></td>
-<td>Rust re-implementation</td>
-</tr>
-<tr>
-<td><a href="https://github.com/wildminder/ComfyUI-VoxCPM"><strong>ComfyUI-VoxCPM</strong></a></td>
-<td>ComfyUI node-based workflows</td>
-</tr>
-<tr>
-<td><a href="https://github.com/1038lab/ComfyUI-VoxCPMTTS"><strong>ComfyUI-VoxCPMTTS</strong></a></td>
-<td>ComfyUI TTS extension</td>
-</tr>
-<tr>
-<td><a href="https://github.com/rsxdalv/tts_webui_extension.vox_cpm"><strong>TTS WebUI</strong></a></td>
-<td>Browser-based TTS extension</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>See the full <a href="https://voxcpm.readthedocs.io/en/latest/">Ecosystem</a> in the docs. Community projects are not officially maintained by OpenBMB. Built something cool? <a href="https://github.com/OpenBMB/VoxCPM/issues">Open an issue or PR</a> to add it!</p>
-</blockquote>
-<hr />
-<h2>⚠️ Risks and Limitations</h2>
-<ul>
-<li><strong>Potential for Misuse:</strong> VoxCPM's voice cloning can generate highly realistic synthetic speech. It is <strong>strictly forbidden</strong> to use VoxCPM for impersonation, fraud, or disinformation. We strongly recommend clearly marking any AI-generated content.</li>
-<li><strong>Controllable Generation Stability:</strong> Voice Design and Controllable Voice Cloning results can vary between runs — you may try to generate 1~3 times to obtain the desired voice or style. We are actively working on improving controllability consistency.</li>
-<li><strong>Language Coverage:</strong> VoxCPM2 officially supports 30 languages. For languages not on the list, you are welcome to test directly or try fine-tuning on your own data. We plan to expand language coverage in future releases.</li>
-<li><strong>Usage:</strong> This model is released under the Apache-2.0 license. For production deployments, we recommend conducting thorough testing and safety evaluation tailored to your use case.</li>
-</ul>
-<hr />
-<h2>📖 Citation</h2>
-<p>If you find VoxCPM helpful, please consider citing our work and starring ⭐ the repository!</p>
-<pre><code class="language-bib">@article{voxcpm2_2026,
-  title   = {VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning},
-  author  = {VoxCPM Team},
-  journal = {GitHub},
-  year    = {2026},
-}
-
-@article{voxcpm2025,
-  title   = {VoxCPM: Tokenizer-Free TTS for Context-Aware Speech Generation
-             and True-to-Life Voice Cloning},
-  author  = {Zhou, Yixuan and Zeng, Guoyang and Liu, Xin and Li, Xiang and
-             Yu, Renjie and Wang, Ziyang and Ye, Runchuan and Sun, Weiyue and
-             Gui, Jiancheng and Li, Kehan and Wu, Zhiyong and Liu, Zhiyuan},
-  journal = {arXiv preprint arXiv:2509.24650},
-  year    = {2025},
-}
-</code></pre>
-<h2>📄 License</h2>
-<p>VoxCPM model weights and code are open-sourced under the <a href="LICENSE">Apache-2.0</a> license.</p>
-<h2>🙏 Acknowledgments</h2>
-<ul>
-<li><a href="https://arxiv.org/abs/2502.03930">DiTAR</a> for the diffusion autoregressive backbone</li>
-<li><a href="https://github.com/OpenBMB/MiniCPM">MiniCPM-4</a> for the language model foundation</li>
-<li><a href="https://github.com/FunAudioLLM/CosyVoice">CosyVoice</a> for the Flow Matching-based LocDiT implementation</li>
-<li><a href="https://github.com/descriptinc/descript-audio-codec">DAC</a> for the Audio VAE backbone</li>
-<li>Our community users for trying VoxCPM, reporting issues, sharing ideas, and contributing—your support helps the project keep getting better</li>
-</ul>
-<h2>Institutions</h2>
-<p>
-  <a href="https://modelbest.cn/"><img src="assets/modelbest_logo.png" width="28px"> ModelBest</a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/thuhcsi"><img src="assets/thuhcsi_logo.png" width="28px"> THUHCSI</a>
-</p>
-
-<h2>⭐ Star History</h2>
-<p><a href="https://star-history.com/#OpenBMB/VoxCPM&amp;Date"><img alt="Star History Chart" src="https://api.star-history.com/svg?repos=OpenBMB/VoxCPM&amp;type=Date" /></a></p>
-                    </div>
-                </details>
-            </div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">opendataloader-project /</span>
+          <a href="https://github.com/opendataloader-project/opendataloader-pdf" target="_blank" rel="noopener">opendataloader-pdf</a>
         </div>
-        
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/opendataloader-project/opendataloader-pdf" target="_blank">opendataloader-project/opendataloader-pdf</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 14,103</span>
-                    <span class="stat">🍴 1,186</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: Java</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <!-- AI-AGENT-SUMMARY
+        <div class="repo-desc">PDF Parser for AI-ready data. Automate PDF accessibility. Open-source.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#b07219"></span>Java</span>
+      <span class="meta-item">⭐ 14,113</span>
+      <span class="meta-item">🍴 1,186</span>
+      <span class="stars-today">⭐ 1,124 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!-- AI-AGENT-SUMMARY
 name: opendataloader-pdf
 category: PDF data extraction, PDF accessibility automation
 license: Apache-2.0
@@ -2215,621 +1167,43 @@ opendataloader_pdf.convert(
 <td>0.230</td>
 </tr>
 <tr>
-<td>marker</td>
-<td>0.861</td>
-<td>0.890</td>
-<td>0.808</td>
-<td>0.796</td>
-<td>53.932</td>
-</tr>
-<tr>
-<td>unstructured [hi_res]</td>
-<td>0.841</td>
-<td>0.904</td>
-<td>0.588</td>
-<td>0.749</td>
-<td>3.008</td>
-</tr>
-<tr>
-<td>edgeparse</td>
-<td>0.837</td>
-<td>0.894</td>
-<td>0.717</td>
-<td>0.706</td>
-<td>0.036</td>
-</tr>
-<tr>
-<td>opendataloader</td>
-<td>0.831</td>
-<td>0.902</td>
-<td>0.489</td>
-<td>0.739</td>
-<td><strong>0.015</strong></td>
-</tr>
-<tr>
-<td>mineru</td>
-<td>0.831</td>
-<td>0.857</td>
-<td>0.873</td>
-<td>0.743</td>
-<td>5.962</td>
-</tr>
-<tr>
-<td>pymupdf4llm</td>
-<td>0.732</td>
-<td>0.885</td>
-<td>0.401</td>
-<td>0.412</td>
-<td>0.091</td>
-</tr>
-<tr>
-<td>unstructured</td>
-<td>0.686</td>
-<td>0.882</td>
-<td>0.000</td>
-<td>0.388</td>
-<td>0.077</td>
-</tr>
-<tr>
-<td>markitdown</td>
-<td>0.589</td>
-<td>0.844</td>
-<td>0.273</td>
-<td>0.000</td>
-<td>0.114</td>
-</tr>
-<tr>
-<td>liteparse</td>
-<td>0.576</td>
-<td>0.866</td>
-<td>0.000</td>
-<td>0.000</td>
-<td>1.061</td>
+<td>m</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<p>Scores normalized to [0, 1]. Higher is better for accuracy; lower is better for speed. <strong>Bold</strong> = best. <a href="https://github.com/opendataloader-project/opendataloader-bench">Full benchmark details</a></p>
-</blockquote>
-<p><a href="https://github.com/opendataloader-project/opendataloader-bench"><img alt="Benchmark" src="https://github.com/opendataloader-project/opendataloader-bench/raw/refs/heads/main/charts/benchmark.png" /></a></p>
-<p><a href="https://github.com/opendataloader-project/opendataloader-bench"><img alt="Quality Breakdown" src="https://github.com/opendataloader-project/opendataloader-bench/raw/refs/heads/main/charts/benchmark_quality.png" /></a></p>
-<h2>Which Mode Should I Use?</h2>
-<table>
-<thead>
-<tr>
-<th>Your Document</th>
-<th>Mode</th>
-<th>Install</th>
-<th>Server Command</th>
-<th>Client Command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Standard digital PDF</td>
-<td>Fast (default)</td>
-<td><code>pip install opendataloader-pdf</code></td>
-<td>None needed</td>
-<td><code>opendataloader-pdf file1.pdf file2.pdf folder/</code></td>
-</tr>
-<tr>
-<td>Complex or nested tables</td>
-<td><strong>Hybrid</strong></td>
-<td><code>pip install "opendataloader-pdf[hybrid]"</code></td>
-<td><code>opendataloader-pdf-hybrid --port 5002</code></td>
-<td><code>opendataloader-pdf --hybrid docling-fast file1.pdf file2.pdf folder/</code></td>
-</tr>
-<tr>
-<td>Scanned / image-based PDF</td>
-<td>Hybrid + OCR</td>
-<td><code>pip install "opendataloader-pdf[hybrid]"</code></td>
-<td><code>opendataloader-pdf-hybrid --port 5002 --force-ocr</code></td>
-<td><code>opendataloader-pdf --hybrid docling-fast file1.pdf file2.pdf folder/</code></td>
-</tr>
-<tr>
-<td>Non-English scanned PDF</td>
-<td>Hybrid + OCR</td>
-<td><code>pip install "opendataloader-pdf[hybrid]"</code></td>
-<td><code>opendataloader-pdf-hybrid --port 5002 --force-ocr --ocr-lang "ko,en"</code></td>
-<td><code>opendataloader-pdf --hybrid docling-fast file1.pdf file2.pdf folder/</code></td>
-</tr>
-<tr>
-<td>Mathematical formulas</td>
-<td>Hybrid + formula</td>
-<td><code>pip install "opendataloader-pdf[hybrid]"</code></td>
-<td><code>opendataloader-pdf-hybrid --enrich-formula</code></td>
-<td><code>opendataloader-pdf --hybrid docling-fast --hybrid-mode full file1.pdf file2.pdf folder/</code></td>
-</tr>
-<tr>
-<td>Charts needing description</td>
-<td>Hybrid + picture</td>
-<td><code>pip install "opendataloader-pdf[hybrid]"</code></td>
-<td><code>opendataloader-pdf-hybrid --enrich-picture-description</code></td>
-<td><code>opendataloader-pdf --hybrid docling-fast --hybrid-mode full file1.pdf file2.pdf folder/</code></td>
-</tr>
-<tr>
-<td>Untagged PDFs needing accessibility</td>
-<td>Auto-tagging → Tagged PDF</td>
-<td>Coming Q2 2026</td>
-<td>—</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<h2>Quick Start</h2>
-<h3>Python</h3>
-<pre><code class="language-bash">pip install -U opendataloader-pdf
-</code></pre>
-<pre><code class="language-python">import opendataloader_pdf
-
-# Batch all files in one call — each convert() spawns a JVM process, so repeated calls are slow
-opendataloader_pdf.convert(
-    input_path=[&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;folder/&quot;],
-    output_dir=&quot;output/&quot;,
-    format=&quot;markdown,json&quot;
-)
-</code></pre>
-<h3>Node.js</h3>
-<pre><code class="language-bash">npm install @opendataloader/pdf
-</code></pre>
-<pre><code class="language-typescript">import { convert } from '@opendataloader/pdf';
-
-await convert(['file1.pdf', 'file2.pdf', 'folder/'], {
-  outputDir: 'output/',
-  format: 'markdown,json'
-});
-</code></pre>
-<h3>Java</h3>
-<pre><code class="language-xml">&lt;dependency&gt;
-  &lt;groupId&gt;org.opendataloader&lt;/groupId&gt;
-  &lt;artifactId&gt;opendataloader-pdf-core&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre>
-<p><a href="https://opendataloader.org/docs/quick-start-python">Python Quick Start</a> | <a href="https://opendataloader.org/docs/quick-start-nodejs">Node.js Quick Start</a> | <a href="https://opendataloader.org/docs/quick-start-java">Java Quick Start</a></p>
-<h2>Hybrid Mode: #1 Accuracy for Complex PDFs</h2>
-<p>Hybrid mode combines fast local Java processing with AI backends. Simple pages stay local (0.02s); complex pages route to AI for +90% table accuracy.</p>
-<pre><code class="language-bash">pip install -U &quot;opendataloader-pdf[hybrid]&quot;
-</code></pre>
-<p><strong>Terminal 1</strong> — Start the backend server:</p>
-<pre><code class="language-bash">opendataloader-pdf-hybrid --port 5002
-</code></pre>
-<p><strong>Terminal 2</strong> — Process PDFs:</p>
-<pre><code class="language-bash"># Batch all files in one call — each invocation spawns a JVM process, so repeated calls are slow
-opendataloader-pdf --hybrid docling-fast file1.pdf file2.pdf folder/
-</code></pre>
-<p><strong>Python:</strong></p>
-<pre><code class="language-python"># Batch all files in one call — each convert() spawns a JVM process, so repeated calls are slow
-opendataloader_pdf.convert(
-    input_path=[&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;folder/&quot;],
-    output_dir=&quot;output/&quot;,
-    hybrid=&quot;docling-fast&quot;
-)
-</code></pre>
-<h3>OCR for Scanned PDFs</h3>
-<p>Start the backend with <code>--force-ocr</code> for image-based PDFs with no selectable text:</p>
-<pre><code class="language-bash">opendataloader-pdf-hybrid --port 5002 --force-ocr
-</code></pre>
-<p>For non-English documents, specify the language:</p>
-<pre><code class="language-bash">opendataloader-pdf-hybrid --port 5002 --force-ocr --ocr-lang &quot;ko,en&quot;
-</code></pre>
-<p>Supported languages: <code>en</code>, <code>ko</code>, <code>ja</code>, <code>ch_sim</code>, <code>ch_tra</code>, <code>de</code>, <code>fr</code>, <code>ar</code>, and more.</p>
-<h3>Formula Extraction (LaTeX)</h3>
-<p>Extract mathematical formulas as LaTeX from scientific PDFs:</p>
-<pre><code class="language-bash"># Server: enable formula enrichment
-opendataloader-pdf-hybrid --enrich-formula
-
-# Batch all files in one call — each invocation spawns a JVM process, so repeated calls are slow
-opendataloader-pdf --hybrid docling-fast --hybrid-mode full file1.pdf file2.pdf folder/
-</code></pre>
-<p>Output in JSON:</p>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;formula&quot;,
-  &quot;page number&quot;: 1,
-  &quot;bounding box&quot;: [226.2, 144.7, 377.1, 168.7],
-  &quot;content&quot;: &quot;\\frac{f(x+h) - f(x)}{h}&quot;
-}
-</code></pre>
-<blockquote>
-<p><strong>Note</strong>: Formula and picture description enrichments require <code>--hybrid-mode full</code> on the client side.</p>
-</blockquote>
-<h3>Chart &amp; Image Description</h3>
-<p>Generate AI descriptions for charts and images — useful for RAG search and accessibility alt text:</p>
-<pre><code class="language-bash"># Server
-opendataloader-pdf-hybrid --enrich-picture-description
-
-# Batch all files in one call — each invocation spawns a JVM process, so repeated calls are slow
-opendataloader-pdf --hybrid docling-fast --hybrid-mode full file1.pdf file2.pdf folder/
-</code></pre>
-<p>Output in JSON:</p>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;picture&quot;,
-  &quot;page number&quot;: 1,
-  &quot;bounding box&quot;: [72.0, 400.0, 540.0, 650.0],
-  &quot;description&quot;: &quot;A bar chart showing waste generation by region from 2016 to 2030...&quot;
-}
-</code></pre>
-<blockquote>
-<p>Uses SmolVLM (256M), a lightweight vision model. Custom prompts supported via <code>--picture-description-prompt</code>.</p>
-</blockquote>
-<h3>Hancom Data Loader Integration — Coming Soon</h3>
-<p>Enterprise-grade AI document analysis via <a href="https://sdk.hancom.com/en/services/1?utm_source=github&amp;utm_medium=readme&amp;utm_campaign=opendataloader-pdf">Hancom Data Loader</a> — customer-customized models trained on your domain-specific documents. 30+ element types (tables, charts, formulas, captions, footnotes, etc.), VLM-based image/chart understanding, complex table extraction (merged cells, nested tables), SLA-backed OCR for scanned documents, and native HWP/HWPX support. Supports PDF, DOCX, XLSX, PPTX, HWP, PNG, JPG. <a href="https://livedemo.sdk.hancom.com/en/dataloader?utm_source=github&amp;utm_medium=readme&amp;utm_campaign=opendataloader-pdf">Live demo</a></p>
-<p><a href="https://opendataloader.org/docs/hybrid-mode">Hybrid Mode Guide</a></p>
-<h2>Output Formats</h2>
-<table>
-<thead>
-<tr>
-<th>Format</th>
-<th>Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>JSON</strong></td>
-<td>Structured data with bounding boxes, semantic types</td>
-</tr>
-<tr>
-<td><strong>Markdown</strong></td>
-<td>Clean text for LLM context, RAG chunks</td>
-</tr>
-<tr>
-<td><strong>HTML</strong></td>
-<td>Web display with styling</td>
-</tr>
-<tr>
-<td><strong>Annotated PDF</strong></td>
-<td>Visual debugging — see detected structures (<a href="https://opendataloader.org/demo/samples/01030000000000">sample</a>)</td>
-</tr>
-<tr>
-<td><strong>Text</strong></td>
-<td>Plain text extraction</td>
-</tr>
-</tbody>
-</table>
-<p>Combine formats: <code>format="json,markdown"</code></p>
-<h3>JSON Output Example</h3>
-<pre><code class="language-json">{
-  &quot;type&quot;: &quot;heading&quot;,
-  &quot;id&quot;: 42,
-  &quot;level&quot;: &quot;Title&quot;,
-  &quot;page number&quot;: 1,
-  &quot;bounding box&quot;: [72.0, 700.0, 540.0, 730.0],
-  &quot;heading level&quot;: 1,
-  &quot;font&quot;: &quot;Helvetica-Bold&quot;,
-  &quot;font size&quot;: 24.0,
-  &quot;text color&quot;: &quot;[0.0]&quot;,
-  &quot;content&quot;: &quot;Introduction&quot;
-}
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>type</code></td>
-<td>Element type: heading, paragraph, table, list, image, caption, formula</td>
-</tr>
-<tr>
-<td><code>id</code></td>
-<td>Unique identifier for cross-referencing</td>
-</tr>
-<tr>
-<td><code>page number</code></td>
-<td>1-indexed page reference</td>
-</tr>
-<tr>
-<td><code>bounding box</code></td>
-<td><code>[left, bottom, right, top]</code> in PDF points (72pt = 1 inch)</td>
-</tr>
-<tr>
-<td><code>heading level</code></td>
-<td>Heading depth (1+)</td>
-</tr>
-<tr>
-<td><code>content</code></td>
-<td>Extracted text</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://opendataloader.org/docs/json-schema">Full JSON Schema</a></p>
-<h2>Advanced Features</h2>
-<h3>Tagged PDF Support</h3>
-<p>When a PDF has structure tags, OpenDataLoader extracts the <strong>exact layout</strong> the author intended — no guessing, no heuristics. Headings, lists, tables, and reading order are preserved from the source.</p>
-<pre><code class="language-python"># Batch all files in one call — each convert() spawns a JVM process, so repeated calls are slow
-opendataloader_pdf.convert(
-    input_path=[&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;folder/&quot;],
-    output_dir=&quot;output/&quot;,
-    use_struct_tree=True           # Use native PDF structure tags
-)
-</code></pre>
-<p>Most PDF parsers ignore structure tags entirely. <a href="https://opendataloader.org/docs/tagged-pdf">Learn more</a></p>
-<h3>AI Safety: Prompt Injection Protection</h3>
-<p>PDFs can contain hidden prompt injection attacks. OpenDataLoader automatically filters:</p>
-<ul>
-<li>Hidden text (transparent, zero-size fonts)</li>
-<li>Off-page content</li>
-<li>Suspicious invisible layers</li>
-</ul>
-<p>To sanitize sensitive data (emails, URLs, phone numbers → placeholders), enable it explicitly:</p>
-<pre><code class="language-bash"># Batch all files in one call — each invocation spawns a JVM process, so repeated calls are slow
-opendataloader-pdf file1.pdf file2.pdf folder/ --sanitize
-</code></pre>
-<p><a href="https://opendataloader.org/docs/ai-safety">AI Safety Guide</a></p>
-<h3>LangChain Integration</h3>
-<pre><code class="language-bash">pip install -U langchain-opendataloader-pdf
-</code></pre>
-<pre><code class="language-python">from langchain_opendataloader_pdf import OpenDataLoaderPDFLoader
-
-loader = OpenDataLoaderPDFLoader(
-    file_path=[&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;folder/&quot;],
-    format=&quot;text&quot;
-)
-documents = loader.load()
-</code></pre>
-<p><a href="https://docs.langchain.com/oss/python/integrations/document_loaders/opendataloader_pdf">LangChain Docs</a> | <a href="https://github.com/opendataloader-project/langchain-opendataloader-pdf">GitHub</a> | <a href="https://pypi.org/project/langchain-opendataloader-pdf/">PyPI</a></p>
-<h3>Advanced Options</h3>
-<pre><code class="language-python"># Batch all files in one call — each convert() spawns a JVM process, so repeated calls are slow
-opendataloader_pdf.convert(
-    input_path=[&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;folder/&quot;],
-    output_dir=&quot;output/&quot;,
-    format=&quot;json,markdown,pdf&quot;,
-    image_output=&quot;embedded&quot;,        # &quot;off&quot;, &quot;embedded&quot; (Base64), or &quot;external&quot; (default)
-    image_format=&quot;jpeg&quot;,            # &quot;png&quot; or &quot;jpeg&quot;
-    use_struct_tree=True,           # Use native PDF structure
-)
-</code></pre>
-<p><a href="https://opendataloader.org/docs/cli-options-reference">Full CLI Options Reference</a></p>
-<h2>PDF Accessibility &amp; PDF/UA Conversion</h2>
-<p><strong>Problem</strong>: Millions of existing PDFs lack structure tags, failing accessibility regulations (EAA, ADA/Section 508, Korea Digital Inclusion Act). Manual remediation costs $50–200 per document and doesn't scale.</p>
-<p><strong>OpenDataLoader's approach</strong>: Built in collaboration with <a href="https://pdfa.org">PDF Association</a> and <a href="https://duallab.com">Dual Lab</a> (developers of <a href="https://verapdf.org">veraPDF</a>, the industry-reference open-source PDF/A and PDF/UA validator). Auto-tagging follows the <a href="https://pdfa.org/resource/well-tagged-pdf/">Well-Tagged PDF specification</a> and is validated programmatically using veraPDF — automated conformance checks against PDF accessibility standards, not manual review. No existing open-source tool generates Tagged PDFs end-to-end — most rely on proprietary SDKs for the tag-writing step. OpenDataLoader does it all under Apache 2.0. (<a href="https://opendataloader.org/docs/tagged-pdf-collaboration">collaboration details</a>)</p>
-<table>
-<thead>
-<tr>
-<th>Regulation</th>
-<th>Deadline</th>
-<th>Requirement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>European Accessibility Act (EAA)</strong></td>
-<td>June 28, 2025</td>
-<td>Accessible digital products across the EU</td>
-</tr>
-<tr>
-<td><strong>ADA &amp; Section 508</strong></td>
-<td>In effect</td>
-<td>U.S. federal agencies and public accommodations</td>
-</tr>
-<tr>
-<td><strong>Digital Inclusion Act</strong></td>
-<td>In effect</td>
-<td>South Korea digital service accessibility</td>
-</tr>
-</tbody>
-</table>
-<h3>Standards &amp; Validation</h3>
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Detail</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Specification</strong></td>
-<td><a href="https://pdfa.org/resource/well-tagged-pdf/">Well-Tagged PDF</a> by PDF Association</td>
-</tr>
-<tr>
-<td><strong>Validation</strong></td>
-<td><a href="https://verapdf.org">veraPDF</a> — industry-reference open-source PDF/A &amp; PDF/UA validator</td>
-</tr>
-<tr>
-<td><strong>Collaboration</strong></td>
-<td>PDF Association + <a href="https://duallab.com">Dual Lab</a> (veraPDF developers) co-develop tagging and validation</td>
-</tr>
-<tr>
-<td><strong>License</strong></td>
-<td>Auto-tagging → Tagged PDF: Apache 2.0 (free). PDF/UA export: Enterprise</td>
-</tr>
-</tbody>
-</table>
-<h3>Accessibility Pipeline</h3>
-<table>
-<thead>
-<tr>
-<th>Step</th>
-<th>Feature</th>
-<th>Status</th>
-<th>Tier</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1. <strong>Audit</strong></td>
-<td>Read existing PDF tags, detect untagged PDFs</td>
-<td>Shipped</td>
-<td>Free</td>
-</tr>
-<tr>
-<td>2. <strong>Auto-tag → Tagged PDF</strong></td>
-<td>Generate structure tags for untagged PDFs</td>
-<td>Coming Q2 2026</td>
-<td>Free (Apache 2.0)</td>
-</tr>
-<tr>
-<td>3. <strong>Export PDF/UA</strong></td>
-<td>Convert to PDF/UA-1 or PDF/UA-2 compliant files</td>
-<td>💼 Available</td>
-<td>Enterprise</td>
-</tr>
-<tr>
-<td>4. <strong>Visual editing</strong></td>
-<td>Accessibility studio — review and fix tags</td>
-<td>💼 Available</td>
-<td>Enterprise</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>💼 Enterprise features</strong> are available on request. <a href="https://opendataloader.org/contact">Contact us</a> to get started.</p>
-</blockquote>
-<h3>Auto-Tagging Preview (Coming Q2 2026)</h3>
-<pre><code class="language-python"># API shape preview — available Q2 2026
-opendataloader_pdf.convert(
-    input_path=[&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;folder/&quot;],
-    output_dir=&quot;output/&quot;,
-    auto_tag=True                   # Generate structure tags for untagged PDFs
-)
-</code></pre>
-<h3>End-to-End Compliance Workflow</h3>
-<pre><code>Existing PDFs (untagged)
-    │
-    ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│  1. Audit       │───&gt;│  2. Auto-Tag    │───&gt;│  3. Export       │───&gt;│  4. Studio       │
-│  (check tags)   │    │  (→ Tagged PDF) │    │  (PDF/UA)        │    │  (visual editor) │
-└─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘
-        │                      │                      │                      │
-        ▼                      ▼                      ▼                      ▼
-  use_struct_tree         auto_tag              PDF/UA export       Accessibility Studio
-  (Available now)    (Q2 2026, Apache 2.0)    (Enterprise)          (Enterprise)
-</code></pre>
-<p><a href="https://opendataloader.org/docs/accessibility-compliance">PDF Accessibility Guide</a></p>
-<h2>Roadmap</h2>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Timeline</th>
-<th>Tier</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Auto-tagging → Tagged PDF</strong> — Generate Tagged PDFs from untagged PDFs</td>
-<td>Q2 2026</td>
-<td>Free</td>
-</tr>
-<tr>
-<td><strong><a href="https://sdk.hancom.com/en/services/1?utm_source=github&amp;utm_medium=readme&amp;utm_campaign=opendataloader-pdf">Hancom Data Loader</a></strong> — Enterprise AI document analysis, customer-customized models, VLM-based chart/image understanding, production-grade OCR</td>
-<td>Q2-Q3 2026</td>
-<td>Planned</td>
-</tr>
-<tr>
-<td><strong>Structure validation</strong> — Verify PDF tag trees</td>
-<td>Q2 2026</td>
-<td>Planned</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://opendataloader.org/docs/upcoming-roadmap">Full Roadmap</a></p>
-<h2>Frequently Asked Questions</h2>
-<h3>What is the best PDF parser for RAG?</h3>
-<p>For RAG pipelines, you need a parser that preserves document structure, maintains correct reading order, and provides element coordinates for citations. OpenDataLoader is designed specifically for this — it outputs structured JSON with bounding boxes, handles multi-column layouts with XY-Cut++, and runs locally without GPU. In hybrid mode, it ranks #1 overall (0.907) in benchmarks.</p>
-<h3>What is the best open-source PDF parser?</h3>
-<p>OpenDataLoader PDF is the only open-source parser that combines: rule-based deterministic extraction (no GPU), bounding boxes for every element, XY-Cut++ reading order, built-in AI safety filters, native Tagged PDF support, and hybrid AI mode for complex documents. It ranks #1 in overall accuracy (0.907) while running locally on CPU.</p>
-<h3>How do I extract tables from PDF for LLM?</h3>
-<p>OpenDataLoader detects tables using border analysis and text clustering, preserving row/column structure. For complex tables, enable hybrid mode for +90% accuracy improvement (0.489 to 0.928 TEDS score):</p>
-<pre><code class="language-python"># Batch all files in one call — each convert() spawns a JVM process, so repeated calls are slow
-opendataloader_pdf.convert(
-    input_path=[&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;folder/&quot;],
-    output_dir=&quot;output/&quot;,
-    format=&quot;json&quot;,
-    hybrid=&quot;docling-fast&quot;           # For complex tables
-)
-</code></pre>
-<h3>How does it compare to docling, marker, or pymupdf4llm?</h3>
-<p>OpenDataLoader [hybrid] ranks #1 overall (0.907) across reading order, table, and heading accuracy. Key differences: docling (0.882) is strong but lacks bounding boxes and AI safety filters. marker (0.861) requires GPU and is 1000x slower (53.932s/page). pymupdf4llm (0.732) is fast but has poor table (0.401) and heading (0.412) accuracy. OpenDataLoader is the only parser that combines deterministic local extraction, bounding boxes for every element, and built-in prompt injection protection. See <a href="https://github.com/opendataloader-project/opendataloader-bench">full benchmark</a>.</p>
-<h3>Can I use this without sending data to the cloud?</h3>
-<p>Yes. OpenDataLoader runs 100% locally. No API calls, no data transmission — your documents never leave your environment. The hybrid mode backend also runs locally on your machine. Ideal for legal, healthcare, and financial documents.</p>
-<h3>Does it support OCR for scanned PDFs?</h3>
-<p>Yes, via hybrid mode. Install with <code>pip install "opendataloader-pdf[hybrid]"</code>, start the backend with <code>--force-ocr</code>, then process as usual. Supports multiple languages including Korean, Japanese, Chinese, Arabic, and more via <code>--ocr-lang</code>.</p>
-<h3>Does it work with Korean, Japanese, or Chinese documents?</h3>
-<p>Yes. For digital PDFs, text extraction works out of the box. For scanned PDFs, use hybrid mode with <code>--force-ocr --ocr-lang "ko,en"</code> (or <code>ja</code>, <code>ch_sim</code>, <code>ch_tra</code>). Coming soon: <a href="https://sdk.hancom.com/en/services/1?utm_source=github&amp;utm_medium=readme&amp;utm_campaign=opendataloader-pdf">Hancom Data Loader</a> integration — enterprise-grade AI document analysis with built-in production-grade OCR and customer-customized models optimized for your specific document types and workflows.</p>
-<h3>How fast is it?</h3>
-<p>Local mode processes 60+ pages per second on CPU (0.02s/page). Hybrid mode processes 2+ pages per second (0.46s/page) with significantly higher accuracy for complex documents. No GPU required. Benchmarked on Apple M4. <a href="https://github.com/opendataloader-project/opendataloader-bench">Full benchmark details</a>. With multi-process batch processing, throughput exceeds 100 pages per second on 8+ core machines.</p>
-<h3>Does it handle multi-column layouts?</h3>
-<p>Yes. OpenDataLoader uses XY-Cut++ reading order analysis to correctly sequence text across multi-column pages, sidebars, and mixed layouts. This works in both local and hybrid modes without any configuration.</p>
-<h3>What is hybrid mode?</h3>
-<p>Hybrid mode combines fast local Java processing with an AI backend. Simple pages are processed locally (0.02s/page); complex pages (tables, scanned content, formulas, charts) are automatically routed to the AI backend for higher accuracy. The backend runs locally on your machine — no cloud required. See <a href="#which-mode-should-i-use">Which Mode Should I Use?</a> and <a href="https://opendataloader.org/docs/hybrid-mode">Hybrid Mode Guide</a>.</p>
-<h3>Does it work with LangChain?</h3>
-<p>Yes. Install <code>langchain-opendataloader-pdf</code> for an official LangChain document loader integration. See <a href="https://docs.langchain.com/oss/python/integrations/document_loaders/opendataloader_pdf">LangChain docs</a>.</p>
-<h3>How do I chunk PDFs for RAG?</h3>
-<p>OpenDataLoader outputs structured Markdown with headings, tables, and lists preserved — ideal input for semantic chunking. Each element in JSON output includes <code>type</code>, <code>heading level</code>, and <code>page number</code>, so you can split by section or page boundary. For most RAG pipelines: parse with <code>format="markdown"</code> for text chunks, or <code>format="json"</code> when you need element-level control. Pair with LangChain's <code>RecursiveCharacterTextSplitter</code> or your own heading-based splitter for best results.</p>
-<h3>How do I cite PDF sources in RAG answers?</h3>
-<p>Every element in JSON output includes a <code>bounding box</code> (<code>[left, bottom, right, top]</code> in PDF points) and <code>page number</code>. When your RAG pipeline returns an answer, map the source chunk back to its bounding box to highlight the exact location in the original PDF. This enables "click to source" UX — users see which paragraph, table, or figure the answer came from. No other open-source parser provides bounding boxes for every element by default.</p>
-<h3>How do I convert PDF to Markdown for LLM?</h3>
-<pre><code class="language-python">import opendataloader_pdf
-
-# Batch all files in one call — each convert() spawns a JVM process, so repeated calls are slow
-opendataloader_pdf.convert(
-    input_path=[&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;folder/&quot;],
-    output_dir=&quot;output/&quot;,
-    format=&quot;markdown&quot;
-)
-</code></pre>
-<p>OpenDataLoader preserves heading hierarchy, table structure, and reading order in the Markdown output. For complex documents with borderless tables or scanned pages, use hybrid mode (<code>hybrid="docling-fast"</code>) for higher accuracy. The output is clean enough to feed directly into LLM context windows or RAG chunking pipelines.</p>
-<h3>Is there an automated PDF accessibility remediation tool?</h3>
-<p>Yes. OpenDataLoader is the first open-source tool that automates PDF accessibility end-to-end. Built in collaboration with <a href="https://pdfa.org">PDF Association</a> and <a href="https://duallab.com">Dual Lab</a> (veraPDF developers), auto-tagging follows the Well-Tagged PDF specification and is validated programmatically using veraPDF. The layout analysis engine detects document structure (headings, tables, lists, reading order) and generates accessibility tags automatically. Auto-tagging (Q2 2026) converts untagged PDFs into Tagged PDFs under Apache 2.0 — no proprietary SDK dependency. For organizations needing full PDF/UA compliance, enterprise add-ons provide PDF/UA export and a visual tag editor. This replaces manual remediation workflows that typically cost $50–200+ per document.</p>
-<h3>Is this really the first open-source PDF auto-tagging tool?</h3>
-<p>Yes. Existing tools either depend on proprietary SDKs for writing structure tags, only output non-PDF formats (e.g., Docling outputs Markdown/JSON but cannot produce Tagged PDFs), or require manual intervention. OpenDataLoader is the first to do layout analysis → tag generation → Tagged PDF output entirely under an open-source license (Apache 2.0), with no proprietary dependency. Auto-tagging follows the PDF Association's Well-Tagged PDF specification and is validated using veraPDF, the industry-reference open-source PDF/A and PDF/UA validator.</p>
-<h3>How do I convert existing PDFs to PDF/UA?</h3>
-<p>OpenDataLoader provides an end-to-end pipeline: audit existing PDFs for tags (<code>use_struct_tree=True</code>), auto-tag untagged PDFs into Tagged PDFs (Q2 2026, free under Apache 2.0), and export as PDF/UA-1 or PDF/UA-2 (enterprise add-on). Auto-tagging follows the PDF Association's Well-Tagged PDF specification and is validated using veraPDF. Auto-tagging generates the Tagged PDF; PDF/UA export is the final step. <a href="https://opendataloader.org/contact">Contact us</a> for enterprise integration.</p>
-<h3>How do I make my PDFs accessible for EAA compliance?</h3>
-<p>The European Accessibility Act requires accessible digital products by June 28, 2025. OpenDataLoader supports the full remediation workflow: audit → auto-tag → Tagged PDF → PDF/UA export. Auto-tagging follows the PDF Association's Well-Tagged PDF specification and is validated using veraPDF, ensuring standards-compliant output. Auto-tagging to Tagged PDF will be open-sourced under Apache 2.0 (Q2 2026). PDF/UA export and accessibility studio are enterprise add-ons. See our <a href="https://opendataloader.org/docs/accessibility-compliance">Accessibility Guide</a>.</p>
-<h3>Is OpenDataLoader PDF free?</h3>
-<p>The core library is <strong>open-source under Apache 2.0</strong> — free for commercial use. This includes all extraction features (text, tables, images, OCR, formulas, charts via hybrid mode), AI safety filters, Tagged PDF support, and auto-tagging to Tagged PDF (Q2 2026). We are committed to keeping the core accessibility pipeline (layout analysis → auto-tagging → Tagged PDF) free and open-source. Enterprise add-ons (PDF/UA export, accessibility studio) are available for organizations needing end-to-end regulatory compliance.</p>
-<h3>Why did the license change from MPL 2.0 to Apache 2.0?</h3>
-<p>MPL 2.0 requires file-level copyleft, which often triggers legal review before enterprise adoption. Apache 2.0 is fully permissive — no copyleft obligations, easier to integrate into commercial projects. If you are using a pre-2.0 version, it remains under MPL 2.0 and you can continue using it. Upgrading to 2.0+ means your project follows Apache 2.0 terms, which are strictly more permissive — no additional obligations, no action needed on your side.</p>
-<h2>Documentation</h2>
-<ul>
-<li><a href="https://opendataloader.org/docs/quick-start-python">Quick Start (Python)</a></li>
-<li><a href="https://opendataloader.org/docs/quick-start-nodejs">Quick Start (Node.js)</a></li>
-<li><a href="https://opendataloader.org/docs/quick-start-java">Quick Start (Java)</a></li>
-<li><a href="https://opendataloader.org/docs/json-schema">JSON Schema Reference</a></li>
-<li><a href="https://opendataloader.org/docs/cli-options-reference">CLI Options</a></li>
-<li><a href="https://opendataloader.org/docs/hybrid-mode">Hybrid Mode Guide</a></li>
-<li><a href="https://opendataloader.org/docs/tagged-pdf">Tagged PDF Support</a></li>
-<li><a href="https://opendataloader.org/docs/ai-safety">AI Safety Features</a></li>
-<li><a href="https://opendataloader.org/docs/accessibility-compliance">PDF Accessibility</a></li>
-</ul>
-<h2>Contributing</h2>
-<p>We welcome contributions! See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for guidelines.</p>
-<h2>License</h2>
-<p><a href="LICENSE">Apache License 2.0</a></p>
-<blockquote>
-<p><strong>Note:</strong> Versions prior to 2.0 are licensed under the <a href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License 2.0</a>.</p>
-</blockquote>
-<hr />
-<p><strong>Found this useful?</strong> Give us a star to help others discover OpenDataLoader.</p>
-                    </div>
-                </details>
-            </div>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/opendataloader-project/opendataloader-pdf#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">obra /</span>
+          <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">superpowers</a>
         </div>
-        
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/obra/superpowers" target="_blank">obra/superpowers</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 144,231</span>
-                    <span class="stat">🍴 12,342</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: Shell</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <h1>Superpowers</h1>
+        <div class="repo-desc">An agentic skills framework &amp; software development methodology that works.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 144,251</span>
+      <span class="meta-item">🍴 12,344</span>
+      <span class="stars-today">⭐ 2,299 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Superpowers</h1>
 <p>Superpowers is a complete software development workflow for your coding agents, built on top of a set of composable "skills" and some initial instructions that make sure your agent uses them.</p>
 <h2>How it works</h2>
 <p>It starts from the moment you fire up your coding agent. As soon as it sees that you're building something, it <em>doesn't</em> just jump into trying to write code. Instead, it steps back and asks you what you're really trying to do. </p>
@@ -2959,29 +1333,34 @@ copilot plugin install superpowers@superpowers-marketplace
 <li><strong>Issues</strong>: https://github.com/obra/superpowers/issues</li>
 <li><strong>Release announcements</strong>: <a href="https://primeradiant.com/superpowers/">Sign up</a> to get notified about new versions</li>
 </ul>
-                    </div>
-                </details>
-            </div>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/obra/superpowers#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">TheCraigHewitt /</span>
+          <a href="https://github.com/TheCraigHewitt/seomachine" target="_blank" rel="noopener">seomachine</a>
         </div>
-        
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/TheCraigHewitt/seomachine" target="_blank">TheCraigHewitt/seomachine</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 5,316</span>
-                    <span class="stat">🍴 766</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: Python</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <h1>SEO Machine</h1>
+        <div class="repo-desc">A specialized Claude Code workspace for creating long-form, SEO-optimized blog content for any business. This system helps you research, write, analyze, and optimize content that ranks well and serves your target audience.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 5,319</span>
+      <span class="meta-item">🍴 766</span>
+      <span class="stars-today">⭐ 725 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>SEO Machine</h1>
 <p>A specialized Claude Code workspace for creating long-form, SEO-optimized blog content for any business. This system helps you research, write, analyze, and optimize content that ranks well and serves your target audience.</p>
 <h2>Overview</h2>
 <p>SEO Machine is built on Claude Code and provides:<br />
@@ -3235,697 +1614,39 @@ After writing, these agents automatically analyze the content:<br />
 <td>Research competitors and positioning</td>
 </tr>
 <tr>
-<td><code>/landing-competitor [URL]</code></td>
-<td>Deep competitor landing page analysis</td>
-</tr>
-<tr>
-<td><code>/landing-publish [file]</code></td>
-<td>Publish landing page to WordPress</td>
+<td>`/landin</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<h2>Agents</h2>
-<p>Specialized agents that automatically analyze content and provide expert recommendations.</p>
-<h3>Content Analyzer (NEW!)</h3>
-<p><strong>Purpose</strong>: Comprehensive, data-driven content analysis using 5 specialized modules</p>
-<p><strong>Analyzes</strong>:<br />
-- Search intent classification (informational/navigational/transactional/commercial)<br />
-- Keyword density and clustering with topic detection<br />
-- Content length comparison vs top SERP competitors<br />
-- Readability scoring (Flesch Reading Ease, Flesch-Kincaid Grade Level)<br />
-- SEO quality rating (0-100 score with category breakdowns)<br />
-- Keyword stuffing risk detection<br />
-- Passive voice ratio and sentence complexity<br />
-- Distribution heatmap showing keyword placement by section</p>
-<p><strong>Output</strong>:<br />
-- Executive summary with publishing readiness assessment<br />
-- Priority action plan (critical/high priority/optimization)<br />
-- Competitive positioning analysis<br />
-- Detailed recommendations for each analysis area<br />
-- Exact metrics and benchmarks for improvements</p>
-<p><strong>Powered by</strong>:<br />
-- <code>search_intent_analyzer.py</code> - Search intent detection<br />
-- <code>keyword_analyzer.py</code> - Keyword density, clustering, LSI keywords<br />
-- <code>content_length_comparator.py</code> - SERP competitor analysis<br />
-- <code>readability_scorer.py</code> - Multiple readability metrics<br />
-- <code>seo_quality_rater.py</code> - Comprehensive SEO scoring</p>
-<hr />
-<h3>SEO Optimizer</h3>
-<p><strong>Purpose</strong>: On-page SEO analysis and optimization recommendations</p>
-<p><strong>Analyzes</strong>:<br />
-- Keyword optimization and density<br />
-- Content structure and headings<br />
-- Internal and external links<br />
-- Meta elements<br />
-- Readability and user experience<br />
-- Featured snippet opportunities</p>
-<p><strong>Output</strong>: SEO score (0-100) with specific improvement recommendations</p>
-<hr />
-<h3>Meta Creator</h3>
-<p><strong>Purpose</strong>: Generate high-converting meta titles and descriptions</p>
-<p><strong>Creates</strong>:<br />
-- 5 meta title variations (50-60 chars)<br />
-- 5 meta description variations (150-160 chars)<br />
-- Testing recommendations<br />
-- SERP preview<br />
-- Conversion-optimized copy</p>
-<p><strong>Output</strong>: Multiple options with recommendation and reasoning</p>
-<hr />
-<h3>Internal Linker</h3>
-<p><strong>Purpose</strong>: Strategic internal linking recommendations</p>
-<p><strong>Provides</strong>:<br />
-- 3-5 specific internal link suggestions<br />
-- Exact placement locations<br />
-- Anchor text recommendations<br />
-- User journey mapping<br />
-- SEO impact prediction</p>
-<p><strong>References</strong>: <code>context/internal-links-map.md</code></p>
-<hr />
-<h3>Keyword Mapper</h3>
-<p><strong>Purpose</strong>: Keyword placement and integration analysis</p>
-<p><strong>Analyzes</strong>:<br />
-- Keyword density and distribution<br />
-- Critical placement checklist<br />
-- Natural language integration quality<br />
-- LSI keyword coverage<br />
-- Cannibalization risk</p>
-<p><strong>Output</strong>: Distribution map, gap analysis, specific revision suggestions</p>
-<hr />
-<h3>Editor</h3>
-<p><strong>Purpose</strong>: Transform technically accurate content into human-sounding, engaging articles</p>
-<p><strong>Analyzes</strong>:<br />
-- Voice and personality<br />
-- Specificity of examples<br />
-- Readability and flow<br />
-- Robotic vs. human patterns<br />
-- Engagement and storytelling</p>
-<p><strong>Provides</strong>:<br />
-- Humanity score (0-100)<br />
-- Critical edits with before/after<br />
-- Pattern analysis<br />
-- Specific rewrites to inject personality<br />
-- Readability improvements</p>
-<p><strong>Output</strong>: Editorial report with specific improvements to make content sound human</p>
-<hr />
-<h3>Performance</h3>
-<p><strong>Purpose</strong>: Data-driven content prioritization using real analytics</p>
-<p><strong>Analyzes</strong>:<br />
-- Google Analytics traffic and trends<br />
-- Google Search Console rankings and CTR<br />
-- DataForSEO competitive data<br />
-- Quick wins (position 11-20)<br />
-- Declining content<br />
-- Low CTR opportunities<br />
-- Trending topics</p>
-<p><strong>Provides</strong>:<br />
-- Priority queue of content tasks<br />
-- Opportunity scores (0-100)<br />
-- Impact and effort estimates<br />
-- Week-by-week roadmap<br />
-- Success metrics</p>
-<p><strong>Output</strong>: Comprehensive performance report with actionable priorities</p>
-<hr />
-<h3>Headline Generator</h3>
-<p><strong>Purpose</strong>: Generate high-converting headline variations and A/B testing recommendations</p>
-<p><strong>Provides</strong>:<br />
-- 10+ headline variations using proven formulas<br />
-- Conversion potential scoring<br />
-- A/B testing strategies<br />
-- Audience-specific headline options</p>
-<hr />
-<h3>CRO Analyst</h3>
-<p><strong>Purpose</strong>: Conversion rate optimization analysis for landing pages</p>
-<p><strong>Analyzes</strong>:<br />
-- Above-the-fold effectiveness<br />
-- CTA quality and distribution<br />
-- Trust signal presence<br />
-- Friction points<br />
-- Page structure</p>
-<hr />
-<h3>Landing Page Optimizer</h3>
-<p><strong>Purpose</strong>: Comprehensive landing page optimization recommendations</p>
-<p><strong>Provides</strong>:<br />
-- CRO scoring (0-100) with category breakdowns<br />
-- Above-fold, CTA, trust signal, structure, and SEO analysis<br />
-- A/B testing recommendations<br />
-- Priority action list</p>
-<h2>Marketing Skills</h2>
-<p>SEO Machine includes 26 marketing skills accessible as slash commands:</p>
-<table>
-<thead>
-<tr>
-<th>Category</th>
-<th>Skills</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Copywriting</strong></td>
-<td><code>/copywriting</code>, <code>/copy-editing</code></td>
-</tr>
-<tr>
-<td><strong>CRO</strong></td>
-<td><code>/page-cro</code>, <code>/form-cro</code>, <code>/signup-flow-cro</code>, <code>/onboarding-cro</code>, <code>/popup-cro</code>, <code>/paywall-upgrade-cro</code></td>
-</tr>
-<tr>
-<td><strong>Strategy</strong></td>
-<td><code>/content-strategy</code>, <code>/pricing-strategy</code>, <code>/launch-strategy</code>, <code>/marketing-ideas</code></td>
-</tr>
-<tr>
-<td><strong>Channels</strong></td>
-<td><code>/email-sequence</code>, <code>/social-content</code>, <code>/paid-ads</code></td>
-</tr>
-<tr>
-<td><strong>SEO</strong></td>
-<td><code>/seo-audit</code>, <code>/schema-markup</code>, <code>/programmatic-seo</code>, <code>/competitor-alternatives</code></td>
-</tr>
-<tr>
-<td><strong>Analytics</strong></td>
-<td><code>/analytics-tracking</code>, <code>/ab-test-setup</code></td>
-</tr>
-<tr>
-<td><strong>Other</strong></td>
-<td><code>/referral-program</code>, <code>/free-tool-strategy</code>, <code>/marketing-psychology</code></td>
-</tr>
-</tbody>
-</table>
-<h2>Data Sources</h2>
-<h3>Integration with Analytics</h3>
-<p>SEO Machine integrates with real-time data sources to inform content strategy:</p>
-<p><strong>Google Analytics 4</strong>:<br />
-- Traffic and engagement metrics<br />
-- Conversion tracking<br />
-- Trend analysis<br />
-- Traffic sources</p>
-<p><strong>Google Search Console</strong>:<br />
-- Keyword rankings and positions<br />
-- Impressions and clicks<br />
-- CTR analysis<br />
-- Query performance</p>
-<p><strong>DataForSEO</strong>:<br />
-- Competitive rankings<br />
-- SERP features<br />
-- Keyword metrics<br />
-- Competitor gap analysis</p>
-<h3>Advanced SEO Analysis Modules (NEW!)</h3>
-<p>SEO Machine includes 5 specialized Python modules for comprehensive content analysis:</p>
-<p><strong>Search Intent Analyzer</strong> (<code>search_intent_analyzer.py</code>):<br />
-- Classifies queries into informational, navigational, transactional, or commercial intent<br />
-- Analyzes SERP features and content patterns<br />
-- Provides confidence scores and content alignment recommendations</p>
-<p><strong>Keyword Analyzer</strong> (<code>keyword_analyzer.py</code>):<br />
-- Calculates exact keyword density and distribution<br />
-- Detects keyword stuffing risk with warnings<br />
-- Performs topic clustering using TF-IDF and K-means<br />
-- Generates distribution heatmap by section<br />
-- Identifies LSI (semantically related) keywords</p>
-<p><strong>SEO Quality Rater</strong> (<code>seo_quality_rater.py</code>):<br />
-- Rates content against SEO best practices (0-100 score)<br />
-- Category breakdowns: content, keywords, meta, structure, links, readability<br />
-- Identifies critical issues, warnings, and suggestions<br />
-- Determines publishing readiness</p>
-<p><strong>Content Length Comparator</strong> (<code>content_length_comparator.py</code>):<br />
-- Fetches and analyzes top 10-20 SERP competitor word counts<br />
-- Calculates median, 75th percentile, and optimal length<br />
-- Shows competitive positioning and gap to target<br />
-- Provides data-driven expansion recommendations</p>
-<p><strong>Readability Scorer</strong> (<code>readability_scorer.py</code>):<br />
-- Flesch Reading Ease and Flesch-Kincaid Grade Level<br />
-- Sentence and paragraph structure analysis<br />
-- Passive voice detection and ratio calculation<br />
-- Complex word identification<br />
-- Transition word usage analysis<br />
-- Overall readability score (0-100)</p>
-<p>All modules can be used directly in Python or through the Content Analyzer agent.</p>
-<h3>CRO Analysis Modules</h3>
-<p>Six Python modules for landing page conversion optimization:</p>
-<ul>
-<li><code>above_fold_analyzer.py</code> - Above-the-fold content analysis (headline, value prop, CTA, trust)</li>
-<li><code>cta_analyzer.py</code> - CTA effectiveness scoring (quality, distribution, goal alignment)</li>
-<li><code>trust_signal_analyzer.py</code> - Trust signal detection (testimonials, social proof, risk reversals)</li>
-<li><code>landing_page_scorer.py</code> - Overall landing page scoring (0-100 with category breakdowns)</li>
-<li><code>landing_performance.py</code> - Landing page performance tracking via GA4/GSC</li>
-<li><code>cro_checker.py</code> - CRO best practices checklist validation</li>
-</ul>
-<h3>Additional Analysis Modules</h3>
-<ul>
-<li><code>opportunity_scorer.py</code> - 8-factor opportunity scoring for content prioritization</li>
-<li><code>content_scorer.py</code> - 5-dimension content quality scoring (humanity, specificity, structure, SEO, readability)</li>
-<li><code>engagement_analyzer.py</code> - Content engagement pattern analysis</li>
-<li><code>competitor_gap_analyzer.py</code> - Competitive content gap identification</li>
-<li><code>article_planner.py</code> - Data-driven article planning</li>
-<li><code>section_writer.py</code> - Section-level content guidance</li>
-<li><code>social_research_aggregator.py</code> - Social media research aggregation</li>
-</ul>
-<h3>Python Research Scripts</h3>
-<p>Run from repo root:</p>
-<pre><code class="language-bash"># Content research
-python3 research_quick_wins.py
-python3 research_competitor_gaps.py
-python3 research_performance_matrix.py
-python3 research_priorities_comprehensive.py
-python3 research_serp_analysis.py
-python3 research_topic_clusters.py
-python3 research_trending.py
-
-# SEO analysis (config-driven - set up config/competitors.json first)
-python3 seo_baseline_analysis.py
-python3 seo_bofu_rankings.py
-python3 seo_competitor_analysis.py
-
-# Test API connectivity
-python3 test_dataforseo.py
-</code></pre>
-<p><strong>Note</strong>: SEO analysis scripts load competitor lists and keywords from <code>config/competitors.json</code>. Copy <code>config/competitors.example.json</code> and customize for your business.</p>
-<h3>WordPress Integration</h3>
-<p>Publishing uses the WordPress REST API with a custom MU-plugin that exposes Yoast SEO fields.</p>
-<p><strong>Setup</strong>:<br />
-1. Install <code>wordpress/seo-machine-yoast-rest.php</code> as an MU-plugin on your WordPress site<br />
-2. Add <code>wordpress/functions-snippet.php</code> to your theme's functions.php<br />
-3. Configure WordPress credentials in <code>.env</code>:<br />
-<code>WP_URL=https://yoursite.com
-   WP_USERNAME=your_username
-   WP_APP_PASSWORD=your_application_password</code></p>
-<p>See <code>wordpress/README.md</code> for detailed setup instructions.</p>
-<p>See <code>data_sources/README.md</code> for analytics setup instructions.</p>
-<h2>Directory Structure</h2>
-<pre><code>seomachine/
-├── .claude/
-│   ├── commands/          # Custom workflow commands
-│   │   ├── analyze-existing.md
-│   │   ├── research.md
-│   │   ├── write.md
-│   │   ├── rewrite.md
-│   │   ├── optimize.md
-│   │   ├── scrub.md
-│   │   ├── performance-review.md
-│   │   ├── publish-draft.md
-│   │   ├── article.md
-│   │   ├── priorities.md
-│   │   ├── research-serp.md
-│   │   ├── research-gaps.md
-│   │   ├── research-trending.md
-│   │   ├── research-performance.md
-│   │   ├── research-topics.md
-│   │   ├── landing-write.md
-│   │   ├── landing-audit.md
-│   │   ├── landing-research.md
-│   │   ├── landing-competitor.md
-│   │   └── landing-publish.md
-│   ├── agents/            # Specialized analysis agents
-│   │   ├── content-analyzer.md
-│   │   ├── seo-optimizer.md
-│   │   ├── meta-creator.md
-│   │   ├── internal-linker.md
-│   │   ├── keyword-mapper.md
-│   │   ├── editor.md
-│   │   ├── performance.md
-│   │   ├── headline-generator.md
-│   │   ├── cro-analyst.md
-│   │   └── landing-page-optimizer.md
-│   └── skills/            # 26 marketing skills
-├── data_sources/          # Analytics integrations
-│   ├── modules/          # Python analysis modules
-│   │   ├── google_analytics.py
-│   │   ├── google_search_console.py
-│   │   ├── dataforseo.py
-│   │   ├── data_aggregator.py
-│   │   ├── search_intent_analyzer.py
-│   │   ├── keyword_analyzer.py
-│   │   ├── seo_quality_rater.py
-│   │   ├── content_length_comparator.py
-│   │   ├── readability_scorer.py
-│   │   ├── opportunity_scorer.py
-│   │   ├── content_scorer.py
-│   │   ├── engagement_analyzer.py
-│   │   ├── social_research_aggregator.py
-│   │   ├── competitor_gap_analyzer.py
-│   │   ├── article_planner.py
-│   │   ├── section_writer.py
-│   │   ├── wordpress_publisher.py
-│   │   ├── above_fold_analyzer.py
-│   │   ├── cro_checker.py
-│   │   ├── cta_analyzer.py
-│   │   ├── landing_page_scorer.py
-│   │   ├── landing_performance.py
-│   │   └── trust_signal_analyzer.py
-│   ├── config/           # API credentials (not in git)
-│   ├── utils/            # Helper functions
-│   ├── cache/            # Cached API responses
-│   └── README.md         # Setup instructions
-├── config/                # Configuration files
-│   └── competitors.example.json  # Competitor config template
-├── context/               # Configuration and guidelines
-│   ├── brand-voice.md
-│   ├── writing-examples.md
-│   ├── style-guide.md
-│   ├── seo-guidelines.md
-│   ├── target-keywords.md
-│   ├── internal-links-map.md
-│   ├── competitor-analysis.md
-│   └── cro-best-practices.md
-├── wordpress/             # WordPress integration
-│   ├── seo-machine-yoast-rest.php
-│   ├── functions-snippet.php
-│   └── README.md
-├── topics/                # Raw topic ideas
-├── research/              # Research briefs and analysis reports
-├── drafts/                # Work in progress articles
-├── review-required/       # Articles pending review
-├── published/             # Final versions ready to publish
-├── rewrites/              # Updated existing content
-├── landing-pages/         # Landing page content
-├── audits/                # Audit reports
-└── README.md              # This file
-</code></pre>
-<h2>Context Files (Important!)</h2>
-<p>The quality of your content depends on well-configured context files:</p>
-<h3><code>context/brand-voice.md</code></h3>
-<p>Defines your brand voice, tone, and messaging framework.</p>
-<p><strong>Must include</strong>:<br />
-- Voice pillars<br />
-- Tone guidelines by content type<br />
-- Core brand messages<br />
-- Writing style guidelines<br />
-- Terminology preferences</p>
-<p><strong>Purpose</strong>: Ensures all content sounds like your brand</p>
-<hr />
-<h3><code>context/writing-examples.md</code></h3>
-<p>Contains 3-5 exemplary blog posts from your site.</p>
-<p><strong>Must include</strong>:<br />
-- Full article content<br />
-- What makes each example great<br />
-- Key takeaways for voice and structure</p>
-<p><strong>Purpose</strong>: Teaches AI your specific writing style through examples</p>
-<hr />
-<h3><code>context/style-guide.md</code></h3>
-<p>Editorial and formatting standards.</p>
-<p><strong>Must include</strong>:<br />
-- Grammar and mechanics rules<br />
-- Capitalization conventions<br />
-- Formatting standards<br />
-- Preferred terminology</p>
-<p><strong>Purpose</strong>: Maintains consistency across all content</p>
-<hr />
-<h3><code>context/seo-guidelines.md</code></h3>
-<p>SEO best practices and requirements.</p>
-<p><strong>Includes</strong>:<br />
-- Content length requirements<br />
-- Keyword optimization rules<br />
-- Meta element standards<br />
-- Link strategy guidelines<br />
-- Readability requirements</p>
-<p><strong>Purpose</strong>: Ensures all content meets SEO standards</p>
-<hr />
-<h3><code>context/target-keywords.md</code></h3>
-<p>Keyword research organized by topic cluster.</p>
-<p><strong>Must include</strong>:<br />
-- Pillar keywords by cluster<br />
-- Cluster keywords (subtopics)<br />
-- Long-tail variations<br />
-- Search intent classification<br />
-- Current rankings</p>
-<p><strong>Purpose</strong>: Guides keyword targeting for new content</p>
-<hr />
-<h3><code>context/internal-links-map.md</code></h3>
-<p>Catalog of key pages from your site for internal linking.</p>
-<p><strong>Must include</strong>:<br />
-- Product pages and features<br />
-- Pillar content URLs<br />
-- Top performing blog articles<br />
-- Topic cluster mapping<br />
-- Recommended anchor text</p>
-<p><strong>Purpose</strong>: Enables strategic internal linking in every article</p>
-<hr />
-<h3><code>context/competitor-analysis.md</code></h3>
-<p>Competitive intelligence and content gaps.</p>
-<p><strong>Must include</strong>:<br />
-- Primary competitors<br />
-- Their content strategies<br />
-- Keyword gaps<br />
-- Differentiation opportunities</p>
-<p><strong>Purpose</strong>: Informs content strategy and competitive positioning</p>
-<h2>Content Quality Standards</h2>
-<p>Every article must meet these requirements:</p>
-<h3>Content</h3>
-<ul>
-<li>[ ] Minimum 2,000 words (2,500-3,000+ preferred)</li>
-<li>[ ] Provides unique value vs. competitors</li>
-<li>[ ] Factually accurate and current</li>
-<li>[ ] Actionable advice for your target audience</li>
-<li>[ ] Brand voice maintained</li>
-</ul>
-<h3>SEO</h3>
-<ul>
-<li>[ ] Primary keyword density 1-2%</li>
-<li>[ ] Keyword in H1, first 100 words, 2-3 H2s</li>
-<li>[ ] 3-5 internal links with descriptive anchor text</li>
-<li>[ ] 2-3 external authority links</li>
-<li>[ ] Meta title 50-60 characters</li>
-<li>[ ] Meta description 150-160 characters</li>
-<li>[ ] Proper H1&gt;H2&gt;H3 hierarchy</li>
-</ul>
-<h3>Readability</h3>
-<ul>
-<li>[ ] 8th-10th grade reading level</li>
-<li>[ ] Average sentence length 15-20 words</li>
-<li>[ ] Paragraphs 2-4 sentences</li>
-<li>[ ] Subheadings every 300-400 words</li>
-<li>[ ] Lists and formatting for scannability</li>
-</ul>
-<h3>Structure</h3>
-<ul>
-<li>[ ] Compelling introduction (hook, problem, promise)</li>
-<li>[ ] Logical section flow</li>
-<li>[ ] Clear conclusion with CTA</li>
-<li>[ ] Examples and data included</li>
-</ul>
-<h2>Best Practices</h2>
-<h3>Before Writing</h3>
-<ol>
-<li><strong>Research first</strong>: Always run <code>/research</code> before <code>/write</code></li>
-<li><strong>Review context</strong>: Read <code>brand-voice.md</code> and relevant <code>writing-examples.md</code></li>
-<li><strong>Check keywords</strong>: Verify target keyword in <code>target-keywords.md</code></li>
-<li><strong>Plan internal links</strong>: Review <code>internal-links-map.md</code> for linking opportunities</li>
-</ol>
-<h3>During Writing</h3>
-<ol>
-<li><strong>Follow the brief</strong>: Use research brief as your outline</li>
-<li><strong>Natural keywords</strong>: Integrate keywords naturally, never force them</li>
-<li><strong>Add value</strong>: Every section should provide actionable insights</li>
-<li><strong>Use examples</strong>: Include real scenarios and use cases from your industry</li>
-<li><strong>Cite sources</strong>: Link to statistics and data sources</li>
-</ol>
-<h3>After Writing</h3>
-<ol>
-<li><strong>Review agent output</strong>: Read all agent recommendations carefully</li>
-<li><strong>Make improvements</strong>: Address high-priority issues before optimizing</li>
-<li><strong>Run optimize</strong>: Use <code>/optimize</code> for final polish</li>
-<li><strong>Self-edit</strong>: Read article as if you're the target reader</li>
-<li><strong>Check quality</strong>: Verify all checklist items met</li>
-</ol>
-<h3>For Rewrites</h3>
-<ol>
-<li><strong>Analyze first</strong>: Run <code>/analyze-existing</code> to understand scope</li>
-<li><strong>Determine strategy</strong>: Light update vs. major rewrite?</li>
-<li><strong>Preserve what works</strong>: Keep effective sections</li>
-<li><strong>Focus on gaps</strong>: Add what's missing from competitive content</li>
-<li><strong>Update everything</strong>: Stats, examples, screenshots, links</li>
-</ol>
-<h2>Workflow Examples</h2>
-<h3>Example 1: Creating New Content from Scratch</h3>
-<pre><code># Step 1: Add topic idea
-# Create file in topics/ directory with initial thoughts
-
-# Step 2: Research the topic
-/research content marketing strategies
-
-# Step 3: Review research brief
-# Read research/brief-content-marketing-strategies-[date].md
-
-# Step 4: Write article
-/write content marketing strategies
-
-# Step 5: Review agent feedback
-# Read all agent reports in drafts/
-
-# Step 6: Make improvements
-# Edit article based on agent recommendations
-
-# Step 7: Final optimization
-/optimize drafts/content-marketing-strategies-[date].md
-
-# Step 8: Publish to WordPress (optional)
-/publish-draft drafts/content-marketing-strategies-[date].md
-</code></pre>
-<h3>Example 2: Updating Existing Content</h3>
-<pre><code># Step 1: Analyze existing post
-/analyze-existing https://yoursite.com/blog/product-comparison
-
-# Step 2: Review analysis
-# Read research/analysis-product-comparison-2025-10-29.md
-# Check content health score and priority level
-
-# Step 3: Rewrite content
-/rewrite product comparison
-
-# Step 4: Review changes
-# Read rewrites/product-comparison-rewrite-2025-10-29.md
-# Review change summary
-
-# Step 5: Optimize
-/optimize rewrites/product-comparison-rewrite-2025-10-29.md
-
-# Step 6: Publish
-# Move to published/ when ready
-</code></pre>
-<h3>Example 3: Quick Content Audit</h3>
-<pre><code># Analyze multiple existing posts to prioritize updates
-/analyze-existing https://yoursite.com/blog/post-1
-/analyze-existing https://yoursite.com/blog/post-2
-/analyze-existing https://yoursite.com/blog/post-3
-
-# Review content health scores
-# Prioritize rewrites based on:
-# - Lowest scores
-# - Highest traffic potential
-# - Strategic importance
-</code></pre>
-<h2>Tips &amp; Tricks</h2>
-<h3>Maximizing Content Quality</h3>
-<ul>
-<li><strong>Study examples</strong>: Read your <code>writing-examples.md</code> before each writing session</li>
-<li><strong>Use data</strong>: Always include current statistics and cite sources</li>
-<li><strong>Be specific</strong>: "40% increase" beats "significant improvement"</li>
-<li><strong>Show, don't tell</strong>: Use real examples and scenarios from your industry</li>
-<li><strong>Answer questions</strong>: Address "People Also Ask" questions from research</li>
-</ul>
-<h3>SEO Optimization</h3>
-<ul>
-<li><strong>Keywords early</strong>: Get primary keyword in first 100 words</li>
-<li><strong>Natural integration</strong>: Read content aloud - if keywords sound forced, rewrite</li>
-<li><strong>Vary anchor text</strong>: Don't use same anchor text for all internal links</li>
-<li><strong>Link strategically</strong>: Link to pillar content and related cluster articles</li>
-<li><strong>Update regularly</strong>: Refresh top-performing content every 6-12 months</li>
-</ul>
-<h3>Workflow Efficiency</h3>
-<ul>
-<li><strong>Batch research</strong>: Research multiple topics in one session</li>
-<li><strong>Follow structure</strong>: Use consistent article structure from <code>/write</code> command</li>
-<li><strong>Address high-priority first</strong>: Fix critical issues before optimizing details</li>
-<li><strong>Use agents wisely</strong>: Let agents handle analysis, you focus on writing</li>
-<li><strong>Build templates</strong>: Save commonly used sections for reuse</li>
-</ul>
-<h3>Avoiding Common Mistakes</h3>
-<ul>
-<li>❌ Skipping research phase</li>
-<li>❌ Ignoring brand voice guidelines</li>
-<li>❌ Forcing keywords unnaturally</li>
-<li>❌ Forgetting internal links</li>
-<li>❌ Not citing data sources</li>
-<li>❌ Publishing without optimization</li>
-<li>❌ Copying competitor content instead of differentiating</li>
-</ul>
-<h2>Maintenance</h2>
-<h3>Weekly</h3>
-<ul>
-<li>Add new topic ideas to <code>/topics/</code></li>
-<li>Update <code>target-keywords.md</code> with new keyword opportunities</li>
-<li>Check for broken links in <code>internal-links-map.md</code></li>
-</ul>
-<h3>Monthly</h3>
-<ul>
-<li>Review published content performance</li>
-<li>Update <code>writing-examples.md</code> if better examples emerge</li>
-<li>Add newly published content to <code>internal-links-map.md</code></li>
-<li>Track competitor activity in <code>competitor-analysis.md</code></li>
-</ul>
-<h3>Quarterly</h3>
-<ul>
-<li>Full audit of context files</li>
-<li>Update SEO guidelines based on algorithm changes</li>
-<li>Comprehensive competitor analysis refresh</li>
-<li>Review and update topic clusters in <code>target-keywords.md</code></li>
-</ul>
-<h2>Troubleshooting</h2>
-<h3>"Content doesn't sound like my brand"</h3>
-<ul>
-<li><strong>Solution</strong>: Update <code>context/brand-voice.md</code> with more specific guidance</li>
-<li><strong>Solution</strong>: Add more diverse examples to <code>context/writing-examples.md</code></li>
-<li><strong>Solution</strong>: Reference specific examples when using <code>/write</code> command</li>
-</ul>
-<h3>"Keyword density too high/low"</h3>
-<ul>
-<li><strong>Solution</strong>: Review <code>seo-guidelines.md</code> target density (1-2%)</li>
-<li><strong>Solution</strong>: Use <code>/optimize</code> to get specific keyword placement suggestions</li>
-<li><strong>Solution</strong>: Use Keyword Mapper agent for distribution analysis</li>
-</ul>
-<h3>"Internal links aren't relevant"</h3>
-<ul>
-<li><strong>Solution</strong>: Update <code>context/internal-links-map.md</code> with current pages</li>
-<li><strong>Solution</strong>: Organize by topic cluster for easier agent matching</li>
-<li><strong>Solution</strong>: Provide more context about what each page covers</li>
-</ul>
-<h3>"Articles too similar to competitors"</h3>
-<ul>
-<li><strong>Solution</strong>: Update <code>competitor-analysis.md</code> with differentiation opportunities</li>
-<li><strong>Solution</strong>: Add your unique advantages to <code>brand-voice.md</code> and <code>features.md</code></li>
-<li><strong>Solution</strong>: Reference specific differentiation angles in <code>/research</code> command</li>
-</ul>
-<h2>Support &amp; Contributions</h2>
-<h3>Getting Help</h3>
-<ul>
-<li>Review this README thoroughly</li>
-<li>Check context files are properly configured</li>
-<li>Consult <a href="https://docs.claude.com/claude-code">Claude Code documentation</a></li>
-</ul>
-<h3>Contributing</h3>
-<ul>
-<li>Report issues via GitHub Issues</li>
-<li>Suggest improvements to commands or agents</li>
-<li>Share successful workflows or tips</li>
-</ul>
-<h2>License</h2>
-<p>[Add your license information]</p>
-<h2>Credits</h2>
-<p>Built with <a href="https://claude.com/claude-code">Claude Code</a> by Anthropic.</p>
-<p>Originally developed for Castos, now available as an open-source tool for any business to streamline long-form SEO content creation.</p>
-<h2>Examples &amp; Community</h2>
-<p><strong>See It In Action</strong>: Check out <code>examples/castos/</code> for a complete real-world example of how a podcast hosting SaaS company uses SEO Machine.</p>
-<p><strong>Contributions Welcome</strong>: Found a bug? Have a feature request? Want to share your own industry example? Contributions and PRs are welcome!</p>
-<hr />
-<p><strong>Ready to start creating?</strong></p>
-<ol>
-<li>Configure your context files (use the templates as your guide)</li>
-<li>Run <code>/research [your topic]</code></li>
-<li>Review the brief</li>
-<li>Run <code>/write [your topic]</code></li>
-<li>Publish amazing content!</li>
-</ol>
-<p>Happy writing! 📝</p>
-                    </div>
-                </details>
-            </div>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/TheCraigHewitt/seomachine#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">coleam00 /</span>
+          <a href="https://github.com/coleam00/Archon" target="_blank" rel="noopener">Archon</a>
         </div>
-        
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/coleam00/Archon" target="_blank">coleam00/Archon</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 14,575</span>
-                    <span class="stat">🍴 2,478</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: TypeScript</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <p align="center">
+        <div class="repo-desc">The first open-source harness builder for AI coding. Make AI coding deterministic and repeatable.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 14,576</span>
+      <span class="meta-item">🍴 2,478</span>
+      <span class="stars-today">⭐ 185 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
   <img src="assets/logo.png" alt="Archon" width="160" />
 </p>
 
@@ -4097,230 +1818,35 @@ claude
 <p>See the <a href="https://archon.diy/adapters/web/">Web UI Guide</a> for full documentation.</p>
 <h2>What Can You Automate?</h2>
 <p>Archon ships with workflows for common development tasks:</p>
-<table>
-<thead>
-<tr>
-<th>Workflow</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>archon-assist</code></td>
-<td>General Q&amp;A, debugging, exploration - full Claude Code agent with all tools</td>
-</tr>
-<tr>
-<td><code>archon-fix-github-issue</code></td>
-<td>Classify issue → investigate/plan → implement → validate → PR → smart review → self-fix</td>
-</tr>
-<tr>
-<td><code>archon-idea-to-pr</code></td>
-<td>Feature idea → plan → implement → validate → PR → 5 parallel reviews → self-fix</td>
-</tr>
-<tr>
-<td><code>archon-plan-to-pr</code></td>
-<td>Execute existing plan → implement → validate → PR → review → self-fix</td>
-</tr>
-<tr>
-<td><code>archon-issue-review-full</code></td>
-<td>Comprehensive fix + full multi-agent review pipeline for GitHub issues</td>
-</tr>
-<tr>
-<td><code>archon-smart-pr-review</code></td>
-<td>Classify PR complexity → run targeted review agents → synthesize findings</td>
-</tr>
-<tr>
-<td><code>archon-comprehensive-pr-review</code></td>
-<td>Multi-agent PR review (5 parallel reviewers) with automatic fixes</td>
-</tr>
-<tr>
-<td><code>archon-create-issue</code></td>
-<td>Classify problem → gather context → investigate → create GitHub issue</td>
-</tr>
-<tr>
-<td><code>archon-validate-pr</code></td>
-<td>Thorough PR validation testing both main and feature branches</td>
-</tr>
-<tr>
-<td><code>archon-resolve-conflicts</code></td>
-<td>Detect merge conflicts → analyze both sides → resolve → validate → commit</td>
-</tr>
-<tr>
-<td><code>archon-feature-development</code></td>
-<td>Implement feature from plan → validate → create PR</td>
-</tr>
-<tr>
-<td><code>archon-architect</code></td>
-<td>Architectural sweep, complexity reduction, codebase health improvement</td>
-</tr>
-<tr>
-<td><code>archon-refactor-safely</code></td>
-<td>Safe refactoring with type-check hooks and behavior verification</td>
-</tr>
-<tr>
-<td><code>archon-ralph-dag</code></td>
-<td>PRD implementation loop - iterate through stories until done</td>
-</tr>
-<tr>
-<td><code>archon-remotion-generate</code></td>
-<td>Generate or modify Remotion video compositions with AI</td>
-</tr>
-<tr>
-<td><code>archon-test-loop-dag</code></td>
-<td>Loop node test workflow - iterative counter until completion</td>
-</tr>
-<tr>
-<td><code>archon-piv-loop</code></td>
-<td>Guided Plan-Implement-Validate loop with human review between iterations</td>
-</tr>
-</tbody>
-</table>
-<p>Archon ships 17 default workflows - run <code>archon workflow list</code> or describe what you want and the router picks the right one.</p>
-<p><strong>Or define your own.</strong> Default workflows are great starting points - copy one from <code>.archon/workflows/defaults/</code> and customize it. Workflows are YAML files in <code>.archon/workflows/</code>, commands are markdown files in <code>.archon/commands/</code>. Same-named files in your repo override the bundled defaults. Commit them - your whole team runs the same process.</p>
-<p>See <a href="https://archon.diy/guides/authoring-workflows/">Authoring Workflows</a> and <a href="https://archon.diy/guides/authoring-commands/">Authoring Commands</a>.</p>
-<h2>Add a Platform</h2>
-<p>The Web UI and CLI work out of the box. Optionally connect a chat platform for remote access:</p>
-<table>
-<thead>
-<tr>
-<th>Platform</th>
-<th>Setup time</th>
-<th>Guide</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Telegram</strong></td>
-<td>5 min</td>
-<td><a href="https://archon.diy/adapters/telegram/">Telegram Guide</a></td>
-</tr>
-<tr>
-<td><strong>Slack</strong></td>
-<td>15 min</td>
-<td><a href="https://archon.diy/adapters/slack/">Slack Guide</a></td>
-</tr>
-<tr>
-<td><strong>GitHub Webhooks</strong></td>
-<td>15 min</td>
-<td><a href="https://archon.diy/adapters/github/">GitHub Guide</a></td>
-</tr>
-<tr>
-<td><strong>Discord</strong></td>
-<td>5 min</td>
-<td><a href="https://archon.diy/adapters/community/discord/">Discord Guide</a></td>
-</tr>
-</tbody>
-</table>
-<h2>Architecture</h2>
-<pre><code>┌─────────────────────────────────────────────────────────┐
-│  Platform Adapters (Web UI, CLI, Telegram, Slack,       │
-│                    Discord, GitHub)                      │
-└──────────────────────────┬──────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────┐
-│                     Orchestrator                        │
-│          (Message Routing &amp; Context Management)         │
-└─────────────┬───────────────────────────┬───────────────┘
-              │                           │
-      ┌───────┴────────┐          ┌───────┴────────┐
-      │                │          │                │
-      ▼                ▼          ▼                ▼
-┌───────────┐  ┌────────────┐  ┌──────────────────────────┐
-│  Command  │  │  Workflow  │  │    AI Assistant Clients  │
-│  Handler  │  │  Executor  │  │      (Claude / Codex)    │
-│  (Slash)  │  │  (YAML)    │  │                          │
-└───────────┘  └────────────┘  └──────────────────────────┘
-      │              │                      │
-      └──────────────┴──────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────┐
-│              SQLite / PostgreSQL (7 Tables)             │
-│   Codebases • Conversations • Sessions • Workflow Runs  │
-│    Isolation Environments • Messages • Workflow Events  │
-└─────────────────────────────────────────────────────────┘
-</code></pre>
-<h2>Documentation</h2>
-<p>Full documentation is available at <strong><a href="https://archon.diy">archon.diy</a></strong>.</p>
-<table>
-<thead>
-<tr>
-<th>Topic</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://archon.diy/getting-started/overview/">Getting Started</a></td>
-<td>Setup guide (Web UI or CLI)</td>
-</tr>
-<tr>
-<td><a href="https://archon.diy/book/">The Book of Archon</a></td>
-<td>10-chapter narrative tutorial</td>
-</tr>
-<tr>
-<td><a href="https://archon.diy/reference/cli/">CLI Reference</a></td>
-<td>Full CLI reference</td>
-</tr>
-<tr>
-<td><a href="https://archon.diy/guides/authoring-workflows/">Authoring Workflows</a></td>
-<td>Create custom YAML workflows</td>
-</tr>
-<tr>
-<td><a href="https://archon.diy/guides/authoring-commands/">Authoring Commands</a></td>
-<td>Create reusable AI commands</td>
-</tr>
-<tr>
-<td><a href="https://archon.diy/reference/configuration/">Configuration</a></td>
-<td>All config options, env vars, YAML settings</td>
-</tr>
-<tr>
-<td><a href="https://archon.diy/getting-started/ai-assistants/">AI Assistants</a></td>
-<td>Claude and Codex setup details</td>
-</tr>
-<tr>
-<td><a href="https://archon.diy/deployment/">Deployment</a></td>
-<td>Docker, VPS, production setup</td>
-</tr>
-<tr>
-<td><a href="https://archon.diy/reference/architecture/">Architecture</a></td>
-<td>System design and internals</td>
-</tr>
-<tr>
-<td><a href="https://archon.diy/reference/troubleshooting/">Troubleshooting</a></td>
-<td>Common issues and fixes</td>
-</tr>
-</tbody>
-</table>
-<h2>Contributing</h2>
-<p>Contributions welcome! See the open <a href="https://github.com/coleam00/Archon/issues">issues</a> for things to work on.</p>
-<p>Please read <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> before submitting a pull request.</p>
-<h2>License</h2>
-<p><a href="LICENSE">MIT</a></p>
-                    </div>
-                </details>
-            </div>
+<p>| Work</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/coleam00/Archon#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">shiyu-coder /</span>
+          <a href="https://github.com/shiyu-coder/Kronos" target="_blank" rel="noopener">Kronos</a>
         </div>
-        
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/shiyu-coder/Kronos" target="_blank">shiyu-coder/Kronos</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 12,332</span>
-                    <span class="stat">🍴 2,517</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: Python</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <div align="center">
+        <div class="repo-desc">Kronos: A Foundation Model for the Language of Financial Markets</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 12,333</span>
+      <span class="meta-item">🍴 2,517</span>
+      <span class="stars-today">⭐ 245 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
   <h2><b>Kronos: A Foundation Model for the Language of Financial Markets </b></h2>
 </div>
 
@@ -4493,193 +2019,35 @@ print(pred_df.head())
 
 The `predict` method returns a pandas DataFrame containing the forecasted values for `open`, `high`, `low`, `close`, `volume`, and `amount`, indexed by the `y_timestamp` you provided.
 
-For efficient processing of multiple time series, Kronos provides a `predict_batch` method that enables parallel prediction on multiple datasets simultaneously. This is particularly useful when you need to forecast multiple assets or time periods at once.
-
-
-<pre><code class="language-python"># Prepare multiple datasets for batch prediction
-df_list = [df1, df2, df3]  # List of DataFrames
-x_timestamp_list = [x_ts1, x_ts2, x_ts3]  # List of historical timestamps
-y_timestamp_list = [y_ts1, y_ts2, y_ts3]  # List of future timestamps
-
-# Generate batch predictions
-pred_df_list = predictor.predict_batch(
-    df_list=df_list,
-    x_timestamp_list=x_timestamp_list,
-    y_timestamp_list=y_timestamp_list,
-    pred_len=pred_len,
-    T=1.0,
-    top_p=0.9,
-    sample_count=1,
-    verbose=True
-)
-
-# pred_df_list contains prediction results in the same order as input
-for i, pred_df in enumerate(pred_df_list):
-    print(f&quot;Predictions for series {i}:&quot;)
-    print(pred_df.head())
-</code></pre>
-
-
-**Important Requirements for Batch Prediction:**
-- All series must have the same historical length (lookback window)
-- All series must have the same prediction length (`pred_len`)
-- Each DataFrame must contain the required columns: `['open', 'high', 'low', 'close']`
-- `volume` and `amount` columns are optional and will be filled with zeros if missing
-
-The `predict_batch` method leverages GPU parallelism for efficient processing and automatically handles normalization and denormalization for each series independently.
-
-#### 5. Example and Visualization
-
-For a complete, runnable script that includes data loading, prediction, and plotting, please see [`examples/prediction_example.py`](examples/prediction_example.py).
-
-Running this script will generate a plot comparing the ground truth data against the model's forecast, similar to the one shown below:
-
-<p align="center">
-    <img src="figures/prediction_example.png" alt="Forecast Example" align="center" width="600px" />
-</p>
-
-Additionally, we provide a script that makes predictions without Volume and Amount data, which can be found in [`examples/prediction_wo_vol_example.py`](examples/prediction_wo_vol_example.py).
-
-
-## 🔧 Finetuning on Your Own Data (A-Share Market Example)
-
-We provide a complete pipeline for finetuning Kronos on your own datasets. As an example, we demonstrate how to use [Qlib](https://github.com/microsoft/qlib) to prepare data from the Chinese A-share market and conduct a simple backtest.
-
-> **Disclaimer:** This pipeline is intended as a demonstration to illustrate the finetuning process. It is a simplified example and not a production-ready quantitative trading system. A robust quantitative strategy requires more sophisticated techniques, such as portfolio optimization and risk factor neutralization, to achieve stable alpha.
-
-The finetuning process is divided into four main steps:
-
-1.  **Configuration**: Set up paths and hyperparameters.
-2.  **Data Preparation**: Process and split your data using Qlib.
-3.  **Model Finetuning**: Finetune the Tokenizer and the Predictor models.
-4.  **Backtesting**: Evaluate the finetuned model's performance.
-
-### Prerequisites
-
-1.  First, ensure you have all dependencies from `requirements.txt` installed.
-2.  This pipeline relies on `qlib`. Please install it:
-    ```shell
-      pip install pyqlib
-    ```
-3.  You will need to prepare your Qlib data. Follow the [official Qlib guide](https://github.com/microsoft/qlib) to download and set up your data locally. The example scripts assume you are using daily frequency data.
-
-### Step 1: Configure Your Experiment
-
-All settings for data, training, and model paths are centralized in `finetune/config.py`. Before running any scripts, please **modify the following paths** according to your environment:
-
-*   `qlib_data_path`: Path to your local Qlib data directory.
-*   `dataset_path`: Directory where the processed train/validation/test pickle files will be saved.
-*   `save_path`: Base directory for saving model checkpoints.
-*   `backtest_result_path`: Directory for saving backtesting results.
-*   `pretrained_tokenizer_path` and `pretrained_predictor_path`: Paths to the pre-trained models you want to start from (can be local paths or Hugging Face model names).
-
-You can also adjust other parameters like `instrument`, `train_time_range`, `epochs`, and `batch_size` to fit your specific task. If you don't use [Comet.ml](https://www.comet.com/), set `use_comet = False`.
-
-### Step 2: Prepare the Dataset
-
-Run the data preprocessing script. This script will load raw market data from your Qlib directory, process it, split it into training, validation, and test sets, and save them as pickle files.
-
-
-<pre><code class="language-shell">python finetune/qlib_data_preprocess.py
-</code></pre>
-
-
-After running, you will find `train_data.pkl`, `val_data.pkl`, and `test_data.pkl` in the directory specified by `dataset_path` in your config.
-
-### Step 3: Run the Finetuning
-
-The finetuning process consists of two stages: finetuning the tokenizer and then the predictor. Both training scripts are designed for multi-GPU training using `torchrun`.
-
-#### 3.1 Finetune the Tokenizer
-
-This step adjusts the tokenizer to the data distribution of your specific domain.
-
-
-<pre><code class="language-shell"># Replace NUM_GPUS with the number of GPUs you want to use (e.g., 2)
-torchrun --standalone --nproc_per_node=NUM_GPUS finetune/train_tokenizer.py
-</code></pre>
-
-
-The best tokenizer checkpoint will be saved to the path configured in `config.py` (derived from `save_path` and `tokenizer_save_folder_name`).
-
-#### 3.2 Finetune the Predictor
-
-This step finetunes the main Kronos model for the forecasting task.
-
-
-<pre><code class="language-shell"># Replace NUM_GPUS with the number of GPUs you want to use (e.g., 2)
-torchrun --standalone --nproc_per_node=NUM_GPUS finetune/train_predictor.py
-</code></pre>
-
-
-The best predictor checkpoint will be saved to the path configured in `config.py`.
-
-### Step 4: Evaluate with Backtesting
-
-Finally, run the backtesting script to evaluate your finetuned model. This script loads the models, performs inference on the test set, generates prediction signals (e.g., forecasted price change), and runs a simple top-K strategy backtest.
-
-
-<pre><code class="language-shell"># Specify the GPU for inference
-python finetune/qlib_test.py --device cuda:0
-</code></pre>
-
-
-The script will output a detailed performance analysis in your console and generate a plot showing the cumulative return curves of your strategy against the benchmark, similar to the one below:
-
-<p align="center">
-    <img src="figures/backtest_result_example.png" alt="Backtest Example" align="center" width="700px" />
-</p>
-
-### 💡 From Demo to Production: Important Considerations
-
-*   **Raw Signals vs. Pure Alpha**: The signals generated by the model in this demo are raw predictions. In a real-world quantitative workflow, these signals would typically be fed into a portfolio optimization model. This model would apply constraints to neutralize exposure to common risk factors (e.g., market beta, style factors like size and value), thereby isolating the **"pure alpha"** and improving the strategy's robustness.
-*   **Data Handling**: The provided `QlibDataset` is an example. For different data sources or formats, you will need to adapt the data loading and preprocessing logic.
-*   **Strategy and Backtesting Complexity**: The simple top-K strategy used here is a basic starting point. Production-level strategies often incorporate more complex logic for portfolio construction, dynamic position sizing, and risk management (e.g., stop-loss/take-profit rules). Furthermore, a high-fidelity backtest should meticulously model transaction costs, slippage, and market impact to provide a more accurate estimate of real-world performance.
-
-> **📝 AI-Generated Comments**: Please note that many of the code comments within the `finetune/` directory were generated by an AI assistant (Gemini 2.5 Pro) for explanatory purposes. While they aim to be helpful, they may contain inaccuracies. We recommend treating the code itself as the definitive source of logic.
-
-## 📖 Citation
-
-If you use Kronos in your research, we would appreciate a citation to our [paper](https://arxiv.org/abs/2508.02739):
-
-
-<pre><code>@misc{shi2025kronos,
-      title={Kronos: A Foundation Model for the Language of Financial Markets}, 
-      author={Yu Shi and Zongliang Fu and Shuo Chen and Bohan Zhao and Wei Xu and Changshui Zhang and Jian Li},
-      year={2025},
-      eprint={2508.02739},
-      archivePrefix={arXiv},
-      primaryClass={q-fin.ST},
-      url={https://arxiv.org/abs/2508.02739}, 
-}
-</code></pre>
-
-
-## 📜 License 
-This project is licensed under the [MIT License](./LICENSE).
-                    </div>
-                </details>
-            </div>
+For efficient processing of multiple time series, Kronos provides a `predict_batch` method that enables parallel prediction on multiple dat
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/shiyu-coder/Kronos#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">YishenTu /</span>
+          <a href="https://github.com/YishenTu/claudian" target="_blank" rel="noopener">claudian</a>
         </div>
-        
-        <div class="repo-card">
-            <div class="repo-header">
-                <h2 class="repo-name">
-                    <a href="https://github.com/YishenTu/claudian" target="_blank">YishenTu/claudian</a>
-                </h2>
-                <div class="repo-stats">
-                    <span class="stat">⭐ 6,987</span>
-                    <span class="stat">🍴 409</span>
-                    <span class="stat today">📈 0 today</span>
-                </div>
-            </div>
-            <p class="repo-description"></p>
-            <div class="repo-language">Language: TypeScript</div>
-            <div class="readme-container">
-                <details>
-                    <summary>📄 README.md</summary>
-                    <div class="readme-content">
-                        <h1>Claudian</h1>
+        <div class="repo-desc">An Obsidian plugin that embeds Claude Code as an AI collaborator in your vault</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 6,993</span>
+      <span class="meta-item">🍴 409</span>
+      <span class="stars-today">⭐ 200 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Claudian</h1>
 <p><img alt="GitHub stars" src="https://img.shields.io/github/stars/YishenTu/claudian?style=social" /><br />
 <img alt="GitHub release" src="https://img.shields.io/github/v/release/YishenTu/claudian" /><br />
 <img alt="License" src="https://img.shields.io/github/license/YishenTu/claudian" /></p>
@@ -4848,15 +2216,18 @@ dirname $(which node)
 <li><a href="https://anthropic.com">Anthropic</a> for Claude and the <a href="https://platform.claude.com/docs/en/agent-sdk/overview">Claude Agent SDK</a></li>
 <li><a href="https://openai.com">OpenAI</a> for <a href="https://github.com/openai/codex">Codex</a></li>
 </ul>
-                    </div>
-                </details>
-            </div>
-        </div>
-        
-        </div>
-        <div class="footer">
-            Generated on 2026-04-10 06:08:17 • Data from GitHub Trending
-        </div>
-    </div>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/YishenTu/claudian#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on April 10, 2026  06:15 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
 </body>
 </html>
