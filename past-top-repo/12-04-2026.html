@@ -1,0 +1,2648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — April 12, 2026  03:58</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on April 12, 2026  03:58 &nbsp;·&nbsp; 13 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">NousResearch /</span>
+          <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">hermes-agent</a>
+        </div>
+        <div class="repo-desc">The agent that grows with you</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 60,040</span>
+      <span class="meta-item">🍴 7,991</span>
+      <span class="stars-today">⭐ 6,438 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="assets/banner.png" alt="Hermes Agent" width="100%">
+</p>
+
+<h1>Hermes Agent ☤</h1>
+<p align="center">
+  <a href="https://hermes-agent.nousresearch.com/docs/"><img src="https://img.shields.io/badge/Docs-hermes--agent.nousresearch.com-FFD700?style=for-the-badge" alt="Documentation"></a>
+  <a href="https://discord.gg/NousResearch"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
+  <a href="https://github.com/NousResearch/hermes-agent/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
+  <a href="https://nousresearch.com"><img src="https://img.shields.io/badge/Built%20by-Nous%20Research-blueviolet?style=for-the-badge" alt="Built by Nous Research"></a>
+</p>
+
+<p><strong>The self-improving AI agent built by <a href="https://nousresearch.com">Nous Research</a>.</strong> It's the only agent with a built-in learning loop — it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions. Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle. It's not tied to your laptop — talk to it from Telegram while it works on a cloud VM.</p>
+<p>Use any model you want — <a href="https://portal.nousresearch.com">Nous Portal</a>, <a href="https://openrouter.ai">OpenRouter</a> (200+ models), <a href="https://z.ai">z.ai/GLM</a>, <a href="https://platform.moonshot.ai">Kimi/Moonshot</a>, <a href="https://www.minimax.io">MiniMax</a>, OpenAI, or your own endpoint. Switch with <code>hermes model</code> — no code changes, no lock-in.</p>
+<table>
+<tr><td><b>A real terminal interface</b></td><td>Full TUI with multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and streaming tool output.</td></tr>
+<tr><td><b>Lives where you do</b></td><td>Telegram, Discord, Slack, WhatsApp, Signal, and CLI — all from a single gateway process. Voice memo transcription, cross-platform conversation continuity.</td></tr>
+<tr><td><b>A closed learning loop</b></td><td>Agent-curated memory with periodic nudges. Autonomous skill creation after complex tasks. Skills self-improve during use. FTS5 session search with LLM summarization for cross-session recall. <a href="https://github.com/plastic-labs/honcho">Honcho</a> dialectic user modeling. Compatible with the <a href="https://agentskills.io">agentskills.io</a> open standard.</td></tr>
+<tr><td><b>Scheduled automations</b></td><td>Built-in cron scheduler with delivery to any platform. Daily reports, nightly backups, weekly audits — all in natural language, running unattended.</td></tr>
+<tr><td><b>Delegates and parallelizes</b></td><td>Spawn isolated subagents for parallel workstreams. Write Python scripts that call tools via RPC, collapsing multi-step pipelines into zero-context-cost turns.</td></tr>
+<tr><td><b>Runs anywhere, not just your laptop</b></td><td>Six terminal backends — local, Docker, SSH, Daytona, Singularity, and Modal. Daytona and Modal offer serverless persistence — your agent's environment hibernates when idle and wakes on demand, costing nearly nothing between sessions. Run it on a $5 VPS or a GPU cluster.</td></tr>
+<tr><td><b>Research-ready</b></td><td>Batch trajectory generation, Atropos RL environments, trajectory compression for training the next generation of tool-calling models.</td></tr>
+</table>
+
+<hr />
+<h2>Quick Install</h2>
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+</code></pre>
+<p>Works on Linux, macOS, WSL2, and Android via Termux. The installer handles the platform-specific setup for you.</p>
+<blockquote>
+<p><strong>Android / Termux:</strong> The tested manual path is documented in the <a href="https://hermes-agent.nousresearch.com/docs/getting-started/termux">Termux guide</a>. On Termux, Hermes installs a curated <code>.[termux]</code> extra because the full <code>.[all]</code> extra currently pulls Android-incompatible voice dependencies.</p>
+<p><strong>Windows:</strong> Native Windows is not supported. Please install <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL2</a> and run the command above.</p>
+</blockquote>
+<p>After installation:</p>
+<pre><code class="language-bash">source ~/.bashrc    # reload shell (or: source ~/.zshrc)
+hermes              # start chatting!
+</code></pre>
+<hr />
+<h2>Getting Started</h2>
+<pre><code class="language-bash">hermes              # Interactive CLI — start a conversation
+hermes model        # Choose your LLM provider and model
+hermes tools        # Configure which tools are enabled
+hermes config set   # Set individual config values
+hermes gateway      # Start the messaging gateway (Telegram, Discord, etc.)
+hermes setup        # Run the full setup wizard (configures everything at once)
+hermes claw migrate # Migrate from OpenClaw (if coming from OpenClaw)
+hermes update       # Update to the latest version
+hermes doctor       # Diagnose any issues
+</code></pre>
+<p>📖 <strong><a href="https://hermes-agent.nousresearch.com/docs/">Full documentation →</a></strong></p>
+<h2>CLI vs Messaging Quick Reference</h2>
+<p>Hermes has two entry points: start the terminal UI with <code>hermes</code>, or run the gateway and talk to it from Telegram, Discord, Slack, WhatsApp, Signal, or Email. Once you're in a conversation, many slash commands are shared across both interfaces.</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>CLI</th>
+<th>Messaging platforms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start chatting</td>
+<td><code>hermes</code></td>
+<td>Run <code>hermes gateway setup</code> + <code>hermes gateway start</code>, then send the bot a message</td>
+</tr>
+<tr>
+<td>Start fresh conversation</td>
+<td><code>/new</code> or <code>/reset</code></td>
+<td><code>/new</code> or <code>/reset</code></td>
+</tr>
+<tr>
+<td>Change model</td>
+<td><code>/model [provider:model]</code></td>
+<td><code>/model [provider:model]</code></td>
+</tr>
+<tr>
+<td>Set a personality</td>
+<td><code>/personality [name]</code></td>
+<td><code>/personality [name]</code></td>
+</tr>
+<tr>
+<td>Retry or undo the last turn</td>
+<td><code>/retry</code>, <code>/undo</code></td>
+<td><code>/retry</code>, <code>/undo</code></td>
+</tr>
+<tr>
+<td>Compress context / check usage</td>
+<td><code>/compress</code>, <code>/usage</code>, <code>/insights [--days N]</code></td>
+<td><code>/compress</code>, <code>/usage</code>, <code>/insights [days]</code></td>
+</tr>
+<tr>
+<td>Browse skills</td>
+<td><code>/skills</code> or <code>/&lt;skill-name&gt;</code></td>
+<td><code>/skills</code> or <code>/&lt;skill-name&gt;</code></td>
+</tr>
+<tr>
+<td>Interrupt current work</td>
+<td><code>Ctrl+C</code> or send a new message</td>
+<td><code>/stop</code> or send a new message</td>
+</tr>
+<tr>
+<td>Platform-specific status</td>
+<td><code>/platforms</code></td>
+<td><code>/status</code>, <code>/sethome</code></td>
+</tr>
+</tbody>
+</table>
+<p>For the full command lists, see the <a href="https://hermes-agent.nousresearch.com/docs/user-guide/cli">CLI guide</a> and the <a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging">Messaging Gateway guide</a>.</p>
+<hr />
+<h2>Documentation</h2>
+<p>All documentation lives at <strong><a href="https://hermes-agent.nousresearch.com/docs/">hermes-agent.nousresearch.com/docs</a></strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>What's Covered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/getting-started/quickstart">Quickstart</a></td>
+<td>Install → setup → first conversation in 2 minutes</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/cli">CLI Usage</a></td>
+<td>Commands, keybindings, personalities, sessions</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/configuration">Configuration</a></td>
+<td>Config file, providers, models, all options</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging">Messaging Gateway</a></td>
+<td>Telegram, Discord, Slack, WhatsApp, Signal, Home Assistant</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/security">Security</a></td>
+<td>Command approval, DM pairing, container isolation</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/tools">Tools &amp; Toolsets</a></td>
+<td>40+ tools, toolset system, terminal backends</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/skills">Skills System</a></td>
+<td>Procedural memory, Skills Hub, creating skills</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/memory">Memory</a></td>
+<td>Persistent memory, user profiles, best practices</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp">MCP Integration</a></td>
+<td>Connect any MCP server for extended capabilities</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron">Cron Scheduling</a></td>
+<td>Scheduled tasks with platform delivery</td>
+</tr>
+<tr>
+<td><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/context-files">Context Files</a></td>
+<td>Project context that shapes every conversation</td>
+</tr>
+<tr>
+<td>[Architecture]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/NousResearch/hermes-agent#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">microsoft /</span>
+          <a href="https://github.com/microsoft/markitdown" target="_blank" rel="noopener">markitdown</a>
+        </div>
+        <div class="repo-desc">Python tool for converting files and office documents to Markdown.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 102,550</span>
+      <span class="meta-item">🍴 6,359</span>
+      <span class="stars-today">⭐ 3,086 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>MarkItDown</h1>
+<p><a href="https://pypi.org/project/markitdown/"><img alt="PyPI" src="https://img.shields.io/pypi/v/markitdown.svg" /></a><br />
+<img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dd/markitdown" /><br />
+<a href="https://github.com/microsoft/autogen"><img alt="Built by AutoGen Team" src="https://img.shields.io/badge/Built%20by-AutoGen%20Team-blue" /></a></p>
+<blockquote>
+<p>[!TIP]<br />
+MarkItDown now offers an MCP (Model Context Protocol) server for integration with LLM applications like Claude Desktop. See <a href="https://github.com/microsoft/markitdown/tree/main/packages/markitdown-mcp">markitdown-mcp</a> for more information.</p>
+<p>[!IMPORTANT]<br />
+Breaking changes between 0.0.1 to 0.1.0:<br />
+* Dependencies are now organized into optional feature-groups (further details below). Use <code>pip install 'markitdown[all]'</code> to have backward-compatible behavior.<br />
+* convert_stream() now requires a binary file-like object (e.g., a file opened in binary mode, or an io.BytesIO object). This is a breaking change from the previous version, where it previously also accepted text file-like objects, like io.StringIO.<br />
+* The DocumentConverter class interface has changed to read from file-like streams rather than file paths. <em>No temporary files are created anymore</em>. If you are the maintainer of a plugin, or custom DocumentConverter, you likely need to update your code. Otherwise, if only using the MarkItDown class or CLI (as in these examples), you should not need to change anything.</p>
+</blockquote>
+<p>MarkItDown is a lightweight Python utility for converting various files to Markdown for use with LLMs and related text analysis pipelines. To this end, it is most comparable to <a href="https://github.com/deanmalmgren/textract">textract</a>, but with a focus on preserving important document structure and content as Markdown (including: headings, lists, tables, links, etc.) While the output is often reasonably presentable and human-friendly, it is meant to be consumed by text analysis tools -- and may not be the best option for high-fidelity document conversions for human consumption.</p>
+<p>MarkItDown currently supports the conversion from:</p>
+<ul>
+<li>PDF</li>
+<li>PowerPoint</li>
+<li>Word</li>
+<li>Excel</li>
+<li>Images (EXIF metadata and OCR)</li>
+<li>Audio (EXIF metadata and speech transcription)</li>
+<li>HTML</li>
+<li>Text-based formats (CSV, JSON, XML)</li>
+<li>ZIP files (iterates over contents)</li>
+<li>Youtube URLs</li>
+<li>EPubs</li>
+<li>... and more!</li>
+</ul>
+<h2>Why Markdown?</h2>
+<p>Markdown is extremely close to plain text, with minimal markup or formatting, but still<br />
+provides a way to represent important document structure. Mainstream LLMs, such as<br />
+OpenAI's GPT-4o, natively "<em>speak</em>" Markdown, and often incorporate Markdown into their<br />
+responses unprompted. This suggests that they have been trained on vast amounts of<br />
+Markdown-formatted text, and understand it well. As a side benefit, Markdown conventions<br />
+are also highly token-efficient.</p>
+<h2>Prerequisites</h2>
+<p>MarkItDown requires Python 3.10 or higher. It is recommended to use a virtual environment to avoid dependency conflicts.</p>
+<p>With the standard Python installation, you can create and activate a virtual environment using the following commands:</p>
+<pre><code class="language-bash">python -m venv .venv
+source .venv/bin/activate
+</code></pre>
+<p>If using <code>uv</code>, you can create a virtual environment with:</p>
+<pre><code class="language-bash">uv venv --python=3.12 .venv
+source .venv/bin/activate
+# NOTE: Be sure to use 'uv pip install' rather than just 'pip install' to install packages in this virtual environment
+</code></pre>
+<p>If you are using Anaconda, you can create a virtual environment with:</p>
+<pre><code class="language-bash">conda create -n markitdown python=3.12
+conda activate markitdown
+</code></pre>
+<h2>Installation</h2>
+<p>To install MarkItDown, use pip: <code>pip install 'markitdown[all]'</code>. Alternatively, you can install it from the source:</p>
+<pre><code class="language-bash">git clone git@github.com:microsoft/markitdown.git
+cd markitdown
+pip install -e 'packages/markitdown[all]'
+</code></pre>
+<h2>Usage</h2>
+<h3>Command-Line</h3>
+<pre><code class="language-bash">markitdown path-to-file.pdf &gt; document.md
+</code></pre>
+<p>Or use <code>-o</code> to specify the output file:</p>
+<pre><code class="language-bash">markitdown path-to-file.pdf -o document.md
+</code></pre>
+<p>You can also pipe content:</p>
+<pre><code class="language-bash">cat path-to-file.pdf | markitdown
+</code></pre>
+<h3>Optional Dependencies</h3>
+<p>MarkItDown has optional dependencies for activating various file formats. Earlier in this document, we installed all optional dependencies with the <code>[all]</code> option. However, you can also install them individually for more control. For example:</p>
+<pre><code class="language-bash">pip install 'markitdown[pdf, docx, pptx]'
+</code></pre>
+<p>will install only the dependencies for PDF, DOCX, and PPTX files.</p>
+<p>At the moment, the following optional dependencies are available:</p>
+<ul>
+<li><code>[all]</code> Installs all optional dependencies</li>
+<li><code>[pptx]</code> Installs dependencies for PowerPoint files</li>
+<li><code>[docx]</code> Installs dependencies for Word files</li>
+<li><code>[xlsx]</code> Installs dependencies for Excel files</li>
+<li><code>[xls]</code> Installs dependencies for older Excel files</li>
+<li><code>[pdf]</code> Installs dependencies for PDF files</li>
+<li><code>[outlook]</code> Installs dependencies for Outlook messages</li>
+<li><code>[az-doc-intel]</code> Installs dependencies for Azure Document Intelligence</li>
+<li><code>[audio-transcription]</code> Installs dependencies for audio transcription of wav and mp3 files</li>
+<li><code>[youtube-transcription]</code> Installs dependencies for fetching YouTube video transcription</li>
+</ul>
+<h3>Plugins</h3>
+<p>MarkItDown also supports 3rd-party plugins. Plugins are disabled by default. To list installed plugins:</p>
+<pre><code class="language-bash">markitdown --list-plugins
+</code></pre>
+<p>To enable plugins use:</p>
+<pre><code class="language-bash">markitdown --use-plugins path-to-file.pdf
+</code></pre>
+<p>To find available plugins, search GitHub for the hashtag <code>#markitdown-plugin</code>. To develop a plugin, see <code>packages/markitdown-sample-plugin</code>.</p>
+<h4>markitdown-ocr Plugin</h4>
+<p>The <code>markitdown-ocr</code> plugin adds OCR support to PDF, DOCX, PPTX, and XLSX converters, extracting text from embedded images using LLM Vision — the same <code>llm_client</code> / <code>llm_model</code> pattern that MarkItDown already uses for image descriptions. No new ML libraries or binary dependencies required.</p>
+<p><strong>Installation:</strong></p>
+<pre><code class="language-bash">pip install markitdown-ocr
+pip install openai  # or any OpenAI-compatible client
+</code></pre>
+<p><strong>Usage:</strong></p>
+<p>Pass the same <code>llm_client</code> and <code>llm_model</code> you would use for image descriptions:</p>
+<pre><code class="language-python">from markitdown import MarkItDown
+from openai import OpenAI
+
+md = MarkItDown(
+    enable_plugins=True,
+    llm_client=OpenAI(),
+    llm_model=&quot;gpt-4o&quot;,
+)
+result = md.convert(&quot;document_with_images.pdf&quot;)
+print(result.text_content)
+</code></pre>
+<p>If no <code>llm_client</code> is provided the plugin still loads, but OCR is silently skipped and the standard built-in converter is used instead.</p>
+<p>See <a href="packages/markitdown-ocr/README.md"><code>packages/markitdown-ocr/README.md</code></a> for detailed documentation.</p>
+<h3>Azure Document Intelligence</h3>
+<p>To use Microsoft Document Intelligence for conversion:</p>
+<pre><code class="language-bash">markitdown path-to-file.pdf -o document.md -d -e &quot;&lt;document_intelligence_endpoint&gt;&quot;
+</code></pre>
+<p>More information about how to set up an Azure Document Intelligence Resource can be found <a href="https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/how-to-guides/create-document-intelligence-resource?view=doc-intel-4.0.0">here</a></p>
+<h3>Python API</h3>
+<p>Basic usage in Python:</p>
+<pre><code class="language-python">from markitdown import MarkItDown
+
+md = MarkItDown(enable_plugins=False) # Set to True to enable plugins
+result = md.convert(&quot;test.xlsx&quot;)
+print(result.text_content)
+</code></pre>
+<p>Document Intelligence conversion in Python:</p>
+<pre><code class="language-python">from markitdown import MarkItDown
+
+md = MarkItDown(docintel_endpoint=&quot;&lt;document_intelligence_endpoint&gt;&quot;)
+result = md.convert(&quot;test.pdf&quot;)
+print(result.text_content)
+</code></pre>
+<p>To use Large Language Models for image descriptions (currently only for pptx and image files), provide <code>llm_client</code> and <code>llm_model</code>:</p>
+<pre><code class="language-python">from markitdown import MarkItDown
+from openai import OpenAI
+
+client = OpenAI()
+md = MarkItDown(llm_client=client, llm_model=&quot;gpt-4o&quot;, llm_prompt=&quot;optional custom prompt&quot;)
+result = md.convert(&quot;example.jpg&quot;)
+print(result.text_content)
+</code></pre>
+<h3>Docker</h3>
+<pre><code class="language-sh">docker build -t markitdown:latest .
+docker run --rm -i markitdown:latest &lt; ~/your-file.pdf &gt; output.md
+</code></pre>
+<h2>Contributing</h2>
+<p>This project welcomes contributions and suggestions. Most contributions require you to agree to a<br />
+Contributor License Agreement (CLA) declaring that you have the rig</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/microsoft/markitdown#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">coleam00 /</span>
+          <a href="https://github.com/coleam00/Archon" target="_blank" rel="noopener">Archon</a>
+        </div>
+        <div class="repo-desc">The first open-source harness builder for AI coding. Make AI coding deterministic and repeatable.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 16,536</span>
+      <span class="meta-item">🍴 2,650</span>
+      <span class="stars-today">⭐ 1,346 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="assets/logo.png" alt="Archon" width="160" />
+</p>
+
+<h1 align="center">Archon</h1>
+
+<p align="center">
+  The first open-source harness builder for AI coding. Make AI coding deterministic and repeatable.
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/13964" target="_blank"><img src="https://trendshift.io/api/badge/repositories/13964" alt="coleam00%2FArchon | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT" /></a>
+  <a href="https://github.com/coleam00/Archon/actions/workflows/test.yml"><img src="https://github.com/coleam00/Archon/actions/workflows/test.yml/badge.svg" alt="CI" /></a>
+  <a href="https://archon.diy"><img src="https://img.shields.io/badge/docs-archon.diy-blue" alt="Docs" /></a>
+</p>
+
+<hr />
+<p>Archon is a workflow engine for AI coding agents. Define your development processes as YAML workflows - planning, implementation, validation, code review, PR creation - and run them reliably across all your projects.</p>
+<p>Like what Dockerfiles did for infrastructure and GitHub Actions did for CI/CD - Archon does for AI coding workflows. Think n8n, but for software development.</p>
+<h2>Why Archon?</h2>
+<p>When you ask an AI agent to "fix this bug", what happens depends on the model's mood. It might skip planning. It might forget to run tests. It might write a PR description that ignores your template. Every run is different.</p>
+<p>Archon fixes this. Encode your development process as a workflow. The workflow defines the phases, validation gates, and artifacts. The AI fills in the intelligence at each step, but the structure is deterministic and owned by you.</p>
+<ul>
+<li><strong>Repeatable</strong> - Same workflow, same sequence, every time. Plan, implement, validate, review, PR.</li>
+<li><strong>Isolated</strong> - Every workflow run gets its own git worktree. Run 5 fixes in parallel with no conflicts.</li>
+<li><strong>Fire and forget</strong> - Kick off a workflow, go do other work. Come back to a finished PR with review comments.</li>
+<li><strong>Composable</strong> - Mix deterministic nodes (bash scripts, tests, git ops) with AI nodes (planning, code generation, review). The AI only runs where it adds value.</li>
+<li><strong>Portable</strong> - Define workflows once in <code>.archon/workflows/</code>, commit them to your repo. They work the same from CLI, Web UI, Slack, Telegram, or GitHub.</li>
+</ul>
+<h2>What It Looks Like</h2>
+<p>Here's an example of an Archon workflow that plans, implements in a loop until tests pass, gets your approval, then creates the PR:</p>
+<pre><code class="language-yaml"># .archon/workflows/build-feature.yaml
+nodes:
+  - id: plan
+    prompt: &quot;Explore the codebase and create an implementation plan&quot;
+
+  - id: implement
+    depends_on: [plan]
+    loop:                                      # AI loop - iterate until done
+      prompt: &quot;Read the plan. Implement the next task. Run validation.&quot;
+      until: ALL_TASKS_COMPLETE
+      fresh_context: true                      # Fresh session each iteration
+
+  - id: run-tests
+    depends_on: [implement]
+    bash: &quot;bun run validate&quot;                   # Deterministic - no AI
+
+  - id: review
+    depends_on: [run-tests]
+    prompt: &quot;Review all changes against the plan. Fix any issues.&quot;
+
+  - id: approve
+    depends_on: [review]
+    loop:                                      # Human approval gate
+      prompt: &quot;Present the changes for review. Address any feedback.&quot;
+      until: APPROVED
+      interactive: true                        # Pauses and waits for human input
+
+  - id: create-pr
+    depends_on: [approve]
+    prompt: &quot;Push changes and create a pull request&quot;
+</code></pre>
+<p>Tell your coding agent what you want, and Archon handles the rest:</p>
+<pre><code>You: Use archon to add dark mode to the settings page
+
+Agent: I'll run the archon-idea-to-pr workflow for this.
+       → Creating isolated worktree on branch archon/task-dark-mode...
+       → Planning...
+       → Implementing (task 1/4)...
+       → Implementing (task 2/4)...
+       → Tests failing - iterating...
+       → Tests passing after 2 iterations
+       → Code review complete - 0 issues
+       → PR ready: https://github.com/you/project/pull/47
+</code></pre>
+<h2>Previous Version</h2>
+<p>Looking for the original Python-based Archon (task management + RAG)? It's fully preserved on the <a href="https://github.com/coleam00/Archon/tree/archive/v1-task-management-rag"><code>archive/v1-task-management-rag</code></a> branch.</p>
+<h2>Getting Started</h2>
+<blockquote>
+<p><strong>Most users should start with the <a href="#full-setup-5-minutes">Full Setup</a></strong> - it walks you through credentials, installs the Archon skill into your projects, and gives you the web dashboard.</p>
+<p><strong>Already have Claude Code and just want the CLI?</strong> Jump to the <a href="#quick-install-30-seconds">Quick Install</a>.</p>
+</blockquote>
+<h3>Full Setup (5 minutes)</h3>
+<p>Clone the repo and use the guided setup wizard. This configures credentials, platform integrations, and copies the Archon skill into your target projects.</p>
+<details>
+<summary><b>Prerequisites</b> - Bun, Claude Code, and the GitHub CLI</summary>
+
+**Bun** - [bun.sh](https://bun.sh)
+
+
+<pre><code class="language-bash"># macOS/Linux
+curl -fsSL https://bun.sh/install | bash
+
+# Windows (PowerShell)
+irm bun.sh/install.ps1 | iex
+</code></pre>
+
+
+**GitHub CLI** - [cli.github.com](https://cli.github.com/)
+
+
+<pre><code class="language-bash"># macOS
+brew install gh
+
+# Windows (via winget)
+winget install GitHub.cli
+
+# Linux (Debian/Ubuntu)
+sudo apt install gh
+</code></pre>
+
+
+**Claude Code** - [claude.ai/code](https://claude.ai/code)
+
+
+<pre><code class="language-bash"># macOS/Linux/WSL
+curl -fsSL https://claude.ai/install.sh | bash
+
+# Windows (PowerShell)
+irm https://claude.ai/install.ps1 | iex
+</code></pre>
+
+
+</details>
+
+<pre><code class="language-bash">git clone https://github.com/coleam00/Archon
+cd Archon
+bun install
+claude
+</code></pre>
+<p>Then say: <strong>"Set up Archon"</strong></p>
+<p>The setup wizard walks you through everything: CLI installation, authentication, platform selection, and copies the Archon skill to your target repo.</p>
+<h3>Quick Install (30 seconds)</h3>
+<p>Already have Claude Code set up? Install the standalone CLI binary and skip the wizard.</p>
+<p><strong>macOS / Linux</strong></p>
+<pre><code class="language-bash">curl -fsSL https://archon.diy/install | bash
+</code></pre>
+<p><strong>Windows (PowerShell)</strong></p>
+<pre><code class="language-powershell">irm https://archon.diy/install.ps1 | iex
+</code></pre>
+<p><strong>Homebrew</strong></p>
+<pre><code class="language-bash">brew install coleam00/archon/archon
+</code></pre>
+<h3>Start Using Archon</h3>
+<p>Once you've completed either setup path, go to your project and start working:</p>
+<pre><code class="language-bash">cd /path/to/your/project
+claude
+</code></pre>
+<pre><code>Use archon to fix issue #42
+</code></pre>
+<pre><code>What archon workflows do I have? When would I use each one?
+</code></pre>
+<p>The coding agent handles workflow selection, branch naming, and worktree isolation for you. Projects are registered automatically the first time they're used.</p>
+<blockquote>
+<p><strong>Important:</strong> Always run Claude Code from your target repo, not from the Archon repo. The setup wizard copies the Archon skill into your project so it works from there.</p>
+</blockquote>
+<h2>Web UI</h2>
+<p>Archon includes a web dashboard for chatting with your coding agent, running workflows, and monitoring activity. Binary installs: run <code>archon serve</code> to download and start the web UI in one step. From source: ask your coding agent to run the frontend from the Archon repo, or run <code>bun run dev</code> from the repo root yourself.</p>
+<p>Register a project by clicking <strong>+</strong> next to "Project" in the chat sidebar - enter a GitHub URL or local path. Then start a conversation, invoke workflows, and watch progress in real time.</p>
+<p><strong>Key pages:</strong><br />
+- <strong>Chat</strong> - Conversation interface with real-time streaming and tool call visualization<br />
+- <strong>Dashboard</strong> - Mission Control for monitoring running workflows, with filterable history by project, status, and date<br />
+- <strong>Workflow Builder</strong> - Visual drag-and-drop editor for creating DAG workflows with loop nodes<br />
+- <strong>Workflow Execution</strong> - Step-by-step progress view for any running or completed workflow</p>
+<p><strong>Monitoring hub:</strong> The sidebar shows conversations from <strong>all platforms</strong> - not just the web. Workflows kicked off from the CLI, messages from Slack or Telegram, GitHub issue interactions - everything appears in one place.</p>
+<p>See the <a href="https://archon.diy/adapters/web/">Web UI Guide</a> for full documentation.</p>
+<h2>What Ca</h2>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/coleam00/Archon#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">forrestchang /</span>
+          <a href="https://github.com/forrestchang/andrej-karpathy-skills" target="_blank" rel="noopener">andrej-karpathy-skills</a>
+        </div>
+        <div class="repo-desc">A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&#x27;s observations on LLM coding pitfalls.</div>
+      </div>
+    </div>
+    <div class="meta">
+      
+      <span class="meta-item">⭐ 13,835</span>
+      <span class="meta-item">🍴 956</span>
+      <span class="stars-today">⭐ 1,066 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Karpathy-Inspired Claude Code Guidelines</h1>
+<p>A single <code>CLAUDE.md</code> file to improve Claude Code behavior, derived from <a href="https://x.com/karpathy/status/2015883857489522876">Andrej Karpathy's observations</a> on LLM coding pitfalls.</p>
+<h2>The Problems</h2>
+<p>From Andrej's post:</p>
+<blockquote>
+<p>"The models make wrong assumptions on your behalf and just run along with them without checking. They don't manage their confusion, don't seek clarifications, don't surface inconsistencies, don't present tradeoffs, don't push back when they should."</p>
+<p>"They really like to overcomplicate code and APIs, bloat abstractions, don't clean up dead code... implement a bloated construction over 1000 lines when 100 would do."</p>
+<p>"They still sometimes change/remove comments and code they don't sufficiently understand as side effects, even if orthogonal to the task."</p>
+</blockquote>
+<h2>The Solution</h2>
+<p>Four principles in one file that directly address these issues:</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Addresses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Think Before Coding</strong></td>
+<td>Wrong assumptions, hidden confusion, missing tradeoffs</td>
+</tr>
+<tr>
+<td><strong>Simplicity First</strong></td>
+<td>Overcomplication, bloated abstractions</td>
+</tr>
+<tr>
+<td><strong>Surgical Changes</strong></td>
+<td>Orthogonal edits, touching code you shouldn't</td>
+</tr>
+<tr>
+<td><strong>Goal-Driven Execution</strong></td>
+<td>Leverage through tests-first, verifiable success criteria</td>
+</tr>
+</tbody>
+</table>
+<h2>The Four Principles in Detail</h2>
+<h3>1. Think Before Coding</h3>
+<p><strong>Don't assume. Don't hide confusion. Surface tradeoffs.</strong></p>
+<p>LLMs often pick an interpretation silently and run with it. This principle forces explicit reasoning:</p>
+<ul>
+<li><strong>State assumptions explicitly</strong> — If uncertain, ask rather than guess</li>
+<li><strong>Present multiple interpretations</strong> — Don't pick silently when ambiguity exists</li>
+<li><strong>Push back when warranted</strong> — If a simpler approach exists, say so</li>
+<li><strong>Stop when confused</strong> — Name what's unclear and ask for clarification</li>
+</ul>
+<h3>2. Simplicity First</h3>
+<p><strong>Minimum code that solves the problem. Nothing speculative.</strong></p>
+<p>Combat the tendency toward overengineering:</p>
+<ul>
+<li>No features beyond what was asked</li>
+<li>No abstractions for single-use code</li>
+<li>No "flexibility" or "configurability" that wasn't requested</li>
+<li>No error handling for impossible scenarios</li>
+<li>If 200 lines could be 50, rewrite it</li>
+</ul>
+<p><strong>The test:</strong> Would a senior engineer say this is overcomplicated? If yes, simplify.</p>
+<h3>3. Surgical Changes</h3>
+<p><strong>Touch only what you must. Clean up only your own mess.</strong></p>
+<p>When editing existing code:</p>
+<ul>
+<li>Don't "improve" adjacent code, comments, or formatting</li>
+<li>Don't refactor things that aren't broken</li>
+<li>Match existing style, even if you'd do it differently</li>
+<li>If you notice unrelated dead code, mention it — don't delete it</li>
+</ul>
+<p>When your changes create orphans:</p>
+<ul>
+<li>Remove imports/variables/functions that YOUR changes made unused</li>
+<li>Don't remove pre-existing dead code unless asked</li>
+</ul>
+<p><strong>The test:</strong> Every changed line should trace directly to the user's request.</p>
+<h3>4. Goal-Driven Execution</h3>
+<p><strong>Define success criteria. Loop until verified.</strong></p>
+<p>Transform imperative tasks into verifiable goals:</p>
+<table>
+<thead>
+<tr>
+<th>Instead of...</th>
+<th>Transform to...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Add validation"</td>
+<td>"Write tests for invalid inputs, then make them pass"</td>
+</tr>
+<tr>
+<td>"Fix the bug"</td>
+<td>"Write a test that reproduces it, then make it pass"</td>
+</tr>
+<tr>
+<td>"Refactor X"</td>
+<td>"Ensure tests pass before and after"</td>
+</tr>
+</tbody>
+</table>
+<p>For multi-step tasks, state a brief plan:</p>
+<pre><code>1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+</code></pre>
+<p>Strong success criteria let the LLM loop independently. Weak criteria ("make it work") require constant clarification.</p>
+<h2>Install</h2>
+<p><strong>Option A: Claude Code Plugin (recommended)</strong></p>
+<p>From within Claude Code, first add the marketplace:</p>
+<pre><code>/plugin marketplace add forrestchang/andrej-karpathy-skills
+</code></pre>
+<p>Then install the plugin:</p>
+<pre><code>/plugin install andrej-karpathy-skills@karpathy-skills
+</code></pre>
+<p>This installs the guidelines as a Claude Code plugin, making the skill available across all your projects.</p>
+<p><strong>Option B: CLAUDE.md (per-project)</strong></p>
+<p>New project:</p>
+<pre><code class="language-bash">curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md
+</code></pre>
+<p>Existing project (append):</p>
+<pre><code class="language-bash">echo &quot;&quot; &gt;&gt; CLAUDE.md
+curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md &gt;&gt; CLAUDE.md
+</code></pre>
+<h2>Key Insight</h2>
+<p>From Andrej:</p>
+<blockquote>
+<p>"LLMs are exceptionally good at looping until they meet specific goals... Don't tell it what to do, give it success criteria and watch it go."</p>
+</blockquote>
+<p>The "Goal-Driven Execution" principle captures this: transform imperative instructions into declarative goals with verification loops.</p>
+<h2>How to Know It's Working</h2>
+<p>These guidelines are working if you see:</p>
+<ul>
+<li><strong>Fewer unnecessary changes in diffs</strong> — Only requested changes appear</li>
+<li><strong>Fewer rewrites due to overcomplication</strong> — Code is simple the first time</li>
+<li><strong>Clarifying questions come before implementation</strong> — Not after mistakes</li>
+<li><strong>Clean, minimal PRs</strong> — No drive-by refactoring or "improvements"</li>
+</ul>
+<h2>Customization</h2>
+<p>These guidelines are designed to be merged with project-specific instructions. Add them to your existing <code>CLAUDE.md</code> or create a new one.</p>
+<p>For project-specific rules, add sections like:</p>
+<pre><code class="language-markdown">## Project-Specific Guidelines
+
+- Use TypeScript strict mode
+- All API endpoints must have tests
+- Follow the existing error handling patterns in `src/utils/errors.ts`
+</code></pre>
+<h2>Tradeoff Note</h2>
+<p>These guidelines bias toward <strong>caution over speed</strong>. For trivial tasks (simple typo fixes, obvious one-liners), use judgment — not every change needs the full rigor.</p>
+<p>The goal is reducing costly mistakes on non-trivial work, not slowing down simple tasks.</p>
+<h2>License</h2>
+<p>MIT</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/forrestchang/andrej-karpathy-skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">multica-ai /</span>
+          <a href="https://github.com/multica-ai/multica" target="_blank" rel="noopener">multica</a>
+        </div>
+        <div class="repo-desc">The open-source managed agents platform. Turn coding agents into real teammates — assign tasks, track progress, compound skills.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 8,128</span>
+      <span class="meta-item">🍴 1,029</span>
+      <span class="stars-today">⭐ 1,948 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="docs/assets/banner.jpg" alt="Multica — humans and agents, side by side" width="100%">
+</p>
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/logo-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/logo-light.svg">
+  <img alt="Multica" src="docs/assets/logo-light.svg" width="50">
+</picture>
+
+# Multica
+
+**Your next 10 hires won't be human.**
+
+The open-source managed agents platform.<br/>
+Turn coding agents into real teammates — assign tasks, track progress, compound skills.
+
+[![CI](https://github.com/multica-ai/multica/actions/workflows/ci.yml/badge.svg)](https://github.com/multica-ai/multica/actions/workflows/ci.yml)
+[![GitHub stars](https://img.shields.io/github/stars/multica-ai/multica?style=flat)](https://github.com/multica-ai/multica/stargazers)
+
+[Website](https://multica.ai) · [Cloud](https://multica.ai/app) · [X](https://x.com/multica_hq) · [Self-Hosting](SELF_HOSTING.md) · [Contributing](CONTRIBUTING.md)
+
+**English | [简体中文](README.zh-CN.md)**
+
+</div>
+
+<h2>What is Multica?</h2>
+<p>Multica turns coding agents into real teammates. Assign issues to an agent like you'd assign to a colleague — they'll pick up the work, write code, report blockers, and update statuses autonomously.</p>
+<p>No more copy-pasting prompts. No more babysitting runs. Your agents show up on the board, participate in conversations, and compound reusable skills over time. Think of it as open-source infrastructure for managed agents — vendor-neutral, self-hosted, and designed for human + AI teams. Works with <strong>Claude Code</strong>, <strong>Codex</strong>, <strong>OpenClaw</strong>, and <strong>OpenCode</strong>.</p>
+<p align="center">
+  <img src="docs/assets/hero-screenshot.png" alt="Multica board view" width="800">
+</p>
+
+<h2>Features</h2>
+<p>Multica manages the full agent lifecycle: from task assignment to execution monitoring to skill reuse.</p>
+<ul>
+<li><strong>Agents as Teammates</strong> — assign to an agent like you'd assign to a colleague. They have profiles, show up on the board, post comments, create issues, and report blockers proactively.</li>
+<li><strong>Autonomous Execution</strong> — set it and forget it. Full task lifecycle management (enqueue, claim, start, complete/fail) with real-time progress streaming via WebSocket.</li>
+<li><strong>Reusable Skills</strong> — every solution becomes a reusable skill for the whole team. Deployments, migrations, code reviews — skills compound your team's capabilities over time.</li>
+<li><strong>Unified Runtimes</strong> — one dashboard for all your compute. Local daemons and cloud runtimes, auto-detection of available CLIs, real-time monitoring.</li>
+<li><strong>Multi-Workspace</strong> — organize work across teams with workspace-level isolation. Each workspace has its own agents, issues, and settings.</li>
+</ul>
+<hr />
+<h2>Quick Install</h2>
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/multica-ai/multica/main/scripts/install.sh | bash
+</code></pre>
+<p>Installs the Multica CLI on macOS and Linux. Works with Homebrew or downloads the binary directly.</p>
+<p>After installation:</p>
+<pre><code class="language-bash">multica login          # Authenticate (opens browser)
+multica daemon start   # Start the local agent runtime
+multica daemon stop    # Stop the daemon when done
+</code></pre>
+<blockquote>
+<p><strong>Self-hosting?</strong> Add <code>--local</code> to deploy a full Multica server on your machine:</p>
+<p><code>bash
+curl -fsSL https://raw.githubusercontent.com/multica-ai/multica/main/scripts/install.sh | bash -s -- --local</code></p>
+<p>Requires Docker. See the <a href="SELF_HOSTING.md">Self-Hosting Guide</a> for details.</p>
+</blockquote>
+<hr />
+<h2>Getting Started</h2>
+<h3>1. Log in and start the daemon</h3>
+<pre><code class="language-bash">multica login           # Authenticate with your Multica account
+multica daemon start    # Start the local agent runtime
+</code></pre>
+<p>The daemon runs in the background and auto-detects agent CLIs (<code>claude</code>, <code>codex</code>, <code>openclaw</code>, <code>opencode</code>) on your PATH.</p>
+<h3>2. Verify your runtime</h3>
+<p>Open your workspace in the Multica web app. Navigate to <strong>Settings → Runtimes</strong> — you should see your machine listed as an active <strong>Runtime</strong>.</p>
+<blockquote>
+<p><strong>What is a Runtime?</strong> A Runtime is a compute environment that can execute agent tasks. It can be your local machine (via the daemon) or a cloud instance. Each runtime reports which agent CLIs are available, so Multica knows where to route work.</p>
+</blockquote>
+<h3>3. Create an agent</h3>
+<p>Go to <strong>Settings → Agents</strong> and click <strong>New Agent</strong>. Pick the runtime you just connected and choose a provider (Claude Code, Codex, OpenClaw, or OpenCode). Give your agent a name — this is how it will appear on the board, in comments, and in assignments.</p>
+<h3>4. Assign your first task</h3>
+<p>Create an issue from the board (or via <code>multica issue create</code>), then assign it to your new agent. The agent will automatically pick up the task, execute it on your runtime, and report progress — just like a human teammate.</p>
+<hr />
+<h2>CLI</h2>
+<p>The <code>multica</code> CLI connects your local machine to Multica — authenticate, manage workspaces, and run the agent daemon.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>multica login</code></td>
+<td>Authenticate (opens browser)</td>
+</tr>
+<tr>
+<td><code>multica daemon start</code></td>
+<td>Start the local agent runtime</td>
+</tr>
+<tr>
+<td><code>multica daemon status</code></td>
+<td>Check daemon status</td>
+</tr>
+<tr>
+<td><code>multica setup</code></td>
+<td>One-command setup (configure + login + start daemon)</td>
+</tr>
+<tr>
+<td><code>multica setup --local</code></td>
+<td>Same, but for self-hosted deployments</td>
+</tr>
+<tr>
+<td><code>multica config local</code></td>
+<td>Configure CLI for a local self-hosted server</td>
+</tr>
+<tr>
+<td><code>multica issue list</code></td>
+<td>List issues in your workspace</td>
+</tr>
+<tr>
+<td><code>multica issue create</code></td>
+<td>Create a new issue</td>
+</tr>
+<tr>
+<td><code>multica update</code></td>
+<td>Update to the latest version</td>
+</tr>
+</tbody>
+</table>
+<p>See the <a href="CLI_AND_DAEMON.md">CLI and Daemon Guide</a> for the full command reference.</p>
+<hr />
+<h2>Architecture</h2>
+<pre><code>┌──────────────┐     ┌──────────────┐     ┌──────────────────┐
+│   Next.js    │────&gt;│  Go Backend  │────&gt;│   PostgreSQL     │
+│   Frontend   │&lt;────│  (Chi + WS)  │&lt;────│   (pgvector)     │
+└──────────────┘     └──────┬───────┘     └──────────────────┘
+                            │
+                     ┌──────┴───────┐
+                     │ Agent Daemon │  (runs on your machine)
+                     │Claude/Codex/ │
+                     │OpenClaw/Code │
+                     └──────────────┘
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Stack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>Next.js 16 (App Router)</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>Go (Chi router, sqlc, gorilla/websocket)</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>PostgreSQL 17 with pgvector</td>
+</tr>
+<tr>
+<td>Agent Runtime</td>
+<td>Local daemon executing Claude Code, Codex, OpenClaw, or OpenCode</td>
+</tr>
+</tbody>
+</table>
+<h2>Development</h2>
+<p>For contributors working on the Multica codebase, see the <a href="CONTRIBUTING.md">Contributing Guide</a>.</p>
+<p><strong>Prerequisites:</strong> <a href="https://nodejs.org/">Node.js</a> v20+, <a href="https://pnpm.io/">pnpm</a> v10.28+, <a href="https://go.dev/">Go</a> v1.26+, <a href="https://www.docker.com/">Docker</a></p>
+<pre><code class="language-bash">make dev
+</code></pre>
+<p><code>make dev</code> auto-detects your environment (main checkout or worktree), creates the env file, installs dependencies, sets up the database, runs migrations, and starts all services.</p>
+<p>See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for the full development workflow, worktree support, testing, and troubleshooting.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/multica-ai/multica#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">shanraisshan /</span>
+          <a href="https://github.com/shanraisshan/claude-code-best-practice" target="_blank" rel="noopener">claude-code-best-practice</a>
+        </div>
+        <div class="repo-desc">practice made claude perfect</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#e34c26"></span>HTML</span>
+      <span class="meta-item">⭐ 37,234</span>
+      <span class="meta-item">🍴 3,488</span>
+      <span class="stars-today">⭐ 1,475 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>claude-code-best-practice</h1>
+<p>from vibe coding to agentic engineering - practice makes claude perfect</p>
+<p><img alt="updated with Claude Code" src="https://img.shields.io/badge/updated_with_Claude_Code-v2.1.101%20(Apr%2011%2C%202026%206%3A17%20PM%20PKT)-white?style=flat&amp;labelColor=555" /> <a href="https://github.com/shanraisshan/claude-code-best-practice/stargazers"><img src="https://img.shields.io/github/stars/shanraisshan/claude-code-best-practice?style=flat&label=%E2%98%85&labelColor=555&color=white" alt="GitHub Stars"></a><br></p>
+<p><a href="best-practice/"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> <a href="implementation/"><img alt="Implemented" src="!/tags/implemented.svg" /></a> <a href="orchestration-workflow/orchestration-workflow.md"><img alt="Orchestration Workflow" src="!/tags/orchestration-workflow.svg" /></a> <a href="https://code.claude.com/docs"><img alt="Claude" src="!/tags/claude.svg" /></a> <a href="#-tips-and-tricks"><img alt="Boris" src="!/tags/boris-cherny.svg" /></a> <a href="#-subscribe"><img alt="Community" src="!/tags/community.svg" /></a> <img alt="Click on these badges below to see the actual sources" src="!/tags/click-badges.svg" /><br><br />
+<img src="!/tags/a.svg" height="14"> = Agents · <img src="!/tags/c.svg" height="14"> = Commands · <img src="!/tags/s.svg" height="14"> = Skills</p>
+<p align="center">
+  <img src="!/claude-jumping.svg" alt="Claude Code mascot jumping" width="120" height="100"><br>
+  <a href="https://github.com/trending"><img src="!/root/github-trending-day.svg" alt="GitHub Trending #1 Repository Of The Day"></a>
+</p>
+
+<p align="center">
+  <img src="!/root/boris-slider.gif" alt="Boris Cherny on Claude Code" width="600"><br>
+  Boris Cherny on X (<a href="https://x.com/bcherny/status/2007179832300581177">tweet 1</a> · <a href="https://x.com/bcherny/status/2017742741636321619">tweet 2</a> · <a href="https://x.com/bcherny/status/2021699851499798911">tweet 3</a>)
+</p>
+
+<h2>🧠 CONCEPTS</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Location</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="!/tags/a.svg" height="14"> <a href="https://code.claude.com/docs/en/sub-agents"><strong>Subagents</strong></a></td>
+<td><code>.claude/agents/&lt;name&gt;.md</code></td>
+<td><a href="best-practice/claude-subagents.md"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> <a href="implementation/claude-subagents-implementation.md"><img alt="Implemented" src="!/tags/implemented.svg" /></a> Autonomous actor in fresh isolated context — custom tools, permissions, model, memory, and persistent identity</td>
+</tr>
+<tr>
+<td><img src="!/tags/c.svg" height="14"> <a href="https://code.claude.com/docs/en/slash-commands"><strong>Commands</strong></a></td>
+<td><code>.claude/commands/&lt;name&gt;.md</code></td>
+<td><a href="best-practice/claude-commands.md"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> <a href="implementation/claude-commands-implementation.md"><img alt="Implemented" src="!/tags/implemented.svg" /></a> Knowledge injected into existing context — simple user-invoked prompt templates for workflow orchestration</td>
+</tr>
+<tr>
+<td><img src="!/tags/s.svg" height="14"> <a href="https://code.claude.com/docs/en/skills"><strong>Skills</strong></a></td>
+<td><code>.claude/skills/&lt;name&gt;/SKILL.md</code></td>
+<td><a href="best-practice/claude-skills.md"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> <a href="implementation/claude-skills-implementation.md"><img alt="Implemented" src="!/tags/implemented.svg" /></a> Knowledge injected into existing context — configurable, preloadable, auto-discoverable, with context forking and progressive disclosure · <a href="https://github.com/anthropics/skills/tree/main/skills">Official Skills</a></td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/common-workflows"><strong>Workflows</strong></a></td>
+<td><a href=".claude/commands/weather-orchestrator.md"><code>.claude/commands/weather-orchestrator.md</code></a></td>
+<td><a href="orchestration-workflow/orchestration-workflow.md"><img alt="Orchestration Workflow" src="!/tags/orchestration-workflow.svg" /></a></td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/hooks"><strong>Hooks</strong></a></td>
+<td><code>.claude/hooks/</code></td>
+<td><a href="https://github.com/shanraisshan/claude-code-hooks"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> <a href="https://github.com/shanraisshan/claude-code-hooks"><img alt="Implemented" src="!/tags/implemented.svg" /></a> User-defined handlers (scripts, HTTP, prompts, agents) that run outside the agentic loop on specific events · <a href="https://code.claude.com/docs/en/hooks-guide">Guide</a></td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/mcp"><strong>MCP Servers</strong></a></td>
+<td><code>.claude/settings.json</code>, <code>.mcp.json</code></td>
+<td><a href="best-practice/claude-mcp.md"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> <a href=".mcp.json"><img alt="Implemented" src="!/tags/implemented.svg" /></a> Model Context Protocol connections to external tools, databases, and APIs</td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/plugins"><strong>Plugins</strong></a></td>
+<td>distributable packages</td>
+<td>Bundles of skills, subagents, hooks, MCP servers, and LSP servers · <a href="https://code.claude.com/docs/en/discover-plugins">Marketplaces</a> · <a href="https://code.claude.com/docs/en/plugin-marketplaces">Create Marketplaces</a></td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/settings"><strong>Settings</strong></a></td>
+<td><code>.claude/settings.json</code></td>
+<td><a href="best-practice/claude-settings.md"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> <a href=".claude/settings.json"><img alt="Implemented" src="!/tags/implemented.svg" /></a> Hierarchical configuration system · <a href="https://code.claude.com/docs/en/permissions">Permissions</a> · <a href="https://code.claude.com/docs/en/model-config">Model Config</a> · <a href="https://code.claude.com/docs/en/output-styles">Output Styles</a> · <a href="https://code.claude.com/docs/en/sandboxing">Sandboxing</a> · <a href="https://code.claude.com/docs/en/keybindings">Keybindings</a> · <a href="https://code.claude.com/docs/en/fast-mode">Fast Mode</a></td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/statusline"><strong>Status Line</strong></a></td>
+<td><code>.claude/settings.json</code></td>
+<td><a href="https://github.com/shanraisshan/claude-code-status-line"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> <a href=".claude/settings.json"><img alt="Implemented" src="!/tags/implemented.svg" /></a> Customizable status bar showing context usage, model, cost, and session info</td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/memory"><strong>Memory</strong></a></td>
+<td><code>CLAUDE.md</code>, <code>.claude/rules/</code>, <code>~/.claude/rules/</code>, <code>~/.claude/projects/&lt;project&gt;/memory/</code></td>
+<td><a href="best-practice/claude-memory.md"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> <a href="CLAUDE.md"><img alt="Implemented" src="!/tags/implemented.svg" /></a> Persistent context via CLAUDE.md files and <code>@path</code> imports · <a href="https://code.claude.com/docs/en/memory">Auto Memory</a> · <a href="https://code.claude.com/docs/en/memory#organize-rules-with-clauderules">Rules</a></td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/checkpointing"><strong>Checkpointing</strong></a></td>
+<td>automatic (git-based)</td>
+<td>Automatic tracking of file edits with rewind (<code>Esc Esc</code> or <code>/rewind</code>) and targeted summarization</td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/cli-reference"><strong>CLI Startup Flags</strong></a></td>
+<td><code>claude [flags]</code></td>
+<td><a href="best-practice/claude-cli-startup-flags.md"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> Command-line flags, subcommands, and environment variables for launching Claude Code · <a href="https://code.claude.com/docs/en/interactive-mode">Interactive Mode</a> · <a href="https://code.claude.com/docs/en/env-vars">Env Vars</a></td>
+</tr>
+<tr>
+<td><strong>AI Terms</strong></td>
+<td></td>
+<td><a href="https://github.com/shanraisshan/claude-code-codex-cursor-gemini/blob/main/reports/ai-terms.md"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> Agentic Engineering · Context Engineering · Vibe Coding</td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/best-practices"><strong>Best Practices</strong></a></td>
+<td></td>
+<td>Official best practices · <a href="https://github.com/anthropics/prompt-eng-interactive-tutorial">Prompt Engineering</a> · <a href="https://code.claude.com/docs/en/features-overview">Extend Claude Code</a></td>
+</tr>
+</tbody>
+</table>
+<h3>🔥 Hot</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Location</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="best-practice/claude-power-ups.md"><strong>Power-ups</strong></a></td>
+<td><code>/powerup</code></td>
+<td><a href="best-practice/claude-power-ups.md"><img alt="Best Practice" src="!/tags/best-practice.svg" /></a> Interactive lessons teaching Claude Code features with animated demos (v2.1.90)</td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/ultraplan"><strong>Ultraplan</strong></a> <img alt="beta" src="!/tags/beta.svg" /></td>
+<td><code>/ultraplan</code></td>
+<td>Draft plans in the cloud with browser-based review, inline comments, and flexible execution — remotely or teleported back to terminal</td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/claude-code-on-the-web"><strong>Claude Code Web</strong></a> <img alt="beta" src="!/tags/beta.svg" /></td>
+<td><code>claude.ai/code</code></td>
+<td>Run tasks on cloud infrastructure — long-running tasks, PR auto-fix, parallel sessions with no local setup · <a href="https://code.claude.com/docs/en/web-scheduled-tasks">Scheduled Tasks</a></td>
+</tr>
+<tr>
+<td><a href="https://code.claude.com/docs/en/agent-sdk/overview"><strong>Agent SDK</strong></a></td>
+<td><code>npm</code> / <code>pip</code> package</td>
+<td>Build production AI agents with Claude Code as a l</td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/shanraisshan/claude-code-best-practice#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">TapXWorld /</span>
+          <a href="https://github.com/TapXWorld/ChinaTextbook" target="_blank" rel="noopener">ChinaTextbook</a>
+        </div>
+        <div class="repo-desc">所有小初高、大学PDF教材。</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#8b949e"></span>Roff</span>
+      <span class="meta-item">⭐ 67,863</span>
+      <span class="meta-item">🍴 15,155</span>
+      <span class="stars-today">⭐ 361 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h2>项目的由来</h2>
+<p>虽然国内教育网站已提供免费资源，但大多数普通人获取信息的途径依然受限。有些人利用这一点，在某站上销售这些带有私人水印的资源。为了应对这种情况，我计划将这些资源集中并开源，以促进义务教育的普及和消除地区间的教育贫困。</p>
+<p>还有一个最重要的原因是，希望海外华人能够让自己的孩子继续了解国内教育。</p>
+<h2>学习数学</h2>
+<p>希望未来出现更多不是为了考学而读书的人。</p>
+<h3>小学数学</h3>
+<ul>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%20%C2%B7%20%E6%95%B0%E5%AD%A6%E4%B8%80%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C.pdf">一年级上册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E4%B8%80%E5%B9%B4%E7%BA%A7%E4%B8%8B%E5%86%8C.pdf">一年级下册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%20%C2%B7%20%E6%95%B0%E5%AD%A6%E4%BA%8C%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C.pdf">二年级上册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E4%BA%8C%E5%B9%B4%E7%BA%A7%E4%B8%8B%E5%86%8C.pdf">二年级下册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%20%C2%B7%20%E6%95%B0%E5%AD%A6%E4%B8%89%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C.pdf">三年级上册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E4%B8%89%E5%B9%B4%E7%BA%A7%E4%B8%8B%E5%86%8C.pdf">三年级下册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%20%C2%B7%20%E6%95%B0%E5%AD%A6%E5%9B%9B%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C.pdf">四年级上册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E5%9B%9B%E5%B9%B4%E7%BA%A7%E4%B8%8B%E5%86%8C.pdf">四年级下册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%20%C2%B7%20%E6%95%B0%E5%AD%A6%E4%BA%94%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C.pdf">五年级上册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E4%BA%94%E5%B9%B4%E7%BA%A7%E4%B8%8B%E5%86%8C.pdf">五年级下册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%20%C2%B7%20%E6%95%B0%E5%AD%A6%E5%85%AD%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C.pdf">六年级上册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%B0%8F%E5%AD%A6/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E5%85%AD%E5%B9%B4%E7%BA%A7%E4%B8%8B%E5%86%8C.pdf">六年级下册</a></li>
+</ul>
+<h3>初中数学</h3>
+<ul>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%88%9D%E4%B8%AD/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88-%E4%BA%BA%E6%B0%91%E6%95%99%E8%82%B2%E5%87%BA%E7%89%88%E7%A4%BE/%E4%B8%83%E5%B9%B4%E7%BA%A7/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E4%B8%83%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C.pdf">初一上册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%88%9D%E4%B8%AD/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88-%E4%BA%BA%E6%B0%91%E6%95%99%E8%82%B2%E5%87%BA%E7%89%88%E7%A4%BE/%E4%B8%83%E5%B9%B4%E7%BA%A7/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E4%B8%83%E5%B9%B4%E7%BA%A7%E4%B8%8B%E5%86%8C.pdf">初一下册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%88%9D%E4%B8%AD/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88-%E4%BA%BA%E6%B0%91%E6%95%99%E8%82%B2%E5%87%BA%E7%89%88%E7%A4%BE/%E5%85%AB%E5%B9%B4%E7%BA%A7/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E5%85%AB%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C.pdf">初二上册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%88%9D%E4%B8%AD/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88-%E4%BA%BA%E6%B0%91%E6%95%99%E8%82%B2%E5%87%BA%E7%89%88%E7%A4%BE/%E5%85%AB%E5%B9%B4%E7%BA%A7/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E5%85%AB%E5%B9%B4%E7%BA%A7%E4%B8%8B%E5%86%8C.pdf">初二下册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%88%9D%E4%B8%AD/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88-%E4%BA%BA%E6%B0%91%E6%95%99%E8%82%B2%E5%87%BA%E7%89%88%E7%A4%BE/%E4%B9%9D%E5%B9%B4%E7%BA%A7/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E4%B9%9D%E5%B9%B4%E7%BA%A7%E4%B8%8A%E5%86%8C.pdf">初三上册</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/blob/master/%E5%88%9D%E4%B8%AD/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88-%E4%BA%BA%E6%B0%91%E6%95%99%E8%82%B2%E5%87%BA%E7%89%88%E7%A4%BE/%E4%B9%9D%E5%B9%B4%E7%BA%A7/%E4%B9%89%E5%8A%A1%E6%95%99%E8%82%B2%E6%95%99%E7%A7%91%E4%B9%A6%C2%B7%E6%95%B0%E5%AD%A6%E4%B9%9D%E5%B9%B4%E7%BA%A7%E4%B8%8B%E5%86%8C.pdf">初三下册</a></li>
+</ul>
+<h3>高中数学</h3>
+<ul>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/tree/master/%E9%AB%98%E4%B8%AD/%E6%95%B0%E5%AD%A6/%E4%BA%BA%E6%95%99%E7%89%88%EF%BC%88A%E7%89%88%EF%BC%89%EF%BC%88%E4%B8%BB%E7%BC%96%EF%BC%9A%E7%AB%A0%E5%BB%BA%E8%B7%83%26%E6%9D%8E%E5%A2%9E%E6%B2%AA%EF%BC%89-%E4%BA%BA%E6%B0%91%E6%95%99%E8%82%B2%E5%87%BA%E7%89%88%E7%A4%BE">目录</a></li>
+</ul>
+<h3>大学数学</h3>
+<ul>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/tree/master/%E5%A4%A7%E5%AD%A6/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/%E5%90%8C%E6%B5%8E%E5%A4%A7%E5%AD%A6%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6%E7%AC%AC%E4%B8%83%E7%89%88">高等数学</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/tree/master/%E5%A4%A7%E5%AD%A6/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0">线性代数</a></li>
+<li><a href="https://github.com/TapXWorld/ChinaTextbook/tree/master/%E5%A4%A7%E5%AD%A6/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6">离散数学</a></li>
+<li>
+<p><a href="https://github.com/TapXWorld/ChinaTextbook/tree/master/%E5%A4%A7%E5%AD%A6/%E6%A6%82%E7%8E%87%E8%AE%BA">概率论</a></p>
+</li>
+<li>
+<p><a href="http://www.dxsx.net/index.php">更多数学资料-(大学数学网)</a></p>
+</li>
+</ul>
+<h2></h2>
+<h2>问题：如何合并被拆分的文件？</h2>
+<p>由于 GitHub 对单个文件的上传有最大限制，超过 100MB 的文件会被拒绝上传，超过 50MB 的文件上传时会收到警告。因此，文件大小超过 50MB 的文件会被拆分成每个 35MB 的多个文件。</p>
+<h3>示例</h3>
+<p>文件被拆分的示例：<br />
+- 义务教育教科书 · 数学一年级上册.pdf.1<br />
+- 义务教育教科书 · 数学一年级上册.pdf.2</p>
+<h3>解决办法</h3>
+<p>要合并这些被拆分的文件，您只需执行以下步骤(其他操作系统同理)：<br />
+1. 将合并程序 <code>mergePDFs-windows-amd64.exe</code> 下载到包含 PDF 文件的文件夹中。<br />
+2. 确保 <code>mergePDFs-windows-amd64.exe</code> 和被拆分的 PDF 文件在同一目录下。<br />
+3. 双击 <code>mergePDFs-windows-amd64.exe</code> 程序即可自动完成文件合并。</p>
+<h3>下载方式</h3>
+<p>您可以通过以下链接，下载文件合并程序：</p>
+<p><a href="https://github.com/TapXWorld/ChinaTextbook-tools/releases">下载文件合并程序</a></p>
+<h3>文件和程序示例</h3>
+<ul>
+<li>mergePDFs-windows-amd64.exe</li>
+<li>义务教育教科书 · 数学一年级上册.pdf.1</li>
+<li>义务教育教科书 · 数学一年级上册.pdf.2</li>
+</ul>
+<h2>重新下载</h2>
+<ul>
+<li>如果您位于内地，并且网络不错，想重新下载，您可以使用 <a href="https://github.com/happycola233/tchMaterial-parser">tchMaterial-parser</a> 项目（鼓励开源），进行重新下载。</li>
+<li>如果您位于国外，和内地网络通信速度较慢，建议使用本存储库进行签出。</li>
+</ul>
+<h2>教材捐献</h2>
+<p>如果这个项目帮助您免费获取教育资源，请考虑支持我们推广开放教育的努力！您的捐献将帮助我们维护和扩展这个资源库。</p>
+<p>加入我们的 Telegram 社区，获取最新动态并分享您的想法：https://t.me/+1V6WjEq8WEM4MDM1</p>
+<h2>Star History</h2>
+<p><a href="https://star-history.com/#TapXWorld/ChinaTextbook&amp;Date"><img alt="Star History" src="https://api.star-history.com/svg?repos=TapXWorld/ChinaTextbook&amp;type=Date" /></a></p>
+<h2>支持我</h2>
+<p>如果您觉得这个项目对您有帮助，您可以扫描以下二维码进行捐赠：</p>
+<p align="left">
+  <img src=".cache/support-alipay.png" width="20%">
+</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/TapXWorld/ChinaTextbook#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">OpenBMB /</span>
+          <a href="https://github.com/OpenBMB/VoxCPM" target="_blank" rel="noopener">VoxCPM</a>
+        </div>
+        <div class="repo-desc">VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 10,008</span>
+      <span class="meta-item">🍴 1,170</span>
+      <span class="stars-today">⭐ 1,084 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h2 align="center">VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning</h2>
+
+<p align="center">
+  <b>English</b> | <a href="./README_zh.md">中文</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/OpenBMB/VoxCPM/"><img src="https://img.shields.io/badge/Project%20Page-GitHub-blue" alt="Project Page"></a>
+  <a href="https://huggingface.co/spaces/OpenBMB/VoxCPM-Demo"><img src="https://img.shields.io/badge/Live%20Playground-Demo-orange" alt="Live Playground"></a>
+  <a href="https://voxcpm.readthedocs.io/en/latest/"><img src="https://img.shields.io/badge/Docs-ReadTheDocs-8CA1AF" alt="Documentation"></a>
+  <a href="https://huggingface.co/openbmb/VoxCPM2"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-VoxCPM2-yellow" alt="Hugging Face"></a>
+  <a href="https://modelscope.cn/models/OpenBMB/VoxCPM2"><img src="https://img.shields.io/badge/ModelScope-VoxCPM2-purple" alt="ModelScope"></a>
+  <a href="https://openbmb.github.io/voxcpm2-demopage/"><img src="https://img.shields.io/badge/DemoPage-Audio Samples-red"></a>
+
+</p>
+
+<div align="center">
+  <img src="assets/voxcpm_logo.png" alt="VoxCPM Logo" width="35%">
+  <br><br>
+  <a href="https://trendshift.io/repositories/17704" target="_blank"><img src="https://trendshift.io/api/badge/repositories/17704" alt="OpenBMB%2FVoxCPM | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+</div>
+
+<p><br></p>
+<p align="center">
+  👋 Join our community for discussion and support!
+  <br>
+  <a href="./assets/feishu-group.png" style="display:inline-block;vertical-align:middle; margin-left: 10px;">
+    <img src="./assets/feishu-logo.png" width="16" height="16" style="vertical-align:middle;"> Feishu
+  </a>
+  &nbsp;|&nbsp;
+  <a href="https://discord.gg/KZUx7tVNwz" style="display:inline-block;vertical-align:middle;">
+    <img src="./assets/discord-logo.png" width="16" height="16" style="vertical-align:middle;"> Discord
+  </a>
+</p>
+
+<p>VoxCPM is a <strong>tokenizer-free</strong> Text-to-Speech system that directly generates continuous speech representations via an end-to-end <strong>diffusion autoregressive architecture</strong>, bypassing discrete tokenization to achieve highly natural and expressive synthesis.</p>
+<p><strong>VoxCPM2</strong> is the latest major release — a <strong>2B</strong> parameter model trained on <strong>over 2 million hours</strong> of multilingual speech data, now supporting <strong>30 languages</strong>, <strong>Voice Design</strong>, <strong>Controllable Voice Cloning</strong>, and <strong>48kHz</strong> studio-quality audio output. Built on a <a href="https://github.com/OpenBMB/MiniCPM">MiniCPM-4</a> backbone.</p>
+<h3>✨ Highlights</h3>
+<ul>
+<li>🌍 <strong>30-Language Multilingual</strong> — Input text in any of the 30 supported languages and synthesize directly, no language tag needed</li>
+<li>🎨 <strong>Voice Design</strong> — Create a brand-new voice from a natural-language description alone (gender, age, tone, emotion, pace …), no reference audio required</li>
+<li>🎛️ <strong>Controllable Cloning</strong> — Clone any voice from a short reference clip, with optional style guidance to steer emotion, pace, and expression while preserving the original timbre</li>
+<li>🎙️ <strong>Ultimate Cloning</strong> — Reproduce every vocal nuance: provide both reference audio and its transcript, and the model continues seamlessly from the reference, faithfully preserving every vocal detail — timbre, rhythm, emotion, and style (same as VoxCPM1.5)</li>
+<li>🔊 <strong>48kHz High-Quality Audio</strong> — Accepts 16kHz reference audio and directly outputs 48kHz studio-quality audio via AudioVAE V2's asymmetric encode/decode design, with built-in super-resolution — no external upsampler needed</li>
+<li>🧠 <strong>Context-Aware Synthesis</strong> — Automatically infers appropriate prosody and expressiveness from text content</li>
+<li>⚡ <strong>Real-Time Streaming</strong> — RTF as low as ~0.3 on NVIDIA RTX 4090, and ~0.13  accelerated by <a href="https://github.com/a710128/nanovllm-voxcpm">Nano-VLLM</a></li>
+<li>📜 <strong>Fully Open-Source &amp; Commercial-Ready</strong> — Weights and code released under the <a href="LICENSE">Apache-2.0</a> license, free for commercial use</li>
+</ul>
+<summary><b>🌍 Supported Languages (30)</b></summary>
+<p><br><br />
+Arabic, Burmese, Chinese, Danish, Dutch, English, Finnish, French, German, Greek, Hebrew, Hindi, Indonesian, Italian, Japanese, Khmer, Korean, Lao, Malay, Norwegian, Polish, Portuguese, Russian, Spanish, Swahili, Swedish, Tagalog, Thai, Turkish, Vietnamese</p>
+<p>Chinese Dialect: 四川话, 粤语, 吴语, 东北话, 河南话, 陕西话, 山东话, 天津话, 闽南话</p>
+<h3>News</h3>
+<ul>
+<li><strong>[2026.04]</strong> 🔥 We release <strong>VoxCPM2</strong> — 2B, 30 languages, Voice Design &amp; Controllable Voice Cloning, 48kHz audio output! <a href="https://huggingface.co/openbmb/VoxCPM2">Weights</a> | <a href="https://voxcpm.readthedocs.io/en/latest/">Docs</a> | <a href="https://huggingface.co/spaces/OpenBMB/VoxCPM-Demo">Playground</a></li>
+<li><strong>[2025.12]</strong> 🎉 Open-source <strong>VoxCPM1.5</strong> <a href="https://huggingface.co/openbmb/VoxCPM1.5">weights</a> with SFT &amp; LoRA fine-tuning. (<strong>🏆 #1 GitHub Trending</strong>)</li>
+<li><strong>[2025.09]</strong> 🔥 Release VoxCPM <a href="https://arxiv.org/abs/2509.24650">Technical Report</a>.</li>
+<li><strong>[2025.09]</strong> 🎉 Open-source <strong>VoxCPM-0.5B</strong> <a href="https://huggingface.co/openbmb/VoxCPM-0.5B">weights</a> (<strong>🏆 #1 HuggingFace Trending</strong>)</li>
+</ul>
+<hr />
+<h2>Contents</h2>
+<ul>
+<li><a href="#-quick-start">Quick Start</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#python-api">Python API</a></li>
+<li><a href="#cli-usage">CLI Usage</a></li>
+<li><a href="#web-demo">Web Demo</a></li>
+<li><a href="#-production-deployment-nano-vllm">Production Deployment</a></li>
+<li><a href="#-models--versions">Models &amp; Versions</a></li>
+<li><a href="#-performance">Performance</a></li>
+<li><a href="#%EF%B8%8F-fine-tuning">Fine-tuning</a></li>
+<li><a href="#-documentation">Documentation</a></li>
+<li><a href="#-ecosystem--community">Ecosystem &amp; Community</a></li>
+<li><a href="#%EF%B8%8F-risks-and-limitations">Risks and Limitations</a></li>
+<li><a href="#-citation">Citation</a></li>
+</ul>
+<hr />
+<h2>🚀 Quick Start</h2>
+<h3>Installation</h3>
+<pre><code class="language-sh">pip install voxcpm
+</code></pre>
+<blockquote>
+<p><strong>Requirements:</strong> Python ≥ 3.10 (&lt;3.13), PyTorch ≥ 2.5.0, CUDA ≥ 12.0. See <a href="https://voxcpm.readthedocs.io/en/latest/quickstart.html">Quick Start Docs</a> for details.</p>
+</blockquote>
+<h3>Python API</h3>
+<h4>🗣️ Text-to-Speech</h4>
+<pre><code class="language-python">from voxcpm import VoxCPM
+import soundfile as sf
+
+model = VoxCPM.from_pretrained(
+  &quot;openbmb/VoxCPM2&quot;,
+  load_denoiser=False,
+)
+
+wav = model.generate(
+    text=&quot;VoxCPM2 is the current recommended release for realistic multilingual speech synthesis.&quot;,
+    cfg_value=2.0,
+    inference_timesteps=10,
+)
+sf.write(&quot;demo.wav&quot;, wav, model.tts_model.sample_rate)
+print(&quot;saved: demo.wav&quot;)
+</code></pre>
+<p>If you prefer downloading from ModelScope first, you can use:</p>
+<pre><code class="language-bash">pip install modelscope
+</code></pre>
+<pre><code class="language-python">from modelscope import snapshot_download
+snapshot_download(&quot;OpenBMB/VoxCPM2&quot;, local_dir='./pretrained_models/VoxCPM2') # specify the local directory to save the model
+
+from voxcpm import VoxCPM
+import soundfile as sf
+model = VoxCPM.from_pretrained(&quot;./pretrained_models/VoxCPM2&quot;, load_denoiser=False)
+
+wav = model.generate(
+    text=&quot;VoxCPM2 is the current recommended release for realistic multilingual speech synthesis.&quot;,
+    cfg_value=2.0,
+    inference_timesteps=10,
+)
+sf.write(&quot;demo.wav&quot;, wav, model.tts_model.sample_rate)
+</code></pre>
+<h4>🎨 Voice Design</h4>
+<p>Create a voice from a natural-language description — no reference audio needed. <strong>Format:</strong> put the description in parentheses at the start of <code>text</code>(e.g. <code>"(your voice description)The text to synthesize."</code>):</p>
+<pre><code class="language-python">wav = model.generate(
+    text=&quot;(A young woman, gentle and sweet voice)Hello, welcome to VoxCPM2!&quot;,
+    cfg_value=2.0,
+    inference_timesteps=10,
+)
+sf.write(&quot;voice_design.wav&quot;, wav, model.tts_model.sample_rate)
+</code></pre>
+<h4>🎛️ Controllable Voice Cloning</h4>
+<p>Upload a reference audio. The model clones the timbre, and you can still use control instructions to adjust speed, emotion, or style.</p>
+<pre><code class="language-python">wav = model.generate(
+    text=&quot;This is a cloned voice generated by VoxCPM2.&quot;,
+    reference_wav_path=&quot;path/to/voice.wav&quot;,
+)
+sf.write(&quot;clone.wav&quot;, wav, model.tts_model.sample_rate)
+
+wav = model.generate(
+    text=&quot;(slightly faster, cheerful tone)This is a cloned voice with style control.&quot;,
+    reference_wav_path=&quot;path/to/voice.wav&quot;,
+    cfg_value=2.0,
+    inference_timesteps=10,
+)
+sf.write(&quot;controllable_clone.wav&quot;, wav, model.tts_model.sample_rate)
+</code></pre>
+<h4>🎙️ Ultimate Cloning</h4>
+<p>Provide both the reference audio and its exact transcri</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/OpenBMB/VoxCPM#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">shiyu-coder /</span>
+          <a href="https://github.com/shiyu-coder/Kronos" target="_blank" rel="noopener">Kronos</a>
+        </div>
+        <div class="repo-desc">Kronos: A Foundation Model for the Language of Financial Markets</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 14,455</span>
+      <span class="meta-item">🍴 2,842</span>
+      <span class="stars-today">⭐ 595 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+  <h2><b>Kronos: A Foundation Model for the Language of Financial Markets </b></h2>
+</div>
+
+<div align="center">
+
+</a> 
+<a href="https://huggingface.co/NeoQuasar"> 
+<img src="https://img.shields.io/badge/🤗-Hugging_Face-yellow" alt="Hugging Face"> 
+</a> 
+<a href="https://shiyu-coder.github.io/Kronos-demo/"> <img src="https://img.shields.io/badge/🚀-Live_Demo-brightgreen" alt="Live Demo"> </a>
+<a href="https://github.com/shiyu-coder/Kronos/graphs/commit-activity"> 
+<img src="https://img.shields.io/github/last-commit/shiyu-coder/Kronos?color=blue" alt="Last Commit"> 
+</a> 
+<a href="https://github.com/shiyu-coder/Kronos/stargazers"> 
+<img src="https://img.shields.io/github/stars/shiyu-coder/Kronos?color=lightblue" alt="GitHub Stars"> 
+</a> 
+<a href="https://github.com/shiyu-coder/Kronos/network/members"> 
+<img src="https://img.shields.io/github/forks/shiyu-coder/Kronos?color=yellow" alt="GitHub Forks"> 
+</a> 
+<a href="./LICENSE"> 
+<img src="https://img.shields.io/github/license/shiyu-coder/Kronos?color=green" alt="License"> 
+</a>
+
+</div>
+
+<div align="center">
+  <!-- Keep these links. Translations will automatically update with the README. -->
+  <a href="https://zdoc.app/de/shiyu-coder/Kronos">Deutsch</a> | 
+  <a href="https://zdoc.app/es/shiyu-coder/Kronos">Español</a> | 
+  <a href="https://zdoc.app/fr/shiyu-coder/Kronos">Français</a> | 
+  <a href="https://zdoc.app/ja/shiyu-coder/Kronos">日本語</a> | 
+  <a href="https://zdoc.app/ko/shiyu-coder/Kronos">한국어</a> | 
+  <a href="https://zdoc.app/pt/shiyu-coder/Kronos">Português</a> | 
+  <a href="https://zdoc.app/ru/shiyu-coder/Kronos">Русский</a> | 
+  <a href="https://zdoc.app/zh/shiyu-coder/Kronos">中文</a>
+</div>
+
+<p align="center">
+
+<img src="./figures/logo.png" width="100">
+
+</p>
+
+<blockquote>
+<p>Kronos is the <strong>first open-source foundation model</strong> for financial candlesticks (K-lines), <br />
+trained on data from over <strong>45 global exchanges</strong>.</p>
+</blockquote>
+</div>
+<h2>📰 News</h2>
+<ul>
+<li>🚩 <strong>[2025.11.10]</strong> Kronos has been accpeted by AAAI 2026.</li>
+<li>🚩 <strong>[2025.08.17]</strong> We have released the scripts for fine-tuning! Check them out to adapt Kronos to your own tasks.</li>
+<li>🚩 <strong>[2025.08.02]</strong> Our paper is now available on <a href="https://arxiv.org/abs/2508.02739">arXiv</a>!</li>
+</ul>
+<p align="center">
+
+## 📜 Introduction
+
+**Kronos** is a family of decoder-only foundation models, pre-trained specifically for the "language" of financial markets—K-line sequences. Unlike general-purpose TSFMs, Kronos is designed to handle the unique, high-noise characteristics of financial data. It leverages a novel two-stage framework: 
+1. A specialized tokenizer first quantizes continuous, multi-dimensional K-line data (OHLCV) into **hierarchical discrete tokens**. 
+2. A large, autoregressive Transformer is then pre-trained on these tokens, enabling it to serve as a unified model for diverse quantitative tasks.
+
+<p align="center">
+    <img src="figures/overview.png" alt="" align="center" width="700px" />
+</p>
+
+## ✨ Live Demo 
+We have set up a live demo to visualize Kronos's forecasting results. The webpage showcases a forecast for the **BTC/USDT** trading pair over the next 24 hours. 
+
+**👉 [Access the Live Demo Here](https://shiyu-coder.github.io/Kronos-demo/)** 
+
+## 📦 Model Zoo 
+We release a family of pre-trained models with varying capacities to suit different computational and application needs. All models are readily accessible from the Hugging Face Hub.
+
+| Model        | Tokenizer                                                                       | Context length | Params  | Open-source                                                               |
+|--------------|---------------------------------------------------------------------------------| -------------- | ------ |---------------------------------------------------------------------------|
+| Kronos-mini  | [Kronos-Tokenizer-2k](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-2k)     | 2048           | 4.1M   | ✅ [NeoQuasar/Kronos-mini](https://huggingface.co/NeoQuasar/Kronos-mini)  |
+| Kronos-small | [Kronos-Tokenizer-base](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-base) | 512            | 24.7M  | ✅ [NeoQuasar/Kronos-small](https://huggingface.co/NeoQuasar/Kronos-small) |
+| Kronos-base  | [Kronos-Tokenizer-base](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-base) | 512            | 102.3M | ✅ [NeoQuasar/Kronos-base](https://huggingface.co/NeoQuasar/Kronos-base)   |
+| Kronos-large | [Kronos-Tokenizer-base](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-base) | 512            | 499.2M | ❌                                                                         |
+
+
+## 🚀 Getting Started
+
+### Installation
+
+1. Install Python 3.10+, and then install the dependencies:
+
+
+<pre><code class="language-shell">pip install -r requirements.txt
+</code></pre>
+
+
+### 📈 Making Forecasts
+
+Forecasting with Kronos is straightforward using the `KronosPredictor` class. It handles data preprocessing, normalization, prediction, and inverse normalization, allowing you to get from raw data to forecasts in just a few lines of code.
+
+**Important Note**: The `max_context` for `Kronos-small` and `Kronos-base` is **512**. This is the maximum sequence length the model can process. For optimal performance, it is recommended that your input data length (i.e., `lookback`) does not exceed this limit. The `KronosPredictor` will automatically handle truncation for longer contexts.
+
+Here is a step-by-step guide to making your first forecast.
+
+#### 1. Load the Tokenizer and Model
+
+First, load a pre-trained Kronos model and its corresponding tokenizer from the Hugging Face Hub.
+
+
+<pre><code class="language-python">from model import Kronos, KronosTokenizer, KronosPredictor
+
+# Load from Hugging Face Hub
+tokenizer = KronosTokenizer.from_pretrained(&quot;NeoQuasar/Kronos-Tokenizer-base&quot;)
+model = Kronos.from_pretrained(&quot;NeoQuasar/Kronos-small&quot;)
+</code></pre>
+
+
+#### 2. Instantiate the Predictor
+
+Create an instance of `KronosPredictor`, passing the model, tokenizer, and desired device.
+
+
+<pre><code class="language-python"># Initialize the predictor
+predictor = KronosPredictor(model, tokenizer, max_context=512)
+</code></pre>
+
+
+#### 3. Prepare Input Data
+
+The `predict` method requires three main inputs:
+-   `df`: A pandas DataFrame containing the historical K-line data. It must include columns `['open', 'high', 'low', 'close']`. `volume` and `amount` are optional.
+-   `x_timestamp`: A pandas Series of timestamps corresponding to the historical data in `df`.
+-   `y_timestamp`: A pandas Series of timestamps for the future periods you want to predict.
+
+
+<pre><code class="language-python">import pandas as pd
+
+# Load your data
+df = pd.read_csv(&quot;./data/XSHG_5min_600977.csv&quot;)
+df['timestamps'] = pd.to_datetime(df['timestamps'])
+
+# Define context window and prediction length
+lookback = 400
+pred_len = 120
+
+# Prepare inputs for the predictor
+x_df = df.loc[:lookback-1, ['open', 'high', 'low', 'close', 'volume', 'amount']]
+x_timestamp = df.loc[:lookback-1, 'timestamps']
+y_timestamp = df.loc[lookback:lookback+pred_len-1, 'timestamps']
+</code></pre>
+
+
+#### 4. Generate Forecasts 
+
+Call the `predict` method to generate forecasts. You can control the sampling process with parameters like `T`, `top_p`, and `sample_count` for probabilistic forecasting.
+
+
+<pre><code class="language-python"># Generate predictions
+pred_df = predictor.predict(
+    df=x_df,
+    x_timestamp=x_timestamp,
+    y_timestamp=y_timestamp,
+    pred_len=pred_len,
+    T=1.0,          # Temperature for sampling
+    top_p=0.9,      # Nucleus sampling probability
+    sample_count=1  # Number of forecast paths to generate and average
+)
+
+print(&quot;Forecasted Data Head:&quot;)
+print(pred_df.head())
+</code></pre>
+
+
+The `predict` method returns a pandas DataFrame containing the forecasted values for `open`, `high`, `low`, `close`, `volume`, and `amount`, indexed by the `y_timestamp` you provided.
+
+For efficient processing of multiple time series, Kronos provides a `predict_batch` method that enables parallel prediction on multiple dat
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/shiyu-coder/Kronos#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">opendataloader-project /</span>
+          <a href="https://github.com/opendataloader-project/opendataloader-pdf" target="_blank" rel="noopener">opendataloader-pdf</a>
+        </div>
+        <div class="repo-desc">PDF Parser for AI-ready data. Automate PDF accessibility. Open-source.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#b07219"></span>Java</span>
+      <span class="meta-item">⭐ 15,680</span>
+      <span class="meta-item">🍴 1,330</span>
+      <span class="stars-today">⭐ 775 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!-- AI-AGENT-SUMMARY
+name: opendataloader-pdf
+category: PDF data extraction, PDF accessibility automation
+license: Apache-2.0
+solves: [PDF to structured data for RAG/LLM pipelines, automate PDF accessibility compliance — layout analysis + auto-tagging to Tagged PDF (first open-source end-to-end)]
+input: PDF files (digital, scanned, tagged)
+output: Markdown, JSON (with bounding boxes), HTML, Tagged PDF, PDF/UA (enterprise)
+sdk: Python, Node.js, Java
+requirements: Java 11+
+pricing: open-source core (data extraction, layout analysis, auto-tagging to Tagged PDF), enterprise add-on (PDF/UA export, accessibility studio)
+extraction-benchmark: #1 overall extraction accuracy (0.907) in hybrid mode, 0.928 table extraction accuracy, 0.015s/page local mode
+accessibility-validation: PDF Association collaboration, Well-Tagged PDF specification, veraPDF automated validation
+key-differentiators: [benchmark #1 PDF parser, deterministic output, bounding boxes for every element, XY-Cut++ reading order, AI safety filters, hybrid AI mode, first open-source PDF auto-tagging to Tagged PDF, PDF Association + Dual Lab (veraPDF) collaboration, Well-Tagged PDF spec compliance]
+-->
+
+<h1>OpenDataLoader PDF</h1>
+<p><strong>PDF Parser for AI-ready data. Automate PDF accessibility. Open-source.</strong></p>
+<p><a href="https://github.com/opendataloader-project/opendataloader-pdf/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" /></a><br />
+<a href="https://pypi.org/project/opendataloader-pdf/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/opendataloader-pdf.svg" /></a><br />
+<a href="https://www.npmjs.com/package/@opendataloader/pdf"><img alt="npm version" src="https://img.shields.io/npm/v/@opendataloader/pdf.svg" /></a><br />
+<a href="https://search.maven.org/artifact/org.opendataloader/opendataloader-pdf-core"><img alt="Maven Central" src="https://img.shields.io/maven-central/v/org.opendataloader/opendataloader-pdf-core.svg" /></a><br />
+<a href="https://github.com/opendataloader-project/opendataloader-pdf#java"><img alt="Java" src="https://img.shields.io/badge/Java-11%2B-blue.svg" /></a></p>
+<p><a href="https://trendshift.io/repositories/21917" target="_blank"><img src="https://trendshift.io/api/badge/repositories/21917" alt="opendataloader-project%2Fopendataloader-pdf | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a></p>
+<p>🔍 <strong>PDF parser for AI data extraction</strong> — Extract Markdown, JSON (with bounding boxes), and HTML from any PDF. #1 in benchmarks (0.907 overall). Deterministic local mode + AI hybrid mode for complex pages.</p>
+<ul>
+<li><strong>How accurate is it?</strong> — #1 in benchmarks: 0.907 overall, 0.928 table accuracy across 200 real-world PDFs including multi-column and scientific papers. Deterministic local mode + AI hybrid mode for complex pages (<a href="#extraction-benchmarks">benchmarks</a>)</li>
+<li><strong>Scanned PDFs and OCR?</strong> — Yes. Built-in OCR (80+ languages) in hybrid mode. Works with poor-quality scans at 300 DPI+ (<a href="#hybrid-mode-1-accuracy-for-complex-pdfs">hybrid mode</a>)</li>
+<li><strong>Tables, formulas, images, charts?</strong> — Yes. Complex/borderless tables, LaTeX formulas, and AI-generated picture/chart descriptions all via hybrid mode (<a href="#hybrid-mode-1-accuracy-for-complex-pdfs">hybrid mode</a>)</li>
+<li><strong>How do I use this for RAG?</strong> — <code>pip install opendataloader-pdf</code>, convert in 3 lines. Outputs structured Markdown for chunking, JSON with bounding boxes for source citations, and HTML. LangChain integration available. Python, Node.js, Java SDKs (<a href="#get-started-in-30-seconds">quick start</a> | <a href="#langchain-integration">LangChain</a>)</li>
+</ul>
+<p>♿ <strong>PDF accessibility automation</strong> — The same layout analysis engine also powers auto-tagging. First open-source tool to generate Tagged PDFs end-to-end (coming Q2 2026).</p>
+<ul>
+<li><strong>What's the problem?</strong> — Accessibility regulations are now enforced worldwide. Manual PDF remediation costs $50–200 per document and doesn't scale (<a href="#pdf-accessibility--pdfua-conversion">regulations</a>)</li>
+<li><strong>What's free?</strong> — Layout analysis + auto-tagging (Q2 2026, Apache 2.0). Untagged PDF in → Tagged PDF out. No proprietary SDK dependency (<a href="#auto-tagging-preview-coming-q2-2026">auto-tagging preview</a>)</li>
+<li><strong>What about PDF/UA compliance?</strong> — Converting Tagged PDF to PDF/UA-1 or PDF/UA-2 is an enterprise add-on. Auto-tagging generates the Tagged PDF; PDF/UA export is the final step (<a href="#accessibility-pipeline">pipeline</a>)</li>
+<li><strong>Why trust this?</strong> — Built in collaboration with <a href="https://duallab.com">Dual Lab</a> (<a href="https://verapdf.org">veraPDF</a> developers) based on <a href="https://pdfa.org">PDF Association</a> specifications, best practice guides and expertise of the <a href="https://pdfa.org/community/">PDF Community</a>. Auto-tagging follows the <a href="https://pdfa.org/wtpdf/">Well-Tagged PDF specification</a>, validated with veraPDF (<a href="https://opendataloader.org/docs/tagged-pdf-collaboration">collaboration</a>)</li>
+</ul>
+<h2>Get Started in 30 Seconds</h2>
+<p><strong>Requires</strong>: Java 11+ and Python 3.10+ (<a href="https://opendataloader.org/docs/quick-start-nodejs">Node.js</a> | <a href="https://opendataloader.org/docs/quick-start-java">Java</a> also available)</p>
+<blockquote>
+<p>Before you start: run <code>java -version</code>. If not found, install JDK 11+ from <a href="https://adoptium.net/">Adoptium</a>.</p>
+</blockquote>
+<pre><code class="language-bash">pip install -U opendataloader-pdf
+</code></pre>
+<pre><code class="language-python">import opendataloader_pdf
+
+# Batch all files in one call — each convert() spawns a JVM process, so repeated calls are slow
+opendataloader_pdf.convert(
+    input_path=[&quot;file1.pdf&quot;, &quot;file2.pdf&quot;, &quot;folder/&quot;],
+    output_dir=&quot;output/&quot;,
+    format=&quot;markdown,json&quot;
+)
+</code></pre>
+<p><img alt="OpenDataLoader PDF layout analysis — headings, tables, images detected with bounding boxes" src="https://raw.githubusercontent.com/opendataloader-project/opendataloader-pdf/main/samples/image/example_annotated_pdf.png" /></p>
+<p><em>Annotated PDF output — each element (heading, paragraph, table, image) detected with bounding boxes and semantic type.</em></p>
+<h2>What Problems Does This Solve?</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Solution</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PDF structure lost during parsing</strong> — wrong reading order, broken tables, no element coordinates</td>
+<td>Deterministic local PDF to Markdown/JSON with bounding boxes, XY-Cut++ reading order</td>
+<td>Shipped</td>
+</tr>
+<tr>
+<td><strong>Complex tables, scanned PDFs, formulas, charts</strong> need AI-level understanding</td>
+<td>Hybrid mode routes complex pages to AI backend (#1 in benchmarks)</td>
+<td>Shipped</td>
+</tr>
+<tr>
+<td><strong>PDF accessibility compliance</strong> — EAA, ADA, Section 508 enforced. Manual remediation $50–200/doc</td>
+<td>Auto-tagging: layout analysis → Tagged PDF (free, Q2 2026). Built with PDF Association &amp; veraPDF validation. PDF/UA export (enterprise add-on)</td>
+<td>Auto-tag: Q2 2026</td>
+</tr>
+</tbody>
+</table>
+<h2>Capability Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Supported</th>
+<th>Tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data extraction</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Extract text with correct reading order</td>
+<td>Yes</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Bounding boxes for every element</td>
+<td>Yes</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Table extraction (simple borders)</td>
+<td>Yes</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Table extraction (complex/borderless)</td>
+<td>Yes</td>
+<td>Free (Hybrid)</td>
+</tr>
+<tr>
+<td>Heading hierarchy detection</td>
+<td>Yes</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>List detection (numbered, bulleted, nested)</td>
+<td>Yes</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Image extraction with coordinates</td>
+<td>Yes</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>AI chart/image description</td>
+<td>Yes</td>
+<td>Free (Hybrid)</td>
+</tr>
+<tr>
+<td>OCR for scanned PDFs</td>
+<td>Yes</td>
+<td>Free (Hybrid)</td>
+</tr>
+<tr>
+<td>Formula extraction (LaTeX)</td>
+<td>Yes</td>
+<td>Free (Hybrid)</td>
+</tr>
+<tr>
+<td>Tagged PDF structure extraction</td>
+<td>Yes</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>AI safety (prompt injection filtering)</td>
+<td>Yes</td>
+<td>Free</td>
+</tr>
+<tr>
+<td>Header/footer/watermark filtering</td>
+<td>Yes</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>Accessibility</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Auto-tagging → Tagged PDF for untagged PDFs</td>
+<td>Coming Q2 2026</td>
+<td>Free (Apache 2.0)</td>
+</tr>
+<tr>
+<td>PDF/UA-1, PDF/UA-2 export</td>
+<td>💼 Available</td>
+<td>Enterprise</td>
+</tr>
+<tr>
+<td>Accessibility studio (visual editor)</td>
+<td>💼 Available</td>
+<td>Enterprise</td>
+</tr>
+<tr>
+<td><strong>Limitations</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Process Word/Excel/PPT</td>
+<td>No</td>
+<td>—</td>
+</tr>
+<tr>
+<td>GPU required</td>
+<td>No</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2>Extraction Benchmarks</h2>
+<p><strong>opendataloader-pdf [hybrid] ranks #1 overall (0.907)</strong> across reading order, table, and heading extraction accuracy.</p>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Overall</th>
+<th>Reading Order</th>
+<th>Table</th>
+<th>Heading</th>
+<th>Speed (s/page)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>opendataloader [hybrid]</strong></td>
+<td><strong>0.907</strong></td>
+<td><strong>0.934</strong></td>
+<td><strong>0.928</strong></td>
+<td>0.821</td>
+<td>0.463</td>
+</tr>
+<tr>
+<td>docling</td>
+<td>0.882</td>
+<td>0.898</td>
+<td>0.887</td>
+<td><strong>0.824</strong></td>
+<td>0.762</td>
+</tr>
+<tr>
+<td>nutrient</td>
+<td>0.880</td>
+<td>0.924</td>
+<td>0.662</td>
+<td>0.811</td>
+<td>0.230</td>
+</tr>
+<tr>
+<td>m</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/opendataloader-project/opendataloader-pdf#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">HKUDS /</span>
+          <a href="https://github.com/HKUDS/DeepTutor" target="_blank" rel="noopener">DeepTutor</a>
+        </div>
+        <div class="repo-desc">&quot;DeepTutor: Agent-Native Personalized Learning Assistant&quot;</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 16,860</span>
+      <span class="meta-item">🍴 2,214</span>
+      <span class="stars-today">⭐ 837 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<img src="assets/logo-ver2.png" alt="DeepTutor" width="140" style="border-radius: 15px;">
+
+# DeepTutor: Agent-Native Personalized Tutoring
+
+<a href="https://trendshift.io/repositories/17099" target="_blank"><img src="https://trendshift.io/api/badge/repositories/17099" alt="HKUDS%2FDeepTutor | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue?style=flat-square)](LICENSE)
+[![GitHub release](https://img.shields.io/github/v/release/HKUDS/DeepTutor?style=flat-square&color=brightgreen)](https://github.com/HKUDS/DeepTutor/releases)
+[![arXiv](https://img.shields.io/badge/arXiv-Coming_Soon-b31b1b?style=flat-square&logo=arxiv&logoColor=white)](#)
+
+[![Discord](https://img.shields.io/badge/Discord-Community-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/eRsjPgMU4t)
+[![Feishu](https://img.shields.io/badge/Feishu-Group-00D4AA?style=flat-square&logo=feishu&logoColor=white)](./Communication.md)
+[![WeChat](https://img.shields.io/badge/WeChat-Group-07C160?style=flat-square&logo=wechat&logoColor=white)](https://github.com/HKUDS/DeepTutor/issues/78)
+
+[Features](#-key-features) · [Get Started](#-get-started) · [Explore](#-explore-deeptutor) · [TutorBot](#-tutorbot--persistent-autonomous-ai-tutors) · [CLI](#%EF%B8%8F-deeptutor-cli--agent-native-interface) · [Community](#-community--ecosystem)
+
+[🇨🇳 中文](assets/README/README_CN.md) · [🇯🇵 日本語](assets/README/README_JA.md) · [🇪🇸 Español](assets/README/README_ES.md) · [🇫🇷 Français](assets/README/README_FR.md) · [🇸🇦 العربية](assets/README/README_AR.md) · [🇷🇺 Русский](assets/README/README_RU.md) · [🇮🇳 हिन्दी](assets/README/README_HI.md) · [🇵🇹 Português](assets/README/README_PT.md)
+
+</div>
+
+<hr />
+<h3>📦 Releases</h3>
+<blockquote>
+<p><strong>[2026.4.11]</strong> <a href="https://github.com/HKUDS/DeepTutor/releases/tag/v1.0.2">v1.0.2</a> — Search consolidation simplification with SearXNG fallback, provider switch fix, explicit runtime config in test runner, and frontend resource leak fixes.</p>
+<p><strong>[2026.4.10]</strong> <a href="https://github.com/HKUDS/DeepTutor/releases/tag/v1.0.1">v1.0.1</a> — New Visualize capability with Chart.js/SVG rendering pipeline, quiz duplicate prevention with generation history, o4-mini model support, and server logging improvements.</p>
+<p><strong>[2026.4.10]</strong> <a href="https://github.com/HKUDS/DeepTutor/releases/tag/v1.0.0-beta.4">v1.0.0-beta.4</a> — Embedding progress tracking with HTTP 429 rate limit retry, cross-platform start tour dependency management, and case-insensitive MIME validation fix.</p>
+<p><strong>[2026.4.8]</strong> <a href="https://github.com/HKUDS/DeepTutor/releases/tag/v1.0.0-beta.3">v1.0.0-beta.3</a> — Remove litellm dependency with native OpenAI/Anthropic SDK providers, Windows Math Animator compatibility, robust JSON parsing for LLM outputs, Guided Learning KaTeX &amp; navigation fixes, and full i18n coverage for Chinses.</p>
+<p><strong>[2026.4.7]</strong> <a href="https://github.com/HKUDS/DeepTutor/releases/tag/v1.0.0-beta.2">v1.0.0-beta.2</a> — Runtime cache invalidation for hot settings reload, MinerU nested output support, mimic WebSocket fix, Python 3.11+ minimum, and CI improvements.</p>
+<p><strong>[2026.4.4]</strong> <a href="https://github.com/HKUDS/DeepTutor/releases/tag/v1.0.0-beta.1">v1.0.0-beta.1</a> — Agent-native architecture rewrite (～200k lines) with two-layer plugin model (Tools + Capabilities), CLI &amp; SDK entry points, TutorBot multi-channel bot agent, Co-Writer, Guided Learning, and persistent memory.</p>
+</blockquote>
+<h3>📰 News</h3>
+<blockquote>
+<p><strong>[2026.4.4]</strong> Long time no see! ✨ DeepTutor v1.0.0 is finally here — an agent-native evolution featuring a ground-up architecture rewrite, TutorBot, and flexible mode switching under the Apache-2.0 license. A new chapter begins, and our story continues! </p>
+<p><strong>[2026.2.6]</strong> 🚀 We've reached 10k stars in just 39 days! A huge thank you to our incredible community for the support! </p>
+<p><strong>[2026.1.1]</strong> Happy New Year! Join our <a href="https://discord.gg/eRsjPgMU4t">Discord</a>, <a href="https://github.com/HKUDS/DeepTutor/issues/78">WeChat</a>, or <a href="https://github.com/HKUDS/DeepTutor/discussions">Discussions</a> — let's shape the future of DeepTutor together!</p>
+<p><strong>[2025.12.29]</strong> DeepTutor is officially released!</p>
+</blockquote>
+<details>
+<summary><b>Past releases</b></summary>
+
+> **[2026.1.23]** [v0.6.0](https://github.com/HKUDS/DeepTutor/releases/tag/v0.6.0) — Session persistence, incremental document upload, flexible RAG pipeline import, and full Chinese localization.
+
+> **[2026.1.18]** [v0.5.2](https://github.com/HKUDS/DeepTutor/releases/tag/v0.5.2) — Docling support for RAG-Anything, logging system optimization, and bug fixes.
+
+> **[2026.1.15]** [v0.5.0](https://github.com/HKUDS/DeepTutor/releases/tag/v0.5.0) — Unified service configuration, RAG pipeline selection per knowledge base, question generation overhaul, and sidebar customization.
+
+> **[2026.1.9]** [v0.4.0](https://github.com/HKUDS/DeepTutor/releases/tag/v0.4.0) — Multi-provider LLM & embedding support, new home page, RAG module decoupling, and environment variable refactor.
+
+> **[2026.1.5]** [v0.3.0](https://github.com/HKUDS/DeepTutor/releases/tag/v0.3.0) — Unified PromptManager architecture, GitHub Actions CI/CD, and pre-built Docker images on GHCR.
+
+> **[2026.1.2]** [v0.2.0](https://github.com/HKUDS/DeepTutor/releases/tag/v0.2.0) — Docker deployment, Next.js 16 & React 19 upgrade, WebSocket security hardening, and critical vulnerability fixes.
+
+</details>
+
+<h2>✨ Key Features</h2>
+<ul>
+<li><strong>Unified Chat Workspace</strong> — Five modes, one thread. Chat, Deep Solve, Quiz Generation, Deep Research, and Math Animator share the same context — start a conversation, escalate to multi-agent problem solving, generate quizzes, then deep-dive into research, all without losing a single message.</li>
+<li><strong>Personal TutorBots</strong> — Not chatbots — autonomous tutors. Each TutorBot lives in its own workspace with its own memory, personality, and skill set. They set reminders, learn new abilities, and evolve as you grow. Powered by <a href="https://github.com/HKUDS/nanobot">nanobot</a>.</li>
+<li><strong>AI Co-Writer</strong> — A Markdown editor where AI is a first-class collaborator. Select text, rewrite, expand, or summarize — drawing from your knowledge base and the web. Every piece feeds back into your learning ecosystem.</li>
+<li><strong>Guided Learning</strong> — Turn your materials into structured, visual learning journeys. DeepTutor designs multi-step plans, generates interactive pages for each knowledge point, and lets you discuss alongside each step.</li>
+<li><strong>Knowledge Hub</strong> — Upload PDFs, Markdown, and text files to build RAG-ready knowledge bases. Organize insights across sessions in color-coded notebooks. Your documents don't just sit there — they actively power every conversation.</li>
+<li><strong>Persistent Memory</strong> — DeepTutor builds a living profile of you: what you've studied, how you learn, and where you're heading. Shared across all features and TutorBots, it gets sharper with every interaction.</li>
+<li><strong>Agent-Native CLI</strong> — Every capability, knowledge base, session, and TutorBot is one command away. Rich terminal output for humans, structured JSON for AI agents and pipelines. Hand DeepTutor a <a href="SKILL.md"><code>SKILL.md</code></a> and your agents can operate it autonomously.</li>
+</ul>
+<hr />
+<h2>🚀 Get Started</h2>
+<h3>Option A — Setup Tour (Recommended)</h3>
+<p>A <strong>single interactive script</strong> that walks you through everything: dependency installation, environment configuration, live connection testing, and launch. No manual <code>.env</code> editing needed.</p>
+<pre><code class="language-bash">git clone https://github.com/HKUDS/DeepTutor.git
+cd DeepTutor
+
+# Create a Python environment
+conda create -n deeptutor python=3.11 &amp;&amp; conda activate deeptutor
+# Or: python -m venv .venv &amp;&amp; source .venv/bin/activate
+
+# Launch the guided tour
+python scripts/start_tour.py
+</code></pre>
+<p>The tour asks how you'd like to use DeepTutor:</p>
+<ul>
+<li><strong>Web mode</strong> (recommended) — Picks a depende</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/HKUDS/DeepTutor#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#12</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">obra /</span>
+          <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">superpowers</a>
+        </div>
+        <div class="repo-desc">An agentic skills framework &amp; software development methodology that works.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 147,292</span>
+      <span class="meta-item">🍴 12,654</span>
+      <span class="stars-today">⭐ 1,591 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Superpowers</h1>
+<p>Superpowers is a complete software development workflow for your coding agents, built on top of a set of composable "skills" and some initial instructions that make sure your agent uses them.</p>
+<h2>How it works</h2>
+<p>It starts from the moment you fire up your coding agent. As soon as it sees that you're building something, it <em>doesn't</em> just jump into trying to write code. Instead, it steps back and asks you what you're really trying to do. </p>
+<p>Once it's teased a spec out of the conversation, it shows it to you in chunks short enough to actually read and digest. </p>
+<p>After you've signed off on the design, your agent puts together an implementation plan that's clear enough for an enthusiastic junior engineer with poor taste, no judgement, no project context, and an aversion to testing to follow. It emphasizes true red/green TDD, YAGNI (You Aren't Gonna Need It), and DRY. </p>
+<p>Next up, once you say "go", it launches a <em>subagent-driven-development</em> process, having agents work through each engineering task, inspecting and reviewing their work, and continuing forward. It's not uncommon for Claude to be able to work autonomously for a couple hours at a time without deviating from the plan you put together.</p>
+<p>There's a bunch more to it, but that's the core of the system. And because the skills trigger automatically, you don't need to do anything special. Your coding agent just has Superpowers.</p>
+<h2>Sponsorship</h2>
+<p>If Superpowers has helped you do stuff that makes money and you are so inclined, I'd greatly appreciate it if you'd consider <a href="https://github.com/sponsors/obra">sponsoring my opensource work</a>.</p>
+<p>Thanks! </p>
+<ul>
+<li>Jesse</li>
+</ul>
+<h2>Installation</h2>
+<p><strong>Note:</strong> Installation differs by platform. Claude Code or Cursor have built-in plugin marketplaces. Codex and OpenCode require manual setup.</p>
+<h3>Claude Code Official Marketplace</h3>
+<p>Superpowers is available via the <a href="https://claude.com/plugins/superpowers">official Claude plugin marketplace</a></p>
+<p>Install the plugin from Claude marketplace:</p>
+<pre><code class="language-bash">/plugin install superpowers@claude-plugins-official
+</code></pre>
+<h3>Claude Code (via Plugin Marketplace)</h3>
+<p>In Claude Code, register the marketplace first:</p>
+<pre><code class="language-bash">/plugin marketplace add obra/superpowers-marketplace
+</code></pre>
+<p>Then install the plugin from this marketplace:</p>
+<pre><code class="language-bash">/plugin install superpowers@superpowers-marketplace
+</code></pre>
+<h3>Cursor (via Plugin Marketplace)</h3>
+<p>In Cursor Agent chat, install from marketplace:</p>
+<pre><code class="language-text">/add-plugin superpowers
+</code></pre>
+<p>or search for "superpowers" in the plugin marketplace.</p>
+<h3>Codex</h3>
+<p>Tell Codex:</p>
+<pre><code>Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.codex/INSTALL.md
+</code></pre>
+<p><strong>Detailed docs:</strong> <a href="docs/README.codex.md">docs/README.codex.md</a></p>
+<h3>OpenCode</h3>
+<p>Tell OpenCode:</p>
+<pre><code>Fetch and follow instructions from https://raw.githubusercontent.com/obra/superpowers/refs/heads/main/.opencode/INSTALL.md
+</code></pre>
+<p><strong>Detailed docs:</strong> <a href="docs/README.opencode.md">docs/README.opencode.md</a></p>
+<h3>GitHub Copilot CLI</h3>
+<pre><code class="language-bash">copilot plugin marketplace add obra/superpowers-marketplace
+copilot plugin install superpowers@superpowers-marketplace
+</code></pre>
+<h3>Gemini CLI</h3>
+<pre><code class="language-bash">gemini extensions install https://github.com/obra/superpowers
+</code></pre>
+<p>To update:</p>
+<pre><code class="language-bash">gemini extensions update superpowers
+</code></pre>
+<h3>Verify Installation</h3>
+<p>Start a new session in your chosen platform and ask for something that should trigger a skill (for example, "help me plan this feature" or "let's debug this issue"). The agent should automatically invoke the relevant superpowers skill.</p>
+<h2>The Basic Workflow</h2>
+<ol>
+<li>
+<p><strong>brainstorming</strong> - Activates before writing code. Refines rough ideas through questions, explores alternatives, presents design in sections for validation. Saves design document.</p>
+</li>
+<li>
+<p><strong>using-git-worktrees</strong> - Activates after design approval. Creates isolated workspace on new branch, runs project setup, verifies clean test baseline.</p>
+</li>
+<li>
+<p><strong>writing-plans</strong> - Activates with approved design. Breaks work into bite-sized tasks (2-5 minutes each). Every task has exact file paths, complete code, verification steps.</p>
+</li>
+<li>
+<p><strong>subagent-driven-development</strong> or <strong>executing-plans</strong> - Activates with plan. Dispatches fresh subagent per task with two-stage review (spec compliance, then code quality), or executes in batches with human checkpoints.</p>
+</li>
+<li>
+<p><strong>test-driven-development</strong> - Activates during implementation. Enforces RED-GREEN-REFACTOR: write failing test, watch it fail, write minimal code, watch it pass, commit. Deletes code written before tests.</p>
+</li>
+<li>
+<p><strong>requesting-code-review</strong> - Activates between tasks. Reviews against plan, reports issues by severity. Critical issues block progress.</p>
+</li>
+<li>
+<p><strong>finishing-a-development-branch</strong> - Activates when tasks complete. Verifies tests, presents options (merge/PR/keep/discard), cleans up worktree.</p>
+</li>
+</ol>
+<p><strong>The agent checks for relevant skills before any task.</strong> Mandatory workflows, not suggestions.</p>
+<h2>What's Inside</h2>
+<h3>Skills Library</h3>
+<p><strong>Testing</strong><br />
+- <strong>test-driven-development</strong> - RED-GREEN-REFACTOR cycle (includes testing anti-patterns reference)</p>
+<p><strong>Debugging</strong><br />
+- <strong>systematic-debugging</strong> - 4-phase root cause process (includes root-cause-tracing, defense-in-depth, condition-based-waiting techniques)<br />
+- <strong>verification-before-completion</strong> - Ensure it's actually fixed</p>
+<p><strong>Collaboration</strong> <br />
+- <strong>brainstorming</strong> - Socratic design refinement<br />
+- <strong>writing-plans</strong> - Detailed implementation plans<br />
+- <strong>executing-plans</strong> - Batch execution with checkpoints<br />
+- <strong>dispatching-parallel-agents</strong> - Concurrent subagent workflows<br />
+- <strong>requesting-code-review</strong> - Pre-review checklist<br />
+- <strong>receiving-code-review</strong> - Responding to feedback<br />
+- <strong>using-git-worktrees</strong> - Parallel development branches<br />
+- <strong>finishing-a-development-branch</strong> - Merge/PR decision workflow<br />
+- <strong>subagent-driven-development</strong> - Fast iteration with two-stage review (spec compliance, then code quality)</p>
+<p><strong>Meta</strong><br />
+- <strong>writing-skills</strong> - Create new skills following best practices (includes testing methodology)<br />
+- <strong>using-superpowers</strong> - Introduction to the skills system</p>
+<h2>Philosophy</h2>
+<ul>
+<li><strong>Test-Driven Development</strong> - Write tests first, always</li>
+<li><strong>Systematic over ad-hoc</strong> - Process over guessing</li>
+<li><strong>Complexity reduction</strong> - Simplicity as primary goal</li>
+<li><strong>Evidence over claims</strong> - Verify before declaring success</li>
+</ul>
+<p>Read more: <a href="https://blog.fsck.com/2025/10/09/superpowers/">Superpowers for Claude Code</a></p>
+<h2>Contributing</h2>
+<p>Skills live directly in this repository. To contribute:</p>
+<ol>
+<li>Fork the repository</li>
+<li>Create a branch for your skill</li>
+<li>Follow the <code>writing-skills</code> skill for creating and testing new skills</li>
+<li>Submit a PR</li>
+</ol>
+<p>See <code>skills/writing-skills/SKILL.md</code> for the complete guide.</p>
+<h2>Updating</h2>
+<p>Skills update automatically when you update the plugin:</p>
+<pre><code class="language-bash">/plugin update superpowers
+</code></pre>
+<h2>License</h2>
+<p>MIT License - see LICENSE file for details</p>
+<h2>Community</h2>
+<p>Superpowers is built by <a href="https://blog.fsck.com">Jesse Vincent</a> and the rest of the folks at <a href="https://primeradiant.com">Prime Radiant</a>.</p>
+<ul>
+<li><strong>Discord</strong>: <a href="https://discord.gg/35wsABTejz">Join us</a> for community support, questions, and sharing what you're building with Superpowers</li>
+<li><strong>Issues</strong>: https://github.com/obra/superpowers/issues</li>
+<li><strong>Release announcements</strong>: <a href="https://primeradiant.com/superpowers/">Sign up</a> to get notified about new versions</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/obra/superpowers#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#13</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">alexpate /</span>
+          <a href="https://github.com/alexpate/awesome-design-systems" target="_blank" rel="noopener">awesome-design-systems</a>
+        </div>
+        <div class="repo-desc">💅🏻 ⚒ A collection of awesome design systems</div>
+      </div>
+    </div>
+    <div class="meta">
+      
+      <span class="meta-item">⭐ 22,587</span>
+      <span class="meta-item">🍴 1,398</span>
+      <span class="stars-today">⭐ 2,050 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><img alt="cover" src="/cover.png" /></p>
+<p><img alt="Contributions Welcome" src="https://img.shields.io/badge/Contributions-welcome-blue.svg" /></p>
+<p>Know a resource that isn't listed below? Feel free to create a new <a href="https://github.com/alexpate/awesome-design-systems/pulls">pull request</a>.</p>
+<blockquote>
+<p>A design system is a collection of documentation on principles and best practices, that helps guide a team to build digital products. They are often embodied in UI libraries and pattern libraries, but can extend to include guides on other areas such as 'Voice and Tone'.</p>
+</blockquote>
+<hr />
+<h3>Tags</h3>
+<ul>
+<li>Components: Contains coded patterns and examples.</li>
+<li>Voice &amp; Tone: Provides guidance on how language should be used.</li>
+<li>Designers Kit: Includes a Sketch/Photoshop/Figma/etc. file for designers.</li>
+<li>Source code: Publicly viewable source code</li>
+</ul>
+<hr />
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: center;">Components</th>
+<th style="text-align: center;">Voice &amp; Tone</th>
+<th style="text-align: center;">Designers Kit</th>
+<th style="text-align: center;">Source code *</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://brand.aalto.fi/">Aalto University</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><a href="https://spectrum.adobe.com">Adobe Spectrum</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/adobe/react-spectrum">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://atlas.adeven.com">Adjust Atlas</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><a href="https://auro.alaskaair.com/">Alaska Airlines</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/AlaskaAirlines">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://ant.design">Alibaba Ant Design</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/ant-design/ant-design/">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://ui.docs.amplify.aws/">Amplify UI</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/aws-amplify/amplify-ui/">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://bloom.appearhere.co.uk/">Appear Here Styleguide</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/appearhere/bloom">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://developer.apple.com/design/">Apple Developer Design Guidelines</a></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><a href="https://ui.aragon.org/">Aragon UI</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/aragon/ui">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://palette.artsy.net/">Artsy Palette</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/artsy/palette">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://astrouxds.com/">Astro UXDS</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/RocketCommunicationsInc/astro-components">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://at-ui.github.io/at-ui/#/en">AT UIKIT</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/at-ui/at-ui">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://atlassian.design">Atlassian Design System</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://bitbucket.org/atlassian/atlassian-frontend-mirror/">:space_invader:</a></td>
+</tr>
+<tr>
+<td><a href="https://www.audi.com/ci/en/guides/user-interface/introduction.html">Audi UI Kit</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/audi/audi-ui">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://design.gccollab.ca/">Aurora (Government of Canada)</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/gctools-outilsgc/design-system">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="http://overdrive.autoguru.io/">AutoGuru Overdrive</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/autoguru-au/overdrive">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://cloudscape.design/">AWS Cloudscape Design System</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/cloudscape-design/components">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://skyscanner.design/">Backpack (Skyscanner)</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/skyscanner/backpack">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://design-system.barnardos.org.uk">Barnardo’s Design System</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/barnardos/design-system">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://basis.now.sh">Basis Design System</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/moroshko/basis">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://www.bbc.co.uk/gel">BBC GEL (Global Experience Language)</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><a href="https://bento-ds.com">Bento DS</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/buildo/bento-design-system">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://design.take.net/">BLiP</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/takenet/blip-toolkit">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://blueprintjs.com/">Blueprint</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/palantir/blueprint">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://bold.bridge.ufsc.br/">Bold (Bridge Design System)</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"><a href="https://github.com/laboratoriobridge/bold">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://boltdesignsystem.com/">Bolt Design System</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/boltdesignsystem/bolt">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://seek-oss.github.io/braid-design-system/">Braid Design System</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/seek-oss/braid-design-system">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://spark.brighte.com.au/">Brighte Spark Design System</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><a href="https://github.com/Brighte-Labs/spark-web">:octocat:</a></td>
+</tr>
+<tr>
+<td><a href="https://britishgas.design/">British Gas Nucleus</a></td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;">👍</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/alexpate/awesome-design-systems#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on April 12, 2026  03:58 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
