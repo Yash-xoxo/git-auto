@@ -1,5 +1,7 @@
 #!/bin/bash
 
+python3 claud_python.py
+
 read -p "MSG: " msg
 
 # generate random 5-character string
