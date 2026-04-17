@@ -1,5 +1,9 @@
 #!/bin/bash
 
+mv index.html past-top-repo/
+mv past-top-repo/index.html past-top-repo/"$(date -d 'yesterday' +%d-%m-%Y).html"
+
+
 python3 claud_python.py
 
 read -p "MSG: " msg
