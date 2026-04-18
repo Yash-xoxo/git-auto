@@ -1,0 +1,2982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — April 17, 2026  06:24</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on April 17, 2026  06:24 &nbsp;·&nbsp; 14 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">forrestchang /</span>
+          <a href="https://github.com/forrestchang/andrej-karpathy-skills" target="_blank" rel="noopener">andrej-karpathy-skills</a>
+        </div>
+        <div class="repo-desc">A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&#x27;s observations on LLM coding pitfalls.</div>
+      </div>
+    </div>
+    <div class="meta">
+      
+      <span class="meta-item">⭐ 51,503</span>
+      <span class="meta-item">🍴 4,281</span>
+      <span class="stars-today">⭐ 7,959 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Karpathy-Inspired Claude Code Guidelines</h1>
+<blockquote>
+<p>Check out my new project <a href="https://github.com/multica-ai/multica">Multica</a> — an open-source platform for running and managing coding agents with reusable skills.</p>
+<p>Follow me on X: <a href="https://x.com/jiayuan_jy">https://x.com/jiayuan_jy</a></p>
+</blockquote>
+<p>A single <code>CLAUDE.md</code> file to improve Claude Code behavior, derived from <a href="https://x.com/karpathy/status/2015883857489522876">Andrej Karpathy's observations</a> on LLM coding pitfalls.</p>
+<h2>The Problems</h2>
+<p>From Andrej's post:</p>
+<blockquote>
+<p>"The models make wrong assumptions on your behalf and just run along with them without checking. They don't manage their confusion, don't seek clarifications, don't surface inconsistencies, don't present tradeoffs, don't push back when they should."</p>
+<p>"They really like to overcomplicate code and APIs, bloat abstractions, don't clean up dead code... implement a bloated construction over 1000 lines when 100 would do."</p>
+<p>"They still sometimes change/remove comments and code they don't sufficiently understand as side effects, even if orthogonal to the task."</p>
+</blockquote>
+<h2>The Solution</h2>
+<p>Four principles in one file that directly address these issues:</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Addresses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Think Before Coding</strong></td>
+<td>Wrong assumptions, hidden confusion, missing tradeoffs</td>
+</tr>
+<tr>
+<td><strong>Simplicity First</strong></td>
+<td>Overcomplication, bloated abstractions</td>
+</tr>
+<tr>
+<td><strong>Surgical Changes</strong></td>
+<td>Orthogonal edits, touching code you shouldn't</td>
+</tr>
+<tr>
+<td><strong>Goal-Driven Execution</strong></td>
+<td>Leverage through tests-first, verifiable success criteria</td>
+</tr>
+</tbody>
+</table>
+<h2>The Four Principles in Detail</h2>
+<h3>1. Think Before Coding</h3>
+<p><strong>Don't assume. Don't hide confusion. Surface tradeoffs.</strong></p>
+<p>LLMs often pick an interpretation silently and run with it. This principle forces explicit reasoning:</p>
+<ul>
+<li><strong>State assumptions explicitly</strong> — If uncertain, ask rather than guess</li>
+<li><strong>Present multiple interpretations</strong> — Don't pick silently when ambiguity exists</li>
+<li><strong>Push back when warranted</strong> — If a simpler approach exists, say so</li>
+<li><strong>Stop when confused</strong> — Name what's unclear and ask for clarification</li>
+</ul>
+<h3>2. Simplicity First</h3>
+<p><strong>Minimum code that solves the problem. Nothing speculative.</strong></p>
+<p>Combat the tendency toward overengineering:</p>
+<ul>
+<li>No features beyond what was asked</li>
+<li>No abstractions for single-use code</li>
+<li>No "flexibility" or "configurability" that wasn't requested</li>
+<li>No error handling for impossible scenarios</li>
+<li>If 200 lines could be 50, rewrite it</li>
+</ul>
+<p><strong>The test:</strong> Would a senior engineer say this is overcomplicated? If yes, simplify.</p>
+<h3>3. Surgical Changes</h3>
+<p><strong>Touch only what you must. Clean up only your own mess.</strong></p>
+<p>When editing existing code:</p>
+<ul>
+<li>Don't "improve" adjacent code, comments, or formatting</li>
+<li>Don't refactor things that aren't broken</li>
+<li>Match existing style, even if you'd do it differently</li>
+<li>If you notice unrelated dead code, mention it — don't delete it</li>
+</ul>
+<p>When your changes create orphans:</p>
+<ul>
+<li>Remove imports/variables/functions that YOUR changes made unused</li>
+<li>Don't remove pre-existing dead code unless asked</li>
+</ul>
+<p><strong>The test:</strong> Every changed line should trace directly to the user's request.</p>
+<h3>4. Goal-Driven Execution</h3>
+<p><strong>Define success criteria. Loop until verified.</strong></p>
+<p>Transform imperative tasks into verifiable goals:</p>
+<table>
+<thead>
+<tr>
+<th>Instead of...</th>
+<th>Transform to...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Add validation"</td>
+<td>"Write tests for invalid inputs, then make them pass"</td>
+</tr>
+<tr>
+<td>"Fix the bug"</td>
+<td>"Write a test that reproduces it, then make it pass"</td>
+</tr>
+<tr>
+<td>"Refactor X"</td>
+<td>"Ensure tests pass before and after"</td>
+</tr>
+</tbody>
+</table>
+<p>For multi-step tasks, state a brief plan:</p>
+<pre><code>1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+</code></pre>
+<p>Strong success criteria let the LLM loop independently. Weak criteria ("make it work") require constant clarification.</p>
+<h2>Install</h2>
+<p><strong>Option A: Claude Code Plugin (recommended)</strong></p>
+<p>From within Claude Code, first add the marketplace:</p>
+<pre><code>/plugin marketplace add forrestchang/andrej-karpathy-skills
+</code></pre>
+<p>Then install the plugin:</p>
+<pre><code>/plugin install andrej-karpathy-skills@karpathy-skills
+</code></pre>
+<p>This installs the guidelines as a Claude Code plugin, making the skill available across all your projects.</p>
+<p><strong>Option B: CLAUDE.md (per-project)</strong></p>
+<p>New project:</p>
+<pre><code class="language-bash">curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md
+</code></pre>
+<p>Existing project (append):</p>
+<pre><code class="language-bash">echo &quot;&quot; &gt;&gt; CLAUDE.md
+curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md &gt;&gt; CLAUDE.md
+</code></pre>
+<h2>Key Insight</h2>
+<p>From Andrej:</p>
+<blockquote>
+<p>"LLMs are exceptionally good at looping until they meet specific goals... Don't tell it what to do, give it success criteria and watch it go."</p>
+</blockquote>
+<p>The "Goal-Driven Execution" principle captures this: transform imperative instructions into declarative goals with verification loops.</p>
+<h2>How to Know It's Working</h2>
+<p>These guidelines are working if you see:</p>
+<ul>
+<li><strong>Fewer unnecessary changes in diffs</strong> — Only requested changes appear</li>
+<li><strong>Fewer rewrites due to overcomplication</strong> — Code is simple the first time</li>
+<li><strong>Clarifying questions come before implementation</strong> — Not after mistakes</li>
+<li><strong>Clean, minimal PRs</strong> — No drive-by refactoring or "improvements"</li>
+</ul>
+<h2>Customization</h2>
+<p>These guidelines are designed to be merged with project-specific instructions. Add them to your existing <code>CLAUDE.md</code> or create a new one.</p>
+<p>For project-specific rules, add sections like:</p>
+<pre><code class="language-markdown">## Project-Specific Guidelines
+
+- Use TypeScript strict mode
+- All API endpoints must have tests
+- Follow the existing error handling patterns in `src/utils/errors.ts`
+</code></pre>
+<h2>Tradeoff Note</h2>
+<p>These guidelines bias toward <strong>caution over speed</strong>. For trivial tasks (simple typo fixes, obvious one-liners), use judgment — not every change needs the full rigor.</p>
+<p>The goal is reducing costly mistakes on non-trivial work, not slowing down simple tasks.</p>
+<h2>License</h2>
+<p>MIT</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/forrestchang/andrej-karpathy-skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">thedotmack /</span>
+          <a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener">claude-mem</a>
+        </div>
+        <div class="repo-desc">A Claude Code plugin that automatically captures everything Claude does during your coding sessions, compresses it with AI (using Claude&#x27;s agent-sdk), and injects relevant context back into future sessions.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 60,418</span>
+      <span class="meta-item">🍴 4,988</span>
+      <span class="stars-today">⭐ 1,897 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">
+  <br>
+  <a href="https://github.com/thedotmack/claude-mem">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/claude-mem-logo-for-dark-mode.webp">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/claude-mem-logo-for-light-mode.webp">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/claude-mem-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+    </picture>
+  </a>
+  <br>
+</h1>
+
+<p align="center">
+  <a href="docs/i18n/README.zh.md">🇨🇳 中文</a> •
+  <a href="docs/i18n/README.zh-tw.md">🇹🇼 繁體中文</a> •
+  <a href="docs/i18n/README.ja.md">🇯🇵 日本語</a> •
+  <a href="docs/i18n/README.pt.md">🇵🇹 Português</a> •
+  <a href="docs/i18n/README.pt-br.md">🇧🇷 Português</a> •
+  <a href="docs/i18n/README.ko.md">🇰🇷 한국어</a> •
+  <a href="docs/i18n/README.es.md">🇪🇸 Español</a> •
+  <a href="docs/i18n/README.de.md">🇩🇪 Deutsch</a> •
+  <a href="docs/i18n/README.fr.md">🇫🇷 Français</a> •
+  <a href="docs/i18n/README.he.md">🇮🇱 עברית</a> •
+  <a href="docs/i18n/README.ar.md">🇸🇦 العربية</a> •
+  <a href="docs/i18n/README.ru.md">🇷🇺 Русский</a> •
+  <a href="docs/i18n/README.pl.md">🇵🇱 Polski</a> •
+  <a href="docs/i18n/README.cs.md">🇨🇿 Čeština</a> •
+  <a href="docs/i18n/README.nl.md">🇳🇱 Nederlands</a> •
+  <a href="docs/i18n/README.tr.md">🇹🇷 Türkçe</a> •
+  <a href="docs/i18n/README.uk.md">🇺🇦 Українська</a> •
+  <a href="docs/i18n/README.vi.md">🇻🇳 Tiếng Việt</a> •
+  <a href="docs/i18n/README.tl.md">🇵🇭 Tagalog</a> •
+  <a href="docs/i18n/README.id.md">🇮🇩 Indonesia</a> •
+  <a href="docs/i18n/README.th.md">🇹🇭 ไทย</a> •
+  <a href="docs/i18n/README.hi.md">🇮🇳 हिन्दी</a> •
+  <a href="docs/i18n/README.bn.md">🇧🇩 বাংলা</a> •
+  <a href="docs/i18n/README.ur.md">🇵🇰 اردو</a> •
+  <a href="docs/i18n/README.ro.md">🇷🇴 Română</a> •
+  <a href="docs/i18n/README.sv.md">🇸🇪 Svenska</a> •
+  <a href="docs/i18n/README.it.md">🇮🇹 Italiano</a> •
+  <a href="docs/i18n/README.el.md">🇬🇷 Ελληνικά</a> •
+  <a href="docs/i18n/README.hu.md">🇭🇺 Magyar</a> •
+  <a href="docs/i18n/README.fi.md">🇫🇮 Suomi</a> •
+  <a href="docs/i18n/README.da.md">🇩🇰 Dansk</a> •
+  <a href="docs/i18n/README.no.md">🇳🇴 Norsk</a>
+</p>
+
+<h4 align="center">Persistent memory compression system built for <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
+
+<p align="center">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-AGPL%203.0-blue.svg" alt="License">
+  </a>
+  <a href="package.json">
+    <img src="https://img.shields.io/badge/version-6.5.0-green.svg" alt="Version">
+  </a>
+  <a href="package.json">
+    <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="Node">
+  </a>
+  <a href="https://github.com/thedotmack/awesome-claude-code">
+    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/15496" target="_blank">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem | Trendshift" width="250" height="55"/>
+    </picture>
+  </a>
+</p>
+
+<p><br></p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/thedotmack/claude-mem">
+        <picture>
+          <img
+            src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/cm-preview.gif"
+            alt="Claude-Mem Preview"
+            width="500"
+          >
+        </picture>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.star-history.com/#thedotmack/claude-mem&Date">
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&theme=dark&legend=top-left"
+          />
+          <source
+            media="(prefers-color-scheme: light)"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+          />
+          <img
+            alt="Star History Chart"
+            src="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+            width="500"
+          />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#how-it-works">How It Works</a> •
+  <a href="#mcp-search-tools">Search Tools</a> •
+  <a href="#documentation">Documentation</a> •
+  <a href="#configuration">Configuration</a> •
+  <a href="#troubleshooting">Troubleshooting</a> •
+  <a href="#license">License</a>
+</p>
+
+<p align="center">
+  Claude-Mem seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic summaries, and making them available to future sessions. This enables Claude to maintain continuity of knowledge about projects even after sessions end or reconnect.
+</p>
+
+<hr />
+<h2>Quick Start</h2>
+<p>Install with a single command:</p>
+<pre><code class="language-bash">npx claude-mem install
+</code></pre>
+<p>Or install for Gemini CLI (auto-detects <code>~/.gemini</code>):</p>
+<pre><code class="language-bash">npx claude-mem install --ide gemini-cli
+</code></pre>
+<p>Or install for OpenCode:</p>
+<pre><code class="language-bash">npx claude-mem install --ide opencode
+</code></pre>
+<p>Or install from the plugin marketplace inside Claude Code:</p>
+<pre><code class="language-bash">/plugin marketplace add thedotmack/claude-mem
+
+/plugin install claude-mem
+</code></pre>
+<p>Restart Claude Code or Gemini CLI. Context from previous sessions will automatically appear in new sessions.</p>
+<blockquote>
+<p><strong>Note:</strong> Claude-Mem is also published on npm, but <code>npm install -g claude-mem</code> installs the <strong>SDK/library only</strong> — it does not register the plugin hooks or set up the worker service. Always install via <code>npx claude-mem install</code> or the <code>/plugin</code> commands above.</p>
+</blockquote>
+<h3>🦞 OpenClaw Gateway</h3>
+<p>Install claude-mem as a persistent memory plugin on <a href="https://openclaw.ai">OpenClaw</a> gateways with a single command:</p>
+<pre><code class="language-bash">curl -fsSL https://install.cmem.ai/openclaw.sh | bash
+</code></pre>
+<p>The installer handles dependencies, plugin setup, AI provider configuration, worker startup, and optional real-time observation feeds to Telegram, Discord, Slack, and more. See the <a href="https://docs.claude-mem.ai/openclaw-integration">OpenClaw Integration Guide</a> for details.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>🧠 <strong>Persistent Memory</strong> - Context survives across sessions</li>
+<li>📊 <strong>Progressive Disclosure</strong> - Layered memory retrieval with token cost visibility</li>
+<li>🔍 <strong>Skill-Based Search</strong> - Query your project history with mem-search skill</li>
+<li>🖥️ <strong>Web Viewer UI</strong> - Real-time memory stream at http://localhost:37777</li>
+<li>💻 <strong>Claude Desktop Skill</strong> - Search memory from Claude Desktop conversations</li>
+<li>🔒 <strong>Privacy Control</strong> - Use <code>&lt;private&gt;</code> tags to exclude sensitive content from storage</li>
+<li>⚙️ <strong>Context Configuration</strong> - Fine-grained control over what context gets injected</li>
+<li>🤖 <strong>Automatic Operation</strong> - No manual intervention required</li>
+<li>🔗 <strong>Citations</strong> - Reference past observations with IDs (access via http://localhost:37777/api/observation/{id} or view all in the web viewer at http://localhost:37777)</li>
+<li>🧪 <strong>Beta Channel</strong> - Try experimental features like Endless Mode via version switching</li>
+</ul>
+<hr />
+<h2>Documentation</h2>
+<p>📚 <strong><a href="https://docs.claude-mem.ai/">View Full Documentation</a></strong> - Browse on official website</p>
+<h3>Getting Started</h3>
+<ul>
+<li><strong><a href="https://docs.claude-mem.ai/installation">Installation Guide</a></strong> - Quick start &amp; advanced installation</li>
+<li><strong><a href="https://docs.claude-mem.ai/gemini-cli/setup">Gemini CLI Setup</a></strong> - Dedicated guide for Google's Gemini CLI integration</li>
+<li>**[Usage Guide](https://docs.claude-mem.ai/usage/getting-s</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/thedotmack/claude-mem#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">lsdefine /</span>
+          <a href="https://github.com/lsdefine/GenericAgent" target="_blank" rel="noopener">GenericAgent</a>
+        </div>
+        <div class="repo-desc">Self-evolving agent: grows skill tree from 3.3K-line seed, achieving full system control with 6x less token consumption</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 3,023</span>
+      <span class="meta-item">🍴 334</span>
+      <span class="stars-today">⭐ 872 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+<img src="assets/images/bar.jpg" width="880"/>
+</div>
+
+<p align="center">
+  <a href="#english">English</a> | <a href="#chinese">中文</a>
+</p>
+
+<hr />
+<p><a name="english"></a></p>
+<h2>🌟 Overview</h2>
+<p><strong>GenericAgent</strong> is a minimal, self-evolving autonomous agent framework. Its core is just <strong>~3K lines of code</strong>. Through <strong>9 atomic tools + a ~100-line Agent Loop</strong>, it grants any LLM system-level control over a local computer — covering browser, terminal, filesystem, keyboard/mouse input, screen vision, and mobile devices (ADB).</p>
+<p>Its design philosophy: <strong>don't preload skills — evolve them.</strong></p>
+<p>Every time GenericAgent solves a new task, it automatically crystallizes the execution path into an skill for direct reuse later. The longer you use it, the more skills accumulate — forming a skill tree that belongs entirely to you, grown from 3K lines of seed code.</p>
+<blockquote>
+<p><strong>🤖 Self-Bootstrap Proof</strong> — Everything in this repository, from installing Git and running <code>git init</code> to every commit message, was completed autonomously by GenericAgent. The author never opened a terminal once.</p>
+</blockquote>
+<h2>📋 Core Features</h2>
+<ul>
+<li><strong>Self-Evolving</strong>: Automatically crystallizes each task into an skill. Capabilities grow with every use, forming your personal skill tree.</li>
+<li><strong>Minimal Architecture</strong>: ~3K lines of core code. Agent Loop is ~100 lines. No complex dependencies, zero deployment overhead.</li>
+<li><strong>Strong Execution</strong>: Injects into a real browser (preserving login sessions). 9 atomic tools take direct control of the system.</li>
+<li><strong>High Compatibility</strong>: Supports Claude / Gemini / Kimi / MiniMax and other major models. Cross-platform.</li>
+<li><strong>Token Efficient</strong>: &lt;30K context window — a fraction of the 200K–1M other agents consume. Layered memory ensures the right knowledge is always in scope. Less noise, fewer hallucinations, higher success rate — at a fraction of the cost.</li>
+</ul>
+<h2>🧬 Self-Evolution Mechanism</h2>
+<p>This is what fundamentally distinguishes GenericAgent from every other agent framework.</p>
+<pre><code>[New Task] --&gt; [Autonomous Exploration] (install deps, write scripts, debug &amp; verify) --&gt;
+[Crystallize Execution Path into skill] --&gt; [Write to Memory Layer] --&gt; [Direct Recall on Next Similar Task]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>What you say</th>
+<th>What the agent does the first time</th>
+<th>Every time after</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>"Read my WeChat messages"</em></td>
+<td>Install deps → reverse DB → write read script → save skill</td>
+<td><strong>one-line invoke</strong></td>
+</tr>
+<tr>
+<td><em>"Monitor stocks and alert me"</em></td>
+<td>Install mootdx → build selection flow → configure cron → save skill</td>
+<td><strong>one-line start</strong></td>
+</tr>
+<tr>
+<td><em>"Send this file via Gmail"</em></td>
+<td>Configure OAuth → write send script → save skill</td>
+<td><strong>ready to use</strong></td>
+</tr>
+</tbody>
+</table>
+<p>After a few weeks, your agent instance will have a skill tree no one else in the world has — all grown from 3K lines of seed code.</p>
+<h5>🎯 Demo Showcase</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">🧋 Food Delivery Order</th>
+<th style="text-align: center;">📈 Quantitative Stock Screening</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><img src="assets/demo/order_tea.gif" width="100%" alt="Order Tea"></td>
+<td style="text-align: center;"><img src="assets/demo/selectstock.gif" width="100%" alt="Stock Selection"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><em>"Order me a milk tea"</em> — Navigates the delivery app, selects items, and completes checkout automatically.</td>
+<td style="text-align: center;"><em>"Find GEM stocks with EXPMA golden cross, turnover &gt; 5%"</em> — Screens stocks with quantitative conditions.</td>
+</tr>
+<tr>
+<td style="text-align: center;">🌐 Autonomous Web Exploration</td>
+<td style="text-align: center;">💰 Expense Tracking</td>
+</tr>
+<tr>
+<td style="text-align: center;"><img src="assets/demo/autonomous_explore.png" width="100%" alt="Web Exploration"></td>
+<td style="text-align: center;"><img src="assets/demo/alipay_expense.png" width="100%" alt="Alipay Expense"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Autonomously browses and periodically summarizes web content.</td>
+<td style="text-align: center;"><em>"Find expenses over ¥2K in the last 3 months"</em> — Drives Alipay via ADB.</td>
+</tr>
+</tbody>
+</table>
+<h2>📅 Latest News</h2>
+<ul>
+<li><strong>2026-04-11:</strong> Introduced <strong>L4 session archive memory</strong> and scheduler cron integration</li>
+<li><strong>2026-03-23:</strong> Support personal WeChat as a bot frontend</li>
+<li><strong>2026-03-10:</strong> <a href="https://mp.weixin.qq.com/s/q2gQ7YvWoiAcwxzaiwpuiQ?scene=1&amp;click_id=7">Released million-scale Skill Library</a></li>
+<li><strong>2026-03-08:</strong> <a href="https://mp.weixin.qq.com/s/eiEhwo-j6S-WpLxgBnNxBg">Released "Dintal Claw" — a GenericAgent-powered government affairs bot</a></li>
+<li><strong>2026-03-01:</strong> <a href="https://mp.weixin.qq.com/s/uVWpTTF5I1yzAENV_qm7yg">GenericAgent featured by Jiqizhixin (机器之心)</a></li>
+<li><strong>2026-01-16:</strong> GenericAgent V1.0 public release</li>
+</ul>
+<hr />
+<h2>🚀 Quick Start</h2>
+<h4>Method 1: Standard Installation</h4>
+<pre><code class="language-bash"># 1. Clone the repo
+git clone https://github.com/lsdefine/GenericAgent.git
+cd GenericAgent
+
+# 2. Install minimal dependencies
+pip install streamlit pywebview
+
+# 3. Configure API Key
+cp mykey_template.py mykey.py
+# Edit mykey.py and fill in your LLM API Key
+
+# 4. Launch
+python launch.pyw
+</code></pre>
+<p>Full guide: <a href="GETTING_STARTED.md">GETTING_STARTED.md</a></p>
+<hr />
+<h2>🤖 Bot Interface (Optional)</h2>
+<h3>Telegram Bot</h3>
+<pre><code class="language-python"># mykey.py
+tg_bot_token = 'YOUR_BOT_TOKEN'
+tg_allowed_users = [YOUR_USER_ID]
+</code></pre>
+<pre><code class="language-bash">python frontends/tgapp.py
+</code></pre>
+<h3>Alternative App Frontends</h3>
+<p>Besides the default Streamlit web UI, you can also try other frontend styles:</p>
+<pre><code class="language-bash">python frontends/qtapp.py                # Qt-based desktop app
+streamlit run frontends/stapp2.py        # Alternative Streamlit UI
+</code></pre>
+<h2>📊 Comparison with Similar Tools</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th style="text-align: center;">GenericAgent</th>
+<th style="text-align: center;">OpenClaw</th>
+<th style="text-align: center;">Claude Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Codebase</strong></td>
+<td style="text-align: center;">~3K lines</td>
+<td style="text-align: center;">~530,000 lines</td>
+<td style="text-align: center;">Open-sourced (large)</td>
+</tr>
+<tr>
+<td><strong>Deployment</strong></td>
+<td style="text-align: center;"><code>pip install</code> + API Key</td>
+<td style="text-align: center;">Multi-service orchestration</td>
+<td style="text-align: center;">CLI + subscription</td>
+</tr>
+<tr>
+<td><strong>Browser Control</strong></td>
+<td style="text-align: center;">Real browser (session preserved)</td>
+<td style="text-align: center;">Sandbox / headless browser</td>
+<td style="text-align: center;">Via MCP plugin</td>
+</tr>
+<tr>
+<td><strong>OS Control</strong></td>
+<td style="text-align: center;">Mouse/kbd, vision, ADB</td>
+<td style="text-align: center;">Multi-agent delegation</td>
+<td style="text-align: center;">File + terminal</td>
+</tr>
+<tr>
+<td><strong>Self-Evolution</strong></td>
+<td style="text-align: center;">Autonomous skill growth</td>
+<td style="text-align: center;">Plugin ecosystem</td>
+<td style="text-align: center;">Stateless between sessions</td>
+</tr>
+<tr>
+<td><strong>Out of the Box</strong></td>
+<td style="text-align: center;">A few core files + starter skills</td>
+<td style="text-align: center;">Hundreds of modules</td>
+<td style="text-align: center;">Rich CLI toolset</td>
+</tr>
+</tbody>
+</table>
+<h2>🧠 How It Works</h2>
+<p>GenericAgent accomplishes complex tasks through <strong>Layered Memory × Minimal Toolset × Autonomous Execution Loop</strong>, continuously accumulating experience during execution.</p>
+<p>1️⃣ <strong>Layered Memory System</strong></p>
+<blockquote>
+<p><em>Memory crystallizes throughout task execution, letting the agent build stable, efficient working patterns over time.</em></p>
+</blockquote>
+<ul>
+<li><strong>L0 — Meta Rules</strong>: Core behavioral rules and system constraints of the agent</li>
+<li><strong>L1 — Insight Index</strong>: Minimal memory index for fast routing and recall</li>
+<li><strong>L2 — Global Facts</strong>: Stable knowledge accumulated over long-term operation</li>
+<li><strong>L3 — Task Skills / SOPs</strong>: Reusable workflows for completing specific task types</li>
+<li><strong>L4 — Session Archive</strong>: Archived task records distilled from finished sessions for long-horizon recall</li>
+</ul>
+<p>2️⃣ <strong>Autonomous Execution Loop</strong></p>
+<blockquote>
+<p><em>Perceive environment state → Task reasoning → Execute tools → Write experience to memory → Loop</em></p>
+</blockquote>
+<p>The entire core loop is just <strong>~100 lines of code</strong> (<code>agent_loop.py</code>).</p>
+<p>3️⃣ <strong>Minimal Toolset</strong></p>
+<blockquote>
+<p><em>GenericAgent provides only <strong>9 atomic tools</strong>, forming the foundational capabilities for interacting with the outside world.</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>code_run</code></td>
+<td>Execute arbitrary code</td>
+</tr>
+<tr>
+<td><code>file_read</code></td>
+<td>Read files</td>
+</tr>
+<tr>
+<td><code>file_write</code></td>
+<td>Write files</td>
+</tr>
+<tr>
+<td><code>file_patch</code></td>
+<td>Patch / modify files</td>
+</tr>
+<tr>
+<td><code>web_scan</code></td>
+<td>Perceive web content</td>
+</tr>
+<tr>
+<td><code>web_execute_js</code></td>
+<td>Control browser behavior</td>
+</tr>
+<tr>
+<td><code>ask_user</code></td>
+<td>Human-in-the-loop confirmation</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Additionally, 2 <strong>memory management tools</strong> (<code>update_working_checkpoint</code>, <code>start_long_term_update</code>) allow the agent to persist context and accumulate experience across sessions.</p>
+</blockquote>
+<p>4️⃣ <strong>Capability Extension Mechanism</strong></p>
+<blockquote>
+<p><em>Capable of dynamically creating new tools.</em></p>
+</blockquote>
+<p>Via <code>code_run</code>, GenericAgent can dynamically install Python packages, write new scripts, call external APIs, or control hardware at runtime — crystallizing temporary abilities into permanent tools.</p>
+<div align="center">
+  <img src="assets/images/workflow.jpg" alt="GenericAgent Workflow" width="400"/>
+  <br><em>GenericAgent Workflow Diagram</em>
+</div>
+
+<h2>⭐ Support</h2>
+<p>If this project helped you, please consider leaving a **Sta</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/lsdefine/GenericAgent#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">jamiepine /</span>
+          <a href="https://github.com/jamiepine/voicebox" target="_blank" rel="noopener">voicebox</a>
+        </div>
+        <div class="repo-desc">The open-source voice synthesis studio</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 19,278</span>
+      <span class="meta-item">🍴 2,221</span>
+      <span class="stars-today">⭐ 880 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src=".github/assets/icon-dark.webp" alt="Voicebox" width="120" height="120" />
+</p>
+
+<h1 align="center">Voicebox</h1>
+
+<p align="center">
+  <strong>The open-source voice synthesis studio.</strong><br/>
+  Clone voices. Generate speech. Apply effects. Build voice-powered apps.<br/>
+  All running locally on your machine.
+</p>
+
+<p align="center">
+  <a href="https://github.com/jamiepine/voicebox/releases">
+    <img src="https://img.shields.io/github/downloads/jamiepine/voicebox/total?style=flat&color=blue" alt="Downloads" />
+  </a>
+  <a href="https://github.com/jamiepine/voicebox/releases/latest">
+    <img src="https://img.shields.io/github/v/release/jamiepine/voicebox?style=flat" alt="Release" />
+  </a>
+  <a href="https://github.com/jamiepine/voicebox/stargazers">
+    <img src="https://img.shields.io/github/stars/jamiepine/voicebox?style=flat" alt="Stars" />
+  </a>
+  <a href="https://github.com/jamiepine/voicebox/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/jamiepine/voicebox?style=flat" alt="License" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://voicebox.sh">voicebox.sh</a> •
+  <a href="https://docs.voicebox.sh">Docs</a> •
+  <a href="#download">Download</a> •
+  <a href="#features">Features</a> •
+  <a href="#api">API</a>
+</p>
+
+<p><br/></p>
+<p align="center">
+  <a href="https://voicebox.sh">
+    <img src="landing/public/assets/app-screenshot-1.webp" alt="Voicebox App Screenshot" width="800" />
+  </a>
+</p>
+
+<p align="center">
+  <em>Click the image above to watch the demo video on <a href="https://voicebox.sh">voicebox.sh</a></em>
+</p>
+
+<p><br/></p>
+<p align="center">
+  <img src="landing/public/assets/app-screenshot-2.webp" alt="Voicebox Screenshot 2" width="800" />
+</p>
+
+<p align="center">
+  <img src="landing/public/assets/app-screenshot-3.webp" alt="Voicebox Screenshot 3" width="800" />
+</p>
+
+<p><br/></p>
+<h2>What is Voicebox?</h2>
+<p>Voicebox is a <strong>local-first voice cloning studio</strong> — a free and open-source alternative to ElevenLabs. Clone voices from a few seconds of audio, generate speech in 23 languages across 5 TTS engines, apply post-processing effects, and compose multi-voice projects with a timeline editor.</p>
+<ul>
+<li><strong>Complete privacy</strong> — models and voice data stay on your machine</li>
+<li><strong>5 TTS engines</strong> — Qwen3-TTS, LuxTTS, Chatterbox Multilingual, Chatterbox Turbo, and HumeAI TADA</li>
+<li><strong>23 languages</strong> — from English to Arabic, Japanese, Hindi, Swahili, and more</li>
+<li><strong>Post-processing effects</strong> — pitch shift, reverb, delay, chorus, compression, and filters</li>
+<li><strong>Expressive speech</strong> — paralinguistic tags like <code>[laugh]</code>, <code>[sigh]</code>, <code>[gasp]</code> via Chatterbox Turbo</li>
+<li><strong>Unlimited length</strong> — auto-chunking with crossfade for scripts, articles, and chapters</li>
+<li><strong>Stories editor</strong> — multi-track timeline for conversations, podcasts, and narratives</li>
+<li><strong>API-first</strong> — REST API for integrating voice synthesis into your own projects</li>
+<li><strong>Native performance</strong> — built with Tauri (Rust), not Electron</li>
+<li><strong>Runs everywhere</strong> — macOS (MLX/Metal), Windows (CUDA), Linux, AMD ROCm, Intel Arc, Docker</li>
+</ul>
+<hr />
+<h2>Download</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS (Apple Silicon)</td>
+<td><a href="https://voicebox.sh/download/mac-arm">Download DMG</a></td>
+</tr>
+<tr>
+<td>macOS (Intel)</td>
+<td><a href="https://voicebox.sh/download/mac-intel">Download DMG</a></td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><a href="https://voicebox.sh/download/windows">Download MSI</a></td>
+</tr>
+<tr>
+<td>Docker</td>
+<td><code>docker compose up</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong><a href="https://github.com/jamiepine/voicebox/releases/latest">View all binaries →</a></strong></p>
+<p><strong>Linux</strong> — Pre-built binaries are not yet available. See <a href="https://voicebox.sh/linux-install">voicebox.sh/linux-install</a> for build-from-source instructions.</p>
+</blockquote>
+<hr />
+<h2>Features</h2>
+<h3>Multi-Engine Voice Cloning</h3>
+<p>Five TTS engines with different strengths, switchable per-generation:</p>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Languages</th>
+<th>Strengths</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Qwen3-TTS</strong> (0.6B / 1.7B)</td>
+<td>10</td>
+<td>High-quality multilingual cloning, delivery instructions ("speak slowly", "whisper")</td>
+</tr>
+<tr>
+<td><strong>LuxTTS</strong></td>
+<td>English</td>
+<td>Lightweight (~1GB VRAM), 48kHz output, 150x realtime on CPU</td>
+</tr>
+<tr>
+<td><strong>Chatterbox Multilingual</strong></td>
+<td>23</td>
+<td>Broadest language coverage — Arabic, Danish, Finnish, Greek, Hebrew, Hindi, Malay, Norwegian, Polish, Swahili, Swedish, Turkish and more</td>
+</tr>
+<tr>
+<td><strong>Chatterbox Turbo</strong></td>
+<td>English</td>
+<td>Fast 350M model with paralinguistic emotion/sound tags</td>
+</tr>
+<tr>
+<td><strong>TADA</strong> (1B / 3B)</td>
+<td>10</td>
+<td>HumeAI speech-language model — 700s+ coherent audio, text-acoustic dual alignment</td>
+</tr>
+</tbody>
+</table>
+<h3>Emotions &amp; Paralinguistic Tags</h3>
+<p>Type <code>/</code> in the text input to insert expressive tags that the model synthesizes inline with speech (Chatterbox Turbo):</p>
+<p><code>[laugh]</code> <code>[chuckle]</code> <code>[gasp]</code> <code>[cough]</code> <code>[sigh]</code> <code>[groan]</code> <code>[sniff]</code> <code>[shush]</code> <code>[clear throat]</code></p>
+<h3>Post-Processing Effects</h3>
+<p>8 audio effects powered by Spotify's <code>pedalboard</code> library. Apply after generation, preview in real time, build reusable presets.</p>
+<table>
+<thead>
+<tr>
+<th>Effect</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pitch Shift</td>
+<td>Up or down by up to 12 semitones</td>
+</tr>
+<tr>
+<td>Reverb</td>
+<td>Configurable room size, damping, wet/dry mix</td>
+</tr>
+<tr>
+<td>Delay</td>
+<td>Echo with adjustable time, feedback, and mix</td>
+</tr>
+<tr>
+<td>Chorus / Flanger</td>
+<td>Modulated delay for metallic or lush textures</td>
+</tr>
+<tr>
+<td>Compressor</td>
+<td>Dynamic range compression</td>
+</tr>
+<tr>
+<td>Gain</td>
+<td>Volume adjustment (-40 to +40 dB)</td>
+</tr>
+<tr>
+<td>High-Pass Filter</td>
+<td>Remove low frequencies</td>
+</tr>
+<tr>
+<td>Low-Pass Filter</td>
+<td>Remove high frequencies</td>
+</tr>
+</tbody>
+</table>
+<p>Ships with 4 built-in presets (Robotic, Radio, Echo Chamber, Deep Voice) and supports custom presets. Effects can be assigned per-profile as defaults.</p>
+<h3>Unlimited Generation Length</h3>
+<p>Text is automatically split at sentence boundaries and each chunk is generated independently, then crossfaded together. Works with all engines.</p>
+<ul>
+<li>Configurable auto-chunking limit (100–5,000 chars)</li>
+<li>Crossfade slider (0–200ms) for smooth transitions</li>
+<li>Max text length: 50,000 characters</li>
+<li>Smart splitting respects abbreviations, CJK punctuation, and <code>[tags]</code></li>
+</ul>
+<h3>Generation Versions</h3>
+<p>Every generation supports multiple versions with provenance tracking:</p>
+<ul>
+<li><strong>Original</strong> — clean TTS output, always preserved</li>
+<li><strong>Effects versions</strong> — apply different effects chains from any source version</li>
+<li><strong>Takes</strong> — regenerate with a new seed for variation</li>
+<li><strong>Source tracking</strong> — each version records its lineage</li>
+<li><strong>Favorites</strong> — star generations for quick access</li>
+</ul>
+<h3>Async Generation Queue</h3>
+<p>Generation is non-blocking. Submit and immediately start typing the next one.</p>
+<ul>
+<li>Serial execution queue prevents GPU contention</li>
+<li>Real-time SSE status streaming</li>
+<li>Failed generations can be retried</li>
+<li>Stale generations from crashes auto-recover on startup</li>
+</ul>
+<h3>Voice Profile Management</h3>
+<ul>
+<li>Create profiles from audio files or record directly in-app</li>
+<li>Import/export profiles to share or back up</li>
+<li>Multi-sample support for higher quality cloning</li>
+<li>Per-profile default effects chains</li>
+<li>Organize with descriptions and language tags</li>
+</ul>
+<h3>Stories Editor</h3>
+<p>Multi-voice timeline editor for conversations, podcasts, and narratives.</p>
+<ul>
+<li>Multi-track composition with drag-and-drop</li>
+<li>Inline audio trimming and splitting</li>
+<li>Auto-playback</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/jamiepine/voicebox#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">vercel-labs /</span>
+          <a href="https://github.com/vercel-labs/open-agents" target="_blank" rel="noopener">open-agents</a>
+        </div>
+        <div class="repo-desc">An open source template for building cloud agents.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 3,347</span>
+      <span class="meta-item">🍴 361</span>
+      <span class="stars-today">⭐ 738 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Open Agents</h1>
+<p><a href="https://vercel.com/new/clone?project-name=open-agents&amp;repository-name=open-agents&amp;repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fopen-agents&amp;demo-title=Open+Agents&amp;demo-description=Open-source+reference+app+for+building+and+running+background+coding+agents+on+Vercel.&amp;demo-url=https%3A%2F%2Fopen-agents.dev%2F&amp;env=POSTGRES_URL%2CJWE_SECRET%2CENCRYPTION_KEY%2CNEXT_PUBLIC_VERCEL_APP_CLIENT_ID%2CVERCEL_APP_CLIENT_SECRET%2CNEXT_PUBLIC_GITHUB_CLIENT_ID%2CGITHUB_CLIENT_SECRET%2CGITHUB_APP_ID%2CGITHUB_APP_PRIVATE_KEY%2CNEXT_PUBLIC_GITHUB_APP_SLUG%2CGITHUB_WEBHOOK_SECRET&amp;envDescription=Neon+can+provide+POSTGRES_URL+automatically.+Generate+JWE_SECRET+and+ENCRYPTION_KEY+yourself%2C+then+add+your+Vercel+OAuth+and+GitHub+App+credentials+for+a+full+deployment.&amp;products=%255B%257B%2522type%2522%253A%2522integration%2522%252C%2522protocol%2522%253A%2522storage%2522%252C%2522productSlug%2522%253A%2522neon%2522%252C%2522integrationSlug%2522%253A%2522neon%2522%257D%252C%257B%2522type%2522%253A%2522integration%2522%252C%2522protocol%2522%253A%2522storage%2522%252C%2522productSlug%2522%253A%2522upstash-kv%2522%252C%2522integrationSlug%2522%253A%2522upstash%2522%257D%255D&amp;skippable-integrations=1"><img alt="Deploy with Vercel" src="https://vercel.com/button" /></a></p>
+<p>Open Agents is an open-source reference app for building and running background coding agents on Vercel. It includes the web UI, the agent runtime, sandbox orchestration, and the GitHub integration needed to go from prompt to code changes without keeping your laptop involved.</p>
+<p>The repo is meant to be forked and adapted, not treated as a black box.</p>
+<h2>What it is</h2>
+<p>Open Agents is a three-layer system:</p>
+<pre><code class="language-text">Web -&gt; Agent workflow -&gt; Sandbox VM
+</code></pre>
+<ul>
+<li>The web app handles auth, sessions, chat, and streaming UI.</li>
+<li>The agent runs as a durable workflow on Vercel.</li>
+<li>The sandbox is the execution environment: filesystem, shell, git, dev servers, and preview ports.</li>
+</ul>
+<h3>The key architectural decision: the agent is not the sandbox</h3>
+<p>The agent does not run inside the VM. It runs outside the sandbox and interacts with it through tools like file reads, edits, search, and shell commands.</p>
+<p>That separation is the main point of the project:</p>
+<ul>
+<li>agent execution is not tied to a single request lifecycle</li>
+<li>sandbox lifecycle can hibernate and resume independently</li>
+<li>model/provider choices and sandbox implementation can evolve separately</li>
+<li>the VM stays a plain execution environment instead of becoming the control plane</li>
+</ul>
+<h2>Current capabilities</h2>
+<ul>
+<li>chat-driven coding agent with file, search, shell, task, skill, and web tools</li>
+<li>durable multi-step execution with Workflow SDK-backed runs, streaming, and cancellation</li>
+<li>isolated Vercel sandboxes with snapshot-based resume</li>
+<li>repo cloning and branch work inside the sandbox</li>
+<li>optional auto-commit, push, and PR creation after a successful run</li>
+<li>session sharing via read-only links</li>
+<li>optional voice input via ElevenLabs transcription</li>
+</ul>
+<h2>Runtime notes</h2>
+<p>A few details that matter for understanding the current implementation:</p>
+<ul>
+<li>Chat requests start a workflow run instead of executing the agent inline.</li>
+<li>Each agent turn can continue across many persisted workflow steps.</li>
+<li>Active runs can be resumed by reconnecting to the stream for the existing workflow.</li>
+<li>Sandboxes use a base snapshot, expose ports <code>3000</code>, <code>5173</code>, <code>4321</code>, and <code>8000</code>, and hibernate after inactivity.</li>
+<li>Auto-commit and auto-PR are supported, but they are preference-driven features, not always-on behavior.</li>
+</ul>
+<h2>What is actually required today</h2>
+<p>These requirements are based on the current <code>apps/web</code> codepath, not older setup scripts.</p>
+<h3>Minimum runtime</h3>
+<p>These are the hard requirements for the app to boot and load server state:</p>
+<pre><code class="language-env">POSTGRES_URL=
+JWE_SECRET=
+</code></pre>
+<h3>Required to sign in and actually use the hosted app</h3>
+<p>A useful deployment also needs token encryption plus Vercel OAuth sign-in:</p>
+<pre><code class="language-env">ENCRYPTION_KEY=
+NEXT_PUBLIC_VERCEL_APP_CLIENT_ID=
+VERCEL_APP_CLIENT_SECRET=
+</code></pre>
+<p>Without these, the site can deploy, but Vercel sign-in will not work.</p>
+<h3>Required for GitHub repo access, pushes, and PRs</h3>
+<p>If you want users to connect GitHub, install the app on repos/orgs, clone private repos, push branches, or open PRs, add these GitHub App values:</p>
+<pre><code class="language-env">NEXT_PUBLIC_GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+GITHUB_APP_ID=
+GITHUB_APP_PRIVATE_KEY=
+NEXT_PUBLIC_GITHUB_APP_SLUG=
+GITHUB_WEBHOOK_SECRET=
+</code></pre>
+<h3>Optional</h3>
+<pre><code class="language-env">REDIS_URL=
+KV_URL=
+VERCEL_PROJECT_PRODUCTION_URL=
+NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL=
+VERCEL_SANDBOX_BASE_SNAPSHOT_ID=
+ELEVENLABS_API_KEY=
+</code></pre>
+<ul>
+<li><code>REDIS_URL</code> / <code>KV_URL</code>: optional skills metadata cache (falls back to in-memory when not configured).</li>
+<li><code>VERCEL_PROJECT_PRODUCTION_URL</code> / <code>NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL</code>: canonical production URL for metadata and some callback behavior.</li>
+<li><code>VERCEL_SANDBOX_BASE_SNAPSHOT_ID</code>: override the default sandbox snapshot.</li>
+<li><code>ELEVENLABS_API_KEY</code>: voice transcription.</li>
+</ul>
+<h2>Deploy your own copy on Vercel</h2>
+<p>Recommended path: deploy this repo at the repo root on Vercel, then layer on auth and GitHub integration.</p>
+<ol>
+<li>Fork this repo.</li>
+<li>Create a PostgreSQL database and copy its connection string.</li>
+<li>Generate these secrets:</li>
+</ol>
+<p><code>bash
+   openssl rand -base64 32 | tr '+/' '-_' | tr -d '=\n'   # JWE_SECRET
+   openssl rand -hex 32                                    # ENCRYPTION_KEY</code></p>
+<ol>
+<li>Import the repo into Vercel.</li>
+<li>Add at least these env vars in Vercel project settings:</li>
+</ol>
+<p><code>env
+   POSTGRES_URL=
+   JWE_SECRET=
+   ENCRYPTION_KEY=</code></p>
+<ol>
+<li>Deploy once to get a stable production URL.</li>
+<li>Create a Vercel OAuth app with callback URL:</li>
+</ol>
+<p><code>text
+   https://YOUR_DOMAIN/api/auth/vercel/callback</code></p>
+<ol>
+<li>Add these env vars and redeploy:</li>
+</ol>
+<p><code>env
+   NEXT_PUBLIC_VERCEL_APP_CLIENT_ID=
+   VERCEL_APP_CLIENT_SECRET=</code></p>
+<ol>
+<li>
+<p>If you want the full GitHub-enabled coding-agent flow, create a GitHub App using:</p>
+</li>
+<li>
+<p>Homepage URL: <code>https://YOUR_DOMAIN</code></p>
+</li>
+<li>Callback URL: <code>https://YOUR_DOMAIN/api/github/app/callback</code></li>
+<li>Setup URL: <code>https://YOUR_DOMAIN/api/github/app/callback</code></li>
+</ol>
+<p>In the GitHub App settings:<br />
+   - enable "Request user authorization (OAuth) during installation"<br />
+   - use the GitHub App's Client ID and Client Secret for <code>NEXT_PUBLIC_GITHUB_CLIENT_ID</code> and <code>GITHUB_CLIENT_SECRET</code><br />
+   - make the app public if you want org installs to work cleanly</p>
+<ol>
+<li>Add the GitHub App env vars and redeploy.</li>
+<li>Optionally add Redis/KV and the canonical production URL vars.</li>
+</ol>
+<h2>Local setup</h2>
+<ol>
+<li>Install dependencies:</li>
+</ol>
+<p><code>bash
+   bun install</code></p>
+<ol>
+<li>Create your local env file:</li>
+</ol>
+<p><code>bash
+   cp apps/web/.env.example apps/web/.env</code></p>
+<ol>
+<li>Fill in the required values in <code>apps/web/.env</code>.</li>
+<li>Start the app:</li>
+</ol>
+<p><code>bash
+   bun run web</code></p>
+<p>If you already have a linked Vercel project, you can still pull env vars locally with <code>vc env pull</code>, but setup is now intentionally manual so you can see exactly which values matter.</p>
+<h2>OAuth and integration setup</h2>
+<h3>Vercel OAuth</h3>
+<p>Create a Vercel OAuth app and use this callback:</p>
+<pre><code class="language-text">https://YOUR_DOMAIN/api/auth/vercel/callback
+</code></pre>
+<p>For local development, use:</p>
+<pre><code class="language-text">http://localhost:3000/api/auth/vercel/callback
+</code></pre>
+<p>Then set:</p>
+<pre><code class="language-env">NEXT_PUBLIC_VERCEL_APP_CLIENT_ID=...
+VERCEL_APP_CLIENT_SECRET=...
+</code></pre>
+<h3>GitHub App</h3>
+<p>You do not need a separate GitHub OAuth app. Open Agents uses the GitHub App's user authorization flow.</p>
+<p>Create a GitHub App for installation-based repo access and configure:</p>
+<ul>
+<li>Homepage URL: <code>https://YOUR_DOMAIN</code></li>
+<li>Callback URL: <code>https://YOUR_DOMAIN/api/github/app/callback</code></li>
+<li>Setup URL: <code>https://YOUR_DOMAIN/api/github/app/callback</code></li>
+<li>enable "Request user authorization (OAuth) during installation"</li>
+<li>make the app public if you want org installs to work cleanly</li>
+</ul>
+<p>For local development, use <code>http://localhost:3000/api/github/app/callback</code> for the callback/setup URL and <code>http://localhost:3000</code> as the homepage URL.</p>
+<p>Then set:</p>
+<p>```env<br />
+NEXT_PUBLIC_GITHUB_CLIENT_ID=...   # GitHub App Client ID<br />
+GITHUB_CLIENT_SECRET=...           # Gi</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/vercel-labs/open-agents#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">google /</span>
+          <a href="https://github.com/google/magika" target="_blank" rel="noopener">magika</a>
+        </div>
+        <div class="repo-desc">Fast and accurate AI powered file content types detection</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 14,981</span>
+      <span class="meta-item">🍴 805</span>
+      <span class="stars-today">⭐ 854 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Magika</h1>
+<p><a href="https://pypi.python.org/pypi/magika"><img alt="image" src="https://img.shields.io/pypi/v/magika.svg" /></a><br />
+<a href="https://npmjs.com/package/magika"><img alt="NPM Version" src="https://img.shields.io/npm/v/magika" /></a><br />
+<a href="https://pypi.python.org/pypi/magika"><img alt="image" src="https://img.shields.io/pypi/l/magika.svg" /></a><br />
+<a href="https://pypi.python.org/pypi/magika"><img alt="image" src="https://img.shields.io/pypi/pyversions/magika.svg" /></a><br />
+<a href="https://pkg.go.dev/github.com/google/magika/go"><img alt="Go Version" src="https://img.shields.io/github/v/tag/google/magika?filter=go%2F*&amp;label=go&amp;sort=semver" /></a></p>
+<!-- [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/google/magika/badge)](https://scorecard.dev/viewer/?uri=github.com/google/magika) -->
+<p><a href="https://www.bestpractices.dev/en/projects/8706"><img alt="OpenSSF Best Practices" src="https://www.bestpractices.dev/projects/8706/badge" /></a><br />
+<img alt="CodeQL" src="https://github.com/google/magika/workflows/CodeQL/badge.svg" /><br />
+<a href="https://github.com/google/magika/actions"><img alt="Actions status" src="https://github.com/google/magika/actions/workflows/python-build-and-release-package.yml/badge.svg" /></a><br />
+<a href="https://pepy.tech/projects/magika"><img alt="PyPI Monthly Downloads" src="https://static.pepy.tech/badge/magika/month" /></a><br />
+<a href="https://pepy.tech/projects/magika"><img alt="PyPI Downloads" src="https://static.pepy.tech/badge/magika" /></a></p>
+<p>Magika is a novel AI-powered file type detection tool that relies on the recent advance of deep learning to provide accurate detection. Under the hood, Magika employs a custom, highly optimized model that only weighs about a few MBs, and enables precise file identification within milliseconds, even when running on a single CPU. Magika has been trained and evaluated on a dataset of ~100M samples across 200+ content types (covering both binary and textual file formats), and it achieves an average ~99% accuracy on our test set.</p>
+<p>Here is an example of what Magika command line output looks like:</p>
+<p align="center">
+    <img src="./assets/magika-screenshot.png" width="600">
+</p>
+
+<p>Magika is used at scale to help improve Google users' safety by routing Gmail, Drive, and Safe Browsing files to the proper security and content policy scanners, processing hundreds billions samples on a weekly basis. Magika has also been integrated with <a href="https://www.virustotal.com/">VirusTotal</a> (<a href="./assets/magika-vt.png">example</a>) and <a href="https://bazaar.abuse.ch/">abuse.ch</a> (<a href="./assets/magika-abusech.png">example</a>).</p>
+<p>For more context you can read our initial <a href="https://opensource.googleblog.com/2024/02/magika-ai-powered-fast-and-efficient-file-type-identification.html">announcement post on Google's OSS blog</a>, you can consult <a href="https://securityresearch.google/magika/">Magika's website</a>, and you can read more in our <a href="https://securityresearch.google/magika/additional-resources/research-papers-and-citation/">research paper</a>, published at the IEEE/ACM International Conference on Software Engineering (ICSE) 2025.</p>
+<p>You can try Magika without installing anything by using our <a href="https://securityresearch.google/magika/demo/magika-demo/">web demo</a>, which runs locally in your browser!</p>
+<h1>Highlights</h1>
+<ul>
+<li>Available as a command line tool written in Rust, a Python API, and additional bindings for Rust, JavaScript/TypeScript (with an experimental npm package, which powers our <a href="https://securityresearch.google/magika/demo/magika-demo/">web demo</a>), and GoLang (WIP).</li>
+<li>Trained and evaluated on a dataset of ~100M files across <a href="./assets/models/standard_v3_3/README.md">200+ content types</a>.</li>
+<li>On our test set, Magika achieves ~99% average precision and recall, outperforming existing approaches -- especially on textual content types.</li>
+<li>After the model is loaded (which is a one-off overhead), the inference time is about 5ms per file, even when run on a single CPU.</li>
+<li>You can invoke Magika with even thousands of files at the same time. You can also use <code>-r</code> for recursively scanning a directory.</li>
+<li>Near-constant inference time, independently from the file size; Magika only uses a limited subset of the file's content.</li>
+<li>Magika uses a per-content-type threshold system that determines whether to "trust" the prediction for the model, or whether to return a generic label, such as "Generic text document" or "Unknown binary data".</li>
+<li>The tolerance to errors can be controlled via different prediction modes, such as <code>high-confidence</code>, <code>medium-confidence</code>, and <code>best-guess</code>.</li>
+<li>The client and the bindings are already open source, and more is coming soon!</li>
+</ul>
+<h1>Table of Contents</h1>
+<ol>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#security-vulnerabilities">Security Vulnerabilities</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+</ol>
+<h1>Getting Started</h1>
+<h2>Installation</h2>
+<h3>Command Line Tool</h3>
+<p>Magika ships a CLI written in Rust, and can be installed in several ways.</p>
+<p>Via <code>magika</code> python package:</p>
+<pre><code class="language-shell">pipx install magika
+</code></pre>
+<p>Via brew (macOS / Linux)</p>
+<pre><code class="language-shell">brew install magika
+</code></pre>
+<p>Via installer script:</p>
+<pre><code class="language-shell">curl -LsSf https://securityresearch.google/magika/install.sh | sh
+</code></pre>
+<p>or:</p>
+<pre><code class="language-shell">powershell -ExecutionPolicy Bypass -c &quot;irm https://securityresearch.google/magika/install.ps1 | iex&quot;
+</code></pre>
+<p>Via <code>magika-cli</code> Rust package:</p>
+<pre><code class="language-shell">cargo install --locked magika-cli
+</code></pre>
+<h3>Python package</h3>
+<pre><code class="language-shell">pip install magika
+</code></pre>
+<h3>JavaScript package</h3>
+<pre><code class="language-shell">npm install magika
+</code></pre>
+<h2>Quick Start</h2>
+<p>Here you can find a number of quick examples just to get you started.</p>
+<p>To learn about Magika's inner workings, see the <a href="https://securityresearch.google/magika/core-concepts/">Core Concepts</a> section of Magika's website.</p>
+<h3>Command Line Tool Examples</h3>
+<pre><code class="language-shell">% cd tests_data/basic &amp;&amp; magika -r * | head
+asm/code.asm: Assembly (code)
+batch/simple.bat: DOS batch file (code)
+c/code.c: C source (code)
+css/code.css: CSS source (code)
+csv/magika_test.csv: CSV document (code)
+dockerfile/Dockerfile: Dockerfile (code)
+docx/doc.docx: Microsoft Word 2007+ document (document)
+docx/magika_test.docx: Microsoft Word 2007+ document (document)
+eml/sample.eml: RFC 822 mail (text)
+empty/empty_file: Empty file (inode)
+</code></pre>
+<pre><code class="language-shell">% magika ./tests_data/basic/python/code.py --json
+[
+  {
+    &quot;path&quot;: &quot;./tests_data/basic/python/code.py&quot;,
+    &quot;result&quot;: {
+      &quot;status&quot;: &quot;ok&quot;,
+      &quot;value&quot;: {
+        &quot;dl&quot;: {
+          &quot;description&quot;: &quot;Python source&quot;,
+          &quot;extensions&quot;: [
+            &quot;py&quot;,
+            &quot;pyi&quot;
+          ],
+          &quot;group&quot;: &quot;code&quot;,
+          &quot;is_text&quot;: true,
+          &quot;label&quot;: &quot;python&quot;,
+          &quot;mime_type&quot;: &quot;text/x-python&quot;
+        },
+        &quot;output&quot;: {
+          &quot;description&quot;: &quot;Python source&quot;,
+          &quot;extensions&quot;: [
+            &quot;py&quot;,
+            &quot;pyi&quot;
+          ],
+          &quot;group&quot;: &quot;code&quot;,
+          &quot;is_text&quot;: true,
+          &quot;label&quot;: &quot;python&quot;,
+          &quot;mime_type&quot;: &quot;text/x-python&quot;
+        },
+        &quot;score&quot;: 0.996999979019165
+      }
+    }
+  }
+]
+</code></pre>
+<pre><code class="language-shell">% cat tests_data/basic/ini/doc.ini | magika -
+-: INI configuration file (text)
+</code></pre>
+<p>```shell<br />
+% magika --help<br />
+Determines file content types using AI</p>
+<p>Usage: magika [OPTIONS] [PATH]...</p>
+<p>Arguments:<br />
+  [PATH]...<br />
+          List of paths to the files to analyze.</p>
+<pre><code>      Use a dash (-) to read from standard input (can only be used once).
+</code></pre>
+<p>Options:<br />
+  -r, --recursive<br />
+          Identifies files within directories instead of identifying the directory itself</p>
+<pre><code>  --no-dereference
+      Identifies symbolic links as is instead of identifying their content by following them
+
+  --colors
+      Prints with colors regardless of terminal support
+
+  --no-colors
+      Prints without colors regardless of terminal support
+</code></pre>
+<p>-s, --output-score<br />
+          Prints the prediction score in addition to the content type</p>
+<p>-i, --mime-type<br />
+          Prints the MIME type instead of the content type description</p>
+<p>-l, --label<br />
+          Prints a simple label instead of the content type description</p>
+<pre><code>  --json
+      Prints in JSON format
+
+  --jsonl
+      Prints in JSONL format
+
+  --format &lt;CUSTOM&gt;
+      Prints using a custom format (use --help for det
+</code></pre>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/google/magika#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">steipete /</span>
+          <a href="https://github.com/steipete/wacli" target="_blank" rel="noopener">wacli</a>
+        </div>
+        <div class="repo-desc">WhatsApp CLI</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#00ADD8"></span>Go</span>
+      <span class="meta-item">⭐ 1,754</span>
+      <span class="meta-item">🍴 204</span>
+      <span class="stars-today">⭐ 321 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>🗃️ wacli — WhatsApp CLI: sync, search, send.</h1>
+<p>WhatsApp CLI built on top of <code>whatsmeow</code>, focused on:</p>
+<ul>
+<li>Best-effort local sync of message history + continuous capture</li>
+<li>Fast offline search</li>
+<li>Sending messages</li>
+<li>Contact + group management</li>
+</ul>
+<p>This is a third-party tool that uses the WhatsApp Web protocol via <code>whatsmeow</code> and is not affiliated with WhatsApp.</p>
+<h2>Status</h2>
+<p>Core implementation is in place. See <code>docs/spec.md</code> for the full design notes.</p>
+<h2>Recent updates (0.2.0)</h2>
+<ul>
+<li>Messages: search/list includes display text for reactions, replies, and media types.</li>
+<li>Send: <code>wacli send file --filename</code> to override the display name.</li>
+<li>Auth: optional <code>WACLI_DEVICE_LABEL</code> / <code>WACLI_DEVICE_PLATFORM</code> env overrides.</li>
+</ul>
+<h2>Install / Build</h2>
+<p>Choose <strong>one</strong> of the following options.<br />
+If you install via Homebrew, you can skip the local build step.</p>
+<h3>Option A: Install via Homebrew (tap)</h3>
+<ul>
+<li><code>brew install steipete/tap/wacli</code></li>
+</ul>
+<h3>Option B: Build locally</h3>
+<ul>
+<li><code>go build -tags sqlite_fts5 -o ./dist/wacli ./cmd/wacli</code></li>
+</ul>
+<p>Run (local build only):</p>
+<ul>
+<li><code>./dist/wacli --help</code></li>
+</ul>
+<h2>Quick start</h2>
+<p>Default store directory is <code>~/.wacli</code> (override with <code>--store DIR</code>).</p>
+<pre><code class="language-bash"># 1) Authenticate (shows QR), then bootstrap sync
+pnpm wacli auth
+# or: ./dist/wacli auth (after pnpm build)
+
+# 2) Keep syncing (never shows QR; requires prior auth)
+pnpm wacli sync --follow
+
+# Diagnostics
+pnpm wacli doctor
+
+# Search messages
+pnpm wacli messages search &quot;meeting&quot;
+
+# Backfill older messages for a chat (best-effort; requires your primary device online)
+pnpm wacli history backfill --chat 1234567890@s.whatsapp.net --requests 10 --count 50
+
+# Download media for a message (after syncing)
+./wacli media download --chat 1234567890@s.whatsapp.net --id &lt;message-id&gt;
+
+# Send a message
+pnpm wacli send text --to 1234567890 --message &quot;hello&quot;
+
+# Send a file
+./wacli send file --to 1234567890 --file ./pic.jpg --caption &quot;hi&quot;
+# Or override display name
+./wacli send file --to 1234567890 --file /tmp/abc123 --filename report.pdf
+
+# List groups and manage participants
+pnpm wacli groups list
+pnpm wacli groups rename --jid 123456789@g.us --name &quot;New name&quot;
+</code></pre>
+<h2>Prior Art / Credit</h2>
+<p>This project is heavily inspired by (and learns from) the excellent <code>whatsapp-cli</code> by Vicente Reig:</p>
+<ul>
+<li><a href="https://github.com/vicentereig/whatsapp-cli"><code>whatsapp-cli</code></a></li>
+</ul>
+<h2>High-level UX</h2>
+<ul>
+<li><code>wacli auth</code>: interactive login (shows QR code), then immediately performs initial data sync.</li>
+<li><code>wacli sync</code>: non-interactive sync loop (never shows QR; errors if not authenticated).</li>
+<li>Output is human-readable by default; pass <code>--json</code> for machine-readable output.</li>
+</ul>
+<h2>Storage</h2>
+<p>Defaults to <code>~/.wacli</code> (override with <code>--store DIR</code>).</p>
+<h2>Environment overrides</h2>
+<ul>
+<li><code>WACLI_DEVICE_LABEL</code>: set the linked device label (shown in WhatsApp).</li>
+<li><code>WACLI_DEVICE_PLATFORM</code>: override the linked device platform (defaults to <code>CHROME</code> if unset or invalid).</li>
+</ul>
+<h2>Backfilling older history</h2>
+<p><code>wacli sync</code> stores whatever WhatsApp Web sends opportunistically. To try to fetch <em>older</em> messages, use on-demand history sync requests to your <strong>primary device</strong> (your phone).</p>
+<p>Important notes:</p>
+<ul>
+<li>This is <strong>best-effort</strong>: WhatsApp may not return full history.</li>
+<li>Your <strong>primary device must be online</strong>.</li>
+<li>Requests are <strong>per chat</strong> (DM or group). <code>wacli</code> uses the <em>oldest locally stored message</em> in that chat as the anchor.</li>
+<li>Recommended <code>--count</code> is <code>50</code> per request.</li>
+</ul>
+<h3>Backfill one chat</h3>
+<pre><code class="language-bash">pnpm wacli history backfill --chat 1234567890@s.whatsapp.net --requests 10 --count 50
+</code></pre>
+<h3>Backfill all chats (script)</h3>
+<p>This loops through chats already known in your local DB:</p>
+<pre><code class="language-bash">pnpm -s wacli -- --json chats list --limit 100000 \
+  | jq -r '.[].JID' \
+  | while read -r jid; do
+      pnpm -s wacli -- history backfill --chat &quot;$jid&quot; --requests 3 --count 50
+    done
+</code></pre>
+<h2>License</h2>
+<p>See <code>LICENSE</code>.</p>
+<h2>Maintainers</h2>
+<ul>
+<li>Created by <a href="https://github.com/steipete">@steipete</a></li>
+<li>Currently maintained by <a href="https://github.com/dinakars777">@dinakars777</a></li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/steipete/wacli#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">topoteretes /</span>
+          <a href="https://github.com/topoteretes/cognee" target="_blank" rel="noopener">cognee</a>
+        </div>
+        <div class="repo-desc">Knowledge Engine for AI Agent Memory in 6 lines of code</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 15,948</span>
+      <span class="meta-item">🍴 1,644</span>
+      <span class="stars-today">⭐ 170 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+  <a href="https://github.com/topoteretes/cognee">
+    <img src="https://raw.githubusercontent.com/topoteretes/cognee/refs/heads/dev/assets/cognee-logo-transparent.png" alt="Cognee Logo" height="60">
+  </a>
+
+  <br />
+
+  Cognee - Build AI memory with a Knowledge Engine that learns
+
+  <p align="center">
+  <a href="https://www.youtube.com/watch?v=8hmqS2Y5RVQ&t=13s">Demo</a>
+  .
+  <a href="https://docs.cognee.ai/">Docs</a>
+  .
+  <a href="https://cognee.ai">Learn More</a>
+  ·
+  <a href="https://discord.gg/NQPKmU5CCg">Join Discord</a>
+  ·
+  <a href="https://www.reddit.com/r/AIMemory/">Join r/AIMemory</a>
+  .
+  <a href="https://github.com/topoteretes/cognee-community">Community Plugins & Add-ons</a>
+  </p>
+
+
+  [![GitHub forks](https://img.shields.io/github/forks/topoteretes/cognee.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/topoteretes/cognee/network/)
+  [![GitHub stars](https://img.shields.io/github/stars/topoteretes/cognee.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/topoteretes/cognee/stargazers/)
+  [![GitHub commits](https://badgen.net/github/commits/topoteretes/cognee)](https://GitHub.com/topoteretes/cognee/commit/)
+  [![GitHub tag](https://badgen.net/github/tag/topoteretes/cognee)](https://github.com/topoteretes/cognee/tags/)
+  [![Downloads](https://static.pepy.tech/badge/cognee)](https://pepy.tech/project/cognee)
+  [![License](https://img.shields.io/github/license/topoteretes/cognee?colorA=00C586&colorB=000000)](https://github.com/topoteretes/cognee/blob/main/LICENSE)
+  [![Contributors](https://img.shields.io/github/contributors/topoteretes/cognee?colorA=00C586&colorB=000000)](https://github.com/topoteretes/cognee/graphs/contributors)
+  <a href="https://github.com/sponsors/topoteretes"><img src="https://img.shields.io/badge/Sponsor-❤️-ff69b4.svg" alt="Sponsor"></a>
+
+<p>
+  <a href="https://trendshift.io/repositories/13955" target="_blank" style="display:inline-block;">
+    <img src="https://trendshift.io/api/badge/repositories/13955" alt="topoteretes%2Fcognee | Trendshift" width="250" height="55" />
+  </a>
+</p>
+
+Use our knowledge engine to build personalized and dynamic memory for AI Agents.
+
+  <p align="center">
+  🌐 Available Languages
+  :
+  <!-- Keep these links. Translations will automatically update with the README. -->
+  <a href="https://www.readme-i18n.com/topoteretes/cognee?lang=de">Deutsch</a> |
+  <a href="https://www.readme-i18n.com/topoteretes/cognee?lang=es">Español</a> |
+  <a href="https://www.readme-i18n.com/topoteretes/cognee?lang=fr">Français</a> |
+  <a href="https://www.readme-i18n.com/topoteretes/cognee?lang=ja">日本語</a> |
+  <a href="README_ko.md">한국어</a> |
+  <a href="https://www.readme-i18n.com/topoteretes/cognee?lang=pt">Português</a> |
+  <a href="https://www.readme-i18n.com/topoteretes/cognee?lang=ru">Русский</a> |
+  <a href="https://www.readme-i18n.com/topoteretes/cognee?lang=zh">中文</a>
+  </p>
+
+
+<div style="text-align: center">
+  <img src="https://raw.githubusercontent.com/topoteretes/cognee/refs/heads/main/assets/cognee_benefits.png" alt="Why cognee?" width="80%" />
+</div>
+</div>
+
+<h2>About Cognee</h2>
+<p>Cognee is an open-source knowledge engine that lets you ingest data in any format or structure and continuously learns to provide the right context for AI agents. It combines vector search, graph databases and cognitive science approaches to make your documents both searchable by meaning and connected by relationships as they change and evolve.</p>
+<p>:star: <em>Help us reach more developers and grow the cognee community. Star this repo!</em></p>
+<p>:books: <em>Check our detailed <a href="https://docs.cognee.ai/getting-started/installation#environment-configuration">documentation</a> for setup and configuration.</em></p>
+<p>:crab: <em>Available as a plugin for your OpenClaw — <a href="https://www.npmjs.com/package/@cognee/cognee-openclaw">cognee-openclaw</a></em></p>
+<p>✴️ <em>Available as a plugin for your Claude Code — <a href="https://github.com/topoteretes/cognee-integrations/tree/main/integrations/claude-code">claude-code-plugin</a></em></p>
+<p>Cognee memory plugin</p>
+<h3>Why use Cognee:</h3>
+<ul>
+<li>Knowledge infrastructure — unified ingestion, graph/vector search, runs locally, ontology grounding, multimodal</li>
+<li>Persistent and Learning Agents - learn from feedback, context management, cross-agent knowledge sharing</li>
+<li>Reliable and Trustworthy Agents - agentic user/tenant isolation, traceability, OTEL collector, audit traits</li>
+</ul>
+<h3>Product Features</h3>
+<p align="center">
+  <img src="assets/cognee_products.png" alt="Cognee Products" width="80%" />
+</p>
+
+<h2>Basic Usage &amp; Feature Guide</h2>
+<p>To learn more, <a href="https://colab.research.google.com/drive/12Vi9zID-M3fpKpKiaqDBvkk98ElkRPWy?usp=sharing">check out this short, end-to-end Colab walkthrough</a> of Cognee's core features.</p>
+<p><a href="https://colab.research.google.com/drive/12Vi9zID-M3fpKpKiaqDBvkk98ElkRPWy?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<h2>Quickstart</h2>
+<p>Let’s try Cognee in just a few lines of code.</p>
+<h3>Prerequisites</h3>
+<ul>
+<li>Python 3.10 to 3.13</li>
+</ul>
+<h3>Step 1: Install Cognee</h3>
+<p>You can install Cognee with <strong>pip</strong>, <strong>poetry</strong>, <strong>uv</strong>, or your preferred Python package manager.</p>
+<pre><code class="language-bash">uv pip install cognee
+</code></pre>
+<h3>Step 2: Configure the LLM</h3>
+<pre><code class="language-python">import os
+os.environ[&quot;LLM_API_KEY&quot;] = &quot;YOUR OPENAI_API_KEY&quot;
+</code></pre>
+<p>Alternatively, create a <code>.env</code> file using our <a href="https://github.com/topoteretes/cognee/blob/main/.env.template">template</a>.</p>
+<p>To integrate other LLM providers, see our <a href="https://docs.cognee.ai/setup-configuration/llm-providers">LLM Provider Documentation</a>.</p>
+<h3>Step 3: Run the Pipeline</h3>
+<p>Cognee's API gives you four operations — <code>remember</code>, <code>recall</code>, <code>forget</code>, and <code>improve</code>:</p>
+<pre><code class="language-python">import cognee
+import asyncio
+
+
+async def main():
+    # Store permanently in the knowledge graph (runs add + cognify + improve)
+    await cognee.remember(&quot;Cognee turns documents into AI memory.&quot;)
+
+    # Store in session memory (fast cache, syncs to graph in background)
+    await cognee.remember(&quot;User prefers detailed explanations.&quot;, session_id=&quot;chat_1&quot;)
+
+    # Query with auto-routing (picks best search strategy automatically)
+    results = await cognee.recall(&quot;What does Cognee do?&quot;)
+    for result in results:
+        print(result)
+
+    # Query session memory first, fall through to graph if needed
+    results = await cognee.recall(&quot;What does the user prefer?&quot;, session_id=&quot;chat_1&quot;)
+    for result in results:
+        print(result)
+
+    # Delete when done
+    await cognee.forget(dataset=&quot;main_dataset&quot;)
+
+
+if __name__ == '__main__':
+    asyncio.run(main())
+
+</code></pre>
+<h3>Use the Cognee CLI</h3>
+<pre><code class="language-bash">cognee-cli remember &quot;Cognee turns documents into AI memory.&quot;
+
+cognee-cli recall &quot;What does Cognee do?&quot;
+
+cognee-cli forget --all
+</code></pre>
+<p>To open the local UI, run:</p>
+<pre><code class="language-bash">cognee-cli -ui
+</code></pre>
+<h2>Use with AI Agents</h2>
+<h3>Claude Code</h3>
+<p>Install the <a href="https://github.com/topoteretes/cognee-integrations/tree/main/integrations/claude-code">Cognee memory plugin</a> to give Claude Code persistent memory across sessions. The plugin automatically captures tool calls into session memory via hooks and syncs to the permanent knowledge graph at session end.</p>
+<p><strong>Setup:</strong></p>
+<pre><code class="language-bash"># Install cognee
+pip install cognee
+
+# Configure
+export LLM_API_KEY=&quot;your-openai-key&quot;
+
+# Clone the plugin
+git clone https://github.com/topoteretes/cognee-integrations.git
+
+# Enable it (add to ~/.zshrc for permanent use)
+claude --plugin-dir ./cognee-integrations/integrations/claude-code
+</code></pre>
+<p>Or connect to Cognee Cloud instead of running locally:</p>
+<pre><code class="language-bash">export COGNEE_SERVICE_URL=&quot;https://your-instance.cognee.ai&quot;
+export COGNEE_API_KEY=&quot;ck_...&quot;
+</code></pre>
+<p>The plugin hooks into Claude Code's lifecycle — <code>SessionStart</code> initializes memory, <code>PostToolUse</code> captures actions, <code>UserPromptSubmit</code> injects relevant context, <code>PreCompact</code> preserves memory across context resets, and <code>SessionEnd</code> bridges session data into the permanent graph.</p>
+<h3>Hermes Agent</h3>
+<p>Enable Cognee as the memory provider in <a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a> for session-aware knowledge graph memory with a</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/topoteretes/cognee#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">z-lab /</span>
+          <a href="https://github.com/z-lab/dflash" target="_blank" rel="noopener">dflash</a>
+        </div>
+        <div class="repo-desc">DFlash: Block Diffusion for Flash Speculative Decoding</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 1,681</span>
+      <span class="meta-item">🍴 115</span>
+      <span class="stars-today">⭐ 195 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>DFlash: Block Diffusion for Flash Speculative Decoding</h1>
+<p><a href="https://arxiv.org/abs/2602.06036"><strong>Paper</strong></a> | <a href="https://z-lab.ai/projects/dflash/"><strong>Blog</strong></a> | <a href="https://huggingface.co/collections/z-lab/dflash"><strong>Models</strong></a></p>
+<p><strong>DFlash</strong> is a lightweight <strong>block diffusion</strong> model designed for speculative decoding. It enables efficient and high-quality parallel drafting.</p>
+<p><img alt="DFlash Architecture" src="https://raw.githubusercontent.com/jianc99/jianc99.github.io/master/images/dflash_system.png" /></p>
+<p>https://github.com/user-attachments/assets/5b29cabb-eb95-44c9-8ffe-367c0758de8c</p>
+<h2>Supported Models</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>DFlash Draft</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3.6-35B-A3B (Preview)</td>
+<td><a href="https://huggingface.co/z-lab/Qwen3.6-35B-A3B-DFlash">z-lab/Qwen3.6-35B-A3B-DFlash</a></td>
+</tr>
+<tr>
+<td>Kimi-K2.5</td>
+<td><a href="https://huggingface.co/z-lab/Kimi-K2.5-DFlash">z-lab/Kimi-K2.5-DFlash</a></td>
+</tr>
+<tr>
+<td>Qwen3.5-4B</td>
+<td><a href="https://huggingface.co/z-lab/Qwen3.5-4B-DFlash">z-lab/Qwen3.5-4B-DFlash</a></td>
+</tr>
+<tr>
+<td>Qwen3.5-9B</td>
+<td><a href="https://huggingface.co/z-lab/Qwen3.5-9B-DFlash">z-lab/Qwen3.5-9B-DFlash</a></td>
+</tr>
+<tr>
+<td>Qwen3.5-27B</td>
+<td><a href="https://huggingface.co/z-lab/Qwen3.5-27B-DFlash">z-lab/Qwen3.5-27B-DFlash</a></td>
+</tr>
+<tr>
+<td>Qwen3.5-35B-A3B</td>
+<td><a href="https://huggingface.co/z-lab/Qwen3.5-35B-A3B-DFlash">z-lab/Qwen3.5-35B-A3B-DFlash</a></td>
+</tr>
+<tr>
+<td>Qwen3-Coder-Next</td>
+<td><a href="https://huggingface.co/z-lab/Qwen3-Coder-Next-DFlash">z-lab/Qwen3-Coder-Next-DFlash</a></td>
+</tr>
+<tr>
+<td>Qwen3-Coder-30B-A3B</td>
+<td><a href="https://huggingface.co/z-lab/Qwen3-Coder-30B-A3B-DFlash">z-lab/Qwen3-Coder-30B-A3B-DFlash</a></td>
+</tr>
+<tr>
+<td>gpt-oss-20b</td>
+<td><a href="https://huggingface.co/z-lab/gpt-oss-20b-DFlash">z-lab/gpt-oss-20b-DFlash</a></td>
+</tr>
+<tr>
+<td>gpt-oss-120b</td>
+<td><a href="https://huggingface.co/z-lab/gpt-oss-120b-DFlash">z-lab/gpt-oss-120b-DFlash</a></td>
+</tr>
+<tr>
+<td>Qwen3-4B (non-thinking)</td>
+<td><a href="https://huggingface.co/z-lab/Qwen3-4B-DFlash-b16">z-lab/Qwen3-4B-DFlash-b16</a></td>
+</tr>
+<tr>
+<td>Qwen3-8B (non-thinking)</td>
+<td><a href="https://huggingface.co/z-lab/Qwen3-8B-DFlash-b16">z-lab/Qwen3-8B-DFlash-b16</a></td>
+</tr>
+<tr>
+<td>Llama-3.1-8B-Instruct</td>
+<td><a href="https://huggingface.co/z-lab/LLaMA3.1-8B-Instruct-DFlash-UltraChat">z-lab/LLaMA3.1-8B-Instruct-DFlash-UltraChat</a></td>
+</tr>
+<tr>
+<td>Qwen3.5-122B-A10B</td>
+<td>Coming soon</td>
+</tr>
+<tr>
+<td>Qwen3.5-397B-A17B</td>
+<td>Coming soon</td>
+</tr>
+<tr>
+<td>GLM-5.1</td>
+<td>Coming soon</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Feel free to open a GitHub issue to request support for additional models. We will also open-source the training recipe soon, so you can train your own DFlash draft model to accelerate any LLM.</p>
+</blockquote>
+<h2>📦 Installation</h2>
+<p>Use a separate virtual environment for each to avoid conflict.</p>
+<table>
+<thead>
+<tr>
+<th>Backend</th>
+<th>Install command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Transformers</strong></td>
+<td><code>uv pip install -e ".[transformers]"</code></td>
+</tr>
+<tr>
+<td><strong>SGLang</strong></td>
+<td><code>uv pip install -e ".[sglang]"</code></td>
+</tr>
+<tr>
+<td><strong>vLLM</strong></td>
+<td>See below</td>
+</tr>
+<tr>
+<td><strong>MLX</strong> (Apple Silicon)</td>
+<td><code>pip install -e ".[mlx]"</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>vLLM:</strong> DFlash support requires the nightly build:</p>
+<pre><code class="language-bash">uv pip install -e &quot;.[vllm]&quot;
+uv pip install -U vllm --torch-backend=auto --extra-index-url https://wheels.vllm.ai/nightly
+</code></pre>
+<h2>🚀 Quick Start</h2>
+<h3>vLLM</h3>
+<pre><code class="language-bash">vllm serve Qwen/Qwen3.5-27B \
+  --speculative-config '{&quot;method&quot;: &quot;dflash&quot;, &quot;model&quot;: &quot;z-lab/Qwen3.5-27B-DFlash&quot;, &quot;num_speculative_tokens&quot;: 15}' \
+  --attention-backend flash_attn \
+  --max-num-batched-tokens 32768
+</code></pre>
+<h3>SGLang</h3>
+<pre><code class="language-bash">export SGLANG_ALLOW_OVERWRITE_LONGER_CONTEXT_LEN=1
+
+# Optional: enable schedule overlapping (experimental, may not be stable)
+# export SGLANG_ENABLE_SPEC_V2=1
+# export SGLANG_ENABLE_DFLASH_SPEC_V2=1
+# export SGLANG_ENABLE_OVERLAP_PLAN_STREAM=1
+
+python -m sglang.launch_server \
+    --model-path Qwen/Qwen3.5-35B-A3B \
+    --speculative-algorithm DFLASH \
+    --speculative-draft-model-path z-lab/Qwen3.5-35B-A3B-DFlash \
+    --speculative-num-draft-tokens 16 \
+    --tp-size 1 \
+    --attention-backend trtllm_mha \
+    --speculative-draft-attention-backend fa4 \
+    --mem-fraction-static 0.75 \
+    --mamba-scheduler-strategy extra_buffer \
+    --trust-remote-code
+</code></pre>
+<h3>Transformers</h3>
+<p>Only Qwen3 and LLaMA-3.1 models support the Transformers backend.</p>
+<pre><code class="language-python">from transformers import AutoModel, AutoModelForCausalLM, AutoTokenizer
+
+draft = AutoModel.from_pretrained(&quot;z-lab/Qwen3-8B-DFlash-b16&quot;, trust_remote_code=True, dtype=&quot;auto&quot;, device_map=&quot;cuda:0&quot;).eval()
+target = AutoModelForCausalLM.from_pretrained(&quot;Qwen/Qwen3-8B&quot;, dtype=&quot;auto&quot;, device_map=&quot;cuda:0&quot;).eval()
+tokenizer = AutoTokenizer.from_pretrained(&quot;Qwen/Qwen3-8B&quot;)
+
+messages = [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;How many positive whole-number divisors does 196 have?&quot;}]
+input_ids = tokenizer.apply_chat_template(messages, return_tensors=&quot;pt&quot;, add_generation_prompt=True, enable_thinking=False).to(draft.device)
+
+output = draft.spec_generate(input_ids=input_ids, max_new_tokens=2048, temperature=0.0, target=target, stop_token_ids=[tokenizer.eos_token_id])
+print(tokenizer.decode(output[0], skip_special_tokens=False))
+</code></pre>
+<h3>MLX (Apple Silicon)</h3>
+<p>There have been many great community DFlash implementations on MLX; we provide a simple and efficient one here, tested on an Apple M5 Pro with Qwen3 and Qwen3.5 models.</p>
+<pre><code class="language-python">from dflash.model_mlx import load, load_draft, stream_generate
+
+model, tokenizer = load(&quot;Qwen/Qwen3.5-4B&quot;)
+draft = load_draft(&quot;z-lab/Qwen3.5-4B-DFlash&quot;)
+
+messages = [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;How many positive whole-number divisors does 196 have?&quot;}]
+prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
+tps = 0.0
+for r in stream_generate(model, draft, tokenizer, prompt, block_size=16, max_tokens=2048, temperature=0.6):
+    print(r.text, end=&quot;&quot;, flush=True)
+    tps = r.generation_tps
+print(f&quot;\nThroughput: {tps:.2f} tok/s&quot;)
+</code></pre>
+<h2>📊 Evaluation</h2>
+<p>All benchmarks share the same datasets (gsm8k, math500, humaneval, mbpp, mt-bench). Datasets are automatically downloaded and cached as JSONL in <code>cache/</code> on first run.</p>
+<p><strong>vLLM</strong>:</p>
+<pre><code class="language-bash">python -m dflash.benchmark --backend vllm \
+    --base-url http://127.0.0.1:8000 --model Qwen/Qwen3.5-27B \
+    --dataset gsm8k --num-prompts 128 --concurrency 1 --enable-thinking
+</code></pre>
+<p><strong>SGLang</strong>:</p>
+<pre><code class="language-bash">python -m dflash.benchmark --backend sglang \
+    --base-url http://127.0.0.1:30000 --model Qwen/Qwen3.5-35B-A3B \
+    --dataset gsm8k --num-prompts 128 --concurrency 1 --enable-thinking
+</code></pre>
+<p><strong>Transformers</strong> (Qwen3 and LLaMA only):</p>
+<pre><code class="language-bash">torchrun --nproc_per_node=8 -m dflash.benchmark --backend transformers \
+    --model Qwen/Qwen3-8B --draft-model z-lab/Qwen3-8B-DFlash-b16 \
+    --dataset gsm8k --max-samples 128
+</code></pre>
+<p><strong>MLX</strong>:</p>
+<pre><code class="language-bash">python -m dflash.benchmark --backend mlx \
+    --model Qwen/Qwen3.5-4B --draft-model z-lab/Qwen3.5-4B-DFlash \
+    --dataset gsm8k --max-samples 128 --enable-thinking
+</code></pre>
+<h2>Acknowledgement</h2>
+<p>Huge thanks to <a href="https://github.com/dcw02">@dcw02</a>, <a href="https://github.com/gongy">@gongy</a>, and the team at <a href="https://github.com/modal-labs">@modal-labs</a> for their fast, high-quality support in bringing DFlash to SGLang. And huge thanks as well to <a href="https://github.com/benchislett">@benchislett</a> at NVIDIA for his work in bringing DFlash to vLLM and helping make it available to the broader serving community.</p>
+<h2>Citation</h2>
+<p>If you find DFlash useful, please cite our work. To share feedback on DFlash or request new model support, please fill out this form: <a href="https://forms.gle/4YNwfqb4nJdqn6hq9">DFlash Feedback</a>.</p>
+<pre><code class="language-bibtex">@article{chen2026dflash,
+  title   = {{DFlash: Block Diffusion for Flash Speculative Decoding}},
+  author  = {Chen, Jian and Liang, Yesheng and Liu, Zhijian},
+  journal = {arXiv preprint arXiv:2602.06036},
+  year    = {2026}
+}
+</code></pre>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/z-lab/dflash#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Lordog /</span>
+          <a href="https://github.com/Lordog/dive-into-llms" target="_blank" rel="noopener">dive-into-llms</a>
+        </div>
+        <div class="repo-desc">《动手学大模型Dive into LLMs》系列编程实践教程</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+      <span class="meta-item">⭐ 30,999</span>
+      <span class="meta-item">🍴 3,753</span>
+      <span class="stars-today">⭐ 1,385 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+<h1 align="center">《动手学大模型》系列编程实践教程</h1>
+</p>
+<p align="center">
+    <a href="https://img.shields.io/badge/version-v0.1.0-blue">
+      <img alt="version" src="https://img.shields.io/badge/version-v0.1.0-blue?color=FF8000?color=009922" />
+    </a>
+  <a >
+       <img alt="Status-building" src="https://img.shields.io/badge/Status-building-blue" />
+    </a>
+  <a >
+       <img alt="PRs-Welcome" src="https://img.shields.io/badge/PRs-Welcome-red" />
+    </a>
+    <a href="https://github.com/Lordog/dive-into-llms/stargazers">
+       <img alt="stars" src="https://img.shields.io/github/stars/Lordog/dive-into-llms" />
+    </a>
+    <a href="https://github.com/Lordog/dive-into-llms/network/members">
+       <img alt="FORK" src="https://img.shields.io/github/forks/Lordog/dive-into-llms?color=FF8000" />
+    </a>
+    <a href="https://github.com/Lordog/dive-into-llms/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/Lordog/dive-into-llms?color=0088ff"/>
+    </a>
+    <br />
+</p>
+
+<div align="center">
+<p align="center">
+  <a href="#项目动机">项目动机</a>/
+  <a href="#教程目录">教程目录</a>/
+  <a href="#贡献者列表">贡献者列表</a>
+</p>
+</div>
+
+<h2>💡 Updates</h2>
+<p>2025/06/06  感谢各位朋友们的关注和积极反馈！我们从以下两个方面对本教程进行了更新：</p>
+<ul>
+<li>[x] 上线国产化《大模型开发全流程》公益教程（含PPT、实验手册和视频），此处特别感谢华为昇腾社区的支持！</li>
+<li>[x] 在原系列编程实践教程的基础上进行内容更新，并增加了新的主题（数学推理、GUI Agent、大模型对齐、隐写术等）！</li>
+</ul>
+<h2>🎯 项目动机</h2>
+<p>《动手学大模型》系列编程实践教程，由上海交通大学《自然语言处理前沿技术》（NIS8021）、《人工智能安全技术》课程（NIS3353）讲义拓展而来（教师：<a href="https://bcmi.sjtu.edu.cn/home/zhangzs/">张倬胜</a>），旨在提供大模型相关的入门编程参考。本教程属公益性质、完全免费。通过简单实践，帮助同学们快速入门大模型，更好地开展课程设计或学术研究。</p>
+<h2>📚 教程目录</h2>
+<table>
+<thead>
+<tr>
+<th>教程内容</th>
+<th>简介</th>
+<th>地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微调与部署</td>
+<td>预训练模型微调与部署指南：想提升预训练模型在指定任务上的性能？让我们选择合适的预训练模型，在特定任务上进行微调，并将微调后的模型部署成方便使用的Demo！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter1/dive-into-llm.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter1/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter1/dive-tuning.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>提示学习与思维链</td>
+<td>大模型的API调用与推理指南：“AI在线求鼓励？大模型对一些问题的回答令人大跌眼镜，但它可能只是想要一句「鼓励」”</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter2/dive-into-prompting.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter2/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter2/dive-prompting.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>知识编辑</td>
+<td>语言模型的编辑方法和工具：想操控语言模型在对指定知识的记忆？让我们选择合适的编辑方法，对特定知识进行编辑，并将对编辑后的模型进行验证！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter3/dive_edit_0410.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter3/README.md">教程</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter3/dive_edit.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>数学推理</td>
+<td>如何让大模型学会数学推理？让我们快速蒸馏一个迷你R1！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter4/math.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter4/README.md">教程</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter4/sft_math.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>模型水印</td>
+<td>语言模型的文本水印：在语言模型生成的内容中嵌入人类不可见的水印</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter5/watermark.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter5/README.md">教程</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter5/watermark.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>越狱攻击</td>
+<td>想要得到更好的安全，要先从学会攻击开始。让我们了解越狱攻击如何撬开大模型的嘴！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter6/dive-Jailbreak.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter6/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter6/dive-jailbreak.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>大模型隐写</td>
+<td>“看不见的墨水”！想让大模型在流畅回答的同时，悄悄携带只有“自己人”能识别的信息吗？大模型隐写告诉你！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter7/stega.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter7/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter7/llm_stega.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>多模态模型</td>
+<td>作为能够更充分模拟真实世界的多模态大语言模型，其如何实现更强大的多模态理解和生成能力？多模态大语言模型是否能够帮助实现AGI？</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter8/mllms.pdf">课件</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter8/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter8/mllms.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>GUI智能体</td>
+<td>想要饭来张口、解放双手？那么让我们一起来让AI Agent替你点外卖、回消息、购物比价吧！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter9/GUIagent.pdf">课件</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter9/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter9/GUIagent.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>智能体安全</td>
+<td>大模型智能体迈向了未来操作系统之旅。然而，大模型在开放智能体场景中能意识到风险威胁吗？</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter10/dive-into-safety.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter10/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter10/agent.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>RLHF安全对齐</td>
+<td>基于PPO的RLHF实验指南：本教程”十分危险“，阅读后请检查你的大模型是否在冷笑。</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter11/RLHF.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter11/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter11/RLHF.ipynb">脚本</a>]</td>
+</tr>
+</tbody>
+</table>
+<h2>🔥 新上线：国产化《大模型开发全流程》</h2>
+<ul>
+<li><strong>✨ 我们联合华为昇腾推出的《大模型开发全流程》公益教程正式上线！前沿技术+代码实践，手把手带你玩转AI大模型 ✨</strong>: </li>
+</ul>
+<p>在《动手学大模型》原系列教程的基础上，我们联合华为开发了《大模型开发全流程》系列课程。本系列教程基于昇腾基础软硬件开发，覆盖PPT、实验手册、视频等教程形式。该教程分为初级、中级、高级系列，面向不同的大模型实践需求，旨在将前沿技术通过代码实践的方式，为相关研究者、开发者由浅入深地提供快速上手、应用昇腾已支持模型和全新模型迁移调优的全流程开发指南。</p>
+<ul>
+<li><strong>🚀 前往昇腾社区探索《大模型开发全流程》系列课程</strong>： </li>
+</ul>
+<p>👉《<a href="https://www.hiascend.com/edu/growth/lm-development#classification-floor-1">大模型开发学习专区</a>》@ 昇腾社区 👈 </p>
+<ul>
+<li><strong>✨ 课程内容展示 ✨</strong></li>
+</ul>
+<!-- <img src="./pics/icon/title.jpg" width="300"/>
+  <img src="./pics/icon/cover.png" width="300"/>
+  <img src="./pics/icon/team.png" width="300"/>
+  <img src="./pics/icon/agent.png" width="300"/> -->
+
+<p align = "center">
+  <img src="./pics/icon/title.jpg" width="48%"/>
+  <img src="./pics/icon/cover.png" width="48%"/>
+  <img src="./pics/icon/team.png" width="48%"/>
+  <img src="./pics/icon/agent.png" width="48%"/>
+</p>
+
+<h2>🙏 免责声明</h2>
+<p>本教程所有内容仅仅来自于贡献者的个人经验、互联网数据、日常科研工作中的相关积累。所有技巧仅供参考，不保证百分百正确。若有任何问题，欢迎提交 Issue 或 PR。另本项目所用徽章来自互联网，如侵犯了您的图片版权请联系我们删除，谢谢。</p>
+<h2>🤝 欢迎贡献</h2>
+<p>本教程目前是一个正在进行中的项目，如有疏漏在所难免，欢迎任何的PR及issue讨论。</p>
+<h2>❤️ 贡献者列表</h2>
+<p>感谢以下老师和同学对本项目的支持与贡献：</p>
+<p><strong>《动手学大模型》系列教程开发团队</strong>：</p>
+<ul>
+<li>
+<p>上海交通大学：<a href="https://bcmi.sjtu.edu.cn/home/zhangzs/">张倬胜</a>、<a href="https://github.com/Lordog">袁童鑫</a>、<a href="https://scholar.google.com/citations?user=LpUi3EgAAAAJ&amp;hl=zh-CN&amp;oi=ao">马欣贝</a>、 <a href="https://zwhe99.github.io">何志威</a>、<a href="https://scholar.google.com/citations?user=tFYUBLkAAAAJ&amp;hl=en">杜巍</a>、<a href="https://dongdongzhaoup.github.io/">赵皓东</a>、<a href="https://zrw00.github.io/">吴宗儒</a>、<a href="https://wuzheng02.github.io/">吴铮</a>、<a href="https://github.com/LZ-Dong">董凌众</a>、<a href="https://aslan-yulong.github.io/">张玉龙</a></p>
+</li>
+<li>
+<p>新加坡国立大学：<a href="http://haofei.vip/">费豪</a></p>
+</li>
+</ul>
+<p><strong>《大模型开发全流程》系列教程开发团队：</strong></p>
+<ul>
+<li>上海交通大学：<a href="https://bcmi.sjtu.edu.cn/home/zhangzs/">张倬胜</a>、<a href="https://infosec.sjtu.edu.cn/DirectoryDetail.aspx?id=75">刘功申</a>、<a href="https://scholar.google.com/citations?user=d-dNtjrMJ5YC&amp;hl=en">陈星宇</a>、<a href="https://scholar.google.com/citations?user=qxnwzDUAAAAJ&amp;hl=en">程彭洲</a>、<a href="https://github.com/LZ-Dong">董凌众</a>、 <a href="https://zwhe99.github.io">何志威</a>、<a href="https://scholar.google.com/citations?user=f8PPcnoAAAAJ&amp;hl=en">鞠天杰</a>、<a href="https://scholar.google.com/citations?user=LpUi3EgAAAAJ&amp;hl=zh-CN&amp;oi=ao">马欣贝</a>、 <a href="https://scholar.google.com/citations?hl=zh-CN&amp;user=qBM1UbUAAAAJ&amp;view_op=list_works&amp;gmla=AIfU4H6PG9JyjRub6BYIIZ4isQE7MBAM3Eoec6OJfX4z_8-pOE8bI1Wgdo3XL5qOZWR3U-h-lIP2q0zXt5gzyFKMSg7MNnBBWLv5d1IVG30UANczTP0">吴铮</a>、<a href="https://zrw00.github.io/">吴宗儒</a>、[闫子赫](https://scholar.google</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Lordog/dive-into-llms#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">openai /</span>
+          <a href="https://github.com/openai/openai-agents-python" target="_blank" rel="noopener">openai-agents-python</a>
+        </div>
+        <div class="repo-desc">A lightweight, powerful framework for multi-agent workflows</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 21,405</span>
+      <span class="meta-item">🍴 3,459</span>
+      <span class="stars-today">⭐ 172 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>OpenAI Agents SDK <a href="https://pypi.org/project/openai-agents/"><img alt="PyPI" src="https://img.shields.io/pypi/v/openai-agents?label=pypi%20package" /></a></h1>
+<p>The OpenAI Agents SDK is a lightweight yet powerful framework for building multi-agent workflows. It is provider-agnostic, supporting the OpenAI Responses and Chat Completions APIs, as well as 100+ other LLMs.</p>
+<p><img src="https://cdn.openai.com/API/docs/images/orchestration.png" alt="Image of the Agents Tracing UI" style="max-height: 803px;"></p>
+<blockquote>
+<p>[!NOTE]<br />
+Looking for the JavaScript/TypeScript version? Check out <a href="https://github.com/openai/openai-agents-js">Agents SDK JS/TS</a>.</p>
+</blockquote>
+<h3>Core concepts:</h3>
+<ol>
+<li><a href="https://openai.github.io/openai-agents-python/agents"><strong>Agents</strong></a>: LLMs configured with instructions, tools, guardrails, and handoffs</li>
+<li><a href="https://openai.github.io/openai-agents-python/sandbox_agents"><strong>Sandbox Agents</strong></a>: Agents preconfigured to work with a container to perform work over long time horizons.</li>
+<li><strong><a href="https://openai.github.io/openai-agents-python/tools/#agents-as-tools">Agents as tools</a> / <a href="https://openai.github.io/openai-agents-python/handoffs/">Handoffs</a></strong>: Delegating to other agents for specific tasks</li>
+<li><a href="https://openai.github.io/openai-agents-python/tools/"><strong>Tools</strong></a>: Various Tools let agents take actions (functions, MCP, hosted tools)</li>
+<li><a href="https://openai.github.io/openai-agents-python/guardrails/"><strong>Guardrails</strong></a>: Configurable safety checks for input and output validation</li>
+<li><a href="https://openai.github.io/openai-agents-python/human_in_the_loop/"><strong>Human in the loop</strong></a>: Built-in mechanisms for involving humans across agent runs</li>
+<li><a href="https://openai.github.io/openai-agents-python/sessions/"><strong>Sessions</strong></a>: Automatic conversation history management across agent runs</li>
+<li><a href="https://openai.github.io/openai-agents-python/tracing/"><strong>Tracing</strong></a>: Built-in tracking of agent runs, allowing you to view, debug and optimize your workflows</li>
+<li><a href="https://openai.github.io/openai-agents-python/realtime/quickstart/"><strong>Realtime Agents</strong></a>: Build powerful voice agents with <code>gpt-realtime-1.5</code> and full agent features</li>
+</ol>
+<p>Explore the <a href="https://github.com/openai/openai-agents-python/tree/main/examples">examples</a> directory to see the SDK in action, and read our <a href="https://openai.github.io/openai-agents-python/">documentation</a> for more details.</p>
+<h2>Get started</h2>
+<p>To get started, set up your Python environment (Python 3.10 or newer required), and then install OpenAI Agents SDK package.</p>
+<h3>venv</h3>
+<pre><code class="language-bash">python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install openai-agents
+</code></pre>
+<p>For voice support, install with the optional <code>voice</code> group: <code>pip install 'openai-agents[voice]'</code>. For Redis session support, install with the optional <code>redis</code> group: <code>pip install 'openai-agents[redis]'</code>.</p>
+<h3>uv</h3>
+<p>If you're familiar with <a href="https://docs.astral.sh/uv/">uv</a>, installing the package would be even easier:</p>
+<pre><code class="language-bash">uv init
+uv add openai-agents
+</code></pre>
+<p>For voice support, install with the optional <code>voice</code> group: <code>uv add 'openai-agents[voice]'</code>. For Redis session support, install with the optional <code>redis</code> group: <code>uv add 'openai-agents[redis]'</code>.</p>
+<h2>Run your first Sandbox Agent</h2>
+<p><a href="https://openai.github.io/openai-agents-python/sandbox_agents">Sandbox Agents</a> are new in version 0.14.0. A sandbox agent is an agent that uses a computer environment to perform real work with a filesystem, in an environment you configure and control. Sandbox agents are useful when the agent needs to inspect files, run commands, apply patches, or carry workspace state across longer tasks.</p>
+<pre><code class="language-python">from agents import Runner
+from agents.run import RunConfig
+from agents.sandbox import Manifest, SandboxAgent, SandboxRunConfig
+from agents.sandbox.entries import GitRepo
+from agents.sandbox.sandboxes import UnixLocalSandboxClient
+
+agent = SandboxAgent(
+    name=&quot;Workspace Assistant&quot;,
+    instructions=&quot;Inspect the sandbox workspace before answering.&quot;,
+    default_manifest=Manifest(
+        entries={
+            &quot;repo&quot;: GitRepo(repo=&quot;openai/openai-agents-python&quot;, ref=&quot;main&quot;),
+        }
+    ),
+)
+
+result = Runner.run_sync(
+    agent,
+    &quot;Inspect the repo README and summarize what this project does.&quot;,
+    # Run this agent on the local filesystem
+    run_config=RunConfig(sandbox=SandboxRunConfig(client=UnixLocalSandboxClient())),
+)
+print(result.final_output)
+
+# This project provides a Python SDK for building multi-agent workflows.
+</code></pre>
+<p>(<em>If running this, ensure you set the <code>OPENAI_API_KEY</code> environment variable</em>)</p>
+<p>(<em>For Jupyter notebook users, see <a href="https://github.com/openai/openai-agents-python/blob/main/examples/basic/hello_world_jupyter.ipynb">hello_world_jupyter.ipynb</a></em>)</p>
+<p>Explore the <a href="https://github.com/openai/openai-agents-python/tree/main/examples">examples</a> directory to see the SDK in action, and read our <a href="https://openai.github.io/openai-agents-python/">documentation</a> for more details.</p>
+<h2>Acknowledgements</h2>
+<p>We'd like to acknowledge the excellent work of the open-source community, especially:</p>
+<ul>
+<li><a href="https://docs.pydantic.dev/latest/">Pydantic</a></li>
+<li><a href="https://github.com/psf/requests">Requests</a></li>
+<li><a href="https://github.com/modelcontextprotocol/python-sdk">MCP Python SDK</a></li>
+<li><a href="https://github.com/mkdocstrings/griffe">Griffe</a></li>
+</ul>
+<p>This library has these optional dependencies:</p>
+<ul>
+<li><a href="https://github.com/python-websockets/websockets">websockets</a></li>
+<li><a href="https://github.com/sqlalchemy/sqlalchemy">SQLAlchemy</a></li>
+<li><a href="https://github.com/mozilla-ai/any-llm">any-llm</a> and <a href="https://github.com/BerriAI/litellm">LiteLLM</a></li>
+</ul>
+<p>We also rely on the following tools to manage the project:</p>
+<ul>
+<li><a href="https://github.com/astral-sh/uv">uv</a> and <a href="https://github.com/astral-sh/ruff">ruff</a></li>
+<li><a href="https://github.com/python/mypy">mypy</a> and <a href="https://github.com/microsoft/pyright">Pyright</a></li>
+<li><a href="https://github.com/pytest-dev/pytest">pytest</a> and <a href="https://github.com/coveragepy/coveragepy">Coverage.py</a></li>
+<li><a href="https://github.com/squidfunk/mkdocs-material">MkDocs</a></li>
+</ul>
+<p>We're committed to continuing to build the Agents SDK as an open source framework so others in the community can expand on our approach.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/openai/openai-agents-python#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#12</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">EvoMap /</span>
+          <a href="https://github.com/EvoMap/evolver" target="_blank" rel="noopener">evolver</a>
+        </div>
+        <div class="repo-desc">The GEP-Powered Self-Evolution Engine for AI Agents. Genome Evolution Protocol. | evomap.ai</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 3,363</span>
+      <span class="meta-item">🍴 353</span>
+      <span class="stars-today">⭐ 812 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>🧬 Evolver</h1>
+<p><a href="https://github.com/EvoMap/evolver/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/EvoMap/evolver?style=social" /></a><br />
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" /></a><br />
+<a href="https://nodejs.org/"><img alt="Node.js &gt;= 18" src="https://img.shields.io/badge/Node.js-%3E%3D%2018-green.svg" /></a><br />
+<a href="https://github.com/EvoMap/evolver/commits/main"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/EvoMap/evolver" /></a><br />
+<a href="https://github.com/EvoMap/evolver/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/EvoMap/evolver" /></a></p>
+<p><img alt="Evolver Cover" src="assets/cover.png" /></p>
+<p><strong><a href="https://evomap.ai">evomap.ai</a></strong> | <a href="https://evomap.ai/wiki">Documentation</a> | <a href="README.zh-CN.md">Chinese / 中文文档</a> | <a href="https://github.com/EvoMap/evolver">GitHub</a> | <a href="https://github.com/EvoMap/evolver/releases">Releases</a></p>
+<hr />
+<blockquote>
+<p><strong>"Evolution is not optional. Adapt or die."</strong></p>
+</blockquote>
+<p><strong>Three lines</strong><br />
+- <strong>What it is</strong>: A <a href="https://evomap.ai/wiki">GEP</a>-powered self-evolution engine for AI agents.<br />
+- <strong>Pain it solves</strong>: Turns ad hoc prompt tweaks into auditable, reusable evolution assets.<br />
+- <strong>Use in 30 seconds</strong>: Clone, install, run <code>node index.js</code> -- get a GEP-guided evolution prompt.</p>
+<h2>EvoMap -- The Evolution Network</h2>
+<p>Evolver is the core engine behind <strong><a href="https://evomap.ai">EvoMap</a></strong>, a network where AI agents evolve through validated collaboration. Visit <a href="https://evomap.ai">evomap.ai</a> to explore the full platform -- live agent maps, evolution leaderboards, and the ecosystem that turns isolated prompt tweaks into shared, auditable intelligence.</p>
+<p>Keywords: protocol-constrained evolution, audit trail, genes and capsules, prompt governance.</p>
+<h2>Installation</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li><strong><a href="https://nodejs.org/">Node.js</a></strong> &gt;= 18</li>
+<li><strong><a href="https://git-scm.com/">Git</a></strong> -- Required. Evolver uses git for rollback, blast radius calculation, and solidify. Running in a non-git directory will fail with a clear error message.</li>
+</ul>
+<h3>Setup</h3>
+<pre><code class="language-bash">git clone https://github.com/EvoMap/evolver.git
+cd evolver
+npm install
+</code></pre>
+<p>To connect to the <a href="https://evomap.ai">EvoMap network</a>, create a <code>.env</code> file (optional):</p>
+<pre><code class="language-bash"># Register at https://evomap.ai to get your Node ID
+A2A_HUB_URL=https://evomap.ai
+A2A_NODE_ID=your_node_id_here
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: Evolver works fully offline without <code>.env</code>. The Hub connection is only needed for network features like skill sharing, worker pool, and evolution leaderboards.</p>
+</blockquote>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Single evolution run -- scans logs, selects a Gene, outputs a GEP prompt
+node index.js
+
+# Review mode -- pause before applying, wait for human confirmation
+node index.js --review
+
+# Continuous loop -- runs as a background daemon
+node index.js --loop
+</code></pre>
+<h2>What Evolver Does (and Does Not Do)</h2>
+<p><strong>Evolver is a prompt generator, not a code patcher.</strong> Each evolution cycle:</p>
+<ol>
+<li>Scans your <code>memory/</code> directory for runtime logs, error patterns, and signals.</li>
+<li>Selects the best-matching <a href="https://evomap.ai/wiki">Gene or Capsule</a> from <code>assets/gep/</code>.</li>
+<li>Emits a strict, protocol-bound GEP prompt that guides the next evolution step.</li>
+<li>Records an auditable <a href="https://evomap.ai/wiki">EvolutionEvent</a> for traceability.</li>
+</ol>
+<p><strong>It does NOT</strong>:<br />
+- Automatically edit your source code.<br />
+- Execute arbitrary shell commands (see <a href="#security-model">Security Model</a>).<br />
+- Require an internet connection for core functionality.</p>
+<h3>How It Integrates with Host Runtimes</h3>
+<p>When running inside a host runtime (e.g., <a href="https://openclaw.com">OpenClaw</a>), the <code>sessions_spawn(...)</code> text printed to stdout can be picked up by the host to trigger follow-up actions. <strong>In standalone mode, these are just text output</strong> -- nothing is executed automatically.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mode</th>
+<th style="text-align: left;">Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Standalone (<code>node index.js</code>)</td>
+<td style="text-align: left;">Generates prompt, prints to stdout, exits</td>
+</tr>
+<tr>
+<td style="text-align: left;">Loop (<code>node index.js --loop</code>)</td>
+<td style="text-align: left;">Repeats the above in a daemon loop with adaptive sleep</td>
+</tr>
+<tr>
+<td style="text-align: left;">Inside OpenClaw</td>
+<td style="text-align: left;">Host runtime interprets stdout directives like <code>sessions_spawn(...)</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Who This Is For / Not For</h2>
+<p><strong>For</strong><br />
+- Teams maintaining agent prompts and logs at scale<br />
+- Users who need auditable evolution traces (<a href="https://evomap.ai/wiki">Genes</a>, <a href="https://evomap.ai/wiki">Capsules</a>, <a href="https://evomap.ai/wiki">Events</a>)<br />
+- Environments requiring deterministic, protocol-bound changes</p>
+<p><strong>Not For</strong><br />
+- One-off scripts without logs or history<br />
+- Projects that require free-form creative changes<br />
+- Systems that cannot tolerate protocol overhead</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Auto-Log Analysis</strong>: scans memory and history files for errors and patterns.</li>
+<li><strong>Self-Repair Guidance</strong>: emits repair-focused directives from signals.</li>
+<li><strong><a href="https://evomap.ai/wiki">GEP Protocol</a></strong>: standardized evolution with reusable assets.</li>
+<li><strong>Mutation + Personality Evolution</strong>: each evolution run is gated by an explicit Mutation object and an evolvable PersonalityState.</li>
+<li><strong>Configurable Strategy Presets</strong>: <code>EVOLVE_STRATEGY=balanced|innovate|harden|repair-only</code> controls intent balance.</li>
+<li><strong>Signal De-duplication</strong>: prevents repair loops by detecting stagnation patterns.</li>
+<li><strong>Operations Module</strong> (<code>src/ops/</code>): portable lifecycle, skill monitoring, cleanup, self-repair, wake triggers -- zero platform dependency.</li>
+<li><strong>Protected Source Files</strong>: prevents autonomous agents from overwriting core evolver code.</li>
+<li><strong><a href="https://evomap.ai">Skill Store</a></strong>: download and share reusable skills via <code>node index.js fetch --skill &lt;id&gt;</code>.</li>
+</ul>
+<h2>Typical Use Cases</h2>
+<ul>
+<li>Harden a flaky agent loop by enforcing validation before edits</li>
+<li>Encode recurring fixes as reusable <a href="https://evomap.ai/wiki">Genes and Capsules</a></li>
+<li>Produce auditable evolution events for review or compliance</li>
+</ul>
+<h2>Anti-Examples</h2>
+<ul>
+<li>Rewriting entire subsystems without signals or constraints</li>
+<li>Using the protocol as a generic task runner</li>
+<li>Producing changes without recording EvolutionEvent</li>
+</ul>
+<h2>Usage</h2>
+<h3>Standard Run (Automated)</h3>
+<pre><code class="language-bash">node index.js
+</code></pre>
+<h3>Review Mode (Human-in-the-Loop)</h3>
+<pre><code class="language-bash">node index.js --review
+</code></pre>
+<h3>Continuous Loop</h3>
+<pre><code class="language-bash">node index.js --loop
+</code></pre>
+<h3>With Strategy Preset</h3>
+<pre><code class="language-bash">EVOLVE_STRATEGY=innovate node index.js --loop   # maximize new features
+EVOLVE_STRATEGY=harden node index.js --loop     # focus on stability
+EVOLVE_STRATEGY=repair-only node index.js --loop # emergency fix mode
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Strategy</th>
+<th style="text-align: left;">Innovate</th>
+<th style="text-align: left;">Optimize</th>
+<th style="text-align: left;">Repair</th>
+<th style="text-align: left;">When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>balanced</code> (default)</td>
+<td style="text-align: left;">50%</td>
+<td style="text-align: left;">30%</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">Daily operation, steady growth</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>innovate</code></td>
+<td style="text-align: left;">80%</td>
+<td style="text-align: left;">15%</td>
+<td style="text-align: left;">5%</td>
+<td style="text-align: left;">System stable, ship new features fast</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>harden</code></td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">40%</td>
+<td style="text-align: left;">40%</td>
+<td style="text-align: left;">After major changes, focus on stability</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>repair-only</code></td>
+<td style="text-align: left;">0%</td>
+<td style="text-align: left;">20%</td>
+<td style="text-align: left;">80%</td>
+<td style="text-align: left;">Emergency state, all-out repair</td>
+</tr>
+</tbody>
+</table>
+<h3>Operations (Lifecycle Management)</h3>
+<pre><code class="language-bash">node src/ops/lifecycle.js start    # start evolver loop in background
+node src/ops/lifecycle.js stop     # graceful stop (SIGTERM -&gt; SIGKILL)
+node src/ops/lifecycle.js status   # show running state
+node src/ops/lifecycle.js check    # health check + auto-restart if stagnant
+</code></pre>
+<h3>Skill Store</h3>
+<pre><code class="language-bash"># Download a skill from the EvoMap network
+node index.js fetch --skill &lt;skill_id&gt;
+
+# Specify output directory
+node index.js fetch --skill &lt;skill_id&gt; --out=./my-skills/
+</code></pre>
+<p>Requires <code>A2A_HUB_URL</code> to be configured. Browse available skills at <a href="https://evomap.ai">evomap.ai</a>.</p>
+<h3>Cron / External Runner Keepalive</h3>
+<p>If you run a periodic keepalive/tick from a cron/agent runner, prefer a single simple command with minimal quoting.</p>
+<p>Recommended:</p>
+<pre><code class="language-bash">bash -lc 'node index.js --loop'
+</code></pre>
+<p>Avoid composing multiple shell segments inside the cron payload (for example <code>...; echo EXIT:$?</code>) because nested quotes can break after passing through multiple serialization/escaping layers.</p>
+<p>For process managers like pm2, the same principle applies -- wrap the command simply:</p>
+<pre><code class="language-bash">pm2 start &quot;bash -lc 'node index.js --loop'&quot; --name evolver --cron-restart=&quot;0 */6 * * *&quot;
+</code></pre>
+<h2>Connecting to EvoMap Hub</h2>
+<p>Evolver can optionally connect to the <a href="https://evomap.ai">EvoMap Hub</a> for network features. This is <strong>not required</strong> for core evolution functionality.</p>
+<h3></h3>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/EvoMap/evolver#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#13</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">SimoneAvogadro /</span>
+          <a href="https://github.com/SimoneAvogadro/android-reverse-engineering-skill" target="_blank" rel="noopener">android-reverse-engineering-skill</a>
+        </div>
+        <div class="repo-desc">Claude Code skill to support Android app&#x27;s reverse engineering</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 2,399</span>
+      <span class="meta-item">🍴 263</span>
+      <span class="stars-today">⭐ 375 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Android Reverse Engineering &amp; API Extraction — Claude Code skill</h1>
+<p>A Claude Code skill that decompiles Android APK/XAPK/JAR/AAR files and <strong>extracts the HTTP APIs</strong> used by the app — Retrofit endpoints, OkHttp calls, hardcoded URLs, authentication patterns — so you can document and reproduce them without the original source code.</p>
+<h2>What it does</h2>
+<ul>
+<li><strong>Decompiles</strong> APK, XAPK, JAR, and AAR files using jadx and Fernflower/Vineflower (single engine or side-by-side comparison)</li>
+<li><strong>Extracts and documents APIs</strong>: Retrofit endpoints, OkHttp calls, hardcoded URLs, auth headers and tokens</li>
+<li><strong>Traces call flows</strong> from Activities/Fragments through ViewModels and repositories down to HTTP calls</li>
+<li><strong>Analyzes</strong> app structure: manifest, packages, architecture patterns</li>
+<li><strong>Handles obfuscated code</strong>: strategies for navigating ProGuard/R8 output</li>
+</ul>
+<h2>Requirements</h2>
+<p><strong>Required:</strong><br />
+- Java JDK 17+<br />
+- <a href="https://github.com/skylot/jadx">jadx</a> (CLI)</p>
+<p><strong>Optional (recommended):</strong><br />
+- <a href="https://github.com/Vineflower/vineflower">Vineflower</a> or <a href="https://github.com/JetBrains/fernflower">Fernflower</a> — better output on complex Java code<br />
+- <a href="https://github.com/pxb1988/dex2jar">dex2jar</a> — needed to use Fernflower on APK/DEX files</p>
+<p>See <code>plugins/android-reverse-engineering/skills/android-reverse-engineering/references/setup-guide.md</code> for detailed installation instructions.</p>
+<h2>Installation</h2>
+<h3>From GitHub (recommended)</h3>
+<p>Inside Claude Code, run:</p>
+<pre><code>/plugin marketplace add SimoneAvogadro/android-reverse-engineering-skill
+/plugin install android-reverse-engineering@android-reverse-engineering-skill
+</code></pre>
+<p>The skill will be permanently available in all future sessions.</p>
+<h3>From a local clone</h3>
+<pre><code class="language-bash">git clone https://github.com/SimoneAvogadro/android-reverse-engineering-skill.git
+</code></pre>
+<p>Then in Claude Code:</p>
+<pre><code>/plugin marketplace add /path/to/android-reverse-engineering-skill
+/plugin install android-reverse-engineering@android-reverse-engineering-skill
+</code></pre>
+<h2>Usage</h2>
+<h3>Slash command</h3>
+<pre><code>/decompile path/to/app.apk
+</code></pre>
+<p>This runs the full workflow: dependency check, decompilation, and initial structure analysis.</p>
+<h3>Natural language</h3>
+<p>The skill activates on phrases like:</p>
+<ul>
+<li>"Decompile this APK"</li>
+<li>"Reverse engineer this Android app"</li>
+<li>"Extract API endpoints from this app"</li>
+<li>"Follow the call flow from LoginActivity"</li>
+<li>"Analyze this AAR library"</li>
+</ul>
+<h3>Manual scripts</h3>
+<p>The scripts can also be used standalone:</p>
+<pre><code class="language-bash"># Check dependencies
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/check-deps.sh
+
+# Install a missing dependency (auto-detects OS and package manager)
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh jadx
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh vineflower
+
+# Decompile APK with jadx (default)
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh app.apk
+
+# Decompile XAPK (auto-extracts and decompiles each APK inside)
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh app-bundle.xapk
+
+# Decompile with Fernflower
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh --engine fernflower library.jar
+
+# Run both engines and compare
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh --engine both --deobf app.apk
+
+# Find API calls
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/find-api-calls.sh output/sources/
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/find-api-calls.sh output/sources/ --retrofit
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/find-api-calls.sh output/sources/ --urls
+</code></pre>
+<h2>Repository Structure</h2>
+<pre><code>android-reverse-engineering-skill/
+├── .claude-plugin/
+│   └── marketplace.json                    # Marketplace catalog
+├── plugins/
+│   └── android-reverse-engineering/
+│       ├── .claude-plugin/
+│       │   └── plugin.json                 # Plugin manifest
+│       ├── skills/
+│       │   └── android-reverse-engineering/
+│       │       ├── SKILL.md                # Core workflow (5 phases)
+│       │       ├── references/
+│       │       │   ├── setup-guide.md
+│       │       │   ├── jadx-usage.md
+│       │       │   ├── fernflower-usage.md
+│       │       │   ├── api-extraction-patterns.md
+│       │       │   └── call-flow-analysis.md
+│       │       └── scripts/
+│       │           ├── check-deps.sh
+│       │           ├── install-dep.sh
+│       │           ├── decompile.sh
+│       │           └── find-api-calls.sh
+│       └── commands/
+│           └── decompile.md                # /decompile slash command
+├── LICENSE
+└── README.md
+</code></pre>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/skylot/jadx">jadx — Dex to Java decompiler</a></li>
+<li><a href="https://github.com/JetBrains/fernflower">Fernflower — JetBrains analytical decompiler</a></li>
+<li><a href="https://github.com/Vineflower/vineflower">Vineflower — Fernflower community fork</a></li>
+<li><a href="https://github.com/pxb1988/dex2jar">dex2jar — DEX to JAR converter</a></li>
+<li><a href="https://apktool.org/">apktool — Android resource decoder</a></li>
+</ul>
+<h2>Disclaimer</h2>
+<p>This plugin is provided strictly for <strong>lawful purposes</strong>, including but not limited to:</p>
+<ul>
+<li>Security research and authorized penetration testing</li>
+<li>Interoperability analysis permitted under applicable law (e.g., EU Directive 2009/24/EC, US DMCA §1201(f))</li>
+<li>Malware analysis and incident response</li>
+<li>Educational use and CTF competitions</li>
+</ul>
+<p><strong>You are solely responsible</strong> for ensuring that your use of this tool complies with all applicable laws, regulations, and terms of service. Unauthorized reverse engineering of software you do not own or do not have permission to analyze may violate intellectual property laws and computer fraud statutes in your jurisdiction.</p>
+<p>The authors disclaim any liability for misuse of this tool.</p>
+<h2>License</h2>
+<p>Apache 2.0 — see <a href="LICENSE">LICENSE</a></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/SimoneAvogadro/android-reverse-engineering-skill#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#14</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">BasedHardware /</span>
+          <a href="https://github.com/BasedHardware/omi" target="_blank" rel="noopener">omi</a>
+        </div>
+        <div class="repo-desc">AI that sees your screen, listens to your conversations and tells you what to do</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#00B4AB"></span>Dart</span>
+      <span class="meta-item">⭐ 9,317</span>
+      <span class="meta-item">🍴 1,632</span>
+      <span class="stars-today">⭐ 378 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+# **omi**
+
+### A 2nd brain you trust more than your 1st
+
+Omi captures your screen and conversations, transcribes in real-time, generates summaries and action items, and gives you an AI chat that remembers everything you've seen and heard. Works on desktop, phone and wearables. Fully open source.
+
+Trusted by 300,000+ professionals.
+
+
+[![Discord](https://img.shields.io/discord/1192313062041067520?label=Discord&logo=discord&logoColor=white&style=for-the-badge)](http://discord.omi.me)&ensp;
+[![GitHub Repo stars](https://img.shields.io/github/stars/BasedHardware/Omi?style=for-the-badge)](https://github.com/BasedHardware/Omi)&ensp;
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+[Website](https://omi.me/) · [Docs](https://docs.omi.me/) · [Discord](http://discord.omi.me) · [Twitter](https://x.com/kodjima33) · [DeepWiki](https://deepwiki.com/BasedHardware/omi)
+
+</div>
+
+<h2>Quick Start</h2>
+<p align="center">
+  <a href="https://macos.omi.me"><img src="docs/assets/readme/download-macos-badge.png" alt="Download for macOS" height="50"></a>
+  <a href="https://apps.apple.com/us/app/friend-ai-wearable/id6502156163"><img src="docs/assets/readme/download-appstore-badge.png" alt="Download on the App Store" height="50"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.friend.ios"><img src="docs/assets/readme/download-gplay-badge.png" alt="Get it on Google Play" height="50"></a>
+</p>
+
+<p align="center">
+  <a href="https://app.omi.me">Try in Browser</a>
+</p>
+
+<pre><code class="language-bash">git clone https://github.com/BasedHardware/omi.git &amp;&amp; cd omi/desktop &amp;&amp; ./run.sh --yolo
+</code></pre>
+<p>Builds the macOS app, connects to the cloud backend, and launches. No env files, no credentials, no local backend.</p>
+<blockquote>
+<p><strong>Requirements:</strong> macOS 14+, <a href="https://developer.apple.com/xcode/">Xcode</a> (includes Swift &amp; code signing), <a href="https://nodejs.org/">Node.js</a></p>
+</blockquote>
+<details>
+  <summary>Full Installation</summary>
+
+For local development with the full backend stack:
+
+1. Install prerequisites
+
+
+<pre><code class="language-bash">xcode-select --install
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre>
+
+
+2. Clone and configure
+
+
+<pre><code class="language-bash">git clone https://github.com/BasedHardware/omi.git
+cd omi/desktop
+cp Backend-Rust/.env.example Backend-Rust/.env
+</code></pre>
+
+
+3. Build and run
+
+
+<pre><code class="language-bash">./run.sh
+</code></pre>
+
+
+See [desktop/README.md](desktop/README.md) for environment variables and credential setup.
+
+
+### Mobile App
+
+
+<pre><code class="language-bash">cd app &amp;&amp; bash setup.sh ios    # or: bash setup.sh android
+</code></pre>
+
+
+</details>
+
+<details>
+  <summary>How it works</summary>
+
+
+
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                      Your Devices                       │
+│                                                         │
+│  ┌──────────┐  ┌──────────────┐  ┌───────────────────┐  │
+│  │ Omi      │  │ macOS App    │  │ Mobile App        │  │
+│  │ Wearable │  │ (Swift/Rust) │  │ (Flutter)         │  │
+│  └────┬─────┘  └──────┬───────┘  └────────┬──────────┘  │
+│       │    BLE         │   HTTPS/WS        │             │
+└───────┼────────────────┼───────────────────┼─────────────┘
+        │                │                   │
+        ▼                ▼                   ▼
+┌─────────────────────────────────────────────────────────┐
+│                    Omi Backend (Python)                  │
+│                                                         │
+│  ┌─────────┐  ┌──────────┐  ┌─────────┐  ┌──────────┐  │
+│  │ Listen  │  │ Pusher   │  │ VAD     │  │ Diarizer │  │
+│  │ (REST)  │  │ (WS)     │  │ (GPU)   │  │ (GPU)    │  │
+│  └─────────┘  └──────────┘  └─────────┘  └──────────┘  │
+│                                                         │
+│  ┌─────────┐  ┌──────────┐  ┌─────────┐  ┌──────────┐  │
+│  │ Deepgram│  │ Firestore│  │ Redis   │  │ LLMs     │  │
+│  │ (STT)   │  │ (DB)     │  │ (Cache) │  │ (AI)     │  │
+│  └─────────┘  └──────────┘  └─────────┘  └──────────┘  │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+
+
+| Component | Path | Stack |
+|-----------|------|-------|
+| **macOS app** | [`desktop/`](desktop/) | Swift, SwiftUI, Rust backend |
+| Mobile app | [`app/`](app/) | Flutter (iOS & Android) |
+| Backend API | [`backend/`](backend/) | Python, FastAPI, Firebase |
+| Firmware | [`omi/`](omi/) | nRF, Zephyr, C |
+| Omi Glass | [`omiGlass/`](omiGlass/) | ESP32-S3, C |
+| SDKs | [`sdks/`](sdks/) | React Native, Swift, Python |
+| AI Personas | [`web/personas-open-source/`](web/personas-open-source/) | Next.js |
+
+</details>
+
+<h2>Documentation</h2>
+<h3>Getting Started</h3>
+<ul>
+<li><a href="https://docs.omi.me/">Introduction</a></li>
+<li><a href="https://docs.omi.me/quickstart">Quick Start Guide</a></li>
+<li><a href="desktop/README.md">macOS App Development</a></li>
+<li><a href="https://docs.omi.me/doc/developer/AppSetup">Mobile App Setup</a></li>
+<li><a href="https://docs.omi.me/doc/developer/backend/Backend_Setup">Backend Setup</a></li>
+<li><a href="https://docs.omi.me/doc/developer/Contribution">Contributing</a></li>
+</ul>
+<h3>Building Apps</h3>
+<ul>
+<li><a href="https://docs.omi.me/doc/developer/apps/Introduction">App Development Guide</a></li>
+<li><a href="https://docs.omi.me/doc/developer/apps/examples/Github">Example Apps</a> — GitHub, Slack, OmiMentor</li>
+<li><a href="https://docs.omi.me/doc/developer/apps/AudioStreaming">Audio Streaming Apps</a></li>
+<li><a href="https://docs.omi.me/doc/developer/apps/ChatTools">Custom Chat Tools</a></li>
+<li><a href="https://docs.omi.me/doc/developer/apps/Submitting">Submit to App Store</a></li>
+</ul>
+<h3>API &amp; SDKs</h3>
+<ul>
+<li><a href="https://docs.omi.me/api-reference/introduction">API Reference</a> — REST endpoints for memories, conversations, action items</li>
+<li><a href="sdks/python/">Python SDK</a></li>
+<li><a href="sdks/swift/">Swift SDK</a></li>
+<li><a href="sdks/react-native/">React Native SDK</a></li>
+<li><a href="mcp/">MCP Server</a> — Model Context Protocol integration</li>
+</ul>
+<h3>Architecture</h3>
+<ul>
+<li><a href="https://docs.omi.me/doc/developer/backend/backend_deepdive">Backend Deep Dive</a></li>
+<li><a href="https://docs.omi.me/doc/developer/backend/transcription">Transcription Pipeline</a></li>
+<li><a href="https://docs.omi.me/doc/developer/backend/chat_system">Chat System</a></li>
+<li><a href="https://docs.omi.me/doc/developer/backend/listen_pusher_pipeline">Audio Streaming Pipeline</a></li>
+<li><a href="https://docs.omi.me/doc/developer/Protocol">BLE Protocol</a></li>
+</ul>
+<h2>Omi Hardware</h2>
+<p><img alt="Omi" src="https://github.com/user-attachments/assets/7a658366-9e02-4057-bde5-a510e1f0217a" /></p>
+<p>Open-source AI wearables that pair with the mobile app for 24h+ continuous capture.</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/834d3fdb-31b5-4f22-ae35-da3d2b9a8f59" alt="Omi Wearable" width="49%" />
+  <img src="https://github.com/user-attachments/assets/fdad4226-e5ce-4c55-b547-9101edfa3203" alt="Omi Glass" width="49%" />
+</p>
+
+<ul>
+<li><a href="https://www.omi.me/pages/product">Buy Omi</a></li>
+<li><a href="https://www.omi.me/glass">Buy Omi Glass Dev Kit</a> — ESP32-S3, camera + audio</li>
+<li><a href="https://docs.omi.me/doc/hardware/consumer/electronics">Open Source Hardware Designs</a></li>
+<li><a href="https://docs.omi.me/doc/assembly/Buying_Guide">Buying Guide</a></li>
+<li><a href="https://docs.omi.me/doc/assembly/Build_the_device">Build the Device</a></li>
+<li><a href="https://docs.omi.me/doc/get_started/Flash_device">Flash Firmware</a></li>
+<li><a href="https://docs.omi.me/doc/integrations">Integrate Your Wearable</a></li>
+<li><a href="https://docs.omi.me/doc/hardware/DevKit2">Hardware Specs</a></li>
+</ul>
+<h2>License</h2>
+<p>MIT — see <a href="LICENSE">LICENSE</a></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/BasedHardware/omi#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on April 17, 2026  06:24 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
