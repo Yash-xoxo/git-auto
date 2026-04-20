@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — April 19, 2026  03:31</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on April 19, 2026  03:31 &nbsp;·&nbsp; 10 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">thunderbird /</span>
+          <a href="https://github.com/thunderbird/thunderbolt" target="_blank" rel="noopener">thunderbolt</a>
+        </div>
+        <div class="repo-desc">AI You Control: Choose your models. Own your data. Eliminate vendor lock-in.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 1,634</span>
+      <span class="meta-item">🍴 82</span>
+      <span class="stars-today">⭐ 447 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Thunderbolt <a href="https://github.com/thunderbird/thunderbolt/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/thunderbird/thunderbolt/actions/workflows/ci.yml/badge.svg" /></a></h1>
+<p><strong>AI You Control: Choose your models. Own your data. Eliminate vendor lock-in.</strong></p>
+<p><img alt="Thunderbolt Main Dashboard" src="./docs/screenshots/main.png" /></p>
+<blockquote>
+<p>[!IMPORTANT]<br />
+⚠️ <strong>We are excited about the amount of interest Thunderbolt has been getting and want to clarify that it is still early and under active development</strong>. Currently, we are targeting enterprise customers that want to deploy it on-prem. We encourage you to self-host it and try it out, but there are a few caveats we are still working on:</p>
+<ul>
+<li>While we eventually plan to make Thunderbolt fully offline-first, it currently depends on authentication and search functionality (though you can disable search on the integrations screen in the app). You can <a href="./deploy/README.md">deploy your own backend with Docker</a> and sign up in order to test it locally.</li>
+<li>You’ll need to add your own model providers - we don’t yet have a public inference endpoint. We recommend using Thunderbolt with <a href="https://ollama.com">Ollama</a> or <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> if you want free local inference, or you can add API keys for any OpenAI-compatible model provider in the settings.</li>
+</ul>
+</blockquote>
+<p>Thunderbolt is an open-source, cross-platform AI client that can be deployed on-prem anywhere.</p>
+<ul>
+<li>🌐 Available on all major desktop and mobile platforms: web, iOS, Android, Mac, Linux, and Windows.</li>
+<li>🧠 Compatible with frontier, local, and on-prem models.</li>
+<li>🙋 Enterprise features, support, and FDEs available.</li>
+</ul>
+<p><strong>Thunderbolt is under active development, currently undergoing a security audit, and preparing for enterprise production readiness.</strong></p>
+<h2>Need Help?</h2>
+<p>Found a bug? Have an idea?</p>
+<ul>
+<li>We're actively working on our docs, community, and roadmap. For now, the best way to get in touch is to <a href="https://github.com/thunderbird/thunderbolt/issues">File an issue</a>.</li>
+</ul>
+<h2>Contributing</h2>
+<p>We welcome contributions from everyone.</p>
+<ul>
+<li><strong>Development</strong>: The <a href="./docs/development.md">development guide</a> will help you get started.</li>
+<li>Make sure to check out the <a href="https://www.mozilla.org/about/governance/policies/participation/">Mozilla Community Participation Guidelines</a>.</li>
+</ul>
+<h2>Documentation</h2>
+<ul>
+<li><a href="./docs/faq.md">FAQ</a> - Frequently asked questions</li>
+<li><a href="./deploy/README.md">Deployment</a> - Self-host with Docker Compose or Kubernetes</li>
+<li><a href="./docs/development.md">Development</a> - Quick start, setup, and testing</li>
+<li><a href="./docs/architecture.md">Architecture</a> - System architecture and diagrams</li>
+<li><a href="./docs/roadmap.md">Features and Roadmap</a> - Platform and feature status</li>
+<li><a href="./docs/claude-code.md">Claude Code Skills</a> - Slash commands, automation, and subtree syncing</li>
+<li><a href="./docs/storybook.md">Storybook</a> - Build, test, and document components</li>
+<li><a href="./docs/vite-bundle-analyzer.md">Vite Bundle Analyzer</a> - Analyze frontend bundle size</li>
+<li><a href="./docs/tauri-signing-keys.md">Tauri Signing Keys</a> - Generate and manage signing keys for releases</li>
+<li><a href="./RELEASE.md">Release Process</a> - Instructions for creating and publishing new releases</li>
+<li><a href="./TELEMETRY.md">Telemetry</a> - Information about data collection and privacy policy</li>
+</ul>
+<h2>Code of Conduct</h2>
+<p>Please read our <a href="./CODE_OF_CONDUCT.md">Code of Conduct</a>. All participants in the Thunderbolt community agree to follow these guidelines and <a href="https://www.mozilla.org/about/governance/policies/participation/">Mozilla's Community Participation Guidelines</a>.</p>
+<h2>Security</h2>
+<p>If you discover a security vulnerability, please report it responsibly via our <a href="https://github.com/thunderbird/thunderbolt/security/advisories/new">vulnerability reporting form</a>. Please do <strong>not</strong> file public GitHub issues for security vulnerabilities.</p>
+<h2>License</h2>
+<p>Thunderbolt is licensed under the <a href="./LICENSE">Mozilla Public License 2.0</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/thunderbird/thunderbolt#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">BasedHardware /</span>
+          <a href="https://github.com/BasedHardware/omi" target="_blank" rel="noopener">omi</a>
+        </div>
+        <div class="repo-desc">AI that sees your screen, listens to your conversations and tells you what to do</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#00B4AB"></span>Dart</span>
+      <span class="meta-item">⭐ 10,536</span>
+      <span class="meta-item">🍴 1,724</span>
+      <span class="stars-today">⭐ 609 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+# **omi**
+
+### A 2nd brain you trust more than your 1st
+
+Omi captures your screen and conversations, transcribes in real-time, generates summaries and action items, and gives you an AI chat that remembers everything you've seen and heard. Works on desktop, phone and wearables. Fully open source.
+
+Trusted by 300,000+ professionals.
+
+
+[![Discord](https://img.shields.io/discord/1192313062041067520?label=Discord&logo=discord&logoColor=white&style=for-the-badge)](http://discord.omi.me)&ensp;
+[![GitHub Repo stars](https://img.shields.io/github/stars/BasedHardware/Omi?style=for-the-badge)](https://github.com/BasedHardware/Omi)&ensp;
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+[Website](https://omi.me/) · [Docs](https://docs.omi.me/) · [Discord](http://discord.omi.me) · [Twitter](https://x.com/kodjima33) · [DeepWiki](https://deepwiki.com/BasedHardware/omi)
+
+</div>
+
+<h2>Quick Start</h2>
+<p align="center">
+  <a href="https://macos.omi.me"><img src="docs/assets/readme/download-macos-badge.png" alt="Download for macOS" height="50"></a>
+  <a href="https://apps.apple.com/us/app/friend-ai-wearable/id6502156163"><img src="docs/assets/readme/download-appstore-badge.png" alt="Download on the App Store" height="50"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.friend.ios"><img src="docs/assets/readme/download-gplay-badge.png" alt="Get it on Google Play" height="50"></a>
+</p>
+
+<p align="center">
+  <a href="https://app.omi.me">Try in Browser</a>
+</p>
+
+<pre><code class="language-bash">git clone https://github.com/BasedHardware/omi.git &amp;&amp; cd omi/desktop &amp;&amp; ./run.sh --yolo
+</code></pre>
+<p>Builds the macOS app, connects to the cloud backend, and launches. No env files, no credentials, no local backend.</p>
+<blockquote>
+<p><strong>Requirements:</strong> macOS 14+, <a href="https://developer.apple.com/xcode/">Xcode</a> (includes Swift &amp; code signing), <a href="https://nodejs.org/">Node.js</a></p>
+</blockquote>
+<details>
+  <summary>Full Installation</summary>
+
+For local development with the full backend stack:
+
+1. Install prerequisites
+
+
+<pre><code class="language-bash">xcode-select --install
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre>
+
+
+2. Clone and configure
+
+
+<pre><code class="language-bash">git clone https://github.com/BasedHardware/omi.git
+cd omi/desktop
+cp Backend-Rust/.env.example Backend-Rust/.env
+</code></pre>
+
+
+3. Build and run
+
+
+<pre><code class="language-bash">./run.sh
+</code></pre>
+
+
+See [desktop/README.md](desktop/README.md) for environment variables and credential setup.
+
+
+### Mobile App
+
+
+<pre><code class="language-bash">cd app &amp;&amp; bash setup.sh ios    # or: bash setup.sh android
+</code></pre>
+
+
+</details>
+
+<details>
+  <summary>How it works</summary>
+
+
+
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                      Your Devices                       │
+│                                                         │
+│  ┌──────────┐  ┌──────────────┐  ┌───────────────────┐  │
+│  │ Omi      │  │ macOS App    │  │ Mobile App        │  │
+│  │ Wearable │  │ (Swift/Rust) │  │ (Flutter)         │  │
+│  └────┬─────┘  └──────┬───────┘  └────────┬──────────┘  │
+│       │    BLE         │   HTTPS/WS        │             │
+└───────┼────────────────┼───────────────────┼─────────────┘
+        │                │                   │
+        ▼                ▼                   ▼
+┌─────────────────────────────────────────────────────────┐
+│                    Omi Backend (Python)                  │
+│                                                         │
+│  ┌─────────┐  ┌──────────┐  ┌─────────┐  ┌──────────┐  │
+│  │ Listen  │  │ Pusher   │  │ VAD     │  │ Diarizer │  │
+│  │ (REST)  │  │ (WS)     │  │ (GPU)   │  │ (GPU)    │  │
+│  └─────────┘  └──────────┘  └─────────┘  └──────────┘  │
+│                                                         │
+│  ┌─────────┐  ┌──────────┐  ┌─────────┐  ┌──────────┐  │
+│  │ Deepgram│  │ Firestore│  │ Redis   │  │ LLMs     │  │
+│  │ (STT)   │  │ (DB)     │  │ (Cache) │  │ (AI)     │  │
+│  └─────────┘  └──────────┘  └─────────┘  └──────────┘  │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+
+
+| Component | Path | Stack |
+|-----------|------|-------|
+| **macOS app** | [`desktop/`](desktop/) | Swift, SwiftUI, Rust backend |
+| Mobile app | [`app/`](app/) | Flutter (iOS & Android) |
+| Backend API | [`backend/`](backend/) | Python, FastAPI, Firebase |
+| Firmware | [`omi/`](omi/) | nRF, Zephyr, C |
+| Omi Glass | [`omiGlass/`](omiGlass/) | ESP32-S3, C |
+| SDKs | [`sdks/`](sdks/) | React Native, Swift, Python |
+| AI Personas | [`web/personas-open-source/`](web/personas-open-source/) | Next.js |
+
+</details>
+
+<h2>Documentation</h2>
+<h3>Getting Started</h3>
+<ul>
+<li><a href="https://docs.omi.me/">Introduction</a></li>
+<li><a href="https://docs.omi.me/quickstart">Quick Start Guide</a></li>
+<li><a href="desktop/README.md">macOS App Development</a></li>
+<li><a href="https://docs.omi.me/doc/developer/AppSetup">Mobile App Setup</a></li>
+<li><a href="https://docs.omi.me/doc/developer/backend/Backend_Setup">Backend Setup</a></li>
+<li><a href="https://docs.omi.me/doc/developer/Contribution">Contributing</a></li>
+</ul>
+<h3>Building Apps</h3>
+<ul>
+<li><a href="https://docs.omi.me/doc/developer/apps/Introduction">App Development Guide</a></li>
+<li><a href="https://docs.omi.me/doc/developer/apps/examples/Github">Example Apps</a> — GitHub, Slack, OmiMentor</li>
+<li><a href="https://docs.omi.me/doc/developer/apps/AudioStreaming">Audio Streaming Apps</a></li>
+<li><a href="https://docs.omi.me/doc/developer/apps/ChatTools">Custom Chat Tools</a></li>
+<li><a href="https://docs.omi.me/doc/developer/apps/Submitting">Submit to App Store</a></li>
+</ul>
+<h3>API &amp; SDKs</h3>
+<ul>
+<li><a href="https://docs.omi.me/api-reference/introduction">API Reference</a> — REST endpoints for memories, conversations, action items</li>
+<li><a href="sdks/python/">Python SDK</a></li>
+<li><a href="sdks/swift/">Swift SDK</a></li>
+<li><a href="sdks/react-native/">React Native SDK</a></li>
+<li><a href="mcp/">MCP Server</a> — Model Context Protocol integration</li>
+</ul>
+<h3>Architecture</h3>
+<ul>
+<li><a href="https://docs.omi.me/doc/developer/backend/backend_deepdive">Backend Deep Dive</a></li>
+<li><a href="https://docs.omi.me/doc/developer/backend/transcription">Transcription Pipeline</a></li>
+<li><a href="https://docs.omi.me/doc/developer/backend/chat_system">Chat System</a></li>
+<li><a href="https://docs.omi.me/doc/developer/backend/listen_pusher_pipeline">Audio Streaming Pipeline</a></li>
+<li><a href="https://docs.omi.me/doc/developer/Protocol">BLE Protocol</a></li>
+</ul>
+<h2>Omi Hardware</h2>
+<p><img alt="Omi" src="https://github.com/user-attachments/assets/7a658366-9e02-4057-bde5-a510e1f0217a" /></p>
+<p>Open-source AI wearables that pair with the mobile app for 24h+ continuous capture.</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/834d3fdb-31b5-4f22-ae35-da3d2b9a8f59" alt="Omi Wearable" width="49%" />
+  <img src="https://github.com/user-attachments/assets/fdad4226-e5ce-4c55-b547-9101edfa3203" alt="Omi Glass" width="49%" />
+</p>
+
+<ul>
+<li><a href="https://www.omi.me/pages/product">Buy Omi</a></li>
+<li><a href="https://www.omi.me/glass">Buy Omi Glass Dev Kit</a> — ESP32-S3, camera + audio</li>
+<li><a href="https://docs.omi.me/doc/hardware/consumer/electronics">Open Source Hardware Designs</a></li>
+<li><a href="https://docs.omi.me/doc/assembly/Buying_Guide">Buying Guide</a></li>
+<li><a href="https://docs.omi.me/doc/assembly/Build_the_device">Build the Device</a></li>
+<li><a href="https://docs.omi.me/doc/get_started/Flash_device">Flash Firmware</a></li>
+<li><a href="https://docs.omi.me/doc/integrations">Integrate Your Wearable</a></li>
+<li><a href="https://docs.omi.me/doc/hardware/DevKit2">Hardware Specs</a></li>
+</ul>
+<h2>License</h2>
+<p>MIT — see <a href="LICENSE">LICENSE</a></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/BasedHardware/omi#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">openai /</span>
+          <a href="https://github.com/openai/openai-agents-python" target="_blank" rel="noopener">openai-agents-python</a>
+        </div>
+        <div class="repo-desc">A lightweight, powerful framework for multi-agent workflows</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 22,430</span>
+      <span class="meta-item">🍴 3,554</span>
+      <span class="stars-today">⭐ 470 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>OpenAI Agents SDK <a href="https://pypi.org/project/openai-agents/"><img alt="PyPI" src="https://img.shields.io/pypi/v/openai-agents?label=pypi%20package" /></a></h1>
+<p>The OpenAI Agents SDK is a lightweight yet powerful framework for building multi-agent workflows. It is provider-agnostic, supporting the OpenAI Responses and Chat Completions APIs, as well as 100+ other LLMs.</p>
+<p><img src="https://cdn.openai.com/API/docs/images/orchestration.png" alt="Image of the Agents Tracing UI" style="max-height: 803px;"></p>
+<blockquote>
+<p>[!NOTE]<br />
+Looking for the JavaScript/TypeScript version? Check out <a href="https://github.com/openai/openai-agents-js">Agents SDK JS/TS</a>.</p>
+</blockquote>
+<h3>Core concepts:</h3>
+<ol>
+<li><a href="https://openai.github.io/openai-agents-python/agents"><strong>Agents</strong></a>: LLMs configured with instructions, tools, guardrails, and handoffs</li>
+<li><a href="https://openai.github.io/openai-agents-python/sandbox_agents"><strong>Sandbox Agents</strong></a>: Agents preconfigured to work with a container to perform work over long time horizons.</li>
+<li><strong><a href="https://openai.github.io/openai-agents-python/tools/#agents-as-tools">Agents as tools</a> / <a href="https://openai.github.io/openai-agents-python/handoffs/">Handoffs</a></strong>: Delegating to other agents for specific tasks</li>
+<li><a href="https://openai.github.io/openai-agents-python/tools/"><strong>Tools</strong></a>: Various Tools let agents take actions (functions, MCP, hosted tools)</li>
+<li><a href="https://openai.github.io/openai-agents-python/guardrails/"><strong>Guardrails</strong></a>: Configurable safety checks for input and output validation</li>
+<li><a href="https://openai.github.io/openai-agents-python/human_in_the_loop/"><strong>Human in the loop</strong></a>: Built-in mechanisms for involving humans across agent runs</li>
+<li><a href="https://openai.github.io/openai-agents-python/sessions/"><strong>Sessions</strong></a>: Automatic conversation history management across agent runs</li>
+<li><a href="https://openai.github.io/openai-agents-python/tracing/"><strong>Tracing</strong></a>: Built-in tracking of agent runs, allowing you to view, debug and optimize your workflows</li>
+<li><a href="https://openai.github.io/openai-agents-python/realtime/quickstart/"><strong>Realtime Agents</strong></a>: Build powerful voice agents with <code>gpt-realtime-1.5</code> and full agent features</li>
+</ol>
+<p>Explore the <a href="https://github.com/openai/openai-agents-python/tree/main/examples">examples</a> directory to see the SDK in action, and read our <a href="https://openai.github.io/openai-agents-python/">documentation</a> for more details.</p>
+<h2>Get started</h2>
+<p>To get started, set up your Python environment (Python 3.10 or newer required), and then install OpenAI Agents SDK package.</p>
+<h3>venv</h3>
+<pre><code class="language-bash">python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install openai-agents
+</code></pre>
+<p>For voice support, install with the optional <code>voice</code> group: <code>pip install 'openai-agents[voice]'</code>. For Redis session support, install with the optional <code>redis</code> group: <code>pip install 'openai-agents[redis]'</code>.</p>
+<h3>uv</h3>
+<p>If you're familiar with <a href="https://docs.astral.sh/uv/">uv</a>, installing the package would be even easier:</p>
+<pre><code class="language-bash">uv init
+uv add openai-agents
+</code></pre>
+<p>For voice support, install with the optional <code>voice</code> group: <code>uv add 'openai-agents[voice]'</code>. For Redis session support, install with the optional <code>redis</code> group: <code>uv add 'openai-agents[redis]'</code>.</p>
+<h2>Run your first Sandbox Agent</h2>
+<p><a href="https://openai.github.io/openai-agents-python/sandbox_agents">Sandbox Agents</a> are new in version 0.14.0. A sandbox agent is an agent that uses a computer environment to perform real work with a filesystem, in an environment you configure and control. Sandbox agents are useful when the agent needs to inspect files, run commands, apply patches, or carry workspace state across longer tasks.</p>
+<pre><code class="language-python">from agents import Runner
+from agents.run import RunConfig
+from agents.sandbox import Manifest, SandboxAgent, SandboxRunConfig
+from agents.sandbox.entries import GitRepo
+from agents.sandbox.sandboxes import UnixLocalSandboxClient
+
+agent = SandboxAgent(
+    name=&quot;Workspace Assistant&quot;,
+    instructions=&quot;Inspect the sandbox workspace before answering.&quot;,
+    default_manifest=Manifest(
+        entries={
+            &quot;repo&quot;: GitRepo(repo=&quot;openai/openai-agents-python&quot;, ref=&quot;main&quot;),
+        }
+    ),
+)
+
+result = Runner.run_sync(
+    agent,
+    &quot;Inspect the repo README and summarize what this project does.&quot;,
+    # Run this agent on the local filesystem
+    run_config=RunConfig(sandbox=SandboxRunConfig(client=UnixLocalSandboxClient())),
+)
+print(result.final_output)
+
+# This project provides a Python SDK for building multi-agent workflows.
+</code></pre>
+<p>(<em>If running this, ensure you set the <code>OPENAI_API_KEY</code> environment variable</em>)</p>
+<p>(<em>For Jupyter notebook users, see <a href="https://github.com/openai/openai-agents-python/blob/main/examples/basic/hello_world_jupyter.ipynb">hello_world_jupyter.ipynb</a></em>)</p>
+<p>Explore the <a href="https://github.com/openai/openai-agents-python/tree/main/examples">examples</a> directory to see the SDK in action, and read our <a href="https://openai.github.io/openai-agents-python/">documentation</a> for more details.</p>
+<h2>Acknowledgements</h2>
+<p>We'd like to acknowledge the excellent work of the open-source community, especially:</p>
+<ul>
+<li><a href="https://docs.pydantic.dev/latest/">Pydantic</a></li>
+<li><a href="https://github.com/psf/requests">Requests</a></li>
+<li><a href="https://github.com/modelcontextprotocol/python-sdk">MCP Python SDK</a></li>
+<li><a href="https://github.com/mkdocstrings/griffe">Griffe</a></li>
+</ul>
+<p>This library has these optional dependencies:</p>
+<ul>
+<li><a href="https://github.com/python-websockets/websockets">websockets</a></li>
+<li><a href="https://github.com/sqlalchemy/sqlalchemy">SQLAlchemy</a></li>
+<li><a href="https://github.com/mozilla-ai/any-llm">any-llm</a> and <a href="https://github.com/BerriAI/litellm">LiteLLM</a></li>
+</ul>
+<p>We also rely on the following tools to manage the project:</p>
+<ul>
+<li><a href="https://github.com/astral-sh/uv">uv</a> and <a href="https://github.com/astral-sh/ruff">ruff</a></li>
+<li><a href="https://github.com/python/mypy">mypy</a> and <a href="https://github.com/microsoft/pyright">Pyright</a></li>
+<li><a href="https://github.com/pytest-dev/pytest">pytest</a> and <a href="https://github.com/coveragepy/coveragepy">Coverage.py</a></li>
+<li><a href="https://github.com/squidfunk/mkdocs-material">MkDocs</a></li>
+</ul>
+<p>We're committed to continuing to build the Agents SDK as an open source framework so others in the community can expand on our approach.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/openai/openai-agents-python#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">EvoMap /</span>
+          <a href="https://github.com/EvoMap/evolver" target="_blank" rel="noopener">evolver</a>
+        </div>
+        <div class="repo-desc">The GEP-Powered Self-Evolution Engine for AI Agents. Genome Evolution Protocol. | evomap.ai</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 5,078</span>
+      <span class="meta-item">🍴 492</span>
+      <span class="stars-today">⭐ 1,131 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>🧬 Evolver</h1>
+<p><a href="https://github.com/EvoMap/evolver/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/EvoMap/evolver?style=social" /></a><br />
+<a href="https://opensource.org/licenses/GPL-3.0"><img alt="License: GPL-3.0" src="https://img.shields.io/badge/License-GPL--3.0-blue.svg" /></a><br />
+<a href="https://nodejs.org/"><img alt="Node.js &gt;= 18" src="https://img.shields.io/badge/Node.js-%3E%3D%2018-green.svg" /></a><br />
+<a href="https://github.com/EvoMap/evolver/commits/main"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/EvoMap/evolver" /></a><br />
+<a href="https://github.com/EvoMap/evolver/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/EvoMap/evolver" /></a></p>
+<p><img alt="Evolver Cover" src="assets/cover.png" /></p>
+<p><strong><a href="https://evomap.ai">evomap.ai</a></strong> | <a href="https://evomap.ai/wiki">Documentation</a> | <a href="README.zh-CN.md">Chinese / 中文文档</a> | <a href="README.ja-JP.md">Japanese / 日本語ドキュメント</a> | <a href="https://github.com/EvoMap/evolver">GitHub</a> | <a href="https://github.com/EvoMap/evolver/releases">Releases</a></p>
+<hr />
+<blockquote>
+<p><strong>Notice — Moving Toward Source-Available</strong></p>
+<p>Evolver has been fully open source since our first release on 2026-02-01 (initially MIT, and GPL-3.0-or-later since 2026-04-09). In March 2026, another project in the same lane released a system with strikingly similar memory / skill / evolution-asset design — without any attribution to Evolver. Full analysis: <a href="https://evomap.ai/en/blog/hermes-agent-evolver-similarity-analysis">Hermes Agent Self-Evolution vs. Evolver: A Detailed Similarity Analysis</a>.</p>
+<p>To protect the integrity of the work and keep investing in this direction, future Evolver releases will transition from fully open source to source-available. <strong>Our commitment to users is unchanged</strong>: we will keep shipping the best agent self-evolution capability in the industry — faster iteration, deeper GEP integration, stronger memory and skill systems. All already-published MIT and GPL-3.0 versions remain freely usable under their original terms. You can still <code>npm install @evomap/evolver</code> or clone this repo; nothing in your current workflow breaks.</p>
+<p>Questions or concerns: open an issue or reach us at <a href="https://evomap.ai">evomap.ai</a>.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>"Evolution is not optional. Adapt or die."</strong></p>
+</blockquote>
+<p><strong>Three lines</strong><br />
+- <strong>What it is</strong>: A <a href="https://evomap.ai/wiki">GEP</a>-powered self-evolution engine for AI agents.<br />
+- <strong>Pain it solves</strong>: Turns ad hoc prompt tweaks into auditable, reusable evolution assets.<br />
+- <strong>Use in 30 seconds</strong>: Clone, install, run <code>node index.js</code> -- get a GEP-guided evolution prompt.</p>
+<h2>EvoMap -- The Evolution Network</h2>
+<p>Evolver is the core engine behind <strong><a href="https://evomap.ai">EvoMap</a></strong>, a network where AI agents evolve through validated collaboration. Visit <a href="https://evomap.ai">evomap.ai</a> to explore the full platform -- live agent maps, evolution leaderboards, and the ecosystem that turns isolated prompt tweaks into shared, auditable intelligence.</p>
+<p>Keywords: protocol-constrained evolution, audit trail, genes and capsules, prompt governance.</p>
+<h2>Installation</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li><strong><a href="https://nodejs.org/">Node.js</a></strong> &gt;= 18</li>
+<li><strong><a href="https://git-scm.com/">Git</a></strong> -- Required. Evolver uses git for rollback, blast radius calculation, and solidify. Running in a non-git directory will fail with a clear error message.</li>
+</ul>
+<h3>Install from npm (recommended)</h3>
+<pre><code class="language-bash">npm install -g @evomap/evolver
+</code></pre>
+<p>This installs the <code>evolver</code> CLI globally. Verify with <code>evolver --help</code>.</p>
+<p>If you hit <code>EACCES</code> on Linux/macOS, configure a user-level prefix instead of using <code>sudo</code>:</p>
+<pre><code class="language-bash">npm config set prefix ~/.npm-global
+echo 'export PATH=&quot;$HOME/.npm-global/bin:$PATH&quot;' &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+<h3>Platform integration</h3>
+<p>Evolver integrates with major agent runtimes through <code>setup-hooks</code>. Run the command once per platform you want to wire up.</p>
+<h4>Cursor</h4>
+<pre><code class="language-bash">evolver setup-hooks --platform=cursor
+</code></pre>
+<p>Writes <code>~/.cursor/hooks.json</code> and installs hook scripts under <code>~/.cursor/hooks/</code>. Restart Cursor (or open a new session) to activate. Hooks fire on <code>sessionStart</code>, <code>afterFileEdit</code>, and <code>stop</code>.</p>
+<h4>Claude Code</h4>
+<pre><code class="language-bash">evolver setup-hooks --platform=claude-code
+</code></pre>
+<p>Registers Evolver with Claude Code's hook system via <code>~/.claude/</code>. Restart the Claude Code CLI after installation.</p>
+<h4>OpenClaw</h4>
+<p>OpenClaw interprets the <code>sessions_spawn(...)</code> protocol that Evolver emits on stdout, so no hooks are required. Clone Evolver into your OpenClaw workspace and invoke it from within a session:</p>
+<pre><code class="language-bash">cd &lt;your-openclaw-workspace&gt;
+git clone https://github.com/EvoMap/evolver.git
+cd evolver
+npm install
+</code></pre>
+<p>When Evolver runs inside an OpenClaw session, the host picks up stdout directives (<code>sessions_spawn(...)</code>, etc.) and chains follow-up actions automatically.</p>
+<h3>Install from source (advanced)</h3>
+<pre><code class="language-bash">git clone https://github.com/EvoMap/evolver.git
+cd evolver
+npm install
+</code></pre>
+<p>Use this mode if you want to hack on the engine itself, run unreleased builds, or inspect the source tree.</p>
+<h3>Connect to the EvoMap network (optional)</h3>
+<p>To connect to the <a href="https://evomap.ai">EvoMap network</a>, create a <code>.env</code> file in your project root:</p>
+<pre><code class="language-bash"># Register at https://evomap.ai to get your Node ID
+A2A_HUB_URL=https://evomap.ai
+A2A_NODE_ID=your_node_id_here
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: Evolver works fully offline without <code>.env</code>. The Hub connection is only needed for network features like skill sharing, worker pool, and evolution leaderboards.</p>
+</blockquote>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Single evolution run -- scans logs, selects a Gene, outputs a GEP prompt
+node index.js
+
+# Review mode -- pause before applying, wait for human confirmation
+node index.js --review
+
+# Continuous loop -- runs as a background daemon
+node index.js --loop
+</code></pre>
+<h2>What Evolver Does (and Does Not Do)</h2>
+<p><strong>Evolver is a prompt generator, not a code patcher.</strong> Each evolution cycle:</p>
+<ol>
+<li>Scans your <code>memory/</code> directory for runtime logs, error patterns, and signals.</li>
+<li>Selects the best-matching <a href="https://evomap.ai/wiki">Gene or Capsule</a> from <code>assets/gep/</code>.</li>
+<li>Emits a strict, protocol-bound GEP prompt that guides the next evolution step.</li>
+<li>Records an auditable <a href="https://evomap.ai/wiki">EvolutionEvent</a> for traceability.</li>
+</ol>
+<p><strong>It does NOT</strong>:<br />
+- Automatically edit your source code.<br />
+- Execute arbitrary shell commands (see <a href="#security-model">Security Model</a>).<br />
+- Require an internet connection for core functionality.</p>
+<h3>How It Integrates with Host Runtimes</h3>
+<p>When running inside a host runtime (e.g., <a href="https://openclaw.com">OpenClaw</a>), the <code>sessions_spawn(...)</code> text printed to stdout can be picked up by the host to trigger follow-up actions. <strong>In standalone mode, these are just text output</strong> -- nothing is executed automatically.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mode</th>
+<th style="text-align: left;">Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Standalone (<code>node index.js</code>)</td>
+<td style="text-align: left;">Generates prompt, prints to stdout, exits</td>
+</tr>
+<tr>
+<td style="text-align: left;">Loop (<code>node index.js --loop</code>)</td>
+<td style="text-align: left;">Repeats the above in a daemon loop with adaptive sleep</td>
+</tr>
+<tr>
+<td style="text-align: left;">Inside OpenClaw</td>
+<td style="text-align: left;">Host runtime interprets stdout directives like <code>sessions_spawn(...)</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Who This Is For / Not For</h2>
+<p><strong>For</strong><br />
+- Teams maintaining agent prompts and logs at scale<br />
+- Users who need auditable evolution traces (<a href="https://evomap.ai/wiki">Genes</a>, <a href="https://evomap.ai/wiki">Capsules</a>, <a href="https://evomap.ai/wiki">Events</a>)<br />
+- Environments requiring deterministic, protocol-bound changes</p>
+<p><strong>Not For</strong><br />
+- One-off scripts without logs or history<br />
+- Projects that require free-form creative changes<br />
+- Systems that cannot tolerate protocol overhead</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Auto-Log Analysis</strong>: scans memory and history files for errors and patterns.</li>
+<li><strong>Self-Repair Guidance</strong>: emits repair-focused directives from signals.</li>
+<li><strong><a href="https://evomap.ai/wiki">GEP Protocol</a></strong>: standardized evolution with reusable assets.</li>
+<li><strong>Mutation + Personality Evolution</strong>: each evolution run is gated by an explicit Mutation object and an evolvable PersonalityState.</li>
+<li><strong>Configurable Strategy Presets</strong>: <code>EVOLVE_STRATEGY=balanced|innovate|harden|repair-only</code> controls intent balance.</li>
+<li><strong>Signal De-duplication</strong>: prevents repair loops by detecting stagnation patterns.</li>
+<li><strong>Operations Module</strong> (<code>src/ops/</code>): portable lifecycle, skill monitoring, cleanup, self-repair, wake triggers -- zero platform depende</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/EvoMap/evolver#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">deepseek-ai /</span>
+          <a href="https://github.com/deepseek-ai/DeepGEMM" target="_blank" rel="noopener">DeepGEMM</a>
+        </div>
+        <div class="repo-desc">DeepGEMM: clean and efficient FP8 GEMM kernels with fine-grained scaling</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#8b949e"></span>Cuda</span>
+      <span class="meta-item">⭐ 6,563</span>
+      <span class="meta-item">🍴 879</span>
+      <span class="stars-today">⭐ 31 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>DeepGEMM</h1>
+<p>DeepGEMM is a unified, high-performance tensor core kernel library that brings together the key computation primitives of modern large language models — GEMMs (FP8, FP4, BF16), fused MoE with overlapped communication (Mega MoE), MQA scoring for the lightning indexer, HyperConnection (HC), and more — into a single, cohesive CUDA codebase. All kernels are compiled at runtime via a lightweight Just-In-Time (JIT) module, requiring no CUDA compilation during installation.</p>
+<p>DeepGEMM leverages some concepts from <a href="https://github.com/nvidia/cutlass">CUTLASS</a> and <a href="https://github.com/NVIDIA/cutlass/tree/main/include/cute">CuTe</a>, but avoids heavy reliance on their templates or algebras. The library is designed for simplicity, with only a limited number of core kernel functions, making it a clean and accessible resource for learning NVIDIA GPU kernel optimization techniques.</p>
+<p>Despite its lightweight design, DeepGEMM's performance matches or exceeds expert-tuned libraries across various matrix shapes.</p>
+<h2>News</h2>
+<ul>
+<li>2026.04.16: Mega MoE, FP8xFP4 GEMM, FP4 Indexer, PDL, faster JIT compilation and more.</li>
+<li>Performance comparison will be posted later.</li>
+<li>Please see <a href="https://github.com/deepseek-ai/DeepGEMM/pull/304">#304</a> for more details.</li>
+<li>2025.09.28: DeepGEMM now supports scoring kernels (weighted ReLU MQA logits) for the lightning indexer for DeepSeek v3.2.</li>
+<li>Please see <a href="https://github.com/deepseek-ai/DeepGEMM/pull/200">#200</a> for more details.</li>
+<li>2025.07.20: DeepGEMM now supports both SM90/SM100, and has a full refactor with a low-CPU-overhead JIT CPP module.</li>
+<li>NVRTC and post-compilation SASS optimization are all disabled.</li>
+<li>NVRTC will be supported later.</li>
+<li>As NVCC 12.9 will automatically do the FFMA interleaving, all post optimizations will be no longer supported.</li>
+<li>Please see <a href="https://github.com/deepseek-ai/DeepGEMM/pull/112">#112</a> for more details.</li>
+<li>2025.05.14: DeepGEMM now offers weight gradient kernels for dense and MoE backward! See <a href="https://github.com/deepseek-ai/DeepGEMM/pull/95">#95</a> for details.</li>
+<li>2025.05.07: DeepGEMM now supports NVRTC with up to 10x compilation speedup! See <a href="https://github.com/deepseek-ai/DeepGEMM/pull/94">#94</a> for details. Please use <code>DG_JIT_USE_NVRTC=1</code> to enable it (may have performance loss with some cases).</li>
+<li>2025.04.18: DeepGEMM now achieves up to <strong>1550 TFLOPS</strong> on H800! See <a href="https://github.com/deepseek-ai/DeepGEMM/pull/74">#74</a>, <a href="https://github.com/deepseek-ai/DeepGEMM/pull/78">#78</a>, <a href="https://github.com/deepseek-ai/DeepGEMM/pull/81">#81</a>, <a href="https://github.com/deepseek-ai/DeepGEMM/pull/86">#86</a> and <a href="https://github.com/deepseek-ai/DeepGEMM/commit/340d9880f4a418d943d34260d20a79f41f4c0526">340d988</a> for details.</li>
+</ul>
+<h2>Quick start</h2>
+<h3>Requirements</h3>
+<ul>
+<li>NVIDIA SM90 or SM100 architecture GPU</li>
+<li>Python 3.8 or higher</li>
+<li>Compilers with C++20 support</li>
+<li>CUDA Toolkit:</li>
+<li>CUDA 12.3 or higher for SM90<ul>
+<li><strong>We highly recommend 12.9 or higher for the best performance</strong></li>
+</ul>
+</li>
+<li>CUDA 12.9 or higher for SM100</li>
+<li>PyTorch 2.1 or higher</li>
+<li>CUTLASS 4.0 or higher (could be cloned by Git submodule)</li>
+<li><code>{fmt}</code> library (could be cloned by Git submodule)</li>
+</ul>
+<h3>Development</h3>
+<pre><code class="language-bash"># Submodule must be cloned
+git clone --recursive git@github.com:deepseek-ai/DeepGEMM.git
+cd DeepGEMM
+
+# Link some essential includes and build the CPP JIT module
+cat develop.sh
+./develop.sh
+</code></pre>
+<h3>Installation</h3>
+<pre><code class="language-bash">cat install.sh
+./install.sh
+</code></pre>
+<p>Then, import <code>deep_gemm</code> in your Python project, and enjoy!</p>
+<h2>Interfaces</h2>
+<h4>Notices</h4>
+<p>This library provides optimized GEMM kernels for NVIDIA GPUs with a naming convention: <code>D = C + A @ B</code>. The input shape layout is NT (non-transposed A, transposed B). While the SM90 implementation supports only the NT memory layout (row-major, col-major), the SM100 implementation supports all memory layouts (NT, TN, NN, TT). For example, <code>fp8_gemm_nt</code> will do a <code>D = C + A @ B.T</code></p>
+<p>For both architectures, the LHS scaling factor is required to have a TMA-aligned and transposed layout. And the data format for the scaling factor of SM90 and SM100 is different:</p>
+<ul>
+<li>SM90 requires scaling factors in FP32 format.</li>
+<li>SM100 requires scaling factors in packed <a href="https://docs.nvidia.com/cuda/parallel-thread-execution/#alternate-floating-point-data-formats">UE8M0</a> format, which packs 4 UE8M0 into a single <code>torch.int</code>.</li>
+</ul>
+<p>Please note that operations like input transposition or FP8 casting must be handled separately by the user, please implement or fuse them into prior kernels independently. While the library provides some simple PyTorch utility functions, these may result in slower performance, but our primary focus is on optimizing the GEMM kernels themselves.</p>
+<h4>Normal dense GEMMs (non-grouped)</h4>
+<p>To perform a basic non-grouped FP8 GEMM, call the <code>fp8_gemm_{nt, nn, tn, tt}</code> function. For more details, please refer to the function documentation.</p>
+<h4>Grouped GEMMs (contiguous layout)</h4>
+<p>Unlike traditional grouped GEMMs in CUTLASS, DeepGEMM groups only the M-axis, while N and K must remain fixed. This design is tailored for scenarios where experts in an MoE model share the same shape. For training forward passes or inference prefilling, where each expert may process a varying number of tokens, we concatenate these tokens into a single tensor, referred to as the "contiguous" layout. Note that each expert segment must be aligned to the GEMM M block size (<code>get_mk_alignment_for_contiguous_layout()</code>).  For more information, please refer to the <code>m_grouped_fp8_gemm_{nt, nn}_contiguous</code> function documentation.</p>
+<p>We also provide a K-axis-grouped API for MoE weight backward (with M and N must remain fixed), please refer to <code>k_grouped_fp8_gemm_tn_contiguous</code> for more information.</p>
+<h4>Grouped GEMMs (masked layout)</h4>
+<p>During the inference decoding phase, when CUDA graph is enabled and the CPU is unaware of the number of tokens each expert receives, we support masked grouped GEMMs. By providing a mask tensor, the kernel computes only the valid portions.</p>
+<p>Use <code>m_grouped_fp8_gemm_nt_masked</code> for this purpose and consult the relevant documentation. An example usage is to use the output of low-latency kernels from <a href="https://github.com/deepseek-ai/DeepEP">DeepEP</a> as input.</p>
+<h4>V3.2 MQA kernels for the indexer</h4>
+<p>The kernel family has two versions, non-paged (for prefilling) and paged (for decoding).<br />
+Take the non-paged version <code>fp8_mqa_logits</code> as an example. It has 6 inputs:</p>
+<ul>
+<li><code>q</code>, E4M3 tensor with shape <code>[seq_len, num_heads, head_dim]</code></li>
+<li><code>kv</code>, E4M3 tensor (shaped as <code>[seq_len_kv, head_dim]</code>) with float SF (shaped as <code>[seq_len_kv]</code>)</li>
+<li><code>weights</code>, float tensor with shape <code>[seq_len, num_heads]</code></li>
+<li><code>cu_seq_len_k_start</code> and <code>cu_seq_len_k_end</code>, int tensor with shape <code>[seq_len]</code></li>
+<li><code>clean_logits</code>, whether to clean the unfilled logits into <code>-inf</code></li>
+</ul>
+<p>The output tensor is shaped as <code>[seq_len, seq_len_kv]</code>, indicating token-to-token logits.<br />
+For each token <code>i</code> in <code>q</code>, it will iterate all tokens <code>j</code> from <code>[cu_seq_len_k_start[i], cu_seq_len_k_end[i])</code>,<br />
+and calculate the logit <code>out[i, j]</code> as:</p>
+<pre><code class="language-python">kv_j = kv[0][j, :] * kv[1][j].unsqueeze(1)  # [head_dim]
+out_ij = q[i, :, :] @ kv_j  # [num_heads]
+out_ij = out_ij.relu() * weights[i, :]  # [num_heads]
+out_ij = out_ij.sum()  # Scalar
+</code></pre>
+<p>For more details and the paged version <code>fp8_paged_mqa_logits</code>, please refer to <code>tests/test_attention.py</code>.</p>
+<h4>Mega MoE</h4>
+<p>Mega MoE fuses and overlaps EP dispatch, linear 1 (FP8xFP4), SwiGLU, linear 2 (FP8xFP4), and EP combine into a single mega-kernel, overlapping NVLink communication and tensor core computation. It requires multi-process launch with symmetric memory. Usage:</p>
+<p>```python</p>
+<h1>Allocate symmetric memory buffer</h1>
+<h1>NOTES: requires PyTorch &gt;= 2.9</h1>
+<p>buffer = deep_gemm.get_symm_buffer_for_mega_moe(<br />
+    group, num_experts, num_max_tokens_per_rank, num_topk, hidden, intermediate_hidden<br />
+)</p>
+<h1>Transform weights (FP4 with UE8M0 SF) into the required layout</h1>
+<p>transformed_l1, transformed_l2 = deep_gemm.transform_weights_for_mega_moe(l1_weights, l2_weights)</p>
+<h1>Copy inputs into the buffer before each call</h1>
+<h1>You may</h1>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/deepseek-ai/DeepGEMM#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Lordog /</span>
+          <a href="https://github.com/Lordog/dive-into-llms" target="_blank" rel="noopener">dive-into-llms</a>
+        </div>
+        <div class="repo-desc">《动手学大模型Dive into LLMs》系列编程实践教程</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+      <span class="meta-item">⭐ 32,088</span>
+      <span class="meta-item">🍴 3,904</span>
+      <span class="stars-today">⭐ 547 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+<h1 align="center">《动手学大模型》系列编程实践教程</h1>
+</p>
+<p align="center">
+    <a href="https://img.shields.io/badge/version-v0.1.0-blue">
+      <img alt="version" src="https://img.shields.io/badge/version-v0.1.0-blue?color=FF8000?color=009922" />
+    </a>
+  <a >
+       <img alt="Status-building" src="https://img.shields.io/badge/Status-building-blue" />
+    </a>
+  <a >
+       <img alt="PRs-Welcome" src="https://img.shields.io/badge/PRs-Welcome-red" />
+    </a>
+    <a href="https://github.com/Lordog/dive-into-llms/stargazers">
+       <img alt="stars" src="https://img.shields.io/github/stars/Lordog/dive-into-llms" />
+    </a>
+    <a href="https://github.com/Lordog/dive-into-llms/network/members">
+       <img alt="FORK" src="https://img.shields.io/github/forks/Lordog/dive-into-llms?color=FF8000" />
+    </a>
+    <a href="https://github.com/Lordog/dive-into-llms/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/Lordog/dive-into-llms?color=0088ff"/>
+    </a>
+    <br />
+</p>
+
+<div align="center">
+<p align="center">
+  <a href="#项目动机">项目动机</a>/
+  <a href="#教程目录">教程目录</a>/
+  <a href="#贡献者列表">贡献者列表</a>
+</p>
+</div>
+
+<h2>💡 Updates</h2>
+<p>2025/06/06  感谢各位朋友们的关注和积极反馈！我们从以下两个方面对本教程进行了更新：</p>
+<ul>
+<li>[x] 上线国产化《大模型开发全流程》公益教程（含PPT、实验手册和视频），此处特别感谢华为昇腾社区的支持！</li>
+<li>[x] 在原系列编程实践教程的基础上进行内容更新，并增加了新的主题（数学推理、GUI Agent、大模型对齐、隐写术等）！</li>
+</ul>
+<h2>🎯 项目动机</h2>
+<p>《动手学大模型》系列编程实践教程，由上海交通大学《自然语言处理前沿技术》（NIS8021）、《人工智能安全技术》课程（NIS3353）讲义拓展而来（教师：<a href="https://bcmi.sjtu.edu.cn/home/zhangzs/">张倬胜</a>），旨在提供大模型相关的入门编程参考。本教程属公益性质、完全免费。通过简单实践，帮助同学们快速入门大模型，更好地开展课程设计或学术研究。</p>
+<h2>📚 教程目录</h2>
+<table>
+<thead>
+<tr>
+<th>教程内容</th>
+<th>简介</th>
+<th>地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微调与部署</td>
+<td>预训练模型微调与部署指南：想提升预训练模型在指定任务上的性能？让我们选择合适的预训练模型，在特定任务上进行微调，并将微调后的模型部署成方便使用的Demo！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter1/dive-into-llm.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter1/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter1/dive-tuning.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>提示学习与思维链</td>
+<td>大模型的API调用与推理指南：“AI在线求鼓励？大模型对一些问题的回答令人大跌眼镜，但它可能只是想要一句「鼓励」”</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter2/dive-into-prompting.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter2/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter2/dive-prompting.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>知识编辑</td>
+<td>语言模型的编辑方法和工具：想操控语言模型在对指定知识的记忆？让我们选择合适的编辑方法，对特定知识进行编辑，并将对编辑后的模型进行验证！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter3/dive_edit_0410.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter3/README.md">教程</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter3/dive_edit.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>数学推理</td>
+<td>如何让大模型学会数学推理？让我们快速蒸馏一个迷你R1！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter4/math.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter4/README.md">教程</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter4/sft_math.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>模型水印</td>
+<td>语言模型的文本水印：在语言模型生成的内容中嵌入人类不可见的水印</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter5/watermark.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter5/README.md">教程</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter5/watermark.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>越狱攻击</td>
+<td>想要得到更好的安全，要先从学会攻击开始。让我们了解越狱攻击如何撬开大模型的嘴！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter6/dive-Jailbreak.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter6/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter6/dive-jailbreak.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>大模型隐写</td>
+<td>“看不见的墨水”！想让大模型在流畅回答的同时，悄悄携带只有“自己人”能识别的信息吗？大模型隐写告诉你！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter7/stega.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter7/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter7/llm_stega.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>多模态模型</td>
+<td>作为能够更充分模拟真实世界的多模态大语言模型，其如何实现更强大的多模态理解和生成能力？多模态大语言模型是否能够帮助实现AGI？</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter8/mllms.pdf">课件</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter8/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter8/mllms.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>GUI智能体</td>
+<td>想要饭来张口、解放双手？那么让我们一起来让AI Agent替你点外卖、回消息、购物比价吧！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter9/GUIagent.pdf">课件</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter9/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter9/GUIagent.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>智能体安全</td>
+<td>大模型智能体迈向了未来操作系统之旅。然而，大模型在开放智能体场景中能意识到风险威胁吗？</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter10/dive-into-safety.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter10/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter10/agent.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>RLHF安全对齐</td>
+<td>基于PPO的RLHF实验指南：本教程”十分危险“，阅读后请检查你的大模型是否在冷笑。</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter11/RLHF.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter11/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter11/RLHF.ipynb">脚本</a>]</td>
+</tr>
+</tbody>
+</table>
+<h2>🔥 新上线：国产化《大模型开发全流程》</h2>
+<ul>
+<li><strong>✨ 我们联合华为昇腾推出的《大模型开发全流程》公益教程正式上线！前沿技术+代码实践，手把手带你玩转AI大模型 ✨</strong>: </li>
+</ul>
+<p>在《动手学大模型》原系列教程的基础上，我们联合华为开发了《大模型开发全流程》系列课程。本系列教程基于昇腾基础软硬件开发，覆盖PPT、实验手册、视频等教程形式。该教程分为初级、中级、高级系列，面向不同的大模型实践需求，旨在将前沿技术通过代码实践的方式，为相关研究者、开发者由浅入深地提供快速上手、应用昇腾已支持模型和全新模型迁移调优的全流程开发指南。</p>
+<ul>
+<li><strong>🚀 前往昇腾社区探索《大模型开发全流程》系列课程</strong>： </li>
+</ul>
+<p>👉《<a href="https://www.hiascend.com/edu/growth/lm-development#classification-floor-1">大模型开发学习专区</a>》@ 昇腾社区 👈 </p>
+<ul>
+<li><strong>✨ 课程内容展示 ✨</strong></li>
+</ul>
+<!-- <img src="./pics/icon/title.jpg" width="300"/>
+  <img src="./pics/icon/cover.png" width="300"/>
+  <img src="./pics/icon/team.png" width="300"/>
+  <img src="./pics/icon/agent.png" width="300"/> -->
+
+<p align = "center">
+  <img src="./pics/icon/title.jpg" width="48%"/>
+  <img src="./pics/icon/cover.png" width="48%"/>
+  <img src="./pics/icon/team.png" width="48%"/>
+  <img src="./pics/icon/agent.png" width="48%"/>
+</p>
+
+<h2>🙏 免责声明</h2>
+<p>本教程所有内容仅仅来自于贡献者的个人经验、互联网数据、日常科研工作中的相关积累。所有技巧仅供参考，不保证百分百正确。若有任何问题，欢迎提交 Issue 或 PR。另本项目所用徽章来自互联网，如侵犯了您的图片版权请联系我们删除，谢谢。</p>
+<h2>🤝 欢迎贡献</h2>
+<p>本教程目前是一个正在进行中的项目，如有疏漏在所难免，欢迎任何的PR及issue讨论。</p>
+<h2>❤️ 贡献者列表</h2>
+<p>感谢以下老师和同学对本项目的支持与贡献：</p>
+<p><strong>《动手学大模型》系列教程开发团队</strong>：</p>
+<ul>
+<li>
+<p>上海交通大学：<a href="https://bcmi.sjtu.edu.cn/home/zhangzs/">张倬胜</a>、<a href="https://github.com/Lordog">袁童鑫</a>、<a href="https://scholar.google.com/citations?user=LpUi3EgAAAAJ&amp;hl=zh-CN&amp;oi=ao">马欣贝</a>、 <a href="https://zwhe99.github.io">何志威</a>、<a href="https://scholar.google.com/citations?user=tFYUBLkAAAAJ&amp;hl=en">杜巍</a>、<a href="https://dongdongzhaoup.github.io/">赵皓东</a>、<a href="https://zrw00.github.io/">吴宗儒</a>、<a href="https://wuzheng02.github.io/">吴铮</a>、<a href="https://github.com/LZ-Dong">董凌众</a>、<a href="https://aslan-yulong.github.io/">张玉龙</a></p>
+</li>
+<li>
+<p>新加坡国立大学：<a href="http://haofei.vip/">费豪</a></p>
+</li>
+</ul>
+<p><strong>《大模型开发全流程》系列教程开发团队：</strong></p>
+<ul>
+<li>上海交通大学：<a href="https://bcmi.sjtu.edu.cn/home/zhangzs/">张倬胜</a>、<a href="https://infosec.sjtu.edu.cn/DirectoryDetail.aspx?id=75">刘功申</a>、<a href="https://scholar.google.com/citations?user=d-dNtjrMJ5YC&amp;hl=en">陈星宇</a>、<a href="https://scholar.google.com/citations?user=qxnwzDUAAAAJ&amp;hl=en">程彭洲</a>、<a href="https://github.com/LZ-Dong">董凌众</a>、 <a href="https://zwhe99.github.io">何志威</a>、<a href="https://scholar.google.com/citations?user=f8PPcnoAAAAJ&amp;hl=en">鞠天杰</a>、<a href="https://scholar.google.com/citations?user=LpUi3EgAAAAJ&amp;hl=zh-CN&amp;oi=ao">马欣贝</a>、 <a href="https://scholar.google.com/citations?hl=zh-CN&amp;user=qBM1UbUAAAAJ&amp;view_op=list_works&amp;gmla=AIfU4H6PG9JyjRub6BYIIZ4isQE7MBAM3Eoec6OJfX4z_8-pOE8bI1Wgdo3XL5qOZWR3U-h-lIP2q0zXt5gzyFKMSg7MNnBBWLv5d1IVG30UANczTP0">吴铮</a>、<a href="https://zrw00.github.io/">吴宗儒</a>、[闫子赫](https://scholar.google</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Lordog/dive-into-llms#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">aaddrick /</span>
+          <a href="https://github.com/aaddrick/claude-desktop-debian" target="_blank" rel="noopener">claude-desktop-debian</a>
+        </div>
+        <div class="repo-desc">Claude Desktop for Debian-based Linux distributions</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 3,487</span>
+      <span class="meta-item">🍴 382</span>
+      <span class="stars-today">⭐ 44 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Claude Desktop for Linux</h1>
+<p>This project provides build scripts to run Claude Desktop natively on Linux systems. It repackages the official Windows application for Linux distributions, producing <code>.deb</code> packages (Debian/Ubuntu), <code>.rpm</code> packages (Fedora/RHEL), distribution-agnostic AppImages, an <a href="https://aur.archlinux.org/packages/claude-desktop-appimage">AUR package</a> for Arch Linux, and a Nix flake for NixOS.</p>
+<p><strong>Note:</strong> This is an unofficial build script. For official support, please visit <a href="https://www.anthropic.com">Anthropic's website</a>. For issues with the build script or Linux implementation, please <a href="https://github.com/aaddrick/claude-desktop-debian/issues">open an issue</a> in this repository.</p>
+<hr />
+<blockquote>
+<p><strong>⚠️ EXPERIMENTAL: Cowork Mode Support</strong><br />
+Cowork mode is <strong>enabled by default</strong> in this build with a pluggable isolation backend:</p>
+<table>
+<thead>
+<tr>
+<th>Backend</th>
+<th>Isolation</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bubblewrap</strong> (default)</td>
+<td>Namespace sandbox</td>
+<td><code>bwrap</code> installed and functional</td>
+</tr>
+<tr>
+<td><strong>host</strong> (fallback)</td>
+<td>None — runs directly on host</td>
+<td>No additional requirements</td>
+</tr>
+</tbody>
+</table>
+<p>The best available backend is auto-detected at startup. Run <code>claude-desktop --doctor</code> to check which backend will be used and which dependencies are missing.</p>
+<p><strong>Note:</strong> The bubblewrap backend mounts your home directory as read-only (only the project working directory is writable). The host backend provides no isolation — use it only if you understand the security implications.</p>
+<p><strong>KVM status:</strong> The KVM/QEMU backend code exists but is non-functional — VM file downloads are disabled on Linux to prevent a checksum loop (#337). The backend code remains for potential future use.</p>
+</blockquote>
+<hr />
+<h2>Features</h2>
+<ul>
+<li><strong>Native Linux Support</strong>: Run Claude Desktop without virtualization or Wine</li>
+<li><strong>MCP Support</strong>: Full Model Context Protocol integration<br />
+  Configuration file location: <code>~/.config/Claude/claude_desktop_config.json</code></li>
+<li><strong>System Integration</strong>:</li>
+<li>Global hotkey support (Ctrl+Alt+Space) - works on X11 and Wayland (via XWayland)</li>
+<li>System tray integration</li>
+<li>Desktop environment integration</li>
+</ul>
+<h3>Screenshots</h3>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/aaddrick/claude-desktop-debian/main/docs/images/claude-desktop-screenshot1.png" alt="Claude Desktop running on Linux" />
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/aaddrick/claude-desktop-debian/main/docs/images/claude-desktop-screenshot2.png" alt="Global hotkey popup" />
+</p>
+
+<h2>Installation</h2>
+<h3>Using APT Repository (Debian/Ubuntu - Recommended)</h3>
+<p>Add the repository for automatic updates via <code>apt</code>:</p>
+<pre><code class="language-bash"># Add the GPG key
+curl -fsSL https://aaddrick.github.io/claude-desktop-debian/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/claude-desktop.gpg
+
+# Add the repository
+echo &quot;deb [signed-by=/usr/share/keyrings/claude-desktop.gpg arch=amd64,arm64] https://aaddrick.github.io/claude-desktop-debian stable main&quot; | sudo tee /etc/apt/sources.list.d/claude-desktop.list
+
+# Update and install
+sudo apt update
+sudo apt install claude-desktop
+</code></pre>
+<p>Future updates will be installed automatically with your regular system updates (<code>sudo apt upgrade</code>).</p>
+<h3>Using DNF Repository (Fedora/RHEL - Recommended)</h3>
+<p>Add the repository for automatic updates via <code>dnf</code>:</p>
+<pre><code class="language-bash"># Add the repository
+sudo curl -fsSL https://aaddrick.github.io/claude-desktop-debian/rpm/claude-desktop.repo -o /etc/yum.repos.d/claude-desktop.repo
+
+# Install
+sudo dnf install claude-desktop
+</code></pre>
+<p>Future updates will be installed automatically with your regular system updates (<code>sudo dnf upgrade</code>).</p>
+<h3>Using AUR (Arch Linux)</h3>
+<p>The <a href="https://aur.archlinux.org/packages/claude-desktop-appimage"><code>claude-desktop-appimage</code></a> package is available on the AUR and is automatically updated with each release.</p>
+<pre><code class="language-bash"># Using yay
+yay -S claude-desktop-appimage
+
+# Or using paru
+paru -S claude-desktop-appimage
+</code></pre>
+<p>The AUR package installs the AppImage build of Claude Desktop.</p>
+<h3>Using Nix Flake (NixOS)</h3>
+<p>Install directly from the flake:</p>
+<pre><code class="language-bash"># Basic install
+nix profile install github:aaddrick/claude-desktop-debian
+
+# With MCP server support (FHS environment)
+nix profile install github:aaddrick/claude-desktop-debian#claude-desktop-fhs
+</code></pre>
+<p>Or add to your NixOS configuration:</p>
+<pre><code class="language-nix"># flake.nix
+{
+  inputs.claude-desktop.url = &quot;github:aaddrick/claude-desktop-debian&quot;;
+
+  outputs = { nixpkgs, claude-desktop, ... }: {
+    nixosConfigurations.myhost = nixpkgs.lib.nixosSystem {
+      modules = [
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [ claude-desktop.overlays.default ];
+          environment.systemPackages = [ pkgs.claude-desktop ];
+        })
+      ];
+    };
+  };
+}
+</code></pre>
+<h3>Using Pre-built Releases</h3>
+<p>Download the latest <code>.deb</code>, <code>.rpm</code>, or <code>.AppImage</code> from the <a href="https://github.com/aaddrick/claude-desktop-debian/releases">Releases page</a>.</p>
+<h3>Building from Source</h3>
+<p>See <a href="docs/BUILDING.md">docs/BUILDING.md</a> for detailed build instructions.</p>
+<h2>Configuration</h2>
+<p>Model Context Protocol settings are stored in:</p>
+<pre><code>~/.config/Claude/claude_desktop_config.json
+</code></pre>
+<p>For additional configuration options including environment variables and Wayland support, see <a href="docs/CONFIGURATION.md">docs/CONFIGURATION.md</a>.</p>
+<h2>Troubleshooting</h2>
+<p>Run <code>claude-desktop --doctor</code> for built-in diagnostics that check common issues (display server, sandbox permissions, MCP config, stale locks, and more). It also reports cowork mode readiness — which isolation backend will be used, and which dependencies (KVM, QEMU, vsock, socat, virtiofsd, bubblewrap) are installed or missing.</p>
+<p>For additional troubleshooting, uninstallation instructions, and log locations, see <a href="docs/TROUBLESHOOTING.md">docs/TROUBLESHOOTING.md</a>.</p>
+<h2>Acknowledgments</h2>
+<p>This project was inspired by <a href="https://github.com/k3d3/claude-desktop-linux-flake">k3d3's claude-desktop-linux-flake</a> and their <a href="https://www.reddit.com/r/ClaudeAI/comments/1hgsmpq/i_successfully_ran_claude_desktop_natively_on/">Reddit post</a> about running Claude Desktop natively on Linux.</p>
+<p>Special thanks to:<br />
+- <strong>k3d3</strong><br />
+  - Original NixOS implementation<br />
+  - Native bindings insights<br />
+- <strong><a href="https://github.com/emsi/claude-desktop">emsi</a></strong><br />
+  - Title bar fix<br />
+  - Alternative implementation approach<br />
+- <strong><a href="https://github.com/leobuskin/unofficial-claude-desktop-linux">leobuskin</a></strong> for the Playwright-based URL resolution approach<br />
+- <strong><a href="https://github.com/yarikoptic">yarikoptic</a></strong><br />
+  - Codespell support<br />
+  - Shellcheck compliance<br />
+- <strong><a href="https://github.com/IamGianluca">IamGianluca</a></strong> for build dependency check improvements<br />
+- <strong><a href="https://github.com/ing03201">ing03201</a></strong> for IBus/Fcitx5 input method support<br />
+- <strong><a href="https://github.com/ajescudero">ajescudero</a></strong> for pinning @electron/asar for Node compatibility<br />
+- <strong><a href="https://github.com/delorenj">delorenj</a></strong> for Wayland compatibility support<br />
+- <strong><a href="https://github.com/Regen-forest">Regen-forest</a></strong> for suggesting Gear Lever as AppImageLauncher replacement<br />
+- <strong><a href="https://github.com/niekvugteveen">niekvugteveen</a></strong> for fixing Debian packaging permissions<br />
+- <strong><a href="https://github.com/speleoalex">speleoalex</a></strong> for native window decorations support<br />
+- <strong><a href="https://github.com/imaginalnika">imaginalnika</a></strong> for moving logs to <code>~/.cache/</code><br />
+- <strong><a href="https://github.com/richardspicer">richardspicer</a></strong> for the menu bar visibility fix on Linux<br />
+- <strong><a href="https://github.com/jacobfrantz1">jacobfrantz1</a></strong><br />
+  - Claude Desktop code preview support<br />
+  - Quick window submit fix<br />
+- <strong><a href="https://github.com/janfrederik">janfrederik</a></strong> for the <code>--exe</code> flag to use a local installer<br />
+- <strong><a href="https://github.com/MrEdwards007">MrEdwards007</a></strong> for discovering the OAuth token cache fix<br />
+- <strong><a href="https://github.com/lizthegrey">lizthegrey</a></strong> for version update contributions<br />
+- <strong><a href="https://github.com/mathys-lopinto">mathys-lopinto</a></strong><br />
+  - AUR package<br />
+  - Automated deployment<br />
+- <strong><a href="https://github.com/pkuijpers">pkuijpers</a></strong> for root cause analysis of the RPM repo GPG signing issue<br />
+- <strong><a href="https://github.com/dlepold">dlepold</a></strong> for identifying the tray icon variable name bug with a working fix<br />
+- **[Voork1144](https:/</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/aaddrick/claude-desktop-debian#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">rustdesk /</span>
+          <a href="https://github.com/rustdesk/rustdesk" target="_blank" rel="noopener">rustdesk</a>
+        </div>
+        <div class="repo-desc">An open-source remote desktop application designed for self-hosting, as an alternative to TeamViewer.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 112,138</span>
+      <span class="meta-item">🍴 16,764</span>
+      <span class="stars-today">⭐ 393 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="res/logo-header.svg" alt="RustDesk - Your remote desktop"><br>
+  <a href="#raw-steps-to-build">Build</a> •
+  <a href="#how-to-build-with-docker">Docker</a> •
+  <a href="#file-structure">Structure</a> •
+  <a href="#snapshot">Snapshot</a><br>
+  [<a href="docs/README-UA.md">Українська</a>] | [<a href="docs/README-CS.md">česky</a>] | [<a href="docs/README-ZH.md">中文</a>] | [<a href="docs/README-HU.md">Magyar</a>] | [<a href="docs/README-ES.md">Español</a>] | [<a href="docs/README-FA.md">فارسی</a>] | [<a href="docs/README-FR.md">Français</a>] | [<a href="docs/README-DE.md">Deutsch</a>] | [<a href="docs/README-PL.md">Polski</a>] | [<a href="docs/README-ID.md">Indonesian</a>] | [<a href="docs/README-FI.md">Suomi</a>] | [<a href="docs/README-ML.md">മലയാളം</a>] | [<a href="docs/README-JP.md">日本語</a>] | [<a href="docs/README-NL.md">Nederlands</a>] | [<a href="docs/README-IT.md">Italiano</a>] | [<a href="docs/README-RU.md">Русский</a>] | [<a href="docs/README-PTBR.md">Português (Brasil)</a>] | [<a href="docs/README-EO.md">Esperanto</a>] | [<a href="docs/README-KR.md">한국어</a>] | [<a href="docs/README-AR.md">العربي</a>] | [<a href="docs/README-VN.md">Tiếng Việt</a>] | [<a href="docs/README-DA.md">Dansk</a>] | [<a href="docs/README-GR.md">Ελληνικά</a>] | [<a href="docs/README-TR.md">Türkçe</a>] | [<a href="docs/README-NO.md">Norsk</a>] | [<a href="docs/README-RO.md">Română</a>]<br>
+  <b>We need your help to translate this README, <a href="https://github.com/rustdesk/rustdesk/tree/master/src/lang">RustDesk UI</a> and <a href="https://github.com/rustdesk/doc.rustdesk.com">RustDesk Doc</a> to your native language</b>
+</p>
+
+<blockquote>
+<p>[!Caution]<br />
+<strong>Misuse Disclaimer:</strong> <br><br />
+The developers of RustDesk do not condone or support any unethical or illegal use of this software. Misuse, such as unauthorized access, control or invasion of privacy, is strictly against our guidelines. The authors are not responsible for any misuse of the application.</p>
+</blockquote>
+<p>Chat with us: <a href="https://discord.gg/nDceKgxnkV">Discord</a> | <a href="https://twitter.com/rustdesk">Twitter</a> | <a href="https://www.reddit.com/r/rustdesk">Reddit</a> | <a href="https://www.youtube.com/@rustdesk">YouTube</a></p>
+<p><a href="https://rustdesk.com/pricing.html"><img alt="RustDesk Server Pro" src="https://img.shields.io/badge/RustDesk%20Server%20Pro-Advanced%20Features-blue" /></a></p>
+<p>Yet another remote desktop solution, written in Rust. Works out of the box with no configuration required. You have full control of your data, with no concerns about security. You can use our rendezvous/relay server, <a href="https://rustdesk.com/server">set up your own</a>, or <a href="https://github.com/rustdesk/rustdesk-server-demo">write your own rendezvous/relay server</a>.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/71636191/171661982-430285f0-2e12-4b1d-9957-4a58e375304d.png" /></p>
+<p>RustDesk welcomes contribution from everyone. See <a href="docs/CONTRIBUTING.md">CONTRIBUTING.md</a> for help getting started.</p>
+<p><a href="https://github.com/rustdesk/rustdesk/wiki/FAQ"><strong>FAQ</strong></a></p>
+<p><a href="https://github.com/rustdesk/rustdesk/releases"><strong>BINARY DOWNLOAD</strong></a></p>
+<p><a href="https://github.com/rustdesk/rustdesk/releases/tag/nightly"><strong>NIGHTLY BUILD</strong></a></p>
+<p><a href="https://f-droid.org/en/packages/com.carriez.flutter_hbb"><img src="https://f-droid.org/badge/get-it-on.png"
+    alt="Get it on F-Droid"
+    height="80"></a><br />
+<a href="https://flathub.org/apps/com.rustdesk.RustDesk"><img src="https://flathub.org/api/badge?svg&locale=en"
+    alt="Get it on Flathub"
+    height="80"></a></p>
+<h2>Dependencies</h2>
+<p>Desktop versions use Flutter or Sciter (deprecated) for GUI, this tutorial is for Sciter only, since it is easier and more friendly to start. Check out our <a href="https://github.com/rustdesk/rustdesk/blob/master/.github/workflows/flutter-build.yml">CI</a> for building Flutter version.</p>
+<p>Please download Sciter dynamic library yourself.</p>
+<p><a href="https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.win/x64/sciter.dll">Windows</a> |<br />
+<a href="https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so">Linux</a> |<br />
+<a href="https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.osx/libsciter.dylib">macOS</a></p>
+<h2>Raw Steps to build</h2>
+<ul>
+<li>
+<p>Prepare your Rust development env and C++ build env</p>
+</li>
+<li>
+<p>Install <a href="https://github.com/microsoft/vcpkg">vcpkg</a>, and set <code>VCPKG_ROOT</code> env variable correctly</p>
+</li>
+<li>
+<p>Windows: vcpkg install libvpx:x64-windows-static libyuv:x64-windows-static opus:x64-windows-static aom:x64-windows-static</p>
+</li>
+<li>
+<p>Linux/macOS: vcpkg install libvpx libyuv opus aom</p>
+</li>
+<li>
+<p>run <code>cargo run</code></p>
+</li>
+</ul>
+<h2><a href="https://rustdesk.com/docs/en/dev/build/">Build</a></h2>
+<h2>How to Build on Linux</h2>
+<h3>Ubuntu 18 (Debian 10)</h3>
+<pre><code class="language-sh">sudo apt install -y zip g++ gcc git curl wget nasm yasm libgtk-3-dev clang libxcb-randr0-dev libxdo-dev \
+        libxfixes-dev libxcb-shape0-dev libxcb-xfixes0-dev libasound2-dev libpulse-dev cmake make \
+        libclang-dev ninja-build libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libpam0g-dev
+</code></pre>
+<h3>openSUSE Tumbleweed</h3>
+<pre><code class="language-sh">sudo zypper install gcc-c++ git curl wget nasm yasm gcc gtk3-devel clang libxcb-devel libXfixes-devel cmake alsa-lib-devel gstreamer-devel gstreamer-plugins-base-devel xdotool-devel pam-devel
+</code></pre>
+<h3>Fedora 28 (CentOS 8)</h3>
+<pre><code class="language-sh">sudo yum -y install gcc-c++ git curl wget nasm yasm gcc gtk3-devel clang libxcb-devel libxdo-devel libXfixes-devel pulseaudio-libs-devel cmake alsa-lib-devel gstreamer1-devel gstreamer1-plugins-base-devel pam-devel
+</code></pre>
+<h3>Arch (Manjaro)</h3>
+<pre><code class="language-sh">sudo pacman -Syu --needed unzip git cmake gcc curl wget yasm nasm zip make pkg-config clang gtk3 xdotool libxcb libxfixes alsa-lib pipewire
+</code></pre>
+<h3>Install vcpkg</h3>
+<pre><code class="language-sh">git clone https://github.com/microsoft/vcpkg
+cd vcpkg
+git checkout 2023.04.15
+cd ..
+vcpkg/bootstrap-vcpkg.sh
+export VCPKG_ROOT=$HOME/vcpkg
+vcpkg/vcpkg install libvpx libyuv opus aom
+</code></pre>
+<h3>Fix libvpx (For Fedora)</h3>
+<pre><code class="language-sh">cd vcpkg/buildtrees/libvpx/src
+cd *
+./configure
+sed -i 's/CFLAGS+=-I/CFLAGS+=-fPIC -I/g' Makefile
+sed -i 's/CXXFLAGS+=-I/CXXFLAGS+=-fPIC -I/g' Makefile
+make
+cp libvpx.a $HOME/vcpkg/installed/x64-linux/lib/
+cd
+</code></pre>
+<h3>Build</h3>
+<pre><code class="language-sh">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+git clone --recurse-submodules https://github.com/rustdesk/rustdesk
+cd rustdesk
+mkdir -p target/debug
+wget https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so
+mv libsciter-gtk.so target/debug
+VCPKG_ROOT=$HOME/vcpkg cargo run
+</code></pre>
+<h2>How to build with Docker</h2>
+<p>Begin by cloning the repository and building the Docker container:</p>
+<pre><code class="language-sh">git clone https://github.com/rustdesk/rustdesk
+cd rustdesk
+git submodule update --init --recursive
+docker build -t &quot;rustdesk-builder&quot; .
+</code></pre>
+<p>Then, each time you need to build the application, run the following command:</p>
+<pre><code class="language-sh">docker run --rm -it -v $PWD:/home/user/rustdesk -v rustdesk-git-cache:/home/user/.cargo/git -v rustdesk-registry-cache:/home/user/.cargo/registry -e PUID=&quot;$(id -u)&quot; -e PGID=&quot;$(id -g)&quot; rustdesk-builder
+</code></pre>
+<p>Note that the first build may take longer before dependencies are cached, subsequent builds will be faster. Additionally, if you need to specify different arguments to the build command, you may do so at the end of the command in the <code>&lt;OPTIONAL-ARGS&gt;</code> position. For instance, if you wanted to build an optimized release version, you would run the command above followed by <code>--release</code>. The resulting executable will be available in the target folder on your system, and can be run with:</p>
+<pre><code class="language-sh">target/debug/rustdesk
+</code></pre>
+<p>Or, if you're running a release executable:</p>
+<pre><code class="language-sh">target/release/rustdesk
+</code></pre>
+<p>Please ensure that you run these commands from the root of the RustDesk repository, or the application may not find the required resources. Also note that other cargo subcommands such as <code>install</code> or <code>run</code> are not currently supported via this method as they would install or run the program inside the container instead of the host.</p>
+<h2>File Structure</h2>
+<ul>
+<li><strong><a href="https://github.com/rustdesk/rustdesk/tree/master/libs/hbb_common">libs/hbb_common</a></strong>: video codec, config, tcp/udp wrapper, protobuf, fs functions for file transfer, and</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/rustdesk/rustdesk#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">SimoneAvogadro /</span>
+          <a href="https://github.com/SimoneAvogadro/android-reverse-engineering-skill" target="_blank" rel="noopener">android-reverse-engineering-skill</a>
+        </div>
+        <div class="repo-desc">Claude Code skill to support Android app&#x27;s reverse engineering</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 3,186</span>
+      <span class="meta-item">🍴 324</span>
+      <span class="stars-today">⭐ 403 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Android Reverse Engineering &amp; API Extraction — Claude Code skill</h1>
+<p>A Claude Code skill that decompiles Android APK/XAPK/JAR/AAR files and <strong>extracts the HTTP APIs</strong> used by the app — Retrofit endpoints, OkHttp calls, hardcoded URLs, authentication patterns — so you can document and reproduce them without the original source code.</p>
+<h2>What it does</h2>
+<ul>
+<li><strong>Decompiles</strong> APK, XAPK, JAR, and AAR files using jadx and Fernflower/Vineflower (single engine or side-by-side comparison)</li>
+<li><strong>Extracts and documents APIs</strong>: Retrofit endpoints, OkHttp calls, hardcoded URLs, auth headers and tokens</li>
+<li><strong>Traces call flows</strong> from Activities/Fragments through ViewModels and repositories down to HTTP calls</li>
+<li><strong>Analyzes</strong> app structure: manifest, packages, architecture patterns</li>
+<li><strong>Handles obfuscated code</strong>: strategies for navigating ProGuard/R8 output</li>
+</ul>
+<h2>Requirements</h2>
+<p><strong>Required:</strong><br />
+- Java JDK 17+<br />
+- <a href="https://github.com/skylot/jadx">jadx</a> (CLI)</p>
+<p><strong>Optional (recommended):</strong><br />
+- <a href="https://github.com/Vineflower/vineflower">Vineflower</a> or <a href="https://github.com/JetBrains/fernflower">Fernflower</a> — better output on complex Java code<br />
+- <a href="https://github.com/pxb1988/dex2jar">dex2jar</a> — needed to use Fernflower on APK/DEX files</p>
+<p>See <code>plugins/android-reverse-engineering/skills/android-reverse-engineering/references/setup-guide.md</code> for detailed installation instructions.</p>
+<h2>Installation</h2>
+<h3>From GitHub (recommended)</h3>
+<p>Inside Claude Code, run:</p>
+<pre><code>/plugin marketplace add SimoneAvogadro/android-reverse-engineering-skill
+/plugin install android-reverse-engineering@android-reverse-engineering-skill
+</code></pre>
+<p>The skill will be permanently available in all future sessions.</p>
+<h3>From a local clone</h3>
+<pre><code class="language-bash">git clone https://github.com/SimoneAvogadro/android-reverse-engineering-skill.git
+</code></pre>
+<p>Then in Claude Code:</p>
+<pre><code>/plugin marketplace add /path/to/android-reverse-engineering-skill
+/plugin install android-reverse-engineering@android-reverse-engineering-skill
+</code></pre>
+<h2>Usage</h2>
+<h3>Slash command</h3>
+<pre><code>/decompile path/to/app.apk
+</code></pre>
+<p>This runs the full workflow: dependency check, decompilation, and initial structure analysis.</p>
+<h3>Natural language</h3>
+<p>The skill activates on phrases like:</p>
+<ul>
+<li>"Decompile this APK"</li>
+<li>"Reverse engineer this Android app"</li>
+<li>"Extract API endpoints from this app"</li>
+<li>"Follow the call flow from LoginActivity"</li>
+<li>"Analyze this AAR library"</li>
+</ul>
+<h3>Manual scripts</h3>
+<p>The scripts can also be used standalone:</p>
+<pre><code class="language-bash"># Check dependencies
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/check-deps.sh
+
+# Install a missing dependency (auto-detects OS and package manager)
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh jadx
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/install-dep.sh vineflower
+
+# Decompile APK with jadx (default)
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh app.apk
+
+# Decompile XAPK (auto-extracts and decompiles each APK inside)
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh app-bundle.xapk
+
+# Decompile with Fernflower
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh --engine fernflower library.jar
+
+# Run both engines and compare
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/decompile.sh --engine both --deobf app.apk
+
+# Find API calls
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/find-api-calls.sh output/sources/
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/find-api-calls.sh output/sources/ --retrofit
+bash plugins/android-reverse-engineering/skills/android-reverse-engineering/scripts/find-api-calls.sh output/sources/ --urls
+</code></pre>
+<h2>Repository Structure</h2>
+<pre><code>android-reverse-engineering-skill/
+├── .claude-plugin/
+│   └── marketplace.json                    # Marketplace catalog
+├── plugins/
+│   └── android-reverse-engineering/
+│       ├── .claude-plugin/
+│       │   └── plugin.json                 # Plugin manifest
+│       ├── skills/
+│       │   └── android-reverse-engineering/
+│       │       ├── SKILL.md                # Core workflow (5 phases)
+│       │       ├── references/
+│       │       │   ├── setup-guide.md
+│       │       │   ├── jadx-usage.md
+│       │       │   ├── fernflower-usage.md
+│       │       │   ├── api-extraction-patterns.md
+│       │       │   └── call-flow-analysis.md
+│       │       └── scripts/
+│       │           ├── check-deps.sh
+│       │           ├── install-dep.sh
+│       │           ├── decompile.sh
+│       │           └── find-api-calls.sh
+│       └── commands/
+│           └── decompile.md                # /decompile slash command
+├── LICENSE
+└── README.md
+</code></pre>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/skylot/jadx">jadx — Dex to Java decompiler</a></li>
+<li><a href="https://github.com/JetBrains/fernflower">Fernflower — JetBrains analytical decompiler</a></li>
+<li><a href="https://github.com/Vineflower/vineflower">Vineflower — Fernflower community fork</a></li>
+<li><a href="https://github.com/pxb1988/dex2jar">dex2jar — DEX to JAR converter</a></li>
+<li><a href="https://apktool.org/">apktool — Android resource decoder</a></li>
+</ul>
+<h2>Disclaimer</h2>
+<p>This plugin is provided strictly for <strong>lawful purposes</strong>, including but not limited to:</p>
+<ul>
+<li>Security research and authorized penetration testing</li>
+<li>Interoperability analysis permitted under applicable law (e.g., EU Directive 2009/24/EC, US DMCA §1201(f))</li>
+<li>Malware analysis and incident response</li>
+<li>Educational use and CTF competitions</li>
+</ul>
+<p><strong>You are solely responsible</strong> for ensuring that your use of this tool complies with all applicable laws, regulations, and terms of service. Unauthorized reverse engineering of software you do not own or do not have permission to analyze may violate intellectual property laws and computer fraud statutes in your jurisdiction.</p>
+<p>The authors disclaim any liability for misuse of this tool.</p>
+<h2>License</h2>
+<p>Apache 2.0 — see <a href="LICENSE">LICENSE</a></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/SimoneAvogadro/android-reverse-engineering-skill#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">tractorjuice /</span>
+          <a href="https://github.com/tractorjuice/arc-kit" target="_blank" rel="noopener">arc-kit</a>
+        </div>
+        <div class="repo-desc">Enterprise Architecture Governance &amp; Vendor Procurement Toolkit</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#e34c26"></span>HTML</span>
+      <span class="meta-item">⭐ 765</span>
+      <span class="meta-item">🍴 104</span>
+      <span class="stars-today">⭐ 135 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>ArcKit - Enterprise Architecture Governance Toolkit</h1>
+<p><a href="https://github.com/tractorjuice/arc-kit/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/tractorjuice/arc-kit?style=flat&amp;logo=github" /></a><br />
+<a href="https://github.com/tractorjuice/arc-kit/network/members"><img alt="GitHub Forks" src="https://img.shields.io/github/forks/tractorjuice/arc-kit?style=flat&amp;logo=github" /></a><br />
+<a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/tractorjuice/arc-kit" /></a><br />
+<a href="https://github.com/tractorjuice/arc-kit/releases"><img alt="Latest Release" src="https://img.shields.io/github/v/release/tractorjuice/arc-kit" /></a><br />
+<a href="https://github.com/tractorjuice/arc-kit/issues"><img alt="GitHub Issues" src="https://img.shields.io/github/issues/tractorjuice/arc-kit" /></a><br />
+<a href="https://deepwiki.com/tractorjuice/arc-kit"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg" /></a></p>
+<p><img alt="ArcKit - Enterprise Architecture Governance Toolkit" src="docs/assets/arckit-banner-light.svg" /></p>
+<p><strong>Build better enterprise architecture through structured governance, vendor procurement, and design review workflows.</strong></p>
+<p>ArcKit is a toolkit for enterprise architects that transforms architecture governance from scattered documents into a systematic, AI-assisted workflow for:</p>
+<ul>
+<li>🏛️ Establishing and enforcing architecture principles</li>
+<li>👥 Analyzing stakeholder drivers, goals, and outcomes</li>
+<li>🛡️ Risk management (HM Treasury Orange Book)</li>
+<li>💼 Business case justification (HM Treasury Green Book SOBC)</li>
+<li>📋 Creating comprehensive requirements documents</li>
+<li>🗄️ Data modeling with ERD, GDPR compliance, and data governance</li>
+<li>🔬 Technology research with build vs buy analysis (web search powered)</li>
+<li>☁️ Azure-specific research using Microsoft Learn MCP for authoritative documentation</li>
+<li>🗺️ Strategic planning with Wardley Mapping</li>
+<li>📊 Generating visual architecture diagrams (Mermaid)</li>
+<li>🤝 Managing vendor RFP and selection processes</li>
+<li>✅ Conducting formal design reviews (HLD/DLD)</li>
+<li>🔧 ServiceNow service management design</li>
+<li>🔗 Maintaining requirements traceability</li>
+<li>📎 Citation traceability for external documents (inline <code>[DOC-CN]</code> markers with source quotes)</li>
+</ul>
+<hr />
+<h2>Quick Start</h2>
+<h3>Installation</h3>
+<p><strong>Claude Code</strong> (premier experience) — install the ArcKit plugin (requires <strong>v2.1.112+</strong>):</p>
+<pre><code class="language-text">/plugin marketplace add tractorjuice/arc-kit
+</code></pre>
+<p>Then install from the Discover tab. Claude Code is the <strong>primary development platform</strong> for ArcKit and provides the most complete experience: all 68 commands, 10 autonomous research agents, 5 automation hooks (session init, project context injection, filename enforcement, output validation, impact scan), bundled MCP servers (AWS Knowledge, Microsoft Learn, Google Developer Knowledge, govreposcrape), and automatic updates via the marketplace. See <a href="#why-claude-code">Why Claude Code?</a> below.</p>
+<blockquote>
+<p><strong>Why v2.1.112?</strong> This version unlocks the <code>xhigh</code> effort tier on Claude Opus 4.7 (used by ArcKit's deep-research agents and synthesis commands), enables Auto mode without <code>--enable-auto-mode</code>, restores Opus 4.7 availability for Auto mode, and ships read-only bash glob patterns without permission prompts (reduces friction for ArcKit helper scripts). It also carries forward the v2.1.97 fixes: <code>claude plugin update</code> correctly detects new commits for git-based plugins (critical for ArcKit distribution), MCP HTTP/SSE memory leak fix (~50 MB/hr, affects ArcKit's 5 bundled servers), proper 429 exponential backoff (benefits 10 research agents), Stop/SubagentStop hooks no longer fail on long sessions (affects session-learner), and subagent working directory leak fix.</p>
+</blockquote>
+<p><strong>Gemini CLI</strong> — install the ArcKit extension:</p>
+<pre><code class="language-bash">gemini extensions install https://github.com/tractorjuice/arckit-gemini
+</code></pre>
+<p>Zero-config: all 68 commands, templates, scripts, and bundled MCP servers (AWS Knowledge, Microsoft Learn). Updates via <code>gemini extensions update arckit</code>.</p>
+<p><strong>GitHub Copilot</strong> (VS Code) — install the ArcKit CLI and scaffold prompt files:</p>
+<pre><code class="language-bash"># Install with pip
+pip install git+https://github.com/tractorjuice/arc-kit.git
+
+# Scaffold a project with Copilot prompt files
+arckit init my-project --ai copilot
+</code></pre>
+<p>Creates <code>.github/prompts/arckit-*.prompt.md</code> (68 prompt files), <code>.github/agents/arckit-*.agent.md</code> (10 custom agents), and <code>.github/copilot-instructions.md</code> (repo-wide context). Invoke commands in Copilot Chat as <code>/arckit-requirements</code>, <code>/arckit-stakeholders</code>, etc.</p>
+<p><strong>Codex CLI</strong> — install the ArcKit CLI:</p>
+<pre><code class="language-bash"># Install with pip
+pip install git+https://github.com/tractorjuice/arc-kit.git
+
+# Or with uv
+uv tool install arckit-cli --from git+https://github.com/tractorjuice/arc-kit.git
+
+# Or run without installing
+uvx --from git+https://github.com/tractorjuice/arc-kit.git arckit init my-project
+</code></pre>
+<p><strong>Latest Release</strong>: <a href="https://github.com/tractorjuice/arc-kit/releases/tag/v4.6.12">v4.6.12</a></p>
+<h3>Platform Support</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Claude Code Plugin</th>
+<th>Gemini CLI Extension</th>
+<th>GitHub Copilot</th>
+<th>Codex / OpenCode CLI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+</tr>
+<tr>
+<td>Windows (WSL2)</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+</tr>
+<tr>
+<td>Windows (native)</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Partial</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Windows users</strong>: The Claude Code plugin, Gemini CLI extension, and GitHub Copilot prompt files work natively on all platforms. For Codex CLI / OpenCode CLI on native Windows (without WSL), some commands containing inline bash snippets may require <a href="https://git-scm.com/downloads/win">Git Bash</a> or <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL2</a>. We recommend WSL2 for the best experience.</p>
+<h3>Initialize a Project</h3>
+<p><strong>Claude Code</strong>: No initialization needed — the plugin provides everything.</p>
+<p><strong>GitHub Copilot</strong> (VS Code):</p>
+<pre><code class="language-bash"># Create a new architecture governance project
+arckit init payment-modernization --ai copilot
+
+# Or initialize in current directory
+arckit init . --ai copilot
+</code></pre>
+<p><strong>OpenCode CLI</strong>:</p>
+<pre><code class="language-bash"># Create a new architecture governance project
+arckit init payment-modernization --ai opencode
+
+# Or initialize in current directory
+arckit init . --ai opencode
+</code></pre>
+<p><strong>Codex CLI</strong>:</p>
+<pre><code class="language-bash"># Create a new architecture governance project
+arckit init payment-modernization --ai codex
+
+# Minimal install (skip docs and guides)
+arckit init payment-modernization --ai codex --minimal
+
+# Or initialize in current directory
+arckit init . --ai codex
+</code></pre>
+<h3>Start Using ArcKit</h3>
+<pre><code class="language-bash"># GitHub Copilot (VS Code)
+cd payment-modernization &amp;&amp; code .
+# In Copilot Chat, use ArcKit commands:
+/arckit-principles Create principles for a financial services company
+/arckit-requirements Build a payment processing system...
+
+# Codex CLI
+cd payment-modernization
+codex
+# Inside your AI assistant, use ArcKit commands:
+/arckit.principles Create principles for a financial services company
+/arckit.requirements Build a payment processing system...
+/arckit.sow Generate RFP for vendor selection
+</code></pre>
+<h3>Upgrading</h3>
+<p><strong>Claude Code plugin</strong>: Updates are automatic via the marketplace — no action needed.</p>
+<p><strong>Gemini CLI extension</strong>: Updates via <code>gemini extensions update arckit</code>.</p>
+<p><strong>GitHub Copilot</strong>: Re-run <code>arckit init --here --ai copilot</code> to update prompt files, agents, and instructions.</p>
+<p><strong>Codex CLI</strong>:</p>
+<pre><code class="language-bash"># Step 1: Upgrade the CLI tool
+pip install --upgrade git+https://github.com/tractorjuice/arc-kit.git
+# Or with uv:
+uv tool upgrade arckit-cli --from git+https://github.com/tractorjuice/arc-kit.git
+
+# Step 2: Update your existing project (re-run init in place)
+cd /path/to/your-existing-project
+arckit init --here --ai codex
+</code></pre>
+<p>This updates commands, templates, scripts, and agents while <strong>preserving</strong> your project data (<code>projects/</code>) and custom templates (<code>.arckit/templates-custom/</code>).</p>
+<p>If upgrading from v0.x, you may also need to migrate legacy filenames — see the <a href="docs/guides/upgrading.md">upgrading guide</a> for full details.</p>
+<hr />
+<h3>Explore Example Outputs</h3>
+<p>Public demonstration repositories showcase compl</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/tractorjuice/arc-kit#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on April 19, 2026  03:31 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
