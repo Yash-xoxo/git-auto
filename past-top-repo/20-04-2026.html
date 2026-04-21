@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — April 20, 2026  17:05</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on April 20, 2026  17:05 &nbsp;·&nbsp; 10 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Fincept-Corporation /</span>
+          <a href="https://github.com/Fincept-Corporation/FinceptTerminal" target="_blank" rel="noopener">FinceptTerminal</a>
+        </div>
+        <div class="repo-desc">FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 8,934</span>
+      <span class="meta-item">🍴 1,247</span>
+      <span class="stars-today">⭐ 3,129 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Fincept Terminal</h1>
+<div align="center">
+
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-C06524)](https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/LICENSE)
+[![C++20](https://img.shields.io/badge/C%2B%2B-20-00599C?logo=cplusplus)](https://isocpp.org/)
+[![Qt6](https://img.shields.io/badge/Qt-6-41CD52?logo=qt&logoColor=white)](https://www.qt.io/)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Hits](https://hits.sh/github.com/Fincept-Corporation/FinceptTerminal.svg?label=Visits)](https://hits.sh/github.com/Fincept-Corporation/FinceptTerminal/)
+
+<a href="https://trendshift.io/repositories/17028" target="_blank"><img src="https://trendshift.io/api/badge/repositories/17028" alt="Fincept-Corporation%2FFinceptTerminal | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+[![GitHub Stars](https://img.shields.io/github/stars/Fincept-Corporation/FinceptTerminal?style=social)](https://github.com/Fincept-Corporation/FinceptTerminal/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/Fincept-Corporation/FinceptTerminal?style=social)](https://github.com/Fincept-Corporation/FinceptTerminal/network/members)
+[![GitHub Watchers](https://img.shields.io/github/watchers/Fincept-Corporation/FinceptTerminal?style=social)](https://github.com/Fincept-Corporation/FinceptTerminal/watchers)
+[![GitHub Release](https://img.shields.io/github/v/release/Fincept-Corporation/FinceptTerminal?color=brightgreen&logo=github)](https://github.com/Fincept-Corporation/FinceptTerminal/releases)
+[![GitHub Issues](https://img.shields.io/github/issues/Fincept-Corporation/FinceptTerminal)](https://github.com/Fincept-Corporation/FinceptTerminal/issues)
+
+[![Twitter](https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/intent/tweet?text=Check%20out%20FinceptTerminal&url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/) [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/sharing/share-offsite/?url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/) [![Facebook](https://img.shields.io/badge/-Facebook-1877F2?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/Fincept-Corporation/FinceptTerminal/) [![Reddit](https://img.shields.io/badge/-Reddit-FF4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/submit?url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/&title=FinceptTerminal) [![WhatsApp](https://img.shields.io/badge/-WhatsApp-25D366?style=flat-square&logo=whatsapp&logoColor=white)](https://api.whatsapp.com/send?text=Check%20out%20FinceptTerminal%3A%20https%3A//github.com/Fincept-Corporation/FinceptTerminal/)
+
+### **Your Thinking is the Only Limit. The Data Isn't.**
+
+State-of-the-art financial intelligence platform with CFA-level analytics, AI automation, and unlimited data connectivity.
+
+[📥 Download](https://github.com/Fincept-Corporation/FinceptTerminal/releases) · [📚 Docs](https://github.com/Fincept-Corporation/FinceptTerminal/tree/main/docs) · [💬 Discussions](https://github.com/Fincept-Corporation/FinceptTerminal/discussions) · [💬 Discord](https://discord.gg/ae87a8ygbN) · [🤝 Partner](https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/docs/COMMERCIAL_LICENSE.md)
+
+![Fincept Terminal](https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Dashboard.png)
+
+<table>
+  <tr>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/EquityResearch.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/EquityResearch.png" width="100%"/></a><br/><sub><b>Equity Research</b></sub></td>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Portfolio.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Portfolio.png" width="100%"/></a><br/><sub><b>Portfolio</b></sub></td>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/News.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/News.png" width="100%"/></a><br/><sub><b>News</b></sub></td>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/NodeEditor.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/NodeEditor.png" width="100%"/></a><br/><sub><b>Node Editor</b></sub></td>
+  </tr>
+</table>
+
+</div>
+
+<hr />
+<h2>About</h2>
+<p><strong>Fincept Terminal v4</strong> is a pure native C++20 desktop application. It uses <strong>Qt6</strong> for UI and rendering, embedded <strong>Python</strong> for analytics, and delivers Bloomberg-terminal-class performance in a single native binary.</p>
+<hr />
+<h2>Features</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📊 <strong>CFA-Level Analytics</strong></td>
+<td>DCF models, portfolio optimization, risk metrics (VaR, Sharpe), derivatives pricing via embedded Python</td>
+</tr>
+<tr>
+<td>🤖 <strong>AI Agents</strong></td>
+<td>37 agents across Trader/Investor (Buffett, Graham, Lynch, Munger, Klarman, Marks…), Economic, and Geopolitics frameworks; local LLM support; multi-provider (OpenAI, Anthropic, Gemini, Groq, DeepSeek, MiniMax, OpenRouter, Ollama)</td>
+</tr>
+<tr>
+<td>🌐 <strong>100+ Data Connectors</strong></td>
+<td>DBnomics, Polygon, Kraken, Yahoo Finance, FRED, IMF, World Bank, AkShare, government APIs, plus optional alternative-data overlays such as Adanos market sentiment for equity research</td>
+</tr>
+<tr>
+<td>📈 <strong>Real-Time Trading</strong></td>
+<td>Crypto (Kraken/HyperLiquid WebSocket), equity, algo trading, paper trading engine, 16 broker integrations (Zerodha, Angel One, Upstox, Fyers, Dhan, Groww, Kotak, IIFL, 5paisa, AliceBlue, Shoonya, Motilal, IBKR, Alpaca, Tradier, Saxo)</td>
+</tr>
+<tr>
+<td>🔬 <strong>QuantLib Suite</strong></td>
+<td>18 quantitative analysis modules — pricing, risk, stochastic, volatility, fixed income</td>
+</tr>
+<tr>
+<td>🚢 <strong>Global Intelligence</strong></td>
+<td>Maritime tracking, geopolitical analysis, relationship mapping, satellite data</td>
+</tr>
+<tr>
+<td>🎨 <strong>Visual Workflows</strong></td>
+<td>Node editor for automation pipelines, MCP tool integration</td>
+</tr>
+<tr>
+<td>🧠 <strong>AI Quant Lab</strong></td>
+<td>ML models, factor discovery, HFT, reinforcement learning trading</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Installation</h2>
+<!-- DOWNLOAD-TABLE-START -->
+<h3>Option 1 — Download Installer (Recommended)</h3>
+<p>Latest release: <strong>v4.0.2</strong> — <a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/tag/v4.0.2">View all releases</a></p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Download</th>
+<th>Run</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows x64</strong></td>
+<td><a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.0.2/FinceptTerminal-4.0.2-win64-setup.exe">FinceptTerminal-Windows-x64-setup.exe</a></td>
+<td>Run installer → launch <code>FinceptTerminal.exe</code></td>
+</tr>
+<tr>
+<td><strong>Linux x64</strong></td>
+<td><a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.0.2/FinceptTerminal-4.0.2-linux-x64-setup.run">FinceptTerminal-Linux-x64.run</a></td>
+<td><code>chmod +x</code> → run installer</td>
+</tr>
+<tr>
+<td><strong>macOS Apple Silicon</strong></td>
+<td><a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.0.2/FinceptTerminal-4.0.2-macOS-setup.dmg">FinceptTerminal-macOS-arm64.dmg</a></td>
+<td>Open DMG → drag to Applications</td>
+</tr>
+</tbody>
+</table>
+<!-- DOWNLOAD-TABLE-END -->
+
+<hr />
+<h3>Option 2 — Quick Start (One-Click Build)</h3>
+<p>Clone and run the setup script — it installs all dependencies and builds the app automatically:</p>
+<pre><code class="language-bash"># Linux / macOS
+git clone https://github.com/Fincept-Corporation/FinceptTerminal.git
+cd FinceptTerminal
+chmod +x setup.sh &amp;&amp; ./setup.sh
+</code></pre>
+<p>The script handles: compiler check, CMake, Qt6, Python, build, and launch.</p>
+<blockquote>
+<p><strong>Windows:</strong> No setup script — use the manual build steps in Option 4 below. It's just two commands.</p>
+</blockquote>
+<hr />
+<h3>Option 3 — Docker</h3>
+<p>```bash</p>
+<h1>Pull and run</h1>
+<p>docker pull ghcr.io/fincept-corporation/fincept-</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Fincept-Corporation/FinceptTerminal#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">ruvnet /</span>
+          <a href="https://github.com/ruvnet/RuView" target="_blank" rel="noopener">RuView</a>
+        </div>
+        <div class="repo-desc">π RuView: WiFi DensePose turns commodity WiFi signals into real-time human pose estimation, vital sign monitoring, and presence detection — all without a single pixel of video.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 48,012</span>
+      <span class="meta-item">🍴 6,432</span>
+      <span class="stars-today">⭐ 716 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>π RuView</h1>
+<p align="center">
+  <a href="https://x.com/rUv/status/2037556932802761004">
+    <img src="assets/ruview-small-gemini.jpg" alt="RuView - WiFi DensePose" width="100%">
+  </a>
+</p>
+
+<blockquote>
+<p><strong>Beta Software</strong> — Under active development. APIs and firmware may change. Known limitations:<br />
+- ESP32-C3 and original ESP32 are not supported (single-core, insufficient for CSI DSP)<br />
+- Single ESP32 deployments have limited spatial resolution — use 2+ nodes or add a <a href="https://cognitum.one">Cognitum Seed</a> for best results<br />
+- Camera-free pose accuracy is limited — use <a href="docs/adr/ADR-079-camera-ground-truth-training.md">camera ground-truth training</a> for 92.9% PCK@20</p>
+<p>Contributions and bug reports welcome at <a href="https://github.com/ruvnet/RuView/issues">Issues</a>.</p>
+</blockquote>
+<h2><strong>See through walls with WiFi</strong></h2>
+<p><strong>Turn ordinary WiFi into a sensing system.</strong> Detect people, measure breathing and heart rate, track movement, and monitor rooms — through walls, in the dark, with no cameras or wearables. Just physics.</p>
+<h3>π RuView is a WiFi sensing platform that turns radio signals into spatial intelligence.</h3>
+<p>Every WiFi router already fills your space with radio waves. When people move, breathe, or even sit still, they disturb those waves in measurable ways. RuView captures these disturbances using Channel State Information (CSI) from low-cost ESP32 sensors and turns them into actionable data: who's there, what they're doing, and whether they're okay.</p>
+<p><strong>What it senses:</strong><br />
+- <strong>Presence and occupancy</strong> — detect people through walls, count them, track entries and exits<br />
+- <strong>Vital signs</strong> — breathing rate and heart rate, contactless, while sleeping or sitting<br />
+- <strong>Activity recognition</strong> — walking, sitting, gestures, falls — from temporal CSI patterns<br />
+- <strong>Environment mapping</strong> — RF fingerprinting identifies rooms, detects moved furniture, spots new objects<br />
+- <strong>Sleep quality</strong> — overnight monitoring with sleep stage classification and apnea screening</p>
+<p>Built on <a href="https://github.com/ruvnet/ruvector/">RuVector</a> and <a href="https://cognitum.one">Cognitum Seed</a>, RuView runs entirely on edge hardware — an ESP32 mesh (as low as $9 per node) paired with a Cognitum Seed for persistent memory, cryptographic attestation, and AI integration. No cloud, no cameras, no internet required.</p>
+<p>The system learns each environment locally using spiking neural networks that adapt in under 30 seconds, with multi-frequency mesh scanning across 6 WiFi channels that uses your neighbors' routers as free radar illuminators. Every measurement is cryptographically attested via an Ed25519 witness chain.</p>
+<p>RuView also supports pose estimation (17 COCO keypoints via the WiFlow architecture), trained entirely without cameras using 10 sensor signals — a technique pioneered from the original <em>DensePose From WiFi</em> research at Carnegie Mellon University.</p>
+<h3>Built for low-power edge applications</h3>
+<p><a href="#edge-intelligence-adr-041">Edge modules</a> are small programs that run directly on the ESP32 sensor — no internet needed, no cloud fees, instant response.</p>
+<p><a href="https://www.rust-lang.org/"><img alt="Rust 1.85+" src="https://img.shields.io/badge/rust-1.85+-orange.svg" /></a><br />
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a><br />
+<a href="https://github.com/ruvnet/RuView"><img alt="Tests: 1463" src="https://img.shields.io/badge/tests-1463%20passed-brightgreen.svg" /></a><br />
+<a href="https://hub.docker.com/r/ruvnet/wifi-densepose"><img alt="Docker: multi-arch" src="https://img.shields.io/badge/docker-amd64%20%2B%20arm64-blue.svg" /></a><br />
+<a href="#vital-sign-detection"><img alt="Vital Signs" src="https://img.shields.io/badge/vital%20signs-breathing%20%2B%20heartbeat-red.svg" /></a><br />
+<a href="#esp32-s3-hardware-pipeline"><img alt="ESP32 Ready" src="https://img.shields.io/badge/ESP32--S3-CSI%20streaming-purple.svg" /></a><br />
+<a href="https://crates.io/crates/wifi-densepose-ruvector"><img alt="crates.io" src="https://img.shields.io/crates/v/wifi-densepose-ruvector.svg" /></a></p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>How</th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pose estimation</strong></td>
+<td>CSI subcarrier amplitude/phase → 17 COCO keypoints</td>
+<td>171K emb/s (M4 Pro)</td>
+</tr>
+<tr>
+<td><strong>Breathing detection</strong></td>
+<td>Bandpass 0.1-0.5 Hz → zero-crossing BPM</td>
+<td>6-30 BPM</td>
+</tr>
+<tr>
+<td><strong>Heart rate</strong></td>
+<td>Bandpass 0.8-2.0 Hz → zero-crossing BPM</td>
+<td>40-120 BPM</td>
+</tr>
+<tr>
+<td><strong>Presence sensing</strong></td>
+<td>Trained model + PIR fusion — 100% accuracy</td>
+<td>0.012 ms latency</td>
+</tr>
+<tr>
+<td><strong>Through-wall</strong></td>
+<td>Fresnel zone geometry + multipath modeling</td>
+<td>Up to 5m depth</td>
+</tr>
+<tr>
+<td><strong>Edge intelligence</strong></td>
+<td>8-dim feature vectors + RVF store on Cognitum Seed</td>
+<td>$140 total BOM</td>
+</tr>
+<tr>
+<td><strong>Camera-free training</strong></td>
+<td>10 sensor signals, no labels needed</td>
+<td>84s on M4 Pro</td>
+</tr>
+<tr>
+<td><strong>Camera-supervised training</strong></td>
+<td>MediaPipe + ESP32 CSI → 92.9% PCK@20</td>
+<td>19 min on laptop</td>
+</tr>
+<tr>
+<td><strong>Multi-frequency mesh</strong></td>
+<td>Channel hopping across 6 bands, neighbor APs as illuminators</td>
+<td>3x sensing bandwidth</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<pre><code class="language-bash"># Option 1: Docker (simulated data, no hardware needed)
+docker pull ruvnet/wifi-densepose:latest
+docker run -p 3000:3000 ruvnet/wifi-densepose:latest
+# Open http://localhost:3000
+
+# Option 2: Live sensing with ESP32-S3 hardware ($9)
+# Flash firmware, provision WiFi, and start sensing:
+python -m esptool --chip esp32s3 --port COM9 --baud 460800 \
+  write_flash 0x0 bootloader.bin 0x8000 partition-table.bin \
+  0xf000 ota_data_initial.bin 0x20000 esp32-csi-node.bin
+python firmware/esp32-csi-node/provision.py --port COM9 \
+  --ssid &quot;YourWiFi&quot; --password &quot;secret&quot; --target-ip 192.168.1.20
+
+# Option 3: Full system with Cognitum Seed ($140)
+# ESP32 streams CSI → bridge forwards to Seed for persistent storage + kNN + witness chain
+node scripts/rf-scan.js --port 5006           # Live RF room scan
+node scripts/snn-csi-processor.js --port 5006  # SNN real-time learning
+node scripts/mincut-person-counter.js --port 5006  # Correct person counting
+</code></pre>
+<blockquote>
+<p>[!NOTE]<br />
+<strong>CSI-capable hardware recommended.</strong> Presence, vital signs, through-wall sensing, and all advanced capabilities require Channel State Information (CSI) from an ESP32-S3 ($9) or research NIC. The Docker image runs with simulated data for evaluation. Consumer WiFi laptops provide RSSI-only presence detection.</p>
+<p><strong>Hardware options</strong> for live CSI capture:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Hardware</th>
+<th>Cost</th>
+<th>Full CSI</th>
+<th>Capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ESP32 + Cognitum Seed</strong> (recommended)</td>
+<td>ESP32-S3 + <a href="https://cognitum.one">Cognitum Seed</a></td>
+<td>~$140</td>
+<td>Yes</td>
+<td>Pose, breathing, heartbeat, motion, presence + persistent vector store, kNN search, witness chain, MCP proxy</td>
+</tr>
+<tr>
+<td><strong>ESP32 Mesh</strong></td>
+<td>3-6x ESP32-S3 + WiFi router</td>
+<td>~$54</td>
+<td>Yes</td>
+<td>Pose, breathing, heartbeat, motion, presence</td>
+</tr>
+<tr>
+<td><strong>Research NIC</strong></td>
+<td>Intel 5300 / Atheros AR9580</td>
+<td>~$50-100</td>
+<td>Yes</td>
+<td>Full CSI with 3x3 MIMO</td>
+</tr>
+<tr>
+<td><strong>Any WiFi</strong></td>
+<td>Windows, macOS, or Linux laptop</td>
+<td>$0</td>
+<td>No</td>
+<td>RSSI-only: coarse presence and motion</td>
+</tr>
+</tbody>
+</table>
+<p>No hardware? Verify the signal processing pipeline with the deterministic reference signal: <code>python v1/data/proof/verify.py</code><br />
+</p>
+</blockquote>
+<hr />
+<h3>Real-Time Dense Point Cloud (NEW)</h3>
+<p>RuView now generates <strong>real-time 3D point clouds</strong> by fusing camera depth + WiFi CSI + mmWave radar. All sensors stream simultaneously into a unified spatial model.</p>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>Data</th>
+<th>Integration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Camera</strong></td>
+<td>MiDaS monocular depth (GPU)</td>
+<td>640×480 → 19,200+ depth points per frame</td>
+</tr>
+<tr>
+<td><strong>ESP32 CSI</strong></td>
+<td>ADR-018 binary frames (UDP)</td>
+<td>RF tomography → 8×8×4 occupancy grid</td>
+</tr>
+<tr>
+<td><strong>WiFlow Pose</strong></td>
+<td>17 COCO keypoints from CSI</td>
+<td>Skeleton overlay on point cloud</td>
+</tr>
+<tr>
+<td><strong>Vital Signs</strong></td>
+<td>Breathing rate from CSI phase</td>
+<td>Stored in ruOS brain every 60s</td>
+</tr>
+<tr>
+<td><strong>Motion</strong></td>
+<td>CSI amplitude variance</td>
+<td>Adaptive capture rate (skip depth when still)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quick start:</strong></p>
+<pre><code class="language-bash">cd rust-port/wifi-densepose-rs
+cargo build --release -p wifi-densepose-pointcloud
+./target/release/ruview-pointcloud serve --bind 127.0.0.1:9880
+# Open http://localhost:9880 for live 3D viewer
+</code></pre>
+<p><strong>CLI commands:</strong><br />
+```bash<br />
+ruview-pointcloud demo                            # synthetic demo<br />
+ruview-pointcloud serve --bind 127.0.0.1:9880     # live server + Three.js viewer<br />
+ruview-pointcloud capture --output room.ply       # capture to PLY<br />
+ru</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/ruvnet/RuView#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">thunderbird /</span>
+          <a href="https://github.com/thunderbird/thunderbolt" target="_blank" rel="noopener">thunderbolt</a>
+        </div>
+        <div class="repo-desc">AI You Control: Choose your models. Own your data. Eliminate vendor lock-in.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 2,680</span>
+      <span class="meta-item">🍴 152</span>
+      <span class="stars-today">⭐ 667 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Thunderbolt <a href="https://github.com/thunderbird/thunderbolt/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/thunderbird/thunderbolt/actions/workflows/ci.yml/badge.svg" /></a></h1>
+<p><strong>AI You Control: Choose your models. Own your data. Eliminate vendor lock-in.</strong></p>
+<p><img alt="Thunderbolt Main Dashboard" src="./docs/screenshots/main.png" /></p>
+<blockquote>
+<p>[!IMPORTANT]<br />
+⚠️ <strong>We are excited about the amount of interest Thunderbolt has been getting and want to clarify that it is still early and under active development</strong>. Currently, we are targeting enterprise customers that want to deploy it on-prem. We encourage you to self-host it and try it out, but there are a few caveats we are still working on:</p>
+<ul>
+<li>While we eventually plan to make Thunderbolt fully offline-first, it currently depends on authentication and search functionality (though you can disable search on the integrations screen in the app). You can <a href="./deploy/README.md">deploy your own backend with Docker</a> and sign up in order to test it locally.</li>
+<li>You’ll need to add your own model providers - we don’t yet have a public inference endpoint. We recommend using Thunderbolt with <a href="https://ollama.com">Ollama</a> or <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> if you want free local inference, or you can add API keys for any OpenAI-compatible model provider in the settings.</li>
+</ul>
+</blockquote>
+<p>Thunderbolt is an open-source, cross-platform AI client that can be deployed on-prem anywhere.</p>
+<ul>
+<li>🌐 Available on all major desktop and mobile platforms: web, iOS, Android, Mac, Linux, and Windows.</li>
+<li>🧠 Compatible with frontier, local, and on-prem models.</li>
+<li>🙋 Enterprise features, support, and FDEs available.</li>
+</ul>
+<p><strong>Thunderbolt is under active development, currently undergoing a security audit, and preparing for enterprise production readiness.</strong></p>
+<h2>Need Help?</h2>
+<p>Found a bug? Have an idea?</p>
+<ul>
+<li>We're actively working on our docs, community, and roadmap. For now, the best way to get in touch is to <a href="https://github.com/thunderbird/thunderbolt/issues">File an issue</a>.</li>
+</ul>
+<h2>Contributing</h2>
+<p>We welcome contributions from everyone.</p>
+<ul>
+<li><strong>Development</strong>: The <a href="./docs/development.md">development guide</a> will help you get started.</li>
+<li>Make sure to check out the <a href="https://www.mozilla.org/about/governance/policies/participation/">Mozilla Community Participation Guidelines</a>.</li>
+</ul>
+<h2>Documentation</h2>
+<ul>
+<li><a href="./docs/faq.md">FAQ</a> - Frequently asked questions</li>
+<li><a href="./deploy/README.md">Deployment</a> - Self-host with Docker Compose or Kubernetes</li>
+<li><a href="./docs/development.md">Development</a> - Quick start, setup, and testing</li>
+<li><a href="./docs/architecture.md">Architecture</a> - System architecture and diagrams</li>
+<li><a href="./docs/roadmap.md">Features and Roadmap</a> - Platform and feature status</li>
+<li><a href="./docs/claude-code.md">Claude Code Skills</a> - Slash commands, automation, and subtree syncing</li>
+<li><a href="./docs/storybook.md">Storybook</a> - Build, test, and document components</li>
+<li><a href="./docs/vite-bundle-analyzer.md">Vite Bundle Analyzer</a> - Analyze frontend bundle size</li>
+<li><a href="./docs/tauri-signing-keys.md">Tauri Signing Keys</a> - Generate and manage signing keys for releases</li>
+<li><a href="./RELEASE.md">Release Process</a> - Instructions for creating and publishing new releases</li>
+<li><a href="./TELEMETRY.md">Telemetry</a> - Information about data collection and privacy policy</li>
+</ul>
+<h2>Code of Conduct</h2>
+<p>Please read our <a href="./CODE_OF_CONDUCT.md">Code of Conduct</a>. All participants in the Thunderbolt community agree to follow these guidelines and <a href="https://www.mozilla.org/about/governance/policies/participation/">Mozilla's Community Participation Guidelines</a>.</p>
+<h2>Security</h2>
+<p>If you discover a security vulnerability, please report it responsibly via our <a href="https://github.com/thunderbird/thunderbolt/security/advisories/new">vulnerability reporting form</a>. Please do <strong>not</strong> file public GitHub issues for security vulnerabilities.</p>
+<h2>License</h2>
+<p>Thunderbolt is licensed under the <a href="./LICENSE">Mozilla Public License 2.0</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/thunderbird/thunderbolt#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">paperless-ngx /</span>
+          <a href="https://github.com/paperless-ngx/paperless-ngx" target="_blank" rel="noopener">paperless-ngx</a>
+        </div>
+        <div class="repo-desc">A community-supported supercharged document management system: scan, index and archive all your documents</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 39,276</span>
+      <span class="meta-item">🍴 2,527</span>
+      <span class="stars-today">⭐ 611 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><a href="https://github.com/paperless-ngx/paperless-ngx/actions"><img alt="ci" src="https://github.com/paperless-ngx/paperless-ngx/workflows/ci/badge.svg" /></a><br />
+<a href="https://crowdin.com/project/paperless-ngx"><img alt="Crowdin" src="https://badges.crowdin.net/paperless-ngx/localized.svg" /></a><br />
+<a href="https://docs.paperless-ngx.com"><img alt="Documentation Status" src="https://img.shields.io/github/deployments/paperless-ngx/paperless-ngx/github-pages?label=docs" /></a><br />
+<a href="https://codecov.io/gh/paperless-ngx/paperless-ngx"><img alt="codecov" src="https://codecov.io/gh/paperless-ngx/paperless-ngx/branch/main/graph/badge.svg?token=VK6OUPJ3TY" /></a><br />
+<a href="https://matrix.to/#/%23paperlessngx%3Amatrix.org"><img alt="Chat on Matrix" src="https://matrix.to/img/matrix-badge.svg" /></a><br />
+<a href="https://demo.paperless-ngx.com"><img alt="demo" src="https://cronitor.io/badges/ve7ItY/production/W5E_B9jkelG9ZbDiNHUPQEVH3MY.svg" /></a></p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/paperless-ngx/paperless-ngx/blob/main/resources/logo/web/png/White%20logo%20-%20no%20background.png" width="50%">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/paperless-ngx/paperless-ngx/raw/main/resources/logo/web/png/Black%20logo%20-%20no%20background.png" width="50%">
+    <img src="https://github.com/paperless-ngx/paperless-ngx/raw/main/resources/logo/web/png/Black%20logo%20-%20no%20background.png" width="50%">
+  </picture>
+</p>
+
+<!-- omit in toc -->
+
+<h1>Paperless-ngx</h1>
+<p>Paperless-ngx is a document management system that transforms your physical documents into a searchable online archive so you can keep, well, <em>less paper</em>.</p>
+<p>Paperless-ngx is the official successor to the original <a href="https://github.com/the-paperless-project/paperless">Paperless</a> &amp; <a href="https://github.com/jonaswinkler/paperless-ng">Paperless-ng</a> projects and is designed to distribute the responsibility of advancing and supporting the project among a team of people. <a href="#community-support">Consider joining us!</a></p>
+<p>Thanks to the generous folks at <a href="https://m.do.co/c/8d70b916d462">DigitalOcean</a>, a demo is available at <a href="https://demo.paperless-ngx.com">demo.paperless-ngx.com</a> using login <code>demo</code> / <code>demo</code>. <em>Note: demo content is reset frequently and confidential information should not be uploaded.</em></p>
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#community-support">Community Support</a></li>
+<li><a href="#translation">Translation</a></li>
+<li><a href="#feature-requests">Feature Requests</a></li>
+<li><a href="#bugs">Bugs</a></li>
+<li><a href="#related-projects">Related Projects</a></li>
+<li><a href="#important-note">Important Note</a></li>
+</ul>
+<p align="right">This project is supported by:<br/>
+  <a href="https://m.do.co/c/8d70b916d462" style="padding-top: 4px; display: block;">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_white.svg" width="140px">
+      <source media="(prefers-color-scheme: light)" srcset="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" width="140px">
+      <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_black_.svg" width="140px">
+    </picture>
+  </a>
+</p>
+
+<h1>Features</h1>
+<p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/docs/assets/screenshots/documents-smallcards-dark.png"><br />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/docs/assets/screenshots/documents-smallcards.png"><br />
+  <img src="https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/docs/assets/screenshots/documents-smallcards.png"><br />
+</picture></p>
+<p>A full list of <a href="https://docs.paperless-ngx.com/#features">features</a> and <a href="https://docs.paperless-ngx.com/#screenshots">screenshots</a> are available in the <a href="https://docs.paperless-ngx.com/">documentation</a>.</p>
+<h1>Getting started</h1>
+<p>The easiest way to deploy paperless is <code>docker compose</code>. The files in the <a href="https://github.com/paperless-ngx/paperless-ngx/tree/main/docker/compose"><code>/docker/compose</code> directory</a> are configured to pull the image from the GitHub container registry.</p>
+<p>If you'd like to jump right in, you can configure a <code>docker compose</code> environment with our install script:</p>
+<pre><code class="language-bash">bash -c &quot;$(curl -L https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/main/install-paperless-ngx.sh)&quot;
+</code></pre>
+<p>More details and step-by-step guides for alternative installation methods can be found in <a href="https://docs.paperless-ngx.com/setup/#installation">the documentation</a>.</p>
+<p>Migrating from Paperless-ng is easy, just drop in the new docker image! See the <a href="https://docs.paperless-ngx.com/setup/#migrating-to-paperless-ngx">documentation on migrating</a> for more details.</p>
+<!-- omit in toc -->
+
+<h3>Documentation</h3>
+<p>The documentation for Paperless-ngx is available at <a href="https://docs.paperless-ngx.com/">https://docs.paperless-ngx.com</a>.</p>
+<h1>Contributing</h1>
+<p>If you feel like contributing to the project, please do! Bug fixes, enhancements, visual fixes etc. are always welcome. If you want to implement something big: Please start a discussion about that! The <a href="https://docs.paperless-ngx.com/development/">documentation</a> has some basic information on how to get started.</p>
+<h2>Community Support</h2>
+<p>People interested in continuing the work on paperless-ngx are encouraged to reach out here on github and in the <a href="https://matrix.to/#/#paperless:matrix.org">Matrix Room</a>. If you would like to contribute to the project on an ongoing basis there are multiple <a href="https://github.com/orgs/paperless-ngx/people">teams</a> (frontend, ci/cd, etc) that could use your help so please reach out!</p>
+<h2>Translation</h2>
+<p>Paperless-ngx is available in many languages that are coordinated on Crowdin. If you want to help out by translating paperless-ngx into your language, please head over to https://crowdin.com/project/paperless-ngx, and thank you! More details can be found in <a href="https://github.com/paperless-ngx/paperless-ngx/blob/main/CONTRIBUTING.md#translating-paperless-ngx">CONTRIBUTING.md</a>.</p>
+<h2>Feature Requests</h2>
+<p>Feature requests can be submitted via <a href="https://github.com/paperless-ngx/paperless-ngx/discussions/categories/feature-requests">GitHub Discussions</a>, you can search for existing ideas, add your own and vote for the ones you care about.</p>
+<h2>Bugs</h2>
+<p>For bugs please <a href="https://github.com/paperless-ngx/paperless-ngx/issues">open an issue</a> or <a href="https://github.com/paperless-ngx/paperless-ngx/discussions">start a discussion</a> if you have questions.</p>
+<h1>Related Projects</h1>
+<p>Please see <a href="https://github.com/paperless-ngx/paperless-ngx/wiki/Related-Projects">the wiki</a> for a user-maintained list of related projects and software that is compatible with Paperless-ngx.</p>
+<h1>Important Note</h1>
+<blockquote>
+<p>Document scanners are typically used to scan sensitive documents like your social insurance number, tax records, invoices, etc. <strong>Paperless-ngx should never be run on an untrusted host</strong> because information is stored in clear text without encryption. No guarantees are made regarding security (but we do try!) and you use the app at your own risk.<br />
+<strong>The safest way to run Paperless-ngx is on a local server in your own home with backups in place</strong>.</p>
+</blockquote>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/paperless-ngx/paperless-ngx#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">tractorjuice /</span>
+          <a href="https://github.com/tractorjuice/arc-kit" target="_blank" rel="noopener">arc-kit</a>
+        </div>
+        <div class="repo-desc">Enterprise Architecture Governance &amp; Vendor Procurement Toolkit</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#e34c26"></span>HTML</span>
+      <span class="meta-item">⭐ 1,243</span>
+      <span class="meta-item">🍴 155</span>
+      <span class="stars-today">⭐ 334 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>ArcKit - Enterprise Architecture Governance Toolkit</h1>
+<p><a href="https://github.com/tractorjuice/arc-kit/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/tractorjuice/arc-kit?style=flat&amp;logo=github" /></a><br />
+<a href="https://github.com/tractorjuice/arc-kit/network/members"><img alt="GitHub Forks" src="https://img.shields.io/github/forks/tractorjuice/arc-kit?style=flat&amp;logo=github" /></a><br />
+<a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/github/license/tractorjuice/arc-kit" /></a><br />
+<a href="https://github.com/tractorjuice/arc-kit/releases"><img alt="Latest Release" src="https://img.shields.io/github/v/release/tractorjuice/arc-kit" /></a><br />
+<a href="https://github.com/tractorjuice/arc-kit/issues"><img alt="GitHub Issues" src="https://img.shields.io/github/issues/tractorjuice/arc-kit" /></a><br />
+<a href="https://deepwiki.com/tractorjuice/arc-kit"><img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg" /></a></p>
+<p><img alt="ArcKit - Enterprise Architecture Governance Toolkit" src="docs/assets/arckit-banner-light.svg" /></p>
+<p><strong>Build better enterprise architecture through structured governance, vendor procurement, and design review workflows.</strong></p>
+<p>ArcKit is a toolkit for enterprise architects that transforms architecture governance from scattered documents into a systematic, AI-assisted workflow for:</p>
+<ul>
+<li>🏛️ Establishing and enforcing architecture principles</li>
+<li>👥 Analyzing stakeholder drivers, goals, and outcomes</li>
+<li>🛡️ Risk management (HM Treasury Orange Book)</li>
+<li>💼 Business case justification (HM Treasury Green Book SOBC)</li>
+<li>📋 Creating comprehensive requirements documents</li>
+<li>🗄️ Data modeling with ERD, GDPR compliance, and data governance</li>
+<li>🔬 Technology research with build vs buy analysis (web search powered)</li>
+<li>☁️ Azure-specific research using Microsoft Learn MCP for authoritative documentation</li>
+<li>🗺️ Strategic planning with Wardley Mapping</li>
+<li>📊 Generating visual architecture diagrams (Mermaid)</li>
+<li>🤝 Managing vendor RFP and selection processes</li>
+<li>✅ Conducting formal design reviews (HLD/DLD)</li>
+<li>🔧 ServiceNow service management design</li>
+<li>🔗 Maintaining requirements traceability</li>
+<li>📎 Citation traceability for external documents (inline <code>[DOC-CN]</code> markers with source quotes)</li>
+</ul>
+<h2>📖 The ArcKit Book</h2>
+<p>A comprehensive book-length guide to ArcKit — covering every subsystem (commands, agents, hooks, skills, MCP servers, multi-AI distribution, templates, autoresearch) — now lives in its own repository: <strong><a href="https://github.com/tractorjuice/arckit-book">tractorjuice/arckit-book</a></strong>.</p>
+<h2>Star History</h2>
+<p><a href="https://www.star-history.com/?repos=tractorjuice%2Farc-kit&type=date&legend=top-left"><br />
+ <picture><br />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=tractorjuice/arc-kit&type=date&theme=dark&legend=top-left&v=20260420" /><br />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=tractorjuice/arc-kit&type=date&legend=top-left&v=20260420" /><br />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=tractorjuice/arc-kit&type=date&legend=top-left&v=20260420" /><br />
+ </picture><br />
+</a></p>
+<hr />
+<h2>Quick Start</h2>
+<h3>Installation</h3>
+<p><strong>Claude Code</strong> (premier experience) — install the ArcKit plugin (requires <strong>v2.1.112+</strong>):</p>
+<pre><code class="language-text">/plugin marketplace add tractorjuice/arc-kit
+</code></pre>
+<p>Then install from the Discover tab. Claude Code is the <strong>primary development platform</strong> for ArcKit and provides the most complete experience: all 68 commands, 10 autonomous research agents, 5 automation hooks (session init, project context injection, filename enforcement, output validation, impact scan), bundled MCP servers (AWS Knowledge, Microsoft Learn, Google Developer Knowledge, govreposcrape), and automatic updates via the marketplace. See <a href="#why-claude-code">Why Claude Code?</a> below.</p>
+<blockquote>
+<p><strong>Why v2.1.112?</strong> This version unlocks the <code>xhigh</code> effort tier on Claude Opus 4.7 (used by ArcKit's deep-research agents and synthesis commands), enables Auto mode without <code>--enable-auto-mode</code>, restores Opus 4.7 availability for Auto mode, and ships read-only bash glob patterns without permission prompts (reduces friction for ArcKit helper scripts). It also carries forward the v2.1.97 fixes: <code>claude plugin update</code> correctly detects new commits for git-based plugins (critical for ArcKit distribution), MCP HTTP/SSE memory leak fix (~50 MB/hr, affects ArcKit's 5 bundled servers), proper 429 exponential backoff (benefits 10 research agents), Stop/SubagentStop hooks no longer fail on long sessions (affects session-learner), and subagent working directory leak fix.</p>
+</blockquote>
+<p><strong>Gemini CLI</strong> — install the ArcKit extension:</p>
+<pre><code class="language-bash">gemini extensions install https://github.com/tractorjuice/arckit-gemini
+</code></pre>
+<p>Zero-config: all 68 commands, templates, scripts, and bundled MCP servers (AWS Knowledge, Microsoft Learn). Updates via <code>gemini extensions update arckit</code>.</p>
+<p><strong>GitHub Copilot</strong> (VS Code) — install the ArcKit CLI and scaffold prompt files:</p>
+<pre><code class="language-bash"># Install with pip
+pip install git+https://github.com/tractorjuice/arc-kit.git
+
+# Scaffold a project with Copilot prompt files
+arckit init my-project --ai copilot
+</code></pre>
+<p>Creates <code>.github/prompts/arckit-*.prompt.md</code> (68 prompt files), <code>.github/agents/arckit-*.agent.md</code> (10 custom agents), and <code>.github/copilot-instructions.md</code> (repo-wide context). Invoke commands in Copilot Chat as <code>/arckit-requirements</code>, <code>/arckit-stakeholders</code>, etc.</p>
+<p><strong>Codex CLI</strong> — install the ArcKit CLI:</p>
+<pre><code class="language-bash"># Install with pip
+pip install git+https://github.com/tractorjuice/arc-kit.git
+
+# Or with uv
+uv tool install arckit-cli --from git+https://github.com/tractorjuice/arc-kit.git
+
+# Or run without installing
+uvx --from git+https://github.com/tractorjuice/arc-kit.git arckit init my-project
+</code></pre>
+<p><strong>Latest Release</strong>: <a href="https://github.com/tractorjuice/arc-kit/releases/tag/v4.8.0">v4.8.0</a></p>
+<h3>Platform Support</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Claude Code Plugin</th>
+<th>Gemini CLI Extension</th>
+<th>GitHub Copilot</th>
+<th>Codex / OpenCode CLI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+</tr>
+<tr>
+<td>Windows (WSL2)</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+</tr>
+<tr>
+<td>Windows (native)</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Full support</td>
+<td>Partial</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Windows users</strong>: The Claude Code plugin, Gemini CLI extension, and GitHub Copilot prompt files work natively on all platforms. For Codex CLI / OpenCode CLI on native Windows (without WSL), some commands containing inline bash snippets may require <a href="https://git-scm.com/downloads/win">Git Bash</a> or <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL2</a>. We recommend WSL2 for the best experience.</p>
+<h3>Initialize a Project</h3>
+<p><strong>Claude Code</strong>: No initialization needed — the plugin provides everything.</p>
+<p><strong>GitHub Copilot</strong> (VS Code):</p>
+<pre><code class="language-bash"># Create a new architecture governance project
+arckit init payment-modernization --ai copilot
+
+# Or initialize in current directory
+arckit init . --ai copilot
+</code></pre>
+<p><strong>OpenCode CLI</strong>:</p>
+<pre><code class="language-bash"># Create a new architecture governance project
+arckit init payment-modernization --ai opencode
+
+# Or initialize in current directory
+arckit init . --ai opencode
+</code></pre>
+<p><strong>Codex CLI</strong>:</p>
+<pre><code class="language-bash"># Create a new architecture governance project
+arckit init payment-modernization --ai codex
+
+# Minimal install (skip docs and guides)
+arckit init payment-modernization --ai codex --minimal
+
+# Or initialize in current directory
+arckit init . --ai codex
+</code></pre>
+<h3>Start Using ArcKit</h3>
+<pre><code class="language-bash"># GitHub Copilot (VS Code)
+cd payment-modernization &amp;&amp; code .
+# In Copilot Chat, use ArcKit commands:
+/arckit-principles Create principles for a financial services company
+/arckit-requirements Build a payment processing system...
+
+# Codex CLI
+cd payment-modernization
+codex
+# Inside your AI assistant, use ArcKit commands:
+/arckit.principles Create principles for a financial services company
+/arckit.requirements Build a payment processing system...
+/arckit.sow Generate RFP for vendor selection
+</code></pre>
+<h3>Upgrading</h3>
+<p><strong>Claude Code plugin</strong>: Updates are automatic via the marketplace — no action needed.</p>
+<p>**Gemini CLI</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/tractorjuice/arc-kit#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">koala73 /</span>
+          <a href="https://github.com/koala73/worldmonitor" target="_blank" rel="noopener">worldmonitor</a>
+        </div>
+        <div class="repo-desc">Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 49,744</span>
+      <span class="meta-item">🍴 8,124</span>
+      <span class="stars-today">⭐ 477 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>World Monitor</h1>
+<p><strong>Real-time global intelligence dashboard</strong> — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface.</p>
+<p><a href="https://github.com/koala73/worldmonitor/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/koala73/worldmonitor?style=social" /></a><br />
+<a href="https://github.com/koala73/worldmonitor/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/koala73/worldmonitor?style=social" /></a><br />
+<a href="https://discord.gg/re63kWKxaz"><img alt="Discord" src="https://img.shields.io/badge/Discord-Join-5865F2?style=flat&amp;logo=discord&amp;logoColor=white" /></a><br />
+<a href="https://www.gnu.org/licenses/agpl-3.0"><img alt="License: AGPL v3" src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" /></a><br />
+<a href="https://www.typescriptlang.org/"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&amp;logo=typescript&amp;logoColor=white" /></a><br />
+<a href="https://github.com/koala73/worldmonitor/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/koala73/worldmonitor" /></a><br />
+<a href="https://github.com/koala73/worldmonitor/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/koala73/worldmonitor?style=flat" /></a></p>
+<p align="center">
+  <a href="https://worldmonitor.app"><img src="https://img.shields.io/badge/Web_App-worldmonitor.app-blue?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Web App"></a>&nbsp;
+  <a href="https://tech.worldmonitor.app"><img src="https://img.shields.io/badge/Tech_Variant-tech.worldmonitor.app-0891b2?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Tech Variant"></a>&nbsp;
+  <a href="https://finance.worldmonitor.app"><img src="https://img.shields.io/badge/Finance_Variant-finance.worldmonitor.app-059669?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Finance Variant"></a>&nbsp;
+  <a href="https://commodity.worldmonitor.app"><img src="https://img.shields.io/badge/Commodity_Variant-commodity.worldmonitor.app-b45309?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Commodity Variant"></a>&nbsp;
+  <a href="https://happy.worldmonitor.app"><img src="https://img.shields.io/badge/Happy_Variant-happy.worldmonitor.app-f59e0b?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Happy Variant"></a>
+</p>
+
+<p align="center">
+  <a href="https://worldmonitor.app/api/download?platform=windows-exe"><img src="https://img.shields.io/badge/Download-Windows_(.exe)-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows"></a>&nbsp;
+  <a href="https://worldmonitor.app/api/download?platform=macos-arm64"><img src="https://img.shields.io/badge/Download-macOS_Apple_Silicon-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS ARM"></a>&nbsp;
+  <a href="https://worldmonitor.app/api/download?platform=macos-x64"><img src="https://img.shields.io/badge/Download-macOS_Intel-555555?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Intel"></a>&nbsp;
+  <a href="https://worldmonitor.app/api/download?platform=linux-appimage"><img src="https://img.shields.io/badge/Download-Linux_(.AppImage)-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Download Linux"></a>
+</p>
+
+<p align="center">
+  <a href="https://www.worldmonitor.app/docs/documentation"><strong>Documentation</strong></a> &nbsp;·&nbsp;
+  <a href="https://github.com/koala73/worldmonitor/releases/latest"><strong>Releases</strong></a> &nbsp;·&nbsp;
+  <a href="https://www.worldmonitor.app/docs/contributing"><strong>Contributing</strong></a>
+</p>
+
+<p><img alt="World Monitor Dashboard" src="docs/images/worldmonitor-7-mar-2026.jpg" /></p>
+<hr />
+<h2>What It Does</h2>
+<ul>
+<li><strong>435+ curated news feeds</strong> across 15 categories, AI-synthesized into briefs</li>
+<li><strong>Dual map engine</strong> — 3D globe (globe.gl) and WebGL flat map (deck.gl) with 45 data layers</li>
+<li><strong>Cross-stream correlation</strong> — military, economic, disaster, and escalation signal convergence</li>
+<li><strong>Country Intelligence Index</strong> — composite risk scoring across 12 signal categories</li>
+<li><strong>Finance radar</strong> — 92 stock exchanges, commodities, crypto, and 7-signal market composite</li>
+<li><strong>Local AI</strong> — run everything with Ollama, no API keys required</li>
+<li><strong>5 site variants</strong> from a single codebase (world, tech, finance, commodity, happy)</li>
+<li><strong>Native desktop app</strong> (Tauri 2) for macOS, Windows, and Linux</li>
+<li><strong>21 languages</strong> with native-language feeds and RTL support</li>
+</ul>
+<p>For the full feature list, architecture, data sources, and algorithms, see the <strong><a href="https://www.worldmonitor.app/docs/documentation">documentation</a></strong>.</p>
+<hr />
+<h2>Quick Start</h2>
+<pre><code class="language-bash">git clone https://github.com/koala73/worldmonitor.git
+cd worldmonitor
+npm install
+npm run dev
+</code></pre>
+<p>Open <a href="http://localhost:5173">localhost:5173</a>. No environment variables required for basic operation.</p>
+<p>For variant-specific development:</p>
+<pre><code class="language-bash">npm run dev:tech       # tech.worldmonitor.app
+npm run dev:finance    # finance.worldmonitor.app
+npm run dev:commodity  # commodity.worldmonitor.app
+npm run dev:happy      # happy.worldmonitor.app
+</code></pre>
+<p>See the <strong><a href="https://www.worldmonitor.app/docs/getting-started">self-hosting guide</a></strong> for deployment options (Vercel, Docker, static).</p>
+<hr />
+<h2>Tech Stack</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Technologies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>Vanilla TypeScript, Vite, globe.gl + Three.js, deck.gl + MapLibre GL</td>
+</tr>
+<tr>
+<td><strong>Desktop</strong></td>
+<td>Tauri 2 (Rust) with Node.js sidecar</td>
+</tr>
+<tr>
+<td><strong>AI/ML</strong></td>
+<td>Ollama / Groq / OpenRouter, Transformers.js (browser-side)</td>
+</tr>
+<tr>
+<td><strong>API Contracts</strong></td>
+<td>Protocol Buffers (92 protos, 22 services), sebuf HTTP annotations</td>
+</tr>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>Vercel Edge Functions (60+), Railway relay, Tauri, PWA</td>
+</tr>
+<tr>
+<td><strong>Caching</strong></td>
+<td>Redis (Upstash), 3-tier cache, CDN, service worker</td>
+</tr>
+</tbody>
+</table>
+<p>Full stack details in the <strong><a href="https://www.worldmonitor.app/docs/architecture">architecture docs</a></strong>.</p>
+<hr />
+<h2>Flight Data</h2>
+<p>Flight data provided gracefully by <a href="https://wingbits.com?utm_source=worldmonitor&amp;utm_medium=referral&amp;utm_campaign=worldmonitor">Wingbits</a>, the most advanced ADS-B flight data solution.</p>
+<hr />
+<h2>Data Sources</h2>
+<p>WorldMonitor aggregates 65+ external data sources across geopolitics, finance, energy, climate, aviation, cyber, military, infrastructure, and news intelligence. See the full <a href="https://www.worldmonitor.app/docs/data-sources">data sources catalog</a> for providers, feed tiers, and collection methods.</p>
+<hr />
+<h2>Contributing</h2>
+<p>Contributions welcome! See <a href="./CONTRIBUTING.md">CONTRIBUTING.md</a> for guidelines.</p>
+<pre><code class="language-bash">npm run typecheck        # Type checking
+npm run build:full       # Production build
+</code></pre>
+<hr />
+<h2>License</h2>
+<p><strong>AGPL-3.0</strong> for non-commercial use. <strong>Commercial license</strong> required for any commercial use.</p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Allowed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Personal / research / educational</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Self-hosted (non-commercial)</td>
+<td>Yes, with attribution</td>
+</tr>
+<tr>
+<td>Fork and modify (non-commercial)</td>
+<td>Yes, share source under AGPL-3.0</td>
+</tr>
+<tr>
+<td>Commercial use / SaaS / rebranding</td>
+<td>Requires commercial license</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="LICENSE">LICENSE</a> for full terms. For commercial licensing, contact the maintainer.</p>
+<p>Copyright (C) 2024-2026 Elie Habib. All rights reserved.</p>
+<hr />
+<h2>Author</h2>
+<p><strong>Elie Habib</strong> — <a href="https://github.com/koala73">GitHub</a></p>
+<h2>Contributors</h2>
+<p><a href="https://github.com/koala73/worldmonitor/graphs/contributors"><br />
+  <img src="https://contrib.rocks/image?repo=koala73/worldmonitor" /><br />
+</a></p>
+<h2>Security Acknowledgments</h2>
+<p>We thank the following researchers for responsibly disclosing security issues:</p>
+<ul>
+<li><strong>Cody Richard</strong> — Disclosed three security findings covering IPC command exposure, renderer-to-sidecar trust boundary analysis, and fetch patch credential injection architecture (2026)</li>
+</ul>
+<p>See our <a href="./SECURITY.md">Security Policy</a> for responsible disclosure guidelines.</p>
+<hr />
+<p align="center">
+  <a href="https://worldmonitor.app">worldmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://www.worldmonitor.app/docs/documentation">docs.worldmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://finance.worldmonitor.app">finance.worldmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://commodity.worldmonitor.app">commodity.worldmonitor.app</a>
+</p>
+
+<h2>Star History</h2>
+<p>&lt;a href="https://api.star</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/koala73/worldmonitor#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">openai /</span>
+          <a href="https://github.com/openai/openai-agents-python" target="_blank" rel="noopener">openai-agents-python</a>
+        </div>
+        <div class="repo-desc">A lightweight, powerful framework for multi-agent workflows</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 23,800</span>
+      <span class="meta-item">🍴 3,678</span>
+      <span class="stars-today">⭐ 909 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>OpenAI Agents SDK <a href="https://pypi.org/project/openai-agents/"><img alt="PyPI" src="https://img.shields.io/pypi/v/openai-agents?label=pypi%20package" /></a></h1>
+<p>The OpenAI Agents SDK is a lightweight yet powerful framework for building multi-agent workflows. It is provider-agnostic, supporting the OpenAI Responses and Chat Completions APIs, as well as 100+ other LLMs.</p>
+<p><img src="https://cdn.openai.com/API/docs/images/orchestration.png" alt="Image of the Agents Tracing UI" style="max-height: 803px;"></p>
+<blockquote>
+<p>[!NOTE]<br />
+Looking for the JavaScript/TypeScript version? Check out <a href="https://github.com/openai/openai-agents-js">Agents SDK JS/TS</a>.</p>
+</blockquote>
+<h3>Core concepts:</h3>
+<ol>
+<li><a href="https://openai.github.io/openai-agents-python/agents"><strong>Agents</strong></a>: LLMs configured with instructions, tools, guardrails, and handoffs</li>
+<li><a href="https://openai.github.io/openai-agents-python/sandbox_agents"><strong>Sandbox Agents</strong></a>: Agents preconfigured to work with a container to perform work over long time horizons.</li>
+<li><strong><a href="https://openai.github.io/openai-agents-python/tools/#agents-as-tools">Agents as tools</a> / <a href="https://openai.github.io/openai-agents-python/handoffs/">Handoffs</a></strong>: Delegating to other agents for specific tasks</li>
+<li><a href="https://openai.github.io/openai-agents-python/tools/"><strong>Tools</strong></a>: Various Tools let agents take actions (functions, MCP, hosted tools)</li>
+<li><a href="https://openai.github.io/openai-agents-python/guardrails/"><strong>Guardrails</strong></a>: Configurable safety checks for input and output validation</li>
+<li><a href="https://openai.github.io/openai-agents-python/human_in_the_loop/"><strong>Human in the loop</strong></a>: Built-in mechanisms for involving humans across agent runs</li>
+<li><a href="https://openai.github.io/openai-agents-python/sessions/"><strong>Sessions</strong></a>: Automatic conversation history management across agent runs</li>
+<li><a href="https://openai.github.io/openai-agents-python/tracing/"><strong>Tracing</strong></a>: Built-in tracking of agent runs, allowing you to view, debug and optimize your workflows</li>
+<li><a href="https://openai.github.io/openai-agents-python/realtime/quickstart/"><strong>Realtime Agents</strong></a>: Build powerful voice agents with <code>gpt-realtime-1.5</code> and full agent features</li>
+</ol>
+<p>Explore the <a href="https://github.com/openai/openai-agents-python/tree/main/examples">examples</a> directory to see the SDK in action, and read our <a href="https://openai.github.io/openai-agents-python/">documentation</a> for more details.</p>
+<h2>Get started</h2>
+<p>To get started, set up your Python environment (Python 3.10 or newer required), and then install OpenAI Agents SDK package.</p>
+<h3>venv</h3>
+<pre><code class="language-bash">python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install openai-agents
+</code></pre>
+<p>For voice support, install with the optional <code>voice</code> group: <code>pip install 'openai-agents[voice]'</code>. For Redis session support, install with the optional <code>redis</code> group: <code>pip install 'openai-agents[redis]'</code>.</p>
+<h3>uv</h3>
+<p>If you're familiar with <a href="https://docs.astral.sh/uv/">uv</a>, installing the package would be even easier:</p>
+<pre><code class="language-bash">uv init
+uv add openai-agents
+</code></pre>
+<p>For voice support, install with the optional <code>voice</code> group: <code>uv add 'openai-agents[voice]'</code>. For Redis session support, install with the optional <code>redis</code> group: <code>uv add 'openai-agents[redis]'</code>.</p>
+<h2>Run your first Sandbox Agent</h2>
+<p><a href="https://openai.github.io/openai-agents-python/sandbox_agents">Sandbox Agents</a> are new in version 0.14.0. A sandbox agent is an agent that uses a computer environment to perform real work with a filesystem, in an environment you configure and control. Sandbox agents are useful when the agent needs to inspect files, run commands, apply patches, or carry workspace state across longer tasks.</p>
+<pre><code class="language-python">from agents import Runner
+from agents.run import RunConfig
+from agents.sandbox import Manifest, SandboxAgent, SandboxRunConfig
+from agents.sandbox.entries import GitRepo
+from agents.sandbox.sandboxes import UnixLocalSandboxClient
+
+agent = SandboxAgent(
+    name=&quot;Workspace Assistant&quot;,
+    instructions=&quot;Inspect the sandbox workspace before answering.&quot;,
+    default_manifest=Manifest(
+        entries={
+            &quot;repo&quot;: GitRepo(repo=&quot;openai/openai-agents-python&quot;, ref=&quot;main&quot;),
+        }
+    ),
+)
+
+result = Runner.run_sync(
+    agent,
+    &quot;Inspect the repo README and summarize what this project does.&quot;,
+    # Run this agent on the local filesystem
+    run_config=RunConfig(sandbox=SandboxRunConfig(client=UnixLocalSandboxClient())),
+)
+print(result.final_output)
+
+# This project provides a Python SDK for building multi-agent workflows.
+</code></pre>
+<p>(<em>If running this, ensure you set the <code>OPENAI_API_KEY</code> environment variable</em>)</p>
+<p>(<em>For Jupyter notebook users, see <a href="https://github.com/openai/openai-agents-python/blob/main/examples/basic/hello_world_jupyter.ipynb">hello_world_jupyter.ipynb</a></em>)</p>
+<p>Explore the <a href="https://github.com/openai/openai-agents-python/tree/main/examples">examples</a> directory to see the SDK in action, and read our <a href="https://openai.github.io/openai-agents-python/">documentation</a> for more details.</p>
+<h2>Acknowledgements</h2>
+<p>We'd like to acknowledge the excellent work of the open-source community, especially:</p>
+<ul>
+<li><a href="https://docs.pydantic.dev/latest/">Pydantic</a></li>
+<li><a href="https://github.com/psf/requests">Requests</a></li>
+<li><a href="https://github.com/modelcontextprotocol/python-sdk">MCP Python SDK</a></li>
+<li><a href="https://github.com/mkdocstrings/griffe">Griffe</a></li>
+</ul>
+<p>This library has these optional dependencies:</p>
+<ul>
+<li><a href="https://github.com/python-websockets/websockets">websockets</a></li>
+<li><a href="https://github.com/sqlalchemy/sqlalchemy">SQLAlchemy</a></li>
+<li><a href="https://github.com/mozilla-ai/any-llm">any-llm</a> and <a href="https://github.com/BerriAI/litellm">LiteLLM</a></li>
+</ul>
+<p>We also rely on the following tools to manage the project:</p>
+<ul>
+<li><a href="https://github.com/astral-sh/uv">uv</a> and <a href="https://github.com/astral-sh/ruff">ruff</a></li>
+<li><a href="https://github.com/python/mypy">mypy</a> and <a href="https://github.com/microsoft/pyright">Pyright</a></li>
+<li><a href="https://github.com/pytest-dev/pytest">pytest</a> and <a href="https://github.com/coveragepy/coveragepy">Coverage.py</a></li>
+<li><a href="https://github.com/squidfunk/mkdocs-material">MkDocs</a></li>
+</ul>
+<p>We're committed to continuing to build the Agents SDK as an open source framework so others in the community can expand on our approach.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/openai/openai-agents-python#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">deepseek-ai /</span>
+          <a href="https://github.com/deepseek-ai/DeepGEMM" target="_blank" rel="noopener">DeepGEMM</a>
+        </div>
+        <div class="repo-desc">DeepGEMM: clean and efficient FP8 GEMM kernels with fine-grained scaling</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#8b949e"></span>Cuda</span>
+      <span class="meta-item">⭐ 6,780</span>
+      <span class="meta-item">🍴 899</span>
+      <span class="stars-today">⭐ 155 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>DeepGEMM</h1>
+<p>DeepGEMM is a unified, high-performance tensor core kernel library that brings together the key computation primitives of modern large language models — GEMMs (FP8, FP4, BF16), fused MoE with overlapped communication (Mega MoE), MQA scoring for the lightning indexer, HyperConnection (HC), and more — into a single, cohesive CUDA codebase. All kernels are compiled at runtime via a lightweight Just-In-Time (JIT) module, requiring no CUDA compilation during installation.</p>
+<p>DeepGEMM leverages some concepts from <a href="https://github.com/nvidia/cutlass">CUTLASS</a> and <a href="https://github.com/NVIDIA/cutlass/tree/main/include/cute">CuTe</a>, but avoids heavy reliance on their templates or algebras. The library is designed for simplicity, with only a limited number of core kernel functions, making it a clean and accessible resource for learning NVIDIA GPU kernel optimization techniques.</p>
+<p>Despite its lightweight design, DeepGEMM's performance matches or exceeds expert-tuned libraries across various matrix shapes.</p>
+<h2>News</h2>
+<ul>
+<li>2026.04.16: Mega MoE, FP8xFP4 GEMM, FP4 Indexer, PDL, faster JIT compilation and more.</li>
+<li>Performance comparison will be posted later.</li>
+<li>Please see <a href="https://github.com/deepseek-ai/DeepGEMM/pull/304">#304</a> for more details.</li>
+<li>2025.09.28: DeepGEMM now supports scoring kernels (weighted ReLU MQA logits) for the lightning indexer for DeepSeek v3.2.</li>
+<li>Please see <a href="https://github.com/deepseek-ai/DeepGEMM/pull/200">#200</a> for more details.</li>
+<li>2025.07.20: DeepGEMM now supports both SM90/SM100, and has a full refactor with a low-CPU-overhead JIT CPP module.</li>
+<li>NVRTC and post-compilation SASS optimization are all disabled.</li>
+<li>NVRTC will be supported later.</li>
+<li>As NVCC 12.9 will automatically do the FFMA interleaving, all post optimizations will be no longer supported.</li>
+<li>Please see <a href="https://github.com/deepseek-ai/DeepGEMM/pull/112">#112</a> for more details.</li>
+<li>2025.05.14: DeepGEMM now offers weight gradient kernels for dense and MoE backward! See <a href="https://github.com/deepseek-ai/DeepGEMM/pull/95">#95</a> for details.</li>
+<li>2025.05.07: DeepGEMM now supports NVRTC with up to 10x compilation speedup! See <a href="https://github.com/deepseek-ai/DeepGEMM/pull/94">#94</a> for details. Please use <code>DG_JIT_USE_NVRTC=1</code> to enable it (may have performance loss with some cases).</li>
+<li>2025.04.18: DeepGEMM now achieves up to <strong>1550 TFLOPS</strong> on H800! See <a href="https://github.com/deepseek-ai/DeepGEMM/pull/74">#74</a>, <a href="https://github.com/deepseek-ai/DeepGEMM/pull/78">#78</a>, <a href="https://github.com/deepseek-ai/DeepGEMM/pull/81">#81</a>, <a href="https://github.com/deepseek-ai/DeepGEMM/pull/86">#86</a> and <a href="https://github.com/deepseek-ai/DeepGEMM/commit/340d9880f4a418d943d34260d20a79f41f4c0526">340d988</a> for details.</li>
+</ul>
+<h2>Quick start</h2>
+<h3>Requirements</h3>
+<ul>
+<li>NVIDIA SM90 or SM100 architecture GPU</li>
+<li>Python 3.8 or higher</li>
+<li>Compilers with C++20 support</li>
+<li>CUDA Toolkit:</li>
+<li>CUDA 12.3 or higher for SM90<ul>
+<li><strong>We highly recommend 12.9 or higher for the best performance</strong></li>
+</ul>
+</li>
+<li>CUDA 12.9 or higher for SM100</li>
+<li>PyTorch 2.1 or higher</li>
+<li>CUTLASS 4.0 or higher (could be cloned by Git submodule)</li>
+<li><code>{fmt}</code> library (could be cloned by Git submodule)</li>
+</ul>
+<h3>Development</h3>
+<pre><code class="language-bash"># Submodule must be cloned
+git clone --recursive git@github.com:deepseek-ai/DeepGEMM.git
+cd DeepGEMM
+
+# Link some essential includes and build the CPP JIT module
+cat develop.sh
+./develop.sh
+</code></pre>
+<h3>Installation</h3>
+<pre><code class="language-bash">cat install.sh
+./install.sh
+</code></pre>
+<p>Then, import <code>deep_gemm</code> in your Python project, and enjoy!</p>
+<h2>Interfaces</h2>
+<h4>Notices</h4>
+<p>This library provides optimized GEMM kernels for NVIDIA GPUs with a naming convention: <code>D = C + A @ B</code>. The input shape layout is NT (non-transposed A, transposed B). While the SM90 implementation supports only the NT memory layout (row-major, col-major), the SM100 implementation supports all memory layouts (NT, TN, NN, TT). For example, <code>fp8_gemm_nt</code> will do a <code>D = C + A @ B.T</code></p>
+<p>For both architectures, the LHS scaling factor is required to have a TMA-aligned and transposed layout. And the data format for the scaling factor of SM90 and SM100 is different:</p>
+<ul>
+<li>SM90 requires scaling factors in FP32 format.</li>
+<li>SM100 requires scaling factors in packed <a href="https://docs.nvidia.com/cuda/parallel-thread-execution/#alternate-floating-point-data-formats">UE8M0</a> format, which packs 4 UE8M0 into a single <code>torch.int</code>.</li>
+</ul>
+<p>Please note that operations like input transposition or FP8 casting must be handled separately by the user, please implement or fuse them into prior kernels independently. While the library provides some simple PyTorch utility functions, these may result in slower performance, but our primary focus is on optimizing the GEMM kernels themselves.</p>
+<h4>Normal dense GEMMs (non-grouped)</h4>
+<p>To perform a basic non-grouped FP8 GEMM, call the <code>fp8_gemm_{nt, nn, tn, tt}</code> function. For more details, please refer to the function documentation.</p>
+<h4>Grouped GEMMs (contiguous layout)</h4>
+<p>Unlike traditional grouped GEMMs in CUTLASS, DeepGEMM groups only the M-axis, while N and K must remain fixed. This design is tailored for scenarios where experts in an MoE model share the same shape. For training forward passes or inference prefilling, where each expert may process a varying number of tokens, we concatenate these tokens into a single tensor, referred to as the "contiguous" layout. Note that each expert segment must be aligned to the GEMM M block size (<code>get_mk_alignment_for_contiguous_layout()</code>).  For more information, please refer to the <code>m_grouped_fp8_gemm_{nt, nn}_contiguous</code> function documentation.</p>
+<p>We also provide a K-axis-grouped API for MoE weight backward (with M and N must remain fixed), please refer to <code>k_grouped_fp8_gemm_tn_contiguous</code> for more information.</p>
+<h4>Grouped GEMMs (masked layout)</h4>
+<p>During the inference decoding phase, when CUDA graph is enabled and the CPU is unaware of the number of tokens each expert receives, we support masked grouped GEMMs. By providing a mask tensor, the kernel computes only the valid portions.</p>
+<p>Use <code>m_grouped_fp8_gemm_nt_masked</code> for this purpose and consult the relevant documentation. An example usage is to use the output of low-latency kernels from <a href="https://github.com/deepseek-ai/DeepEP">DeepEP</a> as input.</p>
+<h4>V3.2 MQA kernels for the indexer</h4>
+<p>The kernel family has two versions, non-paged (for prefilling) and paged (for decoding).<br />
+Take the non-paged version <code>fp8_mqa_logits</code> as an example. It has 6 inputs:</p>
+<ul>
+<li><code>q</code>, E4M3 tensor with shape <code>[seq_len, num_heads, head_dim]</code></li>
+<li><code>kv</code>, E4M3 tensor (shaped as <code>[seq_len_kv, head_dim]</code>) with float SF (shaped as <code>[seq_len_kv]</code>)</li>
+<li><code>weights</code>, float tensor with shape <code>[seq_len, num_heads]</code></li>
+<li><code>cu_seq_len_k_start</code> and <code>cu_seq_len_k_end</code>, int tensor with shape <code>[seq_len]</code></li>
+<li><code>clean_logits</code>, whether to clean the unfilled logits into <code>-inf</code></li>
+</ul>
+<p>The output tensor is shaped as <code>[seq_len, seq_len_kv]</code>, indicating token-to-token logits.<br />
+For each token <code>i</code> in <code>q</code>, it will iterate all tokens <code>j</code> from <code>[cu_seq_len_k_start[i], cu_seq_len_k_end[i])</code>,<br />
+and calculate the logit <code>out[i, j]</code> as:</p>
+<pre><code class="language-python">kv_j = kv[0][j, :] * kv[1][j].unsqueeze(1)  # [head_dim]
+out_ij = q[i, :, :] @ kv_j  # [num_heads]
+out_ij = out_ij.relu() * weights[i, :]  # [num_heads]
+out_ij = out_ij.sum()  # Scalar
+</code></pre>
+<p>For more details and the paged version <code>fp8_paged_mqa_logits</code>, please refer to <code>tests/test_attention.py</code>.</p>
+<h4>Mega MoE</h4>
+<p>Mega MoE fuses and overlaps EP dispatch, linear 1 (FP8xFP4), SwiGLU, linear 2 (FP8xFP4), and EP combine into a single mega-kernel, overlapping NVLink communication and tensor core computation. It requires multi-process launch with symmetric memory. Usage:</p>
+<p>```python</p>
+<h1>Allocate symmetric memory buffer</h1>
+<h1>NOTES: requires PyTorch &gt;= 2.9</h1>
+<p>buffer = deep_gemm.get_symm_buffer_for_mega_moe(<br />
+    group, num_experts, num_max_tokens_per_rank, num_topk, hidden, intermediate_hidden<br />
+)</p>
+<h1>Transform weights (FP4 with UE8M0 SF) into the required layout</h1>
+<p>transformed_l1, transformed_l2 = deep_gemm.transform_weights_for_mega_moe(l1_weights, l2_weights)</p>
+<h1>Copy inputs into the buffer before each call</h1>
+<h1>You may</h1>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/deepseek-ai/DeepGEMM#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">pi-hole /</span>
+          <a href="https://github.com/pi-hole/pi-hole" target="_blank" rel="noopener">pi-hole</a>
+        </div>
+        <div class="repo-desc">A black hole for Internet advertisements</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 56,968</span>
+      <span class="meta-item">🍴 3,033</span>
+      <span class="stars-today">⭐ 154 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!-- markdownlint-configure-file { "MD004": { "style": "consistent" } } -->
+<!-- markdownlint-disable MD033 -->
+<h1></h1>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/pi-hole/graphics/refs/heads/master/Vortex/vortex_with_text.svg" alt="Pi-hole website" width="168" height="270">
+  <br>
+  <strong>Network-wide ad blocking via your own Linux hardware</strong>
+</p>
+
+<!-- markdownlint-enable MD033 -->
+
+<p>The Pi-hole® is a <a href="https://en.wikipedia.org/wiki/DNS_Sinkhole">DNS sinkhole</a> that protects your devices from unwanted content without installing any client-side software.</p>
+<ul>
+<li><strong>Easy-to-install</strong>: our dialogs walk you through the simple installation process in less than ten minutes</li>
+<li><strong>Resolute</strong>: content is blocked in <em>non-browser locations</em>, such as ad-laden mobile apps and smart TVs</li>
+<li><strong>Responsive</strong>: seamlessly speeds up the feel of everyday browsing by caching DNS queries</li>
+<li><strong>Lightweight</strong>: runs smoothly with <a href="https://docs.pi-hole.net/main/prerequisites/">minimal hardware and software requirements</a></li>
+<li><strong>Robust</strong>: a command-line interface that is quality assured for interoperability</li>
+<li><strong>Insightful</strong>: a beautiful responsive Web Interface dashboard to view and control your Pi-hole</li>
+<li><strong>Versatile</strong>: can optionally function as a <a href="https://discourse.pi-hole.net/t/how-do-i-use-pi-holes-built-in-dhcp-server-and-why-would-i-want-to/3026">DHCP server</a>, ensuring <em>all</em> your devices are protected automatically</li>
+<li><strong>Scalable</strong>: <a href="https://pi-hole.net/2017/05/24/how-much-traffic-can-pi-hole-handle/">capable of handling hundreds of millions of queries</a> when installed on server-grade hardware</li>
+<li><strong>Modern</strong>: blocks ads over both IPv4 and IPv6</li>
+<li><strong>Free</strong>: open source software that helps ensure <em>you</em> are the sole person in control of your privacy</li>
+</ul>
+<hr />
+<h2>One-Step Automated Install</h2>
+<p>Those who want to get started quickly and conveniently may install Pi-hole using the following command:</p>
+<pre><code class="language-bash">curl -sSL https://install.pi-hole.net | bash
+</code></pre>
+<h2>Alternative Install Methods</h2>
+<p>Piping to <code>bash</code> is <a href="https://pi-hole.net/2016/07/25/curling-and-piping-to-bash">controversial</a>, as it prevents you from <a href="https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh">reading code that is about to run</a> on your system. Therefore, we provide these alternative installation methods which allow code review before installation:</p>
+<h3>Method 1: Clone our repository and run</h3>
+<pre><code class="language-bash">git clone --depth 1 https://github.com/pi-hole/pi-hole.git Pi-hole
+cd &quot;Pi-hole/automated install/&quot;
+sudo bash basic-install.sh
+</code></pre>
+<h3>Method 2: Manually download the installer and run</h3>
+<pre><code class="language-bash">wget -O basic-install.sh https://install.pi-hole.net
+sudo bash basic-install.sh
+</code></pre>
+<h3>Method 3: Using Docker to deploy Pi-hole</h3>
+<p>Please refer to the <a href="https://github.com/pi-hole/docker-pi-hole">Pi-hole docker repo</a> to use the Official Docker Images.</p>
+<h2><a href="https://docs.pi-hole.net/main/post-install/">Post-install: Make your network take advantage of Pi-hole</a></h2>
+<p>Once the installer has been run, you will need to <a href="https://discourse.pi-hole.net/t/how-do-i-configure-my-devices-to-use-pi-hole-as-their-dns-server/245">configure your router to have <strong>DHCP clients use Pi-hole as their DNS server</strong></a>. This router configuration will ensure that all devices connecting to your network will have content blocked without any further intervention.</p>
+<p>If your router does not support setting the DNS server, you can <a href="https://discourse.pi-hole.net/t/how-do-i-use-pi-holes-built-in-dhcp-server-and-why-would-i-want-to/3026">use Pi-hole's built-in DHCP server</a>; be sure to disable DHCP on your router first (if it has that feature available).</p>
+<p>As a last resort, you can manually set each device to use Pi-hole as their DNS server.</p>
+<hr />
+<h2>Pi-hole is free but powered by your support</h2>
+<p>There are many reoccurring costs involved with maintaining free, open-source, and privacy-respecting software; expenses which <a href="https://github.com/orgs/pi-hole/people">our volunteer developers</a> pitch in to cover out-of-pocket. This is just one example of how strongly we feel about our software and the importance of keeping it maintained.</p>
+<p>Make no mistake: <strong>your support is absolutely vital to help keep us innovating!</strong></p>
+<h3><a href="https://pi-hole.net/donate">Donations</a></h3>
+<p>Donating using our Sponsor Button is <strong>extremely helpful</strong> in offsetting a portion of our monthly expenses:</p>
+<h3>Alternative support</h3>
+<p>If you'd rather not donate (<em>which is okay!</em>), there are other ways you can help support us:</p>
+<ul>
+<li><a href="https://github.com/sponsors/pi-hole/">GitHub Sponsors</a></li>
+<li><a href="https://patreon.com/pihole">Patreon</a></li>
+<li><a href="https://hetzner.cloud/?ref=7aceisRX3AzA">Hetzner Cloud</a> <em>affiliate link</em></li>
+<li><a href="https://www.digitalocean.com/?refcode=344d234950e1">Digital Ocean</a> <em>affiliate link</em></li>
+<li><a href="https://www.stickermule.com/unlock?ref_id=6055890701&amp;utm_medium=link&amp;utm_source=invite">Stickermule</a> <em>earn a $10 credit after your first purchase</em></li>
+<li><a href="https://www.amazon.com/exec/obidos/redirect-home/pihole09-20">Amazon US</a> <em>affiliate link</em></li>
+<li>Spreading the word about our software and how you have benefited from it</li>
+</ul>
+<h3>Contributing via GitHub</h3>
+<p>We welcome <em>everyone</em> to contribute to issue reports, suggest new features, and create pull requests.</p>
+<p>If you have something to add - anything from a typo through to a whole new feature, we're happy to check it out! Just make sure to fill out our template when submitting your request; the questions it asks will help the volunteers quickly understand what you're aiming to achieve.</p>
+<p>You'll find that the <a href="https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh">install script</a> and the <a href="https://github.com/pi-hole/pi-hole/blob/master/advanced/Scripts/piholeDebug.sh">debug script</a> have an abundance of comments, which will help you better understand how Pi-hole works. They're also a valuable resource to those who want to learn how to write scripts or code a program! We encourage anyone who likes to tinker to read through it and submit a pull request for us to review.</p>
+<hr />
+<h2>Getting in touch with us</h2>
+<p>While we are primarily reachable on our <a href="https://discourse.pi-hole.net/">Discourse User Forum</a>, we can also be found on various social media outlets.</p>
+<p><strong>Please be sure to check the FAQs</strong> before starting a new discussion, as we do not have the spare time to reply to every request for assistance.</p>
+<ul>
+<li><a href="https://discourse.pi-hole.net/c/faqs">Frequently Asked Questions</a></li>
+<li><a href="https://discourse.pi-hole.net/c/feature-requests?order=votes">Feature Requests</a></li>
+<li><a href="https://www.reddit.com/r/pihole/">Reddit</a></li>
+<li><a href="https://twitter.com/The_Pi_hole">Twitter</a></li>
+</ul>
+<hr />
+<h2>Breakdown of Features</h2>
+<h3><a href="https://github.com/pi-hole/ftl">Faster-than-light Engine</a></h3>
+<p><a href="https://github.com/pi-hole/ftl">FTLDNS</a> is a lightweight, purpose-built daemon used to provide statistics needed for the Web Interface, and its API can be easily integrated into your own projects. As the name implies, FTLDNS does this all <em>very quickly</em>!</p>
+<p>Some of the statistics you can integrate include:</p>
+<ul>
+<li>Total number of domains being blocked</li>
+<li>Total number of DNS queries today</li>
+<li>Total number of ads blocked today</li>
+<li>Percentage of ads blocked</li>
+<li>Unique domains</li>
+<li>Queries forwarded (to your chosen upstream DNS server)</li>
+<li>Queries cached</li>
+<li>Unique clients</li>
+</ul>
+<p>Access the API using:<br />
+- your browser: http://pi.hole/api/docs<br />
+- <code>curl</code>: <code>curl --connect-timeout 2 -ks "https://pi.hole/api/stats/summary" -H "Accept: application/json"</code>;<br />
+- the command line - examples: <code>pihole api config/webserver/port</code> or <code>pihole api stats/summary</code>.</p>
+<h3>The Command-Line Interface</h3>
+<p>The <a href="https://docs.pi-hole.net/core/pihole-command/">pihole</a> command has all the functionality necessary to fully administer the Pi-hole, without the need for the Web Interface. It's fast, user-friendly, and auditable by anyone with an understanding of <code>bash</code>.</p>
+<p>Some notable features include:</p>
+<ul>
+<li><a href="https://docs.pi-hole.net/core/pihole-command/#allowlisting-denylisting-and-regex">Allowlisting, Denylisting (fka Whitelisting, Blacklisting), and Regex</a></li>
+<li>[Debugging utility](https://docs.pi-hole</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/pi-hole/pi-hole#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">XTLS /</span>
+          <a href="https://github.com/XTLS/Xray-core" target="_blank" rel="noopener">Xray-core</a>
+        </div>
+        <div class="repo-desc">Xray, Penetrates Everything. Also the best v2ray-core. Where the magic happens. An open platform for various uses.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#00ADD8"></span>Go</span>
+      <span class="meta-item">⭐ 37,372</span>
+      <span class="meta-item">🍴 5,206</span>
+      <span class="stars-today">⭐ 124 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Project X</h1>
+<p><a href="https://github.com/XTLS">Project X</a> originates from XTLS protocol, providing a set of network tools such as <a href="https://github.com/XTLS/Xray-core">Xray-core</a> and <a href="https://github.com/XTLS/REALITY">REALITY</a>.</p>
+<p><a href="https://github.com/XTLS/Xray-core#readme">README</a> is open, so feel free to submit your project <a href="https://github.com/XTLS/Xray-core/pulls">here</a>.</p>
+<h2>Sponsors</h2>
+<p><a href="https://docs.rw"><img alt="Remnawave" src="https://github.com/user-attachments/assets/a22d34ae-01ee-441c-843a-85356748ed1e" /></a></p>
+<p><a href="https://happ.su"><img alt="Happ" src="https://github.com/user-attachments/assets/14055dab-e8bb-48bd-89e8-962709e4098e" /></a></p>
+<p><a href="https://blanc.link/VMTSDqW"><img alt="BlancVPN" src="https://github.com/user-attachments/assets/9145ea7d-5da3-446e-8143-710dba4292c3" /></a></p>
+<p><a href="https://github.com/XTLS/Xray-core/issues/3668"><strong>Sponsor Xray-core</strong></a></p>
+<h2>Donation &amp; NFTs</h2>
+<h3><a href="https://opensea.io/item/ethereum/0x5ee362866001613093361eb8569d59c4141b76d1/1">Collect a Project X NFT to support the development of Project X!</a></h3>
+<p><a href="https://opensea.io/item/ethereum/0x5ee362866001613093361eb8569d59c4141b76d1/1"><img alt="Project X NFT" width="150px" src="https://raw2.seadn.io/ethereum/0x5ee362866001613093361eb8569d59c4141b76d1/7fa9ce900fb39b44226348db330e32/8b7fa9ce900fb39b44226348db330e32.svg" /></a></p>
+<ul>
+<li><strong>TRX(Tron)/USDT/USDC: <code>TNrDh5VSfwd4RPrwsohr6poyNTfFefNYan</code></strong></li>
+<li><strong>TON: <code>UQApeV-u2gm43aC1uP76xAC1m6vCylstaN1gpfBmre_5IyTH</code></strong></li>
+<li><strong>BTC: <code>1JpqcziZZuqv3QQJhZGNGBVdCBrGgkL6cT</code></strong></li>
+<li><strong>XMR: <code>4ABHQZ3yJZkBnLoqiKvb3f8eqUnX4iMPb6wdant5ZLGQELctcerceSGEfJnoCk6nnyRZm73wrwSgvZ2WmjYLng6R7sR67nq</code></strong></li>
+<li><strong>SOL/USDT/USDC: <code>3x5NuXHzB5APG6vRinPZcsUv5ukWUY1tBGRSJiEJWtZa</code></strong></li>
+<li><strong>ETH/USDT/USDC: <code>0xDc3Fe44F0f25D13CACb1C4896CD0D321df3146Ee</code></strong></li>
+<li><strong>Project X NFT: https://opensea.io/item/ethereum/0x5ee362866001613093361eb8569d59c4141b76d1/1</strong></li>
+<li><strong>VLESS NFT: https://opensea.io/collection/vless</strong></li>
+<li><strong>REALITY NFT: https://opensea.io/item/ethereum/0x5ee362866001613093361eb8569d59c4141b76d1/2</strong></li>
+<li><strong>Related links: <a href="https://github.com/XTLS/Xray-core/pull/5067">VLESS Post-Quantum Encryption</a>, <a href="https://github.com/XTLS/Xray-core/discussions/4113">XHTTP: Beyond REALITY</a>, <a href="https://github.com/XTLS/Xray-core/discussions/3633">Announcement of NFTs by Project X</a></strong></li>
+</ul>
+<h2>License</h2>
+<p><a href="https://github.com/XTLS/Xray-core/blob/main/LICENSE">Mozilla Public License Version 2.0</a></p>
+<h2>Documentation</h2>
+<p><a href="https://xtls.github.io">Project X Official Website</a></p>
+<h2>Telegram</h2>
+<p><a href="https://t.me/projectXray">Project X</a></p>
+<p><a href="https://t.me/projectXtls">Project X Channel</a></p>
+<p><a href="https://t.me/projectVless">Project VLESS</a> (Русский)</p>
+<p><a href="https://t.me/projectXhttp">Project XHTTP</a> (Persian)</p>
+<h2>Installation</h2>
+<ul>
+<li>Linux Script</li>
+<li><a href="https://github.com/XTLS/Xray-install">XTLS/Xray-install</a> (<strong>Official</strong>)</li>
+<li><a href="https://github.com/team-cloudchaser/tempest">tempest</a> (supports <a href="https://systemd.io"><code>systemd</code></a> and <a href="https://github.com/OpenRC/openrc">OpenRC</a>; Linux-only)</li>
+<li>Docker</li>
+<li><a href="https://ghcr.io/xtls/xray-core">ghcr.io/xtls/xray-core</a> (<strong>Official</strong>)</li>
+<li><a href="https://hub.docker.com/r/teddysun/xray">teddysun/xray</a></li>
+<li><a href="https://github.com/wulabing/xray_docker">wulabing/xray_docker</a></li>
+<li>Web Panel</li>
+<li><a href="https://github.com/remnawave/panel">Remnawave</a></li>
+<li><a href="https://github.com/MHSanaei/3x-ui">3X-UI</a></li>
+<li><a href="https://github.com/PasarGuard/panel">PasarGuard</a></li>
+<li><a href="https://github.com/qist/xray-ui">Xray-UI</a></li>
+<li><a href="https://github.com/xeefei/X-Panel">X-Panel</a></li>
+<li><a href="https://github.com/Gozargah/Marzban">Marzban</a></li>
+<li><a href="https://github.com/hiddify/Hiddify-Manager">Hiddify</a></li>
+<li><a href="https://github.com/AghayeCoder/tx-ui">TX-UI</a></li>
+<li><a href="https://github.com/ClickDevTech/CELERITY-panel">CELERITY</a></li>
+<li>One Click</li>
+<li><a href="https://github.com/zxcvos/Xray-script">Xray-REALITY</a>, <a href="https://github.com/sajjaddg/xray-reality">xray-reality</a>, <a href="https://github.com/aleskxyz/reality-ezpz">reality-ezpz</a></li>
+<li><a href="https://github.com/hello-yunshu/Xray_bash_onekey">Xray_bash_onekey</a>, <a href="https://github.com/LordPenguin666/XTool">XTool</a>, <a href="https://github.com/vpainless/vpainless">VPainLess</a></li>
+<li><a href="https://github.com/mack-a/v2ray-agent">v2ray-agent</a>, <a href="https://github.com/wulabing/Xray_onekey">Xray_onekey</a>, <a href="https://github.com/proxysu/ProxySU">ProxySU</a></li>
+<li>Magisk</li>
+<li><a href="https://github.com/Fanju6/NetProxy-Magisk">NetProxy-Magisk</a></li>
+<li><a href="https://github.com/Asterisk4Magisk/Xray4Magisk">Xray4Magisk</a></li>
+<li><a href="https://github.com/E7KMbb/Xray_For_Magisk">Xray_For_Magisk</a></li>
+<li>Homebrew</li>
+<li><code>brew install xray</code></li>
+</ul>
+<h2>Usage</h2>
+<ul>
+<li>Example</li>
+<li><a href="https://github.com/XTLS/REALITY#readme">VLESS-XTLS-uTLS-REALITY</a></li>
+<li><a href="https://github.com/XTLS/Xray-examples/tree/main/VLESS-TCP-XTLS-Vision">VLESS-TCP-XTLS-Vision</a></li>
+<li><a href="https://github.com/XTLS/Xray-examples/tree/main/All-in-One-fallbacks-Nginx">All-in-One-fallbacks-Nginx</a></li>
+<li>Xray-examples</li>
+<li><a href="https://github.com/XTLS/Xray-examples">XTLS/Xray-examples</a></li>
+<li><a href="https://github.com/chika0801/Xray-examples">chika0801/Xray-examples</a></li>
+<li><a href="https://github.com/lxhao61/integrated-examples">lxhao61/integrated-examples</a></li>
+<li>Tutorial</li>
+<li><a href="https://github.com/chika0801/Xray-install">XTLS Vision</a></li>
+<li><a href="https://cscot.pages.dev/2023/03/02/Xray-REALITY-tutorial/">REALITY (English)</a></li>
+<li><a href="https://github.com/SasukeFreestyle/XTLS-Iran-Reality">XTLS-Iran-Reality (English)</a></li>
+<li><a href="https://computerscot.github.io/vless-xtls-utls-reality-steal-oneself.html">Xray REALITY with 'steal oneself' (English)</a></li>
+<li><a href="https://g800.pages.dev/wireguard">Xray with WireGuard inbound (English)</a></li>
+</ul>
+<h2>GUI Clients</h2>
+<ul>
+<li>OpenWrt</li>
+<li><a href="https://github.com/Openwrt-Passwall/openwrt-passwall">PassWall</a>, <a href="https://github.com/Openwrt-Passwall/openwrt-passwall2">PassWall 2</a></li>
+<li><a href="https://github.com/fw876/helloworld">ShadowSocksR Plus+</a></li>
+<li><a href="https://github.com/yichya/luci-app-xray">luci-app-xray</a> (<a href="https://github.com/yichya/openwrt-xray">openwrt-xray</a>)</li>
+<li>Asuswrt-Merlin</li>
+<li><a href="https://github.com/DanielLavrushin/asuswrt-merlin-xrayui">XRAYUI</a></li>
+<li><a href="https://github.com/hq450/fancyss">fancyss</a></li>
+<li>Windows</li>
+<li><a href="https://github.com/2dust/v2rayN">v2rayN</a></li>
+<li><a href="https://github.com/LorenEteval/Furious">Furious</a></li>
+<li><a href="https://github.com/InvisibleManVPN/InvisibleMan-XRayClient">Invisible Man - Xray</a></li>
+<li><a href="https://github.com/AnyPortal/AnyPortal">AnyPortal</a></li>
+<li><a href="https://github.com/genyleap/GenyConnect">GenyConnect</a></li>
+<li>Android</li>
+<li><a href="https://github.com/2dust/v2rayNG">v2rayNG</a></li>
+<li><a href="https://github.com/XTLS/X-flutter">X-flutter</a></li>
+<li><a href="https://github.com/SaeedDev94/Xray">SaeedDev94/Xray</a></li>
+<li><a href="https://github.com/lhear/SimpleXray">SimpleXray</a></li>
+<li><a href="https://github.com/Q7DF1/XrayFA">XrayFA</a></li>
+<li><a href="https://github.com/AnyPortal/AnyPortal">AnyPortal</a></li>
+<li><a href="https://github.com/Fanju6/NetProxy-Magisk">NetProxy-Magisk</a></li>
+<li>iOS &amp; macOS arm64 &amp; tvOS</li>
+<li><a href="https://apps.apple.com/app/happ-proxy-utility/id6504287215">Happ</a> | <a href="https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973">Happ RU</a> | <a href="https://apps.apple.com/us/app/happ-proxy-utility-for-tv/id6748297274">Happ tvOS</a></li>
+<li><a href="https://apps.apple.com/app/streisand/id6450534064">Streisand</a></li>
+<li><a href="https://github.com/OneXray/OneXray">OneXray</a></li>
+<li><a href="https://apps.apple.com/en/app/incy/id6756943388">INCY</a></li>
+<li>macOS arm64 &amp; x64</li>
+<li><a href="https://apps.apple.com/app/happ-proxy-utility/id6504287215">Happ</a> | <a href="https://apps.apple.com/ru/app/happ-proxy-utility-plus/id6746188973">Happ RU</a></li>
+<li><a href="https://github.com/yanue/V2rayU">V2rayU</a></li>
+<li><a href="https://github.com/tzmax/V2RayXS">V2RayXS</a></li>
+<li><a href="https://github.com/LorenEteval/Furious">Furious</a></li>
+<li><a href="https://github.com/OneXray/OneXray">OneXray</a></li>
+<li><a href="https://github.com/goxray/desktop">GoXRay</a></li>
+<li><a href="https://github.com/AnyPortal/AnyPortal">AnyPortal</a></li>
+<li><a href="https://github.com/2dust/v2rayN">v2rayN</a></li>
+<li><a href="https://github.com/genyleap/GenyConnect">GenyConnect</a></li>
+<li><a href="https://apps.apple.com/en/app/incy/id6756943388">INCY</a></li>
+<li>Linux</li>
+<li><a href="https://github.com/v2rayA/v2rayA">v2rayA</a></li>
+<li><a href="https://github.com/LorenEteval/Furious">Furious</a></li>
+<li><a href="https://github.com/ketetefid/GorzRay">GorzRay</a></li>
+<li><a href="https://github.com/goxray/desktop">GoXRay</a></li>
+<li><a href="https://github.com/AnyPortal/AnyPortal">AnyPortal</a></li>
+<li><a href="https://github.com/2dust/v2rayN">v2rayN</a></li>
+<li><a href="https://github.com/genyleap/GenyConnect">GenyConnect</a></li>
+</ul>
+<h2>Others that support VLESS, XTLS, REALITY, XUDP, PLUX...</h2>
+<ul>
+<li>iOS &amp; macOS arm64 &amp; tvOS</li>
+<li>[Shadowrocket](http</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/XTLS/Xray-core#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on April 20, 2026  17:05 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
