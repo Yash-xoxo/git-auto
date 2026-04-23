@@ -1,0 +1,1781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — April 22, 2026  04:52</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on April 22, 2026  04:52 &nbsp;·&nbsp; 9 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Fincept-Corporation /</span>
+          <a href="https://github.com/Fincept-Corporation/FinceptTerminal" target="_blank" rel="noopener">FinceptTerminal</a>
+        </div>
+        <div class="repo-desc">FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 11,954</span>
+      <span class="meta-item">🍴 1,561</span>
+      <span class="stars-today">⭐ 2,548 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Fincept Terminal</h1>
+<div align="center">
+
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-C06524)](https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/LICENSE)
+[![C++20](https://img.shields.io/badge/C%2B%2B-20-00599C?logo=cplusplus)](https://isocpp.org/)
+[![Qt6](https://img.shields.io/badge/Qt-6-41CD52?logo=qt&logoColor=white)](https://www.qt.io/)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Hits](https://hits.sh/github.com/Fincept-Corporation/FinceptTerminal.svg?label=Visits)](https://hits.sh/github.com/Fincept-Corporation/FinceptTerminal/)
+
+<a href="https://trendshift.io/repositories/17028" target="_blank"><img src="https://trendshift.io/api/badge/repositories/17028" alt="Fincept-Corporation%2FFinceptTerminal | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+[![GitHub Stars](https://img.shields.io/github/stars/Fincept-Corporation/FinceptTerminal?style=social)](https://github.com/Fincept-Corporation/FinceptTerminal/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/Fincept-Corporation/FinceptTerminal?style=social)](https://github.com/Fincept-Corporation/FinceptTerminal/network/members)
+[![GitHub Watchers](https://img.shields.io/github/watchers/Fincept-Corporation/FinceptTerminal?style=social)](https://github.com/Fincept-Corporation/FinceptTerminal/watchers)
+[![GitHub Release](https://img.shields.io/github/v/release/Fincept-Corporation/FinceptTerminal?color=brightgreen&logo=github)](https://github.com/Fincept-Corporation/FinceptTerminal/releases)
+[![GitHub Issues](https://img.shields.io/github/issues/Fincept-Corporation/FinceptTerminal)](https://github.com/Fincept-Corporation/FinceptTerminal/issues)
+
+[![Twitter](https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/intent/tweet?text=Check%20out%20FinceptTerminal&url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/) [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/sharing/share-offsite/?url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/) [![Facebook](https://img.shields.io/badge/-Facebook-1877F2?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/Fincept-Corporation/FinceptTerminal/) [![Reddit](https://img.shields.io/badge/-Reddit-FF4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/submit?url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/&title=FinceptTerminal) [![WhatsApp](https://img.shields.io/badge/-WhatsApp-25D366?style=flat-square&logo=whatsapp&logoColor=white)](https://api.whatsapp.com/send?text=Check%20out%20FinceptTerminal%3A%20https%3A//github.com/Fincept-Corporation/FinceptTerminal/)
+
+### **Your Thinking is the Only Limit. The Data Isn't.**
+
+State-of-the-art financial intelligence platform with CFA-level analytics, AI automation, and unlimited data connectivity.
+
+[📥 Download](https://github.com/Fincept-Corporation/FinceptTerminal/releases) · [📚 Docs](https://github.com/Fincept-Corporation/FinceptTerminal/tree/main/docs) · [💬 Discussions](https://github.com/Fincept-Corporation/FinceptTerminal/discussions) · [💬 Discord](https://discord.gg/ae87a8ygbN) · [🤝 Partner](https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/docs/COMMERCIAL_LICENSE.md)
+
+![Fincept Terminal](https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Dashboard.png)
+
+<table>
+  <tr>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/EquityResearch.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/EquityResearch.png" width="100%"/></a><br/><sub><b>Equity Research</b></sub></td>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Portfolio.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Portfolio.png" width="100%"/></a><br/><sub><b>Portfolio</b></sub></td>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/News.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/News.png" width="100%"/></a><br/><sub><b>News</b></sub></td>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/NodeEditor.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/NodeEditor.png" width="100%"/></a><br/><sub><b>Node Editor</b></sub></td>
+  </tr>
+</table>
+
+</div>
+
+<hr />
+<h2>About</h2>
+<p><strong>Fincept Terminal v4</strong> is a pure native C++20 desktop application. It uses <strong>Qt6</strong> for UI and rendering, embedded <strong>Python</strong> for analytics, and delivers Bloomberg-terminal-class performance in a single native binary.</p>
+<hr />
+<h2>Features</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📊 <strong>CFA-Level Analytics</strong></td>
+<td>DCF models, portfolio optimization, risk metrics (VaR, Sharpe), derivatives pricing via embedded Python</td>
+</tr>
+<tr>
+<td>🤖 <strong>AI Agents</strong></td>
+<td>37 agents across Trader/Investor (Buffett, Graham, Lynch, Munger, Klarman, Marks…), Economic, and Geopolitics frameworks; local LLM support; multi-provider (OpenAI, Anthropic, Gemini, Groq, DeepSeek, MiniMax, OpenRouter, Ollama)</td>
+</tr>
+<tr>
+<td>🌐 <strong>100+ Data Connectors</strong></td>
+<td>DBnomics, Polygon, Kraken, Yahoo Finance, FRED, IMF, World Bank, AkShare, government APIs, plus optional alternative-data overlays such as Adanos market sentiment for equity research</td>
+</tr>
+<tr>
+<td>📈 <strong>Real-Time Trading</strong></td>
+<td>Crypto (Kraken/HyperLiquid WebSocket), equity, algo trading, paper trading engine, 16 broker integrations (Zerodha, Angel One, Upstox, Fyers, Dhan, Groww, Kotak, IIFL, 5paisa, AliceBlue, Shoonya, Motilal, IBKR, Alpaca, Tradier, Saxo)</td>
+</tr>
+<tr>
+<td>🔬 <strong>QuantLib Suite</strong></td>
+<td>18 quantitative analysis modules — pricing, risk, stochastic, volatility, fixed income</td>
+</tr>
+<tr>
+<td>🚢 <strong>Global Intelligence</strong></td>
+<td>Maritime tracking, geopolitical analysis, relationship mapping, satellite data</td>
+</tr>
+<tr>
+<td>🎨 <strong>Visual Workflows</strong></td>
+<td>Node editor for automation pipelines, MCP tool integration</td>
+</tr>
+<tr>
+<td>🧠 <strong>AI Quant Lab</strong></td>
+<td>ML models, factor discovery, HFT, reinforcement learning trading</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Installation</h2>
+<!-- DOWNLOAD-TABLE-START -->
+<h3>Option 1 — Download Installer (Recommended)</h3>
+<p>Latest release: <strong>v4.0.2</strong> — <a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/tag/v4.0.2">View all releases</a></p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Download</th>
+<th>Run</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows x64</strong></td>
+<td><a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.0.2/FinceptTerminal-4.0.2-win64-setup.exe">FinceptTerminal-Windows-x64-setup.exe</a></td>
+<td>Run installer → launch <code>FinceptTerminal.exe</code></td>
+</tr>
+<tr>
+<td><strong>Linux x64</strong></td>
+<td><a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.0.2/FinceptTerminal-4.0.2-linux-x64-setup.run">FinceptTerminal-Linux-x64.run</a></td>
+<td><code>chmod +x</code> → run installer</td>
+</tr>
+<tr>
+<td><strong>macOS Apple Silicon</strong></td>
+<td><a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.0.2/FinceptTerminal-4.0.2-macOS-setup.dmg">FinceptTerminal-macOS-arm64.dmg</a></td>
+<td>Open DMG → drag to Applications</td>
+</tr>
+</tbody>
+</table>
+<!-- DOWNLOAD-TABLE-END -->
+
+<hr />
+<h3>Option 2 — Quick Start (One-Click Build)</h3>
+<p>Clone and run the setup script — it installs all dependencies and builds the app automatically:</p>
+<pre><code class="language-bash"># Linux / macOS
+git clone https://github.com/Fincept-Corporation/FinceptTerminal.git
+cd FinceptTerminal
+chmod +x setup.sh &amp;&amp; ./setup.sh
+</code></pre>
+<p>The script handles: compiler check, CMake, Qt6, Python, build, and launch.</p>
+<blockquote>
+<p><strong>Windows:</strong> No setup script — use the manual build steps in Option 4 below. It's just two commands.</p>
+</blockquote>
+<hr />
+<h3>Option 3 — Docker</h3>
+<p>```bash</p>
+<h1>Pull and run</h1>
+<p>docker pull ghcr.io/fincept-corporation/fincept-</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Fincept-Corporation/FinceptTerminal#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">thunderbird /</span>
+          <a href="https://github.com/thunderbird/thunderbolt" target="_blank" rel="noopener">thunderbolt</a>
+        </div>
+        <div class="repo-desc">AI You Control: Choose your models. Own your data. Eliminate vendor lock-in.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 3,554</span>
+      <span class="meta-item">🍴 208</span>
+      <span class="stars-today">⭐ 596 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Thunderbolt <a href="https://github.com/thunderbird/thunderbolt/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/thunderbird/thunderbolt/actions/workflows/ci.yml/badge.svg" /></a></h1>
+<p><strong>AI You Control: Choose your models. Own your data. Eliminate vendor lock-in.</strong></p>
+<p><img alt="Thunderbolt Main Dashboard" src="./docs/screenshots/main.png" /></p>
+<blockquote>
+<p>[!IMPORTANT]<br />
+⚠️ <strong>We are excited about the amount of interest Thunderbolt has been getting and want to clarify that it is still early and under active development</strong>. Currently, we are targeting enterprise customers that want to deploy it on-prem. We encourage you to self-host it and try it out, but there are a few caveats we are still working on:</p>
+<ul>
+<li>While we eventually plan to make Thunderbolt fully offline-first, it currently depends on authentication and search functionality (though you can disable search on the integrations screen in the app). You can <a href="./deploy/README.md">deploy your own backend with Docker</a> and sign up in order to test it locally.</li>
+<li>You’ll need to add your own model providers - we don’t yet have a public inference endpoint. We recommend using Thunderbolt with <a href="https://ollama.com">Ollama</a> or <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a> if you want free local inference, or you can add API keys for any OpenAI-compatible model provider in the settings.</li>
+</ul>
+</blockquote>
+<p>Thunderbolt is an open-source, cross-platform AI client that can be deployed on-prem anywhere.</p>
+<ul>
+<li>🌐 Available on all major desktop and mobile platforms: web, iOS, Android, Mac, Linux, and Windows.</li>
+<li>🧠 Compatible with frontier, local, and on-prem models.</li>
+<li>🙋 Enterprise features, support, and FDEs available.</li>
+</ul>
+<p><strong>Thunderbolt is under active development, currently undergoing a security audit, and preparing for enterprise production readiness.</strong></p>
+<h2>Need Help?</h2>
+<p>Found a bug? Have an idea?</p>
+<ul>
+<li>We're actively working on our docs, community, and roadmap. For now, the best way to get in touch is to <a href="https://github.com/thunderbird/thunderbolt/issues">File an issue</a>.</li>
+</ul>
+<h2>Contributing</h2>
+<p>We welcome contributions from everyone.</p>
+<ul>
+<li><strong>Development</strong>: The <a href="./docs/development.md">development guide</a> will help you get started.</li>
+<li>Make sure to check out the <a href="https://www.mozilla.org/about/governance/policies/participation/">Mozilla Community Participation Guidelines</a>.</li>
+</ul>
+<h2>Documentation</h2>
+<ul>
+<li><a href="./docs/faq.md">FAQ</a> - Frequently asked questions</li>
+<li><a href="./deploy/README.md">Deployment</a> - Self-host with Docker Compose or Kubernetes</li>
+<li><a href="./docs/development.md">Development</a> - Quick start, setup, and testing</li>
+<li><a href="./docs/architecture.md">Architecture</a> - System architecture and diagrams</li>
+<li><a href="./docs/roadmap.md">Features and Roadmap</a> - Platform and feature status</li>
+<li><a href="./docs/claude-code.md">Claude Code Skills</a> - Slash commands, automation, and subtree syncing</li>
+<li><a href="./docs/storybook.md">Storybook</a> - Build, test, and document components</li>
+<li><a href="./docs/vite-bundle-analyzer.md">Vite Bundle Analyzer</a> - Analyze frontend bundle size</li>
+<li><a href="./docs/tauri-signing-keys.md">Tauri Signing Keys</a> - Generate and manage signing keys for releases</li>
+<li><a href="./RELEASE.md">Release Process</a> - Instructions for creating and publishing new releases</li>
+<li><a href="./TELEMETRY.md">Telemetry</a> - Information about data collection and privacy policy</li>
+</ul>
+<h2>Code of Conduct</h2>
+<p>Please read our <a href="./CODE_OF_CONDUCT.md">Code of Conduct</a>. All participants in the Thunderbolt community agree to follow these guidelines and <a href="https://www.mozilla.org/about/governance/policies/participation/">Mozilla's Community Participation Guidelines</a>.</p>
+<h2>Security</h2>
+<p>If you discover a security vulnerability, please report it responsibly via our <a href="https://github.com/thunderbird/thunderbolt/security/advisories/new">vulnerability reporting form</a>. Please do <strong>not</strong> file public GitHub issues for security vulnerabilities.</p>
+<h2>License</h2>
+<p>Thunderbolt is licensed under the <a href="./LICENSE">Mozilla Public License 2.0</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/thunderbird/thunderbolt#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">zilliztech /</span>
+          <a href="https://github.com/zilliztech/claude-context" target="_blank" rel="noopener">claude-context</a>
+        </div>
+        <div class="repo-desc">Code search MCP for Claude Code. Make entire codebase the context for any coding agent.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 6,787</span>
+      <span class="meta-item">🍴 578</span>
+      <span class="stars-today">⭐ 169 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><img alt="" src="assets/claude-context.png" /></p>
+<blockquote>
+<p>🆕 <strong>Looking for persistent memory for Claude Code?</strong> Check out <a href="https://github.com/zilliztech/memsearch/tree/main/plugins/claude-code">memsearch Claude Code plugin</a> — a markdown-first memory system that gives your AI agent long-term memory across sessions.</p>
+</blockquote>
+<h3>Your entire codebase as Claude's context</h3>
+<p><a href="https://opensource.org/licenses/MIT"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg" /></a><br />
+<a href="https://nodejs.org/"><img alt="Node.js" src="https://img.shields.io/badge/Node.js-20%2B-green.svg" /></a><br />
+<a href="docs/"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-📚-orange.svg" /></a><br />
+<a href="https://marketplace.visualstudio.com/items?itemName=zilliz.semanticcodesearch"><img alt="VS Code Marketplace" src="https://img.shields.io/visual-studio-marketplace/v/zilliz.semanticcodesearch?label=VS%20Code%20Extension&amp;logo=visual-studio-code" /></a><br />
+<a href="https://www.npmjs.com/package/@zilliz/claude-context-core"><img alt="npm - core" src="https://img.shields.io/npm/v/@zilliz/claude-context-core?label=%40zilliz%2Fclaude-context-core&amp;logo=npm" /></a><br />
+<a href="https://www.npmjs.com/package/@zilliz/claude-context-mcp"><img alt="npm - mcp" src="https://img.shields.io/npm/v/@zilliz/claude-context-mcp?label=%40zilliz%2Fclaude-context-mcp&amp;logo=npm" /></a><br />
+<a href="https://twitter.com/zilliz_universe"><img alt="Twitter" src="https://img.shields.io/twitter/url/https/twitter.com/zilliz_universe.svg?style=social&amp;label=Follow%20%40Zilliz" /></a><br />
+<a href="https://deepwiki.com/zilliztech/claude-context"><img alt="DeepWiki" src="https://img.shields.io/badge/DeepWiki-AI%20Docs-purple.svg?logo=gitbook&amp;logoColor=white" /></a><br />
+<a href="https://discord.gg/mKc3R95yE5"><img height="20" src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="discord" /></a><br />
+</div></p>
+<p><strong>Claude Context</strong> is an MCP plugin that adds semantic code search to Claude Code and other AI coding agents, giving them deep context from your entire codebase.</p>
+<p>🧠 <strong>Your Entire Codebase as Context</strong>: Claude Context uses semantic search to find all relevant code from millions of lines. No multi-round discovery needed. It brings results straight into the Claude's context.</p>
+<p>💰 <strong>Cost-Effective for Large Codebases</strong>: Instead of loading entire directories into Claude for every request, which can be very expensive, Claude Context efficiently stores your codebase in a vector database and only uses related code in context to keep your costs manageable.</p>
+<hr />
+<h2>🚀 Demo</h2>
+<p><img alt="img" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXf2uIf2c5zowp-iOMOqsefHbY_EwNGiutkxtNXcZVJ8RI6SN9DsCcsc3amXIhOZx9VcKFJQLSAqM-2pjU9zoGs1r8GCTUL3JIsLpLUGAm1VQd5F2o5vpEajx2qrc77iXhBu1zWj?key=qYdFquJrLcfXCUndY-YRBQ" /></p>
+<p>Model Context Protocol (MCP) allows you to integrate Claude Context with your favorite AI coding assistants, e.g. Claude Code.</p>
+<h2>Quick Start</h2>
+<h3>Prerequisites</h3>
+<details>
+<summary>Get a free vector database on Zilliz Cloud 👈</summary>
+
+Claude Context needs a vector database. You can [sign up](https://cloud.zilliz.com/signup?utm_source=github&utm_medium=referral&utm_campaign=2507-codecontext-readme) on Zilliz Cloud to get an API key.
+
+![](assets/signup_and_get_apikey.png)
+
+Copy your Personal Key to replace `your-zilliz-cloud-api-key` in the configuration examples.
+</details>
+
+<details>
+<summary>Get OpenAI API Key for embedding model</summary>
+
+You need an OpenAI API key for the embedding model. You can get one by signing up at [OpenAI](https://platform.openai.com/api-keys).  
+
+Your API key will look like this: it always starts with `sk-`.  
+Copy your key and use it in the configuration examples below as `your-openai-api-key`.
+
+</details>
+
+<h3>Configure MCP for Claude Code</h3>
+<p><strong>System Requirements:</strong></p>
+<ul>
+<li>Node.js &gt;= 20.0.0 and &lt; 24.0.0</li>
+</ul>
+<blockquote>
+<p>Claude Context is not compatible with Node.js 24.0.0, you need downgrade it first if your node version is greater or equal to 24.</p>
+</blockquote>
+<h4>Configuration</h4>
+<p>Use the command line interface to add the Claude Context MCP server:</p>
+<pre><code class="language-bash">claude mcp add claude-context \
+  -e OPENAI_API_KEY=sk-your-openai-api-key \
+  -e MILVUS_ADDRESS=your-zilliz-cloud-public-endpoint \
+  -e MILVUS_TOKEN=your-zilliz-cloud-api-key \
+  -- npx @zilliz/claude-context-mcp@latest
+</code></pre>
+<p>See the <a href="https://docs.anthropic.com/en/docs/claude-code/mcp">Claude Code MCP documentation</a> for more details about MCP server management.</p>
+<h3>Other MCP Client Configurations</h3>
+<details>
+<summary><strong>OpenAI Codex CLI</strong></summary>
+
+Codex CLI uses TOML configuration files:
+
+1. Create or edit the `~/.codex/config.toml` file.
+
+2. Add the following configuration:
+
+
+<pre><code class="language-toml"># IMPORTANT: the top-level key is `mcp_servers` rather than `mcpServers`.
+[mcp_servers.claude-context]
+command = &quot;npx&quot;
+args = [&quot;@zilliz/claude-context-mcp@latest&quot;]
+env = { &quot;OPENAI_API_KEY&quot; = &quot;your-openai-api-key&quot;, &quot;MILVUS_TOKEN&quot; = &quot;your-zilliz-cloud-api-key&quot; }
+# Optional: override the default 10s startup timeout
+startup_timeout_ms = 20000
+</code></pre>
+
+
+3. Save the file and restart Codex CLI to apply the changes.
+
+</details>
+
+<details>
+<summary><strong>Gemini CLI</strong></summary>
+
+Gemini CLI requires manual configuration through a JSON file:
+
+1. Create or edit the `~/.gemini/settings.json` file.
+2. Add the following configuration:
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+3. Save the file and restart Gemini CLI to apply the changes.
+
+</details>
+
+<details>
+<summary><strong>Qwen Code</strong></summary>
+
+Create or edit the `~/.qwen/settings.json` file and add the following configuration:
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_ADDRESS&quot;: &quot;your-zilliz-cloud-public-endpoint&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><strong>Cursor</strong></summary>
+
+Go to: `Settings` -> `Cursor Settings` -> `MCP` -> `Add new global MCP server`
+
+Pasting the following configuration into your Cursor `~/.cursor/mcp.json` file is the recommended approach. You may also install in a specific project by creating `.cursor/mcp.json` in your project folder. See [Cursor MCP docs](https://cursor.com/docs/context/mcp) for more info.
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_ADDRESS&quot;: &quot;your-zilliz-cloud-public-endpoint&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><strong>Void</strong></summary>
+
+Go to: `Settings` -> `MCP` -> `Add MCP Server`
+
+Add the following configuration to your Void MCP settings:
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;code-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_ADDRESS&quot;: &quot;your-zilliz-cloud-public-endpoint&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><strong>Claude Desktop</strong></summary>
+
+Add to your Claude Desktop configuration:
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_ADDRESS&quot;: &quot;your-zilliz-cloud-public-endpoint&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><strong>Windsurf</strong></summary>
+
+Windsurf supports MCP configuration through a JSON file. Add the following configuration to your Windsurf MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "claude-context": {
+      "command": "npx",
+      "args": ["-y", "@zilliz/claude-context-mcp@latest"],
+      "env": {
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/zilliztech/claude-context#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">ruvnet /</span>
+          <a href="https://github.com/ruvnet/RuView" target="_blank" rel="noopener">RuView</a>
+        </div>
+        <div class="repo-desc">π RuView: WiFi DensePose turns commodity WiFi signals into real-time human pose estimation, vital sign monitoring, and presence detection — all without a single pixel of video.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 49,001</span>
+      <span class="meta-item">🍴 6,523</span>
+      <span class="stars-today">⭐ 824 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>π RuView</h1>
+<p align="center">
+  <a href="https://x.com/rUv/status/2037556932802761004">
+    <img src="assets/ruview-small-gemini.jpg" alt="RuView - WiFi DensePose" width="100%">
+  </a>
+</p>
+
+<blockquote>
+<p><strong>Beta Software</strong> — Under active development. APIs and firmware may change. Known limitations:<br />
+- ESP32-C3 and original ESP32 are not supported (single-core, insufficient for CSI DSP)<br />
+- Single ESP32 deployments have limited spatial resolution — use 2+ nodes or add a <a href="https://cognitum.one">Cognitum Seed</a> for best results<br />
+- Camera-free pose accuracy is limited — use <a href="docs/adr/ADR-079-camera-ground-truth-training.md">camera ground-truth training</a> for 92.9% PCK@20</p>
+<p>Contributions and bug reports welcome at <a href="https://github.com/ruvnet/RuView/issues">Issues</a>.</p>
+</blockquote>
+<h2><strong>See through walls with WiFi</strong></h2>
+<p><strong>Turn ordinary WiFi into a sensing system.</strong> Detect people, measure breathing and heart rate, track movement, and monitor rooms — through walls, in the dark, with no cameras or wearables. Just physics.</p>
+<h3>π RuView is a WiFi sensing platform that turns radio signals into spatial intelligence.</h3>
+<p>Every WiFi router already fills your space with radio waves. When people move, breathe, or even sit still, they disturb those waves in measurable ways. RuView captures these disturbances using Channel State Information (CSI) from low-cost ESP32 sensors and turns them into actionable data: who's there, what they're doing, and whether they're okay.</p>
+<p><strong>What it senses:</strong><br />
+- <strong>Presence and occupancy</strong> — detect people through walls, count them, track entries and exits<br />
+- <strong>Vital signs</strong> — breathing rate and heart rate, contactless, while sleeping or sitting<br />
+- <strong>Activity recognition</strong> — walking, sitting, gestures, falls — from temporal CSI patterns<br />
+- <strong>Environment mapping</strong> — RF fingerprinting identifies rooms, detects moved furniture, spots new objects<br />
+- <strong>Sleep quality</strong> — overnight monitoring with sleep stage classification and apnea screening</p>
+<p>Built on <a href="https://github.com/ruvnet/ruvector/">RuVector</a> and <a href="https://cognitum.one">Cognitum Seed</a>, RuView runs entirely on edge hardware — an ESP32 mesh (as low as $9 per node) paired with a Cognitum Seed for persistent memory, cryptographic attestation, and AI integration. No cloud, no cameras, no internet required.</p>
+<p>The system learns each environment locally using spiking neural networks that adapt in under 30 seconds, with multi-frequency mesh scanning across 6 WiFi channels that uses your neighbors' routers as free radar illuminators. Every measurement is cryptographically attested via an Ed25519 witness chain.</p>
+<p>RuView also supports pose estimation (17 COCO keypoints via the WiFlow architecture), trained entirely without cameras using 10 sensor signals — a technique pioneered from the original <em>DensePose From WiFi</em> research at Carnegie Mellon University.</p>
+<h3>Built for low-power edge applications</h3>
+<p><a href="#edge-intelligence-adr-041">Edge modules</a> are small programs that run directly on the ESP32 sensor — no internet needed, no cloud fees, instant response.</p>
+<p><a href="https://www.rust-lang.org/"><img alt="Rust 1.85+" src="https://img.shields.io/badge/rust-1.85+-orange.svg" /></a><br />
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a><br />
+<a href="https://github.com/ruvnet/RuView"><img alt="Tests: 1463" src="https://img.shields.io/badge/tests-1463%20passed-brightgreen.svg" /></a><br />
+<a href="https://hub.docker.com/r/ruvnet/wifi-densepose"><img alt="Docker: multi-arch" src="https://img.shields.io/badge/docker-amd64%20%2B%20arm64-blue.svg" /></a><br />
+<a href="#vital-sign-detection"><img alt="Vital Signs" src="https://img.shields.io/badge/vital%20signs-breathing%20%2B%20heartbeat-red.svg" /></a><br />
+<a href="#esp32-s3-hardware-pipeline"><img alt="ESP32 Ready" src="https://img.shields.io/badge/ESP32--S3-CSI%20streaming-purple.svg" /></a><br />
+<a href="https://crates.io/crates/wifi-densepose-ruvector"><img alt="crates.io" src="https://img.shields.io/crates/v/wifi-densepose-ruvector.svg" /></a></p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>How</th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pose estimation</strong></td>
+<td>CSI subcarrier amplitude/phase → 17 COCO keypoints</td>
+<td>171K emb/s (M4 Pro)</td>
+</tr>
+<tr>
+<td><strong>Breathing detection</strong></td>
+<td>Bandpass 0.1-0.5 Hz → zero-crossing BPM</td>
+<td>6-30 BPM</td>
+</tr>
+<tr>
+<td><strong>Heart rate</strong></td>
+<td>Bandpass 0.8-2.0 Hz → zero-crossing BPM</td>
+<td>40-120 BPM</td>
+</tr>
+<tr>
+<td><strong>Presence sensing</strong></td>
+<td>Trained model + PIR fusion — 100% accuracy</td>
+<td>0.012 ms latency</td>
+</tr>
+<tr>
+<td><strong>Through-wall</strong></td>
+<td>Fresnel zone geometry + multipath modeling</td>
+<td>Up to 5m depth</td>
+</tr>
+<tr>
+<td><strong>Edge intelligence</strong></td>
+<td>8-dim feature vectors + RVF store on Cognitum Seed</td>
+<td>$140 total BOM</td>
+</tr>
+<tr>
+<td><strong>Camera-free training</strong></td>
+<td>10 sensor signals, no labels needed</td>
+<td>84s on M4 Pro</td>
+</tr>
+<tr>
+<td><strong>Camera-supervised training</strong></td>
+<td>MediaPipe + ESP32 CSI → 92.9% PCK@20</td>
+<td>19 min on laptop</td>
+</tr>
+<tr>
+<td><strong>Multi-frequency mesh</strong></td>
+<td>Channel hopping across 6 bands, neighbor APs as illuminators</td>
+<td>3x sensing bandwidth</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<pre><code class="language-bash"># Option 1: Docker (simulated data, no hardware needed)
+docker pull ruvnet/wifi-densepose:latest
+docker run -p 3000:3000 ruvnet/wifi-densepose:latest
+# Open http://localhost:3000
+
+# Option 2: Live sensing with ESP32-S3 hardware ($9)
+# Flash firmware, provision WiFi, and start sensing:
+python -m esptool --chip esp32s3 --port COM9 --baud 460800 \
+  write_flash 0x0 bootloader.bin 0x8000 partition-table.bin \
+  0xf000 ota_data_initial.bin 0x20000 esp32-csi-node.bin
+python firmware/esp32-csi-node/provision.py --port COM9 \
+  --ssid &quot;YourWiFi&quot; --password &quot;secret&quot; --target-ip 192.168.1.20
+
+# Option 3: Full system with Cognitum Seed ($140)
+# ESP32 streams CSI → bridge forwards to Seed for persistent storage + kNN + witness chain
+node scripts/rf-scan.js --port 5006           # Live RF room scan
+node scripts/snn-csi-processor.js --port 5006  # SNN real-time learning
+node scripts/mincut-person-counter.js --port 5006  # Correct person counting
+</code></pre>
+<blockquote>
+<p>[!NOTE]<br />
+<strong>CSI-capable hardware recommended.</strong> Presence, vital signs, through-wall sensing, and all advanced capabilities require Channel State Information (CSI) from an ESP32-S3 ($9) or research NIC. The Docker image runs with simulated data for evaluation. Consumer WiFi laptops provide RSSI-only presence detection.</p>
+<p><strong>Hardware options</strong> for live CSI capture:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Hardware</th>
+<th>Cost</th>
+<th>Full CSI</th>
+<th>Capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ESP32 + Cognitum Seed</strong> (recommended)</td>
+<td>ESP32-S3 + <a href="https://cognitum.one">Cognitum Seed</a></td>
+<td>~$140</td>
+<td>Yes</td>
+<td>Pose, breathing, heartbeat, motion, presence + persistent vector store, kNN search, witness chain, MCP proxy</td>
+</tr>
+<tr>
+<td><strong>ESP32 Mesh</strong></td>
+<td>3-6x ESP32-S3 + WiFi router</td>
+<td>~$54</td>
+<td>Yes</td>
+<td>Pose, breathing, heartbeat, motion, presence</td>
+</tr>
+<tr>
+<td><strong>Research NIC</strong></td>
+<td>Intel 5300 / Atheros AR9580</td>
+<td>~$50-100</td>
+<td>Yes</td>
+<td>Full CSI with 3x3 MIMO</td>
+</tr>
+<tr>
+<td><strong>Any WiFi</strong></td>
+<td>Windows, macOS, or Linux laptop</td>
+<td>$0</td>
+<td>No</td>
+<td>RSSI-only: coarse presence and motion</td>
+</tr>
+</tbody>
+</table>
+<p>No hardware? Verify the signal processing pipeline with the deterministic reference signal: <code>python v1/data/proof/verify.py</code><br />
+</p>
+</blockquote>
+<hr />
+<h3>Real-Time Dense Point Cloud (NEW)</h3>
+<p>RuView now generates <strong>real-time 3D point clouds</strong> by fusing camera depth + WiFi CSI + mmWave radar. All sensors stream simultaneously into a unified spatial model.</p>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>Data</th>
+<th>Integration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Camera</strong></td>
+<td>MiDaS monocular depth (GPU)</td>
+<td>640×480 → 19,200+ depth points per frame</td>
+</tr>
+<tr>
+<td><strong>ESP32 CSI</strong></td>
+<td>ADR-018 binary frames (UDP)</td>
+<td>RF tomography → 8×8×4 occupancy grid</td>
+</tr>
+<tr>
+<td><strong>WiFlow Pose</strong></td>
+<td>17 COCO keypoints from CSI</td>
+<td>Skeleton overlay on point cloud</td>
+</tr>
+<tr>
+<td><strong>Vital Signs</strong></td>
+<td>Breathing rate from CSI phase</td>
+<td>Stored in ruOS brain every 60s</td>
+</tr>
+<tr>
+<td><strong>Motion</strong></td>
+<td>CSI amplitude variance</td>
+<td>Adaptive capture rate (skip depth when still)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quick start:</strong></p>
+<pre><code class="language-bash">cd rust-port/wifi-densepose-rs
+cargo build --release -p wifi-densepose-pointcloud
+./target/release/ruview-pointcloud serve --bind 127.0.0.1:9880
+# Open http://localhost:9880 for live 3D viewer
+</code></pre>
+<p><strong>CLI commands:</strong><br />
+```bash<br />
+ruview-pointcloud demo                            # synthetic demo<br />
+ruview-pointcloud serve --bind 127.0.0.1:9880     # live server + Three.js viewer<br />
+ruview-pointcloud capture --output room.ply       # capture to PLY<br />
+ru</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/ruvnet/RuView#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">microsoft /</span>
+          <a href="https://github.com/microsoft/ai-agents-for-beginners" target="_blank" rel="noopener">ai-agents-for-beginners</a>
+        </div>
+        <div class="repo-desc">12 Lessons to Get Started Building AI Agents</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+      <span class="meta-item">⭐ 57,973</span>
+      <span class="meta-item">🍴 19,897</span>
+      <span class="stars-today">⭐ 200 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>AI Agents for Beginners - A Course</h1>
+<p><img alt="AI Agents for Beginners" src="./images/repo-thumbnailv2.png" /></p>
+<h2>A course teaching everything you need to know to start building AI Agents</h2>
+<p><a href="https://github.com/microsoft/ai-agents-for-beginners/blob/master/LICENSE?WT.mc_id=academic-105485-koreyst"><img alt="GitHub license" src="https://img.shields.io/github/license/microsoft/ai-agents-for-beginners.svg" /></a><br />
+<a href="https://GitHub.com/microsoft/ai-agents-for-beginners/graphs/contributors/?WT.mc_id=academic-105485-koreyst"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/microsoft/ai-agents-for-beginners.svg" /></a><br />
+<a href="https://GitHub.com/microsoft/ai-agents-for-beginners/issues/?WT.mc_id=academic-105485-koreyst"><img alt="GitHub issues" src="https://img.shields.io/github/issues/microsoft/ai-agents-for-beginners.svg" /></a><br />
+<a href="https://GitHub.com/microsoft/ai-agents-for-beginners/pulls/?WT.mc_id=academic-105485-koreyst"><img alt="GitHub pull-requests" src="https://img.shields.io/github/issues-pr/microsoft/ai-agents-for-beginners.svg" /></a><br />
+<a href="http://makeapullrequest.com?WT.mc_id=academic-105485-koreyst"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" /></a></p>
+<h3>🌐 Multi-Language Support</h3>
+<h4>Supported via GitHub Action (Automated &amp; Always Up-to-Date)</h4>
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
+<p><a href="./translations/ar/README.md">Arabic</a> | <a href="./translations/bn/README.md">Bengali</a> | <a href="./translations/bg/README.md">Bulgarian</a> | <a href="./translations/my/README.md">Burmese (Myanmar)</a> | <a href="./translations/zh-CN/README.md">Chinese (Simplified)</a> | <a href="./translations/zh-HK/README.md">Chinese (Traditional, Hong Kong)</a> | <a href="./translations/zh-MO/README.md">Chinese (Traditional, Macau)</a> | <a href="./translations/zh-TW/README.md">Chinese (Traditional, Taiwan)</a> | <a href="./translations/hr/README.md">Croatian</a> | <a href="./translations/cs/README.md">Czech</a> | <a href="./translations/da/README.md">Danish</a> | <a href="./translations/nl/README.md">Dutch</a> | <a href="./translations/et/README.md">Estonian</a> | <a href="./translations/fi/README.md">Finnish</a> | <a href="./translations/fr/README.md">French</a> | <a href="./translations/de/README.md">German</a> | <a href="./translations/el/README.md">Greek</a> | <a href="./translations/he/README.md">Hebrew</a> | <a href="./translations/hi/README.md">Hindi</a> | <a href="./translations/hu/README.md">Hungarian</a> | <a href="./translations/id/README.md">Indonesian</a> | <a href="./translations/it/README.md">Italian</a> | <a href="./translations/ja/README.md">Japanese</a> | <a href="./translations/kn/README.md">Kannada</a> | <a href="./translations/km/README.md">Khmer</a> | <a href="./translations/ko/README.md">Korean</a> | <a href="./translations/lt/README.md">Lithuanian</a> | <a href="./translations/ms/README.md">Malay</a> | <a href="./translations/ml/README.md">Malayalam</a> | <a href="./translations/mr/README.md">Marathi</a> | <a href="./translations/ne/README.md">Nepali</a> | <a href="./translations/pcm/README.md">Nigerian Pidgin</a> | <a href="./translations/no/README.md">Norwegian</a> | <a href="./translations/fa/README.md">Persian (Farsi)</a> | <a href="./translations/pl/README.md">Polish</a> | <a href="./translations/pt-BR/README.md">Portuguese (Brazil)</a> | <a href="./translations/pt-PT/README.md">Portuguese (Portugal)</a> | <a href="./translations/pa/README.md">Punjabi (Gurmukhi)</a> | <a href="./translations/ro/README.md">Romanian</a> | <a href="./translations/ru/README.md">Russian</a> | <a href="./translations/sr/README.md">Serbian (Cyrillic)</a> | <a href="./translations/sk/README.md">Slovak</a> | <a href="./translations/sl/README.md">Slovenian</a> | <a href="./translations/es/README.md">Spanish</a> | <a href="./translations/sw/README.md">Swahili</a> | <a href="./translations/sv/README.md">Swedish</a> | <a href="./translations/tl/README.md">Tagalog (Filipino)</a> | <a href="./translations/ta/README.md">Tamil</a> | <a href="./translations/te/README.md">Telugu</a> | <a href="./translations/th/README.md">Thai</a> | <a href="./translations/tr/README.md">Turkish</a> | <a href="./translations/uk/README.md">Ukrainian</a> | <a href="./translations/ur/README.md">Urdu</a> | <a href="./translations/vi/README.md">Vietnamese</a></p>
+<blockquote>
+<p><strong>Prefer to Clone Locally?</strong></p>
+<p>This repository includes 50+ language translations which significantly increases the download size. To clone without translations, use sparse checkout:</p>
+<p><strong>Bash / macOS / Linux:</strong><br />
+<code>bash
+git clone --filter=blob:none --sparse https://github.com/microsoft/ai-agents-for-beginners.git
+cd ai-agents-for-beginners
+git sparse-checkout set --no-cone '/*' '!translations' '!translated_images'</code></p>
+<p><strong>CMD (Windows):</strong><br />
+<code>cmd
+git clone --filter=blob:none --sparse https://github.com/microsoft/ai-agents-for-beginners.git
+cd ai-agents-for-beginners
+git sparse-checkout set --no-cone "/*" "!translations" "!translated_images"</code></p>
+<p>This gives you everything you need to complete the course with a much faster download.</p>
+</blockquote>
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
+
+<p><strong>If you wish to have additional translations languages supported are listed <a href="https://github.com/Azure/co-op-translator/blob/main/getting_started/supported-languages.md">here</a></strong></p>
+<p><a href="https://GitHub.com/microsoft/ai-agents-for-beginners/watchers/?WT.mc_id=academic-105485-koreyst"><img alt="GitHub watchers" src="https://img.shields.io/github/watchers/microsoft/ai-agents-for-beginners.svg?style=social&amp;label=Watch" /></a><br />
+<a href="https://GitHub.com/microsoft/ai-agents-for-beginners/network/?WT.mc_id=academic-105485-koreyst"><img alt="GitHub forks" src="https://img.shields.io/github/forks/microsoft/ai-agents-for-beginners.svg?style=social&amp;label=Fork" /></a><br />
+<a href="https://GitHub.com/microsoft/ai-agents-for-beginners/stargazers/?WT.mc_id=academic-105485-koreyst"><img alt="GitHub stars" src="https://img.shields.io/github/stars/microsoft/ai-agents-for-beginners.svg?style=social&amp;label=Star" /></a></p>
+<p><a href="https://discord.gg/nTYy5BXMWG"><img alt="Microsoft Foundry Discord" src="https://dcbadge.limes.pink/api/server/nTYy5BXMWG" /></a></p>
+<h2>🌱 Getting Started</h2>
+<p>This course has lessons covering the fundamentals of building AI Agents. Each lesson covers its own topic so start wherever you like!</p>
+<p>There is multi-language support for this course. Go to our <a href="#-multi-language-support">available languages here</a>. </p>
+<p>If this is your first time building with Generative AI models, check out our <a href="https://aka.ms/genai-beginners">Generative AI For Beginners</a> course, which includes 21 lessons on building with GenAI.</p>
+<p>Don't forget to <a href="https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst">star (🌟) this repo</a> and <a href="https://github.com/microsoft/ai-agents-for-beginners/fork">fork this repo</a> to run the code.</p>
+<h3>Meet Other Learners, Get Your Questions Answered</h3>
+<p>If you get stuck or have any questions about building AI Agents, join our dedicated Discord Channel in the <a href="https://aka.ms/ai-agents/discord">Microsoft Foundry Discord</a>.</p>
+<h3>What You Need</h3>
+<p>Each lesson in this course includes code examples, which can be found in the code_samples folder. You can <a href="https://github.com/microsoft/ai-agents-for-beginners/fork">fork this repo</a> to create your own copy.  </p>
+<p>The code examples in these exercises utilize Microsoft Agent Framework with Azure AI Foundry Agent Service V2:</p>
+<ul>
+<li><a href="https://aka.ms/ai-agents-beginners/ai-foundry">Microsoft Foundry</a> - Azure Account Required</li>
+</ul>
+<p>This course uses the following AI Agent frameworks and services from Microsoft:</p>
+<ul>
+<li><a href="https://aka.ms/ai-agents-beginners/agent-framewrok">Microsoft Agent Framework (MAF)</a></li>
+<li><a href="https://aka.ms/ai-agents-beginners/ai-agent-service">Azure AI Foundry Agent Service V2</a></li>
+</ul>
+<p>Some code samples also support alternative OpenAI-compatible providers such as <a href="https://platform.minimaxi.com/">MiniMax</a>, which offers large-context models (up to 204K tokens). See the <a href="./00-course-setup/README.md">Course Setup</a> for configuration details.</p>
+<p>For more information on running the code for this course, go to the <a href="./00-course-setup/README.md">Course Setup</a>.</p>
+<h2>🙏 Want to help?</h2>
+<p>Do you have suggestions or found spelling or code errors? <a href="https://github.com/microsoft/ai-agents-for-beginners/issues?WT.mc_id=academic-105485-koreyst">Raise an issue</a> or <a href="https://github.com/microsoft/ai-agents-for-beginners/pulls?WT.mc_id=academic-105485-koreyst">Create a pull request</a></p>
+<h2>📂 Each lesson includes</h2>
+<ul>
+<li>A written lesson located in the README and a short video</li>
+<li>Python code samples using Microsoft Agent Framework with Azure AI Foundry</li>
+<li>Links to extra resources to continue your learning</li>
+</ul>
+<h2></h2>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/microsoft/ai-agents-for-beginners#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">dayanch96 /</span>
+          <a href="https://github.com/dayanch96/YTLite" target="_blank" rel="noopener">YTLite</a>
+        </div>
+        <div class="repo-desc">A flexible enhancer for YouTube on iOS</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#8b949e"></span>Logos</span>
+      <span class="meta-item">⭐ 4,867</span>
+      <span class="meta-item">🍴 20,152</span>
+      <span class="stars-today">⭐ 55 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>YouTube Plus (ex. YTLite)</h1>
+<p>A flexible enhancer for YouTube on iOS, featuring over hundred customizable options.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#screenshots">Screenshots</a></li>
+<li><a href="#main-features">Main Features</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#how-to-build-a-youtube-plus-app-using-github-actions">How to build a YouTube Plus app using GitHub Actions</a></li>
+<li><a href="#supported-youtube-version">Supported YouTube Version</a></li>
+<li><a href="#tweak-integration-details">Tweak Integration Details</a></li>
+</ul>
+<h2>Screenshots</h2>
+<table>
+   <tr>
+      <td><img src="Resources/scr1.jpg" alt="Screenshot 1" /></td>
+      <td><img src="Resources/scr2.jpg" alt="Screenshot 2" /></td>
+      <td><img src="Resources/scr3.jpg" alt="Screenshot 3" /></td>
+   </tr>
+</table>
+
+<details>
+  <summary>More screenshots</summary>
+  <table>
+    <tr>
+      <td><img src="Resources/scr4.jpg" alt="Screenshot 4" /></td>
+      <td><img src="Resources/scr5.jpg" alt="Screenshot 5" /></td>
+      <td><img src="Resources/scr6.jpg" alt="Screenshot 6" /></td>
+    </tr>
+    <tr>
+      <td><img src="Resources/scr7.jpg" alt="Screenshot 7" /></td>
+      <td><img src="Resources/scr8.jpg" alt="Screenshot 8" /></td>
+      <td><img src="Resources/scr9.jpg" alt="Screenshot 9" /></td>
+    </tr>
+  </table>
+</details>
+
+<h2>Main Features</h2>
+<li>Download videos, audio (including audio track selection), thumbnails, posts, and profile pictures</li>
+<li>Copy video, comment, and post information</li>
+<li>Interface customization: Remove feed elements, reorder tabs, enable OLED mode, and as use Shorts-only mode</li>
+<li>Player settings: Gestures, default quality, preferred audio track</li>
+<li>Save, Load and Restore settings. Clear cache once or automatically on app startup</li>
+<li>Built-in SponsorBlock</li>
+<li>And much, much more</li>
+<p><br></p>
+<p><strong>YouTube Plus preferences can be found in the YouTube Settings</strong></p>
+<p><strong>All contributors are listed in the Contributors section</strong><br />
+<strong>Used open-source libraries are listed in the Open Source Libraries section</strong></p>
+<blockquote>
+<p>[!NOTE]<br />
+Starting from version 5.2, YTPlus requires a subscription.<br />
+The last free version is <a href="https://github.com/dayanch96/YTLite/releases/tag/v5.2b4">5.2b4</a>.</p>
+</blockquote>
+<h2>FAQ</h2>
+<ul>
+<li><a href="FAQs/FAQ_EN.md">🇺🇸 English FAQ</a></li>
+<li><a href="FAQs/FAQ_RU.md">🇷🇺 ЧаВо на Русском</a></li>
+<li><a href="FAQs/FAQ_IT.md">🇮🇹 FAQ in Italiano</a></li>
+<li><a href="FAQs/FAQ_PL.md">🇵🇱 FAQ po polsku</a></li>
+</ul>
+<h2>Reviews</h2>
+<p>Review by <a href="https://github.com/qbap">@qbap</a> on ONE Jailbreak: https://onejailbreak.com/blog/youtube-plus/</p>
+<h2>How to build a YouTube Plus app using Github actions</h2>
+<blockquote>
+<p>[!NOTE]<br />
+If this your first time, complete following steps before starting:</p>
+<ol>
+<li>Fork this repository using the fork button on the top right</li>
+<li>On your forked repository, go to <strong>Repository Settings</strong> &gt; <strong>Actions</strong>, enable <strong>Read and Write</strong> permissions.</li>
+</ol>
+</blockquote>
+<details>
+  <summary>How to build the YouTube Plus app</summary>
+  <ol>
+    <li>Click on <strong>Sync fork</strong>, and if your branch is out-of-date, click on <strong>Update branch</strong>.</li>
+    <li>Navigate to the <strong>Actions tab</strong> in your forked repository and select <strong>Create YouTube Plus app</strong>.</li>
+    <li>Click the <strong>Run workflow</strong> button located on the right side.</li>
+    <li>Mark or unmark the tweaks you want to integrate. Learn more about them in the <a href="#tweak-integration-details">Tweak Integration Details</a> section.</li>
+    <li>Prepare a decrypted .ipa file <em>(we cannot provide this due to legal reasons)</em>, then upload it to a file provider (e.g., filebin.net, filemail.com, or Dropbox is recommended). Paste the URL of the decrypted IPA file in the provided field.</li>
+    <li><strong>NOTE:</strong> Make sure to provide a direct download link to the file, not a link to a webpage. Otherwise, the process will fail.</li>
+    <li>Enter the tweak version from the releases (the latest release is selected by default). You can also change the BundleID and Display Name if desired.</li>
+    <li>Make sure all inputs are correct, then click <strong>Run workflow</strong> to start the process.</li>
+    <li>Wait for the build to finish. You can download the YouTube Plus app from the releases section of your forked repo. (If you can't find the releases section, go to your forked repo and add /releases to the URL, i.e., github.com/user/YTLite/releases.)</li>
+  </ol>
+</details>
+
+<details>
+  <summary>How to build the YouTube Plus app with your own link for the YouTube Plus tweak</summary>
+  <ol>
+    <blockquote>
+      <p><strong>NOTE:</strong> This option is primarily intended for building the YouTube Plus app based on the beta file you have. In other cases, it is generally not needed.</p>
+    </blockquote>
+    <li>Click on <strong>Sync fork</strong>, and if your branch is out-of-date, click on <strong>Update branch</strong>.</li>
+    <li>Navigate to the <strong>Actions tab</strong> in your forked repository and select <strong>[BETA] Build YouTube Plus app</strong>.</li>
+    <li>Click the <strong>Run workflow</strong> button located on the right side.</li>
+    <li>Mark or unmark the tweaks you want to integrate. Learn more about them in the <a href="#tweak-integration-details">Tweak Integration Details</a> section.</li>
+    <li>Prepare a decrypted .ipa file <em>(we cannot provide this due to legal reasons)</em>, then upload it to a file provider (e.g., filebin.net, filemail.com, or Dropbox is recommended). Paste the URL of the decrypted IPA file in the provided field.</li>
+    <li>Upload your beta tweak file to a file provider and paste direct link to the <strong>URL to the YouTube Plus tweak file</strong> field. You can also change the BundleID and Display Name if desired.</li>
+    <li><strong>NOTE:</strong> Make sure to provide a direct download link to the file, not a link to a webpage. Otherwise, the process will fail.</li>
+    <li>Make sure all inputs are correct, then click <strong>Run workflow</strong> to start the process.</li>
+    <li>Wait for the build to finish. You can download the YouTube Plus app from the releases section of your forked repo. (If you can't find the releases section, go to your forked repo and add /releases to the URL, i.e., github.com/user/YTLite/releases.)</li>
+  </ol>
+</details>
+
+<h2>Supported YouTube Version</h2>
+<ul>
+   <li><strong>Latest confirmed:</strong> <em>21.15.5</em></li>
+   <li><strong>Date tested:</strong> <em>Apr 20, 2026</em></li>
+   <li><strong>YouTube Plus:</strong> <em>5.2</em></li>
+</ul>
+
+<h2>Tweak Integration Details</h2>
+<details>
+  <summary>YouPiP</summary>
+  <p>YouPiP is a tweak developed by <a href="https://github.com/PoomSmart">PoomSmart</a> that enables the native Picture-in-Picture feature for videos in the iOS YouTube app.</p>
+  <p><strong>YouPiP preferences</strong> are available in the <strong>YouTube settings</strong>.</p>
+  <p>Source code and additional information are available <a href="https://github.com/PoomSmart/YouPiP">in PoomSmart's GitHub repository</a>.</p>
+</details>
+
+<details>
+  <summary>YTUHD</summary>
+  <p>YTUHD is a tweak developed by <a href="https://github.com/PoomSmart">PoomSmart</a> that unlocks 1440p (2K) and 2160p (4K) resolutions in the iOS YouTube app.</p>
+  <p><strong>YTUHD preferences</strong> are available in the <strong>Video quality preferences</strong> section under <strong>YouTube settings</strong>.</p>
+  <p>Source code and additional information are available <a href="https://github.com/PoomSmart/YTUHD">in PoomSmart's GitHub repository</a>.</p>
+</details>
+
+<details>
+  <summary>Return YouTube Dislikes</summary>
+  <p>Return YouTube Dislikes is a tweak developed by <a href="https://github.com/PoomSmart">PoomSmart</a> that brings back dislikes on the YouTube app.</p>
+  <p><strong>Return YouTube Dislikes preferences</strong> are available in the <strong>YouTube settings</strong>.</p>
+  <p>Source code and additional information are available <a href="https://github.com/PoomSmart/Return-YouTube-Dislikes">in PoomSmart's GitHub repository</a>.</p>
+</details>
+
+<details>
+  <summary>YouQuality</summary>
+  <p>YouQuality is a tweak developed by <a href="https:
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/dayanch96/YTLite#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">HKUDS /</span>
+          <a href="https://github.com/HKUDS/RAG-Anything" target="_blank" rel="noopener">RAG-Anything</a>
+        </div>
+        <div class="repo-desc">&quot;RAG-Anything: All-in-One RAG Framework&quot;</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 17,057</span>
+      <span class="meta-item">🍴 2,013</span>
+      <span class="stars-today">⭐ 162 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<div style="margin: 20px 0;">
+  <img src="./assets/logo.png" width="120" height="120" alt="RAG-Anything Logo" style="border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 217, 255, 0.3);">
+</div>
+
+# 🚀 RAG-Anything: All-in-One RAG Framework
+
+<a href="https://trendshift.io/repositories/14959" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14959" alt="HKUDS%2FRAG-Anything | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+<div align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=24&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&width=600&lines=Welcome+to+RAG-Anything;Next-Gen+Multimodal+RAG+System;Powered+by+Advanced+AI+Technology" alt="Typing Animation" />
+</div>
+
+<div align="center">
+  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 25px; text-align: center;">
+    <p>
+      <a href='https://github.com/HKUDS/RAG-Anything'><img src='https://img.shields.io/badge/🔥Project-Page-00d9ff?style=for-the-badge&logo=github&logoColor=white&labelColor=1a1a2e'></a>
+      <a href='https://arxiv.org/abs/2510.12323'><img src='https://img.shields.io/badge/📄arXiv-2510.12323-ff6b6b?style=for-the-badge&logo=arxiv&logoColor=white&labelColor=1a1a2e'></a>
+      <a href='https://github.com/HKUDS/LightRAG'><img src='https://img.shields.io/badge/⚡Based%20on-LightRAG-4ecdc4?style=for-the-badge&logo=lightning&logoColor=white&labelColor=1a1a2e'></a>
+    </p>
+    <p>
+      <a href="https://github.com/HKUDS/RAG-Anything/stargazers"><img src='https://img.shields.io/github/stars/HKUDS/RAG-Anything?color=00d9ff&style=for-the-badge&logo=star&logoColor=white&labelColor=1a1a2e' /></a>
+      <img src="https://img.shields.io/badge/🐍Python-3.10-4ecdc4?style=for-the-badge&logo=python&logoColor=white&labelColor=1a1a2e">
+      <a href="https://pypi.org/project/raganything/"><img src="https://img.shields.io/pypi/v/raganything.svg?style=for-the-badge&logo=pypi&logoColor=white&labelColor=1a1a2e&color=ff6b6b"></a>
+      <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/badge/⚡uv-Ready-ff6b6b?style=for-the-badge&logo=python&logoColor=white&labelColor=1a1a2e"></a>
+    </p>
+    <p>
+      <a href="https://discord.gg/yF2MmDJyGJ"><img src="https://img.shields.io/badge/💬Discord-Community-7289da?style=for-the-badge&logo=discord&logoColor=white&labelColor=1a1a2e"></a>
+      <a href="https://github.com/HKUDS/RAG-Anything/issues/7"><img src="https://img.shields.io/badge/💬WeChat-Group-07c160?style=for-the-badge&logo=wechat&logoColor=white&labelColor=1a1a2e"></a>
+    </p>
+    <p>
+      <a href="README_zh.md"><img src="https://img.shields.io/badge/🇨🇳中文版-1a1a2e?style=for-the-badge"></a>
+      <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸English-1a1a2e?style=for-the-badge"></a>
+    </p>
+  </div>
+</div>
+
+</div>
+
+<div align="center">
+  <div style="width: 100%; height: 2px; margin: 20px 0; background: linear-gradient(90deg, transparent, #00d9ff, transparent);"></div>
+</div>
+
+<div align="center">
+  <a href="#-quick-start" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/Quick%20Start-Get%20Started%20Now-00d9ff?style=for-the-badge&logo=rocket&logoColor=white&labelColor=1a1a2e">
+  </a>
+</div>
+
+<hr />
+<div align="center">
+  <table>
+    <tr>
+      <td style="vertical-align: middle;">
+        <img src="./assets/LiteWrite.png"
+             width="56"
+             height="56"
+             alt="LiteWrite"
+             style="border-radius: 12px;" />
+      </td>
+      <td style="vertical-align: middle; padding-left: 12px;">
+        <a href="https://litewrite.ai">
+          <img src="https://img.shields.io/badge/🚀%20LiteWrite-AI%20Native%20LaTeX%20Editor-ff6b6b?style=for-the-badge&logoColor=white&labelColor=1a1a2e">
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<hr />
+<h2>🎉 News</h2>
+<ul>
+<li>[X] [2025.10]🎯📢 🚀 We have released the technical report of <a href="http://arxiv.org/abs/2510.12323">RAG-Anything</a>. Access it now to explore our latest research findings.</li>
+<li>[X] [2025.08]🎯📢 🔍 RAG-Anything now features <strong>VLM-Enhanced Query</strong> mode! When documents include images, the system seamlessly integrates them into VLM for advanced multimodal analysis, combining visual and textual context for deeper insights.</li>
+<li>[X] [2025.07]🎯📢 RAG-Anything now features a <a href="docs/context_aware_processing.md">context configuration module</a>, enabling intelligent integration of relevant contextual information to enhance multimodal content processing.</li>
+<li>[X] [2025.07]🎯📢 🚀 RAG-Anything now supports multimodal query capabilities, enabling enhanced RAG with seamless processing of text, images, tables, and equations.</li>
+<li>[X] [2025.07]🎯📢 🎉 RAG-Anything has reached 1k🌟 stars on GitHub! Thank you for your incredible support and valuable contributions to the project.</li>
+</ul>
+<hr />
+<h2>🌟 System Overview</h2>
+<p><em>Next-Generation Multimodal Intelligence</em></p>
+<div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); border-radius: 15px; padding: 25px; margin: 20px 0; border: 2px solid #00d9ff; box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);">
+
+Modern documents increasingly contain diverse multimodal content—text, images, tables, equations, charts, and multimedia—that traditional text-focused RAG systems cannot effectively process. **RAG-Anything** addresses this challenge as a comprehensive **All-in-One Multimodal Document Processing RAG system** built on [LightRAG](https://github.com/HKUDS/LightRAG).
+
+As a unified solution, RAG-Anything **eliminates the need for multiple specialized tools**. It provides **seamless processing and querying across all content modalities** within a single integrated framework. Unlike conventional RAG approaches that struggle with non-textual elements, our all-in-one system delivers **comprehensive multimodal retrieval capabilities**.
+
+Users can query documents containing **interleaved text**, **visual diagrams**, **structured tables**, and **mathematical formulations** through **one cohesive interface**. This consolidated approach makes RAG-Anything particularly valuable for academic research, technical documentation, financial reports, and enterprise knowledge management where rich, mixed-content documents demand a **unified processing framework**.
+
+<img src="assets/rag_anything_framework.png" alt="RAG-Anything" />
+
+</div>
+
+<h3>🎯 Key Features</h3>
+<div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 15px; padding: 25px; margin: 20px 0;">
+
+- **🔄 End-to-End Multimodal Pipeline** - Complete workflow from document ingestion and parsing to intelligent multimodal query answering
+- **📄 Universal Document Support** - Seamless processing of PDFs, Office documents, images, and diverse file formats
+- **🧠 Specialized Content Analysis** - Dedicated processors for images, tables, mathematical equations, and heterogeneous content types
+- **🔗 Multimodal Knowledge Graph** - Automatic entity extraction and cross-modal relationship discovery for enhanced understanding
+- **⚡ Adaptive Processing Modes** - Flexible MinerU-based parsing or direct multimodal content injection workflows
+- **📋 Direct Content List Insertion** - Bypass document parsing by directly inserting pre-parsed content lists from external sources
+- **🎯 Hybrid Intelligent Retrieval** - Advanced search capabilities spanning textual and multimodal content with contextual understanding
+
+</div>
+
+<hr />
+<h2>🏗️ Algorithm &amp; Architecture</h2>
+<div style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%); border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #00d9ff;">
+
+### Core Algorithm
+
+**RAG-Anything** implements an effective **multi-stage multimodal pipeline** that fundamentally extends traditional RAG architectures to seamlessly handle diverse content modalities through intelligent orchestration and cross-modal understanding.
+
+</div>
+
+<div align="center">
+  <div style="width: 100%; max-width: 600px; margin: 2
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/HKUDS/RAG-Anything#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">sansan0 /</span>
+          <a href="https://github.com/sansan0/TrendRadar" target="_blank" rel="noopener">TrendRadar</a>
+        </div>
+        <div class="repo-desc">⭐AI-driven public opinion &amp; trend monitor with multi-platform aggregation, RSS, and smart alerts.🎯 告别信息过载，你的 AI 舆情监控助手与热点筛选工具！聚合多平台热点 + RSS 订阅，支持关键词精准筛选。AI 智能筛选新闻 + AI 翻译 + AI 分析简报直推手机，也支持接入 MCP 架构，赋能 AI 自然语言对话分析、情感洞察与趋势预测等。支持 Docker ，数据本地/云端自持。集成微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 等渠道智能推送。</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 53,883</span>
+      <span class="meta-item">🍴 23,571</span>
+      <span class="stars-today">⭐ 534 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center" id="trendradar">
+
+<a href="https://github.com/sansan0/TrendRadar" title="TrendRadar">
+  <img src="/_image/banner.webp" alt="TrendRadar Banner" width="80%">
+</a>
+
+最快<strong>30秒</strong>部署的热点助手 —— 告别无效刷屏，只看真正关心的新闻资讯
+
+<a href="https://trendshift.io/repositories/14726" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14726" alt="sansan0%2FTrendRadar | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+
+[![GitHub Stars](https://img.shields.io/github/stars/sansan0/TrendRadar?style=flat-square&logo=github&color=yellow)](https://github.com/sansan0/TrendRadar/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/sansan0/TrendRadar?style=flat-square&logo=github&color=blue)](https://github.com/sansan0/TrendRadar/network/members)
+[![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg?style=flat-square)](LICENSE)
+[![Version](https://img.shields.io/badge/version-v6.6.1-blue.svg)](https://github.com/sansan0/TrendRadar)
+[![MCP](https://img.shields.io/badge/MCP-v4.0.2-green.svg)](https://github.com/sansan0/TrendRadar)
+[![RSS](https://img.shields.io/badge/RSS-订阅源支持-orange.svg?style=flat-square&logo=rss&logoColor=white)](https://github.com/sansan0/TrendRadar)
+[![AI翻译](https://img.shields.io/badge/AI-多语言推送-purple.svg?style=flat-square)](https://github.com/sansan0/TrendRadar)
+
+[![企业微信通知](https://img.shields.io/badge/企业微信-通知-00D4AA?style=flat-square)](https://work.weixin.qq.com/)
+[![个人微信通知](https://img.shields.io/badge/个人微信-通知-00D4AA?style=flat-square)](https://weixin.qq.com/)
+[![Telegram通知](https://img.shields.io/badge/Telegram-通知-00D4AA?style=flat-square)](https://telegram.org/)
+[![dingtalk通知](https://img.shields.io/badge/钉钉-通知-00D4AA?style=flat-square)](#)
+[![飞书通知](https://img.shields.io/badge/飞书-通知-00D4AA?style=flat-square)](https://www.feishu.cn/)
+[![邮件通知](https://img.shields.io/badge/Email-通知-00D4AA?style=flat-square)](#)
+[![ntfy通知](https://img.shields.io/badge/ntfy-通知-00D4AA?style=flat-square)](https://github.com/binwiederhier/ntfy)
+[![Bark通知](https://img.shields.io/badge/Bark-通知-00D4AA?style=flat-square)](https://github.com/Finb/Bark)
+[![Slack通知](https://img.shields.io/badge/Slack-通知-00D4AA?style=flat-square)](https://slack.com/)
+[![通用Webhook](https://img.shields.io/badge/通用-Webhook-607D8B?style=flat-square&logo=webhook&logoColor=white)](#)
+
+
+[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-自动化-2088FF?style=flat-square&logo=github-actions&logoColor=white)](https://github.com/sansan0/TrendRadar)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-部署-4285F4?style=flat-square&logo=github&logoColor=white)](https://sansan0.github.io/TrendRadar)
+[![Docker](https://img.shields.io/badge/Docker-部署-2496ED?style=flat-square&logo=docker&logoColor=white)](https://hub.docker.com/r/wantcat/trendradar)
+[![MCP Support](https://img.shields.io/badge/MCP-AI分析支持-FF6B6B?style=flat-square&logo=ai&logoColor=white)](https://modelcontextprotocol.io/)
+[![AI分析推送](https://img.shields.io/badge/AI-分析推送-FF6B6B?style=flat-square&logo=openai&logoColor=white)](#)
+[![AI智能筛选](https://img.shields.io/badge/AI-智能筛选新闻-9B59B6?style=flat-square&logo=openai&logoColor=white)](#)
+
+</div>
+
+<div align="center">
+
+**中文** | **[English](README-EN.md)**
+
+</div>
+
+<blockquote>
+<p>本项目以轻量，易部署为目标</p>
+</blockquote>
+<p><br></p>
+<h2>📑 快速导航</h2>
+<blockquote>
+<p>💡 <strong>点击下方链接</strong>可快速跳转到对应章节。部署推荐从「<strong>快速开始</strong>」入手，需要详细自定义请看「<strong>配置详解</strong>」</p>
+</blockquote>
+<div align="center">
+
+|   |   |   |
+|:---:|:---:|:---:|
+| [🚀 **快速开始**](#-快速开始) | [AI 智能分析](#-ai-智能分析) | [⚙️ **配置详解**](#配置详解) |
+| [Docker部署](#6-docker-部署) | [MCP客户端](#-mcp-客户端) | [📝 **更新日志**](#-更新日志) |
+| [🎯 **核心功能**](#-核心功能) | [☕ **支持项目**](#-支持项目) | [📚 **项目相关**](#-项目相关) |
+
+</div>
+
+<p><br></p>
+<ul>
+<li>感谢<strong>为项目点 star</strong> 的观众们，<strong>fork</strong> 你所欲也，<strong>star</strong> 我所欲也，两者得兼😍是对开源精神最好的支持</li>
+</ul>
+<details>
+<summary>👉 点击展开：<strong>致谢名单</strong> (天使轮荣誉榜 🔥73+🔥 位)</summary>
+
+### 早期支持者致谢
+
+> 💡 **特别说明**：
+>
+> 1. **关于名单**：下方表格记录了项目起步阶段（天使轮）的支持者。因早期人工统计繁琐，**难免存在疏漏或记录不全的情况，如有遗漏，实非本意，万望海涵**。
+> 2. **未来规划**：为了将有限的精力回归代码与功能迭代，**即日起不再人工维护此名单**。
+>
+> 无论名字是否上榜，你们的每一份支持都是 TrendRadar 能够走到今天的基石。🙏
+
+### 基础设施支持
+
+感谢 **GitHub** 免费提供的基础设施，这是本项目得以**一键 fork**便捷运行的最大前提。
+
+### 数据支持
+
+本项目使用 [newsnow](https://github.com/ourongxing/newsnow) 项目的 API 获取多平台数据，特别感谢作者提供的服务。
+
+经联系，作者表示无需担心服务器压力，但这是基于他的善意和信任。请大家：
+- **前往 [newsnow 项目](https://github.com/ourongxing/newsnow) 点 star 支持**
+- Docker 部署时，请合理控制推送频率，勿竭泽而渔
+
+### 推广助力
+
+> 感谢以下平台和个人的推荐(按时间排列)
+
+- [小众软件](https://mp.weixin.qq.com/s/fvutkJ_NPUelSW9OGK39aA) - 开源软件推荐平台
+- [LinuxDo 社区](https://linux.do/) - 技术爱好者的聚集地
+- [阮一峰周刊](https://github.com/ruanyf/weekly) - 技术圈有影响力的周刊
+
+### 观众支持
+
+> 感谢**给予资金支持**的朋友们，你们的慷慨已化身为键盘旁的零食饮料，陪伴着项目的每一次迭代。
+>
+> **关于"一元点赞"的回归**：
+> 随着 v5.0.0 版本的发布，项目迈入了一个新的阶段。为了支持日益增长的 API 成本和咖啡因消耗，"一元点赞"通道现已重新开启。你的每一份心意，都将转化为代码世界里的 Token 和动力。🚀 [前往支持](#-支持项目)
+
+|           点赞人            |  金额  |  日期  |             备注             |
+| :-------------------------: | :----: | :----: | :-----------------------: |
+|           D*5          |  1.8 * 3 | 2025.11.24  |    | 
+|           *鬼          |  1 | 2025.11.17  |    | 
+|           *超          |  10 | 2025.11.17  |    | 
+|           R*w          |  10 | 2025.11.17  | 这 agent 做的牛逼啊,兄弟    | 
+|           J*o          |  1 | 2025.11.17  | 感谢开源,祝大佬事业有成    | 
+|           *晨          |  8.88  | 2025.11.16  | 项目不错,研究学习中    | 
+|           *海          |  1  | 2025.11.15  |    | 
+|           *德          |  1.99  | 2025.11.15  |    | 
+|           *疏          |  8.8  | 2025.11.14  |  感谢开源，项目很棒，支持一下   | 
+|           M*e          |  10  | 2025.11.14  |  开源不易，大佬辛苦了   | 
+|           **柯          |  1  | 2025.11.14  |     | 
+|           *云          |  88  | 2025.11.13  |    好项目，感谢开源  | 
+|           *W          |  6  | 2025.11.13  |      | 
+|           *凯          |  1  | 2025.11.13  |      | 
+|           对*.          |  1  | 2025.11.13  |    Thanks for your TrendRadar  | 
+|           s*y          |  1  | 2025.11.13  |      | 
+|           **翔          |  10  | 2025.11.13  |   好项目，相见恨晚，感谢开源！     | 
+|           *韦          |  9.9  | 2025.11.13  |   TrendRadar超赞，请老师喝咖啡~     | 
+|           h*p          |  5  | 2025.11.12  |   支持中国开源力量，加油！     | 
+|           c*r          |  6  | 2025.11.12  |        | 
+|           a*n          |  5  | 2025.11.12  |        | 
+|           。*c          |  1  | 2025.11.12  |    感谢开源分享    | 
+|           *记          |  1  | 2025.11.11  |        | 
+|           *主          |  1  | 2025.11.10  |        | 
+|           *了          |  10  | 2025.11.09  |        | 
+|           *杰          |  5  | 2025.11.08  |        | 
+|           *点          |  8.80  | 2025.11.07  |   开发不易，支持一下。     | 
+|           Q*Q          |  6.66  | 2025.11.07  |   感谢开源！     | 
+|           C*e          |  1  | 2025.11.05  |        | 
+|           Peter Fan          |  20  | 2025.10.29  |        | 
+|           M*n          |  1  | 2025.10.27  |      感谢开源  | 
+|           *许          |  8.88  | 2025.10.23  |      老师 小白一枚，摸了几天了还没整起来，求教  | 
+|           Eason           |  1  | 2025.10.22  |      还没整明白，但你在做好事  | 
+|           P*n           |  1  | 2025.10.20  |          |
+|           *杰           |  1  | 2025.10.19  |          |
+|           *徐           |  1  | 2025.10.18  |          |
+|           *志           |  1  | 2025.10.17  |          |
+|           *😀           |  10  | 2025.10.16  |     点赞     |
+|           **杰           |  10  | 2025.10.16  |          |
+|           *啸           |  10  | 2025.10.16  |          |
+|           *纪           |  5  | 2025.10.14  | TrendRadar         |
+|           J*d           |  1  | 2025.10.14  | 谢谢你的工具，很好玩...          |
+|           *H           |  1  | 2025.10.14  |           |
+|           那*O           |  10  | 2025.10.13  |           |
+|           *圆           |  1  | 2025.10.13  |           |
+|           P*g           |  6  | 2025.10.13  |           |
+|           Ocean           |  20  | 2025.10.12  |  ...真的太棒了！！！小白级别也能直接用...         |
+|           **培           |  5.2  | 2025.10.2  |  github-yzyf1312:开源万岁         |
+|           *椿           |  3  | 2025.9.23  |  加油，很不错         |
+|           *🍍           |  10  | 2025.9.21  |           |
+|
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/sansan0/TrendRadar#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">VoltAgent /</span>
+          <a href="https://github.com/VoltAgent/awesome-agent-skills" target="_blank" rel="noopener">awesome-agent-skills</a>
+        </div>
+        <div class="repo-desc">A curated collection of 1000+ agent skills from official dev teams and the community, compatible with Claude Code, Codex, Gemini CLI, Cursor, and more.</div>
+      </div>
+    </div>
+    <div class="meta">
+      
+      <span class="meta-item">⭐ 16,985</span>
+      <span class="meta-item">🍴 1,841</span>
+      <span class="stars-today">⭐ 139 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><a href="https://github.com/VoltAgent/voltagent"><br />
+     <img width="1500" " alt="claude-skills" src="https://github.com/user-attachments/assets/0db54cfc-f3dd-4683-abbb-e4c01d9dfb5d" /><br />
+</a></p>
+<p><br/><br />
+<br/></p>
+<div align="center">
+    <strong>A collection of official Agent Skills from leading development teams and the community.
+    <br />
+    Hand-picked, not AI-slop generated.
+    </strong>
+    <br />
+    <br />
+
+</div>
+
+<div align="center">
+
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+![Skills Count](https://img.shields.io/badge/Skills-1100+-blue?style=flat-square)
+![Last Update](https://img.shields.io/github/last-commit/VoltAgent/awesome-agent-skills?label=Last%20update&style=flat-square)
+<a href="https://github.com/VoltAgent/voltagent">
+  <img alt="VoltAgent" src="https://cdn.voltagent.dev/website/logo/logo-2-svg.svg" height="20" />
+</a>
+[![Discord](https://img.shields.io/discord/1361559153780195478.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://s.voltagent.dev/discord)
+
+
+<div align="center">
+    <strong>More awesome collections for developers</strong>
+    <br />
+    <br />
+</div>
+
+<div align="center">
+
+
+[![Claude Code Subagents](https://img.shields.io/github/stars/VoltAgent/awesome-claude-code-subagents?style=classic&label=Claude%20Code%20Subagents&color=D97757&logo=claude&logoColor=D97757)](https://github.com/VoltAgent/awesome-claude-code-subagents)
+[![Codex Subagents][codex-badge]][codex-link]
+[![OpenClaw Skills](https://img.shields.io/github/stars/VoltAgent/awesome-openclaw-skills?style=classic&label=%F0%9F%A6%9E%20OpenClaw%20Skills&color=f53e36)](https://github.com/VoltAgent/awesome-openclaw-skills)
+[![AI Agent Papers](https://img.shields.io/github/stars/VoltAgent/awesome-ai-agent-papers?style=classic&label=AI%20Agent%20Papers&color=b31b1b&logo=arxiv)](https://github.com/VoltAgent/awesome-ai-agent-papers)
+
+</div>
+
+</div>
+
+</div>
+<h1>Awesome Agent Skills</h1>
+<p>Unlike many bulk-generated skill repositories, this collection focuses on real-world Agent Skills created and used by actual engineering teams, not mass AI‑generated stuff.</p>
+<p>This collection features official skills published by leading development teams, including Anthropic, Google Labs, Vercel, Stripe, Cloudflare, Netlify, Trail of Bits, Sentry, Expo, Hugging Face, Figma, and more, alongside community-built skills.</p>
+<p>Compatible with Claude Code, Codex, Antigravity, Gemini CLI, Cursor, GitHub Copilot, OpenCode, Windsurf, and more. See the table below for paths and documentation.</p>
+<p>The most contributed Agent Skills repository, built and maintained together with the community.</p>
+<h2>Table of Contents</h2>
+<h3>Official Skills by</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#official-claude-skills">Claude</a></td>
+<td><a href="#skills-by-voltagent">VoltAgent</a></td>
+<td><a href="#skills-by-angular">Angular</a></td>
+<td><a href="#skills-by-composio-team">Composio</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-google-gemini">Google Gemini</a></td>
+<td><a href="#skills-by-stripe-team">Stripe</a></td>
+<td><a href="#skills-by-courier">Courier</a></td>
+<td><a href="#skills-by-callstack">CallStack</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-expo-team">Expo</a></td>
+<td><a href="#skills-by-better-auth-team">Better Auth</a></td>
+<td><a href="#skills-by-tinybird-team">Tinybird</a></td>
+<td><a href="#skills-by-hashicorp-team-for-terraform">HashiCorp</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-sanity-team">Sanity</a></td>
+<td><a href="#skills-by-firecrawl-team">Firecrawl</a></td>
+<td><a href="#skills-by-neon-team">Neon</a></td>
+<td><a href="#skill-by-clickhouse">ClickHouse</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-remotion">Remotion</a></td>
+<td><a href="#skills-by-replicate">Replicate</a></td>
+<td><a href="#skills-by-typefully">Typefully</a></td>
+<td><a href="#skills-by-vercel-engineering-team">Vercel</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-cloudflare-team">Cloudflare</a></td>
+<td><a href="#skills-by-netlify-team">Netlify</a></td>
+<td><a href="#skills-by-google-labs-stitch">Google Labs (Stitch)</a></td>
+<td><a href="#skills-by-google-workspace-cli">Google Workspace CLI</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-hugging-face-team">Hugging Face</a></td>
+<td><a href="#security-skills-by-trail-of-bits-team">Trail of Bits</a></td>
+<td><a href="#skills-by-sentry-team-for-their-dev-team">Sentry</a></td>
+<td><a href="#skills-by-microsoft">Microsoft</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-falai-team">fal.ai</a></td>
+<td><a href="#skills-by-wordpress-development-team">WordPress</a></td>
+<td><a href="#skills-by-openai">OpenAI</a></td>
+<td><a href="#skills-by-figma">Figma</a></td>
+</tr>
+<tr>
+<td><a href="#marketing-skills-by-corey-haines">Corey Haines</a></td>
+<td><a href="#skills-by-binance">Binance</a></td>
+<td><a href="#product-manager-skills-by-dean-peters">Dean Peters</a></td>
+<td><a href="#product-management-skills-by-pawel-huryn">Paweł Huryn</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-minimax-team">MiniMax</a></td>
+<td><a href="#skills-by-duckdb">DuckDB</a></td>
+<td><a href="#skills-by-gsap-greensock">GSAP</a></td>
+<td><a href="#skills-by-garry-tan-gstack">Garry Tan (gstack)</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-notion">Notion</a></td>
+<td><a href="#skills-by-resend">Resend</a></td>
+<td><a href="#skills-by-addy-osmani-web-quality">Addy Osmani (Web Quality)</a></td>
+<td><a href="#skills-by-mongodb">MongoDB</a></td>
+</tr>
+<tr>
+<td><a href="#advertising-skills-by-kim-barrett">Kim Barrett (Advertising)</a></td>
+<td><a href="#skills-by-apollo-graphql">Apollo GraphQL</a></td>
+<td><a href="#skills-by-auth0">Auth0</a></td>
+<td><a href="#skills-by-brave">Brave</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-browserbase">Browserbase</a></td>
+<td><a href="#skills-by-coderabbit">CodeRabbit</a></td>
+<td><a href="#skills-by-coinbase">Coinbase</a></td>
+<td><a href="#skills-by-datadog-labs">Datadog Labs</a></td>
+</tr>
+<tr>
+<td><a href="#skills-by-firebase">Firebase</a></td>
+<td><a href="#skills-by-flutter">Flutter</a></td>
+<td><a href="#community-skills">Community</a></td>
+<td><a href="#skill-quality-standards">Quality Standards</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Sponsors ❤️</h2>
+<p><a href="https://github.com/sponsors/VoltAgent/sponsorships?tier_id=605663">Become a Sponsor</a> to feature your logo here and on <a href="https://officialskills.sh/">officialskills.sh</a> website — 300k+ monthly views.</p>
+<details open>
+<summary><h3 style="display:inline">Official Claude Skills</h3></summary>
+
+- **[anthropics/docx](https://officialskills.sh/anthropics/skills/docx)** - Create, edit, and analyze Word documents
+- **[anthropics/doc-coauthoring](https://officialskills.sh/anthropics/skills/doc-coauthoring)** - Collaborative document editing and co-authoring
+- **[anthropics/pptx](https://officialskills.sh/anthropics/skills/pptx)** - Create, edit, and analyze PowerPoint presentations
+- **[anthropics/xlsx](https://officialskills.sh/anthropics/skills/xlsx)** - Create, edit, and analyze Excel spreadsheets
+- **[anthropics/pdf](https://officialskills.sh/anthropics/skills/pdf)** - Extract text, create PDFs, and handle forms
+- **[anthropics/algorithmic-art](https://officialskills.sh/anthropics/skills/algorithmic-art)** - Create generative art using p5.js with seeded randomness
+- **[anthropics/canvas-design](https://officialskills.sh/anthropics/skills/canvas-design)** - Design visual art in PNG and PDF formats
+- **[anthropics/frontend-design](https://officialskills.sh/anthropics/skills/frontend-design)** - Frontend design and UI/UX development tools
+- **[anthropics/slack-gif-creator](https://officialskills.sh/anthropics/skills/slack-gif-creator)** - Create animated GIFs optimized for Slack size constraints
+- **[anthropics/theme-factory](https://officialskills.sh/anthropics/skills/theme-factory)** - Style artifacts with professional themes or generate custom themes
+- **[anthropics/web-artifacts-builder](https://officialskills.sh/anthropics/skills/web-artifacts-builder)** - Build complex claude.ai HTML artifacts with React and Tailwind
+- **[anthropics/mcp-builder](https://officialskills.sh/anthropics/skills/mcp-builder)** - Create MCP servers to integrate external APIs and services
+- **[anthropics/webapp-testing](https://officialskills.sh/anthropics/skills/webapp-testing)** - Test local web applications using Playwright
+- **[anthropics/brand-guidelines](https://officialskills.sh/anthropics/skills/brand-guidelines)** - Apply Anthropic's brand colors and typography to artifacts
+- **[anthropics/internal-comms](https://officialskills.sh/anthropics/skills/internal-comms)** - Write status reports, newsletters, and FAQs
+- **[anthropics/skill-creator](https://officialskills.sh/anthropics/skills/skill-creator)** - Guide for creating skills that extend Claude's capabilities
+- **[anthropics/template](https://officialskills.sh/anthropics/skills/template)** - Basic template for creating new skills
+
+</details>
+
+<h3>Skills by VoltAgent</h3>
+<p>Official skills by VoltAgent for building AI agents with the VoltAgent TypeScript framework.<br />
+- <strong><a href="https://officialskills.sh/voltagent/skills/create-voltagent">voltagent/create-voltagent</a></strong></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/VoltAgent/awesome-agent-skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on April 22, 2026  04:52 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
