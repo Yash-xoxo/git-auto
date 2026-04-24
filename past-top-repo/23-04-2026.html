@@ -1,0 +1,2604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — April 23, 2026  06:31</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on April 23, 2026  06:31 &nbsp;·&nbsp; 12 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">zilliztech /</span>
+          <a href="https://github.com/zilliztech/claude-context" target="_blank" rel="noopener">claude-context</a>
+        </div>
+        <div class="repo-desc">Code search MCP for Claude Code. Make entire codebase the context for any coding agent.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 7,831</span>
+      <span class="meta-item">🍴 638</span>
+      <span class="stars-today">⭐ 871 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><img alt="" src="assets/claude-context.png" /></p>
+<blockquote>
+<p>🆕 <strong>Looking for persistent memory for Claude Code?</strong> Check out <a href="https://github.com/zilliztech/memsearch/tree/main/plugins/claude-code">memsearch Claude Code plugin</a> — a markdown-first memory system that gives your AI agent long-term memory across sessions.</p>
+</blockquote>
+<h3>Your entire codebase as Claude's context</h3>
+<p><a href="https://opensource.org/licenses/MIT"><img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg" /></a><br />
+<a href="https://nodejs.org/"><img alt="Node.js" src="https://img.shields.io/badge/Node.js-20%2B-green.svg" /></a><br />
+<a href="docs/"><img alt="Documentation" src="https://img.shields.io/badge/Documentation-📚-orange.svg" /></a><br />
+<a href="https://marketplace.visualstudio.com/items?itemName=zilliz.semanticcodesearch"><img alt="VS Code Marketplace" src="https://img.shields.io/visual-studio-marketplace/v/zilliz.semanticcodesearch?label=VS%20Code%20Extension&amp;logo=visual-studio-code" /></a><br />
+<a href="https://www.npmjs.com/package/@zilliz/claude-context-core"><img alt="npm - core" src="https://img.shields.io/npm/v/@zilliz/claude-context-core?label=%40zilliz%2Fclaude-context-core&amp;logo=npm" /></a><br />
+<a href="https://www.npmjs.com/package/@zilliz/claude-context-mcp"><img alt="npm - mcp" src="https://img.shields.io/npm/v/@zilliz/claude-context-mcp?label=%40zilliz%2Fclaude-context-mcp&amp;logo=npm" /></a><br />
+<a href="https://twitter.com/zilliz_universe"><img alt="Twitter" src="https://img.shields.io/twitter/url/https/twitter.com/zilliz_universe.svg?style=social&amp;label=Follow%20%40Zilliz" /></a><br />
+<a href="https://deepwiki.com/zilliztech/claude-context"><img alt="DeepWiki" src="https://img.shields.io/badge/DeepWiki-AI%20Docs-purple.svg?logo=gitbook&amp;logoColor=white" /></a><br />
+<a href="https://discord.gg/mKc3R95yE5"><img height="20" src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="discord" /></a><br />
+<a href="https://trendshift.io/repositories/15064"><img src="https://trendshift.io/api/badge/repositories/15064" alt="zilliztech/claude-context | Trendshift" width="250" height="55" /></a><br />
+</div></p>
+<p><strong>Claude Context</strong> is an MCP plugin that adds semantic code search to Claude Code and other AI coding agents, giving them deep context from your entire codebase.</p>
+<p>🧠 <strong>Your Entire Codebase as Context</strong>: Claude Context uses semantic search to find all relevant code from millions of lines. No multi-round discovery needed. It brings results straight into the Claude's context.</p>
+<p>💰 <strong>Cost-Effective for Large Codebases</strong>: Instead of loading entire directories into Claude for every request, which can be very expensive, Claude Context efficiently stores your codebase in a vector database and only uses related code in context to keep your costs manageable.</p>
+<hr />
+<h2>🚀 Demo</h2>
+<p><img alt="img" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXf2uIf2c5zowp-iOMOqsefHbY_EwNGiutkxtNXcZVJ8RI6SN9DsCcsc3amXIhOZx9VcKFJQLSAqM-2pjU9zoGs1r8GCTUL3JIsLpLUGAm1VQd5F2o5vpEajx2qrc77iXhBu1zWj?key=qYdFquJrLcfXCUndY-YRBQ" /></p>
+<p>Model Context Protocol (MCP) allows you to integrate Claude Context with your favorite AI coding assistants, e.g. Claude Code.</p>
+<h2>Quick Start</h2>
+<h3>Prerequisites</h3>
+<details>
+<summary>Get a free vector database on Zilliz Cloud 👈</summary>
+
+Claude Context needs a vector database. You can [sign up](https://cloud.zilliz.com/signup?utm_source=github&utm_medium=referral&utm_campaign=2507-codecontext-readme) on Zilliz Cloud to get an API key.
+
+![](assets/signup_and_get_apikey.png)
+
+Copy your Personal Key to replace `your-zilliz-cloud-api-key` in the configuration examples.
+</details>
+
+<details>
+<summary>Get OpenAI API Key for embedding model</summary>
+
+You need an OpenAI API key for the embedding model. You can get one by signing up at [OpenAI](https://platform.openai.com/api-keys).  
+
+Your API key will look like this: it always starts with `sk-`.  
+Copy your key and use it in the configuration examples below as `your-openai-api-key`.
+
+</details>
+
+<h3>Configure MCP for Claude Code</h3>
+<p><strong>System Requirements:</strong></p>
+<ul>
+<li>Node.js &gt;= 20.0.0 and &lt; 24.0.0</li>
+</ul>
+<blockquote>
+<p>Claude Context is not compatible with Node.js 24.0.0, you need downgrade it first if your node version is greater or equal to 24.</p>
+</blockquote>
+<h4>Configuration</h4>
+<p>Use the command line interface to add the Claude Context MCP server:</p>
+<pre><code class="language-bash">claude mcp add claude-context \
+  -e OPENAI_API_KEY=sk-your-openai-api-key \
+  -e MILVUS_ADDRESS=your-zilliz-cloud-public-endpoint \
+  -e MILVUS_TOKEN=your-zilliz-cloud-api-key \
+  -- npx @zilliz/claude-context-mcp@latest
+</code></pre>
+<p>See the <a href="https://docs.anthropic.com/en/docs/claude-code/mcp">Claude Code MCP documentation</a> for more details about MCP server management.</p>
+<h3>Other MCP Client Configurations</h3>
+<details>
+<summary><strong>OpenAI Codex CLI</strong></summary>
+
+Codex CLI uses TOML configuration files:
+
+1. Create or edit the `~/.codex/config.toml` file.
+
+2. Add the following configuration:
+
+
+<pre><code class="language-toml"># IMPORTANT: the top-level key is `mcp_servers` rather than `mcpServers`.
+[mcp_servers.claude-context]
+command = &quot;npx&quot;
+args = [&quot;@zilliz/claude-context-mcp@latest&quot;]
+env = { &quot;OPENAI_API_KEY&quot; = &quot;your-openai-api-key&quot;, &quot;MILVUS_TOKEN&quot; = &quot;your-zilliz-cloud-api-key&quot; }
+# Optional: override the default 10s startup timeout
+startup_timeout_ms = 20000
+</code></pre>
+
+
+3. Save the file and restart Codex CLI to apply the changes.
+
+</details>
+
+<details>
+<summary><strong>Gemini CLI</strong></summary>
+
+Gemini CLI requires manual configuration through a JSON file:
+
+1. Create or edit the `~/.gemini/settings.json` file.
+2. Add the following configuration:
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+3. Save the file and restart Gemini CLI to apply the changes.
+
+</details>
+
+<details>
+<summary><strong>Qwen Code</strong></summary>
+
+Create or edit the `~/.qwen/settings.json` file and add the following configuration:
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_ADDRESS&quot;: &quot;your-zilliz-cloud-public-endpoint&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><strong>Cursor</strong></summary>
+
+Go to: `Settings` -> `Cursor Settings` -> `MCP` -> `Add new global MCP server`
+
+Pasting the following configuration into your Cursor `~/.cursor/mcp.json` file is the recommended approach. You may also install in a specific project by creating `.cursor/mcp.json` in your project folder. See [Cursor MCP docs](https://cursor.com/docs/context/mcp) for more info.
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_ADDRESS&quot;: &quot;your-zilliz-cloud-public-endpoint&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><strong>Void</strong></summary>
+
+Go to: `Settings` -> `MCP` -> `Add MCP Server`
+
+Add the following configuration to your Void MCP settings:
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;code-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_ADDRESS&quot;: &quot;your-zilliz-cloud-public-endpoint&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><strong>Claude Desktop</strong></summary>
+
+Add to your Claude Desktop configuration:
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-context&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@zilliz/claude-context-mcp@latest&quot;],
+      &quot;env&quot;: {
+        &quot;OPENAI_API_KEY&quot;: &quot;your-openai-api-key&quot;,
+        &quot;MILVUS_ADDRESS&quot;: &quot;your-zilliz-cloud-public-endpoint&quot;,
+        &quot;MILVUS_TOKEN&quot;: &quot;your-zilliz-cloud-api-key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><strong>Windsurf</strong></summary>
+
+Windsurf supports MCP configuration through a JSON file. Add the following configur
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/zilliztech/claude-context#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Fincept-Corporation /</span>
+          <a href="https://github.com/Fincept-Corporation/FinceptTerminal" target="_blank" rel="noopener">FinceptTerminal</a>
+        </div>
+        <div class="repo-desc">FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 13,397</span>
+      <span class="meta-item">🍴 1,755</span>
+      <span class="stars-today">⭐ 1,772 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Fincept Terminal</h1>
+<div align="center">
+
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-C06524)](https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/LICENSE)
+[![C++20](https://img.shields.io/badge/C%2B%2B-20-00599C?logo=cplusplus)](https://isocpp.org/)
+[![Qt6](https://img.shields.io/badge/Qt-6-41CD52?logo=qt&logoColor=white)](https://www.qt.io/)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Hits](https://hits.sh/github.com/Fincept-Corporation/FinceptTerminal.svg?label=Visits)](https://hits.sh/github.com/Fincept-Corporation/FinceptTerminal/)
+
+<a href="https://trendshift.io/repositories/17028" target="_blank"><img src="https://trendshift.io/api/badge/repositories/17028" alt="Fincept-Corporation%2FFinceptTerminal | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+[![GitHub Stars](https://img.shields.io/github/stars/Fincept-Corporation/FinceptTerminal?style=social)](https://github.com/Fincept-Corporation/FinceptTerminal/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/Fincept-Corporation/FinceptTerminal?style=social)](https://github.com/Fincept-Corporation/FinceptTerminal/network/members)
+[![GitHub Watchers](https://img.shields.io/github/watchers/Fincept-Corporation/FinceptTerminal?style=social)](https://github.com/Fincept-Corporation/FinceptTerminal/watchers)
+[![GitHub Release](https://img.shields.io/github/v/release/Fincept-Corporation/FinceptTerminal?color=brightgreen&logo=github)](https://github.com/Fincept-Corporation/FinceptTerminal/releases)
+[![GitHub Issues](https://img.shields.io/github/issues/Fincept-Corporation/FinceptTerminal)](https://github.com/Fincept-Corporation/FinceptTerminal/issues)
+
+[![Twitter](https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/intent/tweet?text=Check%20out%20FinceptTerminal&url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/) [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/sharing/share-offsite/?url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/) [![Facebook](https://img.shields.io/badge/-Facebook-1877F2?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/Fincept-Corporation/FinceptTerminal/) [![Reddit](https://img.shields.io/badge/-Reddit-FF4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/submit?url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/&title=FinceptTerminal) [![WhatsApp](https://img.shields.io/badge/-WhatsApp-25D366?style=flat-square&logo=whatsapp&logoColor=white)](https://api.whatsapp.com/send?text=Check%20out%20FinceptTerminal%3A%20https%3A//github.com/Fincept-Corporation/FinceptTerminal/)
+
+### **Your Thinking is the Only Limit. The Data Isn't.**
+
+State-of-the-art financial intelligence platform with CFA-level analytics, AI automation, and unlimited data connectivity.
+
+[📥 Download](https://github.com/Fincept-Corporation/FinceptTerminal/releases) · [📚 Docs](https://github.com/Fincept-Corporation/FinceptTerminal/tree/main/docs) · [💬 Discussions](https://github.com/Fincept-Corporation/FinceptTerminal/discussions) · [💬 Discord](https://discord.gg/ae87a8ygbN) · [🤝 Partner](https://github.com/Fincept-Corporation/FinceptTerminal/blob/main/docs/COMMERCIAL_LICENSE.md)
+
+![Fincept Terminal](https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Dashboard.png)
+
+<table>
+  <tr>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/EquityResearch.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/EquityResearch.png" width="100%"/></a><br/><sub><b>Equity Research</b></sub></td>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Portfolio.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Portfolio.png" width="100%"/></a><br/><sub><b>Portfolio</b></sub></td>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/News.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/News.png" width="100%"/></a><br/><sub><b>News</b></sub></td>
+    <td align="center" width="25%"><a href="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/NodeEditor.png"><img src="https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/NodeEditor.png" width="100%"/></a><br/><sub><b>Node Editor</b></sub></td>
+  </tr>
+</table>
+
+</div>
+
+<hr />
+<h2>About</h2>
+<p><strong>Fincept Terminal v4</strong> is a pure native C++20 desktop application. It uses <strong>Qt6</strong> for UI and rendering, embedded <strong>Python</strong> for analytics, and delivers Bloomberg-terminal-class performance in a single native binary.</p>
+<hr />
+<h2>Features</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Feature</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📊 <strong>CFA-Level Analytics</strong></td>
+<td>DCF models, portfolio optimization, risk metrics (VaR, Sharpe), derivatives pricing via embedded Python</td>
+</tr>
+<tr>
+<td>🤖 <strong>AI Agents</strong></td>
+<td>37 agents across Trader/Investor (Buffett, Graham, Lynch, Munger, Klarman, Marks…), Economic, and Geopolitics frameworks; local LLM support; multi-provider (OpenAI, Anthropic, Gemini, Groq, DeepSeek, MiniMax, OpenRouter, Ollama)</td>
+</tr>
+<tr>
+<td>🌐 <strong>100+ Data Connectors</strong></td>
+<td>DBnomics, Polygon, Kraken, Yahoo Finance, FRED, IMF, World Bank, AkShare, government APIs, plus optional alternative-data overlays such as Adanos market sentiment for equity research</td>
+</tr>
+<tr>
+<td>📈 <strong>Real-Time Trading</strong></td>
+<td>Crypto (Kraken/HyperLiquid WebSocket), equity, algo trading, paper trading engine, 16 broker integrations (Zerodha, Angel One, Upstox, Fyers, Dhan, Groww, Kotak, IIFL, 5paisa, AliceBlue, Shoonya, Motilal, IBKR, Alpaca, Tradier, Saxo)</td>
+</tr>
+<tr>
+<td>🔬 <strong>QuantLib Suite</strong></td>
+<td>18 quantitative analysis modules — pricing, risk, stochastic, volatility, fixed income</td>
+</tr>
+<tr>
+<td>🚢 <strong>Global Intelligence</strong></td>
+<td>Maritime tracking, geopolitical analysis, relationship mapping, satellite data</td>
+</tr>
+<tr>
+<td>🎨 <strong>Visual Workflows</strong></td>
+<td>Node editor for automation pipelines, MCP tool integration</td>
+</tr>
+<tr>
+<td>🧠 <strong>AI Quant Lab</strong></td>
+<td>ML models, factor discovery, HFT, reinforcement learning trading</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Installation</h2>
+<!-- DOWNLOAD-TABLE-START -->
+<h3>Option 1 — Download Installer (Recommended)</h3>
+<p>Latest release: <strong>v4.0.2</strong> — <a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/tag/v4.0.2">View all releases</a></p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Download</th>
+<th>Run</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows x64</strong></td>
+<td><a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.0.2/FinceptTerminal-4.0.2-win64-setup.exe">FinceptTerminal-Windows-x64-setup.exe</a></td>
+<td>Run installer → launch <code>FinceptTerminal.exe</code></td>
+</tr>
+<tr>
+<td><strong>Linux x64</strong></td>
+<td><a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.0.2/FinceptTerminal-4.0.2-linux-x64-setup.run">FinceptTerminal-Linux-x64.run</a></td>
+<td><code>chmod +x</code> → run installer</td>
+</tr>
+<tr>
+<td><strong>macOS Apple Silicon</strong></td>
+<td><a href="https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.0.2/FinceptTerminal-4.0.2-macOS-setup.dmg">FinceptTerminal-macOS-arm64.dmg</a></td>
+<td>Open DMG → drag to Applications</td>
+</tr>
+</tbody>
+</table>
+<!-- DOWNLOAD-TABLE-END -->
+
+<hr />
+<h3>Option 2 — Quick Start (One-Click Build)</h3>
+<p>Clone and run the setup script — it installs all dependencies and builds the app automatically:</p>
+<pre><code class="language-bash"># Linux / macOS
+git clone https://github.com/Fincept-Corporation/FinceptTerminal.git
+cd FinceptTerminal
+chmod +x setup.sh &amp;&amp; ./setup.sh
+</code></pre>
+<p>The script handles: compiler check, CMake, Qt6, Python, build, and launch.</p>
+<blockquote>
+<p><strong>Windows:</strong> No setup script — use the manual build steps in Option 4 below. It's just two commands.</p>
+</blockquote>
+<hr />
+<h3>Option 3 — Docker (CI / Developer Environments)</h3>
+<blockquote>
+<p><strong>Note:</strong> Docker is intended for CI/CD </p>
+</blockquote>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Fincept-Corporation/FinceptTerminal#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">koala73 /</span>
+          <a href="https://github.com/koala73/worldmonitor" target="_blank" rel="noopener">worldmonitor</a>
+        </div>
+        <div class="repo-desc">Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 51,864</span>
+      <span class="meta-item">🍴 8,320</span>
+      <span class="stars-today">⭐ 424 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>World Monitor</h1>
+<p><strong>Real-time global intelligence dashboard</strong> — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface.</p>
+<p><a href="https://github.com/koala73/worldmonitor/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/koala73/worldmonitor?style=social" /></a><br />
+<a href="https://github.com/koala73/worldmonitor/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/koala73/worldmonitor?style=social" /></a><br />
+<a href="https://discord.gg/re63kWKxaz"><img alt="Discord" src="https://img.shields.io/badge/Discord-Join-5865F2?style=flat&amp;logo=discord&amp;logoColor=white" /></a><br />
+<a href="https://www.gnu.org/licenses/agpl-3.0"><img alt="License: AGPL v3" src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" /></a><br />
+<a href="https://www.typescriptlang.org/"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&amp;logo=typescript&amp;logoColor=white" /></a><br />
+<a href="https://github.com/koala73/worldmonitor/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/koala73/worldmonitor" /></a><br />
+<a href="https://github.com/koala73/worldmonitor/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/koala73/worldmonitor?style=flat" /></a></p>
+<p align="center">
+  <a href="https://worldmonitor.app"><img src="https://img.shields.io/badge/Web_App-worldmonitor.app-blue?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Web App"></a>&nbsp;
+  <a href="https://tech.worldmonitor.app"><img src="https://img.shields.io/badge/Tech_Variant-tech.worldmonitor.app-0891b2?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Tech Variant"></a>&nbsp;
+  <a href="https://finance.worldmonitor.app"><img src="https://img.shields.io/badge/Finance_Variant-finance.worldmonitor.app-059669?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Finance Variant"></a>&nbsp;
+  <a href="https://commodity.worldmonitor.app"><img src="https://img.shields.io/badge/Commodity_Variant-commodity.worldmonitor.app-b45309?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Commodity Variant"></a>&nbsp;
+  <a href="https://happy.worldmonitor.app"><img src="https://img.shields.io/badge/Happy_Variant-happy.worldmonitor.app-f59e0b?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Happy Variant"></a>
+</p>
+
+<p align="center">
+  <a href="https://worldmonitor.app/api/download?platform=windows-exe"><img src="https://img.shields.io/badge/Download-Windows_(.exe)-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows"></a>&nbsp;
+  <a href="https://worldmonitor.app/api/download?platform=macos-arm64"><img src="https://img.shields.io/badge/Download-macOS_Apple_Silicon-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS ARM"></a>&nbsp;
+  <a href="https://worldmonitor.app/api/download?platform=macos-x64"><img src="https://img.shields.io/badge/Download-macOS_Intel-555555?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Intel"></a>&nbsp;
+  <a href="https://worldmonitor.app/api/download?platform=linux-appimage"><img src="https://img.shields.io/badge/Download-Linux_(.AppImage)-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Download Linux"></a>
+</p>
+
+<p align="center">
+  <a href="https://www.worldmonitor.app/docs/documentation"><strong>Documentation</strong></a> &nbsp;·&nbsp;
+  <a href="https://github.com/koala73/worldmonitor/releases/latest"><strong>Releases</strong></a> &nbsp;·&nbsp;
+  <a href="https://www.worldmonitor.app/docs/contributing"><strong>Contributing</strong></a>
+</p>
+
+<p><img alt="World Monitor Dashboard" src="docs/images/worldmonitor-7-mar-2026.jpg" /></p>
+<hr />
+<h2>What It Does</h2>
+<ul>
+<li><strong>500+ curated news feeds</strong> across 15 categories, AI-synthesized into briefs</li>
+<li><strong>Dual map engine</strong> — 3D globe (globe.gl) and WebGL flat map (deck.gl) with 45 data layers</li>
+<li><strong>Cross-stream correlation</strong> — military, economic, disaster, and escalation signal convergence</li>
+<li><strong>Country Intelligence Index</strong> — composite risk scoring across 12 signal categories</li>
+<li><strong>Finance radar</strong> — 92 stock exchanges, commodities, crypto, and 7-signal market composite</li>
+<li><strong>Local AI</strong> — run everything with Ollama, no API keys required</li>
+<li><strong>5 site variants</strong> from a single codebase (world, tech, finance, commodity, happy)</li>
+<li><strong>Native desktop app</strong> (Tauri 2) for macOS, Windows, and Linux</li>
+<li><strong>21 languages</strong> with native-language feeds and RTL support</li>
+</ul>
+<p>For the full feature list, architecture, data sources, and algorithms, see the <strong><a href="https://www.worldmonitor.app/docs/documentation">documentation</a></strong>.</p>
+<hr />
+<h2>Quick Start</h2>
+<pre><code class="language-bash">git clone https://github.com/koala73/worldmonitor.git
+cd worldmonitor
+npm install
+npm run dev
+</code></pre>
+<p>Open <a href="http://localhost:5173">localhost:5173</a>. No environment variables required for basic operation.</p>
+<p>For variant-specific development:</p>
+<pre><code class="language-bash">npm run dev:tech       # tech.worldmonitor.app
+npm run dev:finance    # finance.worldmonitor.app
+npm run dev:commodity  # commodity.worldmonitor.app
+npm run dev:happy      # happy.worldmonitor.app
+</code></pre>
+<p>See the <strong><a href="https://www.worldmonitor.app/docs/getting-started">self-hosting guide</a></strong> for deployment options (Vercel, Docker, static).</p>
+<hr />
+<h2>Tech Stack</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Technologies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>Vanilla TypeScript, Vite, globe.gl + Three.js, deck.gl + MapLibre GL</td>
+</tr>
+<tr>
+<td><strong>Desktop</strong></td>
+<td>Tauri 2 (Rust) with Node.js sidecar</td>
+</tr>
+<tr>
+<td><strong>AI/ML</strong></td>
+<td>Ollama / Groq / OpenRouter, Transformers.js (browser-side)</td>
+</tr>
+<tr>
+<td><strong>API Contracts</strong></td>
+<td>Protocol Buffers (92 protos, 22 services), sebuf HTTP annotations</td>
+</tr>
+<tr>
+<td><strong>Deployment</strong></td>
+<td>Vercel Edge Functions (60+), Railway relay, Tauri, PWA</td>
+</tr>
+<tr>
+<td><strong>Caching</strong></td>
+<td>Redis (Upstash), 3-tier cache, CDN, service worker</td>
+</tr>
+</tbody>
+</table>
+<p>Full stack details in the <strong><a href="https://www.worldmonitor.app/docs/architecture">architecture docs</a></strong>.</p>
+<hr />
+<h2>Flight Data</h2>
+<p>Flight data provided gracefully by <a href="https://wingbits.com?utm_source=worldmonitor&amp;utm_medium=referral&amp;utm_campaign=worldmonitor">Wingbits</a>, the most advanced ADS-B flight data solution.</p>
+<hr />
+<h2>Data Sources</h2>
+<p>WorldMonitor aggregates 65+ external data sources across geopolitics, finance, energy, climate, aviation, cyber, military, infrastructure, and news intelligence. See the full <a href="https://www.worldmonitor.app/docs/data-sources">data sources catalog</a> for providers, feed tiers, and collection methods.</p>
+<hr />
+<h2>Contributing</h2>
+<p>Contributions welcome! See <a href="./CONTRIBUTING.md">CONTRIBUTING.md</a> for guidelines.</p>
+<pre><code class="language-bash">npm run typecheck        # Type checking
+npm run build:full       # Production build
+</code></pre>
+<hr />
+<h2>License</h2>
+<p><strong>AGPL-3.0</strong> for non-commercial use. <strong>Commercial license</strong> required for any commercial use.</p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Allowed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Personal / research / educational</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Self-hosted (non-commercial)</td>
+<td>Yes, with attribution</td>
+</tr>
+<tr>
+<td>Fork and modify (non-commercial)</td>
+<td>Yes, share source under AGPL-3.0</td>
+</tr>
+<tr>
+<td>Commercial use / SaaS / rebranding</td>
+<td>Requires commercial license</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="LICENSE">LICENSE</a> for full terms. For commercial licensing, contact the maintainer.</p>
+<p>Copyright (C) 2024-2026 Elie Habib. All rights reserved.</p>
+<hr />
+<h2>Author</h2>
+<p><strong>Elie Habib</strong> — <a href="https://github.com/koala73">GitHub</a></p>
+<h2>Contributors</h2>
+<p><a href="https://github.com/koala73/worldmonitor/graphs/contributors"><br />
+  <img src="https://contrib.rocks/image?repo=koala73/worldmonitor" /><br />
+</a></p>
+<h2>Security Acknowledgments</h2>
+<p>We thank the following researchers for responsibly disclosing security issues:</p>
+<ul>
+<li><strong>Cody Richard</strong> — Disclosed three security findings covering IPC command exposure, renderer-to-sidecar trust boundary analysis, and fetch patch credential injection architecture (2026)</li>
+</ul>
+<p>See our <a href="./SECURITY.md">Security Policy</a> for responsible disclosure guidelines.</p>
+<hr />
+<p align="center">
+  <a href="https://worldmonitor.app">worldmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://www.worldmonitor.app/docs/documentation">docs.worldmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://finance.worldmonitor.app">finance.worldmonitor.app</a> &nbsp;·&nbsp;
+  <a href="https://commodity.worldmonitor.app">commodity.worldmonitor.app</a>
+</p>
+
+<h2>Star History</h2>
+<p>&lt;a href="https://api.star</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/koala73/worldmonitor#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">langfuse /</span>
+          <a href="https://github.com/langfuse/langfuse" target="_blank" rel="noopener">langfuse</a>
+        </div>
+        <div class="repo-desc">🪢 Open source LLM engineering platform: LLM Observability, metrics, evals, prompt management, playground, datasets. Integrates with OpenTelemetry, Langchain, OpenAI SDK, LiteLLM, and more. 🍊YC W23</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 25,774</span>
+      <span class="meta-item">🍴 2,610</span>
+      <span class="stars-today">⭐ 149 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><img width="4856" height="1000" alt="github-banner" src="https://github.com/user-attachments/assets/6f435ef3-1194-4e26-87af-aa13826bbb5f" /></p>
+<div align="center">
+   <div>
+      <h3>
+        <a href="https://langfuse.com/blog/2025-06-04-open-sourcing-langfuse-product">
+            <strong>Langfuse Is Doubling Down On Open Source</strong>
+         </a> <br> <br>
+         <a href="https://cloud.langfuse.com">
+            <strong>Langfuse Cloud</strong>
+         </a> · 
+         <a href="https://langfuse.com/docs/deployment/self-host">
+            <strong>Self Host</strong>
+         </a> · 
+         <a href="https://langfuse.com/demo">
+            <strong>Demo</strong>
+         </a>
+      </h3>
+   </div>
+
+   <div>
+      <a href="https://langfuse.com/docs"><strong>Docs</strong></a> ·
+      <a href="https://langfuse.com/issues"><strong>Report Bug</strong></a> ·
+      <a href="https://langfuse.com/ideas"><strong>Feature Request</strong></a> ·
+      <a href="https://langfuse.com/changelog"><strong>Changelog</strong></a> ·
+      <a href="https://langfuse.com/roadmap"><strong>Roadmap</strong></a> ·
+   </div>
+   <br/>
+   <span>Langfuse uses <a href="https://github.com/orgs/langfuse/discussions"><strong>GitHub Discussions</strong></a>  for Support and Feature Requests.</span>
+   <br/>
+   <span><b>We're hiring.</b> <a href="https://langfuse.com/careers"><strong>Join us</strong></a> in product engineering and technical go-to-market roles.</span>
+   <br/>
+   <br/>
+   <div>
+   </div>
+</div>
+
+<p align="center">
+   <a href="https://github.com/langfuse/langfuse/blob/main/LICENSE">
+   <img src="https://img.shields.io/badge/License-MIT-E11311.svg" alt="MIT License">
+   </a>
+   <a href="https://www.ycombinator.com/companies/langfuse"><img src="https://img.shields.io/badge/Y%20Combinator-W23-orange" alt="Y Combinator W23"></a>
+   <a href="https://hub.docker.com/u/langfuse" target="_blank">
+   <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/langfuse/langfuse?labelColor=%20%23FDB062&logo=Docker&labelColor=%20%23528bff"></a>
+   <a href="https://pypi.python.org/pypi/langfuse"><img src="https://img.shields.io/pypi/dm/langfuse?logo=python&logoColor=white&label=pypi%20langfuse&color=blue" alt="langfuse Python package on PyPi"></a>
+   <a href="https://www.npmjs.com/package/langfuse"><img src="https://img.shields.io/npm/dm/langfuse?logo=npm&logoColor=white&label=npm%20langfuse&color=blue" alt="langfuse npm package"></a>
+   <br/>
+   <a href="https://discord.com/invite/7NXusRtqYU" target="_blank">
+   <img src="https://img.shields.io/discord/1111061815649124414?logo=discord&labelColor=%20%235462eb&logoColor=%20%23f5f5f5&color=%20%235462eb"
+      alt="chat on Discord"></a>
+   <a href="https://twitter.com/intent/follow?screen_name=langfuse" target="_blank">
+   <img src="https://img.shields.io/twitter/follow/langfuse?logo=X&color=%20%23f5f5f5"
+      alt="follow on X(Twitter)"></a>
+   <a href="https://www.linkedin.com/company/langfuse/" target="_blank">
+   <img src="https://custom-icon-badges.demolab.com/badge/LinkedIn-0A66C2?logo=linkedin-white&logoColor=fff"
+      alt="follow on LinkedIn"></a>
+   <a href="https://github.com/langfuse/langfuse/graphs/commit-activity" target="_blank">
+   <img alt="Commits last month" src="https://img.shields.io/github/commit-activity/m/langfuse/langfuse?labelColor=%20%2332b583&color=%20%2312b76a"></a>
+   <a href="https://github.com/langfuse/langfuse/" target="_blank">
+   <img alt="Issues closed" src="https://img.shields.io/github/issues-search?query=repo%3Alangfuse%2Flangfuse%20is%3Aclosed&label=issues%20closed&labelColor=%20%237d89b0&color=%20%235d6b98"></a>
+   <a href="https://github.com/langfuse/langfuse/discussions/" target="_blank">
+   <img alt="Discussion posts" src="https://img.shields.io/github/discussions/langfuse/langfuse?labelColor=%20%239b8afb&color=%20%237a5af8"></a>
+   <a href="https://deepwiki.com/langfuse/langfuse" target="_blank">
+   <img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg"></a>
+</p>
+
+<p align="center">
+  <a href="./README.md"><img alt="README in English" src="https://img.shields.io/badge/English-d9d9d9"></a>
+  <a href="./README.cn.md"><img alt="简体中文版自述文件" src="https://img.shields.io/badge/简体中文-d9d9d9"></a>
+  <a href="./README.ja.md"><img alt="日本語のREADME" src="https://img.shields.io/badge/日本語-d9d9d9"></a>
+  <a href="./README.kr.md"><img alt="README in Korean" src="https://img.shields.io/badge/한국어-d9d9d9"></a>
+</p>
+
+<p align="center">
+   <a href="https://github.com/ClickHouse/ClickHouse"><strong>Proudly made with ClickHouse open source database</strong></a>
+</p>
+
+<p>Langfuse is an <strong>open source LLM engineering</strong> platform. It helps teams collaboratively<br />
+<strong>develop, monitor, evaluate,</strong> and <strong>debug</strong> AI applications. Langfuse can be <strong>self-hosted in minutes</strong> and is <strong>battle-tested</strong>.</p>
+<p><a href="https://langfuse.com/watch-demo"><img alt="Langfuse Overview Video" src="https://github.com/user-attachments/assets/925d71db-6331-445e-8f3e-727ee95d1c9f" /></a></p>
+<h2>✨ Core Features</h2>
+<p><img width="4856" height="1944" alt="Langfuse Overview" src="https://github.com/user-attachments/assets/5dac68ef-d546-49fb-b06f-cfafc19282e3" /></p>
+<ul>
+<li>
+<p><a href="https://langfuse.com/docs/tracing">LLM Application Observability</a>: Instrument your app and start ingesting traces to Langfuse, thereby tracking LLM calls and other relevant logic in your app such as retrieval, embedding, or agent actions. Inspect and debug complex logs and user sessions. Try the interactive <a href="https://langfuse.com/docs/demo">demo</a> to see this in action.</p>
+</li>
+<li>
+<p><a href="https://langfuse.com/docs/prompt-management/get-started">Prompt Management</a> helps you centrally manage, version control, and collaboratively iterate on your prompts. Thanks to strong caching on server and client side, you can iterate on prompts without adding latency to your application.</p>
+</li>
+<li>
+<p><a href="https://langfuse.com/docs/evaluation/overview">Evaluations</a> are key to the LLM application development workflow, and Langfuse adapts to your needs. It supports LLM-as-a-judge, user feedback collection, manual labeling, and custom evaluation pipelines via APIs/SDKs.</p>
+</li>
+<li>
+<p><a href="https://langfuse.com/docs/evaluation/dataset-runs/datasets">Datasets</a> enable test sets and benchmarks for evaluating your LLM application. They support continuous improvement, pre-deployment testing, structured experiments, flexible evaluation, and seamless integration with frameworks like LangChain and LlamaIndex.</p>
+</li>
+<li>
+<p><a href="https://langfuse.com/docs/playground">LLM Playground</a> is a tool for testing and iterating on your prompts and model configurations, shortening the feedback loop and accelerating development. When you see a bad result in tracing, you can directly jump to the playground to iterate on it.</p>
+</li>
+<li>
+<p><a href="https://langfuse.com/docs/api">Comprehensive API</a>: Langfuse is frequently used to power bespoke LLMOps workflows while using the building blocks provided by Langfuse via the API. OpenAPI spec, Postman collection, and typed SDKs for Python, JS/TS are available.</p>
+</li>
+</ul>
+<h2>📦 Deploy Langfuse</h2>
+<p><img width="4856" height="1322" alt="Langfuse Deployment Options" src="https://github.com/user-attachments/assets/98f020c7-7a20-4264-a201-65c41a52a5d5" /></p>
+<h3>Langfuse Cloud</h3>
+<p>Managed deployment by the Langfuse team, generous free-tier, no credit card required.</p>
+<div align="center">
+    <a href="https://cloud.langfuse.com" target="_blank">
+        <img alt="Static Badge" src="https://img.shields.io/badge/»%20Sign%20up%20for%20Langfuse%20Cloud-8A2BE2?&color=orange">
+    </a>
+</div>
+
+<h3>Self-Host Langfuse</h3>
+<p>Run Langfuse on your own infrastructure:</p>
+<ul>
+<li><a href="https://langfuse.com/self-hosting/local">Local (docker compose)</a>: Run Langfuse on your own machine in 5 minutes using Docker Compose.</li>
+</ul>
+<p>```bash<br />
+  # Get a copy of the latest Langfuse repository<br />
+  git clone https://github.com/langfuse/langfuse.git<br />
+  cd langfuse</p>
+<p># Run the langfuse docker compose<br />
+  docker compose up<br />
+  ```</p>
+<ul>
+<li><a href="https://langfuse.com/self-hosting/docker-compose">VM</a>: Run Langfuse on a single Virtual Machine using Docker Compose.</li>
+<li>[Kubernetes (Helm)](https://la</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/langfuse/langfuse#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">KeygraphHQ /</span>
+          <a href="https://github.com/KeygraphHQ/shannon" target="_blank" rel="noopener">shannon</a>
+        </div>
+        <div class="repo-desc">Shannon Lite is an autonomous, white-box AI pentester for web applications and APIs. It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 39,777</span>
+      <span class="meta-item">🍴 4,389</span>
+      <span class="stars-today">⭐ 372 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <blockquote>
+<p>[!NOTE]<br />
+<strong><a href="https://github.com/KeygraphHQ/shannon/discussions/301">📢 Sunsetting Router Mode (claude-code-router)`. →</a></strong></p>
+</blockquote>
+<div align="center">
+
+<img src="./assets/github-banner.png" alt="Shannon — AI Pentester for Web Applications and APIs" width="100%">
+
+# Shannon — AI Pentester by Keygraph
+
+<a href="https://trendshift.io/repositories/15604" target="_blank"><img src="https://trendshift.io/api/badge/repositories/15604" alt="KeygraphHQ%2Fshannon | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+Shannon is an autonomous, white-box AI pentester for web applications and APIs. <br />
+It analyzes your source code, identifies attack vectors, and executes real exploits to prove vulnerabilities before they reach production.
+
+---
+
+<a href="https://discord.gg/9ZqQPuhJB7"><img src="./assets/discord.png" height="40" alt="Join Discord"></a>
+<a href="https://keygraph.io/"><img src="./assets/Keygraph_Button.png" height="40" alt="Visit Keygraph.io"></a>
+
+---
+</div>
+
+<h2>What is Shannon?</h2>
+<p>Shannon is an AI pentester developed by <a href="https://keygraph.io">Keygraph</a>. It performs white-box security testing of web applications and their underlying APIs by combining source code analysis with live exploitation.</p>
+<p>Shannon analyzes your web application's source code to identify potential attack vectors, then uses browser automation and command-line tools to execute real exploits (injection attacks, authentication bypass, SSRF, XSS) against the running application and its APIs. Only vulnerabilities with a working proof-of-concept are included in the final report.</p>
+<p><strong>Why Shannon Exists</strong></p>
+<p>Thanks to tools like Claude Code and Cursor, your team ships code non-stop. But your penetration test? That happens once a year. This creates a <em>massive</em> security gap. For the other 364 days, you could be unknowingly shipping vulnerabilities to production.</p>
+<p>Shannon closes that gap by providing on-demand, automated penetration testing that can run against every build or release.</p>
+<h2>Shannon in Action</h2>
+<p>Shannon identified 20+ vulnerabilities in OWASP Juice Shop, including authentication bypass and database exfiltration. <a href="sample-reports/shannon-report-juice-shop.md">Full report →</a></p>
+<p><img alt="Demo" src="assets/shannon-action.gif" /></p>
+<h2>Features</h2>
+<ul>
+<li><strong>Fully Autonomous Operation</strong>: A single command launches the full pentest. Shannon handles 2FA/TOTP logins (including SSO), browser navigation, exploitation, and report generation without manual intervention.</li>
+<li><strong>Reproducible Proof-of-Concept Exploits</strong>: The final report contains only proven, exploitable findings with copy-and-paste PoCs. Vulnerabilities that cannot be exploited are not reported.</li>
+<li><strong>OWASP Vulnerability Coverage</strong>: Identifies and validates Injection, XSS, SSRF, and Broken Authentication/Authorization, with additional categories in development.</li>
+<li><strong>Code-Aware Dynamic Testing</strong>: Analyzes source code to guide attack strategy, then validates findings with live browser and CLI-based exploits against the running application.</li>
+<li><strong>Integrated Security Tooling</strong>: Leverages Nmap, Subfinder, WhatWeb, and Schemathesis during reconnaissance and discovery phases.</li>
+<li><strong>Parallel Processing</strong>: Vulnerability analysis and exploitation phases run concurrently across all attack categories.</li>
+</ul>
+<h2>Product Line</h2>
+<p>Shannon is developed by <a href="https://keygraph.io">Keygraph</a> and available in two editions:</p>
+<table>
+<thead>
+<tr>
+<th>Edition</th>
+<th>License</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shannon Lite</strong></td>
+<td>AGPL-3.0</td>
+<td>Local testing of your own applications.</td>
+</tr>
+<tr>
+<td><strong>Shannon Pro</strong></td>
+<td>Commercial</td>
+<td>Organizations needing a single AppSec platform (SAST, SCA, secrets, business logic testing, autonomous pentesting) with CI/CD integration and self-hosted deployment.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>This repository contains Shannon Lite,</strong> the core autonomous AI pentesting framework. <strong>Shannon Pro</strong> is Keygraph's all-in-one AppSec platform, combining SAST, SCA, secrets scanning, business logic security testing, and autonomous AI pentesting in a single correlated workflow. Every finding is validated with a working proof-of-concept exploit.</p>
+<p>[!IMPORTANT]<br />
+<strong>White-box only.</strong> Shannon Lite is designed for <strong>white-box (source-available)</strong> application security testing.<br />
+It expects access to your application's source code and repository layout.</p>
+</blockquote>
+<h3>Shannon Pro: Architecture Overview</h3>
+<p>Shannon Pro is an all-in-one application security platform that replaces the need to stitch together separate SAST, SCA, secrets scanning, and pentesting tools. It operates as a two-stage pipeline: agentic static analysis of the codebase, followed by autonomous AI penetration testing. Findings from both stages are cross-referenced and correlated, so every reported vulnerability has a working proof-of-concept exploit and a precise source code location.</p>
+<p><strong>Stage 1: Agentic Static Analysis</strong></p>
+<p>Shannon Pro transforms the codebase into a Code Property Graph (CPG) combining the AST, control flow graph, and program dependence graph. It then runs five analysis capabilities:</p>
+<ul>
+<li><strong>Data Flow Analysis (SAST)</strong>: Identifies sources (user input, API requests) and sinks (SQL queries, command execution), then traces paths between them. At each node, an LLM evaluates whether the specific sanitization applied is sufficient for the specific vulnerability in context, rather than relying on a hard-coded allowlist of safe functions.</li>
+<li><strong>Point Issue Detection (SAST)</strong>: LLM-based detection of single-location vulnerabilities: weak cryptography, hardcoded credentials, insecure configuration, missing security headers, weak RNG, disabled certificate validation, and overly permissive CORS.</li>
+<li><strong>Business Logic Security Testing (SAST)</strong>: LLM agents analyze the codebase to discover application-specific invariants (e.g., "document access must verify organizational ownership"), generate targeted fuzzers to violate those invariants, and synthesize full PoC exploits. This catches authorization failures and domain-specific logic errors that pattern-based scanners cannot detect.</li>
+<li><strong>SCA with Reachability Analysis</strong>: Goes beyond flagging CVEs by tracing whether the vulnerable function is actually reachable from application entry points via the CPG. Unreachable vulnerabilities are deprioritized.</li>
+<li><strong>Secrets Detection</strong>: Combines regex pattern matching with LLM-based detection (for dynamically constructed credentials, custom formats, obfuscated tokens) and performs liveness validation against the corresponding service using read-only API calls.</li>
+</ul>
+<p><strong>Stage 2: Autonomous Dynamic Penetration Testing</strong></p>
+<p>The same multi-agent pentest pipeline as Shannon Lite (reconnaissance, parallel vulnerability analysis, parallel exploitation, reporting), enhanced with static findings injected into the exploitation queue. Static findings are mapped to Shannon's five attack domains (Injection, XSS, SSRF, Auth, Authz), and exploit agents attempt real proof-of-concept attacks against the running application for each finding.</p>
+<p><strong>Static-Dynamic Correlation</strong></p>
+<p>This is the core differentiator. A data flow vulnerability identified in static analysis (e.g., unsanitized input reaching a SQL query) is not reported as a theoretical risk. It is fed to the corresponding exploit agent, which attempts to exploit it against the live application. Confirmed exploits are traced back to the exact source code location, giving developers both proof of exploitability and the line of code to fix.</p>
+<p><strong>Deployment Model</strong></p>
+<p>Shannon Pro supports a self-hosted runner model (similar to GitHub Actions self-hosted runners). The data plane, which handles code access and all LLM API calls, runs entirely within the customer's infrastructure using the customer's own API keys. Source code never leaves the customer's network. The Keygraph control plane handles job orchestration, scan scheduling, and the reporting UI, receiving only aggregate findings.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Shannon Lite</th>
+<th>Shannon Pro (All-in-One AppSec)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Licensing</strong></td>
+<td>AGPL-3.0</td>
+<td>Commercial</td>
+</tr>
+<tr>
+<td><strong>Static Analysis</strong></td>
+<td>Code review prompting</td>
+<td>Full agentic SAST</td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/KeygraphHQ/shannon#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">open-metadata /</span>
+          <a href="https://github.com/open-metadata/OpenMetadata" target="_blank" rel="noopener">OpenMetadata</a>
+        </div>
+        <div class="repo-desc">OpenMetadata is a unified metadata platform for data discovery, data observability, and data governance powered by a central metadata repository, in-depth column level lineage, and seamless team collaboration.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 12,322</span>
+      <span class="meta-item">🍴 1,995</span>
+      <span class="stars-today">⭐ 521 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><br /><br /></p>
+<p align="center">
+    <a href="https://open-metadata.org">
+        <img alt="Logo" src="https://github.com/open-metadata/OpenMetadata/assets/40225091/e794ced8-7220-4393-8efc-3faf93bfb503" width="49%">
+    </a>
+</p>
+
+<p align="center"><b>Empower your Data Journey with OpenMetadata</b></p>
+
+<div align="center">
+
+![Commit Activity](https://img.shields.io/github/commit-activity/m/open-metadata/OpenMetadata?style=for-the-badge)
+[![Release](https://img.shields.io/github/release/open-metadata/OpenMetadata/all.svg?style=for-the-badge)](https://github.com/open-metadata/OpenMetadata/releases)
+
+</div>
+
+<h2>What is OpenMetadata?</h2>
+<p><a href="https://open-metadata.org/">OpenMetadata</a>  is a unified metadata platform for data discovery, data observability, and data governance powered by a central metadata repository, in-depth column-level lineage, and seamless team collaboration. It is one of the fastest-growing open-source projects with a vibrant community and adoption by a diverse set of companies in a variety of industry verticals. Based on Open Metadata Standards and APIs, supporting connectors to a wide range of data services, OpenMetadata enables end-to-end metadata management, giving you the freedom to unlock the value of your data assets.</p>
+<div align="center">
+    <img src="https://github.com/open-metadata/OpenMetadata/assets/40225091/ebfb4ec5-f0a2-4d58-8ce5-a082b5cf0f76" width=800>
+</div>
+
+<p><br /><br />
+Contents:</p>
+<ul>
+<li><a href="#key-features-of-openmetadata">Features</a></li>
+<li><a href="#try-our-sandbox">Try our Sandbox</a></li>
+<li><a href="#install-and-run-openmetadata">Install &amp; Run</a></li>
+<li><a href="https://docs.open-metadata.org/latest/roadmap">Roadmap</a></li>
+<li><a href="#documentation-and-support">Documentation and Support</a></li>
+<li><a href="#contributors">Contributors</a></li>
+</ul>
+<p>OpenMetadata Consists of Four Main Components:<br />
+- <strong>Metadata Schemas</strong>: These are the core definitions and vocabulary for metadata based on common abstractions and types. They also allow for custom extensions and properties to suit different use cases and domains.<br />
+- <strong>Metadata Store</strong>: This is the central repository for storing and managing the metadata graph, which connects data assets, users, and tool-generated metadata in a unified way.<br />
+- <strong>Metadata APIs</strong>: These are the interfaces for producing and consuming metadata, built on top of the metadata schemas. They enable seamless integration of user interfaces and tools, systems, and services with the metadata store.<br />
+- <strong>Ingestion Framework</strong>: This is a pluggable framework for ingesting metadata from various sources and tools to the metadata store. It supports about 84+ connectors for data warehouses, databases, dashboard services, messaging services, pipeline services, and more.</p>
+<h2>Key Features of OpenMetadata</h2>
+<p><strong>Data Discovery</strong>: Find and explore all your data assets in a single place using various strategies, such as keyword search, data associations, and advanced queries. You can search across tables, topics, dashboards, pipelines, and services.</p>
+<p><img alt="12" src="https://github.com/open-metadata/OpenMetadata/assets/40225091/0dbd2746-c93d-4a47-8d3e-ceb3ae01436f" /><br />
+<br><br><br><br />
+<strong>Data Collaboration</strong>: Communicate, converse, and cooperate with other users and teams on data assets. You can get event notifications, send alerts, add announcements, create tasks, and use conversation threads.</p>
+<p><img alt="11" src="https://github.com/open-metadata/OpenMetadata/assets/40225091/7df29e12-8a29-44b7-9466-42474823783f" /><br />
+<br><br><br><br />
+<strong>Data Quality and Profiler</strong>: Measure and monitor the quality with <strong>no-code</strong> to build trust in your data. You can define and run data quality tests, group them into test suites, and view the results in an interactive dashboard. With powerful collaboration, make data quality a shared responsibility in your organization.</p>
+<p><img alt="8" src="https://github.com/open-metadata/OpenMetadata/assets/40225091/6b330827-cc2d-4d06-abf0-a4d42ce532ba" /><br />
+<br><br><br><br />
+<strong>Data Governance</strong>: Enforce data policies and standards across your organization. You can define data domains and data products, assign owners and stakeholders, and classify data assets using tags and terms. Use powerful automation features to auto-classify your data.</p>
+<p><img alt="10" src="https://github.com/open-metadata/OpenMetadata/assets/40225091/f7384a71-6b58-44ad-983f-e302718ee3f1" /><br />
+<br><br><br><br />
+<strong>Data Insights and KPIs</strong>: Use reports and platform analytics to understand how your organization's data is doing. Data Insights provides a single-pane view of all the key metrics to reflect the state of your data best. Define the Key Performance Indicators (KPIs) and set goals within OpenMetadata to work towards better documentation, ownership, and tiering. Alerts can be set against the KPIs to be received on a specified schedule.</p>
+<p><img alt="9" src="https://github.com/open-metadata/OpenMetadata/assets/40225091/61fc2f65-2436-4fc9-9434-c27ee9b25183" /><br />
+<br><br><br><br />
+<strong>Data Lineage</strong>: Track and visualize the origin and transformation of your data assets end-to-end. You can view column-level lineage, filter queries, and edit lineage manually using a no-code editor.</p>
+<p><strong>Data Documentation</strong>: Document your data assets and metadata entities using rich text, images, and links. You can also add comments and annotations and generate data dictionaries and data catalogs.</p>
+<p><strong>Data Observability</strong>: Monitor the health and performance of your data assets and pipelines. You can view metrics such as data freshness, data volume, data quality, and data latency. You can also set up alerts and notifications for any anomalies or failures.</p>
+<p><strong>Data Security</strong>: Secure your data and metadata using various authentication and authorization mechanisms. You can integrate with different identity providers for single sign-on and define roles and policies for access control.</p>
+<p><strong>Webhooks</strong>: Integrate with external applications and services using webhooks. You can register URLs to receive metadata event notifications and integrate with Slack, Microsoft Teams, and Google Chat.</p>
+<p><strong>Connectors</strong>: Ingest metadata from various sources and tools using connectors. OpenMetadata supports about 84+ connectors for data warehouses, databases, dashboard services, messaging services, pipeline services, and more.</p>
+<h2>Try our Sandbox</h2>
+<p>Take a look and play with sample data at <a href="http://sandbox.open-metadata.org">http://sandbox.open-metadata.org</a></p>
+<h2>Install and Run OpenMetadata</h2>
+<p>Get up and running in a few minutes. See the OpenMetadata documentation for <a href="https://docs.open-metadata.org/quick-start/local-docker-deployment">installation instructions</a>.</p>
+<h2>Documentation and Support</h2>
+<p>We're here to help and make OpenMetadata even better! Check out <a href="https://docs.open-metadata.org/">OpenMetadata documentation</a> for a complete description of OpenMetadata's features. Join our <a href="https://slack.open-metadata.org/">Slack Community</a> to get in touch with us if you want to chat, need help, or discuss new feature requirements.</p>
+<h2>Contributors</h2>
+<p>We ❤️ all contributions, big and small! Check out our <a href="./CONTRIBUTING.md">CONTRIBUTING</a> guide to get started, and let us know how we can help.</p>
+<p>Don't want to miss anything? Give the project a ⭐ 🚀 </p>
+<p>A HUGE THANK YOU to all our supporters!</p>
+<p><a href="https://github.com/open-metadata/OpenMetadata/graphs/contributors"><br />
+  <img src="https://contrib.rocks/image?repo=open-metadata/OpenMetadata&max=4000&columns=30" /><br />
+</a></p>
+<h2>Stargazers</h2>
+<p><a href="https://github.com/open-metadata/OpenMetadata/stargazers"><img alt="Stargazers of @open-metadata/OpenMetadata repo" src="http://reporoster.com/stars/open-metadata/OpenMetadata" /></a></p>
+<h2>License</h2>
+<p>OpenMetadata is released under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/open-metadata/OpenMetadata#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">ruvnet /</span>
+          <a href="https://github.com/ruvnet/RuView" target="_blank" rel="noopener">RuView</a>
+        </div>
+        <div class="repo-desc">π RuView: WiFi DensePose turns commodity WiFi signals into real-time human pose estimation, vital sign monitoring, and presence detection — all without a single pixel of video.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 49,463</span>
+      <span class="meta-item">🍴 6,564</span>
+      <span class="stars-today">⭐ 565 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>π RuView</h1>
+<p align="center">
+  <a href="https://x.com/rUv/status/2037556932802761004">
+    <img src="assets/ruview-small-gemini.jpg" alt="RuView - WiFi DensePose" width="100%">
+  </a>
+</p>
+
+<blockquote>
+<p><strong>Beta Software</strong> — Under active development. APIs and firmware may change. Known limitations:<br />
+- ESP32-C3 and original ESP32 are not supported (single-core, insufficient for CSI DSP)<br />
+- Single ESP32 deployments have limited spatial resolution — use 2+ nodes or add a <a href="https://cognitum.one">Cognitum Seed</a> for best results<br />
+- Camera-free pose accuracy is limited — use <a href="docs/adr/ADR-079-camera-ground-truth-training.md">camera ground-truth training</a> for 92.9% PCK@20</p>
+<p>Contributions and bug reports welcome at <a href="https://github.com/ruvnet/RuView/issues">Issues</a>.</p>
+</blockquote>
+<h2><strong>See through walls with WiFi</strong></h2>
+<p><strong>Turn ordinary WiFi into a sensing system.</strong> Detect people, measure breathing and heart rate, track movement, and monitor rooms — through walls, in the dark, with no cameras or wearables. Just physics.</p>
+<h3>π RuView is a WiFi sensing platform that turns radio signals into spatial intelligence.</h3>
+<p>Every WiFi router already fills your space with radio waves. When people move, breathe, or even sit still, they disturb those waves in measurable ways. RuView captures these disturbances using Channel State Information (CSI) from low-cost ESP32 sensors and turns them into actionable data: who's there, what they're doing, and whether they're okay.</p>
+<p><strong>What it senses:</strong><br />
+- <strong>Presence and occupancy</strong> — detect people through walls, count them, track entries and exits<br />
+- <strong>Vital signs</strong> — breathing rate and heart rate, contactless, while sleeping or sitting<br />
+- <strong>Activity recognition</strong> — walking, sitting, gestures, falls — from temporal CSI patterns<br />
+- <strong>Environment mapping</strong> — RF fingerprinting identifies rooms, detects moved furniture, spots new objects<br />
+- <strong>Sleep quality</strong> — overnight monitoring with sleep stage classification and apnea screening</p>
+<p>Built on <a href="https://github.com/ruvnet/ruvector/">RuVector</a> and <a href="https://cognitum.one">Cognitum Seed</a>, RuView runs entirely on edge hardware — an ESP32 mesh (as low as $9 per node) paired with a Cognitum Seed for persistent memory, cryptographic attestation, and AI integration. No cloud, no cameras, no internet required.</p>
+<p>The system learns each environment locally using spiking neural networks that adapt in under 30 seconds, with multi-frequency mesh scanning across 6 WiFi channels that uses your neighbors' routers as free radar illuminators. Every measurement is cryptographically attested via an Ed25519 witness chain.</p>
+<p>RuView also supports pose estimation (17 COCO keypoints via the WiFlow architecture), trained entirely without cameras using 10 sensor signals — a technique pioneered from the original <em>DensePose From WiFi</em> research at Carnegie Mellon University.</p>
+<h3>Built for low-power edge applications</h3>
+<p><a href="#edge-intelligence-adr-041">Edge modules</a> are small programs that run directly on the ESP32 sensor — no internet needed, no cloud fees, instant response.</p>
+<p><a href="https://www.rust-lang.org/"><img alt="Rust 1.85+" src="https://img.shields.io/badge/rust-1.85+-orange.svg" /></a><br />
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a><br />
+<a href="https://github.com/ruvnet/RuView"><img alt="Tests: 1463" src="https://img.shields.io/badge/tests-1463%20passed-brightgreen.svg" /></a><br />
+<a href="https://hub.docker.com/r/ruvnet/wifi-densepose"><img alt="Docker: multi-arch" src="https://img.shields.io/badge/docker-amd64%20%2B%20arm64-blue.svg" /></a><br />
+<a href="#vital-sign-detection"><img alt="Vital Signs" src="https://img.shields.io/badge/vital%20signs-breathing%20%2B%20heartbeat-red.svg" /></a><br />
+<a href="#esp32-s3-hardware-pipeline"><img alt="ESP32 Ready" src="https://img.shields.io/badge/ESP32--S3-CSI%20streaming-purple.svg" /></a><br />
+<a href="https://crates.io/crates/wifi-densepose-ruvector"><img alt="crates.io" src="https://img.shields.io/crates/v/wifi-densepose-ruvector.svg" /></a></p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>How</th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pose estimation</strong></td>
+<td>CSI subcarrier amplitude/phase → 17 COCO keypoints</td>
+<td>171K emb/s (M4 Pro)</td>
+</tr>
+<tr>
+<td><strong>Breathing detection</strong></td>
+<td>Bandpass 0.1-0.5 Hz → zero-crossing BPM</td>
+<td>6-30 BPM</td>
+</tr>
+<tr>
+<td><strong>Heart rate</strong></td>
+<td>Bandpass 0.8-2.0 Hz → zero-crossing BPM</td>
+<td>40-120 BPM</td>
+</tr>
+<tr>
+<td><strong>Presence sensing</strong></td>
+<td>Trained model + PIR fusion — 100% accuracy</td>
+<td>0.012 ms latency</td>
+</tr>
+<tr>
+<td><strong>Through-wall</strong></td>
+<td>Fresnel zone geometry + multipath modeling</td>
+<td>Up to 5m depth</td>
+</tr>
+<tr>
+<td><strong>Edge intelligence</strong></td>
+<td>8-dim feature vectors + RVF store on Cognitum Seed</td>
+<td>$140 total BOM</td>
+</tr>
+<tr>
+<td><strong>Camera-free training</strong></td>
+<td>10 sensor signals, no labels needed</td>
+<td>84s on M4 Pro</td>
+</tr>
+<tr>
+<td><strong>Camera-supervised training</strong></td>
+<td>MediaPipe + ESP32 CSI → 92.9% PCK@20</td>
+<td>19 min on laptop</td>
+</tr>
+<tr>
+<td><strong>Multi-frequency mesh</strong></td>
+<td>Channel hopping across 6 bands, neighbor APs as illuminators</td>
+<td>3x sensing bandwidth</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<pre><code class="language-bash"># Option 1: Docker (simulated data, no hardware needed)
+docker pull ruvnet/wifi-densepose:latest
+docker run -p 3000:3000 ruvnet/wifi-densepose:latest
+# Open http://localhost:3000
+
+# Option 2: Live sensing with ESP32-S3 hardware ($9)
+# Flash firmware, provision WiFi, and start sensing:
+python -m esptool --chip esp32s3 --port COM9 --baud 460800 \
+  write_flash 0x0 bootloader.bin 0x8000 partition-table.bin \
+  0xf000 ota_data_initial.bin 0x20000 esp32-csi-node.bin
+python firmware/esp32-csi-node/provision.py --port COM9 \
+  --ssid &quot;YourWiFi&quot; --password &quot;secret&quot; --target-ip 192.168.1.20
+
+# Option 3: Full system with Cognitum Seed ($140)
+# ESP32 streams CSI → bridge forwards to Seed for persistent storage + kNN + witness chain
+node scripts/rf-scan.js --port 5006           # Live RF room scan
+node scripts/snn-csi-processor.js --port 5006  # SNN real-time learning
+node scripts/mincut-person-counter.js --port 5006  # Correct person counting
+</code></pre>
+<blockquote>
+<p>[!NOTE]<br />
+<strong>CSI-capable hardware recommended.</strong> Presence, vital signs, through-wall sensing, and all advanced capabilities require Channel State Information (CSI) from an ESP32-S3 ($9) or research NIC. The Docker image runs with simulated data for evaluation. Consumer WiFi laptops provide RSSI-only presence detection.</p>
+<p><strong>Hardware options</strong> for live CSI capture:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Hardware</th>
+<th>Cost</th>
+<th>Full CSI</th>
+<th>Capabilities</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ESP32 + Cognitum Seed</strong> (recommended)</td>
+<td>ESP32-S3 + <a href="https://cognitum.one">Cognitum Seed</a></td>
+<td>~$140</td>
+<td>Yes</td>
+<td>Pose, breathing, heartbeat, motion, presence + persistent vector store, kNN search, witness chain, MCP proxy</td>
+</tr>
+<tr>
+<td><strong>ESP32 Mesh</strong></td>
+<td>3-6x ESP32-S3 + WiFi router</td>
+<td>~$54</td>
+<td>Yes</td>
+<td>Pose, breathing, heartbeat, motion, presence</td>
+</tr>
+<tr>
+<td><strong>Research NIC</strong></td>
+<td>Intel 5300 / Atheros AR9580</td>
+<td>~$50-100</td>
+<td>Yes</td>
+<td>Full CSI with 3x3 MIMO</td>
+</tr>
+<tr>
+<td><strong>Any WiFi</strong></td>
+<td>Windows, macOS, or Linux laptop</td>
+<td>$0</td>
+<td>No</td>
+<td>RSSI-only: coarse presence and motion</td>
+</tr>
+</tbody>
+</table>
+<p>No hardware? Verify the signal processing pipeline with the deterministic reference signal: <code>python v1/data/proof/verify.py</code><br />
+</p>
+</blockquote>
+<hr />
+<h3>Real-Time Dense Point Cloud (NEW)</h3>
+<p>RuView now generates <strong>real-time 3D point clouds</strong> by fusing camera depth + WiFi CSI + mmWave radar. All sensors stream simultaneously into a unified spatial model.</p>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>Data</th>
+<th>Integration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Camera</strong></td>
+<td>MiDaS monocular depth (GPU)</td>
+<td>640×480 → 19,200+ depth points per frame</td>
+</tr>
+<tr>
+<td><strong>ESP32 CSI</strong></td>
+<td>ADR-018 binary frames (UDP)</td>
+<td>RF tomography → 8×8×4 occupancy grid</td>
+</tr>
+<tr>
+<td><strong>WiFlow Pose</strong></td>
+<td>17 COCO keypoints from CSI</td>
+<td>Skeleton overlay on point cloud</td>
+</tr>
+<tr>
+<td><strong>Vital Signs</strong></td>
+<td>Breathing rate from CSI phase</td>
+<td>Stored in ruOS brain every 60s</td>
+</tr>
+<tr>
+<td><strong>Motion</strong></td>
+<td>CSI amplitude variance</td>
+<td>Adaptive capture rate (skip depth when still)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quick start:</strong></p>
+<pre><code class="language-bash">cd rust-port/wifi-densepose-rs
+cargo build --release -p wifi-densepose-pointcloud
+./target/release/ruview-pointcloud serve --bind 127.0.0.1:9880
+# Open http://localhost:9880 for live 3D viewer
+</code></pre>
+<p><strong>CLI commands:</strong><br />
+```bash<br />
+ruview-pointcloud demo                            # synthetic demo<br />
+ruview-pointcloud serve --bind 127.0.0.1:9880     # live server + Three.js viewer<br />
+ruview-pointcloud capture --output room.ply       # capture to PLY<br />
+ru</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/ruvnet/RuView#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">HKUDS /</span>
+          <a href="https://github.com/HKUDS/RAG-Anything" target="_blank" rel="noopener">RAG-Anything</a>
+        </div>
+        <div class="repo-desc">&quot;RAG-Anything: All-in-One RAG Framework&quot;</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 17,702</span>
+      <span class="meta-item">🍴 2,071</span>
+      <span class="stars-today">⭐ 786 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<div style="margin: 20px 0;">
+  <img src="./assets/logo.png" width="120" height="120" alt="RAG-Anything Logo" style="border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 217, 255, 0.3);">
+</div>
+
+# 🚀 RAG-Anything: All-in-One RAG Framework
+
+<a href="https://trendshift.io/repositories/14959" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14959" alt="HKUDS%2FRAG-Anything | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+<div align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=24&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&width=600&lines=Welcome+to+RAG-Anything;Next-Gen+Multimodal+RAG+System;Powered+by+Advanced+AI+Technology" alt="Typing Animation" />
+</div>
+
+<div align="center">
+  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 25px; text-align: center;">
+    <p>
+      <a href='https://github.com/HKUDS/RAG-Anything'><img src='https://img.shields.io/badge/🔥Project-Page-00d9ff?style=for-the-badge&logo=github&logoColor=white&labelColor=1a1a2e'></a>
+      <a href='https://arxiv.org/abs/2510.12323'><img src='https://img.shields.io/badge/📄arXiv-2510.12323-ff6b6b?style=for-the-badge&logo=arxiv&logoColor=white&labelColor=1a1a2e'></a>
+      <a href='https://github.com/HKUDS/LightRAG'><img src='https://img.shields.io/badge/⚡Based%20on-LightRAG-4ecdc4?style=for-the-badge&logo=lightning&logoColor=white&labelColor=1a1a2e'></a>
+    </p>
+    <p>
+      <a href="https://github.com/HKUDS/RAG-Anything/stargazers"><img src='https://img.shields.io/github/stars/HKUDS/RAG-Anything?color=00d9ff&style=for-the-badge&logo=star&logoColor=white&labelColor=1a1a2e' /></a>
+      <img src="https://img.shields.io/badge/🐍Python-3.10-4ecdc4?style=for-the-badge&logo=python&logoColor=white&labelColor=1a1a2e">
+      <a href="https://pypi.org/project/raganything/"><img src="https://img.shields.io/pypi/v/raganything.svg?style=for-the-badge&logo=pypi&logoColor=white&labelColor=1a1a2e&color=ff6b6b"></a>
+      <a href="https://github.com/astral-sh/uv"><img src="https://img.shields.io/badge/⚡uv-Ready-ff6b6b?style=for-the-badge&logo=python&logoColor=white&labelColor=1a1a2e"></a>
+    </p>
+    <p>
+      <a href="https://discord.gg/yF2MmDJyGJ"><img src="https://img.shields.io/badge/💬Discord-Community-7289da?style=for-the-badge&logo=discord&logoColor=white&labelColor=1a1a2e"></a>
+      <a href="https://github.com/HKUDS/RAG-Anything/issues/7"><img src="https://img.shields.io/badge/💬WeChat-Group-07c160?style=for-the-badge&logo=wechat&logoColor=white&labelColor=1a1a2e"></a>
+    </p>
+    <p>
+      <a href="README_zh.md"><img src="https://img.shields.io/badge/🇨🇳中文版-1a1a2e?style=for-the-badge"></a>
+      <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸English-1a1a2e?style=for-the-badge"></a>
+    </p>
+  </div>
+</div>
+
+</div>
+
+<div align="center">
+  <div style="width: 100%; height: 2px; margin: 20px 0; background: linear-gradient(90deg, transparent, #00d9ff, transparent);"></div>
+</div>
+
+<div align="center">
+  <a href="#-quick-start" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/Quick%20Start-Get%20Started%20Now-00d9ff?style=for-the-badge&logo=rocket&logoColor=white&labelColor=1a1a2e">
+  </a>
+</div>
+
+<hr />
+<div align="center">
+  <table>
+    <tr>
+      <td style="vertical-align: middle;">
+        <img src="./assets/LiteWrite.png"
+             width="56"
+             height="56"
+             alt="LiteWrite"
+             style="border-radius: 12px;" />
+      </td>
+      <td style="vertical-align: middle; padding-left: 12px;">
+        <a href="https://litewrite.ai">
+          <img src="https://img.shields.io/badge/🚀%20LiteWrite-AI%20Native%20LaTeX%20Editor-ff6b6b?style=for-the-badge&logoColor=white&labelColor=1a1a2e">
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<hr />
+<h2>🎉 News</h2>
+<ul>
+<li>[X] [2025.10]🎯📢 🚀 We have released the technical report of <a href="http://arxiv.org/abs/2510.12323">RAG-Anything</a>. Access it now to explore our latest research findings.</li>
+<li>[X] [2025.08]🎯📢 🔍 RAG-Anything now features <strong>VLM-Enhanced Query</strong> mode! When documents include images, the system seamlessly integrates them into VLM for advanced multimodal analysis, combining visual and textual context for deeper insights.</li>
+<li>[X] [2025.07]🎯📢 RAG-Anything now features a <a href="docs/context_aware_processing.md">context configuration module</a>, enabling intelligent integration of relevant contextual information to enhance multimodal content processing.</li>
+<li>[X] [2025.07]🎯📢 🚀 RAG-Anything now supports multimodal query capabilities, enabling enhanced RAG with seamless processing of text, images, tables, and equations.</li>
+<li>[X] [2025.07]🎯📢 🎉 RAG-Anything has reached 1k🌟 stars on GitHub! Thank you for your incredible support and valuable contributions to the project.</li>
+</ul>
+<hr />
+<h2>🌟 System Overview</h2>
+<p><em>Next-Generation Multimodal Intelligence</em></p>
+<div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); border-radius: 15px; padding: 25px; margin: 20px 0; border: 2px solid #00d9ff; box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);">
+
+Modern documents increasingly contain diverse multimodal content—text, images, tables, equations, charts, and multimedia—that traditional text-focused RAG systems cannot effectively process. **RAG-Anything** addresses this challenge as a comprehensive **All-in-One Multimodal Document Processing RAG system** built on [LightRAG](https://github.com/HKUDS/LightRAG).
+
+As a unified solution, RAG-Anything **eliminates the need for multiple specialized tools**. It provides **seamless processing and querying across all content modalities** within a single integrated framework. Unlike conventional RAG approaches that struggle with non-textual elements, our all-in-one system delivers **comprehensive multimodal retrieval capabilities**.
+
+Users can query documents containing **interleaved text**, **visual diagrams**, **structured tables**, and **mathematical formulations** through **one cohesive interface**. This consolidated approach makes RAG-Anything particularly valuable for academic research, technical documentation, financial reports, and enterprise knowledge management where rich, mixed-content documents demand a **unified processing framework**.
+
+<img src="assets/rag_anything_framework.png" alt="RAG-Anything" />
+
+</div>
+
+<h3>🎯 Key Features</h3>
+<div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 15px; padding: 25px; margin: 20px 0;">
+
+- **🔄 End-to-End Multimodal Pipeline** - Complete workflow from document ingestion and parsing to intelligent multimodal query answering
+- **📄 Universal Document Support** - Seamless processing of PDFs, Office documents, images, and diverse file formats
+- **🧠 Specialized Content Analysis** - Dedicated processors for images, tables, mathematical equations, and heterogeneous content types
+- **🔗 Multimodal Knowledge Graph** - Automatic entity extraction and cross-modal relationship discovery for enhanced understanding
+- **⚡ Adaptive Processing Modes** - Flexible MinerU-based parsing or direct multimodal content injection workflows
+- **📋 Direct Content List Insertion** - Bypass document parsing by directly inserting pre-parsed content lists from external sources
+- **🎯 Hybrid Intelligent Retrieval** - Advanced search capabilities spanning textual and multimodal content with contextual understanding
+
+</div>
+
+<hr />
+<h2>🏗️ Algorithm &amp; Architecture</h2>
+<div style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%); border-radius: 15px; padding: 25px; margin: 20px 0; border-left: 5px solid #00d9ff;">
+
+### Core Algorithm
+
+**RAG-Anything** implements an effective **multi-stage multimodal pipeline** that fundamentally extends traditional RAG architectures to seamlessly handle diverse content modalities through intelligent orchestration and cross-modal understanding.
+
+</div>
+
+<div align="center">
+  <div style="width: 100%; max-width: 600px; margin: 2
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/HKUDS/RAG-Anything#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">sansan0 /</span>
+          <a href="https://github.com/sansan0/TrendRadar" target="_blank" rel="noopener">TrendRadar</a>
+        </div>
+        <div class="repo-desc">⭐AI-driven public opinion &amp; trend monitor with multi-platform aggregation, RSS, and smart alerts.🎯 告别信息过载，你的 AI 舆情监控助手与热点筛选工具！聚合多平台热点 + RSS 订阅，支持关键词精准筛选。AI 智能筛选新闻 + AI 翻译 + AI 分析简报直推手机，也支持接入 MCP 架构，赋能 AI 自然语言对话分析、情感洞察与趋势预测等。支持 Docker ，数据本地/云端自持。集成微信/飞书/钉钉/Telegram/邮件/ntfy/bark/slack 等渠道智能推送。</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 54,664</span>
+      <span class="meta-item">🍴 23,682</span>
+      <span class="stars-today">⭐ 969 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center" id="trendradar">
+
+<a href="https://github.com/sansan0/TrendRadar" title="TrendRadar">
+  <img src="/_image/banner.webp" alt="TrendRadar Banner" width="80%">
+</a>
+
+最快<strong>30秒</strong>部署的热点助手 —— 告别无效刷屏，只看真正关心的新闻资讯
+
+<a href="https://trendshift.io/repositories/14726" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14726" alt="sansan0%2FTrendRadar | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+
+[![GitHub Stars](https://img.shields.io/github/stars/sansan0/TrendRadar?style=flat-square&logo=github&color=yellow)](https://github.com/sansan0/TrendRadar/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/sansan0/TrendRadar?style=flat-square&logo=github&color=blue)](https://github.com/sansan0/TrendRadar/network/members)
+[![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg?style=flat-square)](LICENSE)
+[![Version](https://img.shields.io/badge/version-v6.6.1-blue.svg)](https://github.com/sansan0/TrendRadar)
+[![MCP](https://img.shields.io/badge/MCP-v4.0.2-green.svg)](https://github.com/sansan0/TrendRadar)
+[![RSS](https://img.shields.io/badge/RSS-订阅源支持-orange.svg?style=flat-square&logo=rss&logoColor=white)](https://github.com/sansan0/TrendRadar)
+[![AI翻译](https://img.shields.io/badge/AI-多语言推送-purple.svg?style=flat-square)](https://github.com/sansan0/TrendRadar)
+
+[![企业微信通知](https://img.shields.io/badge/企业微信-通知-00D4AA?style=flat-square)](https://work.weixin.qq.com/)
+[![个人微信通知](https://img.shields.io/badge/个人微信-通知-00D4AA?style=flat-square)](https://weixin.qq.com/)
+[![Telegram通知](https://img.shields.io/badge/Telegram-通知-00D4AA?style=flat-square)](https://telegram.org/)
+[![dingtalk通知](https://img.shields.io/badge/钉钉-通知-00D4AA?style=flat-square)](#)
+[![飞书通知](https://img.shields.io/badge/飞书-通知-00D4AA?style=flat-square)](https://www.feishu.cn/)
+[![邮件通知](https://img.shields.io/badge/Email-通知-00D4AA?style=flat-square)](#)
+[![ntfy通知](https://img.shields.io/badge/ntfy-通知-00D4AA?style=flat-square)](https://github.com/binwiederhier/ntfy)
+[![Bark通知](https://img.shields.io/badge/Bark-通知-00D4AA?style=flat-square)](https://github.com/Finb/Bark)
+[![Slack通知](https://img.shields.io/badge/Slack-通知-00D4AA?style=flat-square)](https://slack.com/)
+[![通用Webhook](https://img.shields.io/badge/通用-Webhook-607D8B?style=flat-square&logo=webhook&logoColor=white)](#)
+
+
+[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-自动化-2088FF?style=flat-square&logo=github-actions&logoColor=white)](https://github.com/sansan0/TrendRadar)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-部署-4285F4?style=flat-square&logo=github&logoColor=white)](https://sansan0.github.io/TrendRadar)
+[![Docker](https://img.shields.io/badge/Docker-部署-2496ED?style=flat-square&logo=docker&logoColor=white)](https://hub.docker.com/r/wantcat/trendradar)
+[![MCP Support](https://img.shields.io/badge/MCP-AI分析支持-FF6B6B?style=flat-square&logo=ai&logoColor=white)](https://modelcontextprotocol.io/)
+[![AI分析推送](https://img.shields.io/badge/AI-分析推送-FF6B6B?style=flat-square&logo=openai&logoColor=white)](#)
+[![AI智能筛选](https://img.shields.io/badge/AI-智能筛选新闻-9B59B6?style=flat-square&logo=openai&logoColor=white)](#)
+
+</div>
+
+<div align="center">
+
+**中文** | **[English](README-EN.md)**
+
+</div>
+
+<blockquote>
+<p>本项目以轻量，易部署为目标</p>
+</blockquote>
+<p><br></p>
+<h2>📑 快速导航</h2>
+<blockquote>
+<p>💡 <strong>点击下方链接</strong>可快速跳转到对应章节。部署推荐从「<strong>快速开始</strong>」入手，需要详细自定义请看「<strong>配置详解</strong>」</p>
+</blockquote>
+<div align="center">
+
+|   |   |   |
+|:---:|:---:|:---:|
+| [🚀 **快速开始**](#-快速开始) | [AI 智能分析](#-ai-智能分析) | [⚙️ **配置详解**](#配置详解) |
+| [Docker部署](#6-docker-部署) | [MCP客户端](#-mcp-客户端) | [📝 **更新日志**](#-更新日志) |
+| [🎯 **核心功能**](#-核心功能) | [☕ **支持项目**](#-支持项目) | [📚 **项目相关**](#-项目相关) |
+
+</div>
+
+<p><br></p>
+<ul>
+<li>感谢<strong>为项目点 star</strong> 的观众们，<strong>fork</strong> 你所欲也，<strong>star</strong> 我所欲也，两者得兼😍是对开源精神最好的支持</li>
+</ul>
+<details>
+<summary>👉 点击展开：<strong>致谢名单</strong> (天使轮荣誉榜 🔥73+🔥 位)</summary>
+
+### 早期支持者致谢
+
+> 💡 **特别说明**：
+>
+> 1. **关于名单**：下方表格记录了项目起步阶段（天使轮）的支持者。因早期人工统计繁琐，**难免存在疏漏或记录不全的情况，如有遗漏，实非本意，万望海涵**。
+> 2. **未来规划**：为了将有限的精力回归代码与功能迭代，**即日起不再人工维护此名单**。
+>
+> 无论名字是否上榜，你们的每一份支持都是 TrendRadar 能够走到今天的基石。🙏
+
+### 基础设施支持
+
+感谢 **GitHub** 免费提供的基础设施，这是本项目得以**一键 fork**便捷运行的最大前提。
+
+### 数据支持
+
+本项目使用 [newsnow](https://github.com/ourongxing/newsnow) 项目的 API 获取多平台数据，特别感谢作者提供的服务。
+
+经联系，作者表示无需担心服务器压力，但这是基于他的善意和信任。请大家：
+- **前往 [newsnow 项目](https://github.com/ourongxing/newsnow) 点 star 支持**
+- Docker 部署时，请合理控制推送频率，勿竭泽而渔
+
+### 推广助力
+
+> 感谢以下平台和个人的推荐(按时间排列)
+
+- [小众软件](https://mp.weixin.qq.com/s/fvutkJ_NPUelSW9OGK39aA) - 开源软件推荐平台
+- [LinuxDo 社区](https://linux.do/) - 技术爱好者的聚集地
+- [阮一峰周刊](https://github.com/ruanyf/weekly) - 技术圈有影响力的周刊
+
+### 观众支持
+
+> 感谢**给予资金支持**的朋友们，你们的慷慨已化身为键盘旁的零食饮料，陪伴着项目的每一次迭代。
+>
+> **关于"一元点赞"的回归**：
+> 随着 v5.0.0 版本的发布，项目迈入了一个新的阶段。为了支持日益增长的 API 成本和咖啡因消耗，"一元点赞"通道现已重新开启。你的每一份心意，都将转化为代码世界里的 Token 和动力。🚀 [前往支持](#-支持项目)
+
+|           点赞人            |  金额  |  日期  |             备注             |
+| :-------------------------: | :----: | :----: | :-----------------------: |
+|           D*5          |  1.8 * 3 | 2025.11.24  |    | 
+|           *鬼          |  1 | 2025.11.17  |    | 
+|           *超          |  10 | 2025.11.17  |    | 
+|           R*w          |  10 | 2025.11.17  | 这 agent 做的牛逼啊,兄弟    | 
+|           J*o          |  1 | 2025.11.17  | 感谢开源,祝大佬事业有成    | 
+|           *晨          |  8.88  | 2025.11.16  | 项目不错,研究学习中    | 
+|           *海          |  1  | 2025.11.15  |    | 
+|           *德          |  1.99  | 2025.11.15  |    | 
+|           *疏          |  8.8  | 2025.11.14  |  感谢开源，项目很棒，支持一下   | 
+|           M*e          |  10  | 2025.11.14  |  开源不易，大佬辛苦了   | 
+|           **柯          |  1  | 2025.11.14  |     | 
+|           *云          |  88  | 2025.11.13  |    好项目，感谢开源  | 
+|           *W          |  6  | 2025.11.13  |      | 
+|           *凯          |  1  | 2025.11.13  |      | 
+|           对*.          |  1  | 2025.11.13  |    Thanks for your TrendRadar  | 
+|           s*y          |  1  | 2025.11.13  |      | 
+|           **翔          |  10  | 2025.11.13  |   好项目，相见恨晚，感谢开源！     | 
+|           *韦          |  9.9  | 2025.11.13  |   TrendRadar超赞，请老师喝咖啡~     | 
+|           h*p          |  5  | 2025.11.12  |   支持中国开源力量，加油！     | 
+|           c*r          |  6  | 2025.11.12  |        | 
+|           a*n          |  5  | 2025.11.12  |        | 
+|           。*c          |  1  | 2025.11.12  |    感谢开源分享    | 
+|           *记          |  1  | 2025.11.11  |        | 
+|           *主          |  1  | 2025.11.10  |        | 
+|           *了          |  10  | 2025.11.09  |        | 
+|           *杰          |  5  | 2025.11.08  |        | 
+|           *点          |  8.80  | 2025.11.07  |   开发不易，支持一下。     | 
+|           Q*Q          |  6.66  | 2025.11.07  |   感谢开源！     | 
+|           C*e          |  1  | 2025.11.05  |        | 
+|           Peter Fan          |  20  | 2025.10.29  |        | 
+|           M*n          |  1  | 2025.10.27  |      感谢开源  | 
+|           *许          |  8.88  | 2025.10.23  |      老师 小白一枚，摸了几天了还没整起来，求教  | 
+|           Eason           |  1  | 2025.10.22  |      还没整明白，但你在做好事  | 
+|           P*n           |  1  | 2025.10.20  |          |
+|           *杰           |  1  | 2025.10.19  |          |
+|           *徐           |  1  | 2025.10.18  |          |
+|           *志           |  1  | 2025.10.17  |          |
+|           *😀           |  10  | 2025.10.16  |     点赞     |
+|           **杰           |  10  | 2025.10.16  |          |
+|           *啸           |  10  | 2025.10.16  |          |
+|           *纪           |  5  | 2025.10.14  | TrendRadar         |
+|           J*d           |  1  | 2025.10.14  | 谢谢你的工具，很好玩...          |
+|           *H           |  1  | 2025.10.14  |           |
+|           那*O           |  10  | 2025.10.13  |           |
+|           *圆           |  1  | 2025.10.13  |           |
+|           P*g           |  6  | 2025.10.13  |           |
+|           Ocean           |  20  | 2025.10.12  |  ...真的太棒了！！！小白级别也能直接用...         |
+|           **培           |  5.2  | 2025.10.2  |  github-yzyf1312:开源万岁         |
+|           *椿           |  3  | 2025.9.23  |  加油，很不错         |
+|           *🍍           |  10  | 2025.9.21  |           |
+|
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/sansan0/TrendRadar#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">AIDC-AI /</span>
+          <a href="https://github.com/AIDC-AI/Pixelle-Video" target="_blank" rel="noopener">Pixelle-Video</a>
+        </div>
+        <div class="repo-desc">🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 5,951</span>
+      <span class="meta-item">🍴 933</span>
+      <span class="stars-today">⭐ 308 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">🎬 Pixelle-Video —— AI 全自动短视频引擎</h1>
+
+<p align="center"><a href="README_EN.md">English</a> | <b>中文</b></p>
+
+<p align="center">
+  <a href="https://www.bilibili.com/video/BV1WzyGBnEVp/?vd_source=e7e7d4ca8db9a18c80f17a24a6582fca" target="_blank"><img src="https://img.shields.io/badge/🎥 视频教程-EA4C89" alt="视频教程"></a>
+  <a href="https://github.com/AIDC-AI/Pixelle-Video/releases" target="_blank"><img src="https://img.shields.io/badge/📦 Windows包-50C878" alt="Windows整合包"></a>
+  <a href="https://aidc-ai.github.io/Pixelle-Video/zh" target="_blank"><img src="https://img.shields.io/badge/📘 使用文档-4A90E2" alt="使用文档"></a>
+  <a href="https://github.com/AIDC-AI/Pixelle-Video/stargazers"><img src="https://img.shields.io/github/stars/AIDC-AI/Pixelle-Video.svg" alt="Stargazers"></a>
+  <a href="https://github.com/AIDC-AI/Pixelle-Video/issues"><img src="https://img.shields.io/github/issues/AIDC-AI/Pixelle-Video.svg" alt="Issues"></a>
+  <a href="https://github.com/AIDC-AI/Pixelle-Video/network/members"><img src="https://img.shields.io/github/forks/AIDC-AI/Pixelle-Video.svg" alt="Forks"></a>
+  <a href="https://github.com/AIDC-AI/Pixelle-Video/blob/main/LICENSE"><img src="https://img.shields.io/github/license/AIDC-AI/Pixelle-Video.svg" alt="License"></a>
+</p>
+
+<p>https://github.com/user-attachments/assets/a42e7457-fcc8-40da-83fc-784c45a8b95d</p>
+<p><br/></p>
+<p>只需输入一个 <strong>主题</strong>，Pixelle-Video 就能自动完成：<br />
+- ✍️ 撰写视频文案<br />
+- 🎨 生成 AI 配图/视频<br />
+- 🗣️ 合成语音解说<br />
+- 🎵 添加背景音乐<br />
+- 🎬 一键合成视频  </p>
+<p><strong>零门槛，零剪辑经验</strong>，让视频创作成为一句话的事！</p>
+<h2>🖥️ Web 界面预览</h2>
+<p><img alt="Web UI界面" src="resources/webui.png" /></p>
+<h2>📋 最近更新</h2>
+<ul>
+<li>✅ <strong>2026-01-26</strong>: 新增「动作迁移」模块，上传参考视频和图片进行动作迁移</li>
+<li>✅ <strong>2026-01-14</strong>: 新增「数字人口播」和「图生视频」流水线，新增多语言 TTS 音色支持</li>
+<li>✅ <strong>2026-01-06</strong>: 新增 RunningHub 48G 显存机器调用支持</li>
+<li>✅ <strong>2025-12-28</strong>: 支持 RunningHub 并发限制可配置，优化 LLM 返回结构化数据的逻辑</li>
+<li>✅ <strong>2025-12-17</strong>: 支持 ComfyUI API Key 配置，支持 Nano Banana 模型调用，API 接口支持模板自定义参数</li>
+<li>✅ <strong>2025-12-10</strong>: 侧边栏内置 FAQ，锁定 edge-tts 版本修复 TTS 服务不稳定问题</li>
+<li>✅ <strong>2025-12-08</strong>: 支持固定脚本多种分割方式(段落/行/句子)，优化模板选择交互逻辑支持直接预览选择</li>
+<li>✅ <strong>2025-12-06</strong>: 修复视频生成 API 返回 URL 路径处理，支持跨平台兼容</li>
+<li>✅ <strong>2025-12-05</strong>: 新增 Windows 整合包下载，优化图片与视频反推工作流</li>
+<li>✅ <strong>2025-12-04</strong>: 新增「自定义素材」功能，支持用户上传自己的照片和视频，AI 智能分析生成脚本</li>
+<li>✅ <strong>2025-11-18</strong>: 优化 RunningHub 服务调用支持并行处理，新增历史记录页面，支持批量创建视频任务</li>
+</ul>
+<h2>✨ 功能亮点</h2>
+<ul>
+<li>✅ <strong>全自动生成</strong> - 输入主题，自动生成完整视频</li>
+<li>✅ <strong>AI 智能文案</strong> - 根据主题智能创作解说词，无需自己写脚本</li>
+<li>✅ <strong>AI 生成配图</strong> - 每句话都配上精美的 AI 插图</li>
+<li>✅ <strong>AI 生成视频</strong> - 支持使用 AI 视频生成模型（如 WAN 2.1）创建动态视频内容</li>
+<li>✅ <strong>AI 生成语音</strong> - 支持 Edge-TTS、Index-TTS 等众多主流 TTS 方案</li>
+<li>✅ <strong>背景音乐</strong> - 支持添加 BGM，让视频更有氛围</li>
+<li>✅ <strong>视觉风格</strong> - 多种模板可选，打造独特视频风格</li>
+<li>✅ <strong>灵活尺寸</strong> - 支持竖屏、横屏等多种视频尺寸</li>
+<li>✅ <strong>多种 AI 模型</strong> - 支持 GPT、通义千问、DeepSeek、Ollama 等</li>
+<li>✅ <strong>原子能力灵活组合</strong> - 基于 ComfyUI 架构，可使用预置工作流，也可自定义任意能力（如替换生图模型为 FLUX、替换 TTS 为 ChatTTS 等）</li>
+</ul>
+<h2>📊 视频生成流程</h2>
+<p>Pixelle-Video 采用模块化设计，整个视频生成流程清晰简洁：</p>
+<p><img alt="视频生成流程图" src="resources/flow.png" /></p>
+<p>从输入文本到最终视频输出，整个流程简洁清晰：<strong>文案生成 → 配图规划 → 逐帧处理 → 视频合成</strong></p>
+<p>每个环节都支持灵活定制，可选择不同的 AI 模型、音频引擎、视觉风格等，满足个性化创作需求。</p>
+<h2>🎬 视频示例</h2>
+<p>以下是使用 Pixelle-Video 生成的实际案例，展示了不同主题和风格的视频效果：</p>
+<h3>📱 扩展模块视频展示</h3>
+<table>
+<tr>
+<td width="33%">
+<h3>👤 数字人口播</h3>
+<video src="https://github.com/user-attachments/assets/7c122563-c2e0-4dcd-a73c-25ba1d4fa2dd" controls width="100%"></video>
+<p align="center"><b>韩语数字人口播</b></p>
+</td>
+<td width="33%">
+<h3>🖼️ 图生视频</h3>
+<video src="https://github.com/user-attachments/assets/5b4eef17-07d0-4bde-9748-2ed68cc9888e" controls width="100%"></video>
+<p align="center"><b>卡通视频</b></p>
+</td>
+<td width="33%">
+<h3>💃 动作迁移</h3>
+<video src="https://github.com/user-attachments/assets/7b1240bc-e965-434c-b343-118ec4793d4f" controls width="100%"></video>
+<p align="center"><b>跳舞小猫</b></p>
+</td>
+</tr>
+</table>
+
+<h3>📱 竖屏视频展示</h3>
+<table>
+<tr>
+<td width="33%">
+<h3>🌄 人文纪实类 - 视频默认模版</h3>
+<video src="https://github.com/user-attachments/assets/e6716c1d-78de-453d-84c2-10873c8c595f" controls width="100%"></video>
+<p align="center"><b>旅行路上的风景让人流连忘返</b></p>
+</td>
+<td width="33%">
+<h3>🔍 文化解构类 - 视频默认模版</h3>
+<video src="https://github.com/user-attachments/assets/f5de75f6-135a-4ab4-9f5f-079f649764d5" controls width="100%"></video>
+<p align="center"><b>Santa ID</b></p>
+</td>
+<td width="33%">
+<h3>🔭 科学思辨类 - 视频默认模版</h3>
+<video src="https://github.com/user-attachments/assets/ceb8b0df-8331-4e1f-88e7-db5b295a1c1d" controls width="100%"></video>
+<p align="center"><b>为什么我们还没有找到外星文明？</b></p>
+</td>
+</tr>
+<tr>
+<td width="33%">
+<h3>🌱 个人成长类 - 克隆音色</h3>
+<video src="https://github.com/user-attachments/assets/1bad9a49-df83-4905-9cc8-9a7640e9c7d8" controls width="100%"></video>
+<p align="center"><b>如何提升自己</b></p>
+</td>
+<td width="33%">
+<h3>🧠 深度思考类 - 默认模板</h3>
+<video src="https://github.com/user-attachments/assets/663b705a-2aea-44bc-b266-4bb27aa255a8" controls width="100%"></video>
+<p align="center"><b>如何理解反脆弱</b></p>
+</td>
+<td width="33%">
+<h3>🏯 历史文化类 - 固定画面</h3>
+<video src="https://github.com/user-attachments/assets/56e0a018-fa99-47eb-a97f-fc2fa8915724" controls width="100%"></video>
+<p align="center"><b>资治通鉴</b></p>
+</td>
+</tr>
+<tr>
+<td width="33%">
+<h3>☀️ 情感类 - 克隆音色</h3>
+<video src="https://github.com/user-attachments/assets/4687df95-dd21-4a7b-b01e-f33a7b646644" controls width="100%"></video>
+<p align="center"><b>冬日暖阳</b></p>
+</td>
+<td width="33%">
+<h3>📜 小说解说类 - 自创脚本</h3>
+<video src="https://github.com/user-attachments/assets/d354465e-3fa8-40b4-93e9-61ad75ef0697" controls width="100%"></video>
+<p align="center"><b>斗破苍穹</b></p>
+</td>
+<td width="33%">
+<h3>🧬 知识科普类 - Qwen生图</h3>
+<video src="https://github.com/user-attachments/assets/8ac21768-41ce-4d41-acdd-e3dd3eb9725a" controls width="100%"></video>
+<p align="center"><b>养生知识</b></p>
+</td>
+</tr>
+</table>
+
+<h3>🖥️ 横屏视频展示</h3>
+<table>
+<tr>
+<td width="50%">
+<h3>💰 副业赚钱 - 电影模板</h3>
+<video src="https://github.com/user-attachments/assets/c9209d4e-73a6-4b82-aaad-cf102248c9e2" controls width="100%"></video>
+<p align="center"><b>副业赚钱</b></p>
+</td>
+<td width="50%">
+<h3>🏛️ 历史解说 - 自定义模板</h3>
+<video src="https://github.com/user-attachments/assets/a767c452-d5f1-4cff-bb34-b80fff0d4c3e" controls width="100%"></video>
+<p align="center"><b>资治通鉴启示录</b></p>
+</td>
+</tr>
+</table>
+
+<blockquote>
+<p>💡 <strong>提示</strong>: 这些视频都是通过输入一个主题关键词，由 AI 全自动生成的，无需任何视频剪辑经验！</p>
+</blockquote>
+<div id="tutorial-start" />
+
+<h2>🚀 快速开始</h2>
+<h3>🪟 Windows 一键整合包（推荐 Windows 用户使用）</h3>
+<p><strong>无需安装 Python、uv 或 ffmpeg，一键开箱即用！</strong></p>
+<p>👉 <strong><a href="https://github.com/AIDC-AI/Pixelle-Video/releases/latest">下载 Windows 一键整合包</a></strong></p>
+<ol>
+<li>下载最新的 Windows 一键整合包并解压</li>
+<li>双击运行 <code>start.bat</code> 启动 Web 界面</li>
+<li>浏览器会自动打开 http://localhost:8501</li>
+<li>在「⚙️ 系统配置」中配置 LLM API 和图像生成服务</li>
+<li>开始生成视频！</li>
+</ol>
+<blockquote>
+<p>💡 <strong>提示</strong>: 整合包已包含所有依赖，无需手动安装任何环境。首次使用只需配置 API 密钥即可。</p>
+</blockquote>
+<h3>从源码安装（适合 macOS / Linux 用户或需要自定义的用户）</h3>
+<h4>前置环境依赖</h4>
+<p>在开始之前，需要先安装 Python 包管理器 <code>uv</code> 和视频处理工具 <code>ffmpeg</code>：</p>
+<h5>安装 uv</h5>
+<p>请访问 uv 官方文档查看适合你系统的安装方法：<br />
+👉 <strong><a href="https://docs.astral.sh/uv/getting-started/installation/">uv 安装指南</a></strong></p>
+<p>安装完成后，在终端中运行 <code>uv --version</code> 验证安装成功。</p>
+<h5>安装 ffmpeg</h5>
+<p><strong>macOS</strong></p>
+<pre><code class="language-bash">brew install ffmpeg
+</code></pre>
+<p><strong>Ubuntu / Debian</strong></p>
+<pre><code class="language-bash">sudo apt update
+sudo apt install ffmpeg
+</code></pre>
+<p><strong>Windows</strong><br />
+- 下载地址：https://ffmpeg.org/download.html<br />
+- 下载后解压，将 <code>bin</code> 目录添加到系统环境变量 PATH 中</p>
+<p>安装完成后，在终端中运行 <code>ffmpeg -version</code> 验证安装成功。</p>
+<h4>第一步：下载项目</h4>
+<pre><code class="language-bash">git clone https://github.com/AIDC-AI/Pixelle-Video.git
+cd Pixelle-Video
+</code></pre>
+<h4>第二步：启动 Web 界面</h4>
+<pre><code class="language-bash"># 使用 uv 运行（推荐，会自动安装依赖）
+uv run streamlit run web/app.py
+</code></pre>
+<p>浏览器会自动打开 http://localhost:8501</p>
+<h4>第三步：在 Web 界面配置</h4>
+<p>首次使用时，展开「⚙️ 系统配置」面板，填写：<br />
+- <strong>LLM 配置</strong>: 选择 AI 模型（如通义千问、GPT 等）并填入 API Key<br />
+- <strong>图像配置</strong>: 如需生成图片，配置 ComfyUI 地址或 RunningHub API Key</p>
+<p>配置好后点击「保存配置」，就可以开始生成视频了！</p>
+<div id="tutorial-end" />
+
+<h2>💻 使用方法</h2>
+<p>打开 Web 界面后，你会看到三栏布局，下面详细讲解每个部分：</p>
+<h3>⚙️ 系统配置（首次必填）</h3>
+<p>首次使用时需要配置，点击展开「⚙️ 系统配置」面板：</p>
+<h4>1. LLM 配置（大语言模型）</h4>
+<p>用于生成视频文案的 AI。</p>
+<p><strong>快速选择预设</strong><br />
+- 通过下拉菜单选择预设模型（通义千问、GPT-4o、DeepSeek 等）<br />
+- 选择后会自动填充 base_url 和 model<br />
+- 点击「🔑 获取 API Key」链接去注册并获取密钥</p>
+<p><strong>手动配置</strong><br />
+- API Key: 填入你的密钥<br />
+- Base URL: API 地址<br />
+- Model: 模型名称</p>
+<h4>2. 图像配置</h4>
+<p>用于生成视频配图的 AI。</p>
+<p><strong>本地部署（推荐）</strong><br />
+- ComfyUI URL: 本地 ComfyUI 服务地址（默认 http://127.0.0.1:8188）<br />
+- 点击「测试连接」确认服务可用</p>
+<p><strong>云端部署</strong><br />
+- RunningHub API Key: 云端图像生成服务的密钥</p>
+<p>配置完成后点击「保存配置」。</p>
+<h3>📝 内容输入（左侧栏）</h3>
+<h4>生成模式</h4>
+<ul>
+<li><strong>AI 生成内容</strong>: 输入主题，AI 自动创作文案</li>
+<li>适合：想快速生成视频，让 AI 写稿</li>
+<li>例如：「为什么要养成阅读习惯」</li>
+<li><strong>固定文案内容</strong>: 直接输入完整文案，跳过 AI 创作</li>
+<li>适合：已有现成文案，直接生成视频</li>
+</ul>
+<h4>背景音乐（BGM）</h4>
+<ul>
+<li><strong>无 BGM</strong>: 纯人声解说</li>
+<li><strong>内置音乐</strong>: 选择预置的背景音乐</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/AIDC-AI/Pixelle-Video#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Z4nzu /</span>
+          <a href="https://github.com/Z4nzu/hackingtool" target="_blank" rel="noopener">hackingtool</a>
+        </div>
+        <div class="repo-desc">ALL IN ONE Hacking Tool For Hackers</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 60,029</span>
+      <span class="meta-item">🍴 6,746</span>
+      <span class="stars-today">⭐ 518 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<img src="images/logo.svg" alt="HackingTool" width="600">
+
+<p><b>All-in-One Hacking Tool for Security Researchers & Pentesters</b></p>
+
+[![License](https://img.shields.io/github/license/Z4nzu/hackingtool)](LICENSE)&nbsp;
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)&nbsp;
+[![Version](https://img.shields.io/badge/v2.0.0-00FF88?style=flat-square)](#)&nbsp;
+[![Stars](https://img.shields.io/github/stars/Z4nzu/hackingtool?style=flat-square&color=yellow)](https://github.com/Z4nzu/hackingtool/stargazers)&nbsp;
+[![Forks](https://img.shields.io/github/forks/Z4nzu/hackingtool?style=flat-square&color=blue)](https://github.com/Z4nzu/hackingtool/network/members)&nbsp;
+[![Issues](https://img.shields.io/github/issues/Z4nzu/hackingtool?style=flat-square&color=red)](https://github.com/Z4nzu/hackingtool/issues)&nbsp;
+[![Last Commit](https://img.shields.io/github/last-commit/Z4nzu/hackingtool?style=flat-square&color=00FF88)](https://github.com/Z4nzu/hackingtool/commits/master)
+
+![](https://img.shields.io/badge/20_Categories-7B61FF?style=for-the-badge)
+![](https://img.shields.io/badge/185+_Tools-00FF88?style=for-the-badge)
+![](https://img.shields.io/badge/19_Tags-FF61DC?style=for-the-badge)
+![](https://img.shields.io/badge/Linux_%7C_Kali_%7C_Parrot_%7C_macOS-FFA116?style=for-the-badge&logo=linux&logoColor=white)
+
+<a href="#installation"><img src="https://img.shields.io/badge/Install_Now-00FF88?style=for-the-badge&logo=rocket&logoColor=black" alt="Install Now"></a>&nbsp;
+<a href="#quick-commands"><img src="https://img.shields.io/badge/Quick_Commands-7B61FF?style=for-the-badge&logo=terminal&logoColor=white" alt="Quick Commands"></a>&nbsp;
+<a href="https://github.com/Z4nzu/hackingtool/issues/new?template=tool_request.md"><img src="https://img.shields.io/badge/Suggest_a_Tool-FF61DC?style=for-the-badge&logo=plus&logoColor=white" alt="Suggest a Tool"></a>
+
+</div>
+
+<hr />
+<h2>What's New in v2.0.0</h2>
+<table>
+<tr><td>
+
+| | Feature | Description |
+|:---:|---|---|
+| **🐍** | **Python 3.10+** | All Python 2 code removed, modern syntax throughout |
+| **🖥** | **OS-aware menus** | Linux-only tools hidden automatically on macOS |
+| **📦** | **185+ tools** | 35 new modern tools added across 6 categories |
+| **🔍** | **Search** | Type `/` to search all tools by name, description, or keyword |
+| **🏷** | **Tag filter** | Type `t` to filter by 19 tags — osint, web, c2, cloud, mobile... |
+| **💡** | **Recommend** | Type `r` — "I want to scan a network" → shows relevant tools |
+| **✅** | **Install status** | ✔/✘ shown next to every tool — know what's ready |
+| **⚡** | **Install all** | Option `97` in any category — batch install at once |
+| **🔄** | **Smart update** | Each tool has Update — auto-detects git pull / pip upgrade / go install |
+| **📂** | **Open folder** | Jump into any tool's directory for manual inspection |
+| **🐳** | **Docker** | Builds locally — no unverified external images |
+| **🚀** | **One-liner install** | `curl -sSL .../install.sh \| sudo bash` — zero manual steps |
+| **🏢** | **3 new categories** | Active Directory, Cloud Security, Mobile Security |
+
+</td></tr>
+</table>
+
+<hr />
+<h2>Quick Commands</h2>
+<div align="center">
+
+| Command | Action | Works in |
+|:---:|---|:---:|
+| `/query` | **Search** — find tools instantly by keyword | Main menu |
+| `t` | **Tags** — filter by osint, scanner, c2, cloud, mobile... | Main menu |
+| `r` | **Recommend** — "I want to do X" → matching tools | Main menu |
+| `?` | **Help** — quick reference card | Everywhere |
+| `q` | **Quit** — exit from any depth | Everywhere |
+| `97` | **Install All** — batch install all tools in category | Category |
+| `99` | **Back** — return to previous menu | Everywhere |
+
+</div>
+
+<hr />
+<h2>Tool Categories</h2>
+<div align="center">
+
+| # | Category | Tools | | # | Category | Tools |
+|:---:|---|:---:|---|:---:|---|:---:|
+| 1 | 🛡 [Anonymously Hiding](#anonymously-hiding-tools) | 2 | | 11 | 🧰 [Exploit Framework](#exploit-framework) | 4 |
+| 2 | 🔍 [Information Gathering](#information-gathering-tools) | 26 | | 12 | 🔁 [Reverse Engineering](#reverse-engineering-tools) | 5 |
+| 3 | 📚 [Wordlist Generator](#wordlist-generator) | 7 | | 13 | ⚡ [DDOS Attack](#ddos-attack-tools) | 5 |
+| 4 | 📶 [Wireless Attack](#wireless-attack-tools) | 13 | | 14 | 🖥 [RAT](#remote-administrator-tools-rat) | 1 |
+| 5 | 🧩 [SQL Injection](#sql-injection-tools) | 7 | | 15 | 💥 [XSS Attack](#xss-attack-tools) | 9 |
+| 6 | 🎣 [Phishing Attack](#phishing-attack-tools) | 17 | | 16 | 🖼 [Steganography](#steganography-tools) | 4 |
+| 7 | 🌐 [Web Attack](#web-attack-tools) | 20 | | 17 | 🏢 [Active Directory](#active-directory-tools) | 6 |
+| 8 | 🔧 [Post Exploitation](#post-exploitation-tools) | 10 | | 18 | ☁ [Cloud Security](#cloud-security-tools) | 4 |
+| 9 | 🕵 [Forensics](#forensic-tools) | 8 | | 19 | 📱 [Mobile Security](#mobile-security-tools) | 3 |
+| 10 | 📦 [Payload Creation](#payload-creation-tools) | 8 | | 20 | ✨ [Other Tools](#other-tools) | 24 |
+
+</div>
+
+<hr />
+<h2>🛡 Anonymously Hiding Tools</h2>
+<ul>
+<li><a href="https://github.com/Und3rf10w/kali-anonsurf">Anonymously Surf</a></li>
+<li><a href="https://github.com/trimstray/multitor">Multitor</a></li>
+</ul>
+<h2>🔍 Information Gathering Tools</h2>
+<ul>
+<li><a href="https://github.com/nmap/nmap">Network Map (nmap)</a></li>
+<li><a href="https://github.com/Screetsec/Dracnmap">Dracnmap</a></li>
+<li>Port scanning</li>
+<li>Host to IP</li>
+<li><a href="https://github.com/LionSec/xerosploit">Xerosploit</a></li>
+<li><a href="https://github.com/Tuhinshubhra/RED_HAWK">RED HAWK</a></li>
+<li><a href="https://github.com/bhavsec/reconspider">ReconSpider</a></li>
+<li>IsItDown</li>
+<li><a href="https://github.com/m4ll0k/Infoga">Infoga</a></li>
+<li><a href="https://github.com/s0md3v/ReconDog">ReconDog</a></li>
+<li><a href="https://github.com/s0md3v/Striker">Striker</a></li>
+<li><a href="https://github.com/m4ll0k/SecretFinder">SecretFinder</a></li>
+<li><a href="https://github.com/m4ll0k/Shodanfy.py">Shodanfy</a></li>
+<li><a href="https://github.com/floriankunushevci/rang3r">rang3r</a></li>
+<li><a href="https://github.com/s0md3v/Breacher">Breacher</a></li>
+<li><a href="https://github.com/laramies/theHarvester">theHarvester</a> ★</li>
+<li><a href="https://github.com/owasp-amass/amass">Amass</a> ★</li>
+<li><a href="https://github.com/robertdavidgraham/masscan">Masscan</a> ★</li>
+<li><a href="https://github.com/RustScan/RustScan">RustScan</a> ★</li>
+<li><a href="https://github.com/megadose/holehe">Holehe</a> ★</li>
+<li><a href="https://github.com/soxoj/maigret">Maigret</a> ★</li>
+<li><a href="https://github.com/projectdiscovery/httpx">httpx</a> ★</li>
+<li><a href="https://github.com/smicallef/spiderfoot">SpiderFoot</a> ★</li>
+<li><a href="https://github.com/projectdiscovery/subfinder">Subfinder</a> ★</li>
+<li><a href="https://github.com/trufflesecurity/trufflehog">TruffleHog</a> ★</li>
+<li><a href="https://github.com/gitleaks/gitleaks">Gitleaks</a> ★</li>
+</ul>
+<h2>📚 Wordlist Generator</h2>
+<ul>
+<li><a href="https://github.com/Mebus/cupp">Cupp</a></li>
+<li><a href="https://github.com/Z4nzu/wlcreator">WordlistCreator</a></li>
+<li><a href="https://github.com/UndeadSec/GoblinWordGenerator">Goblin WordGenerator</a></li>
+<li><a href="https://github.com/Viralmaniar/SMWYG-Show-Me-What-You-Got">Password list (1.4B)</a></li>
+<li><a href="https://github.com/hashcat/hashcat">Hashcat</a> ★</li>
+<li><a href="https://github.com/openwall/john">John the Ripper</a> ★</li>
+<li><a href="https://github.com/noraj/haiti">haiti</a> ★</li>
+</ul>
+<h2>📶 Wireless Attack Tools</h2>
+<ul>
+<li><a href="https://github.com/P0cL4bs/wifipumpkin3">WiFi-Pumpkin</a></li>
+<li><a href="https://github.com/wiire/pixiewps">pixiewps</a></li>
+<li><a href="https://github.com/andrewmichaelsmith/bluepot">Bluetooth Honeypot (bluepot)</a></li>
+<li><a href="https://github.com/FluxionNetwork/fluxion">Fluxion</a></li>
+<li><a href="https://github.com/wifiphisher/wifiphisher">Wifiphisher</a></li>
+<li><a href="https://github.com/derv82/wifite2">Wifite</a></li>
+<li><a href="https://github.com/Z4nzu/fakeap">EvilTwin</a></li>
+<li><a href="https://github.com/Z4nzu/fastssh">Fastssh</a></li>
+<li>Howmanypeople</li>
+<li><a href="https://github.com/v1s1t0r1sh3r3/airgeddon">Airgeddon</a> ★</li>
+<li><a href="https://github.com/ZerBea/hcxdumptool">hcxdumptool</a> ★</li>
+<li><a href="https://github.com/ZerBea/hcxtools">hcxtools</a> ★</li>
+<li><a href="https://github.com/bettercap/bettercap">Bettercap</a> ★</li>
+</ul>
+<h2>🧩 SQL Injection Tools</h2>
+<ul>
+<li><a href="https://github.com/sqlmapproject/sqlmap">Sqlmap</a></li>
+<li><a href="https://github.com/codingo/NoSQLMap">NoSqlMap</a></li>
+<li><a href="https://github.com/stamparm/DSSS">DSSS</a></li>
+<li><a href="https://github.com/dtag-dev-sec/explo">Explo</a></li>
+<li><a href="https://github.com/JohnTroony/Blisqy">Blisqy</a></li>
+<li><a href="https://github.com/leviathan-framework/leviathan">Leviathan</a></li>
+<li>[SQLScan](https://gi</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Z4nzu/hackingtool#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#12</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">vercel-labs /</span>
+          <a href="https://github.com/vercel-labs/skills" target="_blank" rel="noopener">skills</a>
+        </div>
+        <div class="repo-desc">The open agent skills tool - npx skills</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 15,647</span>
+      <span class="meta-item">🍴 1,280</span>
+      <span class="stars-today">⭐ 333 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>skills</h1>
+<p>The CLI for the open agent skills ecosystem.</p>
+<!-- agent-list:start -->
+
+<p>Supports <strong>OpenCode</strong>, <strong>Claude Code</strong>, <strong>Codex</strong>, <strong>Cursor</strong>, and <a href="#available-agents">41 more</a>.</p>
+<!-- agent-list:end -->
+
+<h2>Install a Skill</h2>
+<pre><code class="language-bash">npx skills add vercel-labs/agent-skills
+</code></pre>
+<h3>Source Formats</h3>
+<pre><code class="language-bash"># GitHub shorthand (owner/repo)
+npx skills add vercel-labs/agent-skills
+
+# Full GitHub URL
+npx skills add https://github.com/vercel-labs/agent-skills
+
+# Direct path to a skill in a repo
+npx skills add https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines
+
+# GitLab URL
+npx skills add https://gitlab.com/org/repo
+
+# Any git URL
+npx skills add git@github.com:vercel-labs/agent-skills.git
+
+# Local path
+npx skills add ./my-local-skills
+</code></pre>
+<h3>Options</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-g, --global</code></td>
+<td>Install to user directory instead of project</td>
+</tr>
+<tr>
+<td><code>-a, --agent &lt;agents...&gt;</code></td>
+<td><!-- agent-names:start -->Target specific agents (e.g., <code>claude-code</code>, <code>codex</code>). See <a href="#available-agents">Available Agents</a><!-- agent-names:end --></td>
+</tr>
+<tr>
+<td><code>-s, --skill &lt;skills...&gt;</code></td>
+<td>Install specific skills by name (use <code>'*'</code> for all skills)</td>
+</tr>
+<tr>
+<td><code>-l, --list</code></td>
+<td>List available skills without installing</td>
+</tr>
+<tr>
+<td><code>--copy</code></td>
+<td>Copy files instead of symlinking to agent directories</td>
+</tr>
+<tr>
+<td><code>-y, --yes</code></td>
+<td>Skip all confirmation prompts</td>
+</tr>
+<tr>
+<td><code>--all</code></td>
+<td>Install all skills to all agents without prompts</td>
+</tr>
+</tbody>
+</table>
+<h3>Examples</h3>
+<pre><code class="language-bash"># List skills in a repository
+npx skills add vercel-labs/agent-skills --list
+
+# Install specific skills
+npx skills add vercel-labs/agent-skills --skill frontend-design --skill skill-creator
+
+# Install a skill with spaces in the name (must be quoted)
+npx skills add owner/repo --skill &quot;Convex Best Practices&quot;
+
+# Install to specific agents
+npx skills add vercel-labs/agent-skills -a claude-code -a opencode
+
+# Non-interactive installation (CI/CD friendly)
+npx skills add vercel-labs/agent-skills --skill frontend-design -g -a claude-code -y
+
+# Install all skills from a repo to all agents
+npx skills add vercel-labs/agent-skills --all
+
+# Install all skills to specific agents
+npx skills add vercel-labs/agent-skills --skill '*' -a claude-code
+
+# Install specific skills to all agents
+npx skills add vercel-labs/agent-skills --agent '*' --skill frontend-design
+</code></pre>
+<h3>Installation Scope</h3>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Flag</th>
+<th>Location</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Project</strong></td>
+<td>(default)</td>
+<td><code>./&lt;agent&gt;/skills/</code></td>
+<td>Committed with your project, shared with team</td>
+</tr>
+<tr>
+<td><strong>Global</strong></td>
+<td><code>-g</code></td>
+<td><code>~/&lt;agent&gt;/skills/</code></td>
+<td>Available across all projects</td>
+</tr>
+</tbody>
+</table>
+<h3>Installation Methods</h3>
+<p>When installing interactively, you can choose:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Symlink</strong> (Recommended)</td>
+<td>Creates symlinks from each agent to a canonical copy. Single source of truth, easy updates.</td>
+</tr>
+<tr>
+<td><strong>Copy</strong></td>
+<td>Creates independent copies for each agent. Use when symlinks aren't supported.</td>
+</tr>
+</tbody>
+</table>
+<h2>Other Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>npx skills list</code></td>
+<td>List installed skills (alias: <code>ls</code>)</td>
+</tr>
+<tr>
+<td><code>npx skills find [query]</code></td>
+<td>Search for skills interactively or by keyword</td>
+</tr>
+<tr>
+<td><code>npx skills remove [skills]</code></td>
+<td>Remove installed skills from agents</td>
+</tr>
+<tr>
+<td><code>npx skills update [skills]</code></td>
+<td>Update installed skills to latest versions</td>
+</tr>
+<tr>
+<td><code>npx skills init [name]</code></td>
+<td>Create a new SKILL.md template</td>
+</tr>
+</tbody>
+</table>
+<h3><code>skills list</code></h3>
+<p>List all installed skills. Similar to <code>npm ls</code>.</p>
+<pre><code class="language-bash"># List all installed skills (project and global)
+npx skills list
+
+# List only global skills
+npx skills ls -g
+
+# Filter by specific agents
+npx skills ls -a claude-code -a cursor
+</code></pre>
+<h3><code>skills find</code></h3>
+<p>Search for skills interactively or by keyword.</p>
+<pre><code class="language-bash"># Interactive search (fzf-style)
+npx skills find
+
+# Search by keyword
+npx skills find typescript
+</code></pre>
+<h3><code>skills update</code></h3>
+<pre><code class="language-bash"># Update all skills (interactive scope prompt)
+npx skills update
+
+# Update a single skill by name
+npx skills update my-skill
+
+# Update multiple specific skills
+npx skills update frontend-design web-design-guidelines
+
+# Update only global or project skills
+npx skills update -g
+npx skills update -p
+
+# Non-interactive (auto-detects scope: project if in a project, else global)
+npx skills update -y
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-g, --global</code></td>
+<td>Only update global skills</td>
+</tr>
+<tr>
+<td><code>-p, --project</code></td>
+<td>Only update project skills</td>
+</tr>
+<tr>
+<td><code>-y, --yes</code></td>
+<td>Skip scope prompt (auto-detect: project if in a project dir, else global)</td>
+</tr>
+<tr>
+<td><code>[skills...]</code></td>
+<td>Update specific skills by name instead of all</td>
+</tr>
+</tbody>
+</table>
+<h3><code>skills init</code></h3>
+<pre><code class="language-bash"># Create SKILL.md in current directory
+npx skills init
+
+# Create a new skill in a subdirectory
+npx skills init my-skill
+</code></pre>
+<h3><code>skills remove</code></h3>
+<p>Remove installed skills from agents.</p>
+<pre><code class="language-bash"># Remove interactively (select from installed skills)
+npx skills remove
+
+# Remove specific skill by name
+npx skills remove web-design-guidelines
+
+# Remove multiple skills
+npx skills remove frontend-design web-design-guidelines
+
+# Remove from global scope
+npx skills remove --global web-design-guidelines
+
+# Remove from specific agents only
+npx skills remove --agent claude-code cursor my-skill
+
+# Remove all installed skills without confirmation
+npx skills remove --all
+
+# Remove all skills from a specific agent
+npx skills remove --skill '*' -a cursor
+
+# Remove a specific skill from all agents
+npx skills remove my-skill --agent '*'
+
+# Use 'rm' alias
+npx skills rm my-skill
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-g, --global</code></td>
+<td>Remove from global scope (~/) instead of project</td>
+</tr>
+<tr>
+<td><code>-a, --agent</code></td>
+<td>Remove from specific agents (use <code>'*'</code> for all)</td>
+</tr>
+<tr>
+<td><code>-s, --skill</code></td>
+<td>Specify skills to remove (use <code>'*'</code> for all)</td>
+</tr>
+<tr>
+<td><code>-y, --yes</code></td>
+<td>Skip confirmation prompts</td>
+</tr>
+<tr>
+<td><code>--all</code></td>
+<td>Shorthand for <code>--skill '*' --agent '*' -y</code></td>
+</tr>
+</tbody>
+</table>
+<h2>What are Agent Skills?</h2>
+<p>Agent skills are reusable instruction sets that extend your coding agent's capabilities. They're defined in <code>SKILL.md</code><br />
+files with YAML frontmatter containing a <code>name</code> and <code>description</code>.</p>
+<p>Skills let agents perform specialized tasks like:</p>
+<ul>
+<li>Generating release notes from git histor</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/vercel-labs/skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on April 23, 2026  06:31 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
