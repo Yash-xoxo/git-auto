@@ -1,0 +1,2578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — April 26, 2026  07:25</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on April 26, 2026  07:25 &nbsp;·&nbsp; 13 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Alishahryar1 /</span>
+          <a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" rel="noopener">free-claude-code</a>
+        </div>
+        <div class="repo-desc">Use claude-code for free in the terminal, VSCode extension or via discord like openclaw</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 11,886</span>
+      <span class="meta-item">🍴 1,778</span>
+      <span class="stars-today">⭐ 4,007 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+# 🤖 Free Claude Code
+
+### Use Claude Code CLI & VSCode for free. No Anthropic API key required.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Python 3.14](https://img.shields.io/badge/python-3.14-3776ab.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json&style=for-the-badge)](https://github.com/astral-sh/uv)
+[![Tested with Pytest](https://img.shields.io/badge/testing-Pytest-00c0ff.svg?style=for-the-badge)](https://github.com/Alishahryar1/free-claude-code/actions/workflows/tests.yml)
+[![Type checking: Ty](https://img.shields.io/badge/type%20checking-ty-ffcc00.svg?style=for-the-badge)](https://pypi.org/project/ty/)
+[![Code style: Ruff](https://img.shields.io/badge/code%20formatting-ruff-f5a623.svg?style=for-the-badge)](https://github.com/astral-sh/ruff)
+[![Logging: Loguru](https://img.shields.io/badge/logging-loguru-4ecdc4.svg?style=for-the-badge)](https://github.com/Delgan/loguru)
+
+A lightweight proxy that routes Claude Code's Anthropic API calls to **NVIDIA NIM** (40 req/min free), **OpenRouter** (hundreds of models), **DeepSeek** (direct API), **LM Studio** (fully local), **llama.cpp** (local with Anthropic endpoints), or **Ollama** (fully local, native Anthropic Messages).
+
+[Quick Start](#quick-start) · [Providers](#providers) · [Discord Bot](#discord-bot) · [Configuration](#configuration) · [Development](#development) · [Contributing](#contributing)
+
+---
+
+</div>
+
+<div align="center">
+  <img src="pic.png" alt="Free Claude Code in action" width="700">
+  <p><em>Claude Code running via NVIDIA NIM, completely free</em></p>
+</div>
+
+<h2>Features</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zero Cost</strong></td>
+<td>40 req/min free on NVIDIA NIM. Free models on OpenRouter. Fully local with LM Studio, Ollama, or llama.cpp</td>
+</tr>
+<tr>
+<td><strong>Drop-in Replacement</strong></td>
+<td>Set 2 env vars. No modifications to Claude Code CLI or VSCode extension needed</td>
+</tr>
+<tr>
+<td><strong>6 Providers</strong></td>
+<td>NVIDIA NIM, OpenRouter, DeepSeek, LM Studio (local), llama.cpp (<code>llama-server</code>), Ollama</td>
+</tr>
+<tr>
+<td><strong>Per-Model Mapping</strong></td>
+<td>Route Opus / Sonnet / Haiku to different models and providers. Mix providers freely</td>
+</tr>
+<tr>
+<td><strong>Thinking Token Support</strong></td>
+<td>Parses <code>&lt;think&gt;</code> tags and <code>reasoning_content</code> into native Claude thinking blocks</td>
+</tr>
+<tr>
+<td><strong>Heuristic Tool Parser</strong></td>
+<td>Models outputting tool calls as text are auto-parsed into structured tool use</td>
+</tr>
+<tr>
+<td><strong>Request Optimization</strong></td>
+<td>5 categories of trivial API calls intercepted locally, saving quota and latency</td>
+</tr>
+<tr>
+<td><strong>Smart Rate Limiting</strong></td>
+<td>Proactive rolling-window throttle + reactive 429 exponential backoff + optional concurrency cap</td>
+</tr>
+<tr>
+<td><strong>Discord / Telegram Bot</strong></td>
+<td>Remote autonomous coding with tree-based threading, session persistence, and live progress</td>
+</tr>
+<tr>
+<td><strong>Subagent Control</strong></td>
+<td>Task tool interception forces <code>run_in_background=False</code>. No runaway subagents</td>
+</tr>
+<tr>
+<td><strong>Extensible</strong></td>
+<td>Clean <code>BaseProvider</code> and <code>MessagingPlatform</code> ABCs. Add new providers or platforms easily</td>
+</tr>
+</tbody>
+</table>
+<h2>Quick Start</h2>
+<h3>Prerequisites</h3>
+<ol>
+<li>Get an API key (or use a local provider):</li>
+<li><strong>NVIDIA NIM</strong>: <a href="https://build.nvidia.com/settings/api-keys">build.nvidia.com/settings/api-keys</a></li>
+<li><strong>OpenRouter</strong>: <a href="https://openrouter.ai/keys">openrouter.ai/keys</a></li>
+<li><strong>DeepSeek</strong>: <a href="https://platform.deepseek.com/api_keys">platform.deepseek.com/api_keys</a></li>
+<li><strong>LM Studio</strong>: No API key needed. Run locally with <a href="https://lmstudio.ai">LM Studio</a></li>
+<li><strong>llama.cpp</strong>: No API key needed. Run <code>llama-server</code> locally.</li>
+<li><strong>Ollama</strong>: No API key needed. Run locally with <a href="https://ollama.com">Ollama</a> (<code>ollama serve</code>).</li>
+<li>Install <a href="https://github.com/anthropics/claude-code">Claude Code</a></li>
+</ol>
+<h3>Install <code>uv</code></h3>
+<pre><code class="language-bash"># Recommended installer (works on macOS/Linux without relying on system pip)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Keep uv current if it is already installed
+uv self update
+
+# This project requires Python 3.14
+uv python install 3.14
+</code></pre>
+<p>PowerShell (Windows):</p>
+<pre><code class="language-powershell"># Recommended installer (avoids relying on system pip)
+powershell -ExecutionPolicy ByPass -c &quot;irm https://astral.sh/uv/install.ps1 | iex&quot;
+
+# Keep uv current if it is already installed
+uv self update
+
+# This project requires Python 3.14
+uv python install 3.14
+</code></pre>
+<p><code>pip install uv</code> can fail on Homebrew-managed Python with <code>externally-managed-environment</code> (PEP 668), so prefer the official installer above.</p>
+<h3>Clone &amp; Configure</h3>
+<pre><code class="language-bash">git clone https://github.com/Alishahryar1/free-claude-code.git
+cd free-claude-code
+cp .env.example .env
+</code></pre>
+<p>Choose your provider and edit <code>.env</code>:</p>
+<details>
+<summary><b>NVIDIA NIM</b> (40 req/min free, recommended)</summary>
+
+
+<pre><code class="language-dotenv">NVIDIA_NIM_API_KEY=&quot;nvapi-your-key-here&quot;
+
+MODEL_OPUS=
+MODEL_SONNET=
+MODEL_HAIKU=
+MODEL=&quot;nvidia_nim/z-ai/glm4.7&quot;                     # fallback
+
+# Per-Claude-model switches for provider reasoning requests and Claude thinking blocks.
+# Blank per-model switches inherit ENABLE_MODEL_THINKING.
+ENABLE_OPUS_THINKING=
+ENABLE_SONNET_THINKING=
+ENABLE_HAIKU_THINKING=
+ENABLE_MODEL_THINKING=true
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><b>OpenRouter</b> (hundreds of models)</summary>
+
+
+<pre><code class="language-dotenv">OPENROUTER_API_KEY=&quot;sk-or-your-key-here&quot;
+
+MODEL_OPUS=&quot;open_router/deepseek/deepseek-r1-0528:free&quot;
+MODEL_SONNET=&quot;open_router/openai/gpt-oss-120b:free&quot;
+MODEL_HAIKU=&quot;open_router/stepfun/step-3.5-flash:free&quot;
+MODEL=&quot;open_router/stepfun/step-3.5-flash:free&quot;     # fallback
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><b>DeepSeek</b> (direct API)</summary>
+
+
+<pre><code class="language-dotenv">DEEPSEEK_API_KEY=&quot;your-deepseek-key-here&quot;
+
+MODEL_OPUS=&quot;deepseek/deepseek-reasoner&quot;
+MODEL_SONNET=&quot;deepseek/deepseek-chat&quot;
+MODEL_HAIKU=&quot;deepseek/deepseek-chat&quot;
+MODEL=&quot;deepseek/deepseek-chat&quot;                      # fallback
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><b>LM Studio</b> (fully local, no API key)</summary>
+
+
+<pre><code class="language-dotenv">MODEL_OPUS=&quot;lmstudio/unsloth/MiniMax-M2.5-GGUF&quot;
+MODEL_SONNET=&quot;lmstudio/unsloth/Qwen3.5-35B-A3B-GGUF&quot;
+MODEL_HAIKU=&quot;lmstudio/unsloth/GLM-4.7-Flash-GGUF&quot;
+MODEL=&quot;lmstudio/unsloth/GLM-4.7-Flash-GGUF&quot;         # fallback
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><b>llama.cpp</b> (fully local, no API key)</summary>
+
+
+<pre><code class="language-dotenv">LLAMACPP_BASE_URL=&quot;http://localhost:8080/v1&quot;
+
+MODEL_OPUS=&quot;llamacpp/local-model&quot;
+MODEL_SONNET=&quot;llamacpp/local-model&quot;
+MODEL_HAIKU=&quot;llamacpp/local-model&quot;
+MODEL=&quot;llamacpp/local-model&quot;
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><b>Ollama</b> (fully local, no API key)</summary>
+
+
+<pre><code class="language-dotenv">OLLAMA_BASE_URL=&quot;http://localhost:11434&quot;
+
+MODEL_OPUS=&quot;ollama/llama3.1&quot;
+MODEL_SONNET=&quot;ollama/llama3.1&quot;
+MODEL_HAIKU=&quot;ollama/llama3.1&quot;
+MODEL=&quot;ollama/llama3.1&quot;                             # fallback
+</code></pre>
+
+
+Install: [ollama.com](https://ollama.com). Pull a model (`ollama pull llama3.1`) and keep the server running (`ollama serve` or the desktop app). Use the same model tag in `MODEL*` that appears in `ollama list` (for example `ollama/llama3.1:8b`).
+
+</details>
+
+<details>
+<summary><b>Mix providers</b></summary>
+
+Each `MODEL_*` variable can use a different provider. `MODEL` is the fallback for unrecognized Claude models.
+
+
+<pre><code class="language-dotenv">NVIDIA_NIM_API_KEY=&quot;nvapi-your-key-here&quot;
+OPENROUTER_API_KEY=&quot;sk-or-your-key-here&quot;
+
+MODEL_OPUS=&quot;nvidia_nim/moonshotai/kimi-k2.5&quot;
+MODEL_SONNET=&quot;open_router/deepseek/deepseek-r1-0528:free&quot;
+MODEL_HAIKU=&quot;lmstudio/unsloth/GLM-4.7-Flash-GGUF&quot;
+MODEL=&quot;nvidia_nim/z-ai/glm4.7&quot;                      # fallback
+</code></pre>
+
+
+</details>
+
+<blockquote>
+<p>Migration: <code>NIM_ENABLE_THINKING</code> and <code>ENABLE_THINKING</code> were removed in this release. Use <code>ENABLE_MODEL_THINKING</code> as the fallbac</p>
+</blockquote>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Alishahryar1/free-claude-code#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">mattpocock /</span>
+          <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">skills</a>
+        </div>
+        <div class="repo-desc">My personal directory of skills, straight from my .claude directory.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 20,660</span>
+      <span class="meta-item">🍴 1,716</span>
+      <span class="stars-today">⭐ 1,139 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Agent Skills</h1>
+<p>A collection of agent skills that extend capabilities across planning, development, and tooling.</p>
+<h2>Planning &amp; Design</h2>
+<p>These skills help you think through problems before writing code.</p>
+<ul>
+<li><strong>to-prd</strong> — Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview — just synthesizes what you've already discussed.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/to-prd</code></p>
+<ul>
+<li><strong>to-issues</strong> — Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/to-issues</code></p>
+<ul>
+<li><strong>grill-me</strong> — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/grill-me</code></p>
+<ul>
+<li><strong>design-an-interface</strong> — Generate multiple radically different interface designs for a module using parallel sub-agents.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/design-an-interface</code></p>
+<ul>
+<li><strong>request-refactor-plan</strong> — Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/request-refactor-plan</code></p>
+<h2>Development</h2>
+<p>These skills help you write, refactor, and fix code.</p>
+<ul>
+<li><strong>tdd</strong> — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/tdd</code></p>
+<ul>
+<li><strong>triage-issue</strong> — Investigate a bug by exploring the codebase, identify the root cause, and file a GitHub issue with a TDD-based fix plan.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/triage-issue</code></p>
+<ul>
+<li><strong>improve-codebase-architecture</strong> — Find deepening opportunities in a codebase, informed by the domain language in <code>CONTEXT.md</code> and the decisions in <code>docs/adr/</code>.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/improve-codebase-architecture</code></p>
+<ul>
+<li><strong>migrate-to-shoehorn</strong> — Migrate test files from <code>as</code> type assertions to @total-typescript/shoehorn.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/migrate-to-shoehorn</code></p>
+<ul>
+<li><strong>scaffold-exercises</strong> — Create exercise directory structures with sections, problems, solutions, and explainers.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/scaffold-exercises</code></p>
+<h2>Tooling &amp; Setup</h2>
+<ul>
+<li><strong>setup-pre-commit</strong> — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/setup-pre-commit</code></p>
+<ul>
+<li><strong>git-guardrails-claude-code</strong> — Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/git-guardrails-claude-code</code></p>
+<h2>Writing &amp; Knowledge</h2>
+<ul>
+<li><strong>write-a-skill</strong> — Create new skills with proper structure, progressive disclosure, and bundled resources.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/write-a-skill</code></p>
+<ul>
+<li><strong>edit-article</strong> — Edit and improve articles by restructuring sections, improving clarity, and tightening prose.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/edit-article</code></p>
+<ul>
+<li><strong>ubiquitous-language</strong> — Extract a DDD-style ubiquitous language glossary from the current conversation.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/ubiquitous-language</code></p>
+<ul>
+<li><strong>obsidian-vault</strong> — Search, create, and manage notes in an Obsidian vault with wikilinks and index notes.</li>
+</ul>
+<p><code>npx skills@latest add mattpocock/skills/obsidian-vault</code></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/mattpocock/skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Z4nzu /</span>
+          <a href="https://github.com/Z4nzu/hackingtool" target="_blank" rel="noopener">hackingtool</a>
+        </div>
+        <div class="repo-desc">ALL IN ONE Hacking Tool For Hackers</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 64,298</span>
+      <span class="meta-item">🍴 7,206</span>
+      <span class="stars-today">⭐ 1,200 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<img src="images/logo.svg" alt="HackingTool" width="600">
+
+<p><b>All-in-One Hacking Tool for Security Researchers & Pentesters</b></p>
+
+[![License](https://img.shields.io/github/license/Z4nzu/hackingtool)](LICENSE)&nbsp;
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)&nbsp;
+[![Version](https://img.shields.io/badge/v2.0.0-00FF88?style=flat-square)](#)&nbsp;
+[![Stars](https://img.shields.io/github/stars/Z4nzu/hackingtool?style=flat-square&color=yellow)](https://github.com/Z4nzu/hackingtool/stargazers)&nbsp;
+[![Forks](https://img.shields.io/github/forks/Z4nzu/hackingtool?style=flat-square&color=blue)](https://github.com/Z4nzu/hackingtool/network/members)&nbsp;
+[![Issues](https://img.shields.io/github/issues/Z4nzu/hackingtool?style=flat-square&color=red)](https://github.com/Z4nzu/hackingtool/issues)&nbsp;
+[![Last Commit](https://img.shields.io/github/last-commit/Z4nzu/hackingtool?style=flat-square&color=00FF88)](https://github.com/Z4nzu/hackingtool/commits/master)
+
+![](https://img.shields.io/badge/20_Categories-7B61FF?style=for-the-badge)
+![](https://img.shields.io/badge/185+_Tools-00FF88?style=for-the-badge)
+![](https://img.shields.io/badge/19_Tags-FF61DC?style=for-the-badge)
+![](https://img.shields.io/badge/Linux_%7C_Kali_%7C_Parrot_%7C_macOS-FFA116?style=for-the-badge&logo=linux&logoColor=white)
+
+<a href="#installation"><img src="https://img.shields.io/badge/Install_Now-00FF88?style=for-the-badge&logo=rocket&logoColor=black" alt="Install Now"></a>&nbsp;
+<a href="#quick-commands"><img src="https://img.shields.io/badge/Quick_Commands-7B61FF?style=for-the-badge&logo=terminal&logoColor=white" alt="Quick Commands"></a>&nbsp;
+<a href="https://github.com/Z4nzu/hackingtool/issues/new?template=tool_request.md"><img src="https://img.shields.io/badge/Suggest_a_Tool-FF61DC?style=for-the-badge&logo=plus&logoColor=white" alt="Suggest a Tool"></a>
+
+</div>
+
+<hr />
+<h2>What's New in v2.0.0</h2>
+<table>
+<tr><td>
+
+| | Feature | Description |
+|:---:|---|---|
+| **🐍** | **Python 3.10+** | All Python 2 code removed, modern syntax throughout |
+| **🖥** | **OS-aware menus** | Linux-only tools hidden automatically on macOS |
+| **📦** | **185+ tools** | 35 new modern tools added across 6 categories |
+| **🔍** | **Search** | Type `/` to search all tools by name, description, or keyword |
+| **🏷** | **Tag filter** | Type `t` to filter by 19 tags — osint, web, c2, cloud, mobile... |
+| **💡** | **Recommend** | Type `r` — "I want to scan a network" → shows relevant tools |
+| **✅** | **Install status** | ✔/✘ shown next to every tool — know what's ready |
+| **⚡** | **Install all** | Option `97` in any category — batch install at once |
+| **🔄** | **Smart update** | Each tool has Update — auto-detects git pull / pip upgrade / go install |
+| **📂** | **Open folder** | Jump into any tool's directory for manual inspection |
+| **🐳** | **Docker** | Builds locally — no unverified external images |
+| **🚀** | **One-liner install** | `curl -sSL .../install.sh \| sudo bash` — zero manual steps |
+| **🏢** | **3 new categories** | Active Directory, Cloud Security, Mobile Security |
+
+</td></tr>
+</table>
+
+<hr />
+<h2>Quick Commands</h2>
+<div align="center">
+
+| Command | Action | Works in |
+|:---:|---|:---:|
+| `/query` | **Search** — find tools instantly by keyword | Main menu |
+| `t` | **Tags** — filter by osint, scanner, c2, cloud, mobile... | Main menu |
+| `r` | **Recommend** — "I want to do X" → matching tools | Main menu |
+| `?` | **Help** — quick reference card | Everywhere |
+| `q` | **Quit** — exit from any depth | Everywhere |
+| `97` | **Install All** — batch install all tools in category | Category |
+| `99` | **Back** — return to previous menu | Everywhere |
+
+</div>
+
+<hr />
+<h2>Tool Categories</h2>
+<div align="center">
+
+| # | Category | Tools | | # | Category | Tools |
+|:---:|---|:---:|---|:---:|---|:---:|
+| 1 | 🛡 [Anonymously Hiding](#anonymously-hiding-tools) | 2 | | 11 | 🧰 [Exploit Framework](#exploit-framework) | 4 |
+| 2 | 🔍 [Information Gathering](#information-gathering-tools) | 26 | | 12 | 🔁 [Reverse Engineering](#reverse-engineering-tools) | 5 |
+| 3 | 📚 [Wordlist Generator](#wordlist-generator) | 7 | | 13 | ⚡ [DDOS Attack](#ddos-attack-tools) | 5 |
+| 4 | 📶 [Wireless Attack](#wireless-attack-tools) | 13 | | 14 | 🖥 [RAT](#remote-administrator-tools-rat) | 1 |
+| 5 | 🧩 [SQL Injection](#sql-injection-tools) | 7 | | 15 | 💥 [XSS Attack](#xss-attack-tools) | 9 |
+| 6 | 🎣 [Phishing Attack](#phishing-attack-tools) | 17 | | 16 | 🖼 [Steganography](#steganography-tools) | 4 |
+| 7 | 🌐 [Web Attack](#web-attack-tools) | 20 | | 17 | 🏢 [Active Directory](#active-directory-tools) | 6 |
+| 8 | 🔧 [Post Exploitation](#post-exploitation-tools) | 10 | | 18 | ☁ [Cloud Security](#cloud-security-tools) | 4 |
+| 9 | 🕵 [Forensics](#forensic-tools) | 8 | | 19 | 📱 [Mobile Security](#mobile-security-tools) | 3 |
+| 10 | 📦 [Payload Creation](#payload-creation-tools) | 8 | | 20 | ✨ [Other Tools](#other-tools) | 24 |
+
+</div>
+
+<hr />
+<h2>🛡 Anonymously Hiding Tools</h2>
+<ul>
+<li><a href="https://github.com/Und3rf10w/kali-anonsurf">Anonymously Surf</a></li>
+<li><a href="https://github.com/trimstray/multitor">Multitor</a></li>
+</ul>
+<h2>🔍 Information Gathering Tools</h2>
+<ul>
+<li><a href="https://github.com/nmap/nmap">Network Map (nmap)</a></li>
+<li><a href="https://github.com/Screetsec/Dracnmap">Dracnmap</a></li>
+<li>Port scanning</li>
+<li>Host to IP</li>
+<li><a href="https://github.com/LionSec/xerosploit">Xerosploit</a></li>
+<li><a href="https://github.com/Tuhinshubhra/RED_HAWK">RED HAWK</a></li>
+<li><a href="https://github.com/bhavsec/reconspider">ReconSpider</a></li>
+<li>IsItDown</li>
+<li><a href="https://github.com/m4ll0k/Infoga">Infoga</a></li>
+<li><a href="https://github.com/s0md3v/ReconDog">ReconDog</a></li>
+<li><a href="https://github.com/s0md3v/Striker">Striker</a></li>
+<li><a href="https://github.com/m4ll0k/SecretFinder">SecretFinder</a></li>
+<li><a href="https://github.com/m4ll0k/Shodanfy.py">Shodanfy</a></li>
+<li><a href="https://github.com/floriankunushevci/rang3r">rang3r</a></li>
+<li><a href="https://github.com/s0md3v/Breacher">Breacher</a></li>
+<li><a href="https://github.com/laramies/theHarvester">theHarvester</a> ★</li>
+<li><a href="https://github.com/owasp-amass/amass">Amass</a> ★</li>
+<li><a href="https://github.com/robertdavidgraham/masscan">Masscan</a> ★</li>
+<li><a href="https://github.com/RustScan/RustScan">RustScan</a> ★</li>
+<li><a href="https://github.com/megadose/holehe">Holehe</a> ★</li>
+<li><a href="https://github.com/soxoj/maigret">Maigret</a> ★</li>
+<li><a href="https://github.com/projectdiscovery/httpx">httpx</a> ★</li>
+<li><a href="https://github.com/smicallef/spiderfoot">SpiderFoot</a> ★</li>
+<li><a href="https://github.com/projectdiscovery/subfinder">Subfinder</a> ★</li>
+<li><a href="https://github.com/trufflesecurity/trufflehog">TruffleHog</a> ★</li>
+<li><a href="https://github.com/gitleaks/gitleaks">Gitleaks</a> ★</li>
+</ul>
+<h2>📚 Wordlist Generator</h2>
+<ul>
+<li><a href="https://github.com/Mebus/cupp">Cupp</a></li>
+<li><a href="https://github.com/Z4nzu/wlcreator">WordlistCreator</a></li>
+<li><a href="https://github.com/UndeadSec/GoblinWordGenerator">Goblin WordGenerator</a></li>
+<li><a href="https://github.com/Viralmaniar/SMWYG-Show-Me-What-You-Got">Password list (1.4B)</a></li>
+<li><a href="https://github.com/hashcat/hashcat">Hashcat</a> ★</li>
+<li><a href="https://github.com/openwall/john">John the Ripper</a> ★</li>
+<li><a href="https://github.com/noraj/haiti">haiti</a> ★</li>
+</ul>
+<h2>📶 Wireless Attack Tools</h2>
+<ul>
+<li><a href="https://github.com/P0cL4bs/wifipumpkin3">WiFi-Pumpkin</a></li>
+<li><a href="https://github.com/wiire/pixiewps">pixiewps</a></li>
+<li><a href="https://github.com/andrewmichaelsmith/bluepot">Bluetooth Honeypot (bluepot)</a></li>
+<li><a href="https://github.com/FluxionNetwork/fluxion">Fluxion</a></li>
+<li><a href="https://github.com/wifiphisher/wifiphisher">Wifiphisher</a></li>
+<li><a href="https://github.com/derv82/wifite2">Wifite</a></li>
+<li><a href="https://github.com/Z4nzu/fakeap">EvilTwin</a></li>
+<li><a href="https://github.com/Z4nzu/fastssh">Fastssh</a></li>
+<li>Howmanypeople</li>
+<li><a href="https://github.com/v1s1t0r1sh3r3/airgeddon">Airgeddon</a> ★</li>
+<li><a href="https://github.com/ZerBea/hcxdumptool">hcxdumptool</a> ★</li>
+<li><a href="https://github.com/ZerBea/hcxtools">hcxtools</a> ★</li>
+<li><a href="https://github.com/bettercap/bettercap">Bettercap</a> ★</li>
+</ul>
+<h2>🧩 SQL Injection Tools</h2>
+<ul>
+<li><a href="https://github.com/sqlmapproject/sqlmap">Sqlmap</a></li>
+<li><a href="https://github.com/codingo/NoSQLMap">NoSqlMap</a></li>
+<li><a href="https://github.com/stamparm/DSSS">DSSS</a></li>
+<li><a href="https://github.com/dtag-dev-sec/explo">Explo</a></li>
+<li><a href="https://github.com/JohnTroony/Blisqy">Blisqy</a></li>
+<li><a href="https://github.com/leviathan-framework/leviathan">Leviathan</a></li>
+<li>[SQLScan](https://gi</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Z4nzu/hackingtool#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">PostHog /</span>
+          <a href="https://github.com/PostHog/posthog" target="_blank" rel="noopener">posthog</a>
+        </div>
+        <div class="repo-desc">🦔 PostHog is an all-in-one developer platform for building successful products. We offer product analytics, web analytics, session replay, error tracking, feature flags, experimentation, surveys, data warehouse, a CDP, and an AI product assistant to help debug your code, ship features faster, and keep all your usage and customer data in one stack.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 33,591</span>
+      <span class="meta-item">🍴 2,613</span>
+      <span class="stars-today">⭐ 471 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img alt="posthoglogo" src="https://user-images.githubusercontent.com/65415371/205059737-c8a4f836-4889-4654-902e-f302b187b6a0.png">
+</p>
+<p align="center">
+  <a href='https://posthog.com/contributors'><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/posthog/posthog"/></a>
+  <a href='http://makeapullrequest.com'><img alt='PRs Welcome' src='https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields'/></a>
+  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/posthog/posthog"/>
+  <a href="https://github.com/PostHog/posthog/commits/master"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/posthog/posthog"/> </a>
+  <a href="https://github.com/PostHog/posthog/issues?q=is%3Aissue%20state%3Aclosed"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/posthog/posthog"/> </a>
+</p>
+
+<p align="center">
+  <a href="https://posthog.com/docs">Docs</a> - <a href="https://posthog.com/community">Community</a> - <a href="https://posthog.com/roadmap">Roadmap</a> - <a href="https://posthog.com/why">Why PostHog?</a> - <a href="https://posthog.com/changelog">Changelog</a> - <a href="https://github.com/PostHog/posthog/issues/new?assignees=&labels=bug&template=bug_report.yml">Bug reports</a>
+</p>
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=2jQco8hEvTI">
+    <img src="https://res.cloudinary.com/dmukukwp6/image/upload/demo_thumb_68d0d8d56d" alt="PostHog Demonstration">
+  </a>
+</p>
+
+<h2>PostHog is an all-in-one, open source platform for building successful products</h2>
+<p><a href="https://posthog.com/">PostHog</a> provides every tool you need to build a successful product including:</p>
+<ul>
+<li><a href="https://posthog.com/product-analytics">Product Analytics</a>: Autocapture or manually instrument event-based analytics to understand user behavior and analyze data with visualization or SQL.</li>
+<li><a href="https://posthog.com/web-analytics">Web Analytics</a>: Monitor web traffic and user sessions with a GA-like dashboard. Easily monitor conversion, web vitals, and revenue.</li>
+<li><a href="https://posthog.com/session-replay">Session Replays</a>: Watch real user sessions of interactions with your website or mobile app to diagnose issues and understand user behavior.</li>
+<li><a href="https://posthog.com/feature-flags">Feature Flags</a>: Safely roll out features to select users or cohorts with feature flags.</li>
+<li><a href="https://posthog.com/experiments">Experiments</a>: Test changes and measure their statistical impact on goal metrics. Set up experiments with no-code too.</li>
+<li><a href="https://posthog.com/error-tracking">Error Tracking</a>: Track errors, get alerts, and resolve issues to improve your product.</li>
+<li><a href="https://posthog.com/surveys">Surveys</a>: Ask anything with our collection of no-code survey templates, or build custom surveys with our survey builder.</li>
+<li><a href="https://posthog.com/data-warehouse">Data warehouse</a>: Sync data from external tools like Stripe, Hubspot, your data warehouse, and more. Query it alongside your product data.</li>
+<li><a href="https://posthog.com/cdp">Data pipelines</a>: Run custom filters and transformations on your incoming data. Send it to 25+ tools or any webhook in real time or batch export large amounts to your warehouse.</li>
+<li><a href="https://posthog.com/docs/llm-analytics">LLM analytics</a>: Capture traces, generations, latency, and cost for your LLM-powered app.</li>
+<li><a href="https://posthog.com/docs/workflows">Workflows</a>: Create workflows that automate actions or send messages to your users.</li>
+</ul>
+<p>Best of all, all of this is free to use with a <a href="https://posthog.com/pricing">generous monthly free tier</a> for each product. Get started by signing up for <a href="https://us.posthog.com/signup">PostHog Cloud US</a> or <a href="https://eu.posthog.com/signup">PostHog Cloud EU</a>.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#posthog-is-an-all-in-one-open-source-platform-for-building-successful-products">PostHog is an all-in-one, open source platform for building successful products</a></li>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#getting-started-with-posthog">Getting started with PostHog</a></li>
+<li><a href="#posthog-cloud-recommended">PostHog Cloud (Recommended)</a></li>
+<li><a href="#self-hosting-the-open-source-hobby-deploy-advanced">Self-hosting the open-source hobby deploy (Advanced)</a></li>
+<li><a href="#setting-up-posthog">Setting up PostHog</a></li>
+<li><a href="#learning-more-about-posthog">Learning more about PostHog</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#open-source-vs-paid">Open-source vs. paid</a></li>
+<li><a href="#were-hiring">We’re hiring!</a></li>
+</ul>
+<h2>Getting started with PostHog</h2>
+<h3>PostHog Cloud (Recommended)</h3>
+<p>The fastest and most reliable way to get started with PostHog is signing up for free to <a href="https://us.posthog.com/signup">PostHog Cloud</a> or <a href="https://eu.posthog.com/signup">PostHog Cloud EU</a>. Your first 1 million events, 5k recordings, 1M flag requests, 100k exceptions, and 1500 survey responses are free every month, after which you pay based on usage.</p>
+<h3>Self-hosting the open-source hobby deploy (Advanced)</h3>
+<p>If you want to self-host PostHog, you can deploy a hobby instance in one line on Linux with Docker (recommended 4GB memory):</p>
+<pre><code class="language-bash">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/posthog/posthog/HEAD/bin/deploy-hobby)&quot;
+</code></pre>
+<p>Open source deployments should scale to approximately 100k events per month, after which we recommend <a href="https://posthog.com/docs/migrate/migrate-to-cloud">migrating to a PostHog Cloud</a>.</p>
+<p>We <em>do not</em> provide customer support or offer guarantees for open source deployments. See our <a href="https://posthog.com/docs/self-host">self-hosting docs</a>, <a href="https://posthog.com/docs/self-host/deploy/troubleshooting">troubleshooting guide</a>, and <a href="https://posthog.com/docs/self-host/open-source/disclaimer">disclaimer</a> for more info.</p>
+<h2>Setting up PostHog</h2>
+<p>Once you've got a PostHog instance, you can set it up by installing our <a href="https://posthog.com/docs/getting-started/install?tab=snippet">JavaScript web snippet</a>, one of <a href="https://posthog.com/docs/getting-started/install?tab=sdks">our SDKs</a>, or by <a href="https://posthog.com/docs/getting-started/install?tab=api">using our API</a>.</p>
+<p>We have SDKs and libraries for popular languages and frameworks like:</p>
+<table>
+<thead>
+<tr>
+<th>Frontend</th>
+<th>Mobile</th>
+<th>Backend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://posthog.com/docs/libraries/js">JavaScript</a></td>
+<td><a href="https://posthog.com/docs/libraries/react-native">React Native</a></td>
+<td><a href="https://posthog.com/docs/libraries/python">Python</a></td>
+</tr>
+<tr>
+<td><a href="https://posthog.com/docs/libraries/next-js">Next.js</a></td>
+<td><a href="https://posthog.com/docs/libraries/android">Android</a></td>
+<td><a href="https://posthog.com/docs/libraries/node">Node</a></td>
+</tr>
+<tr>
+<td><a href="https://posthog.com/docs/libraries/react">React</a></td>
+<td><a href="https://posthog.com/docs/libraries/ios">iOS</a></td>
+<td><a href="https://posthog.com/docs/libraries/php">PHP</a></td>
+</tr>
+<tr>
+<td><a href="https://posthog.com/docs/libraries/vue-js">Vue</a></td>
+<td><a href="https://posthog.com/docs/libraries/flutter">Flutter</a></td>
+<td><a href="https://posthog.com/docs/libraries/ruby">Ruby</a></td>
+</tr>
+</tbody>
+</table>
+<p>Beyond this, we have docs and guides for <a href="https://posthog.com/docs/libraries/go">Go</a>, <a href="https://posthog.com/docs/libraries/dotnet">.NET/C#</a>, <a href="https://posthog.com/docs/libraries/django">Django</a>, <a href="https://posthog.com/docs/libraries/angular">Angular</a>, <a href="https://posthog.com/docs/libraries/wordpress">WordPress</a>, <a href="https://posthog.com/docs/libraries/webflow">Webflow</a>, and more.</p>
+<p>Once you've installed PostHog, see our <a href="https://posthog.com/docs/product-os">product docs</a> for more information on how to set up <a href="https://posthog.com/docs/product-analytics/capture-events">product analytics</a>, <a href="https://posthog.com/docs/web-analytics/getting-started">web analytics</a>, <a href="https://posthog.com/docs/session-replay/how-to-watch-recordings">session replays</a>, <a href="https://posthog.com/docs/feature-flags/creating-feature-flags">feature flags</a>, [experiments](https://posthog.com/docs/experiments/creating-an-ex</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/PostHog/posthog#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">davila7 /</span>
+          <a href="https://github.com/davila7/claude-code-templates" target="_blank" rel="noopener">claude-code-templates</a>
+        </div>
+        <div class="repo-desc">CLI tool for configuring and monitoring Claude Code</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 25,442</span>
+      <span class="meta-item">🍴 2,535</span>
+      <span class="stars-today">⭐ 87 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><a href="https://www.npmjs.com/package/claude-code-templates"><img alt="npm version" src="https://img.shields.io/npm/v/claude-code-templates.svg" /></a><br />
+<a href="https://www.npmjs.com/package/claude-code-templates"><img alt="npm downloads" src="https://img.shields.io/npm/dt/claude-code-templates.svg" /></a><br />
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a><br />
+<a href="CONTRIBUTING.md"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a><br />
+<a href="https://z.ai/subscribe?ic=8JVLJQFSKB&amp;utm_source=github&amp;utm_medium=badge&amp;utm_campaign=readme"><img alt="Sponsored by Z.AI" src="https://img.shields.io/badge/Sponsored%20by-Z.AI-2563eb?style=flat&amp;logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMiAyMkgyMkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+" /></a><br />
+<a href="https://claude.com/contact-sales/claude-for-oss"><img alt="Claude for Open Source" src="https://img.shields.io/badge/Claude-Open%20Source%20Program-D97757?style=flat&amp;logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIzIiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==" /></a><br />
+<a href="https://get.neon.com/4eCjZDz"><img alt="Neon Open Source Program" src="https://img.shields.io/badge/Neon-Open%20Source%20Program-00E599?style=flat" /></a><br />
+<a href="https://buymeacoffee.com/daniavila"><img alt="Buy Me A Coffee" src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?style=flat&amp;logo=buy-me-a-coffee" /></a><br />
+<a href="https://github.com/davila7/claude-code-templates"><img alt="GitHub stars" src="https://img.shields.io/github/stars/davila7/claude-code-templates.svg?style=social&amp;label=Star" /></a></p>
+<p align="center">
+  <a href="https://trendshift.io/repositories/15113" target="_blank">
+    <img src="https://trendshift.io/api/badge/repositories/15113" alt="davila7%2Fclaude-code-templates | Trendshift" style="width: 200px; height: 40px;" width="125" height="40"/>
+  </a>
+  <br />
+  <br />
+  <a href="https://vercel.com/oss">
+  <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge.svg" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://get.neon.com/4eCjZDz">
+  <img alt="Neon Open Source Program" src="https://img.shields.io/badge/Neon-Open%20Source%20Program-00E599?style=for-the-badge" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://claude.com/contact-sales/claude-for-oss">
+  <img alt="Claude for Open Source" src="docs/claude-oss-badge.svg" height="48" />
+  </a>
+</p>
+
+<hr />
+<blockquote>
+<p><strong>🧪 NEW: Dashboard</strong> — Explore components, manage collections, and track installations at <strong><a href="https://www.aitmpl.com">www.aitmpl.com</a></strong>. Currently in beta — feedback welcome!</p>
+</blockquote>
+<h1>Claude Code Templates (<a href="https://aitmpl.com">aitmpl.com</a>)</h1>
+<p><strong>Ready-to-use configurations for Anthropic's Claude Code.</strong> A comprehensive collection of AI agents, custom commands, settings, hooks, external integrations (MCPs), and project templates to enhance your development workflow.</p>
+<h2>Browse &amp; Install Components and Templates</h2>
+<p><strong><a href="https://aitmpl.com">Browse All Templates</a></strong> - Interactive web interface to explore and install 100+ agents, commands, settings, hooks, and MCPs.</p>
+<p><img width="1049" height="855" alt="Screenshot 2025-08-19 at 08 09 24" src="https://github.com/user-attachments/assets/e3617410-9b1c-4731-87b7-a3858800b737" /></p>
+<h2>🚀 Quick Installation</h2>
+<pre><code class="language-bash"># Install a complete development stack
+npx claude-code-templates@latest --agent development-team/frontend-developer --command testing/generate-tests --mcp development/github-integration --yes
+
+# Browse and install interactively
+npx claude-code-templates@latest
+
+# Install specific components
+npx claude-code-templates@latest --agent development-tools/code-reviewer --yes
+npx claude-code-templates@latest --command performance/optimize-bundle --yes
+npx claude-code-templates@latest --setting performance/mcp-timeouts --yes
+npx claude-code-templates@latest --hook git/pre-commit-validation --yes
+npx claude-code-templates@latest --mcp database/postgresql-integration --yes
+</code></pre>
+<h2>What You Get</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🤖 Agents</strong></td>
+<td>AI specialists for specific domains</td>
+<td>Security auditor, React performance optimizer, database architect</td>
+</tr>
+<tr>
+<td><strong>⚡ Commands</strong></td>
+<td>Custom slash commands</td>
+<td><code>/generate-tests</code>, <code>/optimize-bundle</code>, <code>/check-security</code></td>
+</tr>
+<tr>
+<td><strong>🔌 MCPs</strong></td>
+<td>External service integrations</td>
+<td>GitHub, PostgreSQL, Stripe, AWS, OpenAI</td>
+</tr>
+<tr>
+<td><strong>⚙️ Settings</strong></td>
+<td>Claude Code configurations</td>
+<td>Timeouts, memory settings, output styles</td>
+</tr>
+<tr>
+<td><strong>🪝 Hooks</strong></td>
+<td>Automation triggers</td>
+<td>Pre-commit validation, post-completion actions</td>
+</tr>
+<tr>
+<td><strong>🎨 Skills</strong></td>
+<td>Reusable capabilities with progressive disclosure</td>
+<td>PDF processing, Excel automation, custom workflows</td>
+</tr>
+</tbody>
+</table>
+<h2>🛠️ Additional Tools</h2>
+<p>Beyond the template catalog, Claude Code Templates includes powerful development tools:</p>
+<h3>📊 Claude Code Analytics</h3>
+<p>Monitor your AI-powered development sessions in real-time with live state detection and performance metrics.</p>
+<pre><code class="language-bash">npx claude-code-templates@latest --analytics
+</code></pre>
+<h3>💬 Conversation Monitor</h3>
+<p>Mobile-optimized interface to view Claude responses in real-time with secure remote access.</p>
+<pre><code class="language-bash"># Local access
+npx claude-code-templates@latest --chats
+
+# Secure remote access via Cloudflare Tunnel
+npx claude-code-templates@latest --chats --tunnel
+</code></pre>
+<h3>🔍 Health Check</h3>
+<p>Comprehensive diagnostics to ensure your Claude Code installation is optimized.</p>
+<pre><code class="language-bash">npx claude-code-templates@latest --health-check
+</code></pre>
+<h3>🔌 Plugin Dashboard</h3>
+<p>View marketplaces, installed plugins, and manage permissions from a unified interface.</p>
+<pre><code class="language-bash">npx claude-code-templates@latest --plugins
+</code></pre>
+<h2>📖 Documentation</h2>
+<p><strong><a href="https://docs.aitmpl.com/">📚 docs.aitmpl.com</a></strong> - Complete guides, examples, and API reference for all components and tools.</p>
+<h2>Contributing</h2>
+<p>We welcome contributions! <strong><a href="https://aitmpl.com">Browse existing templates</a></strong> to see what's available, then check our <a href="CONTRIBUTING.md">contributing guidelines</a> to add your own agents, commands, MCPs, settings, or hooks.</p>
+<p><strong>Please read our <a href="CODE_OF_CONDUCT.md">Code of Conduct</a> before contributing.</strong></p>
+<h2>Attribution</h2>
+<p>This collection includes components from multiple sources:</p>
+<p><strong>Scientific Skills:</strong><br />
+- <strong><a href="https://github.com/K-Dense-AI/claude-scientific-skills">K-Dense-AI/claude-scientific-skills</a></strong> by K-Dense Inc. - MIT License (139 scientific skills for biology, chemistry, medicine, and computational research)</p>
+<p><strong>Official Anthropic:</strong><br />
+- <strong><a href="https://github.com/anthropics/skills">anthropics/skills</a></strong> - Official Anthropic skills (21 skills)<br />
+- <strong><a href="https://github.com/anthropics/claude-code">anthropics/claude-code</a></strong> - Development guides and examples (10 skills)</p>
+<p><strong>Community Skills &amp; Agents:</strong><br />
+- <strong><a href="https://github.com/obra/superpowers">obra/superpowers</a></strong> by Jesse Obra - MIT License (14 workflow skills)<br />
+- <strong><a href="https://github.com/alirezarezvani/claude-skills">alirezarezvani/claude-skills</a></strong> by Alireza Rezvani - MIT License (36 professional role skills)<br />
+- <strong><a href="https://github.com/wshobson/agents">wshobson/agents</a></strong> by wshobson - MIT License (48 agents)<br />
+- <strong>NerdyChefsAI Skills</strong> - Community contribution - MIT License (specialized enterprise skills)</p>
+<p><strong>Commands &amp; Tools:</strong><br />
+- <strong><a href="https://github.com/hesreallyhim/awesome-claude-code">awesome-claude-code</a></strong> by hesreallyhim - CC0 1.0 Universal (21 commands)<br />
+- <strong><a href="https://github.com/mehdi-lamrani/awesome-claude-skills">awesome-claude-skills</a></strong> - Apache 2.0 (community skills)<br />
+- <strong>move-code-quality-skill</strong> - MIT License<br />
+- <strong>cocoindex-claude</strong> - Apache 2.0</p>
+<p>Each of these resources retains its <strong>original license and attribution</strong>, as defined by their respective authors.<br />
+We respect and credit all original creators for their work and contributions to the Claude ecosystem.</p>
+<h2>📄 License</h2>
+<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+<h2>🔗 Links</h2>
+<ul>
+<li><strong>🌐 Browse Templates</strong>: <a href="https://aitmpl.com">aitmpl.com</a></li>
+<li><strong>📚 Documentation</strong>: <a href="https://docs.aitmpl.com">docs.aitmpl.com</a></li>
+<li>**</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/davila7/claude-code-templates#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">deepseek-ai /</span>
+          <a href="https://github.com/deepseek-ai/DeepEP" target="_blank" rel="noopener">DeepEP</a>
+        </div>
+        <div class="repo-desc">DeepEP: an efficient expert-parallel communication library</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#8b949e"></span>Cuda</span>
+      <span class="meta-item">⭐ 9,536</span>
+      <span class="meta-item">🍴 1,198</span>
+      <span class="stars-today">⭐ 189 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>DeepEP</h1>
+<p>DeepEP is a communication library tailored for Mixture-of-Experts (MoE) and expert parallelism (EP). It provides high-throughput and low-latency all-to-all GPU kernels, which are also known as MoE dispatch and combine. The library also supports low-precision operations, including FP8.</p>
+<p>To align with the group-limited gating algorithm proposed in the <a href="https://github.com/deepseek-ai/DeepSeek-V3">DeepSeek-V3</a> paper, DeepEP offers a set of kernels optimized for asymmetric-domain bandwidth forwarding, such as forwarding data from NVLink domain to RDMA domain. These kernels deliver high throughput, making them suitable for both training and inference prefilling tasks. Additionally, they support SM (Streaming Multiprocessors) number control.</p>
+<p>For latency-sensitive inference decoding, DeepEP includes a set of low-latency kernels with pure RDMA to minimize delays. The library also introduces a hook-based communication-computation overlapping method that does not occupy any SM resource.</p>
+<p>Notice: the implementation in this library may have some slight differences from the <a href="https://github.com/deepseek-ai/DeepSeek-V3">DeepSeek-V3</a> paper.</p>
+<h2>Performance</h2>
+<h3>Normal kernels with NVLink and RDMA forwarding</h3>
+<p>We test normal kernels on H800 (~160 GB/s NVLink maximum bandwidth), with each connected to a CX7 InfiniBand 400 Gb/s RDMA network card (~50 GB/s maximum bandwidth). And we follow the DeepSeek-V3/R1 pretraining setting (4096 tokens per batch, 7168 hidden, top-4 groups, top-8 experts, FP8 dispatching and BF16 combining).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Type</th>
+<th style="text-align: center;">Dispatch #EP</th>
+<th style="text-align: center;">Bottleneck bandwidth</th>
+<th style="text-align: center;">Combine #EP</th>
+<th style="text-align: center;">Bottleneck bandwidth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Intranode</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">153 GB/s (NVLink)</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">158 GB/s (NVLink)</td>
+</tr>
+<tr>
+<td style="text-align: center;">Internode</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">43 GB/s (RDMA)</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">43 GB/s (RDMA)</td>
+</tr>
+<tr>
+<td style="text-align: center;">Internode</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">58 GB/s (RDMA)</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">57 GB/s (RDMA)</td>
+</tr>
+<tr>
+<td style="text-align: center;">Internode</td>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">51 GB/s (RDMA)</td>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">50 GB/s (RDMA)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>News (2025.04.22)</strong>: with optimizations from Tencent Network Platform Department, performance was enhanced by up to 30%, see <a href="https://github.com/deepseek-ai/DeepEP/pull/130">#130</a> for more details. Thanks for the contribution!</p>
+<h3>Low-latency kernels with pure RDMA</h3>
+<p>We test low-latency kernels on H800 with each connected to a CX7 InfiniBand 400 Gb/s RDMA network card (~50 GB/s maximum bandwidth). And we follow a typical DeepSeek-V3/R1 production setting (128 tokens per batch, 7168 hidden, top-8 experts, FP8 dispatching and BF16 combining).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Dispatch #EP</th>
+<th style="text-align: center;">Latency</th>
+<th style="text-align: center;">RDMA bandwidth</th>
+<th style="text-align: center;">Combine #EP</th>
+<th style="text-align: center;">Latency</th>
+<th style="text-align: center;">RDMA bandwidth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">77 us</td>
+<td style="text-align: center;">98 GB/s</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">114 us</td>
+<td style="text-align: center;">127 GB/s</td>
+</tr>
+<tr>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">118 us</td>
+<td style="text-align: center;">63 GB/s</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">195 us</td>
+<td style="text-align: center;">74 GB/s</td>
+</tr>
+<tr>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">155 us</td>
+<td style="text-align: center;">48 GB/s</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">273 us</td>
+<td style="text-align: center;">53 GB/s</td>
+</tr>
+<tr>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">173 us</td>
+<td style="text-align: center;">43 GB/s</td>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">314 us</td>
+<td style="text-align: center;">46 GB/s</td>
+</tr>
+<tr>
+<td style="text-align: center;">128</td>
+<td style="text-align: center;">192 us</td>
+<td style="text-align: center;">39 GB/s</td>
+<td style="text-align: center;">128</td>
+<td style="text-align: center;">369 us</td>
+<td style="text-align: center;">39 GB/s</td>
+</tr>
+<tr>
+<td style="text-align: center;">256</td>
+<td style="text-align: center;">194 us</td>
+<td style="text-align: center;">39 GB/s</td>
+<td style="text-align: center;">256</td>
+<td style="text-align: center;">360 us</td>
+<td style="text-align: center;">40 GB/s</td>
+</tr>
+</tbody>
+</table>
+<p><strong>News (2025.06.05)</strong>: low-latency kernels now leverage NVLink as much as possible, see <a href="https://github.com/deepseek-ai/DeepEP/pull/173">#173</a> for more details. Thanks for the contribution!</p>
+<h2>Quick start</h2>
+<h3>Requirements</h3>
+<ul>
+<li>Ampere (SM80), Hopper (SM90) GPUs, or other architectures with SM90 PTX ISA support</li>
+<li>Python 3.8 and above</li>
+<li>CUDA version</li>
+<li>CUDA 11.0 and above for SM80 GPUs</li>
+<li>CUDA 12.3 and above for SM90 GPUs</li>
+<li>PyTorch 2.1 and above</li>
+<li>NVLink for intranode communication</li>
+<li>RDMA network for internode communication</li>
+</ul>
+<h3>Download and install NVSHMEM dependency</h3>
+<p>DeepEP also depends on NVSHMEM. Please refer to our <a href="third-party/README.md">NVSHMEM Installation Guide</a> for instructions.</p>
+<h3>Development</h3>
+<pre><code class="language-bash"># Build and make symbolic links for SO files
+NVSHMEM_DIR=/path/to/installed/nvshmem python setup.py build
+# You may modify the specific SO names according to your own platform
+ln -s build/lib.linux-x86_64-cpython-38/deep_ep_cpp.cpython-38-x86_64-linux-gnu.so
+
+# Run test cases
+# NOTES: you may modify the `init_dist` function in `tests/utils.py`
+# according to your own cluster settings, and launch into multiple nodes
+python tests/test_intranode.py
+python tests/test_internode.py
+python tests/test_low_latency.py
+</code></pre>
+<h3>Installation</h3>
+<pre><code class="language-bash">NVSHMEM_DIR=/path/to/installed/nvshmem python setup.py install
+</code></pre>
+<h4>Installation environment variables</h4>
+<ul>
+<li><code>NVSHMEM_DIR</code>: the path to the NVSHMEM directory, disable all internode and low-latency features if not specified</li>
+<li><code>DISABLE_SM90_FEATURES</code>: 0 or 1, whether to disable SM90 features, it is required for SM90 devices or CUDA 11</li>
+<li><code>TORCH_CUDA_ARCH_LIST</code>: the list of target architectures, e.g. <code>TORCH_CUDA_ARCH_LIST="9.0"</code></li>
+<li><code>DISABLE_AGGRESSIVE_PTX_INSTRS</code>: 0 or 1, whether to disable aggressive load/store instructions, see <a href="#undefined-behavior-ptx-usage">Undefined-behavior PTX usage</a> for more details</li>
+</ul>
+<p>Then, import <code>deep_ep</code> in your Python project, and enjoy!</p>
+<h2>Network configurations</h2>
+<p>DeepEP is fully tested with InfiniBand networks. However, it is theoretically compatible with RDMA over Converged Ethernet (RoCE) as well.</p>
+<h3>Traffic isolation</h3>
+<p>Traffic isolation is supported by InfiniBand through Virtual Lanes (VL).</p>
+<p>To prevent interference between different types of traffic, we recommend segregating workloads across different virtual lanes as follows:</p>
+<ul>
+<li>workloads using normal kernels</li>
+<li>workloads using low-latency kernels</li>
+<li>other workloads</li>
+</ul>
+<p>For DeepEP, you can control the virtual lane assignment by setting the <code>NVSHMEM_IB_SL</code> environment variable.</p>
+<h3>Adaptive routing</h3>
+<p>Adaptive routing is an advanced routing feature provided by InfiniBand switches that can evenly distribute traffic across multiple paths. Enabling adaptive routing can completely eliminate network congestion caused by routing conflicts, but it also introduces additional latency. We recommend the following configuration for optimal performance:</p>
+<ul>
+<li>enable adaptive routing in environments with heavy network loads</li>
+<li>use static routing in environments with light network loads</li>
+</ul>
+<h3>Congestion control</h3>
+<p>Congestion control is disabled as we have not observed significant congestion in our production environment.</p>
+<h2>Interfaces and examples</h2>
+<h3>Example use in model training or inference prefilling</h3>
+<p>The normal kernels can be used in model training or the inference prefilling phase (without the backward part) as the below example code shows.</p>
+<p>```python<br />
+import torch<br />
+import torch.distributed as dist<br />
+from typing import List, Tuple, Optional, Union</p>
+<p>from deep_ep import Buffer, EventOverlap</p>
+<h1>Communication buffer (will allocate at runtime)</h1>
+<p>_buffer: Optional[Buffer] = None</p>
+<h1>Set the number of SMs to use</h1>
+<h1>NOTES: this is a static variable</h1>
+<p>Buffer.set_num_sms(24)</p>
+<h1>You may call this function at the framework initialization</h1>
+<p>def get_buffer(group: dist.ProcessGroup, hidden_bytes: int) -&gt; Buffer:<br />
+    global _buffer</p>
+<pre><code># NOTES: you may also replace `get_*_config` with your auto-tuned results via all the tests
+num_nvl_bytes, num_rdma_bytes = 0, 0
+for config in (Buffer.get_dispatch_config(group.size()), Buffer.get_combine_config(group.size())):
+    num_nvl_bytes = max(config.get_nvl_buffer_size_hint(hidden_bytes, group.size()), num_nvl_bytes)
+    num_rdma_bytes = max(config.get_rdma_buffer_size_hint(hidden_bytes, group.size()), num_rdma_bytes)
+
+# Allocate a buffer if not existed or not enough buffer size
+if _buffer is None or _buffer.group != group or _buffer.num_nvl_bytes &lt; num_nvl_bytes or _buffer.num_rdma_bytes &lt; num_rdma_bytes:
+    _buffer = Buffer(group, num_nvl_bytes, num_rdma_bytes)
+return _buffer
+</code></pre>
+<p>def get_hidden_bytes(x: torch.Tensor) -&gt; int:<br />
+    t = x[0] if isinstance</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/deepseek-ai/DeepEP#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">PowerShell /</span>
+          <a href="https://github.com/PowerShell/PowerShell" target="_blank" rel="noopener">PowerShell</a>
+        </div>
+        <div class="repo-desc">PowerShell for every system!</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#178600"></span>C#</span>
+      <span class="meta-item">⭐ 53,132</span>
+      <span class="meta-item">🍴 8,299</span>
+      <span class="stars-today">⭐ 48 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1><img alt="logo" src="assets/ps_black_64.svg?sanitize=true" /> PowerShell</h1>
+<p>Welcome to the PowerShell GitHub Community!<br />
+<a href="https://learn.microsoft.com/powershell/scripting/overview">PowerShell</a> is a cross-platform (Windows, Linux, and macOS) automation and configuration tool/framework that works well with your existing tools and is optimized<br />
+for dealing with structured data (e.g. JSON, CSV, XML, etc.), REST APIs, and object models.<br />
+It includes a command-line shell, an associated scripting language, and a framework for processing cmdlets.</p>
+<h2>Windows PowerShell vs. PowerShell 7+</h2>
+<p>Although this repository started as a fork of the Windows PowerShell codebase, changes made in this repository are not ported back to Windows PowerShell 5.1.<br />
+This also means that <a href="https://github.com/PowerShell/PowerShell/issues">issues tracked here</a> are only for PowerShell 7.x and higher.<br />
+Windows PowerShell specific issues should be reported with the <a href="https://support.microsoft.com/windows/send-feedback-to-microsoft-with-the-feedback-hub-app-f59187f8-8739-22d6-ba93-f66612949332">Feedback Hub app</a>, by choosing "Apps &gt; PowerShell" in the category.</p>
+<h2>New to PowerShell?</h2>
+<p>If you are new to PowerShell and want to learn more, we recommend reviewing the <a href="https://learn.microsoft.com/powershell/scripting/learn/more-powershell-learning">getting started</a> documentation.</p>
+<h2>Get PowerShell</h2>
+<p>PowerShell is supported on Windows, macOS, and a variety of Linux platforms. For<br />
+more information, see <a href="https://learn.microsoft.com/powershell/scripting/install/installing-powershell">Installing PowerShell</a>.</p>
+<h2>Upgrading PowerShell</h2>
+<p>For best results when upgrading, you should use the same install method you used when you first<br />
+installed PowerShell. The update method is different for each platform and install method.</p>
+<h2>Community Dashboard</h2>
+<p><a href="https://aka.ms/PSPublicDashboard">Dashboard</a> with visualizations for community contributions and project status using PowerShell, Azure, and PowerBI.</p>
+<p>For more information on how and why we built this dashboard, check out this <a href="https://devblogs.microsoft.com/powershell/powershell-open-source-community-dashboard/">blog post</a>.</p>
+<h2>Discussions</h2>
+<p><a href="https://docs.github.com/discussions/quickstart">GitHub Discussions</a> is a feature to enable free and open discussions within the community<br />
+for topics that are not related to code, unlike issues.</p>
+<p>This is an experiment we are trying in our repositories, to see if it helps move discussions out of issues so that issues remain actionable by the team or members of the community.<br />
+There should be no expectation that PowerShell team members are regular participants in these discussions.<br />
+Individual PowerShell team members may choose to participate in discussions, but the expectation is that community members help drive discussions so that team members<br />
+can focus on issues.</p>
+<p>Create or join a <a href="https://github.com/PowerShell/PowerShell/discussions">discussion</a>.</p>
+<h2>Chat</h2>
+<p>Want to chat with other members of the PowerShell community?</p>
+<p>There are dozens of topic-specific channels on our community-driven PowerShell Virtual User Group, which you can join on:</p>
+<ul>
+<li><a href="https://discord.gg/PowerShell">Discord</a></li>
+<li><a href="https://web.libera.chat/#powershell">IRC</a> on Libera.Chat</li>
+<li><a href="https://aka.ms/psslack">Slack</a></li>
+</ul>
+<h2>Developing and Contributing</h2>
+<p>Want to contribute to PowerShell? Please start with the <a href=".github/CONTRIBUTING.md">Contribution Guide</a> to learn how to develop and contribute.</p>
+<p>If you are developing .NET Core C# applications targeting PowerShell Core, <a href="docs/FAQ.md#where-do-i-get-the-powershell-core-sdk-package">check out our FAQ</a> to learn more about the PowerShell SDK NuGet package.</p>
+<p>Also, make sure to check out our <a href="https://github.com/powershell/powershell-rfc">PowerShell-RFC repository</a> for request-for-comments (RFC) documents to submit and give comments on proposed and future designs.</p>
+<h2>Building PowerShell</h2>
+<table>
+<thead>
+<tr>
+<th>Linux</th>
+<th>Windows</th>
+<th>macOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="docs/building/linux.md">Instructions</a></td>
+<td><a href="docs/building/windows-core.md">Instructions</a></td>
+<td><a href="docs/building/macos.md">Instructions</a></td>
+</tr>
+</tbody>
+</table>
+<p>If you have any problems building PowerShell, please start by consulting the developer <a href="docs/FAQ.md">FAQ</a>.</p>
+<h2>Downloading the Source Code</h2>
+<p>You can clone the repository:</p>
+<pre><code class="language-sh">git clone https://github.com/PowerShell/PowerShell.git
+</code></pre>
+<p>For more information, see <a href="https://github.com/PowerShell/PowerShell/tree/master/docs/git">working with the PowerShell repository</a>.</p>
+<h2>Support</h2>
+<p>For support, see the <a href="https://github.com/PowerShell/PowerShell/tree/master/.github/SUPPORT.md">Support Section</a>.</p>
+<h2>Legal and Licensing</h2>
+<p>PowerShell is licensed under the <a href="https://github.com/PowerShell/PowerShell/tree/master/LICENSE.txt">MIT license</a>.</p>
+<h3>Docker Containers</h3>
+<blockquote>
+<p>[!Important]<br />
+The PowerShell container images are now <a href="https://github.com/PowerShell/Announcements/issues/75">maintained by the .NET team</a>. The containers at <code>mcr.microsoft.com/powershell</code> are currently not maintained.</p>
+</blockquote>
+<p>License: By requesting and using the Container OS Image for Windows containers, you acknowledge, understand, and consent to the Supplemental License Terms available on <a href="https://mcr.microsoft.com/en-us/product/powershell/tags">Microsoft Artifact Registry</a>.</p>
+<h3>Telemetry</h3>
+<p>Please visit our <a href="https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_telemetry">about_Telemetry</a><br />
+topic to read details about telemetry gathered by PowerShell.</p>
+<h2>Governance</h2>
+<p>The governance policy for the PowerShell project is described the <a href="https://github.com/PowerShell/PowerShell/blob/master/docs/community/governance.md">PowerShell Governance</a> document.</p>
+<h2><a href="CODE_OF_CONDUCT.md">Code of Conduct</a></h2>
+<p>Please see our <a href="CODE_OF_CONDUCT.md">Code of Conduct</a> before participating in this project.</p>
+<h2><a href=".github/SECURITY.md">Security Policy</a></h2>
+<p>For any security issues, please see our <a href=".github/SECURITY.md">Security Policy</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/PowerShell/PowerShell#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">RooCodeInc /</span>
+          <a href="https://github.com/RooCodeInc/Roo-Code" target="_blank" rel="noopener">Roo-Code</a>
+        </div>
+        <div class="repo-desc">Roo Code gives you a whole dev team of AI agents in your code editor.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 23,583</span>
+      <span class="meta-item">🍴 3,128</span>
+      <span class="stars-today">⭐ 57 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <a href="https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
+  <a href="https://x.com/roocode"><img src="https://img.shields.io/badge/roocode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
+  <a href="https://youtube.com/@roocodeyt?feature=shared"><img src="https://img.shields.io/badge/YouTube-FF0000?style=flat&logo=youtube&logoColor=white" alt="YouTube"></a>
+  <a href="https://discord.gg/roocode"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
+  <a href="https://www.reddit.com/r/RooCode/"><img src="https://img.shields.io/badge/Join%20r%2FRooCode-FF4500?style=flat&logo=reddit&logoColor=white" alt="Join r/RooCode"></a>
+</p>
+<p align="center">
+  <em>Get help fast → <a href="https://discord.gg/roocode">Join Discord</a> • Prefer async? → <a href="https://www.reddit.com/r/RooCode/">Join r/RooCode</a></em>
+</p>
+
+<h1>Roo Code</h1>
+<blockquote>
+<p>Your AI-Powered Dev Team, Right in Your Editor</p>
+</blockquote>
+<h2>What's New in v3.53.0</h2>
+<blockquote>
+<h3>The Roo Code plugin is not going away.</h3>
+<p>You may have seen the <a href="https://x.com/mattrubens/status/2046636598859559114">recent announcement</a> that Roo Code hit 3 million installs and the original team is going all-in on Roomote. We know that news was hard for a lot of you. This plugin means a lot to us and to you, and we hear you.</p>
+<p>The good news: <strong>a community team has stepped up to carry Roo Code forward</strong>, and we're working with them on an official handoff so the plugin you rely on keeps getting maintained and improved.</p>
+</blockquote>
+<p><strong>What's new in this release:</strong></p>
+<ul>
+<li>Add GPT-5.5 support via the OpenAI Codex provider.</li>
+<li>Add Claude Opus 4.7 support on Vertex AI.</li>
+<li>Add previous checkpoint navigation controls in chat so you can step back through prior checkpoints more easily.</li>
+</ul>
+<details>
+  <summary>🌐 Available languages</summary>
+
+- [English](README.md)
+- [Català](locales/ca/README.md)
+- [Deutsch](locales/de/README.md)
+- [Español](locales/es/README.md)
+- [Français](locales/fr/README.md)
+- [हिंदी](locales/hi/README.md)
+- [Bahasa Indonesia](locales/id/README.md)
+- [Italiano](locales/it/README.md)
+- [日本語](locales/ja/README.md)
+- [한국어](locales/ko/README.md)
+- [Nederlands](locales/nl/README.md)
+- [Polski](locales/pl/README.md)
+- [Português (BR)](locales/pt-BR/README.md)
+- [Русский](locales/ru/README.md)
+- [Türkçe](locales/tr/README.md)
+- [Tiếng Việt](locales/vi/README.md)
+- [简体中文](locales/zh-CN/README.md)
+- [繁體中文](locales/zh-TW/README.md)
+- ...
+    </details>
+
+<hr />
+<h2>What Can Roo Code Do For YOU?</h2>
+<ul>
+<li>Generate Code from natural language descriptions and specs</li>
+<li>Adapt with Modes: Code, Architect, Ask, Debug, and Custom Modes</li>
+<li>Refactor &amp; Debug existing code</li>
+<li>Write &amp; Update documentation</li>
+<li>Answer Questions about your codebase</li>
+<li>Automate repetitive tasks</li>
+<li>Utilize MCP Servers</li>
+</ul>
+<h2>Modes</h2>
+<p>Roo Code adapts to how you work:</p>
+<ul>
+<li>Code Mode: everyday coding, edits, and file ops</li>
+<li>Architect Mode: plan systems, specs, and migrations</li>
+<li>Ask Mode: fast answers, explanations, and docs</li>
+<li>Debug Mode: trace issues, add logs, isolate root causes</li>
+<li>Custom Modes: build specialized modes for your team or workflow</li>
+</ul>
+<p>Learn more: <a href="https://docs.roocode.com/basic-usage/using-modes">Using Modes</a> • <a href="https://docs.roocode.com/advanced-usage/custom-modes">Custom Modes</a></p>
+<h2>Tutorial &amp; Feature Videos</h2>
+<div align="center">
+
+|                                                                                                                                                                           |                                                                                                                                                                            |                                                                                                                                                                          |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <a href="https://www.youtube.com/watch?v=Mcq3r1EPZ-4"><img src="https://img.youtube.com/vi/Mcq3r1EPZ-4/maxresdefault.jpg" width="100%"></a><br><b>Installing Roo Code</b> | <a href="https://www.youtube.com/watch?v=ZBML8h5cCgo"><img src="https://img.youtube.com/vi/ZBML8h5cCgo/maxresdefault.jpg" width="100%"></a><br><b>Configuring Profiles</b> | <a href="https://www.youtube.com/watch?v=r1bpod1VWhg"><img src="https://img.youtube.com/vi/r1bpod1VWhg/maxresdefault.jpg" width="100%"></a><br><b>Codebase Indexing</b>  |
+|    <a href="https://www.youtube.com/watch?v=iiAv1eKOaxk"><img src="https://img.youtube.com/vi/iiAv1eKOaxk/maxresdefault.jpg" width="100%"></a><br><b>Custom Modes</b>     |     <a href="https://www.youtube.com/watch?v=Ho30nyY332E"><img src="https://img.youtube.com/vi/Ho30nyY332E/maxresdefault.jpg" width="100%"></a><br><b>Checkpoints</b>      | <a href="https://www.youtube.com/watch?v=HmnNSasv7T8"><img src="https://img.youtube.com/vi/HmnNSasv7T8/maxresdefault.jpg" width="100%"></a><br><b>Context Management</b> |
+
+</div>
+<p align="center">
+<a href="https://docs.roocode.com/tutorial-videos">More quick tutorial and feature videos...</a>
+</p>
+
+<h2>Resources</h2>
+<ul>
+<li><strong><a href="https://docs.roocode.com">Documentation</a>:</strong> The official guide to installing, configuring, and mastering Roo Code.</li>
+<li><strong><a href="https://youtube.com/@roocodeyt?feature=shared">YouTube Channel</a>:</strong> Watch tutorials and see features in action.</li>
+<li><strong><a href="https://discord.gg/roocode">Discord Server</a>:</strong> Join the community for real-time help and discussion.</li>
+<li><strong><a href="https://www.reddit.com/r/RooCode">Reddit Community</a>:</strong> Share your experiences and see what others are building.</li>
+<li><strong><a href="https://github.com/RooCodeInc/Roo-Code/issues">GitHub Issues</a>:</strong> Report bugs and track development.</li>
+<li><strong><a href="https://github.com/RooCodeInc/Roo-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop">Feature Requests</a>:</strong> Have an idea? Share it with the developers.</li>
+</ul>
+<hr />
+<h2>Local Setup &amp; Development</h2>
+<ol>
+<li><strong>Clone</strong> the repo:</li>
+</ol>
+<pre><code class="language-sh">git clone https://github.com/RooCodeInc/Roo-Code.git
+</code></pre>
+<ol>
+<li><strong>Install dependencies</strong>:</li>
+</ol>
+<pre><code class="language-sh">pnpm install
+</code></pre>
+<ol>
+<li><strong>Run the extension</strong>:</li>
+</ol>
+<p>There are several ways to run the Roo Code extension:</p>
+<h3>Development Mode (F5)</h3>
+<p>For active development, use VSCode's built-in debugging:</p>
+<p>Press <code>F5</code> (or go to <strong>Run</strong> → <strong>Start Debugging</strong>) in VSCode. This will open a new VSCode window with the Roo Code extension running.</p>
+<ul>
+<li>Changes to the webview will appear immediately.</li>
+<li>Changes to the core extension will also hot reload automatically.</li>
+</ul>
+<h3>Automated VSIX Installation</h3>
+<p>To build and install the extension as a VSIX package directly into VSCode:</p>
+<pre><code class="language-sh">pnpm install:vsix [-y] [--editor=&lt;command&gt;]
+</code></pre>
+<p>This command will:</p>
+<ul>
+<li>Ask which editor command to use (code/cursor/code-insiders) - defaults to 'code'</li>
+<li>Uninstall any existing version of the extension.</li>
+<li>Build the latest VSIX package.</li>
+<li>Install the newly built VSIX.</li>
+<li>Prompt you to restart VS Code for changes to take effect.</li>
+</ul>
+<p>Options:</p>
+<ul>
+<li><code>-y</code>: Skip all confirmation prompts and use defaults</li>
+<li><code>--editor=&lt;command&gt;</code>: Specify the editor command (e.g., <code>--editor=cursor</code> or <code>--editor=code-insiders</code>)</li>
+</ul>
+<h3>Manual VSIX Installation</h3>
+<p>If you prefer to install the VSIX package manually:</p>
+<ol>
+<li>First, build the VSIX package:<br />
+<code>sh
+    pnpm vsix</code></li>
+<li>A <code>.vsix</code> file will be generated in the <code>bin/</code> directory (e.g., <code>bin/roo-cline-&lt;version&gt;.vsix</code>).</li>
+<li>Install it manually using the </li>
+</ol>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/RooCodeInc/Roo-Code#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">huggingface /</span>
+          <a href="https://github.com/huggingface/ml-intern" target="_blank" rel="noopener">ml-intern</a>
+        </div>
+        <div class="repo-desc">🤗 ml-intern: an open-source ML engineer that reads papers, trains models, and ships ML models</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 6,436</span>
+      <span class="meta-item">🍴 581</span>
+      <span class="stars-today">⭐ 1,240 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="frontend/public/smolagents.webp" alt="smolagents logo" width="160" />
+</p>
+
+<h1>ML Intern</h1>
+<p>An ML intern that autonomously researches, writes, and ships good quality ML related code using the Hugging Face ecosystem — with deep access to docs, papers, datasets, and cloud compute.</p>
+<h2>Quick Start</h2>
+<h3>Installation</h3>
+<pre><code class="language-bash">git clone git@github.com:huggingface/ml-intern.git
+cd ml-intern
+uv sync
+uv tool install -e .
+</code></pre>
+<h4>That's it. Now <code>ml-intern</code> works from any directory:</h4>
+<pre><code class="language-bash">ml-intern
+</code></pre>
+<p>Create a <code>.env</code> file in the project root (or export these in your shell):</p>
+<pre><code class="language-bash">ANTHROPIC_API_KEY=&lt;your-anthropic-api-key&gt; # if using anthropic models
+OPENAI_API_KEY=&lt;your-openai-api-key&gt; # if using openai models
+HF_TOKEN=&lt;your-hugging-face-token&gt;
+GITHUB_TOKEN=&lt;github-personal-access-token&gt; 
+</code></pre>
+<p>If no <code>HF_TOKEN</code> is set, the CLI will prompt you to paste one on first launch. To get a GITHUB_TOKEN follow the tutorial <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token">here</a>.</p>
+<h3>Usage</h3>
+<p><strong>Interactive mode</strong> (start a chat session):</p>
+<pre><code class="language-bash">ml-intern
+</code></pre>
+<p><strong>Headless mode</strong> (single prompt, auto-approve):</p>
+<pre><code class="language-bash">ml-intern &quot;fine-tune llama on my dataset&quot;
+</code></pre>
+<p><strong>Options:</strong></p>
+<pre><code class="language-bash">ml-intern --model anthropic/claude-opus-4-6 &quot;your prompt&quot;
+ml-intern --model openai/gpt-5.5 &quot;your prompt&quot;
+ml-intern --max-iterations 100 &quot;your prompt&quot;
+ml-intern --no-stream &quot;your prompt&quot;
+</code></pre>
+<h2>Architecture</h2>
+<h3>Component Overview</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                         User/CLI                            │
+└────────────┬─────────────────────────────────────┬──────────┘
+             │ Operations                          │ Events
+             ↓ (user_input, exec_approval,         ↑
+      submission_queue  interrupt, compact, ...)  event_queue
+             │                                          │
+             ↓                                          │
+┌────────────────────────────────────────────────────┐  │
+│            submission_loop (agent_loop.py)         │  │
+│  ┌──────────────────────────────────────────────┐  │  │
+│  │  1. Receive Operation from queue             │  │  │
+│  │  2. Route to handler (run_agent/compact/...) │  │  │
+│  └──────────────────────────────────────────────┘  │  │
+│                      ↓                             │  │
+│  ┌──────────────────────────────────────────────┐  │  │
+│  │         Handlers.run_agent()                 │  ├──┤
+│  │                                              │  │  │
+│  │  ┌────────────────────────────────────────┐  │  │  │
+│  │  │  Agentic Loop (max 300 iterations)     │  │  │  │
+│  │  │                                        │  │  │  │
+│  │  │  ┌──────────────────────────────────┐  │  │  │  │
+│  │  │  │ Session                          │  │  │  │  │
+│  │  │  │  ┌────────────────────────────┐  │  │  │  │  │
+│  │  │  │  │ ContextManager             │  │  │  │  │  │
+│  │  │  │  │ • Message history          │  │  │  │  │  │
+│  │  │  │  │   (litellm.Message[])      │  │  │  │  │  │
+│  │  │  │  │ • Auto-compaction (170k)   │  │  │  │  │  │
+│  │  │  │  │ • Session upload to HF     │  │  │  │  │  │
+│  │  │  │  └────────────────────────────┘  │  │  │  │  │
+│  │  │  │                                  │  │  │  │  │
+│  │  │  │  ┌────────────────────────────┐  │  │  │  │  │
+│  │  │  │  │ ToolRouter                 │  │  │  │  │  │
+│  │  │  │  │  ├─ HF docs &amp; research     │  │  │  │  │  │
+│  │  │  │  │  ├─ HF repos, datasets,    │  │  │  │  │  │
+│  │  │  │  │  │  jobs, papers           │  │  │  │  │  │
+│  │  │  │  │  ├─ GitHub code search     │  │  │  │  │  │
+│  │  │  │  │  ├─ Sandbox &amp; local tools  │  │  │  │  │  │
+│  │  │  │  │  ├─ Planning               │  │  │  │  │  │
+│  │  │  │  │  └─ MCP server tools       │  │  │  │  │  │
+│  │  │  │  └────────────────────────────┘  │  │  │  │  │
+│  │  │  └──────────────────────────────────┘  │  │  │  │
+│  │  │                                        │  │  │  │
+│  │  │  ┌──────────────────────────────────┐  │  │  │  │
+│  │  │  │ Doom Loop Detector               │  │  │  │  │
+│  │  │  │ • Detects repeated tool patterns │  │  │  │  │
+│  │  │  │ • Injects corrective prompts     │  │  │  │  │
+│  │  │  └──────────────────────────────────┘  │  │  │  │
+│  │  │                                        │  │  │  │
+│  │  │  Loop:                                 │  │  │  │
+│  │  │    1. LLM call (litellm.acompletion)   │  │  │  │
+│  │  │       ↓                                │  │  │  │
+│  │  │    2. Parse tool_calls[]               │  │  │  │
+│  │  │       ↓                                │  │  │  │
+│  │  │    3. Approval check                   │  │  │  │
+│  │  │       (jobs, sandbox, destructive ops) │  │  │  │
+│  │  │       ↓                                │  │  │  │
+│  │  │    4. Execute via ToolRouter           │  │  │  │
+│  │  │       ↓                                │  │  │  │
+│  │  │    5. Add results to ContextManager    │  │  │  │
+│  │  │       ↓                                │  │  │  │
+│  │  │    6. Repeat if tool_calls exist       │  │  │  │
+│  │  └────────────────────────────────────────┘  │  │  │
+│  └──────────────────────────────────────────────┘  │  │
+└────────────────────────────────────────────────────┴──┘
+</code></pre>
+<h3>Agentic Loop Flow</h3>
+<pre><code>User Message
+     ↓
+[Add to ContextManager]
+     ↓
+     ╔═══════════════════════════════════════════╗
+     ║      Iteration Loop (max 300)             ║
+     ║                                           ║
+     ║  Get messages + tool specs                ║
+     ║         ↓                                 ║
+     ║  litellm.acompletion()                    ║
+     ║         ↓                                 ║
+     ║  Has tool_calls? ──No──&gt; Done             ║
+     ║         │                                 ║
+     ║        Yes                                ║
+     ║         ↓                                 ║
+     ║  Add assistant msg (with tool_calls)      ║
+     ║         ↓                                 ║
+     ║  Doom loop check                          ║
+     ║         ↓                                 ║
+     ║  For each tool_call:                      ║
+     ║    • Needs approval? ──Yes──&gt; Wait for    ║
+     ║    │                         user confirm ║
+     ║    No                                     ║
+     ║    ↓                                      ║
+     ║    • ToolRouter.execute_tool()            ║
+     ║    • Add result to ContextManager         ║
+     ║         ↓                                 ║
+     ║  Continue loop ─────────────────┐         ║
+     ║         ↑                       │         ║
+     ║         └───────────────────────┘         ║
+     ╚═══════════════════════════════════════════╝
+</code></pre>
+<h2>Events</h2>
+<p>The agent emits the following events via <code>event_queue</code>:</p>
+<ul>
+<li><code>processing</code> - Starting to process user input</li>
+<li><code>ready</code> - Agent is ready for input</li>
+<li><code>assistant_chunk</code> - Streaming token chunk</li>
+<li><code>assistant_message</code> - Complete LLM response text</li>
+<li><code>assistant_stream_end</code> - Token stream finished</li>
+<li><code>tool_call</code> - Tool being called with arguments</li>
+<li><code>tool_output</code> - Tool execution result</li>
+<li><code>tool_log</code> - Informational tool log message</li>
+<li><code>tool_state_change</code> - Tool execution state transition</li>
+<li><code>approval_required</code> - Requesting user approval for sensitive operations</li>
+<li><code>turn_complete</code> - Agent finished processing</li>
+<li><code>error</code> - Error occurred during processing</li>
+<li><code>interrupted</code> - Agent was interrupted</li>
+<li><code>compacted</code> - Context was compacted</li>
+<li><code>undo_complete</code> - Undo operation completed</li>
+<li><code>shutdown</code> - Agent shutting down</li>
+</ul>
+<h2>Development</h2>
+<h3>Adding Built-in Tools</h3>
+<p>Edit <code>agent/core/tools.py</code>:</p>
+<p>```python<br />
+def create_builtin_tools() -&gt; list[ToolSpec]:<br />
+    return [<br />
+        ToolSpec(<br />
+            name="your_tool",<br />
+            description="What your tool does",<br />
+            parameters={<br />
+                "type": "object",<br />
+                "properties": {<br />
+                    "param": {"type": "s</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/huggingface/ml-intern#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">codecrafters-io /</span>
+          <a href="https://github.com/codecrafters-io/build-your-own-x" target="_blank" rel="noopener">build-your-own-x</a>
+        </div>
+        <div class="repo-desc">Master programming by recreating your favorite technologies from scratch.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#8b949e"></span>Markdown</span>
+      <span class="meta-item">⭐ 496,224</span>
+      <span class="meta-item">🍴 47,027</span>
+      <span class="stars-today">⭐ 1,432 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><a href="https://codecrafters.io/github-banner"><img alt="Banner" src="https://codecrafters.io/images/new-ccgithub-banner.png" /></a></p>
+<h2>Build your own &lt;insert-technology-here&gt;</h2>
+<p>This repository is a compilation of well-written, step-by-step guides for re-creating our favorite technologies from scratch. </p>
+<blockquote>
+<p><em>What I cannot create, I do not understand — Richard Feynman.</em></p>
+</blockquote>
+<p>It's a great way to learn.</p>
+<ul>
+<li><a href="#build-your-own-3d-renderer">3D Renderer</a></li>
+<li><a href="#ai-model">AI Model</a></li>
+<li><a href="#build-your-own-augmented-reality">Augmented Reality</a></li>
+<li><a href="#build-your-own-bittorrent-client">BitTorrent Client</a></li>
+<li><a href="#build-your-own-blockchain--cryptocurrency">Blockchain / Cryptocurrency</a></li>
+<li><a href="#build-your-own-bot">Bot</a></li>
+<li><a href="#build-your-own-command-line-tool">Command-Line Tool</a></li>
+<li><a href="#build-your-own-database">Database</a></li>
+<li><a href="#build-your-own-docker">Docker</a></li>
+<li><a href="#build-your-own-emulator--virtual-machine">Emulator / Virtual Machine</a></li>
+<li><a href="#build-your-own-front-end-framework--library">Front-end Framework / Library</a></li>
+<li><a href="#build-your-own-game">Game</a></li>
+<li><a href="#build-your-own-git">Git</a></li>
+<li><a href="#build-your-own-memory-allocator">Memory Allocator</a></li>
+<li><a href="#build-your-own-network-stack">Network Stack</a></li>
+<li><a href="#build-your-own-neural-network">Neural Network</a></li>
+<li><a href="#build-your-own-operating-system">Operating System</a></li>
+<li><a href="#build-your-own-physics-engine">Physics Engine</a></li>
+<li><a href="#build-your-own-processor">Processor</a></li>
+<li><a href="#build-your-own-programming-language">Programming Language</a></li>
+<li><a href="#build-your-own-regex-engine">Regex Engine</a></li>
+<li><a href="#build-your-own-search-engine">Search Engine</a></li>
+<li><a href="#build-your-own-shell">Shell</a></li>
+<li><a href="#build-your-own-template-engine">Template Engine</a></li>
+<li><a href="#build-your-own-text-editor">Text Editor</a></li>
+<li><a href="#build-your-own-visual-recognition-system">Visual Recognition System</a></li>
+<li><a href="#build-your-own-voxel-engine">Voxel Engine</a></li>
+<li><a href="#build-your-own-web-browser">Web Browser</a></li>
+<li><a href="#build-your-own-web-server">Web Server</a></li>
+<li><a href="#uncategorized">Uncategorized</a></li>
+</ul>
+<h2>Tutorials</h2>
+<h4>Build your own <code>Distributed Systems</code></h4>
+<ul>
+<li><a href="https://github.com/buildthingsuseful/build-your-own-kafka"><strong>Java</strong>: <em>Building Your Own Kafka-like System From Scratch: A Step-by-Step Guide</em></a></li>
+</ul>
+<h4>Build your own <code>3D Renderer</code></h4>
+<ul>
+<li><a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing/how-does-it-work"><strong>C++</strong>: <em>Introduction to Ray Tracing: a Simple Method for Creating 3D Images</em></a></li>
+<li><a href="https://github.com/ssloy/tinyrenderer/wiki"><strong>C++</strong>: <em>How OpenGL works: software rendering in 500 lines of code</em></a></li>
+<li><a href="http://lodev.org/cgtutor/raycasting.html"><strong>C++</strong>: <em>Raycasting engine of Wolfenstein 3D</em></a></li>
+<li><a href="http://www.pbr-book.org/"><strong>C++</strong>: <em>Physically Based Rendering:From Theory To Implementation</em></a></li>
+<li><a href="https://raytracing.github.io/books/RayTracingInOneWeekend.html"><strong>C++</strong>: <em>Ray Tracing in One Weekend</em></a></li>
+<li><a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/rasterization-practical-implementation/overview-rasterization-algorithm"><strong>C++</strong>: <em>Rasterization: a Practical Implementation</em></a></li>
+<li><a href="https://www.davrous.com/2013/06/13/tutorial-series-learning-how-to-write-a-3d-soft-engine-from-scratch-in-c-typescript-or-javascript/"><strong>C# / TypeScript / JavaScript</strong>: <em>Learning how to write a 3D soft engine from scratch in C#, TypeScript or JavaScript</em></a></li>
+<li><a href="https://avik-das.github.io/build-your-own-raytracer/"><strong>Java / JavaScript</strong>: <em>Build your own 3D renderer</em></a></li>
+<li><a href="http://blog.rogach.org/2015/08/how-to-create-your-own-simple-3d-render.html"><strong>Java</strong>: <em>How to create your own simple 3D render engine in pure Java</em></a></li>
+<li><a href="http://www.gabrielgambetta.com/computer-graphics-from-scratch/introduction.html"><strong>JavaScript / Pseudocode</strong>: <em>Computer Graphics from scratch</em></a></li>
+<li><a href="http://aosabook.org/en/500L/a-3d-modeller.html"><strong>Python</strong>: <em>A 3D Modeller</em></a></li>
+</ul>
+<h4>Build your own <code>AI Model</code></h4>
+<ul>
+<li><a href="https://github.com/rasbt/LLMs-from-scratch"><strong>Python</strong>: <em>A Large Language Model (LLM)</em></a></li>
+<li><a href="https://huggingface.co/learn/diffusion-course/en/unit1/3"><strong>Python</strong>: <em>Diffusion Models for Image Generation</em></a></li>
+<li><a href="https://github.com/langchain-ai/rag-from-scratch"><strong>Python</strong>: <em>RAG for Document Search</em></a></li>
+</ul>
+<h4>Build your own <code>Augmented Reality</code></h4>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=uXNjNcqW4kY"><strong>C#</strong>: <em>How To: Augmented Reality App Tutorial for Beginners with Vuforia and Unity 3D</em></a> [video]</li>
+<li><a href="https://www.youtube.com/playlist?list=PLKIKuXdn4ZMjuUAtdQfK1vwTZPQn_rgSv"><strong>C#</strong>: <em>How To Unity ARCore</em></a> [video]</li>
+<li><a href="https://www.youtube.com/playlist?list=PLPCqNOwwN794Gz5fzUSi1p4OqLU0HTmvn"><strong>C#</strong>: <em>AR Portal Tutorial with Unity</em></a> [video]</li>
+<li><a href="https://www.youtube.com/watch?v=qTSDPkPyPqs"><strong>C#</strong>: <em>How to create a Dragon in Augmented Reality in Unity ARCore</em></a> [video]</li>
+<li><a href="https://www.youtube.com/watch?v=Z5AmqMuNi08"><strong>C#</strong>: <em>How to Augmented Reality AR Tutorial: ARKit Portal to the Upside Down</em></a> [video]</li>
+<li><a href="https://bitesofcode.wordpress.com/2017/09/12/augmented-reality-with-python-and-opencv-part-1/"><strong>Python</strong>: <em>Augmented Reality with Python and OpenCV</em></a></li>
+</ul>
+<h4>Build your own <code>BitTorrent Client</code></h4>
+<ul>
+<li><a href="https://www.seanjoflynn.com/research/bittorrent.html"><strong>C#</strong>: <em>Building a BitTorrent client from scratch in C#</em></a></li>
+<li><a href="https://blog.jse.li/posts/torrent/"><strong>Go</strong>: <em>Building a BitTorrent client from the ground up in Go</em></a></li>
+<li><a href="https://xmonader.github.io/nimdays/day02_bencode.html"><strong>Nim</strong>: <em>Writing a Bencode Parser</em></a></li>
+<li><a href="https://allenkim67.github.io/programming/2016/05/04/how-to-make-your-own-bittorrent-client.html"><strong>Node.js</strong>: <em>Write your own bittorrent client</em></a></li>
+<li><a href="http://markuseliasson.se/article/bittorrent-in-python/"><strong>Python</strong>: <em>A BitTorrent client in Python 3.5</em></a></li>
+</ul>
+<h4>Build your own <code>Blockchain / Cryptocurrency</code></h4>
+<ul>
+<li><a href="https://beta.observablehq.com/@galletti94/functional-blockchain"><strong>ATS</strong>: <em>Functional Blockchain</em></a></li>
+<li><a href="https://medium.com/@bradford_hamilton/write-your-own-blockchain-and-pow-algorithm-using-crystal-d53d5d9d0c52"><strong>Crystal</strong>: <em>Write your own blockchain and PoW algorithm using Crystal</em></a></li>
+<li><a href="https://jeiwan.net/posts/building-blockchain-in-go-part-1/"><strong>Go</strong>: <em>Building Blockchain in Go</em></a></li>
+<li><a href="https://medium.com/@mycoralhealth/code-your-own-blockchain-in-less-than-200-lines-of-go-e296282bcffc"><strong>Go</strong>: <em>Code your own blockchain in less than 200 lines of Go</em></a></li>
+<li><a href="https://medium.com/programmers-blockchain/create-simple-blockchain-java-tutorial-from-scratch-6eeed3cb03fa"><strong>Java</strong>: <em>Creating Your First Blockchain with Java</em></a></li>
+<li><a href="https://github.com/conradoqg/naivecoin"><strong>JavaScript</strong>: <em>A cryptocurrency implementation in less than 1500 lines of code</em></a></li>
+<li><a href="https://github.com/nambrot/blockchain-in-js"><strong>JavaScript</strong>: <em>Build your own Blockchain in JavaScript</em></a></li>
+<li><a href="https://medium.com/digital-alchemy-holdings/learn-build-a-javascript-blockchain-part-1-ca61c285821e"><strong>JavaScript</strong>: <em>Learn &amp; Build a JavaScript Blockchain</em></a></li>
+<li><a href="https://github.com/SavjeeTutorials/SavjeeCoin"><strong>JavaScript</strong>: <em>Creating a blockchain with JavaScript</em></a></li>
+<li><a href="https://hackernoon.com/how-to-launch-your-own-production-ready-cryptocurrency-ab97cb773371"><strong>JavaScript</strong>: <em>How To Launch Your Own Production-Ready Cryptocurrency</em></a></li>
+<li><a href="https://www.smashingmagazine.com/2020/02/cryptocurrency-blockchain-node-js/"><strong>JavaScript</strong>: <em>Writing a Blockchain in Node.js</em></a></li>
+<li><a href="https://medium.com/@vasilyf/lets-implement-a-cryptocurrency-in-kotlin-part-1-blockchain-8704069f8580"><strong>Kotlin</strong>: <em>Let’s implement a cryptocurrency in Kotlin</em></a></li>
+<li><a href="https://hackernoon.com/learn-blockchains-by-building-one-117428612f46"><strong>Python</strong>: <em>Learn Blockchains by Building One</em></a></li>
+<li><a href="http://ecomunsing.com/build-your-own-blockchain"><strong>Python</strong>: <em>Build your own blockchain: a Python tutorial</em></a></li>
+<li><a href="http://adilmoujahid.com/posts/2018/03/intro-blockchain-bitcoin-python/"><strong>Python</strong>: <em>A Practical Introduction to Blockchain with Python</em></a></li>
+<li><a href="https://medium.com/crypto-currently/lets-build-the-tiniest-blockchain-e70965a248b"><strong>Python</strong>: <em>Let’s Build the Tiniest Blockchain</em></a></li>
+<li><a href="https://github.com/yukimotopress/programming-blockchains-step-by-step"><strong>Ruby</strong>: <em>Programming Blockchains Step-by-Step (Manuscripts Book Edition)</em></a></li>
+<li><a href="https://medium.freecodecamp.org/how-to-build-a-simple-actor-based-blockchain-aac1e996c177"><strong>Scala</strong>: <em>How to build a simple actor-based blockchain</em></a></li>
+<li>[<strong>TypeScript</strong>: _Naivecoin: </li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/codecrafters-io/build-your-own-x#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">CJackHwang /</span>
+          <a href="https://github.com/CJackHwang/ds2api" target="_blank" rel="noopener">ds2api</a>
+        </div>
+        <div class="repo-desc">Deepseek to API: A lightweight, high-performance full-stack middleware converting client protocols to universal APIs. Supports multi-account rotation, compiled binaries, Vercel Serverless, and Docker. Compatible with Google, Claude, and OpenAI API formats.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#00ADD8"></span>Go</span>
+      <span class="meta-item">⭐ 1,511</span>
+      <span class="meta-item">🍴 474</span>
+      <span class="stars-today">⭐ 44 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="webui/public/ds2api-favicon.svg" width="128" height="128" alt="DS2API icon" />
+</p>
+
+<h1>DS2API</h1>
+<p><a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/CJackHwang/ds2api.svg" /></a><br />
+<img alt="Stars" src="https://img.shields.io/github/stars/CJackHwang/ds2api.svg" /><br />
+<img alt="Forks" src="https://img.shields.io/github/forks/CJackHwang/ds2api.svg" /><br />
+<a href="https://github.com/CJackHwang/ds2api/releases"><img alt="Release" src="https://img.shields.io/github/v/release/CJackHwang/ds2api?display_name=tag" /></a><br />
+<a href="docs/DEPLOY.md"><img alt="Docker" src="https://img.shields.io/badge/docker-ready-blue.svg" /></a><br />
+<a href="https://zeabur.com/templates/L4CFHP"><img alt="Deploy on Zeabur" src="https://zeabur.com/button.svg" /></a><br />
+<a href="https://vercel.com/new/clone?repository-url=https://github.com/CJackHwang/ds2api"><img alt="Deploy with Vercel" src="https://vercel.com/button" /></a></p>
+<p>语言 / Language: <a href="README.MD">中文</a> | <a href="README.en.md">English</a></p>
+<p>将 DeepSeek Web 对话能力转换为 OpenAI、Claude 与 Gemini 兼容 API。后端为 <strong>Go 全量实现</strong>，前端为 React WebUI 管理台（源码在 <code>webui/</code>，部署时自动构建到 <code>static/admin</code>）。</p>
+<p>文档入口：<a href="docs/README.md">文档导航</a> / <a href="docs/ARCHITECTURE.md">架构说明</a> / <a href="API.md">接口文档</a></p>
+<p>【感谢Linux.do社区及GitHub社区各位开发者对项目的支持与贡献】</p>
+<blockquote>
+<p><strong>重要免责声明</strong></p>
+<p>本仓库仅供学习、研究、个人实验和内部验证使用，不提供任何形式的商业授权、适用性保证或结果保证。</p>
+<p>作者及仓库维护者不对因使用、修改、分发、部署或依赖本项目而产生的任何直接或间接损失、账号封禁、数据丢失、法律风险或第三方索赔负责。</p>
+<p>请勿将本项目用于违反服务条款、协议、法律法规或平台规则的场景。商业使用前请自行确认 <code>LICENSE</code>、相关协议以及你是否获得了作者的书面许可。</p>
+</blockquote>
+<h2>架构概览（摘要）</h2>
+<pre><code class="language-mermaid">flowchart LR
+    Client[&quot;🖥️ 客户端 / SDK\n(OpenAI / Claude / Gemini)&quot;]
+    Upstream[&quot;☁️ DeepSeek API&quot;]
+
+    subgraph DS2API[&quot;DS2API 4.x（模块化 HTTP surface + PromptCompat 内核）&quot;]
+        Router[&quot;chi Router + 中间件\n(RequestID / RealIP / Logger / Recoverer / CORS)&quot;]
+
+        subgraph HTTP[&quot;HTTP API surface&quot;]
+            OA[&quot;OpenAI\nchat / responses / files / embeddings&quot;]
+            CA[&quot;Claude\n/anthropic/* + /v1/messages&quot;]
+            GA[&quot;Gemini\n/v1beta/models/* + /v1/models/*&quot;]
+            Admin[&quot;Admin API\n资源子包&quot;]
+            WebUI[&quot;WebUI\n/admin（静态托管）&quot;]
+            Vercel[&quot;Vercel Node Stream\n/v1/chat/completions&quot;]
+        end
+
+        subgraph Runtime[&quot;运行时核心能力&quot;]
+            Compat[&quot;PromptCompat\n(API -&gt; 网页纯文本上下文)&quot;]
+            Chat[&quot;Chat / Responses Runtime\n(统一工具调用与流式语义)&quot;]
+            Auth[&quot;Auth Resolver\n(API key / bearer / x-goog-api-key)&quot;]
+            Pool[&quot;Account Pool + Queue\n(并发槽位 + 等待队列)&quot;]
+            DSClient[&quot;DeepSeek Client\n(Session / Auth / Completion / Files)&quot;]
+            Pow[&quot;PoW 实现\n(纯 Go)&quot;]
+            Tool[&quot;Tool Sieve\n(Go/Node 语义对齐)&quot;]
+            History[&quot;History Split\n(长历史文件化)&quot;]
+        end
+    end
+
+    Client --&gt; Router
+    Router --&gt; OA &amp; CA &amp; GA
+    Router --&gt; Admin
+    Router --&gt; WebUI
+    Router --&gt; Vercel
+
+    OA --&gt; Compat
+    CA &amp; GA --&gt; Compat
+    Compat --&gt; Chat
+    Compat -.长历史.-&gt; History
+    Vercel -.Go prepare.-&gt; Chat
+    Vercel -.Node SSE.-&gt; Tool
+    Chat --&gt; Auth
+    Chat -.账号轮询.-&gt; Pool
+    Chat -.工具调用解析.-&gt; Tool
+    Chat -.PoW 计算.-&gt; Pow
+    Auth --&gt; DSClient
+    DSClient --&gt; Upstream
+    Upstream --&gt; DSClient
+    Chat --&gt; Client
+    Vercel --&gt; Client
+</code></pre>
+<p>详细架构拆分与目录职责见 <a href="docs/ARCHITECTURE.md">docs/ARCHITECTURE.md</a>。</p>
+<ul>
+<li><strong>后端</strong>：Go（<code>cmd/ds2api/</code>、<code>api/</code>、<code>internal/</code>），不依赖 Python 运行时</li>
+<li><strong>前端</strong>：React 管理台（<code>webui/</code>），运行时托管静态构建产物</li>
+<li><strong>部署</strong>：本地运行、Docker、Vercel Serverless、Linux systemd</li>
+</ul>
+<h2>核心能力</h2>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI 兼容</td>
+<td><code>GET /v1/models</code>、<code>GET /v1/models/{id}</code>、<code>POST /v1/chat/completions</code>、<code>POST /v1/responses</code>、<code>GET /v1/responses/{response_id}</code>、<code>POST /v1/embeddings</code>、<code>POST /v1/files</code></td>
+</tr>
+<tr>
+<td>Claude 兼容</td>
+<td><code>GET /anthropic/v1/models</code>、<code>POST /anthropic/v1/messages</code>、<code>POST /anthropic/v1/messages/count_tokens</code>（及快捷路径 <code>/v1/messages</code>、<code>/messages</code>）</td>
+</tr>
+<tr>
+<td>Gemini 兼容</td>
+<td><code>POST /v1beta/models/{model}:generateContent</code>、<code>POST /v1beta/models/{model}:streamGenerateContent</code>（及 <code>/v1/models/{model}:*</code> 路径）</td>
+</tr>
+<tr>
+<td>统一 CORS 兼容</td>
+<td><code>/v1/*</code>、<code>/anthropic/*</code>、<code>/v1beta/models/*</code>、<code>/admin/*</code> 统一走同一套 CORS 策略；Vercel 上 <code>/v1/chat/completions</code> 的 Node Runtime 也对齐相同放行规则，尽量减少第三方预检请求头限制</td>
+</tr>
+<tr>
+<td>多账号轮询</td>
+<td>自动 token 刷新、邮箱/手机号双登录方式</td>
+</tr>
+<tr>
+<td>并发队列控制</td>
+<td>每账号 in-flight 上限 + 等待队列，动态计算建议并发值</td>
+</tr>
+<tr>
+<td>DeepSeek PoW</td>
+<td>纯 Go 高性能实现（DeepSeekHashV1），毫秒级响应</td>
+</tr>
+<tr>
+<td>Tool Calling</td>
+<td>防泄漏处理：非代码块高置信特征识别、<code>delta.tool_calls</code> 早发、结构化增量输出</td>
+</tr>
+<tr>
+<td>Admin API</td>
+<td>配置管理、运行时设置热更新、代理管理、账号测试 / 批量测试、会话清理、导入导出、Vercel 同步、版本检查</td>
+</tr>
+<tr>
+<td>WebUI 管理台</td>
+<td><code>/admin</code> 单页应用（中英文双语、深色模式，支持查看服务器端对话记录）</td>
+</tr>
+<tr>
+<td>运维探针</td>
+<td><code>GET /healthz</code>（存活）、<code>GET /readyz</code>（就绪）</td>
+</tr>
+</tbody>
+</table>
+<h2>平台兼容矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>平台</th>
+<th>当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>Codex CLI/SDK（<code>wire_api=chat</code> / <code>wire_api=responses</code>）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>OpenAI SDK（JS/Python，chat + responses）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>Vercel AI SDK（openai-compatible）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>Anthropic SDK（messages）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>Google Gemini SDK（generateContent）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>LangChain / LlamaIndex / OpenWebUI（OpenAI 兼容接入）</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h2>模型支持</h2>
+<h3>OpenAI 接口（<code>GET /v1/models</code>）</h3>
+<table>
+<thead>
+<tr>
+<th>模型类型</th>
+<th>模型 ID</th>
+<th>thinking</th>
+<th>search</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td><code>deepseek-v4-flash</code></td>
+<td>默认开启，可由请求参数控制</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>expert</td>
+<td><code>deepseek-v4-pro</code></td>
+<td>默认开启，可由请求参数控制</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>default</td>
+<td><code>deepseek-v4-flash-search</code></td>
+<td>默认开启，可由请求参数控制</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>expert</td>
+<td><code>deepseek-v4-pro-search</code></td>
+<td>默认开启，可由请求参数控制</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>vision</td>
+<td><code>deepseek-v4-vision</code></td>
+<td>默认开启，可由请求参数控制</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>vision</td>
+<td><code>deepseek-v4-vision-search</code></td>
+<td>默认开启，可由请求参数控制</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p>除原生模型外，也支持常见 alias 输入（如 <code>gpt-4.1</code>、<code>gpt-5</code>、<code>gpt-5-codex</code>、<code>o3</code>、<code>claude-*</code>、<code>gemini-*</code> 等），但 <code>/v1/models</code> 返回的是规范化后的 DeepSeek 原生模型 ID。完整 alias 行为以 <a href="API.md#模型-alias-解析策略">API.md</a> 和 <code>config.example.json</code> 为准。</p>
+<h3>Claude 接口（<code>GET /anthropic/v1/models</code>）</h3>
+<table>
+<thead>
+<tr>
+<th>当前常用模型</th>
+<th>默认映射</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>claude-sonnet-4-6</code></td>
+<td><code>deepseek-v4-flash</code></td>
+</tr>
+<tr>
+<td><code>claude-haiku-4-5</code>（兼容 <code>claude-3-5-haiku-latest</code>）</td>
+<td><code>deepseek-v4-flash</code></td>
+</tr>
+<tr>
+<td><code>claude-opus-4-6</code></td>
+<td><code>deepseek-v4-pro</code></td>
+</tr>
+</tbody>
+</table>
+<p>可通过配置中的 <code>model_aliases</code> 覆盖映射关系。<br />
+<code>/anthropic/v1/models</code> 除上述主别名外，还会返回 Claude 4.x snapshots、3.x 历史模型 ID 与常见 alias，便于旧客户端直接兼容。</p>
+<h4>Claude Code 接入避坑（实测）</h4>
+<ul>
+<li><code>ANTHROPIC_BASE_URL</code> 推荐直接指向 DS2API 根地址（例如 <code>http://127.0.0.1:5001</code>），Claude Code 会请求 <code>/v1/messages?beta=true</code>。</li>
+<li><code>ANTHROPIC_API_KEY</code> 需要与 <code>config.json</code> 中 <code>keys</code> 一致；建议同时保留常规 key 与 <code>sk-ant-*</code> 形态 key，兼容不同客户端校验习惯。</li>
+<li>若系统设置了代理，建议对 DS2API 地址配置 <code>NO_PROXY=127.0.0.1,localhost,&lt;你的主机IP&gt;</code>，避免本地回环请求被代理拦截。</li>
+<li>如遇“工具调用输出成文本、未执行”问题，请优先检查模型输出是否为当前唯一受支持的 XML 工具块：<code>&lt;tool_calls&gt;&lt;invoke name="..."&gt;&lt;parameter name="..."&gt;...</code>，而不是旧式 <code>&lt;tools&gt;</code> / <code>&lt;tool_call&gt;</code> / <code>&lt;tool_name&gt;</code> / <code>&lt;param&gt;</code>、<code>&lt;function_call&gt;</code>、<code>tool_use</code> 或纯 JSON <code>tool_calls</code> 片段。</li>
+</ul>
+<h3>Gemini 接口</h3>
+<p>Gemini 适配器将模型名通过 <code>model_aliases</code> 或内置规则映射到 DeepSeek 原生模型，支持 <code>generateContent</code> 和 <code>streamGenerateContent</code> 两种调用方式，并完整支持 Tool Calling（<code>functionDeclarations</code> → <code>functionCall</code> 输出）。</p>
+<h2>快速开始</h2>
+<h3>部署方式优先级建议</h3>
+<p>推荐按以下顺序选择部署方式：</p>
+<ol>
+<li><strong>下载 Release 构建包运行</strong>：最省事，产物已编译完成，最适合大多数用户。</li>
+<li><strong>Docker / GHCR 镜像部署</strong>：适合需要容器化、编排或云环境部署。</li>
+<li><strong>Vercel 部署</strong>：适合已有 Vercel 环境且接受其平台约束的场景。</li>
+<li><strong>本地源码运行 / 自行编译</strong>：适合开发、调试或需要自行修改代码的场景。</li>
+</ol>
+<h3>通用第一步（所有部署方式）</h3>
+<p>把 <code>config.json</code> 作为唯一配置源（推荐做法）：</p>
+<pre><code class="language-bash">cp config.example.json config.json
+# 编辑 config.json
+</code></pre>
+<p>后续部署建议：<br />
+- 本地运行：直接读取 <code>config.json</code><br />
+- Docker / Vercel：由 <code>config.json</code> 生成 <code>DS2API_CONFIG_JSON</code>（Base64）注入环境变量，也可以直接写原始 JSON</p>
+<p>WebUI 管理台里的“全量配置模板”也直接复用同一份 <code>config.example.json</code>，所以更新示例文件后，前端模板会自动保持一致。</p>
+<h3>方式一：下载 Release 构建包</h3>
+<p>每次发布 Release 时，GitHub Actions 会自动构建多平台二进制包：</p>
+<pre><code class="language-bash"># 下载对应平台的压缩包后
+tar -xzf ds2api_&lt;tag&gt;_linux_amd64.tar.gz
+cd ds2api_&lt;tag&gt;_linux_amd64
+cp config.example.json config.json
+# 编辑 config.json
+./ds2api
+</code></pre>
+<h3>方式二：Docker 运行</h3>
+<pre><code class="language-bash"># 1. 准备环境变量和配置文件
+cp .env.example .env
+cp config.example.json config.json
+
+# 2. 编辑 .env（至少设置 DS2API_ADMIN_KEY；如需修改宿主机端口，可额外设置 DS2API_HOST_PORT）
+#    DS2API_ADMIN_KEY=请替换为强密码
+
+# 3. 启动
+docker-compose up -d
+
+# 4. 查看日志
+docker-compose logs -f
+</code></pre>
+<p>默认 <code>docker-compose.yml</code> 会把宿主机 <code>6011</code> 映射到容器内的 <code>5001</code>。如果你希望直接对外暴露 <code>5001</code>，请设置 <code>DS2API_HOST_PORT=5001</code>（或者手动调整 <code>ports</code> 配置）。</p>
+<p>更新镜像：<code>docker-compose up -d --build</code></p>
+<h4>Zeabur 一键部署（Dockerfile）</h4>
+<ol>
+<li>点击上方 “Deploy on Zeabur” 按钮，一键部署。</li>
+<li>部署完成后访问 <code>/admin</code>，使用 Zeabur 环境变量/模板指引中的 <code>DS2API_ADMIN_KEY</code> 登录。</li>
+<li>在管理台导入/编辑配置（会写入并持久化到 <code>/data/config.json</code>）。</li>
+</ol>
+<p>说明：Zeabur 使用仓库内 <code>Dockerfile</code> 直接构建时，不需要额外传入 <code>BUILD_VERSION</code>；镜像会优先读取该构建参数，未提供时自动回退到仓库根目录的 <code>VERSION</code> 文件。</p>
+<h3>方式三：Vercel 部署</h3>
+<ol>
+<li>Fork 仓库到自己的 GitHub</li>
+<li>在 Vercel 上导入项目</li>
+<li>配置环境变量（最少设置 <code>DS2API_ADMIN_KEY</code>；推荐同时设置 <code>DS2API_CONFIG_JSON</code>）</li>
+<li>部署</li>
+</ol>
+<p>建议先在仓库目录复制模板并填写：</p>
+<pre><code class="language-bash">cp config.example.json config.json
+# 编辑 config.json
+</code></pre>
+<p>推荐：先本地把 <code>config.json</code> 转成 Bas</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/CJackHwang/ds2api#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#12</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Universal-Commerce-Protocol /</span>
+          <a href="https://github.com/Universal-Commerce-Protocol/ucp" target="_blank" rel="noopener">ucp</a>
+        </div>
+        <div class="repo-desc">Specification and documentation for the Universal Commerce Protocol (UCP)</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 2,857</span>
+      <span class="meta-item">🍴 350</span>
+      <span class="stars-today">⭐ 26 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!--
+   Copyright 2026 UCP Authors
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+<!-- markdownlint-disable-file MD041 -->
+
+<p align="center">
+  <h1 align="center">Universal Commerce Protocol (UCP)</h1>
+</p>
+
+<p align="center">
+  <b>An open standard enabling interoperability between various commerce
+   entities to facilitate seamless commerce integrations.</b>
+</p>
+
+<p align="center">
+  <a href="https://ucp.dev">Documentation</a> |
+  <a href="https://ucp.dev/specification/overview">Specification</a> |
+  <a href="https://github.com/Universal-Commerce-Protocol/ucp/discussions">Discussions</a>
+</p>
+
+<h2>Overview</h2>
+<p>The Universal Commerce Protocol (UCP) addresses a fragmented commerce landscape<br />
+by providing a standardized common language and functional primitives. It<br />
+enables platforms (like AI agents and apps), businesses, Payment Service<br />
+Providers (PSPs), and Credential Providers (CPs) to communicate effectively,<br />
+ensuring secure and consistent commerce experiences across the web.</p>
+<p>With UCP, businesses can:</p>
+<ul>
+<li><strong>Declare</strong> supported capabilities to enable autonomous discovery by<br />
+    platforms.</li>
+<li><strong>Facilitate</strong> secure checkout sessions, with or without human intervention.</li>
+<li><strong>Offer</strong> personalized shopping experiences through standardized data<br />
+    exchange.</li>
+</ul>
+<h2>Why UCP?</h2>
+<p>As commerce becomes increasingly agentic and distributed, the ability for<br />
+different systems to interoperate without custom, one-off integrations is vital.<br />
+UCP aims to:</p>
+<ul>
+<li><strong>Standardize Interaction:</strong> Provide a uniform way for platforms to interact<br />
+    with businesses, regardless of the underlying backend.</li>
+<li><strong>Modularize Commerce:</strong> Breakdown commerce into distinct <strong>Capabilities</strong><br />
+    (e.g., Checkout, Order) and <strong>Extensions</strong> (e.g., Discounts,<br />
+    Fulfillment), allowing for flexible implementation.</li>
+<li><strong>Enable Agentic Commerce:</strong> Designed from the ground up to support AI<br />
+    agents acting on behalf of users to discover products, fill carts, and<br />
+    complete purchases securely.</li>
+<li><strong>Enhance Security:</strong> Support for advanced security patterns like AP2<br />
+    mandates and verifiable credentials.</li>
+</ul>
+<h3>Key Features</h3>
+<ul>
+<li><strong>Composable Architecture:</strong> UCP defines <strong>Capabilities</strong> (such as<br />
+    "Checkout" or "Identity Linking") that businesses implement to enable easy<br />
+    integration. On top of that, specific <strong>Extensions</strong> can be added to enhance<br />
+    the consumer experience without bloating the capability definitions.</li>
+<li><strong>Dynamic Discovery:</strong> Businesses declare their supported Capabilities in a<br />
+    standardized profile, allowing platforms to autonomously discover and<br />
+    configure themselves.</li>
+<li><strong>Transport Agnostic:</strong> The protocol is designed to work across various<br />
+    transports. Businesses can offer Capabilities via REST APIs, MCP (Model<br />
+    Context Protocol), or A2A, depending on their infrastructure.</li>
+<li><strong>Built on Standards:</strong> UCP leverages existing open standards for payments,<br />
+    identity, and security wherever applicable, rather than reinventing the<br />
+    wheel.</li>
+<li><strong>Developer Friendly:</strong> A comprehensive set of SDKs and libraries<br />
+    facilitates rapid development and integration.</li>
+</ul>
+<h2>Key Capabilities</h2>
+<p>The initial release focuses on the essential primitives for transacting:</p>
+<ul>
+<li><strong>Checkout:</strong> Facilitates checkout sessions including cart management and<br />
+    tax calculation, supporting flows with or without human intervention.</li>
+<li><strong>Identity Linking:</strong> Enables platforms to obtain authorization to perform<br />
+    actions on a user's behalf via OAuth 2.0.</li>
+<li><strong>Order:</strong> Webhook-based updates for order lifecycle events (shipped,<br />
+    delivered, returned).</li>
+<li><strong>Payment Token Exchange:</strong> Protocols for PSPs and Credential Providers to<br />
+    securely exchange payment tokens and credentials.</li>
+</ul>
+<h2>Getting Started</h2>
+<ul>
+<li>📚 <strong>Explore the Documentation:</strong> Visit <a href="https://ucp.dev">ucp.dev</a> for a<br />
+    complete overview, the full protocol specification, tutorials, and guides.</li>
+<li>🎬 <strong>Review our<br />
+<a href="https://github.com/Universal-Commerce-Protocol/samples">samples</a></strong> for<br />
+    implementation examples.</li>
+<li>🛠️ <strong>Use our<br />
+<a href="https://github.com/orgs/Universal-Commerce-Protocol/repositories">SDKs</a></strong><br />
+    to start building your own integrations.</li>
+<li>📝 <strong>Check conformance</strong> with our <a href="https://github.com/Universal-Commerce-Protocol/conformance">conformance tests</a>.</li>
+</ul>
+<h2>Contributing</h2>
+<p>We welcome community contributions to enhance and evolve UCP.</p>
+<ul>
+<li><strong>Questions &amp; Discussions:</strong> Join our <a href="https://github.com/Universal-Commerce-Protocol/ucp/discussions">GitHub<br />
+    Discussions</a>.</li>
+<li><strong>Issues &amp; Feedback:</strong> Report issues or suggest improvements via GitHub<br />
+    Issues.</li>
+<li><strong>Contribution Guide:</strong> See our <a href="https://github.com/Universal-Commerce-Protocol/.github/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a><br />
+    for details on how to contribute.</li>
+</ul>
+<h2>What's Next</h2>
+<p>Take a look at <a href="https://ucp.dev/documentation/roadmap/">our roadmap on ucp.dev</a>.<br />
+Future enhancements include:</p>
+<ul>
+<li><strong>New Verticals:</strong> Applications beyond Shopping (e.g., Travel, Services).</li>
+<li><strong>Loyalty:</strong> Standardized management of loyalty programs and rewards.</li>
+<li><strong>Personalization:</strong> Enhanced signals for personalized product discovery.</li>
+</ul>
+<h2>About</h2>
+<p>UCP is an open-source project under the <a href="LICENSE">Apache License 2.0</a> and is<br />
+open to contributions from the community.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Universal-Commerce-Protocol/ucp#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#13</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">ComposioHQ /</span>
+          <a href="https://github.com/ComposioHQ/awesome-codex-skills" target="_blank" rel="noopener">awesome-codex-skills</a>
+        </div>
+        <div class="repo-desc">A curated list of practical Codex skills for automating workflows across the Codex CLI and API.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 1,627</span>
+      <span class="meta-item">🍴 139</span>
+      <span class="stars-today">⭐ 188 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">Awesome Codex Skills</h1>
+
+<p align="center">
+<a href="https://dashboard.composio.dev/login?utm_source=Github&utm_medium=Youtube&utm_campaign=2025-11&utm_content=AwesomeCodexSkills">
+
+  <img width="1280" height="640" alt="Composio banner" src="codex_cover_image.png">
+</a>
+</p>
+
+<p align="center">
+  <a href="https://awesome.re">
+    <img src="https://awesome.re/badge.svg" alt="Awesome" />
+  </a>
+  <a href="https://makeapullrequest.com">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome" />
+  </a>
+</p>
+<div>
+<p align="center">
+  <a href="https://twitter.com/composio">
+    <img src="https://img.shields.io/badge/Follow on X-000000?style=for-the-badge&logo=x&logoColor=white" alt="Follow on X" />
+  </a>
+  <a href="https://www.linkedin.com/company/composiohq/">
+    <img src="https://img.shields.io/badge/Follow on LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Follow on LinkedIn" />
+  </a>
+  <a href="https://discord.com/invite/composio">
+    <img src="https://img.shields.io/badge/Join our Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join our Discord" />
+  </a>
+  </p>
+</div>
+
+<p>A curated list of practical Codex skills for automating workflows across the Codex CLI and API.</p>
+<blockquote>
+<p><strong>Want skills that do more than generate text?</strong> Codex can send emails, create issues, post to Slack, and take actions across 1000+ apps. <a href="./connect/">See how →</a></p>
+</blockquote>
+<hr />
+<h2>Quickstart: Add Skills to Codex</h2>
+<h3>Install with the Skill Installer (recommended)</h3>
+<pre><code class="language-bash">git clone https://github.com/ComposioHQ/awesome-codex-skills.git
+cd awesome-codex-skills/awesome-codex-skills
+# Install one or more skills into $CODEX_HOME/skills (defaults to ~/.codex/skills)
+python skill-installer/scripts/install-skill-from-github.py --repo ComposioHQ/awesome-codex-skills --path meeting-notes-and-actions
+</code></pre>
+<p>The installer fetches the skill and places it in <code>$CODEX_HOME/skills/&lt;skill-name&gt;</code>. Restart Codex to pick up new skills.</p>
+<h3>Manual install</h3>
+<ol>
+<li>Copy the desired skill folder (e.g., <code>./spreadsheet-formula-helper</code>) into <code>$CODEX_HOME/skills/</code> (defaults to <code>~/.codex/skills/</code>).</li>
+<li>Restart Codex so it loads the new metadata.</li>
+<li>In your next session, describe the task or mention the skill name; Codex will trigger matching skills based on their <code>description</code> frontmatter.</li>
+</ol>
+<hr />
+<h2>Contents</h2>
+<ul>
+<li><a href="https://github.com/chernistry/bernstein">Bernstein</a> - Multi-agent orchestrator with Codex CLI adapter. Runs parallel Codex agents in isolated git worktrees with quality gates.</li>
+<li><a href="#what-are-codex-skills">What Are Codex Skills?</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#development--code-tools">Development &amp; Code Tools</a></li>
+<li><a href="#productivity--collaboration">Productivity &amp; Collaboration</a></li>
+<li><a href="#communication--writing">Communication &amp; Writing</a></li>
+<li><a href="#data--analysis">Data &amp; Analysis</a></li>
+<li><a href="#meta--utilities">Meta &amp; Utilities</a></li>
+<li><a href="#using-skills-in-codex">Using Skills in Codex</a></li>
+<li><a href="#creating-skills">Creating Skills</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#join-the-community">Join the Community</a></li>
+</ul>
+<h2>What Are Codex Skills?</h2>
+<p>Codex skills are modular instruction bundles that tell Codex how to execute a task the way you want it done. Each skill lives in its own folder with a <code>SKILL.md</code> that includes metadata (name + description) and step-by-step guidance. Codex reads the metadata to decide when to trigger a skill and loads the body only after it fires, keeping context lean.</p>
+<h2>Skills</h2>
+<h3>Development &amp; Code Tools</h3>
+<ul>
+<li><a href="https://github.com/hyhmrright/brooks-lint">brooks-lint</a> - AI code reviews grounded in six classic engineering books — decay risk diagnostics with book citations, severity labels, and four analysis modes (PR review, architecture audit, tech debt, test quality). Install: <code>python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py --repo hyhmrright/brooks-lint --path skills/brooks-lint --name brooks-lint</code></li>
+<li><a href="./codebase-migrate/">codebase-migrate/</a> - Run large codebase migrations and multi-file refactors in reviewable batches with CI verification.</li>
+<li><a href="./create-plan/">create-plan/</a> - Quickly draft concise execution plans for coding tasks.</li>
+<li><a href="./deploy-pipeline/">deploy-pipeline/</a> - End-to-end Stripe → Supabase → Vercel release pipelines with verify and rollback.</li>
+<li><a href="https://github.com/megabytespace/claude-skills">Emdash Skills</a> - 14-category autonomous product-building OS: CF Workers + Hono + Angular + D1 + Stripe. One-line prompts to deployed SaaS with 94 reference docs, 18 agents, and Codex-native <code>.agents/skills/</code> support.</li>
+<li><a href="./gh-address-comments/">gh-address-comments/</a> - Address review or issue comments on the open GitHub PR for the current branch using <code>gh</code>.</li>
+<li><a href="./gh-fix-ci/">gh-fix-ci/</a> - Inspect failing GitHub Actions checks, summarize failures, and propose fixes.</li>
+<li><a href="./mcp-builder/">mcp-builder/</a> - Build and evaluate MCP servers with best practices and an evaluation harness.</li>
+<li><a href="./pr-review-ci-fix/">pr-review-ci-fix/</a> - Automated GitHub/GitLab PR review plus CI auto-fix loop via the Composio CLI.</li>
+<li><a href="./sentry-triage/">sentry-triage/</a> - Diagnose Sentry issues by mapping stack frames to local source — no copy-paste.</li>
+<li><a href="./webapp-testing/">webapp-testing/</a> - Run targeted web app tests and summarize results.</li>
+<li><a href="https://github.com/smorky850612/Aurakit">AuraKit</a> - All-in-one skill framework: 46 modes, 23 sub-agents, 6-layer OWASP security, 10 lifecycle hooks, ~55% token savings. Install: <code>npx @smorky85/aurakit</code></li>
+</ul>
+<h3>Productivity &amp; Collaboration</h3>
+<ul>
+<li><a href="./connect/">connect/</a> - Connect Codex to 1000+ apps via the Composio CLI for real actions (Slack, GitHub, Notion, etc.).</li>
+<li><a href="./connect-apps/">connect-apps/</a> - Wire up Composio CLI connections for Claude and kick off app workflows from the shell.</li>
+<li><a href="./issue-triage/">issue-triage/</a> - Triage Linear or Jira backlogs and run bug sweeps from the terminal.</li>
+<li><a href="./linear/">linear/</a> - Manage issues, projects, and team workflows in Linear.</li>
+<li><a href="./meeting-insights-analyzer/">meeting-insights-analyzer/</a> - Analyze meeting transcripts for themes, risks, and follow-ups.</li>
+<li><a href="./meeting-notes-and-actions/">meeting-notes-and-actions/</a> - Turn meeting transcripts into summaries with decisions and owner-tagged action items.</li>
+<li><a href="./internal-comms/">internal-comms/</a> - Craft internal announcements, updates, and stakeholder messaging.</li>
+<li><a href="./invoice-organizer/">invoice-organizer/</a> - Normalize and extract invoice data for tracking and reporting.</li>
+<li><a href="./notion-knowledge-capture/">notion-knowledge-capture/</a> - Convert chats or notes into structured Notion pages with proper linking.</li>
+<li><a href="./notion-meeting-intelligence/">notion-meeting-intelligence/</a> - Prepare meeting materials with Notion context plus Codex research.</li>
+<li><a href="./notion-research-documentation/">notion-research-documentation/</a> - Synthesize multiple Notion sources into briefs, comparisons, or reports with citations.</li>
+<li><a href="./notion-spec-to-implementation/">notion-spec-to-implementation/</a> - Turn Notion specs into implementation plans, tasks, and progress tracking.</li>
+<li><a href="./support-ticket-triage/">support-ticket-triage/</a> - Triage customer support tickets with categories, priority, next actions, and draft replies.</li>
+<li><a href="./file-organizer/">file-organizer/</a> - Organize, rename, and tidy files to keep workspaces clean.</li>
+<li><a href="./paperjsx/">paperjsx/</a> - Generate PPTX presentations, DOCX documents, XLSX spreadsheets, and PDF invoices/reports/charts from structured JSON. Runs locally via <code>@paperjsx/mcp-server</code> — no API key, no network calls.</li>
+<li><a href="./skill-share/">skill-share/</a> - Share skills and reusable instructions across teammates.</li>
+</ul>
+<h3>Communication &amp; Writing</h3>
+<ul>
+<li><a href="./email-draft-polish/">email-draft-polish/</a> - Draft, rewrite, or condense emails for the right tone and audience.</li>
+<li><a href="./changelog-generator/">changelog-generator/</a> - Create clear changelogs from commits or summaries.</li>
+<li><a href="./content-research-writer/">content-research-writer/</a> - Research and draft content with sourced citations.</li>
+<li><a href="https://github.com/wgwtest/novel-writing">novel-writing</a> - External repo: public Codex skill fo</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/ComposioHQ/awesome-codex-skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on April 26, 2026  07:25 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
