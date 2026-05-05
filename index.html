@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GitHub Trending — May 04, 2026  09:33</title>
+  <title>GitHub Trending — May 05, 2026  06:19</title>
   <style>
     /* ── reset & tokens ───────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -245,7 +245,7 @@
     <span class="badge">Today</span>
   </a>
   <div class="subtitle">
-    Auto-generated on May 04, 2026  09:33 &nbsp;·&nbsp; 9 trending repositories
+    Auto-generated on May 05, 2026  06:19 &nbsp;·&nbsp; 15 trending repositories
   </div>
 </header>
 
@@ -264,9 +264,9 @@
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 39,839</span>
-      <span class="meta-item">🍴 4,507</span>
-      <span class="stars-today">⭐ 1,840 stars today</span>
+      <span class="meta-item">⭐ 41,873</span>
+      <span class="meta-item">🍴 4,672</span>
+      <span class="stars-today">⭐ 2,598 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -498,9 +498,9 @@ claude mcp add ruflo -- npx -y @claude-flow/cli@latest
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 66,017</span>
-      <span class="meta-item">🍴 12,779</span>
-      <span class="stars-today">⭐ 3,313 stars today</span>
+      <span class="meta-item">⭐ 68,027</span>
+      <span class="meta-item">🍴 13,089</span>
+      <span class="stars-today">⭐ 2,182 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -647,6 +647,249 @@ export DEEPSEEK_API_KEY=...        #</p>
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
+          <span class="repo-owner">browserbase /</span>
+          <a href="https://github.com/browserbase/skills" target="_blank" rel="noopener">skills</a>
+        </div>
+        <div class="repo-desc">Claude Agent SDK with a web browsing tool</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 2,186</span>
+      <span class="meta-item">🍴 139</span>
+      <span class="stars-today">⭐ 320 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Browserbase Skills</h1>
+<p>A set of skills for enabling <strong><a href="https://docs.claude.com/en/docs/claude-code/overview">Claude Code</a></strong> to work with Browserbase through browser automation and the official <code>bb</code> CLI.</p>
+<h2>Skills</h2>
+<p>This plugin includes the following skills (see <code>skills/</code> for details):</p>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="skills/browser/SKILL.md">browser</a></td>
+<td>Automate web browser interactions via CLI commands — supports remote Browserbase sessions with anti-bot stealth, CAPTCHA solving, and residential proxies</td>
+</tr>
+<tr>
+<td><a href="skills/browserbase-cli/SKILL.md">browserbase-cli</a></td>
+<td>Use the official <code>bb</code> CLI for Browserbase Functions and platform API workflows including sessions, projects, contexts, extensions, fetch, and dashboard</td>
+</tr>
+<tr>
+<td><a href="skills/functions/SKILL.md">functions</a></td>
+<td>Deploy serverless browser automation to Browserbase cloud using the <code>bb</code> CLI</td>
+</tr>
+<tr>
+<td><a href="skills/site-debugger/SKILL.md">site-debugger</a></td>
+<td>Diagnose and fix failing browser automations — analyzes bot detection, selectors, timing, auth, and captchas, then generates a tested site playbook</td>
+</tr>
+<tr>
+<td><a href="skills/browser-trace/SKILL.md">browser-trace</a></td>
+<td>Capture a full DevTools-protocol trace (CDP firehose, screenshots, DOM dumps) alongside any browser automation, then bisect the stream into per-page searchable buckets</td>
+</tr>
+<tr>
+<td><a href="skills/bb-usage/SKILL.md">bb-usage</a></td>
+<td>Show Browserbase usage stats, session analytics, and cost forecasts in a terminal dashboard</td>
+</tr>
+<tr>
+<td><a href="skills/cookie-sync/SKILL.md">cookie-sync</a></td>
+<td>Sync cookies from local Chrome to a Browserbase persistent context so the browse CLI can access authenticated sites</td>
+</tr>
+<tr>
+<td><a href="skills/fetch/SKILL.md">fetch</a></td>
+<td>Fetch HTML or JSON from static pages without a browser session — inspect status codes, headers, follow redirects</td>
+</tr>
+<tr>
+<td><a href="skills/search/SKILL.md">search</a></td>
+<td>Search the web and return structured results (titles, URLs, metadata) without a browser session</td>
+</tr>
+<tr>
+<td><a href="skills/ui-test/SKILL.md">ui-test</a></td>
+<td>AI-powered adversarial UI testing — analyzes git diffs to test changes, or explores the full app to find bugs</td>
+</tr>
+</tbody>
+</table>
+<h2>Installation</h2>
+<p>To install the skill to popular coding agents:</p>
+<pre><code class="language-bash">$ npx skills add browserbase/skills
+</code></pre>
+<h3>Claude Code</h3>
+<p>On Claude Code, to add the marketplace, simply run:</p>
+<pre><code class="language-bash">/plugin marketplace add browserbase/skills
+</code></pre>
+<p>Then install the plugin:</p>
+<pre><code class="language-bash">/plugin install browse@browserbase
+</code></pre>
+<p>If you prefer the manual interface:<br />
+1. On Claude Code, type <code>/plugin</code><br />
+2. Select option <code>3. Add marketplace</code><br />
+3. Enter the marketplace source: <code>browserbase/skills</code><br />
+4. Press enter to select the <code>browse</code> plugin<br />
+5. Hit enter again to <code>Install now</code><br />
+6. <strong>Restart Claude Code</strong> for changes to take effect</p>
+<h2>Usage</h2>
+<p>Once installed, you can ask Claude to browse or use the Browserbase CLI:<br />
+- <em>"Go to Hacker News, get the top post comments, and summarize them "</em><br />
+- <em>"QA test http://localhost:3000 and fix any bugs you encounter"</em><br />
+- <em>"Order me a pizza, you're already signed in on Doordash"</em><br />
+- <em>"Use <code>bb</code> to list my Browserbase projects and show the output as JSON"</em><br />
+- <em>"Initialize a new Browserbase Function with <code>bb functions init</code> and explain the next commands"</em></p>
+<p>Claude will handle the rest.</p>
+<p>For local and localhost work, <code>browse env local</code> now starts a clean isolated browser by default. Use <code>browse env local --auto-connect</code> when the agent should reuse your existing local Chrome session, cookies, or login state.</p>
+<h2>Troubleshooting</h2>
+<h3>Chrome not found</h3>
+<p>Install Chrome for your platform:<br />
+- <strong>macOS</strong> or <strong>Windows</strong>: https://www.google.com/chrome/<br />
+- <strong>Linux</strong>: <code>sudo apt install google-chrome-stable</code></p>
+<h3>Profile refresh</h3>
+<p>To refresh cookies from your main Chrome profile:</p>
+<pre><code class="language-bash">rm -rf .chrome-profile
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://github.com/browserbase/stagehand">Stagehand Documentation</a></li>
+<li><a href="https://support.claude.com/en/articles/12512176-what-are-skills">Claude Code Skills</a></li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/browserbase/skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Hmbown /</span>
+          <a href="https://github.com/Hmbown/DeepSeek-TUI" target="_blank" rel="noopener">DeepSeek-TUI</a>
+        </div>
+        <div class="repo-desc">Coding agent for DeepSeek models that runs in your terminal</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 4,595</span>
+      <span class="meta-item">🍴 322</span>
+      <span class="stars-today">⭐ 1,274 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>🐳 DeepSeek TUI</h1>
+<blockquote>
+<p><strong>This terminal-native coding agent is built around DeepSeek V4's 1M-token context window and prefix cache capability. It is distributed as a single binary and requires no Node.js or Python runtime. It also includes an MCP client, a sandbox, and a durable task queue out of the box.</strong></p>
+</blockquote>
+<p><a href="README.zh-CN.md">简体中文 README</a></p>
+<p>Before proceeding, ensure that <code>Node.js</code> and <code>npm</code> are installed.</p>
+<pre><code class="language-bash">node --version
+npm --version
+</code></pre>
+<p>If <code>Node.js</code> and <code>npm</code> are not installed in your environment, refer to the installation guides provided below:</p>
+<ul>
+<li>English version: <a href="https://nodejs.org/en/download">https://nodejs.org/en/download</a></li>
+<li>Chinese version: <a href="https://nodejs.org/zh-cn/download">https://nodejs.org/zh-cn/download</a></li>
+</ul>
+<p>Select the version that best matches your device specifications and operating system. </p>
+<p>Install the <code>deepseek-tui</code> now:</p>
+<pre><code class="language-bash">npm install -g deepseek-tui
+
+# When installing deepseek-tui in China's internet environment, you can use an npm mirror to speed up the installation process.
+# npm install -g deepseek-tui@latest --registry=https://registry.npmmirror.com
+</code></pre>
+<p><a href="https://github.com/Hmbown/DeepSeek-TUI/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Hmbown/DeepSeek-TUI/actions/workflows/ci.yml/badge.svg" /></a><br />
+<a href="https://www.npmjs.com/package/deepseek-tui"><img alt="npm" src="https://img.shields.io/npm/v/deepseek-tui" /></a><br />
+<a href="https://crates.io/crates/deepseek-tui-cli"><img alt="crates.io" src="https://img.shields.io/crates/v/deepseek-tui-cli?label=crates.io" /></a><br />
+<a href="https://deepwiki.com/Hmbown/DeepSeek-TUI"><img alt="DeepWiki" src="https://img.shields.io/badge/DeepWiki-Ask_AI-_.svg?style=flat&amp;color=0052D9&amp;labelColor=000000&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==" /></a></p>
+<p><a href="https://www.buymeacoffee.com/hmbown" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-5F7FFF?style=for-the-badge&logo=buymeacoffee&logoColor=white" alt="Buy me a coffee" /></a></p>
+<p><img alt="DeepSeek TUI screenshot" src="assets/screenshot.png" /></p>
+<hr />
+<h2>What Is It?</h2>
+<p>DeepSeek TUI is a coding agent that runs entirely in your terminal. It gives DeepSeek's frontier models direct access to your workspace — reading and editing files, running shell commands, searching the web, managing git, and orchestrating sub-agents — all through a fast, keyboard-driven TUI.</p>
+<p><strong>Built for DeepSeek V4</strong> (<code>deepseek-v4-pro</code> / <code>deepseek-v4-flash</code>) with 1M-token context window and native thinking-mode (chain-of-thought) streaming.</p>
+<h3>Key Features</h3>
+<ul>
+<li><strong>Native RLM</strong> (<code>rlm_query</code>) — fans out 1–16 cheap <code>deepseek-v4-flash</code> children in parallel for batched analysis and parallel reasoning, all against the existing API client</li>
+<li><strong>Thinking-mode streaming</strong> — watch the model's chain-of-thought unfold in real time as it works through your tasks</li>
+<li><strong>Full tool suite</strong> — file ops, shell execution, git, web search/browse, apply-patch, sub-agents, MCP servers</li>
+<li><strong>1M-token context</strong> — automatic intelligent compaction when context fills up; prefix-cache aware for cost efficiency</li>
+<li><strong>Three modes</strong> — Plan (read-only explore), Agent (interactive with approval), YOLO (auto-approved)</li>
+<li><strong>Reasoning-effort tiers</strong> — cycle through <code>off → high → max</code> with <code>Shift + Tab</code></li>
+<li><strong>Session save/resume</strong> — checkpoint and resume long-running sessions</li>
+<li><strong>Workspace rollback</strong> — side-git pre/post-turn snapshots with <code>/restore</code> and <code>revert_turn</code>, without touching your repo's <code>.git</code></li>
+<li><strong>Durable task queue</strong> — background tasks survive restarts; think scheduled automation, long-running reviews</li>
+<li><strong>HTTP/SSE runtime API</strong> — <code>deepseek serve --http</code> for headless agent workflows</li>
+<li><strong>MCP protocol</strong> — connect to Model Context Protocol servers for extended tooling; please see <a href="docs/MCP.md">docs/MCP.md</a></li>
+<li><strong>LSP diagnostics</strong> — inline error/warning surfacing after every edit via rust-analyzer, pyright, typescript-language-server, gopls, clangd</li>
+<li><strong>User memory</strong> — optional persistent note file injected into the system prompt for cross-session preferences</li>
+<li><strong>Localized UI</strong> — <code>en</code>, <code>ja</code>, <code>zh-Hans</code>, <code>pt-BR</code> with auto-detection</li>
+<li><strong>Live cost tracking</strong> — per-turn and session-level token usage and cost estimates; cache hit/miss breakdown</li>
+<li><strong>Skills system</strong> — composable, installable instruction packs from GitHub with no backend service required</li>
+</ul>
+<hr />
+<h2>How It's Wired</h2>
+<p><code>deepseek</code> (dispatcher CLI) → <code>deepseek-tui</code> (companion binary) → ratatui interface ↔ async engine ↔ OpenAI-compatible streaming client. Tool calls route through a typed registry (shell, file ops, git, web, sub-agents, MCP, RLM) and results stream back into the transcript. The engine manages session state, turn tracking, the durable task queue, and an LSP subsystem that feeds post-edit diagnostics into the model's context before the next reasoning step.</p>
+<p>See <a href="docs/ARCHITECTURE.md">docs/ARCHITECTURE.md</a> for the full walkthrough.</p>
+<hr />
+<h2>Quickstart</h2>
+<pre><code class="language-bash">npm install -g deepseek-tui
+deepseek --version
+deepseek
+</code></pre>
+<p>Prebuilt binaries are published for <strong>Linux x64</strong>, <strong>Linux ARM64</strong> (v0.8.8+), <strong>macOS x64</strong>, <strong>macOS ARM64</strong>, and <strong>Windows x64</strong>. For other targets (musl, riscv64, FreeBSD, etc.), see <a href="#install-from-source">Install from source</a> or <a href="docs/INSTALL.md">docs/INSTALL.md</a>.</p>
+<p>On first launch you'll be prompted for your <a href="https://platform.deepseek.com/api_keys">DeepSeek API key</a>. The key is saved to <code>~/.deepseek/config.toml</code> so it works from any directory without OS credential prompts.</p>
+<p>You can also set it ahead of time:</p>
+<pre><code class="language-bash">deepseek auth set --provider deepseek   # saves to ~/.deepseek/config.toml
+
+export DEEPSEEK_API_KEY=&quot;YOUR_KEY&quot;      # env var alternative; use ~/.zshenv for non-interactive shells
+deepseek
+
+deepseek doctor                         # verify setup
+</code></pre>
+<blockquote>
+<p>To rotate or remove a saved key: <code>deepseek auth clear --provider deepseek</code>.</p>
+</blockquote>
+<h3>Linux ARM64 (Raspberry Pi, Asahi, Graviton, HarmonyOS PC)</h3>
+<p><code>npm i -g deepseek-tui</code> works on glibc-based ARM64 Linux from v0.8.8 onward. You can also download prebuilt binaries from the <a href="https://github.com/Hmbown/DeepSeek-TUI/releases">Releases page</a> and place them side by side on your <code>PATH</code>.</p>
+<h3>China / Mirror-friendly Installation</h3>
+<p>If GitHub or npm downloads are slow from mainland China, use a Cargo registry mirror:</p>
+<pre><code class="language-toml"># ~/.cargo/config.toml
+[source.crates-io]
+replace-with = &quot;tuna&quot;
+
+[source.tuna]
+registry = &quot;sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/&quot;
+</code></pre>
+<p>Then install both binaries (the dispatcher delegates to the TUI at runtime):</p>
+<pre><code class="language-bash">cargo install deepseek-tui-cli --locked   # provides `deepseek`
+cargo install deepseek-tui     --locked   # provides `deepseek-tui`
+deepseek --version
+</code></pre>
+<p>Prebuilt binaries can also be downloaded from <a href="https://github.com/Hmbown/DeepSeek-TUI/releases">GitHub Releases</a>. Use <code>DEEPSEEK_TUI_RELEASE_BASE_URL</code> for mirrored release assets.</p>
+<details id="install-from-source">
+<summary>Install from source</summary>
+
+Wo
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Hmbown/DeepSeek-TUI#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
           <span class="repo-owner">soxoj /</span>
           <a href="https://github.com/soxoj/maigret" target="_blank" rel="noopener">maigret</a>
         </div>
@@ -655,8 +898,8 @@ export DEEPSEEK_API_KEY=...        #</p>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 24,217</span>
-      <span class="meta-item">🍴 1,708</span>
+      <span class="meta-item">⭐ 25,077</span>
+      <span class="meta-item">🍴 1,740</span>
       <span class="stars-today">⭐ 1,119 stars today</span>
     </div>
     <details>
@@ -824,554 +1067,59 @@ maigret user1 user2 user3 -a
   </div>
 </div>
 <div>
-  <div class="rank-label">#4</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">Hmbown /</span>
-          <a href="https://github.com/Hmbown/DeepSeek-TUI" target="_blank" rel="noopener">DeepSeek-TUI</a>
-        </div>
-        <div class="repo-desc">Coding agent for DeepSeek models that runs in your terminal</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
-      <span class="meta-item">⭐ 2,886</span>
-      <span class="meta-item">🍴 183</span>
-      <span class="stars-today">⭐ 343 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <h1>DeepSeek TUI</h1>
-<blockquote>
-<p><strong>A terminal-native coding agent built around DeepSeek V4's 1M-token context and prefix cache. Single binary, no Node/Python runtime required — ships an MCP client, sandbox, and durable task queue out of the box.</strong></p>
-</blockquote>
-<p><a href="README.zh-CN.md">简体中文 README</a></p>
-<pre><code class="language-bash">npm i -g deepseek-tui
-</code></pre>
-<p><a href="https://github.com/Hmbown/DeepSeek-TUI/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Hmbown/DeepSeek-TUI/actions/workflows/ci.yml/badge.svg" /></a><br />
-<a href="https://www.npmjs.com/package/deepseek-tui"><img alt="npm" src="https://img.shields.io/npm/v/deepseek-tui" /></a><br />
-<a href="https://crates.io/crates/deepseek-tui-cli"><img alt="crates.io" src="https://img.shields.io/crates/v/deepseek-tui-cli?label=crates.io" /></a></p>
-<p><a href="https://www.buymeacoffee.com/hmbown" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-5F7FFF?style=for-the-badge&logo=buymeacoffee&logoColor=white" alt="Buy me a coffee" /></a></p>
-<p><img alt="DeepSeek TUI screenshot" src="assets/screenshot.png" /></p>
-<hr />
-<h2>What is it?</h2>
-<p>DeepSeek TUI is a coding agent that runs entirely in your terminal. It gives DeepSeek's frontier models direct access to your workspace — reading and editing files, running shell commands, searching the web, managing git, and orchestrating sub-agents — all through a fast, keyboard-driven TUI.</p>
-<p><strong>Built for DeepSeek V4</strong> (<code>deepseek-v4-pro</code> / <code>deepseek-v4-flash</code>) with 1M-token context windows and native thinking-mode (chain-of-thought) streaming. See the model's reasoning unfold in real time as it works through your tasks.</p>
-<h3>Key Features</h3>
-<ul>
-<li><strong>Native RLM</strong> (<code>rlm_query</code> tool) — fans out 1–16 cheap <code>deepseek-v4-flash</code> children in parallel against the existing DeepSeek client for batched analysis, decomposition, or parallel reasoning</li>
-<li><strong>Thinking-mode streaming</strong> — shows DeepSeek's chain-of-thought as it reasons about your code</li>
-<li><strong>Full tool suite</strong> — file ops, shell execution, git, web search/browse, apply-patch, sub-agents, MCP servers</li>
-<li><strong>1M-token context</strong> — automatic intelligent compaction when context fills up</li>
-<li><strong>Three interaction modes</strong> — Plan (read-only explore), Agent (interactive with approval), YOLO (auto-approved). Decomposition-first system prompts teach the model to <code>checklist_write</code>, <code>update_plan</code>, and spawn sub-agents before acting</li>
-<li><strong>Reasoning-effort tiers</strong> — cycle through <code>off → high → max</code> with Shift+Tab</li>
-<li><strong>Session save/resume</strong> — checkpoint and resume long sessions</li>
-<li><strong>Workspace rollback</strong> — side-git pre/post-turn snapshots with <code>/restore</code> and <code>revert_turn</code>, without touching your repo's <code>.git</code></li>
-<li><strong>HTTP/SSE runtime API</strong> — <code>deepseek serve --http</code> for headless agent workflows</li>
-<li><strong>MCP protocol</strong> — connect to Model Context Protocol servers for extended tooling; see <a href="docs/MCP.md">docs/MCP.md</a></li>
-<li><strong>Live cost tracking</strong> — per-turn and session-level token usage and cost estimates</li>
-<li><strong>Dark theme</strong> — DeepSeek-blue palette</li>
-</ul>
-<hr />
-<h2>How it's wired</h2>
-<p>DeepSeek TUI's architecture follows a <strong>dispatcher → TUI → engine → tools</strong> pattern.<br />
-The <code>deepseek</code> CLI binary is a lightweight dispatcher that parses subcommands and<br />
-delegates to the <code>deepseek-tui</code> companion binary for interactive sessions. The TUI<br />
-runs a <strong>ratatui</strong>-based interface that communicates with an async engine executing<br />
-an agent loop: user input flows to the LLM via a streaming client (OpenAI-compatible<br />
-Chat Completions), tool calls are extracted from the response and dispatched through<br />
-a typed tool registry (shell, file ops, git, web, sub-agents, MCP), and results<br />
-stream back into the transcript.</p>
-<p>Behind the scenes, the engine manages session state, turn tracking, and a durable<br />
-task queue. The LSP subsystem (<code>crates/tui/src/lsp/</code>) provides post-edit diagnostics<br />
-by spawning language servers (rust-analyzer, pyright, etc.) and injecting errors<br />
-into the model's context before the next reasoning step. A recursive language model<br />
-(RLM) subsystem gives the agent a sandboxed Python REPL for batch classification<br />
-and sub-LLM orchestration. See <a href="docs/ARCHITECTURE.md">docs/ARCHITECTURE.md</a> for<br />
-the full walkthrough.</p>
-<hr />
-<h2>Quickstart</h2>
-<pre><code class="language-bash">npm install -g deepseek-tui
-deepseek
-</code></pre>
-<p>Prebuilt binaries are published for <strong>Linux x64</strong>, <strong>Linux ARM64</strong> (v0.8.8+),<br />
-<strong>macOS x64</strong>, <strong>macOS ARM64</strong>, and <strong>Windows x64</strong>. For everything else —<br />
-musl, riscv64, FreeBSD, etc. — see <a href="#install-from-source">Build from source</a><br />
-below or the full <a href="docs/INSTALL.md">docs/INSTALL.md</a> walkthrough.</p>
-<h3>Linux ARM64 (Raspberry Pi, Asahi, Graviton, HarmonyOS PC)</h3>
-<p><code>npm i -g deepseek-tui</code> works on glibc-based ARM64 Linux from <strong>v0.8.8</strong><br />
-onward. If you're stuck on v0.8.7 or earlier (where you'll see<br />
-<code>Unsupported architecture: arm64</code>), upgrade or use <code>cargo install</code>:</p>
-<pre><code class="language-bash"># requires Rust 1.85+ (https://rustup.rs)
-cargo install deepseek-tui-cli --locked   # provides `deepseek`
-cargo install deepseek-tui     --locked   # provides `deepseek-tui`
-</code></pre>
-<p>You can also download <code>deepseek-linux-arm64</code> and <code>deepseek-tui-linux-arm64</code><br />
-directly from the <a href="https://github.com/Hmbown/DeepSeek-TUI/releases">Releases page</a><br />
-and drop both side by side into a directory on your <code>PATH</code>. Cross-compiling<br />
-from x64 to ARM64 is documented in<br />
-<a href="docs/INSTALL.md#cross-compiling-from-x64-to-arm64-linux">docs/INSTALL.md</a>.</p>
-<h3>China / mirror-friendly install</h3>
-<p>If GitHub or npm downloads are slow from mainland China, install the Rust<br />
-crates through a Cargo registry mirror:</p>
-<pre><code class="language-toml"># ~/.cargo/config.toml
-[source.crates-io]
-replace-with = &quot;tuna&quot;
-
-[source.tuna]
-registry = &quot;sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/&quot;
-</code></pre>
-<p>Then install the canonical <code>deepseek</code> dispatcher and the companion TUI binary<br />
-(both are required — the dispatcher delegates to the TUI runtime):</p>
-<pre><code class="language-bash">cargo install deepseek-tui-cli --locked   # provides `deepseek`
-cargo install deepseek-tui     --locked   # provides `deepseek-tui`
-deepseek --version
-</code></pre>
-<p>You can also download prebuilt binaries directly from the<br />
-<a href="https://github.com/Hmbown/DeepSeek-TUI/releases">GitHub Releases</a> page when<br />
-GitHub release assets are reachable. TUNA, rsproxy, Tencent COS, or Aliyun OSS<br />
-mirrors can also be used with <code>DEEPSEEK_TUI_RELEASE_BASE_URL</code> when a mirrored<br />
-release-asset directory is available.</p>
-<p>On first launch you'll be prompted for your <a href="https://platform.deepseek.com/api_keys">DeepSeek API key</a>. The TUI saves it to your user config at <code>~/.deepseek/config.toml</code> so it works from every folder without OS credential prompts.</p>
-<p>You can also set it ahead of time:</p>
-<pre><code class="language-bash"># Recommended — saves to ~/.deepseek/config.toml; works everywhere
-# (interactive shells, IDE terminals, scripts, cron):
-deepseek auth set --provider deepseek
-
-# Env var alternative — note that on zsh, exports in ~/.zshrc only
-# reach interactive shells. Put it in ~/.zshenv if you want it in
-# every context (login shells, IDEs, scripts):
-export DEEPSEEK_API_KEY=&quot;YOUR_DEEPSEEK_API_KEY&quot;
-deepseek
-
-# Verify which source the binary is reading:
-deepseek doctor
-</code></pre>
-<blockquote>
-<p>To rotate or remove a saved key, run<br />
-<code>deepseek auth clear --provider deepseek</code> (or <code>deepseek logout</code> for<br />
-the legacy alias), then run <code>deepseek auth set --provider deepseek</code><br />
-again.</p>
-</blockquote>
-<h3>Using NVIDIA NIM</h3>
-<pre><code class="language-bash">deepseek auth set --provider nvidia-nim --api-key &quot;YOUR_NVIDIA_API_KEY&quot;
-deepseek --provider nvidia-nim
-
-# or per-process:
-DEEPSEEK_PROVIDER=nvidia-nim NVIDIA_API_KEY=&quot;...&quot; deepseek
-</code></pre>
-<h3>Other DeepSeek V4 providers</h3>
-<pre><code class="language-bash">deepseek auth set --provider fireworks --api-key &quot;YOUR_FIREWORKS_API_KEY&quot;
-deepseek --provider fireworks --model deepseek-v4-pro
-
-# SGLang is self-hosted; auth is optional for localhost deployments.
-SGLANG_BASE_URL=&quot;http://localhost:30000/v1&quot; deepseek --provider sglang --model deepseek-v4-flash
-</code></pre>
-<details id="install-from-source">
-<summary>Install from source</summary>
-
-Works on any Tier-1 Rust target — including Linux musl/riscv64, FreeBSD, and
-ARM64 distros that pre-date our prebuilt binaries.
-
-```bash
-# Linux build deps (Debian/Ubuntu/openEuler/Kylin):
-#   sudo apt-get install -y build-essential pkg-config libdbus-1-dev
-#   # RHEL family: sudo dnf install -y gcc make pkgconf-pkg-config dbus-d
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/Hmbown/DeepSeek-TUI#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#5</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">AIDC-AI /</span>
-          <a href="https://github.com/AIDC-AI/Pixelle-Video" target="_blank" rel="noopener">Pixelle-Video</a>
-        </div>
-        <div class="repo-desc">🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 10,444</span>
-      <span class="meta-item">🍴 1,621</span>
-      <span class="stars-today">⭐ 497 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <h1 align="center">🎬 Pixelle-Video —— AI 全自动短视频引擎</h1>
-
-<p align="center"><a href="README_EN.md">English</a> | <b>中文</b></p>
-
-<p align="center">
-  <a href="https://www.bilibili.com/video/BV1WzyGBnEVp/?vd_source=e7e7d4ca8db9a18c80f17a24a6582fca" target="_blank"><img src="https://img.shields.io/badge/🎥 视频教程-EA4C89" alt="视频教程"></a>
-  <a href="https://github.com/AIDC-AI/Pixelle-Video/releases" target="_blank"><img src="https://img.shields.io/badge/📦 Windows包-50C878" alt="Windows整合包"></a>
-  <a href="https://aidc-ai.github.io/Pixelle-Video/zh" target="_blank"><img src="https://img.shields.io/badge/📘 使用文档-4A90E2" alt="使用文档"></a>
-  <a href="https://github.com/AIDC-AI/Pixelle-Video/stargazers"><img src="https://img.shields.io/github/stars/AIDC-AI/Pixelle-Video.svg" alt="Stargazers"></a>
-  <a href="https://github.com/AIDC-AI/Pixelle-Video/issues"><img src="https://img.shields.io/github/issues/AIDC-AI/Pixelle-Video.svg" alt="Issues"></a>
-  <a href="https://github.com/AIDC-AI/Pixelle-Video/network/members"><img src="https://img.shields.io/github/forks/AIDC-AI/Pixelle-Video.svg" alt="Forks"></a>
-  <a href="https://github.com/AIDC-AI/Pixelle-Video/blob/main/LICENSE"><img src="https://img.shields.io/github/license/AIDC-AI/Pixelle-Video.svg" alt="License"></a>
-</p>
-
-<p>https://github.com/user-attachments/assets/a42e7457-fcc8-40da-83fc-784c45a8b95d</p>
-<p><br/></p>
-<p>只需输入一个 <strong>主题</strong>，Pixelle-Video 就能自动完成：<br />
-- ✍️ 撰写视频文案<br />
-- 🎨 生成 AI 配图/视频<br />
-- 🗣️ 合成语音解说<br />
-- 🎵 添加背景音乐<br />
-- 🎬 一键合成视频  </p>
-<p><strong>零门槛，零剪辑经验</strong>，让视频创作成为一句话的事！</p>
-<h2>🖥️ Web 界面预览</h2>
-<p><img alt="Web UI界面" src="resources/webui.png" /></p>
-<h2>📋 最近更新</h2>
-<ul>
-<li>✅ <strong>2026-01-26</strong>: 新增「动作迁移」模块，上传参考视频和图片进行动作迁移</li>
-<li>✅ <strong>2026-01-14</strong>: 新增「数字人口播」和「图生视频」流水线，新增多语言 TTS 音色支持</li>
-<li>✅ <strong>2026-01-06</strong>: 新增 RunningHub 48G 显存机器调用支持</li>
-<li>✅ <strong>2025-12-28</strong>: 支持 RunningHub 并发限制可配置，优化 LLM 返回结构化数据的逻辑</li>
-<li>✅ <strong>2025-12-17</strong>: 支持 ComfyUI API Key 配置，支持 Nano Banana 模型调用，API 接口支持模板自定义参数</li>
-<li>✅ <strong>2025-12-10</strong>: 侧边栏内置 FAQ，锁定 edge-tts 版本修复 TTS 服务不稳定问题</li>
-<li>✅ <strong>2025-12-08</strong>: 支持固定脚本多种分割方式(段落/行/句子)，优化模板选择交互逻辑支持直接预览选择</li>
-<li>✅ <strong>2025-12-06</strong>: 修复视频生成 API 返回 URL 路径处理，支持跨平台兼容</li>
-<li>✅ <strong>2025-12-05</strong>: 新增 Windows 整合包下载，优化图片与视频反推工作流</li>
-<li>✅ <strong>2025-12-04</strong>: 新增「自定义素材」功能，支持用户上传自己的照片和视频，AI 智能分析生成脚本</li>
-<li>✅ <strong>2025-11-18</strong>: 优化 RunningHub 服务调用支持并行处理，新增历史记录页面，支持批量创建视频任务</li>
-</ul>
-<h2>✨ 功能亮点</h2>
-<ul>
-<li>✅ <strong>全自动生成</strong> - 输入主题，自动生成完整视频</li>
-<li>✅ <strong>AI 智能文案</strong> - 根据主题智能创作解说词，无需自己写脚本</li>
-<li>✅ <strong>AI 生成配图</strong> - 每句话都配上精美的 AI 插图</li>
-<li>✅ <strong>AI 生成视频</strong> - 支持使用 AI 视频生成模型（如 WAN 2.1）创建动态视频内容</li>
-<li>✅ <strong>AI 生成语音</strong> - 支持 Edge-TTS、Index-TTS 等众多主流 TTS 方案</li>
-<li>✅ <strong>背景音乐</strong> - 支持添加 BGM，让视频更有氛围</li>
-<li>✅ <strong>视觉风格</strong> - 多种模板可选，打造独特视频风格</li>
-<li>✅ <strong>灵活尺寸</strong> - 支持竖屏、横屏等多种视频尺寸</li>
-<li>✅ <strong>多种 AI 模型</strong> - 支持 GPT、通义千问、DeepSeek、Ollama 等</li>
-<li>✅ <strong>原子能力灵活组合</strong> - 基于 ComfyUI 架构，可使用预置工作流，也可自定义任意能力（如替换生图模型为 FLUX、替换 TTS 为 ChatTTS 等）</li>
-</ul>
-<h2>📊 视频生成流程</h2>
-<p>Pixelle-Video 采用模块化设计，整个视频生成流程清晰简洁：</p>
-<p><img alt="视频生成流程图" src="resources/flow.png" /></p>
-<p>从输入文本到最终视频输出，整个流程简洁清晰：<strong>文案生成 → 配图规划 → 逐帧处理 → 视频合成</strong></p>
-<p>每个环节都支持灵活定制，可选择不同的 AI 模型、音频引擎、视觉风格等，满足个性化创作需求。</p>
-<h2>🎬 视频示例</h2>
-<p>以下是使用 Pixelle-Video 生成的实际案例，展示了不同主题和风格的视频效果：</p>
-<h3>📱 扩展模块视频展示</h3>
-<table>
-<tr>
-<td width="33%">
-<h3>👤 数字人口播</h3>
-<video src="https://github.com/user-attachments/assets/7c122563-c2e0-4dcd-a73c-25ba1d4fa2dd" controls width="100%"></video>
-<p align="center"><b>韩语数字人口播</b></p>
-</td>
-<td width="33%">
-<h3>🖼️ 图生视频</h3>
-<video src="https://github.com/user-attachments/assets/5b4eef17-07d0-4bde-9748-2ed68cc9888e" controls width="100%"></video>
-<p align="center"><b>卡通视频</b></p>
-</td>
-<td width="33%">
-<h3>💃 动作迁移</h3>
-<video src="https://github.com/user-attachments/assets/7b1240bc-e965-434c-b343-118ec4793d4f" controls width="100%"></video>
-<p align="center"><b>跳舞小猫</b></p>
-</td>
-</tr>
-</table>
-
-<h3>📱 竖屏视频展示</h3>
-<table>
-<tr>
-<td width="33%">
-<h3>🌄 人文纪实类 - 视频默认模版</h3>
-<video src="https://github.com/user-attachments/assets/e6716c1d-78de-453d-84c2-10873c8c595f" controls width="100%"></video>
-<p align="center"><b>旅行路上的风景让人流连忘返</b></p>
-</td>
-<td width="33%">
-<h3>🔍 文化解构类 - 视频默认模版</h3>
-<video src="https://github.com/user-attachments/assets/f5de75f6-135a-4ab4-9f5f-079f649764d5" controls width="100%"></video>
-<p align="center"><b>Santa ID</b></p>
-</td>
-<td width="33%">
-<h3>🔭 科学思辨类 - 视频默认模版</h3>
-<video src="https://github.com/user-attachments/assets/ceb8b0df-8331-4e1f-88e7-db5b295a1c1d" controls width="100%"></video>
-<p align="center"><b>为什么我们还没有找到外星文明？</b></p>
-</td>
-</tr>
-<tr>
-<td width="33%">
-<h3>🌱 个人成长类 - 克隆音色</h3>
-<video src="https://github.com/user-attachments/assets/1bad9a49-df83-4905-9cc8-9a7640e9c7d8" controls width="100%"></video>
-<p align="center"><b>如何提升自己</b></p>
-</td>
-<td width="33%">
-<h3>🧠 深度思考类 - 默认模板</h3>
-<video src="https://github.com/user-attachments/assets/663b705a-2aea-44bc-b266-4bb27aa255a8" controls width="100%"></video>
-<p align="center"><b>如何理解反脆弱</b></p>
-</td>
-<td width="33%">
-<h3>🏯 历史文化类 - 固定画面</h3>
-<video src="https://github.com/user-attachments/assets/56e0a018-fa99-47eb-a97f-fc2fa8915724" controls width="100%"></video>
-<p align="center"><b>资治通鉴</b></p>
-</td>
-</tr>
-<tr>
-<td width="33%">
-<h3>☀️ 情感类 - 克隆音色</h3>
-<video src="https://github.com/user-attachments/assets/4687df95-dd21-4a7b-b01e-f33a7b646644" controls width="100%"></video>
-<p align="center"><b>冬日暖阳</b></p>
-</td>
-<td width="33%">
-<h3>📜 小说解说类 - 自创脚本</h3>
-<video src="https://github.com/user-attachments/assets/d354465e-3fa8-40b4-93e9-61ad75ef0697" controls width="100%"></video>
-<p align="center"><b>斗破苍穹</b></p>
-</td>
-<td width="33%">
-<h3>🧬 知识科普类 - Qwen生图</h3>
-<video src="https://github.com/user-attachments/assets/8ac21768-41ce-4d41-acdd-e3dd3eb9725a" controls width="100%"></video>
-<p align="center"><b>养生知识</b></p>
-</td>
-</tr>
-</table>
-
-<h3>🖥️ 横屏视频展示</h3>
-<table>
-<tr>
-<td width="50%">
-<h3>💰 副业赚钱 - 电影模板</h3>
-<video src="https://github.com/user-attachments/assets/c9209d4e-73a6-4b82-aaad-cf102248c9e2" controls width="100%"></video>
-<p align="center"><b>副业赚钱</b></p>
-</td>
-<td width="50%">
-<h3>🏛️ 历史解说 - 自定义模板</h3>
-<video src="https://github.com/user-attachments/assets/a767c452-d5f1-4cff-bb34-b80fff0d4c3e" controls width="100%"></video>
-<p align="center"><b>资治通鉴启示录</b></p>
-</td>
-</tr>
-</table>
-
-<blockquote>
-<p>💡 <strong>提示</strong>: 这些视频都是通过输入一个主题关键词，由 AI 全自动生成的，无需任何视频剪辑经验！</p>
-</blockquote>
-<div id="tutorial-start" />
-
-<h2>🚀 快速开始</h2>
-<h3>🪟 Windows 一键整合包（推荐 Windows 用户使用）</h3>
-<p><strong>无需安装 Python、uv 或 ffmpeg，一键开箱即用！</strong></p>
-<p>👉 <strong><a href="https://github.com/AIDC-AI/Pixelle-Video/releases/latest">下载 Windows 一键整合包</a></strong></p>
-<ol>
-<li>下载最新的 Windows 一键整合包并解压</li>
-<li>双击运行 <code>start.bat</code> 启动 Web 界面</li>
-<li>浏览器会自动打开 http://localhost:8501</li>
-<li>在「⚙️ 系统配置」中配置 LLM API 和图像生成服务</li>
-<li>开始生成视频！</li>
-</ol>
-<blockquote>
-<p>💡 <strong>提示</strong>: 整合包已包含所有依赖，无需手动安装任何环境。首次使用只需配置 API 密钥即可。</p>
-</blockquote>
-<h3>从源码安装（适合 macOS / Linux 用户或需要自定义的用户）</h3>
-<h4>前置环境依赖</h4>
-<p>在开始之前，需要先安装 Python 包管理器 <code>uv</code> 和视频处理工具 <code>ffmpeg</code>：</p>
-<h5>安装 uv</h5>
-<p>请访问 uv 官方文档查看适合你系统的安装方法：<br />
-👉 <strong><a href="https://docs.astral.sh/uv/getting-started/installation/">uv 安装指南</a></strong></p>
-<p>安装完成后，在终端中运行 <code>uv --version</code> 验证安装成功。</p>
-<h5>安装 ffmpeg</h5>
-<p><strong>macOS</strong></p>
-<pre><code class="language-bash">brew install ffmpeg
-</code></pre>
-<p><strong>Ubuntu / Debian</strong></p>
-<pre><code class="language-bash">sudo apt update
-sudo apt install ffmpeg
-</code></pre>
-<p><strong>Windows</strong><br />
-- 下载地址：https://ffmpeg.org/download.html<br />
-- 下载后解压，将 <code>bin</code> 目录添加到系统环境变量 PATH 中</p>
-<p>安装完成后，在终端中运行 <code>ffmpeg -version</code> 验证安装成功。</p>
-<h4>第一步：下载项目</h4>
-<pre><code class="language-bash">git clone https://github.com/AIDC-AI/Pixelle-Video.git
-cd Pixelle-Video
-</code></pre>
-<h4>第二步：启动 Web 界面</h4>
-<pre><code class="language-bash"># 使用 uv 运行（推荐，会自动安装依赖）
-uv run streamlit run web/app.py
-</code></pre>
-<p>浏览器会自动打开 http://localhost:8501</p>
-<h4>第三步：在 Web 界面配置</h4>
-<p>首次使用时，展开「⚙️ 系统配置」面板，填写：<br />
-- <strong>LLM 配置</strong>: 选择 AI 模型（如通义千问、GPT 等）并填入 API Key<br />
-- <strong>图像配置</strong>: 如需生成图片，配置 ComfyUI 地址或 RunningHub API Key</p>
-<p>配置好后点击「保存配置」，就可以开始生成视频了！</p>
-<div id="tutorial-end" />
-
-<h2>💻 使用方法</h2>
-<p>打开 Web 界面后，你会看到三栏布局，下面详细讲解每个部分：</p>
-<h3>⚙️ 系统配置（首次必填）</h3>
-<p>首次使用时需要配置，点击展开「⚙️ 系统配置」面板：</p>
-<h4>1. LLM 配置（大语言模型）</h4>
-<p>用于生成视频文案的 AI。</p>
-<p><strong>快速选择预设</strong><br />
-- 通过下拉菜单选择预设模型（通义千问、GPT-4o、DeepSeek 等）<br />
-- 选择后会自动填充 base_url 和 model<br />
-- 点击「🔑 获取 API Key」链接去注册并获取密钥</p>
-<p><strong>手动配置</strong><br />
-- API Key: 填入你的密钥<br />
-- Base URL: API 地址<br />
-- Model: 模型名称</p>
-<h4>2. 图像配置</h4>
-<p>用于生成视频配图的 AI。</p>
-<p><strong>本地部署（推荐）</strong><br />
-- ComfyUI URL: 本地 ComfyUI 服务地址（默认 http://127.0.0.1:8188）<br />
-- 点击「测试连接」确认服务可用</p>
-<p><strong>云端部署</strong><br />
-- RunningHub API Key: 云端图像生成服务的密钥</p>
-<p>配置完成后点击「保存配置」。</p>
-<h3>📝 内容输入（左侧栏）</h3>
-<h4>生成模式</h4>
-<ul>
-<li><strong>AI 生成内容</strong>: 输入主题，AI 自动创作文案</li>
-<li>适合：想快速生成视频，让 AI 写稿</li>
-<li>例如：「为什么要养成阅读习惯」</li>
-<li><strong>固定文案内容</strong>: 直接输入完整文案，跳过 AI 创作</li>
-<li>适合：已有现成文案，直接生成视频</li>
-</ul>
-<h4>背景音乐（BGM）</h4>
-<ul>
-<li><strong>无 BGM</strong>: 纯人声解说</li>
-<li><strong>内置音乐</strong>: 选择预置的背景音乐</li>
-</ul>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/AIDC-AI/Pixelle-Video#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
   <div class="rank-label">#6</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">browserbase /</span>
-          <a href="https://github.com/browserbase/skills" target="_blank" rel="noopener">skills</a>
+          <span class="repo-owner">qbittorrent /</span>
+          <a href="https://github.com/qbittorrent/qBittorrent" target="_blank" rel="noopener">qBittorrent</a>
         </div>
-        <div class="repo-desc">Claude Agent SDK with a web browsing tool</div>
+        <div class="repo-desc">qBittorrent BitTorrent client</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
-      <span class="meta-item">⭐ 1,938</span>
-      <span class="meta-item">🍴 127</span>
-      <span class="stars-today">⭐ 322 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+      <span class="meta-item">⭐ 37,104</span>
+      <span class="meta-item">🍴 4,654</span>
+      <span class="stars-today">⭐ 82 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <h1>Browserbase Skills</h1>
-<p>A set of skills for enabling <strong><a href="https://docs.claude.com/en/docs/claude-code/overview">Claude Code</a></strong> to work with Browserbase through browser automation and the official <code>bb</code> CLI.</p>
-<h2>Skills</h2>
-<p>This plugin includes the following skills (see <code>skills/</code> for details):</p>
-<table>
-<thead>
-<tr>
-<th>Skill</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="skills/browser/SKILL.md">browser</a></td>
-<td>Automate web browser interactions via CLI commands — supports remote Browserbase sessions with anti-bot stealth, CAPTCHA solving, and residential proxies</td>
-</tr>
-<tr>
-<td><a href="skills/browserbase-cli/SKILL.md">browserbase-cli</a></td>
-<td>Use the official <code>bb</code> CLI for Browserbase Functions and platform API workflows including sessions, projects, contexts, extensions, fetch, and dashboard</td>
-</tr>
-<tr>
-<td><a href="skills/functions/SKILL.md">functions</a></td>
-<td>Deploy serverless browser automation to Browserbase cloud using the <code>bb</code> CLI</td>
-</tr>
-<tr>
-<td><a href="skills/site-debugger/SKILL.md">site-debugger</a></td>
-<td>Diagnose and fix failing browser automations — analyzes bot detection, selectors, timing, auth, and captchas, then generates a tested site playbook</td>
-</tr>
-<tr>
-<td><a href="skills/browser-trace/SKILL.md">browser-trace</a></td>
-<td>Capture a full DevTools-protocol trace (CDP firehose, screenshots, DOM dumps) alongside any browser automation, then bisect the stream into per-page searchable buckets</td>
-</tr>
-<tr>
-<td><a href="skills/bb-usage/SKILL.md">bb-usage</a></td>
-<td>Show Browserbase usage stats, session analytics, and cost forecasts in a terminal dashboard</td>
-</tr>
-<tr>
-<td><a href="skills/cookie-sync/SKILL.md">cookie-sync</a></td>
-<td>Sync cookies from local Chrome to a Browserbase persistent context so the browse CLI can access authenticated sites</td>
-</tr>
-<tr>
-<td><a href="skills/fetch/SKILL.md">fetch</a></td>
-<td>Fetch HTML or JSON from static pages without a browser session — inspect status codes, headers, follow redirects</td>
-</tr>
-<tr>
-<td><a href="skills/search/SKILL.md">search</a></td>
-<td>Search the web and return structured results (titles, URLs, metadata) without a browser session</td>
-</tr>
-<tr>
-<td><a href="skills/ui-test/SKILL.md">ui-test</a></td>
-<td>AI-powered adversarial UI testing — analyzes git diffs to test changes, or explores the full app to find bugs</td>
-</tr>
-</tbody>
-</table>
-<h2>Installation</h2>
-<p>To install the skill to popular coding agents:</p>
-<pre><code class="language-bash">$ npx skills add browserbase/skills
-</code></pre>
-<h3>Claude Code</h3>
-<p>On Claude Code, to add the marketplace, simply run:</p>
-<pre><code class="language-bash">/plugin marketplace add browserbase/skills
-</code></pre>
-<p>Then install the plugin:</p>
-<pre><code class="language-bash">/plugin install browse@browserbase
-</code></pre>
-<p>If you prefer the manual interface:<br />
-1. On Claude Code, type <code>/plugin</code><br />
-2. Select option <code>3. Add marketplace</code><br />
-3. Enter the marketplace source: <code>browserbase/skills</code><br />
-4. Press enter to select the <code>browse</code> plugin<br />
-5. Hit enter again to <code>Install now</code><br />
-6. <strong>Restart Claude Code</strong> for changes to take effect</p>
-<h2>Usage</h2>
-<p>Once installed, you can ask Claude to browse or use the Browserbase CLI:<br />
-- <em>"Go to Hacker News, get the top post comments, and summarize them "</em><br />
-- <em>"QA test http://localhost:3000 and fix any bugs you encounter"</em><br />
-- <em>"Order me a pizza, you're already signed in on Doordash"</em><br />
-- <em>"Use <code>bb</code> to list my Browserbase projects and show the output as JSON"</em><br />
-- <em>"Initialize a new Browserbase Function with <code>bb functions init</code> and explain the next commands"</em></p>
-<p>Claude will handle the rest.</p>
-<p>For local and localhost work, <code>browse env local</code> now starts a clean isolated browser by default. Use <code>browse env local --auto-connect</code> when the agent should reuse your existing local Chrome session, cookies, or login state.</p>
-<h2>Troubleshooting</h2>
-<h3>Chrome not found</h3>
-<p>Install Chrome for your platform:<br />
-- <strong>macOS</strong> or <strong>Windows</strong>: https://www.google.com/chrome/<br />
-- <strong>Linux</strong>: <code>sudo apt install google-chrome-stable</code></p>
-<h3>Profile refresh</h3>
-<p>To refresh cookies from your main Chrome profile:</p>
-<pre><code class="language-bash">rm -rf .chrome-profile
-</code></pre>
-<h2>Resources</h2>
-<ul>
-<li><a href="https://github.com/browserbase/stagehand">Stagehand Documentation</a></li>
-<li><a href="https://support.claude.com/en/articles/12512176-what-are-skills">Claude Code Skills</a></li>
-</ul>
+    <h2>qBittorrent - A BitTorrent client in Qt</h2>
+<p><a href="https://github.com/qbittorrent/qBittorrent/actions"><img alt="GitHub Actions CI Status" src="https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_ubuntu.yaml/badge.svg" /></a><br />
+<a href="https://scan.coverity.com/projects/5494"><img alt="Coverity Status" src="https://scan.coverity.com/projects/5494/badge.svg" /></a></p>
+<hr />
+<h3>Description:</h3>
+<p>qBittorrent is a bittorrent client programmed in C++ / Qt that uses<br />
+libtorrent (sometimes called libtorrent-rasterbar) by Arvid Norberg.</p>
+<p>It aims to be a good alternative to all other bittorrent clients<br />
+out there. qBittorrent is fast, stable and provides unicode<br />
+support as well as many features.</p>
+<p>The free <a href="https://db-ip.com/db/download/ip-to-country-lite">IP to Country Lite database</a> by <a href="https://db-ip.com/">DB-IP</a> is used for resolving the countries of peers. The database is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+<h3>Installation:</h3>
+<p>Refer to the <a href="INSTALL">INSTALL</a> file.</p>
+<h3>Public key:</h3>
+<p>Starting from v3.3.4 all source tarballs and binaries are signed.<br /><br />
+The key currently used is 4096R/<a href="https://pgp.mit.edu/pks/lookup?op=get&amp;search=0x6E4A2D025B7CC9A2">5B7CC9A2</a> with fingerprint <code>D8F3DA77AAC6741053599C136E4A2D025B7CC9A2</code>.<br /><br />
+You can also download it from <a href="https://github.com/qbittorrent/qBittorrent/raw/master/5B7CC9A2.asc">here</a>.<br /><br />
+<strong>PREVIOUSLY</strong> the following key was used to sign the v3.3.4 source tarballs and v3.3.4 Windows installer <strong>only</strong>: 4096R/<a href="https://pgp.mit.edu/pks/lookup?op=get&amp;search=0xA1ACCAE4520EC6F6">520EC6F6</a> with fingerprint <code>F4A5FD201B117B1C2AB590E2A1ACCAE4520EC6F6</code>.<br /></p>
+<h3>Misc:</h3>
+<p>For more information please visit:<br />
+https://www.qbittorrent.org</p>
+<p>or our wiki here:<br />
+https://wiki.qbittorrent.org</p>
+<p>Use the forum for troubleshooting before reporting bugs:<br />
+https://forum.qbittorrent.org</p>
+<p>Please report any bug (or feature request) to:<br />
+https://bugs.qbittorrent.org</p>
+<p>Official IRC channel:<br />
+<a href="ircs://irc.libera.chat:6697/qbittorrent">#qbittorrent on irc.libera.chat</a></p>
+<hr />
+<p>sledgehammer999 \&lt;sledgehammer999@qbittorrent.org&gt;</p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/browserbase/skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/qbittorrent/qBittorrent#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1390,9 +1138,9 @@ uv run streamlit run web/app.py
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 19,689</span>
-      <span class="meta-item">🍴 3,254</span>
-      <span class="stars-today">⭐ 282 stars today</span>
+      <span class="meta-item">⭐ 19,986</span>
+      <span class="meta-item">🍴 3,273</span>
+      <span class="stars-today">⭐ 496 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1552,9 +1300,9 @@ ALWAYS explicitly configure ALL parameters that control node behavior.</p>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
-      <span class="meta-item">⭐ 3,619</span>
-      <span class="meta-item">🍴 342</span>
-      <span class="stars-today">⭐ 591 stars today</span>
+      <span class="meta-item">⭐ 3,991</span>
+      <span class="meta-item">🍴 375</span>
+      <span class="stars-today">⭐ 548 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1784,125 +1532,1283 @@ curl -fsSL https://raw.githubusercontent.com/1jehuang/jcode/master/scripts/insta
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">openwrt /</span>
-          <a href="https://github.com/openwrt/openwrt" target="_blank" rel="noopener">openwrt</a>
+          <span class="repo-owner">msitarzewski /</span>
+          <a href="https://github.com/msitarzewski/agency-agents" target="_blank" rel="noopener">agency-agents</a>
         </div>
-        <div class="repo-desc">This repository is a mirror ofhttps://git.openwrt.org/openwrt/openwrt.gitIt is for reference only and is not active for check-ins. We will continue to accept Pull Requests here. They will be merged via staging trees then into openwrt.git.</div>
+        <div class="repo-desc">A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#555555"></span>C</span>
-      <span class="meta-item">⭐ 26,692</span>
-      <span class="meta-item">🍴 12,356</span>
-      <span class="stars-today">⭐ 26 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 92,893</span>
+      <span class="meta-item">🍴 15,287</span>
+      <span class="stars-today">⭐ 1,189 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <p><img alt="OpenWrt logo" src="include/logo.png" /></p>
-<p>OpenWrt Project is a Linux operating system targeting embedded devices. Instead<br />
-of trying to create a single, static firmware, OpenWrt provides a fully<br />
-writable filesystem with package management. This frees you from the<br />
-application selection and configuration provided by the vendor and allows you<br />
-to customize the device through the use of packages to suit any application.<br />
-For developers, OpenWrt is the framework to build an application without having<br />
-to build a complete firmware around it; for users this means the ability for<br />
-full customization, to use the device in ways never envisioned.</p>
-<p>Sunshine!</p>
-<h2>Download</h2>
-<p>Built firmware images are available for many architectures and come with a<br />
-package selection to be used as WiFi home router. To quickly find a factory<br />
-image usable to migrate from a vendor stock firmware to OpenWrt, try the<br />
-<em>Firmware Selector</em>.</p>
+    <h1>🎭 The Agency: AI Specialists Ready to Transform Your Workflow</h1>
+<blockquote>
+<p><strong>A complete AI agency at your fingertips</strong> - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.</p>
+</blockquote>
+<p><a href="https://github.com/msitarzewski/agency-agents"><img alt="GitHub stars" src="https://img.shields.io/github/stars/msitarzewski/agency-agents?style=social" /></a><br />
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a><br />
+<a href="https://makeapullrequest.com"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a><br />
+<a href="https://github.com/sponsors/msitarzewski"><img alt="Sponsor" src="https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink?logo=github" /></a></p>
+<hr />
+<h2>🚀 What Is This?</h2>
+<p>Born from a Reddit thread and months of iteration, <strong>The Agency</strong> is a growing collection of meticulously crafted AI agent personalities. Each agent is:</p>
 <ul>
-<li><a href="https://firmware-selector.openwrt.org/">OpenWrt Firmware Selector</a></li>
+<li><strong>🎯 Specialized</strong>: Deep expertise in their domain (not generic prompt templates)</li>
+<li><strong>🧠 Personality-Driven</strong>: Unique voice, communication style, and approach</li>
+<li><strong>📋 Deliverable-Focused</strong>: Real code, processes, and measurable outcomes</li>
+<li><strong>✅ Production-Ready</strong>: Battle-tested workflows and success metrics</li>
 </ul>
-<p>If your device is supported, please follow the <strong>Info</strong> link to see install<br />
-instructions or consult the support resources listed below.</p>
-<h2></h2>
-<p>An advanced user may require additional or specific package. (Toolchain, SDK, ...) For everything else than simple firmware download, try the wiki download page:</p>
-<ul>
-<li><a href="https://openwrt.org/downloads">OpenWrt Wiki Download</a></li>
-</ul>
-<h2>Development</h2>
-<p>To build your own firmware you need a GNU/Linux, BSD or macOS system (case<br />
-sensitive filesystem required). Cygwin is unsupported because of the lack of a<br />
-case sensitive file system.</p>
-<h3>Requirements</h3>
-<p>You need the following tools to compile OpenWrt, the package names vary between<br />
-distributions. A complete list with distribution specific packages is found in<br />
-the <a href="https://openwrt.org/docs/guide-developer/build-system/install-buildsystem">Build System Setup</a><br />
-documentation.</p>
-<pre><code>binutils bzip2 diff find flex gawk gcc-6+ getopt grep install libc-dev libz-dev
-make4.1+ perl python3.7+ rsync subversion unzip which
+<p><strong>Think of it as</strong>: Assembling your dream team, except they're AI specialists who never sleep, never complain, and always deliver.</p>
+<hr />
+<h2>⚡ Quick Start</h2>
+<h3>Option 1: Use with Claude Code (Recommended)</h3>
+<pre><code class="language-bash"># Install all agents to your Claude Code directory
+./scripts/install.sh --tool claude-code
+
+# Or manually copy a category if you only want one division
+cp engineering/*.md ~/.claude/agents/
+
+# Then activate any agent in your Claude Code sessions:
+# &quot;Hey Claude, activate Frontend Developer mode and help me build a React component&quot;
 </code></pre>
-<h3>Quickstart</h3>
+<h3>Option 2: Use as Reference</h3>
+<p>Each agent file contains:<br />
+- Identity &amp; personality traits<br />
+- Core mission &amp; workflows<br />
+- Technical deliverables with code examples<br />
+- Success metrics &amp; communication style</p>
+<p>Browse the agents below and copy/adapt the ones you need!</p>
+<h3>Option 3: Use with Other Tools (GitHub Copilot, Antigravity, Gemini CLI, OpenCode, OpenClaw, Cursor, Aider, Windsurf, Kimi Code)</h3>
+<pre><code class="language-bash"># Step 1 -- generate integration files for all supported tools
+./scripts/convert.sh
+
+# Step 2 -- install interactively (auto-detects what you have installed)
+./scripts/install.sh
+
+# Or target a specific tool directly
+./scripts/install.sh --tool antigravity
+./scripts/install.sh --tool gemini-cli
+./scripts/install.sh --tool opencode
+./scripts/install.sh --tool copilot
+./scripts/install.sh --tool openclaw
+./scripts/install.sh --tool cursor
+./scripts/install.sh --tool aider
+./scripts/install.sh --tool windsurf
+./scripts/install.sh --tool kimi
+</code></pre>
+<p>See the <a href="#-multi-tool-integrations">Multi-Tool Integrations</a> section below for full details.</p>
+<hr />
+<h2>🎨 The Agency Roster</h2>
+<h3>💻 Engineering Division</h3>
+<p>Building the future, one commit at a time.</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Specialty</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🎨 <a href="engineering/engineering-frontend-developer.md">Frontend Developer</a></td>
+<td>React/Vue/Angular, UI implementation, performance</td>
+<td>Modern web apps, pixel-perfect UIs, Core Web Vitals optimization</td>
+</tr>
+<tr>
+<td>🏗️ <a href="engineering/engineering-backend-architect.md">Backend Architect</a></td>
+<td>API design, database architecture, scalability</td>
+<td>Server-side systems, microservices, cloud infrastructure</td>
+</tr>
+<tr>
+<td>📱 <a href="engineering/engineering-mobile-app-builder.md">Mobile App Builder</a></td>
+<td>iOS/Android, React Native, Flutter</td>
+<td>Native and cross-platform mobile applications</td>
+</tr>
+<tr>
+<td>🤖 <a href="engineering/engineering-ai-engineer.md">AI Engineer</a></td>
+<td>ML models, deployment, AI integration</td>
+<td>Machine learning features, data pipelines, AI-powered apps</td>
+</tr>
+<tr>
+<td>🚀 <a href="engineering/engineering-devops-automator.md">DevOps Automator</a></td>
+<td>CI/CD, infrastructure automation, cloud ops</td>
+<td>Pipeline development, deployment automation, monitoring</td>
+</tr>
+<tr>
+<td>⚡ <a href="engineering/engineering-rapid-prototyper.md">Rapid Prototyper</a></td>
+<td>Fast POC development, MVPs</td>
+<td>Quick proof-of-concepts, hackathon projects, fast iteration</td>
+</tr>
+<tr>
+<td>💎 <a href="engineering/engineering-senior-developer.md">Senior Developer</a></td>
+<td>Laravel/Livewire, advanced patterns</td>
+<td>Complex implementations, architecture decisions</td>
+</tr>
+<tr>
+<td>🔧 <a href="engineering/engineering-filament-optimization-specialist.md">Filament Optimization Specialist</a></td>
+<td>Filament PHP admin UX, structural form redesign, resource optimization</td>
+<td>Restructuring Filament resources/forms/tables for faster, cleaner admin workflows</td>
+</tr>
+<tr>
+<td>🔒 <a href="engineering/engineering-security-engineer.md">Security Engineer</a></td>
+<td>Threat modeling, secure code review, security architecture</td>
+<td>Application security, vulnerability assessment, security CI/CD</td>
+</tr>
+<tr>
+<td>⚡ <a href="engineering/engineering-autonomous-optimization-architect.md">Autonomous Optimization Architect</a></td>
+<td>LLM routing, cost optimization, shadow testing</td>
+<td>Autonomous systems needing intelligent API selection and cost guardrails</td>
+</tr>
+<tr>
+<td>🔩 <a href="engineering/engineering-embedded-firmware-engineer.md">Embedded Firmware Engineer</a></td>
+<td>Bare-metal, RTOS, ESP32/STM32/Nordic firmware</td>
+<td>Production-grade embedded systems and IoT devices</td>
+</tr>
+<tr>
+<td>🚨 <a href="engineering/engineering-incident-response-commander.md">Incident Response Commander</a></td>
+<td>Incident management, post-mortems, on-call</td>
+<td>Managing production incidents and building incident readiness</td>
+</tr>
+<tr>
+<td>⛓️ <a href="engineering/engineering-solidity-smart-contract-engineer.md">Solidity Smart Contract Engineer</a></td>
+<td>EVM contracts, gas optimization, DeFi</td>
+<td>Secure, gas-optimized smart contracts and DeFi protocols</td>
+</tr>
+<tr>
+<td>🧭 <a href="engineering/engineering-codebase-onboarding-engineer.md">Codebase Onboarding Engineer</a></td>
+<td>Fast developer onboarding, read-only codebase exploration, factual explanation</td>
+<td>Helping new developers understand unfamiliar repos quickly by reading the code, tracing code paths, and stating facts about structure and behavior</td>
+</tr>
+<tr>
+<td>📚 <a href="engineering/engineering-technical-writer.md">Technical Writer</a></td>
+<td>Developer docs, API reference, tutorials</td>
+<td>Clear, accurate technical documentation</td>
+</tr>
+<tr>
+<td>🎯 <a href="engineering/engineering-threat-detection-engineer.md">Threat Detection Engineer</a></td>
+<td>SIEM rules, threat hunting, ATT&amp;CK mapping</td>
+<td>Building detection layers and threat hunting</td>
+</tr>
+<tr>
+<td>💬 <a href="engineering/engineering-wechat-mini-program-developer.md">WeChat Mini Program Developer</a></td>
+<td>WeChat ecosystem, Mini Programs, payment integration</td>
+<td>Building performant apps for the WeChat ecosystem</td>
+</tr>
+<tr>
+<td>👁️ <a href="engineering/engineering-code-reviewer.md">Code Reviewer</a></td>
+<td>Constructive code review, security, maintainability</td>
+<td>PR reviews, code quality gates, mentoring through review</td>
+</tr>
+<tr>
+<td>🗄️ <a href="engineering/engineering-database-optimizer.md">Database Optimizer</a></td>
+<td>Schema design, query optimization, indexing strategies</td>
+<td>PostgreSQL/MySQL tuning, slow query debugging, migration planning</td>
+</tr>
+<tr>
+<td>🌿 <a href="engineering/engineering-git-workflow-master.md">Git Workflow Master</a></td>
+<td>Branching strategies, conventional commits, advanced Git</td>
+<td>Git workflow design, history cleanup, CI-friendly branch management</td>
+</tr>
+<tr>
+<td>🏛️ <a href="engineering/engineering-software-architect.md">Software Architect</a></td>
+<td>System design, DDD, architectural patterns, trade-off analysis</td>
+<td>Architecture decisions, domain modeling, system evolution strategy</td>
+</tr>
+<tr>
+<td>🛡️ <a href="engineering/engineering-sre.md">SRE</a></td>
+<td>SLOs, error budgets, observability, chaos engineering</td>
+<td>Production reliability, toil reduction, capacity planning</td>
+</tr>
+<tr>
+<td>🧬 <a href="engineering/engineering-ai-data-remediation-engineer.md">AI Data Remediation Engineer</a></td>
+<td>Self-healing pipelines, air-gapped SLMs, semantic clustering</td>
+<td>Fixing broken data at scale with zero data loss</td>
+</tr>
+<tr>
+<td>🔧 <a href="engineering/engineering-data-engineer.md">Data Engineer</a></td>
+<td>Data pipelines, lakehouse architecture, ETL/ELT</td>
+<td>Building reliable data infrastructure and warehousing</td>
+</tr>
+<tr>
+<td>🔗 <a href="engineering/engineering-feishu-integration-developer.md">Feishu Integration Developer</a></td>
+<td>Feishu/Lark Open Platform, bots, workflows</td>
+<td>Building integrations for the Feishu ecosystem</td>
+</tr>
+<tr>
+<td>🧱 <a href="engineering/engineering-cms-developer.md">CMS Developer</a></td>
+<td>WordPress &amp; Drupal themes, plugins/modules, content architecture</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/msitarzewski/agency-agents#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">virattt /</span>
+          <a href="https://github.com/virattt/dexter" target="_blank" rel="noopener">dexter</a>
+        </div>
+        <div class="repo-desc">An autonomous agent for deep financial research</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 23,318</span>
+      <span class="meta-item">🍴 2,855</span>
+      <span class="stars-today">⭐ 409 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Dexter 🤖</h1>
+<p>Dexter is an autonomous financial research agent that thinks, plans, and learns as it works. It performs analysis using task planning, self-reflection, and real-time market data. Think Claude Code, but built specifically for financial research.</p>
+<p><img width="665" height="452" alt="Screenshot 2026-04-02 at 4 16 57 PM" src="https://github.com/user-attachments/assets/02418111-5f48-4a66-be5d-dc9bf9806284" /></p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#-overview">👋 Overview</a></li>
+<li><a href="#-prerequisites">✅ Prerequisites</a></li>
+<li><a href="#-how-to-install">💻 How to Install</a></li>
+<li><a href="#-how-to-run">🚀 How to Run</a></li>
+<li><a href="#-how-to-evaluate">📊 How to Evaluate</a></li>
+<li><a href="#-how-to-debug">🐛 How to Debug</a></li>
+<li><a href="#-how-to-use-with-whatsapp">📱 How to Use with WhatsApp</a></li>
+<li><a href="#-how-to-contribute">🤝 How to Contribute</a></li>
+<li><a href="#-license">📄 License</a></li>
+</ul>
+<h2>👋 Overview</h2>
+<p>Dexter takes complex financial questions and turns them into clear, step-by-step research plans. It runs those tasks using live market data, checks its own work, and refines the results until it has a confident, data-backed answer.  </p>
+<p><strong>Key Capabilities:</strong><br />
+- <strong>Intelligent Task Planning</strong>: Automatically decomposes complex queries into structured research steps<br />
+- <strong>Autonomous Execution</strong>: Selects and executes the right tools to gather financial data<br />
+- <strong>Self-Validation</strong>: Checks its own work and iterates until tasks are complete<br />
+- <strong>Real-Time Financial Data</strong>: Access to income statements, balance sheets, and cash flow statements<br />
+- <strong>Safety Features</strong>: Built-in loop detection and step limits to prevent runaway execution</p>
+<p><a href="https://twitter.com/virattt"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/virattt?style=social" /></a> <a href="https://discord.gg/jpGHv2XB6T"><img alt="Discord" src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=social&amp;logo=discord" /></a></p>
+<p><img width="1042" height="638" alt="Screenshot 2026-02-18 at 12 21 25 PM" src="https://github.com/user-attachments/assets/2a6334f9-863f-4bd2-a56f-923e42f4711e" /></p>
+<h2>✅ Prerequisites</h2>
+<ul>
+<li><a href="https://bun.com">Bun</a> runtime (v1.0 or higher)</li>
+<li>OpenAI API key (get <a href="https://platform.openai.com/api-keys">here</a>)</li>
+<li>Financial Datasets API key (get <a href="https://financialdatasets.ai">here</a>)</li>
+<li>Exa API key (get <a href="https://exa.ai">here</a>) - optional, for web search</li>
+</ul>
+<h4>Installing Bun</h4>
+<p>If you don't have Bun installed, you can install it using curl:</p>
+<p><strong>macOS/Linux:</strong></p>
+<pre><code class="language-bash">curl -fsSL https://bun.com/install | bash
+</code></pre>
+<p><strong>Windows:</strong></p>
+<pre><code class="language-bash">powershell -c &quot;irm bun.sh/install.ps1|iex&quot;
+</code></pre>
+<p>After installation, restart your terminal and verify Bun is installed:</p>
+<pre><code class="language-bash">bun --version
+</code></pre>
+<h2>💻 How to Install</h2>
+<ol>
+<li>Clone the repository:</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/virattt/dexter.git
+cd dexter
+</code></pre>
+<ol>
+<li>Install dependencies with Bun:</li>
+</ol>
+<pre><code class="language-bash">bun install
+</code></pre>
+<ol>
+<li>Set up your environment variables:</li>
+</ol>
+<pre><code class="language-bash"># Copy the example environment file
+cp env.example .env
+
+# Edit .env and add your API keys (if using cloud providers)
+# OPENAI_API_KEY=your-openai-api-key
+# ANTHROPIC_API_KEY=your-anthropic-api-key (optional)
+# GOOGLE_API_KEY=your-google-api-key (optional)
+# XAI_API_KEY=your-xai-api-key (optional)
+# OPENROUTER_API_KEY=your-openrouter-api-key (optional)
+
+# Institutional-grade market data for agents
+# FINANCIAL_DATASETS_API_KEY=your-financial-datasets-api-key
+
+# (Optional) If using Ollama locally
+# OLLAMA_BASE_URL=http://127.0.0.1:11434
+
+# Web Search (Exa preferred, Tavily fallback)
+# EXASEARCH_API_KEY=your-exa-api-key
+# TAVILY_API_KEY=your-tavily-api-key
+</code></pre>
+<h2>🚀 How to Run</h2>
+<p>Run Dexter in interactive mode:</p>
+<pre><code class="language-bash">bun start
+</code></pre>
+<p>Or with watch mode for development:</p>
+<pre><code class="language-bash">bun dev
+</code></pre>
+<h2>📊 How to Evaluate</h2>
+<p>Dexter includes an evaluation suite that tests the agent against a dataset of financial questions. Evals use LangSmith for tracking and an LLM-as-judge approach for scoring correctness.</p>
+<p><strong>Run on all questions:</strong></p>
+<pre><code class="language-bash">bun run src/evals/run.ts
+</code></pre>
+<p><strong>Run on a random sample of data:</strong></p>
+<pre><code class="language-bash">bun run src/evals/run.ts --sample 10
+</code></pre>
+<p>The eval runner displays a real-time UI showing progress, current question, and running accuracy statistics. Results are logged to LangSmith for analysis.</p>
+<h2>🐛 How to Debug</h2>
+<p>Dexter logs all tool calls to a scratchpad file for debugging and history tracking. Each query creates a new JSONL file in <code>.dexter/scratchpad/</code>.</p>
+<p><strong>Scratchpad location:</strong></p>
+<pre><code>.dexter/scratchpad/
+├── 2026-01-30-111400_9a8f10723f79.jsonl
+├── 2026-01-30-143022_a1b2c3d4e5f6.jsonl
+└── ...
+</code></pre>
+<p>Each file contains newline-delimited JSON entries tracking:<br />
+- <strong>init</strong>: The original query<br />
+- <strong>tool_result</strong>: Each tool call with arguments, raw result, and LLM summary<br />
+- <strong>thinking</strong>: Agent reasoning steps</p>
+<p><strong>Example scratchpad entry:</strong></p>
+<pre><code class="language-json">{&quot;type&quot;:&quot;tool_result&quot;,&quot;timestamp&quot;:&quot;2026-01-30T11:14:05.123Z&quot;,&quot;toolName&quot;:&quot;get_income_statements&quot;,&quot;args&quot;:{&quot;ticker&quot;:&quot;AAPL&quot;,&quot;period&quot;:&quot;annual&quot;,&quot;limit&quot;:5},&quot;result&quot;:{...},&quot;llmSummary&quot;:&quot;Retrieved 5 years of Apple annual income statements showing revenue growth from $274B to $394B&quot;}
+</code></pre>
+<p>This makes it easy to inspect exactly what data the agent gathered and how it interpreted results.</p>
+<h2>📱 How to Use with WhatsApp</h2>
+<p>Chat with Dexter through WhatsApp by linking your phone to the gateway. Messages you send to yourself are processed by Dexter and responses are sent back to the same chat.</p>
+<p><strong>Quick start:</strong></p>
+<pre><code class="language-bash"># Link your WhatsApp account (scan QR code)
+bun run gateway:login
+
+# Start the gateway
+bun run gateway
+</code></pre>
+<p>Then open WhatsApp, go to your own chat (message yourself), and ask Dexter a question.</p>
+<p>For detailed setup instructions, configuration options, and troubleshooting, see the <a href="src/gateway/channels/whatsapp/README.md">WhatsApp Gateway README</a>.</p>
+<h2>🤝 How to Contribute</h2>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Commit your changes</li>
+<li>Push to the branch</li>
+<li>Create a Pull Request</li>
+</ol>
+<p><strong>Important</strong>: Please keep your pull requests small and focused.  This will make it easier to review and merge.</p>
+<h2>📄 License</h2>
+<p>This project is licensed under the MIT License.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/virattt/dexter#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Flowseal /</span>
+          <a href="https://github.com/Flowseal/zapret-discord-youtube" target="_blank" rel="noopener">zapret-discord-youtube</a>
+        </div>
+        <div class="repo-desc"><em style="color:var(--muted)">No description provided.</em></div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#8b949e"></span>Batchfile</span>
+      <span class="meta-item">⭐ 27,328</span>
+      <span class="meta-item">🍴 2,134</span>
+      <span class="stars-today">⭐ 67 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+# <img src="https://cdn-icons-png.flaticon.com/128/5968/5968756.png" height=28 /> <a href="https://github.com/Flowseal/">Flowseal</a><a href="https://github.com/Flowseal/zapret-discord-youtube">/zapret-discord-youtube</a> <img src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" height=28 />
+
+**NEW**: Ускорение Telegram Desktop - https://github.com/Flowseal/tg-ws-proxy  
+Альтернатива https://github.com/bol-van/zapret-win-bundle  
+Также вы можете материально поддержать оригинального разработчика zapret [тут](https://github.com/bol-van/zapret?tab=readme-ov-file#%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D1%82%D1%8C-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%B0)
+</div>
+
+<blockquote>
+<p>[!CAUTION]</p>
+<h3>ФЕЙКИ</h3>
+<p>Я не веду никакие другие страницы/группы в телеграм/ютуб каналы<br />
+Если вы наткнулись на что-то вне этой страницы гитхаба, что распространяется от моего лица - <strong>ФЕЙК</strong>.</p>
+<p>[!WARNING]</p>
+<h3>АНТИВИРУСЫ</h3>
+<p>WinDivert может вызвать реакцию антивируса.<br />
+WinDivert - это инструмент для перехвата и фильтрации трафика, необходимый для работы zapret.<br />
+Замена iptables и NFQUEUE в Linux, которых нет под Windows.<br />
+Он может использоваться как хорошими, так и плохими программами, но сам по себе не является вирусом.<br />
+Драйвер WinDivert64.sys подписан для возможности загрузки в 64-битное ядро Windows.</p>
+<p>*<em>Выдержка из <a href="https://github.com/bol-van/zapret-win-bundle/blob/master/readme.md#%D0%B0%D0%BD%D1%82%D0%B8%D0%B2%D0%B8%D1%80%D1%83%D1%81%D1%8B"><code>readme.md</code></a> репозитория <a href="https://github.com/bol-van/zapret-win-bundle">bol-van/zapret-win-bundle</a></em></p>
+<p>Некоторые антивирусы склонны относить файлы WinDivert к классам повышенного риска или хакерским инструментам. Происходит удаление файла и помещение его в карантин. При этом детект обязательно имеет название <code>WinDivert</code> или <code>Not-a-virus:RiskTool.Multi.WinDivert</code></p>
+<p>В случае проблем с антивирусом добавьте папку с запретом в исключения, либо отключите детектирование PUA (потенциально нежелательных приложений). Например, в касперском есть галочка "Обнаруживать легальные приложения, которые злоумышленники часто используют для нанесения вреда". При аккуратной и правильной настройке исключений - рекомендуется настроить исключение, но если вы не до конца понимаете что делаете - рекомендуется отключить детект PUA.</p>
+<p>[!IMPORTANT]<br />
+Все бинарные файлы в папке <a href="./bin"><code>bin</code></a> взяты из <a href="https://github.com/bol-van/zapret-win-bundle/tree/master/zapret-winws">zapret-win-bundle/zapret-winws</a> и <a href="https://github.com/bol-van/zapret/releases">zapret/releases</a>. Вы можете это проверить с помощью хэшей/контрольных сумм. Проверяйте, что запускаете, используя сборки из интернета!</p>
+</blockquote>
+<h2>⚙️Использование</h2>
 <ol>
 <li>
-<p>Run <code>./scripts/feeds update -a</code> to obtain all the latest package definitions<br />
-   defined in feeds.conf / feeds.conf.default</p>
+<p>Включите Secure DNS</p>
+<ul>
+<li>В Chrome - "Использовать безопасный DNS", и выбрать поставщика услуг DNS (выбрать вариант, отличный от поставщика по умолчанию)</li>
+<li>В Firefox - "Включить DNS через HTTPS, используя: Максимальную защиту", затем "Выбрать поставщика" и вписать URL поставщика вручную, например можно использовать <code>https://dns.google/dns-query</code> (т.к. поставщик Cloudflare может быть заблокирован)</li>
+<li>В Windows 11 поддерживается включение Secure DNS прямо в настройках ОС - <a href="https://www.howtogeek.com/765940/how-to-enable-dns-over-https-on-windows-11/">инструкция тут</a>. Рекомендуется, если вы пользуетесь Windows 11</li>
+</ul>
 </li>
 <li>
-<p>Run <code>./scripts/feeds install -a</code> to install symlinks for all obtained<br />
-   packages into package/feeds/</p>
+<p>Скачайте архив (zip/rar) со <a href="https://github.com/Flowseal/zapret-discord-youtube/releases/latest">страницы последнего релиза</a></p>
 </li>
 <li>
-<p>Run <code>make menuconfig</code> to select your preferred configuration for the<br />
-   toolchain, target system &amp; firmware packages.</p>
+<p>Зайдите в свойства скачанного архива и поставьте галочку "Разблокировать". Если вы используете архиватор 7-Zip или PeaZip, этот шаг можно пропустить</p>
 </li>
 <li>
-<p>Run <code>make</code> to build your firmware. This will download all sources, build the<br />
-   cross-compile toolchain and then cross-compile the GNU/Linux kernel &amp; all chosen<br />
-   applications for your target system.</p>
+<p>Распакуйте содержимое архива по пути, который не содержит кириллицу/спец. символы</p>
+</li>
+<li>
+<p>Запустите нужный файл</p>
 </li>
 </ol>
-<h3>Related Repositories</h3>
-<p>The main repository uses multiple sub-repositories to manage packages of<br />
-different categories. All packages are installed via the OpenWrt package<br />
-manager called <code>opkg</code>. If you're looking to develop the web interface or port<br />
-packages to OpenWrt, please find the fitting repository below.</p>
+<h2>ℹ️Краткие описания файлов</h2>
 <ul>
-<li>
-<p><a href="https://github.com/openwrt/luci">LuCI Web Interface</a>: Modern and modular<br />
-  interface to control the device via a web browser.</p>
+<li><a href="./general.bat"><strong><code>general.bat ...</code></strong></a> - запуск стратегии вручную</li>
+</ul>
+<p>Запуск вручную можно использовать для проверки работоспособности стратегий. Работоспособность той или иной стратегии зависит от многих факторов. <strong>Пробуйте разные стратегии (ALT, FAKE и другие), пока не найдёте рабочее для вас решение</strong></p>
+<ul>
+<li><a href="./service.bat"><strong><code>service.bat</code></strong></a> - установка в автозапуск и другие функции:</li>
+<li><ins><strong><code>Install Service</code></strong> - установка любой стратегии в автозапуск (services.msc)</ins></li>
+<li><strong><code>Remove Services</code></strong> - удаление стратегии и WinDivert из служб</li>
+<li><strong><code>Check Status</code></strong> - проверка статуса обхода и служб (стратегии на автозапуске и WinDivert)</li>
+<li><strong><code>Game Filter</code></strong> - переключение режима обхода для игр (и других сервисов, использующих UDP и TCP на портах выше 1023).<br />
+<strong>После переключения требуется перезапуск стратегии.</strong><br />
+  В скобках указан текущий статус (включено/выключено).</li>
+<li><strong><code>IPSet Filter</code></strong> - переключение режима обхода сервисов из <code>ipset-all.txt</code>.<br />
+  Полезно при тестировании, если не работает ресурс, который без zapret работает<br />
+  В скобках указан текущий статус:<ul>
+<li><code>none</code> - никакие айпи не попадают под проверку</li>
+<li><code>loaded</code> - айпи проверяется на вхождение в список</li>
+<li><code>any</code> - любой айпи попадает под фильтр  </li>
+</ul>
 </li>
-<li>
-<p><a href="https://github.com/openwrt/packages">OpenWrt Packages</a>: Community repository<br />
-  of ported packages.</p>
-</li>
-<li>
-<p><a href="https://github.com/openwrt/routing">OpenWrt Routing</a>: Packages specifically<br />
-  focused on (mesh) routing.</p>
-</li>
-<li>
-<p><a href="https://github.com/openwrt/video">OpenWrt Video</a>: Packages specifically<br />
-  focused on display servers and clients (Xorg and Wayland).</p>
+<li><strong><code>Auto-Update Check</code></strong> - Вкл/Выкл автоматическую проверку на обновления</li>
+<li><strong><code>Update IPSet List</code></strong> - обновление списка <code>ipset-all.txt</code> актуальным из репозитория</li>
+<li><strong><code>Update Hosts File</code></strong> - обновление файла hosts <ins><strong>для починки веб версии телеграма и подключения к голосовому чату Discord</strong></ins></li>
+<li><strong><code>Check for Updates</code></strong> - проверка на обновления</li>
+<li><strong><code>Run Diagnostics</code></strong> - диагностика на распространённые причины, по которым zapret может не работать.<br />
+  В конце можно очистить кэш <img src="https://cdn-icons-png.flaticon.com/128/5968/5968756.png" height=11 /> <code>Discord</code>, что может помочь, если он неожиданно перестал работать</li>
+<li><strong><code>Run Tests</code></strong> - запуск утилиты для проверки стратегий на работоспособность:<ul>
+<li><code>Standard tests</code> - проверка сайтов из <code>utils/targets.txt</code></li>
+<li><code>DPI checkers</code> - проверка DPI на различных провайдерах (Cloudflare, Amazon и др.)</li>
+</ul>
 </li>
 </ul>
-<h2>Support Information</h2>
-<p>For a list of supported devices see the <a href="https://openwrt.org/supported_devices">OpenWrt Hardware Database</a></p>
-<h3>Documentation</h3>
+<h2>☑️Распространенные вопросы и проблемы</h2>
+<h3>После запуска скрипта <code>general*</code> ничего не происходит</h3>
 <ul>
-<li><a href="https://openwrt.org/docs/guide-quick-start/start">Quick Start Guide</a></li>
-<li><a href="https://openwrt.org/docs/guide-user/start">User Guide</a></li>
-<li><a href="https://openwrt.org/docs/guide-developer/start">Developer Documentation</a></li>
-<li><a href="https://openwrt.org/docs/techref/start">Technical Reference</a></li>
+<li>После запуска стратегии (отдельным bat файлом, не через service), должен открыться winws.exe (обход), который можно увидеть в панели задач.<br />
+Если этого не произошло, то см. <a href="https://github.com/Flowseal/zapret-discord-youtube/issues/522">#522</a></li>
 </ul>
-<h3>Support Community</h3>
+<h3>Не работает телеграм (веб версия) или бесконечное "подключение" к голосовому чату Discord</h3>
+<p>Запустите <strong><code>service.bat</code></strong>, выберите пункт <strong><code>Update hosts file</code></strong>. После чего, если ваш hosts будет неактуальным, то Вам будет предложено обновить его самостоятельно:<br />
+  - Скопируйте весь текст из открывшегося блокнота<br />
+  - Откройте файл <code>hosts</code> в появившейся папке с помощью текстового редактора, открытого от имени администратора<br />
+  - Добавьте в конец файла <code>hosts</code> то, что скопировали (или замените, если до этого Вы уже добавляли подобное)<br />
+  - Сохраните и перепроверьте подключение. Если не работает - убедитесь, что файл <code>hosts</code> действительно сохранился.</p>
+<h3>Обход не работает / перестал работать</h3>
+<blockquote>
+<p>[!IMPORTANT]<br />
+<strong>Стратегии со временем могут переставать работать.</strong><br />
+Определенная стратегия может работать какое-то время, но со временем она может переставать работать из-за обнаружения.<br />
+В репозитории представлены множество различных стратегий для обхода. Если ни одна из них вам не помогает, то вам необходимо создать новую, взяв за основу одну из представленных здесь и изменив её параметры.<br />
+Информацию про параметры стратегий вы можете найти <a href="https://github.com/bol-van/zapret/blob/master/docs/readme.md#nfqws">тут</a>.</p>
+</blockquote>
 <ul>
-<li><a href="https://forum.openwrt.org">Forum</a>: For usage, projects, discussions and hardware advise.</li>
-<li><a href="https://webchat.oftc.net/#openwrt">Support Chat</a>: Channel <code>#openwrt</code> on <strong>oftc.net</strong>.</li>
+<li>
+<p>Проверьте, чтобы не было ошибок в <code>service.bat</code> -&gt; <code>Run Diagnostics</code></p>
+</li>
+<li>
+<p>Убедитесь, что адрес ресурса записан в списках доменов или IP</p>
+</li>
+<li>
+<p>Проверьте другие стратегии (<strong><code>ALT</code></strong>/<strong><code>FAKE</code></strong> и другие)</p>
+</li>
+<li>
+<p>Попробуйте полную переустановку (см. раздел ниже)</p>
+</li>
+<li>
+<p>См. <a href="https://github.com/Flowseal/zapret-discord-youtube/issues/765">#765</a></p>
+</li>
 </ul>
-<h3>Developer Community</h3>
+<h3>Как переустановить/обновить полностью?</h3>
 <ul>
-<li><a href="https://bugs.openwrt.org">Bug Reports</a>: Report bugs in OpenWrt</li>
-<li><a href="https://lists.openwrt.org/mailman/listinfo/openwrt-devel">Dev Mailing List</a>: Send patches</li>
-<li><a href="https://webchat.oftc.net/#openwrt-devel">Dev Chat</a>: Channel <code>#openwrt-devel</code> on <strong>oftc.net</strong>.</li>
+<li>Сохраните ресурсы/данные, которые вы сами добавляли</li>
+<li>Перезапустите устройство</li>
+<li><code>service.bat</code> -&gt; <code>Remove Services</code></li>
+<li><code>service.bat</code> -&gt; <code>Run Diagnostics</code> (если ест</li>
 </ul>
-<h2>License</h2>
-<p>OpenWrt is licensed under GPL-2.0</p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/openwrt/openwrt#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/Flowseal/zapret-discord-youtube#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#12</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">fspecii /</span>
+          <a href="https://github.com/fspecii/ace-step-ui" target="_blank" rel="noopener">ace-step-ui</a>
+        </div>
+        <div class="repo-desc">🎵 The Ultimate Open Source Suno Alternative - Professional UI for ACE-Step 1.5 AI Music Generation. Free, local, unlimited. Stop paying for Suno!</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 2,949</span>
+      <span class="meta-item">🍴 425</span>
+      <span class="stars-today">⭐ 237 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="https://img.shields.io/badge/🎵-ACE--Step_UI-ff69b4?style=for-the-badge&labelColor=1a1a1a" alt="ACE-Step UI" height="60">
+</p>
+
+<h1 align="center">ACE-Step UI</h1>
+
+<p align="center">
+  <strong>The Ultimate Open Source Suno Alternative</strong><br>
+  <em>Seamless integration with <a href="https://github.com/ace-step/ACE-Step-1.5">ACE-Step 1.5</a> - The Open Source AI Music Generation Model</em>
+</p>
+
+<p align="center">
+  <a href="https://www.youtube.com/@Ambsd-yy7os">
+    <img src="https://img.shields.io/badge/▶_Subscribe-YouTube-FF0000?style=for-the-badge&logo=youtube" alt="Subscribe on YouTube">
+  </a>
+  <a href="https://x.com/AmbsdOP">
+    <img src="https://img.shields.io/badge/Follow-@AmbsdOP-1DA1F2?style=for-the-badge&logo=x&logoColor=white" alt="Follow on X">
+  </a>
+</p>
+
+<p align="center">
+  <a href="#-demo">Demo</a> •
+  <a href="#-why-ace-step-ui">Why ACE-Step</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-usage">Usage</a> •
+  <a href="#-contributing">Contributing</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18.3-61DAFB?style=flat-square&logo=react" alt="React">
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript" alt="TypeScript">
+  <img src="https://img.shields.io/badge/TailwindCSS-3.x-06B6D4?style=flat-square&logo=tailwindcss" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/SQLite-Local_First-003B57?style=flat-square&logo=sqlite" alt="SQLite">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License">
+  <img src="https://img.shields.io/github/stars/fspecii/ace-step-ui?style=flat-square" alt="Stars">
+</p>
+
+<hr />
+<h2>🎬 Demo</h2>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=8zg0Xi36qGc">
+    <img src="https://img.shields.io/badge/▶_Watch_Full_Demo-YouTube-FF0000?style=for-the-badge&logo=youtube" alt="Watch Demo on YouTube">
+  </a>
+</p>
+
+<p align="center">
+  <img src="docs/demo.gif" alt="ACE-Step UI - Open Source Suno Alternative" width="100%">
+</p>
+
+<p align="center">
+  <em>Generate professional AI music with a Spotify-like interface - 100% free and local</em>
+</p>
+
+<hr />
+<h2>🚀 Why ACE-Step UI?</h2>
+<p><strong>Tired of paying $10+/month for Suno or Udio?</strong> ACE-Step 1.5 is the <strong>open source Suno killer</strong> that runs locally on your own GPU - and ACE-Step UI gives you a <strong>beautiful, professional interface</strong> to harness its full power.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Suno/Udio</th>
+<th>ACE-Step UI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cost</strong></td>
+<td>$10-50/month</td>
+<td><strong>FREE forever</strong></td>
+</tr>
+<tr>
+<td><strong>Privacy</strong></td>
+<td>Cloud-based</td>
+<td><strong>100% local</strong></td>
+</tr>
+<tr>
+<td><strong>Ownership</strong></td>
+<td>Licensed</td>
+<td><strong>You own everything</strong></td>
+</tr>
+<tr>
+<td><strong>Customization</strong></td>
+<td>Limited</td>
+<td><strong>Full control</strong></td>
+</tr>
+<tr>
+<td><strong>Queue Limits</strong></td>
+<td>Restricted</td>
+<td><strong>Unlimited</strong></td>
+</tr>
+<tr>
+<td><strong>Commercial Use</strong></td>
+<td>Expensive tiers</td>
+<td><strong>No restrictions</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>What Makes ACE-Step 1.5 Special?</h3>
+<ul>
+<li><strong>State-of-the-art quality</strong> rivaling commercial services</li>
+<li><strong>Full song generation</strong> up to 4+ minutes with vocals</li>
+<li><strong>Runs locally</strong> - no internet required after setup</li>
+<li><strong>Open source</strong> - inspect, modify, improve</li>
+<li><strong>Active development</strong> - constant improvements</li>
+</ul>
+<hr />
+<h2>✨ Features</h2>
+<h3>🎵 AI Music Generation</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Full Song Generation</strong></td>
+<td>Create complete songs with vocals and lyrics up to 4+ minutes</td>
+</tr>
+<tr>
+<td><strong>Instrumental Mode</strong></td>
+<td>Generate instrumental tracks without vocals</td>
+</tr>
+<tr>
+<td><strong>Custom Mode</strong></td>
+<td>Fine-tune BPM, key, time signature, and duration</td>
+</tr>
+<tr>
+<td><strong>Style Tags</strong></td>
+<td>Define genre, mood, tempo, and instrumentation</td>
+</tr>
+<tr>
+<td><strong>Batch Generation</strong></td>
+<td>Generate multiple variations at once</td>
+</tr>
+<tr>
+<td><strong>AI Enhance</strong></td>
+<td>Enrich genre tags into detailed captions with proper BPM/key/time</td>
+</tr>
+<tr>
+<td><strong>Thinking Mode</strong></td>
+<td>Let AI reason about structure and generate audio codes</td>
+</tr>
+</tbody>
+</table>
+<h3>🎨 Advanced Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reference Audio</strong></td>
+<td>Use any audio file as a style reference</td>
+</tr>
+<tr>
+<td><strong>Audio Cover</strong></td>
+<td>Transform existing audio with new styles</td>
+</tr>
+<tr>
+<td><strong>Repainting</strong></td>
+<td>Regenerate specific sections of a track</td>
+</tr>
+<tr>
+<td><strong>Seed Control</strong></td>
+<td>Reproduce exact generations for consistency</td>
+</tr>
+<tr>
+<td><strong>Inference Steps</strong></td>
+<td>Control quality vs speed tradeoff</td>
+</tr>
+</tbody>
+</table>
+<h3>🎤 Lyrics &amp; Prompts</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lyrics Editor</strong></td>
+<td>Write and format lyrics with structure tags</td>
+</tr>
+<tr>
+<td><strong>Format Assistant</strong></td>
+<td>AI-powered caption and lyrics formatting</td>
+</tr>
+<tr>
+<td><strong>Prompt Templates</strong></td>
+<td>Quick-start with genre presets</td>
+</tr>
+<tr>
+<td><strong>Reuse Prompts</strong></td>
+<td>Clone settings from any previous generation</td>
+</tr>
+</tbody>
+</table>
+<h3>🎧 Professional Interface</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Spotify-Inspired UI</strong></td>
+<td>Clean, modern design with dark/light mode</td>
+</tr>
+<tr>
+<td><strong>Bottom Player</strong></td>
+<td>Full-featured player with waveform and progress</td>
+</tr>
+<tr>
+<td><strong>Library Management</strong></td>
+<td>Browse, search, and organize all your tracks</td>
+</tr>
+<tr>
+<td><strong>Likes &amp; Playlists</strong></td>
+<td>Organize favorites into custom playlists</td>
+</tr>
+<tr>
+<td><strong>Real-time Progress</strong></td>
+<td>Live generation progress with queue position</td>
+</tr>
+<tr>
+<td><strong>LAN Access</strong></td>
+<td>Use from any device on your local network</td>
+</tr>
+</tbody>
+</table>
+<h3>🛠️ Built-in Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Audio Editor</strong></td>
+<td>Trim, fade, and apply effects with AudioMass</td>
+</tr>
+<tr>
+<td><strong>Stem Extraction</strong></td>
+<td>Separate vocals, drums, bass, and other with Demucs</td>
+</tr>
+<tr>
+<td><strong>Video Generator</strong></td>
+<td>Create music videos with Pexels backgrounds</td>
+</tr>
+<tr>
+<td><strong>Gradient Covers</strong></td>
+<td>Beautiful procedural album art (no internet needed)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>💻 Tech Stack</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Technologies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>React 18, TypeScript, TailwindCSS, Vite</td>
+</tr>
+<tr>
+<td><strong>Backend</strong></td>
+<td>Express.js, SQLite, better-sqlite3</td>
+</tr>
+<tr>
+<td><strong>AI Engine</strong></td>
+<td><a href="https://github.com/ace-step/ACE-Step-1.5">ACE-Step 1.5</a> (Gradio API)</td>
+</tr>
+<tr>
+<td><strong>Audio Tools</strong></td>
+<td>AudioMass, Demucs, FFmpeg</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📋 Requirements</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Node.js</strong></td>
+<td>18 or higher</td>
+</tr>
+<tr>
+<td><strong>Python</strong></td>
+<td>3.10+ (3.11 recommended) OR Windows Portable Package</td>
+</tr>
+<tr>
+<td><strong>NVIDIA GPU</strong></td>
+<td>4GB+ VRAM (works without LLM), 12GB+ recommended (with LLM)</td>
+</tr>
+<tr>
+<td><strong>CUDA</strong></td>
+<td>12.8 (for Windows Portable Package)</td>
+</tr>
+<tr>
+<td><strong>FFmpeg</strong></td>
+<td>For audio processing</td>
+</tr>
+<tr>
+<td><strong>uv</strong></td>
+<td>Python package manager (recommended for standard install)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚡ Quick Start</h2>
+<h3>🎯 Pinokio - 1-Click Install (Recommended for All Users!)</h3>
+<p>The easiest way to get ACE-Step UI up and running on <strong>any platform</strong> — no terminal, no manual setup:</p>
+<p align="center">
+  <a href="https://beta.pinokio.co/apps/github-com-cocktailpeanut-ace-step-ui-pinokio">
+    <img src="https://img.shields.io/badge/⚡_Install_with_Pinokio-One_Click-ff69b4?style=for-the-badge&labelColor=1a1a1a" alt="Install with Pinokio" height="50">
+  </a>
+</p>
+
+<blockquote>
+<p><strong><a href="https://pinokio.computer">Pinokio</a></strong> handles everything automatically: Python, Node.js, dependencies, model downloads, and launching. Just click install and start making music.</p>
+</blockquote>
+<hr />
+<h3>🪟 Windows - One-Click Start (Easiest!)</h3>
+<pre><code class="language-batch">cd ace-step-ui
+start-all.bat
+</code></pre>
+<p><strong>That's it!</strong> This starts everything: API + Backend + Frontend in one command.</p>
+<blockquote>
+<p><strong>Note:</strong> By default, it looks for ACE-Step in <code>..\ACE-Step-1.5</code>.<br />
+If yours is elsewhere, set <code>ACESTEP_PATH</code> first:<br />
+<code>batch
+set ACESTEP_PATH=C:\path\to\ACE-Step-1.5
+start-all.bat</code></p>
+</blockquote>
+<h3>🪟 Windows - Manual Start</h3>
+<pre><code class="language-batch">REM 1. Start ACE-Step Gradio (with API endpoints)
+cd C:\ACE-Step-1.5
+python_embeded\python -m acestep --port 8001 --enable-api --backend pt --server-name 127.0.0.1
+
+REM 2. Start ACE-Step UI (in another terminal)
+cd ace-step-ui
+start.bat
+</code></pre>
+<h3>Linux / macOS - One-Click Start (Easiest!)</h3>
+<pre><code class="language-bash">cd ace-step-ui
+./start-all.sh
+</code></pre>
+<p><strong>That's it!</strong> This starts everything: Gradio + Backend + Frontend in one command.</p>
+<blockquote>
+<p><strong>Note:</strong> By default, it looks for ACE-Step in <code>../ACE-Step-1.5</code>.<br />
+If yours is elsewhere, set <code>ACESTEP_PATH</code> first:<br />
+<code>bash
+export ACESTEP_PATH=/path/to/ACE-Step-1.5
+./start-all.sh</code><br />
+<strong>To stop:</strong> <code>./stop-all.sh</code></p>
+</blockquote>
+<h3>Linux / macOS - Manual Start</h3>
+<p>```bash</p>
+<h1>1. Start ACE-Step Gradio with API (in ACE-Step-1.5 directory)</h1>
+<p>cd /path/to/ACE-Step-1.5</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/fspecii/ace-step-ui#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#13</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">jellyfin /</span>
+          <a href="https://github.com/jellyfin/jellyfin" target="_blank" rel="noopener">jellyfin</a>
+        </div>
+        <div class="repo-desc">The Free Software Media System - Server Backend &amp; API</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#178600"></span>C#</span>
+      <span class="meta-item">⭐ 51,210</span>
+      <span class="meta-item">🍴 4,743</span>
+      <span class="stars-today">⭐ 41 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">Jellyfin</h1>
+<h3 align="center">The Free Software Media System</h3>
+
+<hr />
+<p align="center">
+<img alt="Logo Banner" src="https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/branding/SVG/banner-logo-solid.svg?sanitize=true"/>
+<br/>
+<br/>
+<a href="https://github.com/jellyfin/jellyfin">
+<img alt="GPL 2.0 License" src="https://img.shields.io/github/license/jellyfin/jellyfin.svg"/>
+</a>
+<a href="https://github.com/jellyfin/jellyfin/releases">
+<img alt="Current Release" src="https://img.shields.io/github/release/jellyfin/jellyfin.svg"/>
+</a>
+<a href="https://translate.jellyfin.org/projects/jellyfin/jellyfin-core/?utm_source=widget">
+<img alt="Translation Status" src="https://translate.jellyfin.org/widgets/jellyfin/-/jellyfin-core/svg-badge.svg"/>
+</a>
+<a href="https://hub.docker.com/r/jellyfin/jellyfin">
+<img alt="Docker Pull Count" src="https://img.shields.io/docker/pulls/jellyfin/jellyfin.svg"/>
+</a>
+<br/>
+<a href="https://opencollective.com/jellyfin">
+<img alt="Donate" src="https://img.shields.io/opencollective/all/jellyfin.svg?label=backers"/>
+</a>
+<a href="https://features.jellyfin.org">
+<img alt="Submit Feature Requests" src="https://img.shields.io/badge/fider-vote%20on%20features-success.svg"/>
+</a>
+<a href="https://matrix.to/#/#jellyfinorg:matrix.org">
+<img alt="Chat on Matrix" src="https://img.shields.io/matrix/jellyfinorg:matrix.org.svg?logo=matrix"/>
+</a>
+<a href="https://github.com/jellyfin/jellyfin/releases.atom">
+<img alt="Release RSS Feed" src="https://img.shields.io/badge/rss-releases-ffa500?logo=rss" />
+</a>
+<a href="https://github.com/jellyfin/jellyfin/commits/master.atom">
+<img alt="Master Commits RSS Feed" src="https://img.shields.io/badge/rss-commits-ffa500?logo=rss" />
+</a>
+</p>
+
+<hr />
+<p>Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps. Jellyfin is descended from Emby's 3.5.2 release and ported to the .NET platform to enable full cross-platform support.</p>
+<p>There are no strings attached, no premium licenses or features, and no hidden agendas: just a team that wants to build something better and work together to achieve it. We welcome anyone who is interested in joining us in our quest!</p>
+<p>For further details, please see <a href="https://jellyfin.org/docs/">our documentation page</a>. To receive the latest updates, get help with Jellyfin, and join the community, please visit <a href="https://jellyfin.org/docs/general/getting-help">one of our communication channels</a>. For more information about the project, please see our <a href="https://jellyfin.org/docs/general/about">about page</a>.</p>
+<p><strong>Want to get started?</strong><br/><br />
+Check out our <a href="https://jellyfin.org/downloads">downloads page</a> or our <a href="https://jellyfin.org/docs/general/installation/">installation guide</a>, then see our <a href="https://jellyfin.org/docs/general/quick-start">quick start guide</a>. You can also <a href="https://jellyfin.org/docs/general/installation/source">build from source</a>.<br/></p>
+<p><strong>Something not working right?</strong><br/><br />
+Open an <a href="https://jellyfin.org/docs/general/contributing/issues">Issue</a> on GitHub.<br/></p>
+<p><strong>Want to contribute?</strong><br/><br />
+Check out our <a href="https://jellyfin.org/contribute">contributing choose-your-own-adventure</a> to see where you can help, then see our <a href="https://jellyfin.org/docs/general/contributing/">contributing guide</a> and our <a href="https://jellyfin.org/docs/general/community-standards">community standards</a>.<br/></p>
+<p><strong>New idea or improvement?</strong><br/><br />
+Check out our <a href="https://features.jellyfin.org/?view=most-wanted">feature request hub</a>.<br/></p>
+<p><strong>Don't see Jellyfin in your language?</strong><br/><br />
+Check out our <a href="https://translate.jellyfin.org">Weblate instance</a> to help translate Jellyfin and its subprojects.<br/></p>
+<p><a href="https://translate.jellyfin.org/engage/jellyfin/?utm_source=widget"><br />
+<img src="https://translate.jellyfin.org/widgets/jellyfin/-/jellyfin-web/multi-auto.svg" alt="Detailed Translation Status"/><br />
+</a></p>
+<hr />
+<h2>Jellyfin Server</h2>
+<p>This repository contains the code for Jellyfin's backend server. Note that this is only one of many projects under the Jellyfin GitHub <a href="https://github.com/jellyfin/">organization</a> on GitHub. If you want to contribute, you can start by checking out our <a href="https://jellyfin.org/docs/general/contributing/index.html">documentation</a> to see what to work on.</p>
+<h2>Server Development</h2>
+<p>These instructions will help you get set up with a local development environment in order to contribute to this repository. Before you start, please be sure to completely read our <a href="https://jellyfin.org/docs/general/contributing/development.html">guidelines on development contributions</a>. Note that this project is supported on all major operating systems except FreeBSD, which is still incompatible.</p>
+<h3>Prerequisites</h3>
+<p>Before the project can be built, you must first install the <a href="https://dotnet.microsoft.com/download/dotnet">.NET 9.0 SDK</a> on your system.</p>
+<p>Instructions to run this project from the command line are included here, but you will also need to install an IDE if you want to debug the server while it is running. Any IDE that supports .NET 6 development will work, but two options are recent versions of <a href="https://visualstudio.microsoft.com/downloads/">Visual Studio</a> (at least 2022) and <a href="https://code.visualstudio.com/Download">Visual Studio Code</a>.</p>
+<p><a href="https://github.com/jellyfin/jellyfin-ffmpeg">ffmpeg</a> will also need to be installed.</p>
+<h3>Cloning the Repository</h3>
+<p>After dependencies have been installed you will need to clone a local copy of this repository. If you just want to run the server from source you can clone this repository directly, but if you are intending to contribute code changes to the project, you should <a href="https://jellyfin.org/docs/general/contributing/development.html#set-up-your-copy-of-the-repo">set up your own fork</a> of the repository. The following example shows how you can clone the repository directly over HTTPS.</p>
+<pre><code class="language-bash">git clone https://github.com/jellyfin/jellyfin.git
+</code></pre>
+<h3>Installing the Web Client</h3>
+<p>The server is configured to host the static files required for the <a href="https://github.com/jellyfin/jellyfin-web">web client</a> in addition to serving the backend by default. Before you can run the server, you will need to get a copy of the web client since they are not included in this repository directly.</p>
+<p>Note that it is recommended for development to <a href="#hosting-the-web-client-separately">host the web client separately</a> from the web server with some additional configuration, in which case you can skip this step.</p>
+<p>There are two options to get the files for the web client.</p>
+<ol>
+<li>Build them from source following the instructions on the <a href="https://github.com/jellyfin/jellyfin-web">jellyfin-web repository</a></li>
+<li>Get the pre-built files from an existing installation of the server. For example, with a Windows server installation the client files are located at <code>C:\Program Files\Jellyfin\Server\jellyfin-web</code></li>
+</ol>
+<h3>Running The Server</h3>
+<p>The following instructions will help you get the project up and running via the command line, or your preferred IDE.</p>
+<h4>Running With Visual Studio</h4>
+<p>To run the project with Visual Studio you can open the Solution (<code>.sln</code>) file and then press <code>F5</code> to run the server.</p>
+<h4>Running With Visual Studio Code</h4>
+<p>To run the project with Visual Studio Code you will first need to open the repository directory with Visual Studio Code using the <code>Open Folder...</code> option.</p>
+<p>Second, you need to <a href="https://code.visualstudio.com/docs/editor/extension-gallery#_recommended-extensions">install the recommended extensions for the workspace</a>. Note that extension recommendations are classified as either "Workspace Recommendations" or "Other Recommendations", but only the "Workspace Recommendations" are required.</p>
+<p>After the required extensions</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/jellyfin/jellyfin#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#14</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">cocoindex-io /</span>
+          <a href="https://github.com/cocoindex-io/cocoindex" target="_blank" rel="noopener">cocoindex</a>
+        </div>
+        <div class="repo-desc">Incremental engine for long horizon agents 🌟 Star if you like it!</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 8,101</span>
+      <span class="meta-item">🍴 601</span>
+      <span class="stars-today">⭐ 166 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://cocoindex.io/blobs/github/homepage/enterprise-hero-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://cocoindex.io/blobs/github/homepage/enterprise-hero-light.svg">
+    <img src="https://cocoindex.io/blobs/github/homepage/enterprise-hero-light.svg" alt="Enterprise corpus — codebase, Slack, meeting notes, and documentation — flowing continuously through the CocoIndex incremental sync engine into a production AI agent with always-fresh context. Only the Δ (delta) is reprocessed on every change. Keywords: RAG pipeline, agent memory, enterprise retrieval, AI agent context, live indexing, retrieval-augmented generation, production LLM apps, streaming ETL, incremental ingestion." width="100%" draggable="false"/>
+  </picture>
+</p>
+<h1 align="center">Your agents deserve <em>fresh context.</em></h1>
+
+<p align="center">
+  <strong>Star us&nbsp;❤️&nbsp;→</strong>&nbsp;<a href="https://github.com/cocoindex-io/cocoindex" title="Star CocoIndex on GitHub — open-source incremental indexing framework for AI agents"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cocoindex.io/blobs/github/homepage/star-btn-small-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://cocoindex.io/blobs/github/homepage/star-btn-small-light.svg"><img src="https://cocoindex.io/blobs/github/homepage/star-btn-small-light.svg" alt="Star CocoIndex on GitHub — open-source Python framework for RAG, vector search, and live agent context" height="36" align="absmiddle"/></picture></a> &nbsp;·&nbsp;
+  <a href="https://cocoindex.io" title="Visit cocoindex.io — the CocoIndex homepage"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cocoindex.io/blobs/github/homepage/coco-inline-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://cocoindex.io/blobs/github/homepage/coco-inline-light.svg"><img src="https://cocoindex.io/blobs/github/homepage/coco-inline-light.svg" alt="cocoindex.io — the CocoIndex homepage: incremental data pipelines for AI agents" height="36" align="absmiddle"/></picture></a> &nbsp;·&nbsp;
+  <a href="https://cocoindex.io/docs" title="Read the CocoIndex documentation — guides, quickstart, connectors, transformations, and API reference"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cocoindex.io/blobs/github/homepage/docs-inline-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://cocoindex.io/blobs/github/homepage/docs-inline-light.svg"><img src="https://cocoindex.io/blobs/github/homepage/docs-inline-light.svg" alt="CocoIndex documentation — quickstart, connectors, ops, transformations, target stores, RAG and knowledge graph recipes" height="36" align="absmiddle"/></picture></a> &nbsp;·&nbsp;
+  <a href="https://discord.com/invite/zpA9S2DR7s" title="Join the CocoIndex Discord — community chat, showcase, release notes, help and support"><picture><source media="(prefers-color-scheme: dark)" srcset="https://cocoindex.io/blobs/github/homepage/discord-inline-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://cocoindex.io/blobs/github/homepage/discord-inline-light.svg"><img src="https://cocoindex.io/blobs/github/homepage/discord-inline-light.svg" alt="Join the CocoIndex Discord community — help, showcase, release notes, and live chat with maintainers" height="36" align="absmiddle"/></picture></a>
+</p>
+
+<p align="center">CocoIndex turns codebases, meeting notes, inboxes, Slack, PDFs, and videos into live, continuously fresh context for your AI agents and LLM apps to reason over effectively — with minimal incremental processing.  Get your production AI agent ready in 10 minutes with reliable, continuously fresh data — no stale batches, no context gap
+</p>
+<p align="center">
+  <b>Incremental</b> · only the delta &nbsp;·&nbsp; <b>Any scale</b> · parallel by default &nbsp;·&nbsp; <b>Declarative</b> · Python, 5 min
+</p>
+
+<div align="center">
+
+[![stars](https://img.shields.io/github/stars/cocoindex-io/cocoindex?style=flat-square&label=stars&color=FB6A76)](https://github.com/cocoindex-io/cocoindex)
+[![downloads](https://img.shields.io/pepy/dt/cocoindex?style=flat-square&label=downloads&color=16A534)](https://pepy.tech/projects/cocoindex)
+[![pypi](https://img.shields.io/pypi/v/cocoindex?style=flat-square&label=pypi&color=E59A63)](https://pypi.org/project/cocoindex/)
+[![python](https://img.shields.io/badge/python-3.10--3.13-3572A5?style=flat-square)](https://www.python.org/)
+[![rust](https://img.shields.io/badge/rust-core-db6d28?style=flat-square)](https://www.rust-lang.org/)
+[![license](https://img.shields.io/badge/license-Apache--2.0-5B5BD6?style=flat-square)](https://opensource.org/licenses/Apache-2.0)
+[![discord](https://img.shields.io/discord/1314801574169673738?style=flat-square&logo=discord&logoColor=white&label=discord&color=5865F2)](https://discord.com/invite/zpA9S2DR7s)
+
+[![CI](https://img.shields.io/github/actions/workflow/status/cocoindex-io/cocoindex/CI.yml?event=push&style=flat-square&label=CI)](https://github.com/cocoindex-io/cocoindex/actions/workflows/CI.yml)
+[![release](https://img.shields.io/github/actions/workflow/status/cocoindex-io/cocoindex/release.yml?event=push&style=flat-square&label=release)](https://github.com/cocoindex-io/cocoindex/actions/workflows/release.yml)
+[![links](https://img.shields.io/github/actions/workflow/status/cocoindex-io/cocoindex/links.yml?event=push&style=flat-square&label=link%20check)](https://github.com/cocoindex-io/cocoindex/actions/workflows/links.yml)
+
+</div>
+
+<p align="center"><a href="https://trendshift.io/repositories/13939" target="_blank"><img src="https://trendshift.io/api/badge/repositories/13939" alt="cocoindex-io/cocoindex | Trendshift" width="250" height="55"/></a></p>
+
+<p><br/></p>
+<div align="center">
+
+[Deutsch](https://readme-i18n.com/cocoindex-io/cocoindex?lang=de) |
+[English](https://readme-i18n.com/cocoindex-io/cocoindex?lang=en) |
+[Español](https://readme-i18n.com/cocoindex-io/cocoindex?lang=es) |
+[français](https://readme-i18n.com/cocoindex-io/cocoindex?lang=fr) |
+[日本語](https://readme-i18n.com/cocoindex-io/cocoindex?lang=ja) |
+[한국어](https://readme-i18n.com/cocoindex-io/cocoindex?lang=ko) |
+[Português](https://readme-i18n.com/cocoindex-io/cocoindex?lang=pt) |
+[Русский](https://readme-i18n.com/cocoindex-io/cocoindex?lang=ru) |
+[中文](https://readme-i18n.com/cocoindex-io/cocoindex?lang=zh)
+
+</div>
+
+<p><br/><br/></p>
+<h2 align="center">Built with CocoIndex ❤️</h2>
+
+<!-- Flagship: CocoIndex-code — full-bleed clickable hero -->
+<p align="center">
+  <a href="https://cocoindex.io/cocoindex-code" title="CocoIndex-code — flagship MCP server for AI coding agents: AST-aware, incremental, semantic code index. Claude Code and Cursor see your whole repo instantly."><picture><source media="(prefers-color-scheme: dark)" srcset="https://cocoindex.io/blobs/github/homepage/cocoindex-code-hero-dark.svg"><source media="(prefers-color-scheme: light)" srcset="https://cocoindex.io/blobs/github/homepage/cocoindex-code-hero-light.svg"><img src="https://cocoindex.io/blobs/github/homepage/cocoindex-code-hero-light.svg" alt="CocoIndex-code — flagship MCP server for AI coding agents. AST-aware incremental semantic code index that keeps live call graphs, symbols, vectors, and chunks fresh on every commit. 70% fewer tokens per turn, 80-90% cache hits on re-index, sub-second freshness. Supports Python, TypeScript, Rust, and Go. Features: Δ-only incremental processing, semantic search by meaning (not grep), call graphs and blast-radius analysis, global repo view for duplicates and architecture. Build coding agents (generate, refactor) and code-review agents (catch, approve). One install — Claude Code, Cursor, and other MCP-aware agents see your whole repository instantly. Keywords: MCP server, coding agent, code intelligence, AST chunking, semantic code search, call graph, vector embedding, repository context, Claude
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/cocoindex-io/cocoindex#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#15</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">docusealco /</span>
+          <a href="https://github.com/docusealco/docuseal" target="_blank" rel="noopener">docuseal</a>
+        </div>
+        <div class="repo-desc">Open source DocuSign alternative. Create, fill, and sign digital documents ✍️</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#701516"></span>Ruby</span>
+      <span class="meta-item">⭐ 13,443</span>
+      <span class="meta-item">🍴 1,227</span>
+      <span class="stars-today">⭐ 535 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center" style="border-bottom: none">
+  <div>
+    <a href="https://www.docuseal.com">
+      <img  alt="DocuSeal" src="https://github.com/user-attachments/assets/38b45682-ffa4-4919-abde-d2d422325c44" width="80" />
+      <br>
+    </a>
+    DocuSeal
+  </div>
+</h1>
+<h3 align="center">
+  Open source document filling and signing
+</h3>
+<p align="center">
+  <a href="https://hub.docker.com/r/docuseal/docuseal">
+    <img alt="Docker releases" src="https://img.shields.io/docker/v/docuseal/docuseal">
+  </a>
+  <a href="https://discord.gg/qygYCDGck9">
+    <img src="https://img.shields.io/discord/1125112641170448454?logo=discord"/>
+  </a>
+  <a href="https://twitter.com/intent/follow?screen_name=docusealco">
+    <img src="https://img.shields.io/twitter/follow/docusealco?style=social" alt="Follow @docusealco" />
+  </a>
+</p>
+<p>
+DocuSeal is an open source platform that provides secure and efficient digital document signing and processing. Create PDF forms to have them filled and signed online on any device with an easy-to-use, mobile-optimized web tool.
+</p>
+<h2 align="center">
+  <a href="https://demo.docuseal.tech">✨ Live Demo</a>
+  <span>|</span>
+  <a href="https://docuseal.com/sign_up">☁️ Try in Cloud</a>
+</h2>
+
+<p><a href="https://demo.docuseal.tech"><img alt="Demo" src="https://github.com/docusealco/docuseal/assets/5418788/d8703ea3-361a-423f-8bfe-eff1bd9dbe14" /></a></p>
+<h2>Features</h2>
+<ul>
+<li>PDF form fields builder (WYSIWYG)</li>
+<li>12 field types available (Signature, Date, File, Checkbox etc.)</li>
+<li>Multiple submitters per document</li>
+<li>Automated emails via SMTP</li>
+<li>Files storage on disk or AWS S3, Google Storage, Azure Cloud</li>
+<li>Automatic PDF eSignature</li>
+<li>PDF signature verification</li>
+<li>Users management</li>
+<li>Mobile-optimized</li>
+<li>7 UI languages with signing available in 14 languages</li>
+<li>API and Webhooks for integrations</li>
+<li>Easy to deploy in minutes</li>
+</ul>
+<h2>Pro Features</h2>
+<ul>
+<li>Company logo and white-label</li>
+<li>User roles</li>
+<li>Automated reminders</li>
+<li>Invitation and identify verification via SMS</li>
+<li>Conditional fields and formulas</li>
+<li>Bulk send with CSV, XLSX spreadsheet import</li>
+<li>SSO / SAML</li>
+<li>Template creation with HTML API (<a href="https://www.docuseal.com/guides/create-pdf-document-fillable-form-with-html-api">Guide</a>)</li>
+<li>Template creation with PDF or DOCX and field tags API (<a href="https://www.docuseal.com/guides/use-embedded-text-field-tags-in-the-pdf-to-create-a-fillable-form">Guide</a>)</li>
+<li>Embedded signing form (<a href="https://github.com/docusealco/docuseal-react">React</a>, <a href="https://github.com/docusealco/docuseal-vue">Vue</a>, <a href="https://github.com/docusealco/docuseal-angular">Angular</a> or <a href="https://www.docuseal.com/docs/embedded">JavaScript</a>)</li>
+<li>Embedded document form builder (<a href="https://github.com/docusealco/docuseal-react">React</a>, <a href="https://github.com/docusealco/docuseal-vue">Vue</a>, <a href="https://github.com/docusealco/docuseal-angular">Angular</a> or <a href="https://www.docuseal.com/docs/embedded">JavaScript</a>)</li>
+<li><a href="https://www.docuseal.com/pricing">Learn more</a></li>
+</ul>
+<h2>Deploy</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Heroku</th>
+<th style="text-align: center;">Railway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><a href="https://heroku.com/deploy?template=https://github.com/docusealco/docuseal-heroku"><img alt="Deploy on Heroku" src="https://www.herokucdn.com/deploy/button.svg" height="40"></a></td>
+<td style="text-align: center;"><a href="https://railway.com/deploy/IGoDnc?referralCode=ruU7JR"><img alt="Deploy on Railway" src="https://railway.app/button.svg" height="40"></a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>DigitalOcean</strong></td>
+<td style="text-align: center;"><strong>Render</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><a href="https://cloud.digitalocean.com/apps/new?repo=https://github.com/docusealco/docuseal-digitalocean/tree/master&amp;refcode=421d50f53990"><img alt="Deploy on DigitalOcean" src="https://www.deploytodo.com/do-btn-blue.svg" height="40"></a></td>
+<td style="text-align: center;"><a href="https://render.com/deploy?repo=https://github.com/docusealco/docuseal-render"><img alt="Deploy to Render" src="https://render.com/images/deploy-to-render-button.svg" height="40"></a></td>
+</tr>
+</tbody>
+</table>
+<h4>Docker</h4>
+<pre><code class="language-sh">docker run --name docuseal -p 3000:3000 -v.:/data docuseal/docuseal
+</code></pre>
+<p>By default DocuSeal docker container uses an SQLite database to store data and configurations. Alternatively, it is possible use PostgreSQL or MySQL databases by specifying the <code>DATABASE_URL</code> env variable.</p>
+<h4>Docker Compose</h4>
+<p>Download docker-compose.yml into your private server:</p>
+<pre><code class="language-sh">curl https://raw.githubusercontent.com/docusealco/docuseal/master/docker-compose.yml &gt; docker-compose.yml
+</code></pre>
+<p>Run the app under a custom domain over https using docker compose (make sure your DNS points to the server to automatically issue ssl certs with Caddy):</p>
+<pre><code class="language-sh">sudo HOST=your-domain-name.com docker compose up
+</code></pre>
+<h2>For Businesses</h2>
+<h3>Integrate seamless document signing into your web or mobile apps with DocuSeal</h3>
+<p>At DocuSeal we have expertise and technologies to make documents creation, filling, signing and processing seamlessly integrated with your product. We specialize in working with various industries, including <strong>Banking, Healthcare, Transport, Real Estate, eCommerce, KYC, CRM, and other software products</strong> that require bulk document signing. By leveraging DocuSeal, we can assist in reducing the overall cost of developing and processing electronic documents while ensuring security and compliance with local electronic document laws.</p>
+<p><a href="https://www.docuseal.com/contact">Book a Meeting</a></p>
+<h2>License</h2>
+<p>Distributed under the AGPLv3 License with Section 7(b) Additional Terms. See <a href="https://github.com/docusealco/docuseal/blob/master/LICENSE">LICENSE</a> and <a href="https://github.com/docusealco/docuseal/blob/master/LICENSE_ADDITIONAL_TERMS">LICENSE_ADDITIONAL_TERMS</a> for more information.<br />
+Unless otherwise noted, all files © 2023-2026 DocuSeal LLC.</p>
+<h2>Tools</h2>
+<ul>
+<li><a href="https://www.docuseal.com/online-signature">Signature Maker</a></li>
+<li><a href="https://www.docuseal.com/sign-documents-online">Sign Document Online</a></li>
+<li><a href="https://www.docuseal.com/fill-pdf">Fill PDF Online</a></li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/docusealco/docuseal#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1910,7 +2816,7 @@ packages to OpenWrt, please find the fitting repository below.</p>
 </main>
 
 <footer>
-  Generated by <strong>scrape_github_trending.py</strong> on May 04, 2026  09:33 &nbsp;·&nbsp;
+  Generated by <strong>scrape_github_trending.py</strong> on May 05, 2026  06:19 &nbsp;·&nbsp;
   Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
 </footer>
 
