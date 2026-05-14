@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — May 12, 2026  05:52</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on May 12, 2026  05:52 &nbsp;·&nbsp; 13 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">bytedance /</span>
+          <a href="https://github.com/bytedance/UI-TARS-desktop" target="_blank" rel="noopener">UI-TARS-desktop</a>
+        </div>
+        <div class="repo-desc">The Open-Source Multimodal AI Agent Stack: Connecting Cutting-Edge AI Models and Agent Infra</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 33,200</span>
+      <span class="meta-item">🍴 3,291</span>
+      <span class="stars-today">⭐ 956 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><picture><br />
+  <img alt="Agent TARS Banner" src="./images/tars.png"><br />
+</picture></p>
+<p><br/></p>
+<h2>Introduction</h2>
+<p>English | <a href="./README.zh-CN.md">简体中文</a></p>
+<p><a href="https://trendshift.io/repositories/13584"><img alt="" src="https://trendshift.io/api/badge/repositories/13584" /></a></p>
+<p><b>TARS<sup>*</sup></b> is a Multimodal AI Agent stack, currently shipping two projects: <a href="#agent-tars">Agent TARS</a> and <a href="#ui-tars-desktop">UI-TARS-desktop</a>:</p>
+<table>
+  <thead>
+    <tr>
+      <th width="50%" align="center"><a href="#agent-tars">Agent TARS</a></th>
+      <th width="50%" align="center"><a href="#ui-tars-desktop">UI-TARS-desktop</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">
+        <video src="https://github.com/user-attachments/assets/c9489936-afdc-4d12-adda-d4b90d2a869d" width="50%"></video>
+      </td>
+      <td align="center">
+        <video src="https://github.com/user-attachments/assets/e0914ce9-ad33-494b-bdec-0c25c1b01a27" width="50%"></video>
+      </td>
+    </tr>
+    <tr>
+      <td align="left">
+        <b>Agent TARS</b> is a general multimodal AI Agent stack, it brings the power of GUI Agent and Vision into your terminal, computer, browser and product.
+        <br>
+        <br>
+        It primarily ships with a <a href="https://agent-tars.com/guide/basic/cli.html" target="_blank">CLI</a> and <a href="https://agent-tars.com/guide/basic/web-ui.html" target="_blank">Web UI</a> for usage.
+        It aims to provide a workflow that is closer to human-like task completion through cutting-edge multimodal LLMs and seamless integration with various real-world <a href="https://agent-tars.com/guide/basic/mcp.html" target="_blank">MCP</a> tools.
+      </td>
+      <td align="left">
+        <b>UI-TARS Desktop</b> is a desktop application that provides a native GUI Agent based on the <a href="https://github.com/bytedance/UI-TARS" target="_blank">UI-TARS</a> model.
+        <br>
+        <br>
+        It primarily ships a
+        <a href="https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/quick-start.md#get-model-and-run-local-operator" target="_blank">local</a> and 
+        <a href="https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/quick-start.md#run-remote-operator" target="_blank">remote</a> computer as well as browser operators.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Table of Contents</h2>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+<ul>
+<li><a href="#news">News</a></li>
+<li><a href="#agent-tars">Agent TARS</a></li>
+<li><a href="#showcase">Showcase</a></li>
+<li><a href="#core-features">Core Features</a></li>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#ui-tars-desktop">UI-TARS Desktop</a></li>
+<li><a href="#showcase-1">Showcase</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#quick-start-1">Quick Start</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#citation">Citation</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+<h2>News</h2>
+<ul>
+<li><strong>[2025-11-05]</strong> 🎉 We're excited to announce the release of <a href="https://github.com/bytedance/UI-TARS-desktop/releases/tag/v0.3.0">Agent TARS CLI v0.3.0</a>! This version brings streaming support for multiple tools (shell commands, multi-file structured display), runtime settings with timing statistics for tool calls and deep thinking, Event Stream Viewer for data flow tracking and debugging. Additionally, it features exclusive support for <a href="https://github.com/agent-infra/sandbox">AIO agent Sandbox</a> as isolated all-in-one tools execution environment.</li>
+<li><strong>[2025-06-25]</strong> We released an Agent TARS Beta and Agent TARS CLI - <a href="https://agent-tars.com/blog/2025-06-25-introducing-agent-tars-beta.html">Introducing Agent TARS Beta</a>, a multimodal AI agent that aims to explore a work form that is closer to human-like task completion through rich multimodal capabilities (such as GUI Agent, Vision) and seamless integration with various real-world tools.</li>
+<li><strong>[2025-06-12]</strong> - 🎁 We are thrilled to announce the release of UI-TARS Desktop v0.2.0! This update introduces two powerful new features: <strong>Remote Computer Operator</strong> and <strong>Remote Browser Operator</strong>—both completely free. No configuration required: simply click to remotely control any computer or browser, and experience a new level of convenience and intelligence.</li>
+<li><strong>[2025-04-17]</strong> - 🎉 We're thrilled to announce the release of new UI-TARS Desktop application v0.1.0, featuring a redesigned Agent UI. The application enhances the computer using experience, introduces new browser operation features, and supports <a href="https://seed-tars.com/1.5">the advanced UI-TARS-1.5 model</a> for improved performance and precise control.</li>
+<li><strong>[2025-02-20]</strong> - 📦 Introduced <a href="./docs/sdk.md">UI TARS SDK</a>, is a powerful cross-platform toolkit for building GUI automation agents.</li>
+<li><strong>[2025-01-23]</strong> - 🚀 We updated the <strong><a href="./docs/deployment.md#cloud-deployment">Cloud Deployment</a></strong> section in the 中文版: <a href="https://bytedance.sg.larkoffice.com/docx/TCcudYwyIox5vyxiSDLlgIsTgWf#U94rdCxzBoJMLex38NPlHL21gNb">GUI模型部署教程</a> with new information related to the ModelScope platform. You can now use the ModelScope platform for deployment.</li>
+</ul>
+<p><br></p>
+<h2>Agent TARS</h2>
+<p>
+    <a href="https://npmjs.com/package/@agent-tars/cli?activeTab=readme"><img src="https://img.shields.io/npm/v/@agent-tars/cli?style=for-the-badge&colorA=1a1a2e&colorB=3B82F6&logo=npm&logoColor=white" alt="npm version" /></a>
+    <a href="https://npmcharts.com/compare/@agent-tars/cli?minimal=true"><img src="https://img.shields.io/npm/dm/@agent-tars/cli.svg?style=for-the-badge&colorA=1a1a2e&colorB=0EA5E9&logo=npm&logoColor=white" alt="downloads" /></a>
+    <a href="https://nodejs.org/en/about/previous-releases"><img src="https://img.shields.io/node/v/@agent-tars/cli.svg?style=for-the-badge&colorA=1a1a2e&colorB=06B6D4&logo=node.js&logoColor=white" alt="node version"></a>
+    <a href="https://discord.gg/HnKcSBgTVx"><img src="https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Community" /></a>
+    <a href="https://twitter.com/agent_tars"><img src="https://img.shields.io/badge/Twitter-Follow%20%40agent__tars-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Official Twitter" /></a>
+    <a href="https://applink.larkoffice.com/client/chat/chatter/add_by_link?link_token=deen76f4-ea3c-4964-93a3-78f126f39651"><img src="https://img.shields.io/badge/飞书群-加入交流群-00D4AA?style=for-the-badge&logo=lark&logoColor=white" alt="飞书交流群" /></a>
+    <a href="https://deepwiki.com/bytedance/UI-TARS-desktop"><img src="https://img.shields.io/badge/DeepWiki-Ask%20AI-8B5CF6?style=for-the-badge&logo=gitbook&logoColor=white" alt="Ask DeepWiki" /></a>
+</p>
+
+<p><b>Agent TARS</b> is a general multimodal AI Agent stack, it brings the power of GUI Agent and Vision into your terminal, computer, browser and product. <br> <br><br />
+It primarily ships with a <a href="https://agent-tars.com/guide/basic/cli.html" target="_blank">CLI</a> and <a href="https://agent-tars.com/guide/basic/web-ui.html" target="_blank">Web UI</a> for usage.<br />
+It aims to provide a workflow that is closer to human-like task completion through cutting-edge multimodal LLMs and seamless integration with various real-world <a href="https://agent-tars.com/guide/basic/mcp.html" target="_blank">MCP</a> tools.</p>
+<h3>Showcase</h3>
+<pre><code>Please help me book the earliest flight from San Jose to New York on September 1st and the last return flight on September 6th on Priceline
+</code></pre>
+<p>https://github.com/user-attachments/assets/772b0eef-aef7-4ab9-8cb0-9611820539d8</p>
+<p><br></p>
+<table>
+  <thead>
+    <tr>
+      <th width="50%" align="center">Booking Hotel</th>
+      <th width="50%" align="center">Generate Chart with extra MCP Servers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">
+        <video src="https://github.com/user-attachments/assets/c9489936-afdc-4d12-adda-d4b90d2a869d" width="50%"></video>
+      </td>
+      <td align="center">
+        <video src="https://github.com/user-attachments/assets/a9fd72d0-01bb-4233-aa2
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/bytedance/UI-TARS-desktop#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">CloakHQ /</span>
+          <a href="https://github.com/CloakHQ/CloakBrowser" target="_blank" rel="noopener">CloakBrowser</a>
+        </div>
+        <div class="repo-desc">Stealth Chromium that passes every bot detection test. Drop-in Playwright replacement with source-level fingerprint patches. 30/30 tests passed.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 6,562</span>
+      <span class="meta-item">🍴 485</span>
+      <span class="stars-today">⭐ 1,320 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+<img src="https://i.imgur.com/cqkp6fG.png" width="500" alt="CloakBrowser">
+</p>
+
+<p align="center">
+<a href="https://pypi.org/project/cloakbrowser/"><img src="https://img.shields.io/pypi/v/cloakbrowser" alt="PyPI"></a>
+<a href="https://www.npmjs.com/package/cloakbrowser"><img src="https://img.shields.io/npm/v/cloakbrowser" alt="npm"></a>
+<a href="LICENSE"><img src="https://img.shields.io/github/license/cloakhq/cloakbrowser?v=1" alt="License"></a>
+<a href="https://github.com/CloakHQ/CloakBrowser"><img src="https://img.shields.io/github/last-commit/cloakhq/cloakbrowser" alt="Last Commit"></a>
+<br>
+<a href="https://github.com/CloakHQ/CloakBrowser"><img src="https://img.shields.io/github/stars/cloakhq/cloakbrowser" alt="Stars"></a>
+<a href="https://pypi.org/project/cloakbrowser/"><img src="https://img.shields.io/pepy/dt/cloakbrowser?label=pypi&logo=pypi&logoColor=white" alt="PyPI Downloads"></a>
+<a href="https://www.npmjs.com/package/cloakbrowser"><img src="https://img.shields.io/npm/dt/cloakbrowser?label=npm&logo=npm&logoColor=white" alt="npm Downloads"></a>
+<a href="https://hub.docker.com/r/cloakhq/cloakbrowser"><img src="https://img.shields.io/docker/pulls/cloakhq/cloakbrowser?label=docker&logo=docker&logoColor=white" alt="Docker Pulls"></a>
+</p>
+
+<p align="center">
+<a href="https://ko-fi.com/cloakhq"><img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support on Ko-fi"></a>
+</p>
+
+<p><br></p>
+<h3 align="center">Stealth Chromium that passes every bot detection test.</h3>
+
+<table><tr><td>
+Not a patched config. Not a JS injection. A real Chromium binary with fingerprints modified at the C++ source level. Antibot systems score it as a normal browser — because it <em>is</em> a normal browser.
+</td></tr></table>
+
+<p><br></p>
+<p align="center">
+<img src="https://i.imgur.com/IvB0It7.gif" width="600" alt="Cloudflare Turnstile — 3 Tests Passing">
+<br><em>Cloudflare Turnstile — 3 live tests passing (headed mode, macOS)</em>
+</p>
+
+<p><br></p>
+<p align="center">
+Drop-in Playwright/Puppeteer replacement for Python and JavaScript.<br>
+Same API, same code — just swap the import. <strong>3 lines of code, 30 seconds to unblock.</strong>
+</p>
+
+<ul>
+<li><strong>49 source-level C++ patches</strong> — canvas, WebGL, audio, fonts, GPU, screen, WebRTC, network timing, automation signals, CDP input behavior</li>
+<li><strong><code>humanize=True</code></strong> — human-like mouse curves, keyboard timing, and scroll patterns. One flag, behavioral detection passes</li>
+<li><strong>0.9 reCAPTCHA v3 score</strong> — human-level, server-verified</li>
+<li><strong>Passes Cloudflare Turnstile</strong>, FingerprintJS, BrowserScan — tested against 30+ detection sites</li>
+<li><strong>Auto-updating binary</strong> — background update checks, always on the latest stealth build</li>
+<li><strong><code>pip install cloakbrowser</code></strong> or <strong><code>npm install cloakbrowser</code></strong> — binary auto-downloads, zero config</li>
+<li><strong>Free and open source</strong> — no subscriptions, no usage limits</li>
+</ul>
+<p><strong>Try it now</strong> — no install needed:</p>
+<pre><code class="language-bash">docker run --rm cloakhq/cloakbrowser cloaktest
+</code></pre>
+<p><strong>Python:</strong></p>
+<pre><code class="language-python">from cloakbrowser import launch
+
+browser = launch()
+page = browser.new_page()
+page.goto(&quot;https://protected-site.com&quot;)  # no more blocks
+browser.close()
+</code></pre>
+<p><strong>JavaScript (Playwright):</strong></p>
+<pre><code class="language-javascript">import { launch } from 'cloakbrowser';
+
+const browser = await launch();
+const page = await browser.newPage();
+await page.goto('https://protected-site.com');
+await browser.close();
+</code></pre>
+<p>Also works with Puppeteer: <code>import { launch } from 'cloakbrowser/puppeteer'</code> (<a href="#puppeteer">details</a>)</p>
+<h2>Install</h2>
+<p><strong>Python:</strong></p>
+<pre><code class="language-bash">pip install cloakbrowser
+</code></pre>
+<p><strong>JavaScript / Node.js:</strong></p>
+<pre><code class="language-bash"># With Playwright
+npm install cloakbrowser playwright-core
+
+# With Puppeteer
+npm install cloakbrowser puppeteer-core
+</code></pre>
+<p>On first run, the stealth Chromium binary is automatically downloaded (~200MB, cached locally).</p>
+<p><strong>Optional:</strong> Auto-detect timezone/locale from proxy IP:</p>
+<pre><code class="language-bash">pip install cloakbrowser[geoip]
+</code></pre>
+<p><strong>Migrating from Playwright?</strong> One-line change:</p>
+<pre><code class="language-diff">- from playwright.sync_api import sync_playwright
+- pw = sync_playwright().start()
+- browser = pw.chromium.launch()
++ from cloakbrowser import launch
++ browser = launch()
+
+page = browser.new_page()
+page.goto(&quot;https://example.com&quot;)
+# ... rest of your code works unchanged
+</code></pre>
+<blockquote>
+<p>⭐ <strong>Star</strong> to show support — <strong><a href="https://github.com/CloakHQ/CloakBrowser/subscription">Watch releases</a></strong> to get notified when new builds drop.</p>
+</blockquote>
+<h2>Browser Profile Manager</h2>
+<p>Self-hosted alternative to Multilogin, GoLogin, and AdsPower. Create browser profiles with unique fingerprints, proxies, and persistent sessions. Launch and interact with them in your browser via noVNC.</p>
+<pre><code class="language-bash">docker run -p 8080:8080 -v cloakprofiles:/data cloakhq/cloakbrowser-manager
+</code></pre>
+<p>Open <a href="http://localhost:8080">http://localhost:8080</a>. Create a profile. Click <strong>Launch</strong>. Done.</p>
+<p>→ <strong><a href="https://github.com/CloakHQ/CloakBrowser-Manager">CloakBrowser Manager</a></strong> — free, open source (MIT)</p>
+<hr />
+<h2>Latest: v0.3.26 (Chromium 146.0.7680.177.4)</h2>
+<ul>
+<li><strong><code>launch_context_async()</code></strong> — async counterpart to <code>launch_context()</code>. Forwards kwargs to <code>browser.new_context()</code> for <code>storage_state</code>, <code>permissions</code>, <code>extra_http_headers</code> without a persistent profile folder.</li>
+<li><strong>JS <code>contextOptions</code> escape hatch</strong> — forward arbitrary options (including <code>storageState</code>) to Playwright's <code>newContext()</code> from <code>launchContext()</code> / <code>launchPersistentContext()</code>.</li>
+<li><strong>Native SOCKS5 proxy</strong> — <code>proxy="socks5://user:pass@host:port"</code> works directly in all launch functions, Python + JS. QUIC/HTTP3 tunnels through SOCKS5 via UDP ASSOCIATE.</li>
+<li><strong>Chromium 146 upgrade</strong> — rebased all patches from 145.0.7632.x to 146.0.7680.177</li>
+<li><strong>57 fingerprint patches</strong> — additional detection-vector coverage (WebAuthn, AAC audio, window position) and WebGL/canvas consistency fixes</li>
+<li><strong>WebRTC IP spoofing</strong> — <code>--fingerprint-webrtc-ip=auto</code> resolves your proxy's exit IP and spoofs WebRTC ICE candidates. Auto-injected when using <code>geoip=True</code> (no extra network call)</li>
+<li><strong>Proxy signal removal</strong> — DNS/connect/SSL timing zeroed, proxy cache headers stripped, Proxy-Connection header leak removed</li>
+<li><strong><code>cloakserve</code> CDP multiplexer</strong> — rewritten as a multi-connection CDP proxy with per-connection fingerprint seeds</li>
+<li><strong>Humanize CDP isolation</strong> — keyboard events now use isolated worlds and trusted dispatch for better behavioral stealth</li>
+<li><strong><code>humanize=True</code></strong> — one flag makes all mouse, keyboard, and scroll interactions behave like a real user. Bézier curves, per-character typing, realistic scroll patterns</li>
+<li><strong>Stealthy with zero flags</strong> — binary auto-generates a random fingerprint seed at startup. No configuration required</li>
+<li><strong>Timezone &amp; locale from proxy IP</strong> — <code>launch(proxy="...", geoip=True)</code> auto-detects timezone and locale</li>
+<li><strong>Persistent profiles</strong> — <code>launch_persistent_context()</code> keeps cookies and localStorage across sessions, bypasses incognito detection</li>
+</ul>
+<p>See the full <a href="CHANGELOG.md">CHANGELOG.md</a> for details.</p>
+<h2>Why CloakBrowser?</h2>
+<ul>
+<li><strong>Config-level patches break</strong> — <code>playwright-stealth</code>, <code>undetected-chromedriver</code>, and <code>puppeteer-extra</code> inject JavaScript or tweak flags. Every Chrome update breaks them. Antibot systems detect the patches themselves.</li>
+<li><strong>CloakBrowser patches Chromium source code</strong> — fingerprints are modified at the C++ level, compiled into the binary. Detection sites see a real browser because it <em>is</em> a real browser.</li>
+<li><strong>Source-level stealth</strong> — C++ patches handle fingerprints (GPU, screen, UA, hardware reporting) at the binary level. No JavaScript injection, no config-level hacks. Most stealth tools only patch at the surface.</li>
+<li><strong>Same behavior everywhere</strong> — works identically local, in Docker, and on VPS. No environment-specific patches or config needed.</li>
+<li><strong>Works with AI agents and automation frameworks</strong> — drop-in stealth for browser-use, Crawl4AI, Scrapling, Stagehand, LangChain, Selenium, and more. See <a href="#framework-integrations">integrations</a>.</li>
+</ul>
+<p>CloakBrowser doesn't solve CAPTCHAs — it prevents them from appearing. No CAPTCHA-solving services, no proxy rotation built in — bring your own proxies, use the Playwright </p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/CloakHQ/CloakBrowser#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">yikart /</span>
+          <a href="https://github.com/yikart/AiToEarn" target="_blank" rel="noopener">AiToEarn</a>
+        </div>
+        <div class="repo-desc">Let&#x27;s use AI to Earn!</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 11,116</span>
+      <span class="meta-item">🍴 2,030</span>
+      <span class="stars-today">⭐ 427 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1><a href="https://aitoearn.ai">Aitoearn：OPC（一人公司）的AI内容营销智能体</a></h1>
+<p><a href="https://trendshift.io/repositories/20785" target="_blank"><img src="https://trendshift.io/api/badge/repositories/20785" alt="yikart%2FAiToEarn | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a></p>
+<p><a href="https://github.com/yikart/AiToEarn/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/yikart/AiToEarn?color=fa6470" /></a><br />
+<a href="LICENSE"><img alt="GitHub license" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a><br />
+<a href="https://nodejs.org/about/releases"><img alt="Required Node.JS 20.18.x" src="https://img.shields.io/static/v1?label=node&amp;message=20.18.x&amp;logo=node.js&amp;color=3f893e" /></a></p>
+<p>简体中文 | <a href="README_EN.md">English</a> | <a href="README_JA.md">日本語</a></p>
+<p><strong>Monetize · Publish · Engage · Create —— 一站式平台。</strong></p>
+<p>AiToEarn 通过 <strong>AI 自动化</strong>，帮助 OPC（一人公司）、创作者、品牌与企业在全球主流平台上构建、分发并变现内容。</p>
+<p>支持渠道：<br />
+抖音、小红书（Rednote）、快手、哔哩哔哩、TikTok、YouTube、Facebook、Instagram、Threads、Twitter（X）、Pinterest、LinkedIn</p>
+<h2>🚀 快速使用 AiToEarn（5 种方式）</h2>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>适合谁</th>
+<th>需要部署吗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#use-web">① 打开网站直接用</a></td>
+<td>所有用户</td>
+<td>❌ 不需要</td>
+</tr>
+<tr>
+<td><a href="#use-in-openclaw">② 在龙虾 OpenClaw 中用</a></td>
+<td>龙虾用户</td>
+<td>❌ 不需要</td>
+</tr>
+<tr>
+<td><a href="#use-in-claude">③ 在 Claude / Cursor 等 AI 助手中用</a></td>
+<td>AI 工具用户</td>
+<td>❌ 不需要</td>
+</tr>
+<tr>
+<td><a href="#use-docker">④ Docker 一键部署</a></td>
+<td>想私有化部署的团队</td>
+<td>✅ 需要服务器</td>
+</tr>
+<tr>
+<td><a href="#use-source">⑤ 源码开发</a></td>
+<td>开发者</td>
+<td>✅ 需要开发环境</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>方式 ②③④ 都需要先获取 API Key</strong>，请先看 <a href="#get-api-key">如何获取 API Key</a>。</p>
+</blockquote>
+<h2>最新动态</h2>
+<ul>
+<li><strong>2026-04-20</strong>: OpenClaw（龙虾）新增 AiToEarn 赚钱支持，可在龙虾中直接接收并执行内容变现任务。</li>
+<li><strong>2026-03-26</strong>: <a href="https://www.aitoearn.ai/">2.1 version</a> — 内容交易市场上线；新增 OpenClaw（龙虾）支持，可在龙虾中直接使用 AiToEarn；新增 MCP 协议支持，可在 Claude、Cursor 等任何支持 MCP 的 Agent 或大模型中使用 AiToEarn。</li>
+<li><strong>2026-02-07</strong>: <a href="https://www.aitoearn.ai/">1.8.0 version</a>，新增线下商户推广解决方案，支持餐厅、零售店、民宿、美容美发、健身房等多种线下业态，将线下推广活动转化为可执行的线上传播任务，通过内容发布与用户参与机制，帮助门店获取更多线上曝光和到店流量。</li>
+<li><strong>2025-12-15</strong>: "All In Agent" 的开始！我们加入了能够自动内容生成和发布以及一些帮助你操作 Aitoearn 的超级 AI 智能 Agent。<a href="https://github.com/yikart/AiToEarn/releases/tag/v1.4.3">v1.4.3</a></li>
+<li><strong>2025-11-28</strong>: 支持应用内自动更新。在创作界面新增大量 AI 功能，例如：缩写、扩写、图片生成、视频生成、标签生成等，并支持 Nano Banana Pro。<a href="https://github.com/yikart/AiToEarn/releases/tag/v1.4.0">v1.4.0</a></li>
+<li><strong>2025-11-12</strong>: 首个开源且可完全使用的版本。<a href="https://github.com/yikart/AiToEarn/releases/tag/v1.3.2">v1.3.2</a></li>
+<li><strong>2025-09-16</strong>: 首个出海版本，新增支持 Facebook、Instagram、Threads、Twitter、YouTube、TikTok、Pinterest。<a href="https://github.com/yikart/AiToEarn/releases/tag/v1.0.18">v1.0.18</a></li>
+<li><strong>2025-02-26</strong>: 首个开源版本，初步实现小红书、抖音、快手、视频号视频一键发布。<a href="https://github.com/yikart/AiToEarn/releases/tag/v0.1.1">v0.1.1</a></li>
+</ul>
+<details>
+  <summary><h2 style="display:inline;margin:0">目录</h2></summary>
+
+  <br/>
+
+  1. [快速使用 AiToEarn（5 种方式）](#-快速使用-aitoearn5-种方式)
+  2. [最新动态](#最新动态)
+  3. [核心功能](#核心功能)
+  4. [如何获取 API Key](#get-api-key)
+  5. [贡献指南](#贡献指南)
+  6. [联系](#联系)
+  7. [推荐](#推荐)
+</details>
+
+<h2>核心功能</h2>
+<p>AiToEarn 围绕内容创作者的完整变现链路，提供四大 Agent 能力：</p>
+<blockquote>
+<p><strong>Monetize · Publish · Engage · Create</strong></p>
+</blockquote>
+<hr />
+<h3>💰 Monetize —— 内容赚钱</h3>
+<p>AiToEarn 最核心的目标：<strong>帮助每一位创作者赚钱</strong>。</p>
+<p>创作者可以在平台出售内容以完成商家的推广任务。所有结算以结果为导向，我们提供三种结算模式：</p>
+<table>
+<thead>
+<tr>
+<th>结算模式</th>
+<th>全称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPS</strong></td>
+<td>Cost Per Sale</td>
+<td>按成交额结算</td>
+</tr>
+<tr>
+<td><strong>CPE</strong></td>
+<td>Cost Per Engagement</td>
+<td>按互动量结算</td>
+</tr>
+<tr>
+<td><strong>CPM</strong></td>
+<td>Cost Per Mille</td>
+<td>按播放量结算</td>
+</tr>
+</tbody>
+</table>
+<p><img src="presentation/monetize-cn.png" width="30%"></p>
+<hr />
+<h3>📢 Publish —— 内容发布 Agent</h3>
+<p>一键将内容分发到全球 10+ 主流平台，告别逐个平台手动发布。</p>
+<ul>
+<li><strong>全网分发</strong>：覆盖抖音、快手、B站、小红书、TikTok、YouTube、Facebook、Instagram、Threads、X（Twitter）、Pinterest、LinkedIn</li>
+<li><strong>日历排期</strong>：像排日程一样统一规划所有平台的内容发布时间</li>
+</ul>
+<p><img src="presentation/publish-cn.png" width="30%"> <img src="presentation/channel-cn.png" width="30%"></p>
+<blockquote>
+<p>▶ 观看演示视频</p>
+</blockquote>
+<p><a href="https://www.youtube.com/watch?v=5041jEKaiU8"><br />
+  <img src="https://img.youtube.com/vi/5041jEKaiU8/0.jpg" alt="Publish 演示视频" width="480"><br />
+</a></p>
+<hr />
+<h3>💬 Engage —— 内容互动 Agent</h3>
+<p>通过 AiToEarn 浏览器插件，在上述所有平台上实现自动化互动运营。</p>
+<ul>
+<li><strong>自动化操作</strong>：自动点赞、收藏、关注，批量高效运营</li>
+<li><strong>AI 智能回复</strong>：调用大模型为每条评论生成针对性回复，精准互动</li>
+<li><strong>评论挖掘</strong>：识别"求链接""怎么购买"等高转化信号，快速响应</li>
+<li><strong>品牌监测</strong>：实时追踪关于你品牌的讨论，主动参与热点话题</li>
+</ul>
+<blockquote>
+<p>▶ 观看演示视频</p>
+</blockquote>
+<p><a href="https://youtu.be/-QoHNrZBmp0"><br />
+  <img src="./presentation/engage-thumbnail-cn.png" alt="Engage 演示视频" width="480"><br />
+</a></p>
+<hr />
+<h3>🎨 Create —— 内容创作 Agent</h3>
+<p>我们用 Agent 的方式重构了内容制作流程。只需告诉 Agent 你的内容需求，它会自动完成从创意到成品的全部工作。</p>
+<p><strong>视频内容</strong>：Agent 自动调用视频生成模型（Grok、Veo、Seedance 等）、视频翻译模块、视频剪辑模块，一站式完成视频制作。</p>
+<p><strong>图文内容</strong>：支持调用 Nano Banana 等顶级图片模型，自动生成高质量图文内容。</p>
+<p><strong>批量生成</strong>：支持批量下发创作任务，Agent 可并行生成多条内容，快速铺量，适合矩阵账号运营和大规模内容分发场景。</p>
+<blockquote>
+<p>▶ 观看演示视频</p>
+</blockquote>
+<p><a href="https://youtu.be/y900LxIrZT4"><br />
+  <img src="./presentation/display-1.5.2png.png" alt="Create 演示视频" width="480"><br />
+</a></p>
+<hr />
+<h2 id="use-web">① 打开网站直接用</h2>
+
+<p>最简单的方式，打开浏览器即可使用，无需任何配置：</p>
+<ul>
+<li>🇨🇳 中国用户访问：<strong><a href="https://aitoearn.cn/">aitoearn.cn</a></strong></li>
+<li>🌍 国际用户访问：<strong><a href="https://aitoearn.ai/">aitoearn.ai</a></strong></li>
+</ul>
+<hr />
+<h2 id="get-api-key">🔑 如何获取 API Key（后续步骤的前置条件）</h2>
+
+<blockquote>
+<p>以下的方式 ②③④ 都需要 API Key。只需获取一次，所有方式通用。</p>
+</blockquote>
+<p><strong>3 步获取</strong>：</p>
+<ol>
+<li>打开 <a href="https://aitoearn.cn/">aitoearn.cn</a>（中国用户）或 <a href="https://aitoearn.ai/">aitoearn.ai</a>（国际用户），注册并登录</li>
+<li>点击左侧菜单 <strong>设置</strong></li>
+<li>在 <strong>API Key</strong> 中点击创建，复制生成的 Key</li>
+</ol>
+<p><img src="presentation/app-screenshot/0.%20api-key/api-key-settings.png" alt="获取 API Key" width="600"></p>
+<hr />
+<h2 id="use-in-openclaw">② 在龙虾 OpenClaw 中使用</h2>
+
+<blockquote>
+<p>前置条件：已 <a href="#get-api-key">获取 API Key</a></p>
+</blockquote>
+<p><strong>请在服务器终端输入以下命令！请在服务器终端输入以下命令！请在服务器终端输入以下命令！</strong></p>
+<p><strong>安装插件</strong></p>
+<pre><code class="language-bash">npx -y @aitoearn/openclaw-plugin-cli
+</code></pre>
+<p>首次运行后会先让你选择环境并输入 API Key。请确保环境与 Key 匹配：</p>
+<ul>
+<li>中国版：使用 <code>aitoearn.cn</code> 获取的 API Key</li>
+<li>国际版：使用 <code>aitoearn.ai</code> 获取的 API Key</li>
+</ul>
+<p>环境和 Key 不匹配会导致 401。</p>
+<p>安装完成后，你就可以在 OpenClaw 中直接接收并执行 AiToEarn 的赚钱任务：</p>
+<p><img src="presentation/openclaw-earn-demo.png" alt="在 OpenClaw 中执行 AiToEarn 赚钱任务" width="360"></p>
+<hr />
+<h2 id="use-in-claude">③ 在 Claude / Cursor / 其他 AI 助手中使用</h2>
+
+<blockquote>
+<p>前置条件：已 <a href="#get-api-key">获取 API Key</a></p>
+</blockquote>
+<p>AiToEarn 支持所有兼容 MCP 协议的 AI 助手。以下是常见工具的配置方式：</p>
+<p>请根据 API Key 来源选择地址，环境和 Key 不匹配会导致 401：</p>
+<table>
+<thead>
+<tr>
+<th>环境</th>
+<th>MCP 地址</th>
+<th>SSE 地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中国版</td>
+<td><code>https://aitoearn.cn/api/unified/mcp</code></td>
+<td><code>https://aitoearn.cn/api/unified/sse</code></td>
+</tr>
+<tr>
+<td>国际版</td>
+<td><code>https://aitoearn.ai/api/unified/mcp</code></td>
+<td><code>https://aitoearn.ai/api/unified/sse</code></td>
+</tr>
+</tbody>
+</table>
+<details open>
+<summary><b>Claude Desktop</b></summary>
+
+找到并编辑 `claude_desktop_config.json`，添加：
+
+
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;aitoearn&quot;: {
+      &quot;type&quot;: &quot;http&quot;,
+      &quot;url&quot;: &quot;https://aitoearn.ai/api/unified/mcp&quot;,
+      &quot;headers&quot;: {
+        &quot;x-api-key&quot;: &quot;你的API-Key&quot;
+      }
+    }
+  }
+}
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><b>Cursor</b></summary>
+
+在 Cursor 的 MCP 设置中添加：
+
+
+<pre><code>MCP 地址：https://aitoearn.ai/api/unified/mcp
+认证 Header：x-api-key: 你的API-Key
+</code></pre>
+
+
+</details>
+
+<details>
+<summary><b>其他 AI 助手（通用配置）</b></summary>
+
+任何支持 MCP 协议的工具，只需要两个信息：
+
+| 配置项 | 值 |
+|--------|------|
+| **MCP 地址** | `https://aitoearn.ai/api/unified/mcp` |
+| **认证 Header** | `x-api-key: 你的API-Key` |
+
+也支持 SSE 长连接方式：`https://aitoearn.ai/api/unified/sse`
+
+</details>
+
+<blockquote>
+<p>💡 如果你是自部署用户，将 <code>aitoearn.ai</code> 替换为你自己的地址（如 <code>localhost:8080</code>）。</p>
+</blockquote>
+<hr />
+<h2 id="use-docker">④ Docker 一键部署</h2>
+
+<blockquote>
+<p>前置条件：已安装 <a href="https://docs.docker.com/get-docker/">Docker</a></p>
+</blockquote>
+<p>适合想把 AiToEarn 部署在自己服务器上的团队。3 条命令搞定，无需手动安装数据库：</p>
+<pre><code class="language-bash">git clone https://github.com/yikart/AiToEarn.git
+cd AiToEarn
+docker compose up -d
+</code></pre>
+<p>启动后打开 <strong><a href="http://localhost:8080">http://localhost:8080</a></strong> 即可使用。</p>
+<h4>配置 Relay（强烈推荐）</h4>
+<blockquote>
+<p><strong>为什么要配 Relay？</strong> 发布内容需要登录社交媒体账号（抖音、小红书、TikTok 等），而这些平台的 OAuth 登录需要开发者凭据。配置 Relay 后，你可以直接借用官方 aitoearn.ai 的凭据完成授权，<strong>不需要自己去各平台申请开发者账号</strong>。</p>
+</blockquote>
+<p>在 <code>docker-compose.yml</code> 的 <code>aitoearn-server</code> 服务中添加（API Key 获取方式见 <a href="#get-api-key">上方说明</a>）：</p>
+<p>请根据 <code>RELAY_API_KEY</code> 来源选择 <code>RELAY_SERVER_URL</code>：中国版 Key 使用 <code>https://aitoearn.cn/api</code>，国际版 Key 使用 <code>https://aitoearn.ai/api</code>。环境和 Key 不匹配会导致 401。</p>
+<pre><code class="language-yaml">RELAY_SERVER_URL: https://aitoearn.ai/api
+RELAY_API_KEY: 你的API-Key
+RELAY_CALLBACK_URL: http://127.0.0.1:8080/api/plat/relay-callback
+</code></pre>
+<p>然后重启：<code>docker compose restart aitoearn-server</code></p>
+<blockquote>
+<p>📖 完整部署指南（生产环境配置、AI 服务、OAuth、存储等）请参阅 <a href="DOCKER_DEPLOYMENT_CN.md">DOCKER_DEPLOYMENT_CN.md</a>。</p>
+</blockquote>
+<hr />
+<h2 id="use-source">⑤ 源码开发</h2>
+
+<details>
+<summary>🧪 手动运行后端和前端（开发模式）</summary>
+
+此模式主要用于本地开发和调试。
+您仍然可以使用 Docker 运行 MongoDB/Redis，或在配置文件中指向您自己的服务。
+
+#### 1. 启动后端服务
+
+```bash
+cd project/aitoearn-backend
+pnpm install
+# 复制配置文件用于本地开发
+cp apps/aitoearn-ai/config/config.js apps/aitoearn-ai/config/local.config.js
+cp apps/aitoearn-server/config/config.js apps/aitoearn-server/config/local.config.js
+pnpm nx serve aitoearn-ai
+# 在另一个终端
+pnpm nx serve aitoearn-server
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/yikart/AiToEarn#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">playcanvas /</span>
+          <a href="https://github.com/playcanvas/supersplat" target="_blank" rel="noopener">supersplat</a>
+        </div>
+        <div class="repo-desc">3D Gaussian Splat Editor</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 7,469</span>
+      <span class="meta-item">🍴 814</span>
+      <span class="stars-today">⭐ 531 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>SuperSplat Editor</h1>
+<p><a href="https://github.com/playcanvas/supersplat/releases"><img alt="Github Release" src="https://img.shields.io/github/v/release/playcanvas/supersplat" /></a><br />
+<a href="https://github.com/playcanvas/supersplat/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/playcanvas/supersplat" /></a><br />
+<a href="https://discord.gg/RSaMRzg"><img alt="Discord" src="https://img.shields.io/badge/Discord-5865F2?style=flat&amp;logo=discord&amp;logoColor=white&amp;color=black" /></a><br />
+<a href="https://www.reddit.com/r/PlayCanvas"><img alt="Reddit" src="https://img.shields.io/badge/Reddit-FF4500?style=flat&amp;logo=reddit&amp;logoColor=white&amp;color=black" /></a><br />
+<a href="https://x.com/intent/follow?screen_name=playcanvas"><img alt="X" src="https://img.shields.io/badge/X-000000?style=flat&amp;logo=x&amp;logoColor=white&amp;color=black" /></a></p>
+<p>| <a href="https://superspl.at/editor">SuperSplat Editor</a> | <a href="https://developer.playcanvas.com/user-manual/gaussian-splatting/editing/supersplat/">User Guide</a> | <a href="https://blog.playcanvas.com">Blog</a> | <a href="https://forum.playcanvas.com">Forum</a> |</p>
+<p>The SuperSplat Editor is a free and open source tool for inspecting, editing, optimizing and publishing 3D Gaussian Splats. It is built on web technologies and runs in the browser, so there's nothing to download or install.</p>
+<p>A live version of this tool is available at: https://superspl.at/editor</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/b6cbb5cc-d3cc-4385-8c71-ab2807fd4fba" /></p>
+<p>To learn more about using SuperSplat, please refer to the <a href="https://developer.playcanvas.com/user-manual/gaussian-splatting/editing/supersplat/">User Guide</a>.</p>
+<h2>Local Development</h2>
+<p>To initialize a local development environment for SuperSplat, ensure you have <a href="https://nodejs.org/">Node.js</a> 18 or later installed. Follow these steps:</p>
+<ol>
+<li>Clone the repository:</li>
+</ol>
+<p><code>sh
+   git clone https://github.com/playcanvas/supersplat.git
+   cd supersplat</code></p>
+<ol>
+<li>Install dependencies:</li>
+</ol>
+<p><code>sh
+   npm install</code></p>
+<ol>
+<li>Build SuperSplat and start a local web server:</li>
+</ol>
+<p><code>sh
+   npm run develop</code></p>
+<ol>
+<li>
+<p>Open a web browser tab and make sure network caching is disabled on the network tab and the other application caches are clear:</p>
+</li>
+<li>
+<p>On Safari you can use <code>Cmd+Option+e</code> or Develop-&gt;Empty Caches.</p>
+</li>
+<li>On Chrome ensure the options "Update on reload" and "Bypass for network" are enabled in the Application-&gt;Service workers tab:</li>
+</ol>
+<p><img width="846" alt="Screenshot 2025-04-25 at 16 53 37" src="https://github.com/user-attachments/assets/888bac6c-25c1-4813-b5b6-4beecf437ac9" /></p>
+<ol>
+<li>Navigate to <code>http://localhost:3000</code></li>
+</ol>
+<p>When changes to the source are detected, SuperSplat is rebuilt automatically. Simply refresh your browser to see your changes.</p>
+<h2>Localizing the SuperSplat Editor</h2>
+<p>The currently supported languages are available here:</p>
+<p>https://github.com/playcanvas/supersplat/tree/main/static/locales</p>
+<h3>Adding a New Language</h3>
+<ol>
+<li>
+<p>Add a new <code>&lt;locale&gt;.json</code> file in the <code>static/locales</code> directory.</p>
+</li>
+<li>
+<p>Add the locale to the list here:</p>
+</li>
+</ol>
+<p>https://github.com/playcanvas/supersplat/blob/main/src/ui/localization.ts</p>
+<h3>Testing Translations</h3>
+<p>To test your translations:</p>
+<ol>
+<li>Run the development server:</li>
+</ol>
+<p><code>sh
+   npm run develop</code></p>
+<ol>
+<li>Open your browser and navigate to:</li>
+</ol>
+<p><code>http://localhost:3000/?lng=&lt;locale&gt;</code></p>
+<p>Replace <code>&lt;locale&gt;</code> with your language code (e.g., <code>fr</code>, <code>de</code>, <code>es</code>).</p>
+<h2>Contributors</h2>
+<p>SuperSplat is made possible by our amazing open source community:</p>
+<p><a href="https://github.com/playcanvas/supersplat/graphs/contributors"><br />
+  <img src="https://contrib.rocks/image?repo=playcanvas/supersplat" /><br />
+</a></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/playcanvas/supersplat#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">datawhalechina /</span>
+          <a href="https://github.com/datawhalechina/easy-vibe" target="_blank" rel="noopener">easy-vibe</a>
+        </div>
+        <div class="repo-desc">💻 vibe coding 2026 | Your first modern Coding course for beginners to master step by step.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 10,114</span>
+      <span class="meta-item">🍴 962</span>
+      <span class="stars-today">⭐ 812 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!-- trigger vercel build -->
+<div align="center">
+
+<img src="assets/easy-vibe-logo-hd.svg" alt="Easy-Vibe Logo" width="300">
+
+<img src="assets/banner.png" alt="Easy-Vibe Banner" width="100%">
+
+<p align="center" style="font-size: 1.2em; color: #666; margin: 20px 0;">
+  Jump right in and vibe together — if you can talk, you can build apps.<br>
+  <span style="font-size: 0.9em; color: #888;">直接上手，一起 vibe！会说话就会做应用。</span>
+</p>
+
+<a href="https://trendshift.io/repositories/22079" target="_blank"><img src="https://trendshift.io/api/badge/repositories/22079" alt="datawhalechina/easy-vibe | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+<p align="center">
+  🚀 <a href="https://datawhalechina.github.io/easy-vibe/welcome.html">Start Exploring</a> · ✨ <a href="https://datawhalechina.github.io/easy-vibe/en/appendix/">Interactive Tutorial</a> · 🦞 <a href="https://github.com/datawhalechina/hello-claw">Learn OpenClaw</a> · 📖 <a href="#table-of-contents">Table of Contents</a><br>
+  <span style="font-size: 0.85em; color: #888;">🚀 <a href="https://datawhalechina.github.io/easy-vibe/welcome.html">开始体验</a> · ✨ <a href="https://datawhalechina.github.io/easy-vibe/zh-cn/appendix/">交互式教程</a> · 🦞 <a href="https://github.com/datawhalechina/hello-claw">学习 OpenClaw</a> · 📖 <a href="#table-of-contents">查看目录</a></span>
+</p>
+
+<p align="center">
+  <a href="https://datawhalechina.github.io/easy-vibe/welcome.html">Read Online</a> ·
+  <a href="#-content-navigation">Learning Map</a><br>
+  <span style="font-size: 0.85em; color: #888;">
+    <a href="https://datawhalechina.github.io/easy-vibe/welcome.html">开始阅读</a> ·
+    <a href="#-content-navigation">学习地图</a>
+  </span>
+</p>
+
+<p align="center">
+    <a href="https://github.com/datawhalechina/easy-vibe/stargazers" target="_blank">
+        <img src="https://img.shields.io/github/stars/datawhalechina/easy-vibe?color=660874&style=for-the-badge&logo=star&logoColor=white&labelColor=1a1a2e" alt="Stars"></a>
+    <a href="https://github.com/datawhalechina/easy-vibe/network/members" target="_blank">
+        <img src="https://img.shields.io/github/forks/datawhalechina/easy-vibe?color=660874&style=for-the-badge&logo=git-fork&logoColor=white&labelColor=1a1a2e" alt="Forks"></a>
+    <a href="LICENSE" target="_blank">
+        <img src="https://img.shields.io/badge/License-CC_BY_NC_SA_4.0-4ecdc4?style=for-the-badge&logo=creative-commons&logoColor=white&labelColor=1a1a2e" alt="License"></a>
+</p>
+
+<p align="center">
+  <a href="README.md"><img alt="English" src="https://img.shields.io/badge/English-d9d9d9"></a>
+  <a href="docs-readme/zh-CN/README.md"><img alt="简体中文" src="https://img.shields.io/badge/简体中文-d9d9d9"></a>
+  <a href="docs-readme/zh-TW/README.md"><img alt="繁體中文" src="https://img.shields.io/badge/繁體中文-d9d9d9"></a>
+  <a href="docs-readme/ja-JP/README.md"><img alt="日本語" src="https://img.shields.io/badge/日本語-d9d9d9"></a>
+  <a href="docs-readme/es-ES/README.md"><img alt="Español" src="https://img.shields.io/badge/Español-d9d9d9"></a>
+  <a href="docs-readme/fr-FR/README.md"><img alt="Français" src="https://img.shields.io/badge/Français-d9d9d9"></a>
+  <a href="docs-readme/ko-KR/README.md"><img alt="한국어" src="https://img.shields.io/badge/한국어-d9d9d9"></a>
+  <a href="docs-readme/ar-SA/README.md"><img alt="العربية" src="https://img.shields.io/badge/العربية-d9d9d9"></a>
+  <a href="docs-readme/vi-VN/README.md"><img alt="Tiếng_Việt" src="https://img.shields.io/badge/Tiếng_Việt-d9d9d9"></a>
+  <a href="docs-readme/de-DE/README.md"><img alt="Deutsch" src="https://img.shields.io/badge/Deutsch-d9d9d9"></a>
+</p>
+
+</div>
+<table align="center">
+  <tr>
+    <td width="50%" valign="top" align="center">
+      <img src="assets/gif-header.png" width="100%">
+      <br>
+      <strong>A beginner-friendly learning map</strong>
+      <br>
+      <sub>Clear guidance from zero, so you can stop "learning and forgetting"</sub>
+    </td>
+    <td width="50%" valign="top" align="center">
+      <img src="assets/gif-tutorial.png" width="100%">
+      <br>
+      <strong>Step-by-step visual tutorials</strong>
+      <br>
+      <sub>Detailed walkthroughs that feel like learning with a private tutor</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top" align="center">
+      <img src="assets/gif-ide.gif" width="100%">
+      <br>
+      <strong>Immersive simulated coding</strong>
+      <br>
+      <sub>Virtual mouse guidance helps you quickly learn the core IDE workflow</sub>
+    </td>
+    <td width="50%" valign="top" align="center">
+      <img src="assets/gif-diffusion.gif" width="100%">
+      <br>
+      <strong>Visible AI principles</strong>
+      <br>
+      <sub>Animated explanations make it easy to see how AI generates images</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top" align="center">
+      <img src="assets/gif-rag.gif" width="100%">
+      <br>
+      <strong>Learn RAG like a game</strong>
+      <br>
+      <sub>Interactive components let you click through the full RAG data flow</sub>
+    </td>
+    <td width="50%" valign="top" align="center">
+      <img src="assets/git-terminal.gif" width="100%">
+      <br>
+      <strong>Visual terminal concepts</strong>
+      <br>
+      <sub>Command-line behavior becomes intuitive when the underlying logic is visualized</sub>
+    </td>
+  </tr>
+</table>
+<div align="center">
+  <h3>⭐ <a href="https://github.com/datawhalechina/easy-vibe" style="color: #d0cd16ff;">Star the repo here</a> to help accelerate updates ❤️</h3>
+</div>
+
+<div align="center" style="margin: 30px 0;">
+  <a href="https://github.com/datawhalechina/easy-vibe/issues/new?template=story_submission.md">
+    <img src="https://raw.githubusercontent.com/datawhalechina/easy-vibe/main/assets/stories_image.png" alt="Share Your Vibe Story" width="80%" style="border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+  </a>
+  <p style="margin-top: 15px; font-size: 1.1em; color: #666;">
+    📝 <strong>Have your own vibe coding story?</strong> 
+    Submit it here and inspire others!
+  </p>
+</div>
+
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#why-easy-vibe">Why Easy-Vibe</a></li>
+<li><a href="#-news">News</a></li>
+<li><a href="#who-this-is-for">Who This Is For</a></li>
+<li><a href="#your-learning-paths">Your Learning Paths</a></li>
+<li><a href="#study-suggestions">Study Suggestions</a></li>
+<li><a href="#i-beginner-entry">I. Beginner Entry</a></li>
+<li><a href="#ii-junior-and-mid-level-developers">II. Junior and Mid-Level Developers</a></li>
+<li><a href="#iii-advanced-developers">III. Advanced Developers</a></li>
+<li><a href="#-appendix-knowledge-base">Appendix Knowledge Base</a></li>
+<li><a href="#️-how-to-learn">How To Learn</a></li>
+<li><a href="#-run-locally">Run Locally</a></li>
+<li><a href="#other-courses">Other Courses</a></li>
+<li><a href="#-contributing--contributors">Contributing &amp; Contributors</a></li>
+<li><a href="#-license">LICENSE</a></li>
+</ul>
+<h2>Why Easy-Vibe</h2>
+<p>Want an expense tracker? Say it.</p>
+<p>Need a booking system with WeChat login? Say it.</p>
+<p>Want a blog with comments? Say it.</p>
+<p>In the AI era, programming starts by describing what you want.</p>
+<p>Easy-Vibe teaches you how to turn that into a real product.</p>
+<h2>🔥 News</h2>
+<ul>
+<li><strong>[2026-03-29]</strong> ✨ <strong>Vibe Stories launched and upgraded with real user journeys</strong>: Added a new homepage Vibe Stories section with an interactive carousel and dedicated story pages, then replaced placeholder content with four real user stories featuring a rural primary school teacher, a college student, a high school IT teacher, and a truck driver who built real products with AI. <a href="https://datawhalechina.github.io/easy-vibe/zh-cn/vibe-stories/story-1.html">👉 View the stories</a></li>
+<li><strong>[2026-03-26]</strong> 🚀 <strong>Major Stage 2 practice update</strong>: Completed the SaaS capstone project "<a href="https://datawhalechina.github.io/easy-vibe/en/stage-2/assignments/fullstack-app/">Your First SaaS Full-Stack App: Copywriting Generator Website</a>" and substantially expanded the "<a href="https://datawhalechina.github.io/easy-vibe/en/stage-2/backend/stripe-payment/">How to integrate Stripe and payment systems</a>" section, plus key content around multi-product UI and WeChat Mini Program backend workflows.</li>
+<li><strong>[2026-03-25]</strong> 📚 <strong>New appendix: User Research and Requirement Validation</strong>: Added four new articles covering idea sourc</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/datawhalechina/easy-vibe#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">decolua /</span>
+          <a href="https://github.com/decolua/9router" target="_blank" rel="noopener">9router</a>
+        </div>
+        <div class="repo-desc">Unlimited FREE AI coding. Connect Claude Code, Codex, Cursor, Cline, Copilot, Antigravity to FREE Claude/GPT/Gemini via 40+ providers. Auto-fallback, RTK -40% tokens, never hit limits.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 8,597</span>
+      <span class="meta-item">🍴 1,353</span>
+      <span class="stars-today">⭐ 941 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+  <img src="./images/9router.png?1" alt="9Router Dashboard" width="800"/>
+
+  # 9Router - FREE AI Router & Token Saver
+
+  **Never stop coding. Save 20-40% tokens with RTK + auto-fallback to FREE & cheap AI models.**
+
+  **Connect All AI Code Tools (Claude Code, Cursor, Antigravity, Copilot, Codex, Gemini, OpenCode, Cline, OpenClaw...) to 40+ AI Providers & 100+ Models.**
+
+  [![npm](https://img.shields.io/npm/v/9router.svg)](https://www.npmjs.com/package/9router)
+  [![Downloads](https://img.shields.io/npm/dm/9router.svg)](https://www.npmjs.com/package/9router)
+  [![License](https://img.shields.io/npm/l/9router.svg)](https://github.com/decolua/9router/blob/main/LICENSE)
+
+  <a href="https://trendshift.io/repositories/22628" target="_blank"><img src="https://trendshift.io/api/badge/repositories/22628" alt="decolua%2F9router | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
+  [🚀 Quick Start](#-quick-start) • [💡 Features](#-key-features) • [📖 Setup](#-setup-guide) • [🌐 Website](https://9router.com)
+
+  [🇻🇳 Tiếng Việt](./i18n/README.vi.md) • [🇨🇳 中文](./i18n/README.zh-CN.md) • [🇯🇵 日本語](./i18n/README.ja-JP.md)
+</div>
+
+<hr />
+<h2>🤔 Why 9Router?</h2>
+<p><strong>Stop wasting money, tokens and hitting limits:</strong></p>
+<ul>
+<li>❌ Subscription quota expires unused every month</li>
+<li>❌ Rate limits stop you mid-coding</li>
+<li>❌ Tool outputs (git diff, grep, ls...) burn tokens fast</li>
+<li>❌ Expensive APIs ($20-50/month per provider)</li>
+<li>❌ Manual switching between providers</li>
+</ul>
+<p><strong>9Router solves this:</strong></p>
+<ul>
+<li>✅ <strong>RTK Token Saver</strong> - Auto-compress tool_result content, save 20-40% tokens per request</li>
+<li>✅ <strong>Maximize subscriptions</strong> - Track quota, use every bit before reset</li>
+<li>✅ <strong>Auto fallback</strong> - Subscription → Cheap → Free, zero downtime</li>
+<li>✅ <strong>Multi-account</strong> - Round-robin between accounts per provider</li>
+<li>✅ <strong>Universal</strong> - Works with Claude Code, Codex, Cursor, Cline, any CLI tool</li>
+</ul>
+<hr />
+<h2>🔄 How It Works</h2>
+<pre><code>┌─────────────┐
+│  Your CLI   │  (Claude Code, Codex, OpenClaw, Cursor, Cline...)
+│   Tool      │
+└──────┬──────┘
+       │ http://localhost:20128/v1
+       ↓
+┌─────────────────────────────────────────────┐
+│           9Router (Smart Router)            │
+│  • RTK Token Saver (cut tool_result tokens) │
+│  • Format translation (OpenAI ↔ Claude)     │
+│  • Quota tracking                           │
+│  • Auto token refresh                       │
+└──────┬──────────────────────────────────────┘
+       │
+       ├─→ [Tier 1: SUBSCRIPTION] Claude Code, Codex, GitHub Copilot
+       │   ↓ quota exhausted
+       ├─→ [Tier 2: CHEAP] GLM ($0.6/1M), MiniMax ($0.2/1M)
+       │   ↓ budget limit
+       └─→ [Tier 3: FREE] Kiro, OpenCode Free, Vertex ($300 credits)
+
+Result: Never stop coding, minimal cost + 20-40% token savings via RTK
+</code></pre>
+<hr />
+<h2>⚡ Quick Start</h2>
+<p><strong>1. Install globally:</strong></p>
+<pre><code class="language-bash">npm install -g 9router
+9router
+</code></pre>
+<p>🎉 Dashboard opens at <code>http://localhost:20128</code></p>
+<p><strong>2. Connect a FREE provider (no signup needed):</strong></p>
+<p>Dashboard → Providers → Connect <strong>Kiro AI</strong> (free Claude unlimited) or <strong>OpenCode Free</strong> (no auth) → Done!</p>
+<p><strong>3. Use in your CLI tool:</strong></p>
+<pre><code>Claude Code/Codex/OpenClaw/Cursor/Cline Settings:
+  Endpoint: http://localhost:20128/v1
+  API Key: [copy from dashboard]
+  Model: kr/claude-sonnet-4.5
+</code></pre>
+<p><strong>That's it!</strong> Start coding with FREE AI models.</p>
+<p><strong>Alternative: run from source (this repository):</strong></p>
+<p>This repository package is private (<code>9router-app</code>), so source/Docker execution is the expected local development path.</p>
+<pre><code class="language-bash">cp .env.example .env
+npm install
+PORT=20128 NEXT_PUBLIC_BASE_URL=http://localhost:20128 npm run dev
+</code></pre>
+<p>Production mode:</p>
+<pre><code class="language-bash">npm run build
+PORT=20128 HOSTNAME=0.0.0.0 NEXT_PUBLIC_BASE_URL=http://localhost:20128 npm run start
+</code></pre>
+<p>Default URLs:<br />
+- Dashboard: <code>http://localhost:20128/dashboard</code><br />
+- OpenAI-compatible API: <code>http://localhost:20128/v1</code></p>
+<hr />
+<h2>Video Guides</h2>
+<div align="center">
+
+<table>
+  <tr>
+    <td align="center" width="320">
+      <a href="https://www.youtube.com/watch?v=raEyZPg5xE0">
+        <img src="https://img.youtube.com/vi/raEyZPg5xE0/maxresdefault.jpg" alt="9Router Setup Tutorial" width="300"/>
+      </a><br/>
+      <b>🇺🇸 English</b><br/>
+      <sub>9Router + Claude Code FREE Setup<br/>by <a href="https://www.youtube.com/@BuildAIWithHamid">Build AI With Hamid</a></sub>
+    </td>
+    <td align="center" width="320">
+      <a href="https://www.youtube.com/watch?v=X69n5Lm06Yw">
+        <img src="https://img.youtube.com/vi/X69n5Lm06Yw/maxresdefault.jpg" alt="Tiết kiệm chi phí LLM với 9Router" width="300"/>
+      </a><br/>
+      <b>🇻🇳 Tiếng Việt</b><br/>
+      <sub>Tiết kiệm chi phí LLM cho OpenClaw với 9Router<br/>by <a href="https://www.youtube.com/c/M%C3%ACAIblog">Mì AI</a></sub>
+    </td>
+    <td align="center" width="320">
+      <a href="https://www.youtube.com/watch?v=o3qYCyjrFYg">
+        <img src="https://img.youtube.com/vi/o3qYCyjrFYg/maxresdefault.jpg" alt="Claude Code FREE Forever" width="300"/>
+      </a><br/>
+      <b>🇺🇸 English</b><br/>
+      <sub>Claude Code FREE Forever — Unlimited Models<br/>by <a href="https://www.youtube.com/@BuildAIWithHamid">Build AI With Hamid</a></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="320">
+      <a href="https://www.youtube.com/watch?v=Ttpc26m39Dw">
+        <img src="https://img.youtube.com/vi/Ttpc26m39Dw/maxresdefault.jpg" alt="Claude CLI Free Setup" width="300"/>
+      </a><br/>
+      <b>🇺🇸 English</b><br/>
+      <sub>Claude CLI Free Setup with 9Router 🚀<br/>by <a href="https://www.youtube.com/@CodeVerseSoban">CodeVerse Soban</a></sub>
+    </td>
+    <td align="center" width="320">
+      <a href="https://www.youtube.com/watch?v=G-5A_D5Pm6Y">
+        <img src="https://img.youtube.com/vi/G-5A_D5Pm6Y/maxresdefault.jpg" alt="Cài đặt OpenClaw Free A-Z" width="300"/>
+      </a><br/>
+      <b>🇻🇳 Tiếng Việt</b><br/>
+      <sub>Cài Đặt OpenClaw Free Từ A-Z + 9Router<br/>by <a href="https://www.youtube.com/@maigia">Mai Gia</a></sub>
+    </td>
+    <td align="center" width="320">
+      <a href="https://www.youtube.com/watch?v=JXmg8_gccgE">
+        <img src="https://img.youtube.com/vi/JXmg8_gccgE/maxresdefault.jpg" alt="FREE OpenClaw with Claude Opus" width="300"/>
+      </a><br/>
+      <b>🇺🇸 English</b><br/>
+      <sub>FREE OpenClaw + Claude Opus 4.6<br/>by <a href="https://www.youtube.com/@BuildAIWithHamid">Build AI With Hamid</a></sub>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+<blockquote>
+<p>🎬 <strong>Made a video about 9Router?</strong> Submit a <a href="https://github.com/decolua/9router/pulls">Pull Request</a> adding your video to this section — we'll merge it!</p>
+</blockquote>
+<hr />
+<h2>🛠️ Supported CLI Tools</h2>
+<p>9Router works seamlessly with all major AI coding tools:</p>
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="120">
+        <img src="./public/providers/claude.png" width="60" alt="Claude Code"/><br/>
+        <b>Claude-Code</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/openclaw.png" width="60" alt="OpenClaw"/><br/>
+        <b>OpenClaw</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/codex.png" width="60" alt="Codex"/><br/>
+        <b>Codex</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/opencode.png" width="60" alt="OpenCode"/><br/>
+        <b>OpenCode</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/cursor.png" width="60" alt="Cursor"/><br/>
+        <b>Cursor</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/antigravity.png" width="60" alt="Antigravity"/><br/>
+        <b>Antigravity</b>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" width="120">
+        <img src="./public/providers/cline.png" width="60" alt="Cline"/><br/>
+        <b>Cline</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/providers/continue.png" width="60" alt="Continue"/><br/>
+        <b>Continue</b>
+      </td>
+      <td align="center" width="120">
+        <img src="./public/provi
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/decolua/9router#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">tinyhumansai /</span>
+          <a href="https://github.com/tinyhumansai/openhuman" target="_blank" rel="noopener">openhuman</a>
+        </div>
+        <div class="repo-desc">Your Personal AI super intelligence. Private, Simple and extremely powerful.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 1,687</span>
+      <span class="meta-item">🍴 194</span>
+      <span class="stars-today">⭐ 366 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">OpenHuman</h1>
+
+<p align="center">
+ <img src="./gitbooks/.gitbook/assets/demo.png" alt="The Tet" />
+</p>
+
+<p align="center" style="display: inline-block">
+ <a href="https://trendshift.io/repositories/23680" target="_blank" style="display: inline-block">
+  <img src="https://trendshift.io/api/badge/repositories/23680" alt="tinyhumansai%2Fopenhuman | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/>
+ </a>
+</p>
+
+<p align="center">
+ <strong>OpenHuman is your Personal AI super intelligence. Private, Simple and extremely powerful.</strong>
+</p>
+
+<p align="center">
+ <a href="https://discord.tinyhumans.ai/">Discord</a> •
+ <a href="https://www.reddit.com/r/tinyhumansai/">Reddit</a> •
+ <a href="https://x.com/intent/follow?screen_name=tinyhumansai">X/Twitter</a> •
+ <a href="https://tinyhumans.gitbook.io/openhuman/">Docs</a> •
+ <a href="https://x.com/intent/follow?screen_name=senamakel">Follow @senamakel (Creator)</a>
+</p>
+
+<p align="center">
+ <img src="https://img.shields.io/badge/status-early%20beta-orange" alt="Early Beta" />
+ <a href="https://github.com/tinyhumansai/openhuman/releases/latest"><img src="https://img.shields.io/github/v/release/tinyhumansai/openhuman?label=latest" alt="Latest Release" /></a>
+</p>
+
+<blockquote>
+<p><strong>Early Beta</strong>: Under active development. Expect rough edges.</p>
+</blockquote>
+<p>To install or get started, either download from the website over at <a href="https://tinyhumans.ai/openhuman">tinyhumans.ai/openhuman</a> or run</p>
+<pre><code># Download DMG, EXEs over at https://tinyhumans.ai/openhuman or run in from your terminal
+
+# For MacOS/Linux
+curl -fsSL https://raw.githubusercontent.com/tinyhumansai/openhuman/main/scripts/install.sh | bash
+
+# For Windows
+irm https://raw.githubusercontent.com/tinyhumansai/openhuman/main/scripts/install.ps1 | iex
+</code></pre>
+<h1>What is OpenHuman?</h1>
+<p>OpenHuman is an open-source agentic assistant designed to integrate with you in your daily life. Each bullet links to the deeper writeup in the <a href="https://tinyhumans.gitbook.io/openhuman/">docs</a>.</p>
+<ul>
+<li>
+<p><strong>Simple, UI-first &amp; Human</strong> A clean desktop experience and short onboarding paths take you from install to a working agent in a few clicks — no config-first setup, no terminal required. The agent has <a href="https://tinyhumans.gitbook.io/openhuman/features/mascot">a face</a>: a desktop mascot that speaks, reacts to its surroundings, <a href="https://tinyhumans.gitbook.io/openhuman/features/mascot/meeting-agents">joins your Google Meets</a> as a real participant, remembers you across weeks, and keeps thinking in the background even when you've stopped typing.</p>
+</li>
+<li>
+<p><strong><a href="https://tinyhumans.gitbook.io/openhuman/features/integrations">118+ third-party integrations</a> with <a href="https://tinyhumans.gitbook.io/openhuman/features/obsidian-wiki/auto-fetch">auto-fetch</a></strong>: plug into Gmail, Notion, GitHub, Slack, Stripe, Calendar, Drive, Linear, Jira and the rest of your stack with <strong>one-click OAuth</strong>. Every connection is exposed to the agent as a typed tool, and every twenty minutes the core walks each active connection and pulls fresh data into the <a href="https://tinyhumans.gitbook.io/openhuman/features/integrations/auto-fetch">memory tree</a>. No prompts, no polling loops you have to write, so the agent already has tomorrow's context this morning.</p>
+</li>
+<li>
+<p><strong><a href="https://tinyhumans.gitbook.io/openhuman/features/memory-tree">Memory Tree</a> + <a href="https://tinyhumans.gitbook.io/openhuman/features/obsidian-wiki">Obsidian Wiki</a></strong>: a local-first knowledge base built from your data and your activity. Everything you connect is canonicalized into ≤3k-token Markdown chunks, scored, and folded into hierarchical summary trees stored in <strong>SQLite on your machine</strong>. The same chunks land as <code>.md</code> files in an Obsidian-compatible vault you can open, browse and edit, inspired by Karpathy's <a href="https://x.com/karpathy/status/2039805659525644595">obsidian-wiki workflow</a>.</p>
+</li>
+<li>
+<p><strong>Batteries included</strong>: web search, a web-fetch <a href="https://tinyhumans.gitbook.io/openhuman/features/native-tools">scraper</a>, a full coder toolset (filesystem, git, lint, test, grep), and <a href="https://tinyhumans.gitbook.io/openhuman/features/voice">native voice</a> (STT in, ElevenLabs TTS out, mascot lip-sync, live Google Meet agent) are wired in by default. <a href="https://tinyhumans.gitbook.io/openhuman/features/model-routing">Model routing</a> sends each task to the right LLM (reasoning, fast, or vision) under one subscription. No "install a plugin to read files" friction. <a href="https://tinyhumans.gitbook.io/openhuman/features/model-routing/local-ai">Optional local AI via Ollama</a> for on-device workloads.</p>
+</li>
+<li>
+<p><strong><a href="https://tinyhumans.gitbook.io/openhuman/features/token-compression">Smart token compression (TokenJuice)</a></strong>: every tool call, scrape result, email body, and search payload is run through a token compression layer before it touches any LLM Model. HTML is converted to Markdown, long URLs are shortened, non-ASCII characters are removed etc... You get the same information but at a fraction of the tokens. Reducing cost &amp; latency by up to 80%.</p>
+</li>
+<li>
+<p><strong><a href="https://tinyhumans.gitbook.io/openhuman/features/integrations#messaging-channels">Messaging channels</a></strong> and <strong><a href="https://tinyhumans.gitbook.io/openhuman/features/privacy-and-security">privacy &amp; security</a></strong>: inbound/outbound across the channels you already use, with workflow data that stays on device, encrypted locally, treated as yours.</p>
+</li>
+</ul>
+<p>For contributors: Read the <a href="https://tinyhumans.gitbook.io/openhuman/developing/architecture">Architecture</a> · <a href="https://tinyhumans.gitbook.io/openhuman/developing/getting-set-up">Getting Set Up</a> · <a href="https://tinyhumans.gitbook.io/openhuman/developing/cloud-deploy">Cloud Deploy</a> · <a href="./CONTRIBUTING.md"><code>CONTRIBUTING.md</code></a>.</p>
+<h2>Context in minutes, not weeks</h2>
+<p>OpenHuman is the first agent harness that gets to know you in minutes. Inspired by <a href="https://x.com/karpathy/status/2039805659525644595">Karpathy's LLM Knowledgebase</a>. Most agents start cold. Hermes learns by watching you work; OpenClaw waits for plugins to ferry context in. Either way, you spend days or weeks before the agent knows enough about your stack to be genuinely useful.</p>
+<p align="center">
+ <img src="./gitbooks/.gitbook/assets/image (1).png" />
+</p>
+
+<blockquote>
+<p>OpenHuman summarizes and compresses all your documents, emails &amp; chats; and creates a memory graph that lets your agent remember everything about you.</p>
+</blockquote>
+<p>OpenHuman skips the wait. Connect your accounts, let <a href="https://tinyhumans.gitbook.io/openhuman/features/integrations/auto-fetch">auto-fetch</a> pull data locally on a 20-minute loop, and then have <a href="https://tinyhumans.gitbook.io/openhuman/features/memory-tree">Memory Trees</a> compress everything into Markdown files stored intelligently in a <a href="https://tinyhumans.gitbook.io/openhuman/features/obsidian-wiki">Karpathy-style Obsidian wiki</a>.</p>
+<p>In just one sync pass, the agent has full (compressed) context of your inbox, your calendar, your repos, your docs, your messages. No training period. No "give it a few weeks.". It becomes you, controlled by you.</p>
+<h2>OpenHuman vs Other Agent Harnesses</h2>
+<p>High-level comparison (products evolve, so verify against each vendor). OpenHuman is built to <strong>minimize vendor sprawl</strong>, keep <strong>workflow knowledge on-device</strong>, and give the agent a <strong>persistent memory</strong> of your data, not only chat.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Claude Cowork</th>
+<th>OpenClaw</th>
+<th>Hermes Agent</th>
+<th>OpenHuman</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Open-source</strong></td>
+<td>🚫 Proprietary</td>
+<td>✅ MIT</td>
+<td>✅ MIT</td>
+<td>✅ GNU</td>
+</tr>
+<tr>
+<td><strong>Simple to start</strong></td>
+<td>✅ Desktop + CLI</td>
+<td>⚠️ Terminal-first</td>
+<td>⚠️ Terminal-first</td>
+<td>✅ Clean UI, minutes</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>⚠️ Sub + add-ons</td>
+<td>⚠️ BYO models</td>
+<td>⚠️ BYO models</td>
+<td>✅ One sub + TokenJuice</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>✅ Chat-scoped</td>
+<td>⚠️ Plugin-reliant</td>
+<td>✅ Self-learning</td>
+<td>🚀 Memory Tree + Obsidian vault</td>
+</tr>
+<tr>
+<td><strong>Integrations</strong></td>
+<td>⚠️ Few connectors</td>
+<td>⚠️ BYO</td>
+<td>⚠️ BYO</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/tinyhumansai/openhuman#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">millionco /</span>
+          <a href="https://github.com/millionco/react-doctor" target="_blank" rel="noopener">react-doctor</a>
+        </div>
+        <div class="repo-desc">Your agent writes bad React. This catches it</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 8,221</span>
+      <span class="meta-item">🍴 268</span>
+      <span class="stars-today">⭐ 212 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p>packages/react-doctor/README.md</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/millionco/react-doctor#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Lordog /</span>
+          <a href="https://github.com/Lordog/dive-into-llms" target="_blank" rel="noopener">dive-into-llms</a>
+        </div>
+        <div class="repo-desc">《动手学大模型Dive into LLMs》系列编程实践教程</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+      <span class="meta-item">⭐ 37,440</span>
+      <span class="meta-item">🍴 4,588</span>
+      <span class="stars-today">⭐ 422 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+<h1 align="center">《动手学大模型》系列编程实践教程</h1>
+</p>
+<p align="center">
+    <a href="https://img.shields.io/badge/version-v0.1.0-blue">
+      <img alt="version" src="https://img.shields.io/badge/version-v0.1.0-blue?color=FF8000?color=009922" />
+    </a>
+  <a >
+       <img alt="Status-building" src="https://img.shields.io/badge/Status-building-blue" />
+    </a>
+  <a >
+       <img alt="PRs-Welcome" src="https://img.shields.io/badge/PRs-Welcome-red" />
+    </a>
+    <a href="https://github.com/Lordog/dive-into-llms/stargazers">
+       <img alt="stars" src="https://img.shields.io/github/stars/Lordog/dive-into-llms" />
+    </a>
+    <a href="https://github.com/Lordog/dive-into-llms/network/members">
+       <img alt="FORK" src="https://img.shields.io/github/forks/Lordog/dive-into-llms?color=FF8000" />
+    </a>
+    <a href="https://github.com/Lordog/dive-into-llms/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/Lordog/dive-into-llms?color=0088ff"/>
+    </a>
+    <br />
+</p>
+
+<div align="center">
+<p align="center">
+  <a href="#项目动机">项目动机</a>/
+  <a href="#教程目录">教程目录</a>/
+  <a href="#贡献者列表">贡献者列表</a>
+</p>
+</div>
+
+<h2>💡 Updates</h2>
+<p>2025/06/06  感谢各位朋友们的关注和积极反馈！我们从以下两个方面对本教程进行了更新：</p>
+<ul>
+<li>[x] 上线国产化《大模型开发全流程》公益教程（含PPT、实验手册和视频），此处特别感谢华为昇腾社区的支持！</li>
+<li>[x] 在原系列编程实践教程的基础上进行内容更新，并增加了新的主题（数学推理、GUI Agent、大模型对齐、隐写术等）！</li>
+</ul>
+<h2>🎯 项目动机</h2>
+<p>《动手学大模型》系列编程实践教程，由上海交通大学《自然语言处理前沿技术》（NIS8021）、《人工智能安全技术》课程（NIS3353）讲义拓展而来（教师：<a href="https://bcmi.sjtu.edu.cn/home/zhangzs/">张倬胜</a>），旨在提供大模型相关的入门编程参考。本教程属公益性质、完全免费。通过简单实践，帮助同学们快速入门大模型，更好地开展课程设计或学术研究。</p>
+<h2>📚 教程目录</h2>
+<table>
+<thead>
+<tr>
+<th>教程内容</th>
+<th>简介</th>
+<th>地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微调与部署</td>
+<td>预训练模型微调与部署指南：想提升预训练模型在指定任务上的性能？让我们选择合适的预训练模型，在特定任务上进行微调，并将微调后的模型部署成方便使用的Demo！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter1/dive-into-llm.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter1/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter1/dive-tuning.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>提示学习与思维链</td>
+<td>大模型的API调用与推理指南：“AI在线求鼓励？大模型对一些问题的回答令人大跌眼镜，但它可能只是想要一句「鼓励」”</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter2/dive-into-prompting.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter2/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter2/dive-prompting.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>知识编辑</td>
+<td>语言模型的编辑方法和工具：想操控语言模型在对指定知识的记忆？让我们选择合适的编辑方法，对特定知识进行编辑，并将对编辑后的模型进行验证！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter3/dive_edit_0410.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter3/README.md">教程</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter3/dive_edit.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>数学推理</td>
+<td>如何让大模型学会数学推理？让我们快速蒸馏一个迷你R1！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter4/math.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter4/README.md">教程</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter4/sft_math.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>模型水印</td>
+<td>语言模型的文本水印：在语言模型生成的内容中嵌入人类不可见的水印</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter5/watermark.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter5/README.md">教程</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter5/watermark.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>越狱攻击</td>
+<td>想要得到更好的安全，要先从学会攻击开始。让我们了解越狱攻击如何撬开大模型的嘴！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter6/dive-Jailbreak.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter6/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter6/dive-jailbreak.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>大模型隐写</td>
+<td>“看不见的墨水”！想让大模型在流畅回答的同时，悄悄携带只有“自己人”能识别的信息吗？大模型隐写告诉你！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter7/stega.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter7/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter7/llm_stega.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>多模态模型</td>
+<td>作为能够更充分模拟真实世界的多模态大语言模型，其如何实现更强大的多模态理解和生成能力？多模态大语言模型是否能够帮助实现AGI？</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter8/mllms.pdf">课件</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter8/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter8/mllms.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>GUI智能体</td>
+<td>想要饭来张口、解放双手？那么让我们一起来让AI Agent替你点外卖、回消息、购物比价吧！</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter9/GUIagent.pdf">课件</a>]  [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter9/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter9/GUIagent.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>智能体安全</td>
+<td>大模型智能体迈向了未来操作系统之旅。然而，大模型在开放智能体场景中能意识到风险威胁吗？</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter10/dive-into-safety.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter10/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter10/agent.ipynb">脚本</a>]</td>
+</tr>
+<tr>
+<td>RLHF安全对齐</td>
+<td>基于PPO的RLHF实验指南：本教程”十分危险“，阅读后请检查你的大模型是否在冷笑。</td>
+<td>[<a href="https://github.com/Lordog/dive-into-llms/blob/main/documents/chapter11/RLHF.pdf">课件</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter11/README.md">教程</a>] [<a href="https://github.com/Lordog/dive-into-llms/tree/main/documents/chapter11/RLHF.ipynb">脚本</a>]</td>
+</tr>
+</tbody>
+</table>
+<h2>🔥 新上线：国产化《大模型开发全流程》</h2>
+<ul>
+<li><strong>✨ 我们联合华为昇腾推出的《大模型开发全流程》公益教程正式上线！前沿技术+代码实践，手把手带你玩转AI大模型 ✨</strong>: </li>
+</ul>
+<p>在《动手学大模型》原系列教程的基础上，我们联合华为开发了《大模型开发全流程》系列课程。本系列教程基于昇腾基础软硬件开发，覆盖PPT、实验手册、视频等教程形式。该教程分为初级、中级、高级系列，面向不同的大模型实践需求，旨在将前沿技术通过代码实践的方式，为相关研究者、开发者由浅入深地提供快速上手、应用昇腾已支持模型和全新模型迁移调优的全流程开发指南。</p>
+<ul>
+<li><strong>🚀 前往昇腾社区探索《大模型开发全流程》系列课程</strong>： </li>
+</ul>
+<p>👉《<a href="https://www.hiascend.com/edu/growth/lm-development#classification-floor-1">大模型开发学习专区</a>》@ 昇腾社区 👈 </p>
+<ul>
+<li><strong>✨ 课程内容展示 ✨</strong></li>
+</ul>
+<!-- <img src="./pics/icon/title.jpg" width="300"/>
+  <img src="./pics/icon/cover.png" width="300"/>
+  <img src="./pics/icon/team.png" width="300"/>
+  <img src="./pics/icon/agent.png" width="300"/> -->
+
+<p align = "center">
+  <img src="./pics/icon/title.jpg" width="48%"/>
+  <img src="./pics/icon/cover.png" width="48%"/>
+  <img src="./pics/icon/team.png" width="48%"/>
+  <img src="./pics/icon/agent.png" width="48%"/>
+</p>
+
+<h2>🙏 免责声明</h2>
+<p>本教程所有内容仅仅来自于贡献者的个人经验、互联网数据、日常科研工作中的相关积累。所有技巧仅供参考，不保证百分百正确。若有任何问题，欢迎提交 Issue 或 PR。另本项目所用徽章来自互联网，如侵犯了您的图片版权请联系我们删除，谢谢。</p>
+<h2>🤝 欢迎贡献</h2>
+<p>本教程目前是一个正在进行中的项目，如有疏漏在所难免，欢迎任何的PR及issue讨论。</p>
+<h2>❤️ 贡献者列表</h2>
+<p>感谢以下老师和同学对本项目的支持与贡献：</p>
+<p><strong>《动手学大模型》系列教程开发团队</strong>：</p>
+<ul>
+<li>
+<p>上海交通大学：<a href="https://bcmi.sjtu.edu.cn/home/zhangzs/">张倬胜</a>、<a href="https://github.com/Lordog">袁童鑫</a>、<a href="https://scholar.google.com/citations?user=LpUi3EgAAAAJ&amp;hl=zh-CN&amp;oi=ao">马欣贝</a>、 <a href="https://zwhe99.github.io">何志威</a>、<a href="https://scholar.google.com/citations?user=tFYUBLkAAAAJ&amp;hl=en">杜巍</a>、<a href="https://dongdongzhaoup.github.io/">赵皓东</a>、<a href="https://zrw00.github.io/">吴宗儒</a>、<a href="https://wuzheng02.github.io/">吴铮</a>、<a href="https://github.com/LZ-Dong">董凌众</a>、<a href="https://aslan-yulong.github.io/">张玉龙</a></p>
+</li>
+<li>
+<p>新加坡国立大学：<a href="http://haofei.vip/">费豪</a></p>
+</li>
+</ul>
+<p><strong>《大模型开发全流程》系列教程开发团队：</strong></p>
+<ul>
+<li>上海交通大学：<a href="https://bcmi.sjtu.edu.cn/home/zhangzs/">张倬胜</a>、<a href="https://infosec.sjtu.edu.cn/DirectoryDetail.aspx?id=75">刘功申</a>、<a href="https://scholar.google.com/citations?user=d-dNtjrMJ5YC&amp;hl=en">陈星宇</a>、<a href="https://scholar.google.com/citations?user=qxnwzDUAAAAJ&amp;hl=en">程彭洲</a>、<a href="https://github.com/LZ-Dong">董凌众</a>、 <a href="https://zwhe99.github.io">何志威</a>、<a href="https://scholar.google.com/citations?user=f8PPcnoAAAAJ&amp;hl=en">鞠天杰</a>、<a href="https://scholar.google.com/citations?user=LpUi3EgAAAAJ&amp;hl=zh-CN&amp;oi=ao">马欣贝</a>、 <a href="https://scholar.google.com/citations?hl=zh-CN&amp;user=qBM1UbUAAAAJ&amp;view_op=list_works&amp;gmla=AIfU4H6PG9JyjRub6BYIIZ4isQE7MBAM3Eoec6OJfX4z_8-pOE8bI1Wgdo3XL5qOZWR3U-h-lIP2q0zXt5gzyFKMSg7MNnBBWLv5d1IVG30UANczTP0">吴铮</a>、<a href="https://zrw00.github.io/">吴宗儒</a>、[闫子赫](https://scholar.google</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Lordog/dive-into-llms#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">AUTOMATIC1111 /</span>
+          <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" rel="noopener">stable-diffusion-webui</a>
+        </div>
+        <div class="repo-desc">Stable Diffusion web UI</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 162,940</span>
+      <span class="meta-item">🍴 30,339</span>
+      <span class="stars-today">⭐ 39 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Stable Diffusion web UI</h1>
+<p>A web interface for Stable Diffusion, implemented using Gradio library.</p>
+<p><img alt="" src="screenshot.png" /></p>
+<h2>Features</h2>
+<p><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features">Detailed feature showcase with images</a>:<br />
+- Original txt2img and img2img modes<br />
+- One click install and run script (but you still must install python and git)<br />
+- Outpainting<br />
+- Inpainting<br />
+- Color Sketch<br />
+- Prompt Matrix<br />
+- Stable Diffusion Upscale<br />
+- Attention, specify parts of text that the model should pay more attention to<br />
+    - a man in a <code>((tuxedo))</code> - will pay more attention to tuxedo<br />
+    - a man in a <code>(tuxedo:1.21)</code> - alternative syntax<br />
+    - select text and press <code>Ctrl+Up</code> or <code>Ctrl+Down</code> (or <code>Command+Up</code> or <code>Command+Down</code> if you're on a MacOS) to automatically adjust attention to selected text (code contributed by anonymous user)<br />
+- Loopback, run img2img processing multiple times<br />
+- X/Y/Z plot, a way to draw a 3 dimensional plot of images with different parameters<br />
+- Textual Inversion<br />
+    - have as many embeddings as you want and use any names you like for them<br />
+    - use multiple embeddings with different numbers of vectors per token<br />
+    - works with half precision floating point numbers<br />
+    - train embeddings on 8GB (also reports of 6GB working)<br />
+- Extras tab with:<br />
+    - GFPGAN, neural network that fixes faces<br />
+    - CodeFormer, face restoration tool as an alternative to GFPGAN<br />
+    - RealESRGAN, neural network upscaler<br />
+    - ESRGAN, neural network upscaler with a lot of third party models<br />
+    - SwinIR and Swin2SR (<a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/pull/2092">see here</a>), neural network upscalers<br />
+    - LDSR, Latent diffusion super resolution upscaling<br />
+- Resizing aspect ratio options<br />
+- Sampling method selection<br />
+    - Adjust sampler eta values (noise multiplier)<br />
+    - More advanced noise setting options<br />
+- Interrupt processing at any time<br />
+- 4GB video card support (also reports of 2GB working)<br />
+- Correct seeds for batches<br />
+- Live prompt token length validation<br />
+- Generation parameters<br />
+     - parameters you used to generate images are saved with that image<br />
+     - in PNG chunks for PNG, in EXIF for JPEG<br />
+     - can drag the image to PNG info tab to restore generation parameters and automatically copy them into UI<br />
+     - can be disabled in settings<br />
+     - drag and drop an image/text-parameters to promptbox<br />
+- Read Generation Parameters Button, loads parameters in promptbox to UI<br />
+- Settings page<br />
+- Running arbitrary python code from UI (must run with <code>--allow-code</code> to enable)<br />
+- Mouseover hints for most UI elements<br />
+- Possible to change defaults/mix/max/step values for UI elements via text config<br />
+- Tiling support, a checkbox to create images that can be tiled like textures<br />
+- Progress bar and live image generation preview<br />
+    - Can use a separate neural network to produce previews with almost none VRAM or compute requirement<br />
+- Negative prompt, an extra text field that allows you to list what you don't want to see in generated image<br />
+- Styles, a way to save part of prompt and easily apply them via dropdown later<br />
+- Variations, a way to generate same image but with tiny differences<br />
+- Seed resizing, a way to generate same image but at slightly different resolution<br />
+- CLIP interrogator, a button that tries to guess prompt from an image<br />
+- Prompt Editing, a way to change prompt mid-generation, say to start making a watermelon and switch to anime girl midway<br />
+- Batch Processing, process a group of files using img2img<br />
+- Img2img Alternative, reverse Euler method of cross attention control<br />
+- Highres Fix, a convenience option to produce high resolution pictures in one click without usual distortions<br />
+- Reloading checkpoints on the fly<br />
+- Checkpoint Merger, a tab that allows you to merge up to 3 checkpoints into one<br />
+- <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Custom-Scripts">Custom scripts</a> with many extensions from community<br />
+- <a href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">Composable-Diffusion</a>, a way to use multiple prompts at once<br />
+     - separate prompts using uppercase <code>AND</code><br />
+     - also supports weights for prompts: <code>a cat :1.2 AND a dog AND a penguin :2.2</code><br />
+- No token limit for prompts (original stable diffusion lets you use up to 75 tokens)<br />
+- DeepDanbooru integration, creates danbooru style tags for anime prompts<br />
+- <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers">xformers</a>, major speed increase for select cards: (add <code>--xformers</code> to commandline args)<br />
+- via extension: <a href="https://github.com/yfszzx/stable-diffusion-webui-images-browser">History tab</a>: view, direct and delete images conveniently within the UI<br />
+- Generate forever option<br />
+- Training tab<br />
+     - hypernetworks and embeddings options<br />
+     - Preprocessing images: cropping, mirroring, autotagging using BLIP or deepdanbooru (for anime)<br />
+- Clip skip<br />
+- Hypernetworks<br />
+- Loras (same as Hypernetworks but more pretty)<br />
+- A separate UI where you can choose, with preview, which embeddings, hypernetworks or Loras to add to your prompt<br />
+- Can select to load a different VAE from settings screen<br />
+- Estimated completion time in progress bar<br />
+- API<br />
+- Support for dedicated <a href="https://github.com/runwayml/stable-diffusion#inpainting-with-stable-diffusion">inpainting model</a> by RunwayML<br />
+- via extension: <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui-aesthetic-gradients">Aesthetic Gradients</a>, a way to generate images with a specific aesthetic by using clip images embeds (implementation of <a href="https://github.com/vicgalle/stable-diffusion-aesthetic-gradients">https://github.com/vicgalle/stable-diffusion-aesthetic-gradients</a>)<br />
+- <a href="https://github.com/Stability-AI/stablediffusion">Stable Diffusion 2.0</a> support - see <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#stable-diffusion-20">wiki</a> for instructions<br />
+- <a href="https://arxiv.org/abs/2211.06679">Alt-Diffusion</a> support - see <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#alt-diffusion">wiki</a> for instructions<br />
+- Now without any bad letters!<br />
+- Load checkpoints in safetensors format<br />
+- Eased resolution restriction: generated image's dimensions must be a multiple of 8 rather than 64<br />
+- Now with a license!<br />
+- Reorder elements in the UI from settings screen<br />
+- <a href="https://huggingface.co/segmind/SSD-1B">Segmind Stable Diffusion</a> support</p>
+<h2>Installation and Running</h2>
+<p>Make sure the required <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies">dependencies</a> are met and follow the instructions available for:<br />
+- <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs">NVidia</a> (recommended)<br />
+- <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-AMD-GPUs">AMD</a> GPUs.<br />
+- <a href="https://github.com/openvinotoolkit/stable-diffusion-webui/wiki/Installation-on-Intel-Silicon">Intel CPUs, Intel GPUs (both integrated and discrete)</a> (external wiki page)<br />
+- <a href="https://github.com/wangshuai09/stable-diffusion-webui/wiki/Install-and-run-on-Ascend-NPUs">Ascend NPUs</a> (external wiki page)</p>
+<p>Alternatively, use online services (like Google Colab):</p>
+<ul>
+<li><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services">List of Online Services</a></li>
+</ul>
+<h3>Installation on Windows 10/11 with NVidia-GPUs using release package</h3>
+<ol>
+<li>Download <code>sd.webui.zip</code> from <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/releases/tag/v1.0.0-pre">v1.0.0-pre</a> and extract its contents.</li>
+<li>Run <code>update.bat</code>.</li>
+<li>Run <code>run.bat</code>.<blockquote>
+<p>For more details see <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs">Install-and-Run-on-NVidia-GPUs</a></p>
+</blockquote>
+</li>
+</ol>
+<h3>Automatic Installation on Windows</h3>
+<ol>
+<li>Install <a href="https://www.python.org/downloads/release/python-3106/">Python 3.10.6</a> (Newer version of Python does not support torch), checking "Add Python to PATH".</li>
+<li>Install [git](https://git-scm.com/download/wi</li>
+</ol>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">rasbt /</span>
+          <a href="https://github.com/rasbt/LLMs-from-scratch" target="_blank" rel="noopener">LLMs-from-scratch</a>
+        </div>
+        <div class="repo-desc">Implement a ChatGPT-like LLM in PyTorch from scratch, step by step</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+      <span class="meta-item">⭐ 93,174</span>
+      <span class="meta-item">🍴 14,354</span>
+      <span class="stars-today">⭐ 337 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Build a Large Language Model (From Scratch)</h1>
+<p>This repository contains the code for developing, pretraining, and finetuning a GPT-like LLM and is the official code repository for the book <a href="https://amzn.to/4fqvn0D">Build a Large Language Model (From Scratch)</a>.</p>
+<p><br><br />
+<br></p>
+<p><a href="https://amzn.to/4fqvn0D"><img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/cover.jpg?123" width="250px"></a></p>
+<p><br></p>
+<p>In <a href="http://mng.bz/orYv"><em>Build a Large Language Model (From Scratch)</em></a>, you'll learn and understand how large language models (LLMs) work from the inside out by coding them from the ground up, step by step. In this book, I'll guide you through creating your own LLM, explaining each stage with clear text, diagrams, and examples.</p>
+<p>The method described in this book for training and developing your own small-but-functional model for educational purposes mirrors the approach used in creating large-scale foundational models such as those behind ChatGPT. In addition, this book includes code for loading the weights of larger pretrained models for finetuning.</p>
+<ul>
+<li>Link to the official <a href="https://github.com/rasbt/LLMs-from-scratch">source code repository</a></li>
+<li><a href="http://mng.bz/orYv">Link to the book at Manning (the publisher's website)</a></li>
+<li><a href="https://www.amazon.com/gp/product/1633437167">Link to the book page on Amazon.com</a></li>
+<li>ISBN 9781633437166</li>
+</ul>
+<p><a href="http://mng.bz/orYv#reviews"><img src="https://sebastianraschka.com//images/LLMs-from-scratch-images/other/reviews.png" width="220px"></a></p>
+<p><br><br />
+<br></p>
+<p>To download a copy of this repository, click on the <a href="https://github.com/rasbt/LLMs-from-scratch/archive/refs/heads/main.zip">Download ZIP</a> button or execute the following command in your terminal:</p>
+<pre><code class="language-bash">git clone --depth 1 https://github.com/rasbt/LLMs-from-scratch.git
+</code></pre>
+<p><br></p>
+<p>(If you downloaded the code bundle from the Manning website, please consider visiting the official code repository on GitHub at <a href="https://github.com/rasbt/LLMs-from-scratch">https://github.com/rasbt/LLMs-from-scratch</a> for the latest updates.)</p>
+<p><br><br />
+<br></p>
+<h1>Table of Contents</h1>
+<p>Please note that this <code>README.md</code> file is a Markdown (<code>.md</code>) file. If you have downloaded this code bundle from the Manning website and are viewing it on your local computer, I recommend using a Markdown editor or previewer for proper viewing. If you haven't installed a Markdown editor yet, <a href="https://ghostwriter.kde.org">Ghostwriter</a> is a good free option.</p>
+<p>You can alternatively view this and other files on GitHub at <a href="https://github.com/rasbt/LLMs-from-scratch">https://github.com/rasbt/LLMs-from-scratch</a> in your browser, which renders Markdown automatically.</p>
+<p><br><br />
+<br></p>
+<blockquote>
+<p><strong>Tip:</strong><br />
+If you're seeking guidance on installing Python and Python packages and setting up your code environment, I suggest reading the <a href="setup/README.md">README.md</a> file located in the <a href="setup">setup</a> directory.</p>
+</blockquote>
+<p><br><br />
+<br></p>
+<p><a href="https://github.com/rasbt/LLMs-from-scratch/actions/workflows/basic-tests-linux-uv.yml"><img alt="Code tests Linux" src="https://github.com/rasbt/LLMs-from-scratch/actions/workflows/basic-tests-linux-uv.yml/badge.svg" /></a><br />
+<a href="https://github.com/rasbt/LLMs-from-scratch/actions/workflows/basic-tests-windows-uv-pip.yml"><img alt="Code tests Windows" src="https://github.com/rasbt/LLMs-from-scratch/actions/workflows/basic-tests-windows-uv-pip.yml/badge.svg" /></a><br />
+<a href="https://github.com/rasbt/LLMs-from-scratch/actions/workflows/basic-tests-macos-uv.yml"><img alt="Code tests macOS" src="https://github.com/rasbt/LLMs-from-scratch/actions/workflows/basic-tests-macos-uv.yml/badge.svg" /></a></p>
+<ul>
+<li><a href="./troubleshooting.md">Troubleshooting Guide</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Chapter Title</th>
+<th>Main Code (for Quick Access)</th>
+<th>All Code + Supplementary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="setup">Setup recommendations</a> <br/><a href="https://sebastianraschka.com/blog/2025/reading-books.html">How to best read this book</a></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ch 1: Understanding Large Language Models</td>
+<td>No code</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ch 2: Working with Text Data</td>
+<td>- <a href="ch02/01_main-chapter-code/ch02.ipynb">ch02.ipynb</a><br/>- <a href="ch02/01_main-chapter-code/dataloader.ipynb">dataloader.ipynb</a> (summary)<br/>- <a href="ch02/01_main-chapter-code/exercise-solutions.ipynb">exercise-solutions.ipynb</a></td>
+<td><a href="./ch02">./ch02</a></td>
+</tr>
+<tr>
+<td>Ch 3: Coding Attention Mechanisms</td>
+<td>- <a href="ch03/01_main-chapter-code/ch03.ipynb">ch03.ipynb</a><br/>- <a href="ch03/01_main-chapter-code/multihead-attention.ipynb">multihead-attention.ipynb</a> (summary) <br/>- <a href="ch03/01_main-chapter-code/exercise-solutions.ipynb">exercise-solutions.ipynb</a></td>
+<td><a href="./ch03">./ch03</a></td>
+</tr>
+<tr>
+<td>Ch 4: Implementing a GPT Model from Scratch</td>
+<td>- <a href="ch04/01_main-chapter-code/ch04.ipynb">ch04.ipynb</a><br/>- <a href="ch04/01_main-chapter-code/gpt.py">gpt.py</a> (summary)<br/>- <a href="ch04/01_main-chapter-code/exercise-solutions.ipynb">exercise-solutions.ipynb</a></td>
+<td><a href="./ch04">./ch04</a></td>
+</tr>
+<tr>
+<td>Ch 5: Pretraining on Unlabeled Data</td>
+<td>- <a href="ch05/01_main-chapter-code/ch05.ipynb">ch05.ipynb</a><br/>- <a href="ch05/01_main-chapter-code/gpt_train.py">gpt_train.py</a> (summary) <br/>- <a href="ch05/01_main-chapter-code/gpt_generate.py">gpt_generate.py</a> (summary) <br/>- <a href="ch05/01_main-chapter-code/exercise-solutions.ipynb">exercise-solutions.ipynb</a></td>
+<td><a href="./ch05">./ch05</a></td>
+</tr>
+<tr>
+<td>Ch 6: Finetuning for Text Classification</td>
+<td>- <a href="ch06/01_main-chapter-code/ch06.ipynb">ch06.ipynb</a>  <br/>- <a href="ch06/01_main-chapter-code/gpt_class_finetune.py">gpt_class_finetune.py</a>  <br/>- <a href="ch06/01_main-chapter-code/exercise-solutions.ipynb">exercise-solutions.ipynb</a></td>
+<td><a href="./ch06">./ch06</a></td>
+</tr>
+<tr>
+<td>Ch 7: Finetuning to Follow Instructions</td>
+<td>- <a href="ch07/01_main-chapter-code/ch07.ipynb">ch07.ipynb</a><br/>- <a href="ch07/01_main-chapter-code/gpt_instruction_finetuning.py">gpt_instruction_finetuning.py</a> (summary)<br/>- <a href="ch07/01_main-chapter-code/ollama_evaluate.py">ollama_evaluate.py</a> (summary)<br/>- <a href="ch07/01_main-chapter-code/exercise-solutions.ipynb">exercise-solutions.ipynb</a></td>
+<td><a href="./ch07">./ch07</a></td>
+</tr>
+<tr>
+<td>Appendix A: Introduction to PyTorch</td>
+<td>- <a href="appendix-A/01_main-chapter-code/code-part1.ipynb">code-part1.ipynb</a><br/>- <a href="appendix-A/01_main-chapter-code/code-part2.ipynb">code-part2.ipynb</a><br/>- <a href="appendix-A/01_main-chapter-code/DDP-script.py">DDP-script.py</a><br/>- <a href="appendix-A/01_main-chapter-code/exercise-solutions.ipynb">exercise-solutions.ipynb</a></td>
+<td><a href="./appendix-A">./appendix-A</a></td>
+</tr>
+<tr>
+<td>Appendix B: References and Further Reading</td>
+<td>No code</td>
+<td><a href="./appendix-B">./appendix-B</a></td>
+</tr>
+<tr>
+<td>Appendix C: Exercise Solutions</td>
+<td>- <a href="appendix-C">list of exercise solutions</a></td>
+<td><a href="./appendix-C">./appendix-C</a></td>
+</tr>
+<tr>
+<td>Appendix D: Adding Bells and Whistles to the Training Loop</td>
+<td>- <a href="appendix-D/01_main-chapter-code/appendix-D.ipynb">appendix-D.ipynb</a></td>
+<td><a href="./appendix-D">./appendix-D</a></td>
+</tr>
+<tr>
+<td>Appendix E: Parameter-efficient Finetuning with LoRA</td>
+<td>- <a href="appendix-E/01_main-chapter-code/appendix-E.ipynb">appendix-E.ipynb</a></td>
+<td><a href="./appendix-E">./appendix-E</a></td>
+</tr>
+</tbody>
+</table>
+<p><br><br />
+&nbsp;</p>
+<p>The mental model below summarizes the contents covered in this book.</p>
+<p>&lt;img src="https://s</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/rasbt/LLMs-from-scratch#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#12</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">NousResearch /</span>
+          <a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">hermes-agent</a>
+        </div>
+        <div class="repo-desc">The agent that grows with you</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 145,370</span>
+      <span class="meta-item">🍴 22,741</span>
+      <span class="stars-today">⭐ 2,065 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="assets/banner.png" alt="Hermes Agent" width="100%">
+</p>
+
+<h1>Hermes Agent ☤</h1>
+<p align="center">
+  <a href="https://hermes-agent.nousresearch.com/docs/"><img src="https://img.shields.io/badge/Docs-hermes--agent.nousresearch.com-FFD700?style=for-the-badge" alt="Documentation"></a>
+  <a href="https://discord.gg/NousResearch"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
+  <a href="https://github.com/NousResearch/hermes-agent/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
+  <a href="https://nousresearch.com"><img src="https://img.shields.io/badge/Built%20by-Nous%20Research-blueviolet?style=for-the-badge" alt="Built by Nous Research"></a>
+  <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/Lang-中文-red?style=for-the-badge" alt="中文"></a>
+</p>
+
+<p><strong>The self-improving AI agent built by <a href="https://nousresearch.com">Nous Research</a>.</strong> It's the only agent with a built-in learning loop — it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions. Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle. It's not tied to your laptop — talk to it from Telegram while it works on a cloud VM.</p>
+<p>Use any model you want — <a href="https://portal.nousresearch.com">Nous Portal</a>, <a href="https://openrouter.ai">OpenRouter</a> (200+ models), <a href="https://build.nvidia.com">NVIDIA NIM</a> (Nemotron), <a href="https://platform.xiaomimimo.com">Xiaomi MiMo</a>, <a href="https://z.ai">z.ai/GLM</a>, <a href="https://platform.moonshot.ai">Kimi/Moonshot</a>, <a href="https://www.minimax.io">MiniMax</a>, <a href="https://huggingface.co">Hugging Face</a>, OpenAI, or your own endpoint. Switch with <code>hermes model</code> — no code changes, no lock-in.</p>
+<table>
+<tr><td><b>A real terminal interface</b></td><td>Full TUI with multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and streaming tool output.</td></tr>
+<tr><td><b>Lives where you do</b></td><td>Telegram, Discord, Slack, WhatsApp, Signal, and CLI — all from a single gateway process. Voice memo transcription, cross-platform conversation continuity.</td></tr>
+<tr><td><b>A closed learning loop</b></td><td>Agent-curated memory with periodic nudges. Autonomous skill creation after complex tasks. Skills self-improve during use. FTS5 session search with LLM summarization for cross-session recall. <a href="https://github.com/plastic-labs/honcho">Honcho</a> dialectic user modeling. Compatible with the <a href="https://agentskills.io">agentskills.io</a> open standard.</td></tr>
+<tr><td><b>Scheduled automations</b></td><td>Built-in cron scheduler with delivery to any platform. Daily reports, nightly backups, weekly audits — all in natural language, running unattended.</td></tr>
+<tr><td><b>Delegates and parallelizes</b></td><td>Spawn isolated subagents for parallel workstreams. Write Python scripts that call tools via RPC, collapsing multi-step pipelines into zero-context-cost turns.</td></tr>
+<tr><td><b>Runs anywhere, not just your laptop</b></td><td>Seven terminal backends — local, Docker, SSH, Singularity, Modal, Daytona, and Vercel Sandbox. Daytona and Modal offer serverless persistence — your agent's environment hibernates when idle and wakes on demand, costing nearly nothing between sessions. Run it on a $5 VPS or a GPU cluster.</td></tr>
+<tr><td><b>Research-ready</b></td><td>Batch trajectory generation, Atropos RL environments, trajectory compression for training the next generation of tool-calling models.</td></tr>
+</table>
+
+<hr />
+<h2>Quick Install</h2>
+<h3>Linux, macOS, WSL2, Termux</h3>
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+</code></pre>
+<h3>Windows (native, PowerShell) — Early Beta</h3>
+<blockquote>
+<p><strong>Heads up:</strong> Native Windows support is <strong>early beta</strong>. It installs and runs, but hasn't been road-tested as broadly as our Linux/macOS/WSL2 paths. Please <a href="https://github.com/NousResearch/hermes-agent/issues">file issues</a> when you hit rough edges. For the most battle-tested Windows setup today, run the Linux/macOS one-liner above inside <strong>WSL2</strong>.</p>
+</blockquote>
+<p>Run this in PowerShell:</p>
+<pre><code class="language-powershell">irm https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.ps1 | iex
+</code></pre>
+<p>The installer handles everything: uv, Python 3.11, Node.js, ripgrep, ffmpeg, <strong>and a portable Git Bash</strong> (MinGit, unpacked to <code>%LOCALAPPDATA%\hermes\git</code> — no admin required, completely isolated from any system Git install).  Hermes uses this bundled Git Bash to run shell commands.</p>
+<p>If you already have Git installed, the installer detects it and uses that instead.  Otherwise a ~45MB MinGit download is all you need — it won't touch or interfere with any system Git.</p>
+<blockquote>
+<p><strong>Android / Termux:</strong> The tested manual path is documented in the <a href="https://hermes-agent.nousresearch.com/docs/getting-started/termux">Termux guide</a>. On Termux, Hermes installs a curated <code>.[termux]</code> extra because the full <code>.[all]</code> extra currently pulls Android-incompatible voice dependencies.</p>
+<p><strong>Windows:</strong> Native Windows is supported as an <strong>early beta</strong> — the PowerShell one-liner above installs everything, but expect rough edges and please file issues when you hit them. If you'd rather use WSL2 (our most battle-tested Windows path), the Linux command works there too. Native Windows install lives under <code>%LOCALAPPDATA%\hermes</code>; WSL2 installs under <code>~/.hermes</code> as on Linux.  The only Hermes feature that currently needs WSL2 specifically is the browser-based dashboard chat pane (it uses a POSIX PTY — classic CLI and gateway both run natively).</p>
+</blockquote>
+<p>After installation:</p>
+<pre><code class="language-bash">source ~/.bashrc    # reload shell (or: source ~/.zshrc)
+hermes              # start chatting!
+</code></pre>
+<hr />
+<h2>Getting Started</h2>
+<pre><code class="language-bash">hermes              # Interactive CLI — start a conversation
+hermes model        # Choose your LLM provider and model
+hermes tools        # Configure which tools are enabled
+hermes config set   # Set individual config values
+hermes gateway      # Start the messaging gateway (Telegram, Discord, etc.)
+hermes setup        # Run the full setup wizard (configures everything at once)
+hermes claw migrate # Migrate from OpenClaw (if coming from OpenClaw)
+hermes update       # Update to the latest version
+hermes doctor       # Diagnose any issues
+</code></pre>
+<p>📖 <strong><a href="https://hermes-agent.nousresearch.com/docs/">Full documentation →</a></strong></p>
+<h2>CLI vs Messaging Quick Reference</h2>
+<p>Hermes has two entry points: start the terminal UI with <code>hermes</code>, or run the gateway and talk to it from Telegram, Discord, Slack, WhatsApp, Signal, or Email. Once you're in a conversation, many slash commands are shared across both interfaces.</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>CLI</th>
+<th>Messaging platforms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Start chatting</td>
+<td><code>hermes</code></td>
+<td>Run <code>hermes gateway setup</code> + <code>hermes gateway start</code>, then send the bot a message</td>
+</tr>
+<tr>
+<td>Start fresh conversation</td>
+<td><code>/new</code> or <code>/reset</code></td>
+<td><code>/new</code> or <code>/reset</code></td>
+</tr>
+<tr>
+<td>Change model</td>
+<td><code>/model [provider:model]</code></td>
+<td><code>/model [provider:model]</code></td>
+</tr>
+<tr>
+<td>Set a personality</td>
+<td><code>/personality [name]</code></td>
+<td><code>/personality [name]</code></td>
+</tr>
+<tr>
+<td>Retry or undo the last turn</td>
+<td><code>/retry</code>, <code>/undo</code></td>
+<td><code>/retry</code>, <code>/undo</code></td>
+</tr>
+<tr>
+<td>Compress context / check usage</td>
+<td><code>/compress</code>, <code>/usage</code>, <code>/insights [--days N]</code></td>
+<td><code>/compress</code>, <code>/usage</code>, <code>/insights [days]</code></td>
+</tr>
+<tr>
+<td>Browse skills</td>
+<td><code>/skills</code> or <code>/&lt;skill-name&gt;</code></td>
+<td><code>/&lt;skill-name&gt;</code></td>
+</tr>
+<tr>
+<td>Interrupt current work</td>
+<td><code>Ctrl+C</code> or send a new message</td>
+<td><code>/stop</code> or send a new message</td>
+</tr>
+<tr>
+<td>Platform-specific status</td>
+<td><code>/platforms</code></td>
+<td><code>/status</code>, <code>/sethome</code></td>
+</tr>
+</tbody>
+</table>
+<p>For the full command lists, see the <a href="https://hermes-agent.nousresearch.com/docs/user-guide/cli">CLI guide</a> and the <a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging">Messaging Gateway guide</a>.</p>
+<hr />
+<h2>Documentation</h2>
+<p>All documentation lives at *<em><a href="https://hermes-agent.nousresearch.com/docs/">hermes-agent.nousresearch.com/docs</a></em></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/NousResearch/hermes-agent#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#13</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">rohitg00 /</span>
+          <a href="https://github.com/rohitg00/agentmemory" target="_blank" rel="noopener">agentmemory</a>
+        </div>
+        <div class="repo-desc">#1 Persistent memory for AI coding agents based on real-world benchmarks</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 4,979</span>
+      <span class="meta-item">🍴 469</span>
+      <span class="stars-today">⭐ 430 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="assets/banner.png" alt="agentmemory — Persistent memory for AI coding agents" width="720" />
+</p>
+
+<p align="center">
+  <strong>
+    Your coding agent remembers everything. No more re-explaining.
+    Built on <a href="https://github.com/iii-hq/iii">iii engine</a>
+  </strong></br>
+  Persistent memory for Claude Code, Cursor, Gemini CLI, Codex CLI, pi, OpenCode, and any MCP client.
+</p>
+
+<p align="center">
+  <a href="https://gist.github.com/rohitg00/2067ab416f7bbe447c1977edaaa681e2"><img src="https://img.shields.io/badge/Viral%20GitHub%20Gist-1050%20stars%20%2F%20150%20forks-FF6B35?style=for-the-badge&logo=github&logoColor=white&labelColor=1a1a1a" alt="Design doc: 1050 stars / 150 forks on the gist" /></a>
+</p>
+
+<p align="center">
+  <strong>The gist extends Karpathy's LLM Wiki pattern with confidence scoring, lifecycle, knowledge graphs, and hybrid search.<br/> agentmemory is the implementation.</strong>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@agentmemory/agentmemory"><img src="https://img.shields.io/npm/v/@agentmemory/agentmemory?color=CB3837&label=npm&style=for-the-badge&logo=npm" alt="npm version" /></a>
+  <a href="https://github.com/rohitg00/agentmemory/actions"><img src="https://img.shields.io/github/actions/workflow/status/rohitg00/agentmemory/ci.yml?label=tests&style=for-the-badge&logo=github" alt="CI" /></a>
+  <a href="https://github.com/rohitg00/agentmemory/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rohitg00/agentmemory?color=blue&style=for-the-badge" alt="License" /></a>
+  <a href="https://github.com/rohitg00/agentmemory/stargazers"><img src="https://img.shields.io/github/stars/rohitg00/agentmemory?style=for-the-badge&color=yellow&logo=github" alt="Stars" /></a>
+</p>
+
+<p align="center">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/tags/light/stat-recall.svg"><img src="assets/tags/stat-recall.svg" alt="95.2% retrieval R@5" height="38" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/tags/light/stat-tokens.svg"><img src="assets/tags/stat-tokens.svg" alt="92% fewer tokens" height="38" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/tags/light/stat-tools.svg"><img src="assets/tags/stat-tools.svg" alt="51 MCP tools" height="38" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/tags/light/stat-hooks.svg"><img src="assets/tags/stat-hooks.svg" alt="12 auto hooks" height="38" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/tags/light/stat-deps.svg"><img src="assets/tags/stat-deps.svg" alt="0 external DBs" height="38" /></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/tags/light/stat-tests.svg"><img src="assets/tags/stat-tests.svg" alt="827 tests passing" height="38" /></picture>
+</p>
+
+<p align="center">
+  <img src="assets/demo.gif" alt="agentmemory demo" width="720" />
+</p>
+
+<p align="center">
+  <a href="#quick-start">Quick Start</a> &bull;
+  <a href="#benchmarks">Benchmarks</a> &bull;
+  <a href="#vs-competitors">vs Competitors</a> &bull;
+  <a href="#works-with-every-agent">Agents</a> &bull;
+  <a href="#how-it-works">How It Works</a> &bull;
+  <a href="#mcp-server">MCP</a> &bull;
+  <a href="#real-time-viewer">Viewer</a> &bull;
+  <a href="#iii-console">iii Console</a> &bull;
+  <a href="#powered-by-iii">Powered by iii</a> &bull;
+  <a href="#configuration">Config</a> &bull;
+  <a href="#api">API</a>
+</p>
+
+<hr />
+<h2 id="works-with-every-agent"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/tags/light/section-agents.svg"><img src="assets/tags/section-agents.svg" alt="Works with every agent" height="32" /></picture></h2>
+
+<p>agentmemory works with any agent that supports hooks, MCP, or REST API. All agents share the same memory server.</p>
+<table>
+<tr>
+<td align="center" width="12.5%">
+<a href="https://claude.com/product/claude-code"><img src="https://matthiasroder.com/content/images/2026/01/Claude.png?size=120" alt="Claude Code" width="48" height="48" /></a><br/>
+<strong>Claude Code</strong><br/>
+<sub>12 hooks + MCP + skills</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="integrations/openclaw/"><img src="https://github.com/openclaw.png?size=120" alt="OpenClaw" width="48" height="48" /></a><br/>
+<strong>OpenClaw</strong><br/>
+<sub>MCP + <a href="integrations/openclaw/">plugin</a></sub>
+</td>
+<td align="center" width="12.5%">
+<a href="integrations/hermes/"><img src="https://github.com/NousResearch.png?size=120" alt="Hermes" width="48" height="48" /></a><br/>
+<strong>Hermes</strong><br/>
+<sub>MCP + <a href="integrations/hermes/">plugin</a></sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://cursor.com"><img src="https://www.freelogovectors.net/wp-content/uploads/2025/06/cursor-logo-freelogovectors.net_.png" alt="Cursor" width="48" height="48" /></a><br/>
+<strong>Cursor</strong><br/>
+<sub>MCP server</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://github.com/google-gemini/gemini-cli"><img src="https://github.com/google-gemini.png?size=120" alt="Gemini CLI" width="48" height="48" /></a><br/>
+<strong>Gemini CLI</strong><br/>
+<sub>MCP server</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://github.com/opencode-ai/opencode"><img src="https://github.com/opencode-ai.png?size=120" alt="OpenCode" width="48" height="48" /></a><br/>
+<strong>OpenCode</strong><br/>
+<sub>MCP server</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://github.com/openai/codex"><img src="https://github.com/openai.png?size=120" alt="Codex CLI" width="48" height="48" /></a><br/>
+<strong>Codex CLI</strong><br/>
+<sub>MCP server</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://github.com/cline/cline"><img src="https://github.com/cline.png?size=120" alt="Cline" width="48" height="48" /></a><br/>
+<strong>Cline</strong><br/>
+<sub>MCP server</sub>
+</td>
+</tr>
+<tr>
+<td align="center" width="12.5%">
+<a href="https://github.com/block/goose"><img src="https://github.com/block.png?size=120" alt="Goose" width="48" height="48" /></a><br/>
+<strong>Goose</strong><br/>
+<sub>MCP server</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://github.com/Kilo-Org/kilocode"><img src="https://github.com/Kilo-Org.png?size=120" alt="Kilo Code" width="48" height="48" /></a><br/>
+<strong>Kilo Code</strong><br/>
+<sub>MCP server</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://github.com/Aider-AI/aider"><img src="https://github.com/Aider-AI.png?size=120" alt="Aider" width="48" height="48" /></a><br/>
+<strong>Aider</strong><br/>
+<sub>REST API</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://claude.ai/download"><img src="https://github.com/anthropics.png?size=120" alt="Claude Desktop" width="48" height="48" /></a><br/>
+<strong>Claude Desktop</strong><br/>
+<sub>MCP server</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://windsurf.com"><img src="https://exafunction.github.io/public/brand/windsurf-black-symbol.svg?size=120" alt="Windsurf" width="48" height="48" /></a><br/>
+<strong>Windsurf</strong><br/>
+<sub>MCP server</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://github.com/RooCodeInc/Roo-Code"><img src="https://github.com/RooCodeInc.png?size=120" alt="Roo Code" width="48" height="48" /></a><br/>
+<strong>Roo Code</strong><br/>
+<sub>MCP server</sub>
+</td>
+<td align="center" width="12.5%">
+<a href="https://github.com/anthropics/claude-agent-sdk-typescript"><img src="https://github.com/anthropics.png?size=120" alt="Claude SDK" width="48" height="48" /></a><br/>
+<strong>Claude SDK</strong><br/>
+<sub>AgentSDKProvider</sub>
+</td>
+<td align="center" width="12.5%">
+<img src="https://img.shields.io/badge/104-endpoints-1f6feb?style=flat-square" alt="REST API" width="48" /><br/>
+<strong>Any agent</strong><br/>
+<sub>REST API</sub>
+</td>
+</tr>
+</table>
+
+<p align="center">
+  <sub>Works with <strong>any</strong> agent
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/rohitg00/agentmemory#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on May 12, 2026  05:52 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
