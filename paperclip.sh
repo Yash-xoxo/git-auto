@@ -1,252 +1,166 @@
-# ============================================================
-# PAPERCLIP - COMPLETE RESET + PERMANENT DOCKER SETUP
-# ============================================================
+cd ~/yash/desktop/paperclip
 
 set -e
 
 CONTAINER="my-paperclip"
 IMAGE="paperclip:latest"
 VOLUME="paperclip_data"
-HOST_PORT="8080"
+ENV_FILE="$PWD/.paperclip.env"
 
-cd "$HOME/yash/desktop/paperclip"
+# ------------------------------------------------------------
+# 1. Create permanent secrets/config once
+# ------------------------------------------------------------
 
-echo
-echo "============================================================"
-echo "1. REMOVE OLD PAPERCLIP"
-echo "============================================================"
+if [ ! -f "$ENV_FILE" ]; then
+  cat > "$ENV_FILE" <<EOF
+BETTER_AUTH_SECRET=$(openssl rand -hex 32)
+PAPERCLIP_AGENT_JWT_SECRET=$(openssl rand -hex 32)
+PAPERCLIP_TOOL_ACTION_SIGNING_SECRET=$(openssl rand -hex 32)
 
-docker rm -f "$CONTAINER" 2>/dev/null || true
-docker volume rm "$VOLUME" 2>/dev/null || true
-docker image rm -f "$IMAGE" 2>/dev/null || true
+HOST=0.0.0.0
+PORT=3100
+PAPERCLIP_HOME=/paperclip
 
-echo
-echo "Old Paperclip container / volume / image removed."
+PAPERCLIP_DEPLOYMENT_MODE=authenticated
+PAPERCLIP_DEPLOYMENT_EXPOSURE=private
 
-echo
-echo "============================================================"
-echo "2. BUILD PAPERCLIP AGAIN"
-echo "============================================================"
+PAPERCLIP_PUBLIC_URL=http://localhost:8080
+PAPERCLIP_AUTH_PUBLIC_BASE_URL=http://localhost:8080
+BETTER_AUTH_URL=http://localhost:8080
 
-docker build --target production -t "$IMAGE" . \
-  || docker build -t "$IMAGE" .
+PAPERCLIP_AGENT_JWT_TTL_SECONDS=3600
+EOF
 
-echo
-echo "Paperclip image built."
+  chmod 600 "$ENV_FILE"
+  echo "Created permanent config: $ENV_FILE"
+else
+  echo "Using existing permanent config: $ENV_FILE"
+fi
 
-echo
-echo "============================================================"
-echo "3. CREATE PERSISTENT VOLUME"
-echo "============================================================"
+# ------------------------------------------------------------
+# 2. Make sure persistent volume exists
+# ------------------------------------------------------------
 
 docker volume create "$VOLUME" >/dev/null
 
-echo "Persistent volume: $VOLUME"
+# ------------------------------------------------------------
+# 3. Remove only the container
+#    DO NOT remove the volume
+# ------------------------------------------------------------
 
-echo
-echo "============================================================"
-echo "4. GENERATE PERMANENT INSTANCE SECRETS"
-echo "============================================================"
+docker rm -f "$CONTAINER" 2>/dev/null || true
 
-BETTER_AUTH_SECRET="$(openssl rand -hex 32)"
-TOOL_SIGNING_SECRET="$(openssl rand -hex 32)"
-
-echo "Secrets generated."
-
-echo
-echo "============================================================"
-echo "5. START PAPERCLIP"
-echo "============================================================"
+# ------------------------------------------------------------
+# 4. Start Paperclip with persistent data + correct auth
+# ------------------------------------------------------------
 
 docker run -d \
   --name "$CONTAINER" \
   --restart unless-stopped \
-  -p "$HOST_PORT:3100" \
-  -e HOST=0.0.0.0 \
-  -e PORT=3100 \
-  -e PAPERCLIP_HOME=/paperclip \
-  -e BETTER_AUTH_SECRET="$BETTER_AUTH_SECRET" \
-  -e PAPERCLIP_TOOL_ACTION_SIGNING_SECRET="$TOOL_SIGNING_SECRET" \
+  --env-file "$ENV_FILE" \
+  -p 8080:3100 \
   -v "$VOLUME:/paperclip" \
   "$IMAGE"
 
-echo
-echo "Container started."
-echo
-docker ps --filter "name=$CONTAINER"
+# ------------------------------------------------------------
+# 5. Wait for Paperclip to fully start
+# ------------------------------------------------------------
 
 echo
-echo "============================================================"
-echo "6. WAIT FOR PAPERCLIP TO FULLY START"
-echo "============================================================"
-
-READY=0
+echo "Waiting for Paperclip..."
 
 for i in $(seq 1 60); do
-    if docker exec "$CONTAINER" \
-        node -e "fetch('http://127.0.0.1:3100/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))" \
-        >/dev/null 2>&1
-    then
-        READY=1
-        break
-    fi
+  if curl -fsS http://localhost:8080/api/health >/dev/null 2>&1; then
+    echo "Paperclip is READY."
+    break
+  fi
 
-    echo "Waiting for Paperclip... $i/60"
-    sleep 2
+  echo "Starting... $i/60"
+  sleep 2
 done
 
-if [ "$READY" != "1" ]; then
-    echo
-    echo "Paperclip did not become ready."
-    echo
-    docker logs --tail 200 "$CONTAINER"
-    exit 1
+# ------------------------------------------------------------
+# 6. Verify important environment variables
+# ------------------------------------------------------------
+
+echo
+echo "===== CONFIG CHECK ====="
+
+docker exec "$CONTAINER" sh -c '
+echo "HOST=$HOST"
+echo "PORT=$PORT"
+echo "PAPERCLIP_HOME=$PAPERCLIP_HOME"
+echo "PAPERCLIP_PUBLIC_URL=$PAPERCLIP_PUBLIC_URL"
+
+if [ -n "$PAPERCLIP_AGENT_JWT_SECRET" ]; then
+  echo "PAPERCLIP_AGENT_JWT_SECRET=SET"
+else
+  echo "PAPERCLIP_AGENT_JWT_SECRET=MISSING"
+fi
+
+if [ -n "$BETTER_AUTH_SECRET" ]; then
+  echo "BETTER_AUTH_SECRET=SET"
+else
+  echo "BETTER_AUTH_SECRET=MISSING"
 fi
 
 echo
-echo "Paperclip is READY."
+echo "Claude CLI:"
+which claude || true
 
 echo
-echo "============================================================"
-echo "7. OPEN PAPERCLIP GUI"
-echo "============================================================"
+echo "Claude version:"
+claude --version 2>/dev/null || true
+'
 
-echo "Opening: http://localhost:$HOST_PORT/onboarding"
-
-explorer.exe "http://localhost:$HOST_PORT/onboarding" \
-    >/dev/null 2>&1 || true
-
-sleep 5
+# ------------------------------------------------------------
+# 7. Health check
+# ------------------------------------------------------------
 
 echo
-echo "============================================================"
-echo "8. WAIT FOR CLAUDE SIGN-IN ATTEMPT"
-echo "============================================================"
-echo
-echo "In the browser:"
-echo
-echo "  Claude"
-echo "    -> Start sign-in"
-echo
-echo "DO NOT click Start sign-in again."
-echo
-echo "This terminal will automatically detect the UUID generated"
-echo "by the current Paperclip connection."
-echo
+echo "===== HEALTH ====="
+curl -i http://localhost:8080/api/health || true
 
-CLAUDE_ROOT="/paperclip/instances/default/ai-local-logins"
-FOUND_DIR=""
-
-for i in $(seq 1 300); do
-
-    FOUND_DIR="$(
-        docker exec "$CONTAINER" sh -c \
-        "find '$CLAUDE_ROOT' -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort | tail -n 1" \
-        2>/dev/null || true
-    )"
-
-    if [ -n "$FOUND_DIR" ]; then
-        break
-    fi
-
-    echo "Waiting for Claude connection... $i/300"
-    sleep 2
-done
-
-if [ -z "$FOUND_DIR" ]; then
-    echo
-    echo "No Claude sign-in attempt was detected within 10 minutes."
-    echo
-    echo "Paperclip logs:"
-    docker logs --tail 200 "$CONTAINER"
-    exit 1
-fi
-
-CLAUDE_CONFIG_DIR="$FOUND_DIR"
+# ------------------------------------------------------------
+# 8. Container status
+# ------------------------------------------------------------
 
 echo
-echo "============================================================"
-echo "9. CURRENT PAPERCLIP CLAUDE CONNECTION"
-echo "============================================================"
-
-echo "CLAUDE_CONFIG_DIR=$CLAUDE_CONFIG_DIR"
-
-echo
-echo "Starting Claude authentication."
-echo "Complete the browser login when prompted."
-echo
-
-docker exec "$CONTAINER" sh -c \
-    "mkdir -p '$CLAUDE_CONFIG_DIR'"
-
-docker exec -it "$CONTAINER" \
-    env CLAUDE_CONFIG_DIR="$CLAUDE_CONFIG_DIR" \
-    claude auth login
-
-echo
-echo "============================================================"
-echo "10. VERIFY CLAUDE CREDENTIALS"
-echo "============================================================"
-
-docker exec "$CONTAINER" sh -c "
-    echo 'CLAUDE_CONFIG_DIR=$CLAUDE_CONFIG_DIR'
-    echo
-    ls -la '$CLAUDE_CONFIG_DIR'
-"
-
-echo
-echo "============================================================"
-echo "11. WAIT FOR PAPERCLIP TO DETECT LOGIN"
-echo "============================================================"
-
-sleep 15
-
-echo
-echo "============================================================"
-echo "12. FINAL STATUS"
-echo "============================================================"
-
-echo
-echo "--- CONTAINER ---"
+echo "===== CONTAINER ====="
 docker ps --filter "name=$CONTAINER"
 
 echo
-echo "--- PORT ---"
+echo "===== PORT ====="
 docker port "$CONTAINER"
 
-echo
-echo "--- PAPERCLIP DATA ---"
-docker volume inspect "$VOLUME" >/dev/null
-echo "Persistent volume: $VOLUME"
+# ------------------------------------------------------------
+# 9. Open GUI
+# ------------------------------------------------------------
 
 echo
-echo "--- CLAUDE LOGIN ---"
-docker exec "$CONTAINER" sh -c "
-    if [ -f '$CLAUDE_CONFIG_DIR/.credentials.json' ]; then
-        echo 'Claude credentials: PRESENT'
-    else
-        echo 'Claude credentials: NOT FOUND'
-    fi
-"
+echo "Opening Paperclip..."
+explorer.exe "http://localhost:8080/onboarding" >/dev/null 2>&1 || true
 
 echo
 echo "============================================================"
-echo "DONE"
+echo "PAPERCLIP READY"
 echo "============================================================"
 echo
-echo "Paperclip GUI:"
-echo "http://localhost:$HOST_PORT"
+echo "GUI:"
+echo "http://localhost:8080"
 echo
 echo "Onboarding:"
-echo "http://localhost:$HOST_PORT/onboarding"
+echo "http://localhost:8080/onboarding"
 echo
-echo "Container:"
-echo "$CONTAINER"
-echo
-echo "Persistent Docker volume:"
+echo "Persistent volume:"
 echo "$VOLUME"
 echo
-echo "Claude connection directory:"
-echo "$CLAUDE_CONFIG_DIR"
+echo "Permanent config:"
+echo "$ENV_FILE"
 echo
 echo "============================================================"
+echo
+echo "IMPORTANT:"
+echo "Do NOT delete $VOLUME."
+echo "Do NOT delete $ENV_FILE."
+echo
