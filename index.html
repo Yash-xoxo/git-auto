@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GitHub Trending — October 08, 2026  05:23</title>
+  <title>GitHub Trending — October 09, 2026  06:36</title>
   <style>
     /* ── reset & tokens ───────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -245,357 +245,13 @@
     <span class="badge">Today</span>
   </a>
   <div class="subtitle">
-    Auto-generated on October 08, 2026  05:23 &nbsp;·&nbsp; 13 trending repositories
+    Auto-generated on October 09, 2026  06:36 &nbsp;·&nbsp; 9 trending repositories
   </div>
 </header>
 
 <main>
 <div>
   <div class="rank-label">#1</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">morluto /</span>
-          <a href="https://github.com/morluto/rea" target="_blank" rel="noopener">rea</a>
-        </div>
-        <div class="repo-desc">Reverse engineer anything with agents, from app behavior down to native binaries.</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 16,502</span>
-      <span class="meta-item">🍴 1,716</span>
-      <span class="stars-today">⭐ 4,655 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <div align="center">
-
-**English** · [简体中文](README_zh.md) · [日本語](README_ja.md) · [한국어](README_ko.md) · [العربية](README_ar.md)
-
-# REA: Reverse Engineer Anything
-
-### One MCP for reverse engineering across binaries, applications, and runtime behavior.
-
-**See a feature you like. Understand how it works, down to the binary level.**
-
-[![npm version](https://img.shields.io/npm/v/rea-agents?style=flat-square&color=cb3837)](https://www.npmjs.com/package/rea-agents)
-[![CI](https://img.shields.io/github/actions/workflow/status/morluto/rea/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/morluto/rea/actions/workflows/ci.yml)
-[![MCP tool catalog](https://img.shields.io/badge/MCP-tool_catalog-5c4ee5?style=flat-square)](docs/product-catalog.json)
-[![Node.js 22+](https://img.shields.io/badge/Node.js-22.19%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![skills.sh](https://skills.sh/b/morluto/rea?style=flat-square)](https://skills.sh/morluto/rea/reverse-engineer-anything)
-[![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](LICENSE)
-[![Discord](https://img.shields.io/discord/1556595354999332884?logo=discord&logoColor=white&label=Discord&color=5865F2)](https://discord.gg/GkcryMnJDM)
-
-<a href="https://trendshift.io/repositories/82054?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-82054" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/82054" alt="morluto%2Frea | Trendshift" width="250" height="55"/></a>
-
-**[Website](https://morluto.github.io/rea/) · [Guides](https://morluto.github.io/rea/guides/) · [Showcases](https://morluto.github.io/rea/showcase/)**
-
-[Quick start](#quick-start) · [How REA works](#how-rea-works) · [What you can analyze](#what-you-can-analyze) · [Showcases](#showcases) · [FAQ](#faq) · [Documentation](#documentation)
-
-<code>npx rea-agents setup</code>
-
-<br />
-
-<img src="docs/assets/rea-hopper-analysis.png" alt="REA launching its analysis bridge inside Hopper while inspecting a native binary" width="1200" />
-
-<br />
-
-<table aria-label="REA community">
-<tr>
-<td align="center" width="360">
-  <a href="https://discord.gg/GkcryMnJDM">
-    <img src="docs/assets/discord.svg" height="42" alt="Discord" /><br />
-    <strong>Join the Reverse Engineering Community</strong>
-  </a><br />
-  <sub>Discord · Q&amp;A · Show and Tell</sub>
-</td>
-</tr>
-</table>
-
-<br />
-
-</div>
-
-<hr />
-<p>See a feature in an app that you want in your own product? Ask your agent to investigate it with REA. It can inspect the app without its source code, explain how the feature works, show the evidence, and build a version for your project.</p>
-<p>REA connects your agent to tools for inspecting native binaries, JavaScript and Electron apps, .NET assemblies, and websites. You can also use the same tools from your terminal. Analysis runs locally, and results include the evidence and limitations behind each conclusion.</p>
-<p>Setup registers REA with your agent and installs matching workflow instructions. Native analysis can use an existing Hopper or Ghidra installation; setup can optionally install Hopper with approval. Static JavaScript analysis needs neither engine.</p>
-<blockquote>
-<p><strong><a href="https://morluto.github.io/rea/">Visit the REA website</a></strong> for setup instructions, illustrated guides, and real case studies.</p>
-</blockquote>
-<h2>Quick start</h2>
-<h3>Set up your agent</h3>
-<p>With Node.js and npm installed, run:</p>
-<pre><code class="language-bash">npx rea-agents setup
-</code></pre>
-<p>Choose your agents, review the proposed changes, and approve them. Setup adds<br />
-REA's MCP server and matching workflow instructions, with backups of existing<br />
-configuration. Restart your agent afterward.</p>
-<p>Setup supports Claude Code, Codex, Cursor, Gemini CLI and<br />
-<a href="docs/installation.md#supported-agents">other agents</a>. See<br />
-<a href="docs/installation.md">installation and setup</a> for provider configuration and<br />
-manual MCP registration.</p>
-<h3>Ask your agent</h3>
-<pre><code class="language-text">Understand how search works in the Notes app, show me the evidence, and build a
-similar feature for my project.
-</code></pre>
-<p>Replace Notes with your target app and the feature you want to understand.</p>
-<h3>Use the terminal</h3>
-<p>Inspect an extracted JavaScript/Electron app directory or ASAR:</p>
-<pre><code class="language-bash">npx -y rea-agents@latest analyze-javascript-application /absolute/path/to/app --json
-</code></pre>
-<p>The result includes modules, imports, Electron boundaries and their evidence.<br />
-Replace the path with your target, such as <code>"D:/apps/example"</code> on Windows.</p>
-<p>To install the <code>rea</code> command for regular use:</p>
-<pre><code class="language-bash">npm install --global rea-agents
-rea --help
-</code></pre>
-<p>For native analysis, configure a provider first. See the<br />
-<a href="docs/cli.md">CLI and Evidence guide</a> for native commands, provider selection,<br />
-snapshots and scripting.</p>
-<h3>Update REA</h3>
-<p>REA changes quickly, and new releases include frequent bug fixes. Keep your<br />
-installation up to date.</p>
-<p>For an npm-installed CLI:</p>
-<pre><code class="language-bash">rea update
-</code></pre>
-<p>To refresh your agent registrations and skill, run the setup command printed<br />
-by the update.</p>
-<p>If you use <code>npx</code>, update your agent setup with:</p>
-<pre><code class="language-bash">npx rea-agents@latest setup
-</code></pre>
-<p>Review the setup changes and restart your agent. For one-off CLI commands,<br />
-use <code>npx rea-agents@latest</code> followed by the command.</p>
-<h2>How REA works</h2>
-<p>Your agent calls REA through MCP to inspect the target and trace relevant code.<br />
-REA returns findings with their evidence. The agent uses them to ask follow-up<br />
-questions, explain the behavior, or write and test an implementation.<br />
-CLI commands use the same workflows.</p>
-<p><img alt="REA investigation flow: your agent asks about a local target, REA inspects and traces it using analysis tools, and the agent uses the returned code, references and unknowns to explain, implement and test." src="website/public/assets/figures/rea-investigation-flow.svg" /></p>
-<p><a href="website/public/assets/figures/rea-investigation-flow.svg">Open the full-size figure</a>.</p>
-<p><a id="current-status"></a></p>
-<h2>What you can analyze</h2>
-<p>REA requires Node.js 22.x (&gt;=22.19), 24.x (&gt;=24.11), or 26+, plus npm.<br />
-Additional tools and host support depend on the target:</p>
-<table>
-<thead>
-<tr>
-<th>Target</th>
-<th>What REA returns</th>
-<th>Requirements and guide</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Native binaries</td>
-<td>Pseudocode, assembly, strings, symbols, calls and references</td>
-<td>Hopper, Ghidra or IDA; <a href="https://morluto.github.io/rea/guides/native/">native analysis</a></td>
-</tr>
-<tr>
-<td>JavaScript / Electron</td>
-<td>Modules, imports, source maps, routes, IPC and native add-on relationships</td>
-<td>Node.js and npm; <a href="https://morluto.github.io/rea/guides/javascript/">application analysis</a></td>
-</tr>
-<tr>
-<td>Websites</td>
-<td>Page structure, scripts, network observations and requested screenshots</td>
-<td>A Chrome-family browser; <a href="https://morluto.github.io/rea/guides/browser/">browser analysis</a></td>
-</tr>
-<tr>
-<td>Saved network captures</td>
-<td>Requests, responses, exposed payloads and source locations</td>
-<td>HAR; mitmdump on Linux for native mitmproxy captures; <a href="docs/web-network-captures.md">capture guide</a></td>
-</tr>
-<tr>
-<td>.NET assemblies</td>
-<td>Metadata, CIL instructions, declared native dependencies and build comparisons</td>
-<td>Static inspection; <a href="docs/managed-code-analysis.md">managed-code guide</a></td>
-</tr>
-<tr>
-<td>Android APKs</td>
-<td>Manifest declarations, classes, decompiled methods and references</td>
-<td>Headless JADX and a full JDK on Linux/macOS; <a href="docs/android-analysis.md">Android guide</a></td>
-</tr>
-</tbody>
-</table>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/morluto/rea#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#2</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">mattpocock /</span>
-          <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">skills</a>
-        </div>
-        <div class="repo-desc">Skills for Real Engineers. Straight from my .agents directory.</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
-      <span class="meta-item">⭐ 279,879</span>
-      <span class="meta-item">🍴 23,458</span>
-      <span class="stars-today">⭐ 1,403 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <p>
-  <a href="https://www.aihero.dev/s/skills-newsletter">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skills-repo-dark_2x.png">
-      <source media="(prefers-color-scheme: light)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png">
-      <img alt="Skills" src="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png" width="369">
-    </picture>
-  </a>
-</p>
-
-<h1>Skills For Real Engineers</h1>
-<p><a href="https://skills.sh/mattpocock/skills"><img alt="skills.sh" src="https://skills.sh/b/mattpocock/skills" /></a></p>
-<p>My agent skills that I use every day to do real engineering - not vibe coding.</p>
-<p>Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.</p>
-<p>These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.</p>
-<p>If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:</p>
-<p><a href="https://www.aihero.dev/s/skills-newsletter">Sign Up To The Newsletter</a></p>
-<h2>Installation (30-second setup)</h2>
-<p>Two ways in, two philosophies. <strong>The <a href="https://code.claude.com/docs/en/plugins">Claude Code plugin</a></strong> installs the whole set as a managed, read-only bundle that updates when Anthropic's marketplace picks up my releases, so you subscribe rather than fork. <strong><a href="https://skills.sh/mattpocock/skills">skills.sh</a></strong> copies editable skill files into your project, so you can hack on them and make them your own. Pick one: installing both leaves you with every skill twice.</p>
-<h3>1. Get the skills</h3>
-<details>
-<summary><strong>Claude Code</strong></summary>
-
-
-<pre><code class="language-bash">claude plugins install mattpocock-skills
-</code></pre>
-
-
-Or, from inside a session:
-
-
-<pre><code>/plugin install mattpocock-skills
-</code></pre>
-
-
-It's in Claude Code's official marketplace, so there's nothing to add first. If it says the plugin isn't found, run `claude plugins marketplace update` and retry. Updates reach you when Anthropic's marketplace moves its pin to a new release, which can lag behind this repo by days or weeks.
-
-**Stuck on an old version?** `claude plugin list` shows what you have, and [CHANGELOG.md](./CHANGELOG.md) shows the latest release. To track this repo directly instead, switch to its own marketplace and turn on auto-update for it under `/plugin` → Marketplaces (it's off by default for marketplaces outside Anthropic's):
-
-
-<pre><code class="language-bash">claude plugin uninstall mattpocock-skills@claude-plugins-official
-claude plugin marketplace add mattpocock/skills
-claude plugin install mattpocock-skills@mattpocock
-</code></pre>
-
-
-</details>
-
-<details>
-<summary><strong>Codex, and other agents</strong></summary>
-
-
-<pre><code class="language-bash">npx skills@latest add mattpocock/skills
-</code></pre>
-
-
-Pick the skills you want, and which coding agents to install them on. **The installer lets you choose which skills to take, so make sure `setup-matt-pocock-skills` is one of them.**
-
-A native Codex plugin is on the roadmap (see [`.agents/adr/0002-ship-as-a-claude-code-plugin.md`](./.agents/adr/0002-ship-as-a-claude-code-plugin.md)).
-
-</details>
-
-<details>
-<summary><strong>For tinkerers</strong></summary>
-
-Use the same installer, on any agent, including Claude Code:
-
-
-<pre><code class="language-bash">npx skills@latest add mattpocock/skills
-</code></pre>
-
-
-It writes the skills into your repo as ordinary files you own and can edit. Nothing updates behind your back; pull my latest changes when you want them with `npx skills update`.
-
-</details>
-
-<h3>2. Run <code>/setup-matt-pocock-skills</code></h3>
-<p>In your agent, run it once per repo. It will:</p>
-<ul>
-<li>Ask you which issue tracker you want to use (GitHub, GitLab, local files, or anything else you describe)</li>
-<li>Ask you what labels you apply to tickets when you triage them (<code>/triage</code> uses labels)</li>
-<li>Ask you where you want to save any docs we create</li>
-</ul>
-<h3>3. Bam - you're ready to go.</h3>
-<h2>Why These Skills Exist</h2>
-<p>I built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.</p>
-<h3>#1: The Agent Didn't Do What I Want</h3>
-<blockquote>
-<p>"No-one knows exactly what they want"</p>
-<p>David Thomas &amp; Andrew Hunt, <a href="https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V">The Pragmatic Programmer</a></p>
-</blockquote>
-<p><strong>The Problem</strong>. The most common failure mode in software development is misalignment. You think the dev knows what you want. Then you see what they've built - and you realize it didn't understand you at all.</p>
-<p>This is just the same in the AI age. There is a communication gap between you and the agent. The fix for this is a <strong>grilling session</strong> - getting the agent to ask you detailed questions about what you're building.</p>
-<p><strong>The Fix</strong> is to use:</p>
-<ul>
-<li><a href="./skills/productivity/grill-me/SKILL.md"><code>/grill-me</code></a> - for non-code uses</li>
-<li><a href="./skills/engineering/grill-with-docs/SKILL.md"><code>/grill-with-docs</code></a> - same as <a href="./skills/productivity/grill-me/SKILL.md"><code>/grill-me</code></a>, but adds more goodies (see below)</li>
-</ul>
-<p>These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them <em>every</em> time you want to make a change.</p>
-<h3>#2: The Agent Is Way Too Verbose</h3>
-<blockquote>
-<p>With a ubiquitous language, conversations among developers and expressions of the code are all derived from the same domain model.</p>
-<p>Eric Evans, <a href="https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">Domain-Driven-Design</a></p>
-</blockquote>
-<p><strong>The Problem</strong>: At the start of a project, devs and the people they're building the software for (the domain experts) are usually speaking different languages.</p>
-<p>I felt the same tension with my agents. Agents are usually dropped into a project and asked to figure out the jargon as they go. So they use 20 words where 1 will do.</p>
-<p><strong>The Fix</strong> for this is a shared language. It's a document that helps agents decode the jargon used in the project.</p>
-<details>
-<summary>
-Example
-</summary>
-
-Here's an example [glossary](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md) (still named `CONTEXT.md` at that pinned commit, from before the skills renamed the convention), from my `course-video-manager` repo. Which one is easier to read?
-
-- **BEFORE**: "There's a problem when a lesson inside a section of a course is made 'real' (i.e. given a spot in the file system)"
-- **AFTER**: "There's a problem with the materialization cascade"
-
-This concision pays off session after session.
-
-</details>
-
-<p>This is built into <a href="./skills/engineering/grill-with-docs/SKILL.md"><code>/grill-with-docs</code></a>. It's a grilling session, but that helps you build a shared language with the AI, and document hard-to-explain decisions in ADR's.</p>
-<p>It's hard to explain how powerful this is. It might be the single coolest technique in this repo. Try it, and see.</p>
-<blockquote>
-<p>[!TIP]<br />
-A shared language has many other benefits than reducing verbosity:</p>
-<ul>
-<li><strong>Variables, functions and files are named consistently</strong>, using the shared language</li>
-<li>As a result, the <strong>codebase is easier to navigate</strong> for the agent</li>
-<li>The agent also <strong>spends fewer tokens on thinking</strong>, because it has access to a more concise language</li>
-</ul>
-</blockquote>
-<h3>#3: The Code Doesn't Work</h3>
-<blockquote>
-<p>"Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big."</p>
-<p>David Thomas &amp; Andrew Hunt, <a href="https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V">The Pragmatic Programmer</a></p>
-</blockquote>
-<p><strong>The Problem</strong>: Let's say that you and the agent are aligned on what to build. What happens when the agent <em>still</em> produces crap?</p>
-<p>It's time to look at your feedback loops. Without feedback on how the code it produces actually runs, the agent will be flying blind.</p>
-<p><strong>The Fix</strong>: You need the usual tranche of feedback loops: static t</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/mattpocock/skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#3</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
@@ -608,9 +264,9 @@ A shared language has many other benefits than reducing verbosity:</p>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
-      <span class="meta-item">⭐ 11,139</span>
-      <span class="meta-item">🍴 845</span>
-      <span class="stars-today">⭐ 2,716 stars today</span>
+      <span class="meta-item">⭐ 16,682</span>
+      <span class="meta-item">🍴 1,326</span>
+      <span class="stars-today">⭐ 4,669 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -642,119 +298,7 @@ A shared language has many other benefits than reducing verbosity:</p>
   </div>
 </div>
 <div>
-  <div class="rank-label">#4</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">ayghri /</span>
-          <a href="https://github.com/ayghri/i-have-adhd" target="_blank" rel="noopener">i-have-adhd</a>
-        </div>
-        <div class="repo-desc">A skill to stop your coding agent from burying the answer. ADHD-friendly output.</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 55,278</span>
-      <span class="meta-item">🍴 3,164</span>
-      <span class="stars-today">⭐ 619 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <p align="center">
-  <img src="./logo.png" alt="i-have-adhd" width="140" />
-</p>
-<p align="center">
-  <strong align="center">ADHD-friendly outputs. No ADHD diagnosis needed!</strong>
-</p>
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/ayghri/i-have-adhd?style=flat" alt="License"></a>
-</p>
-
-<p align="center">
-  <strong title="English" aria-label="English">🇬🇧</strong> ·
-  <a href=".github/readme/README.zh-CN.md" title="简体中文" aria-label="简体中文">🇨🇳</a> ·
-  <a href=".github/readme/README.es.md" title="Español" aria-label="Español">🇪🇸</a> ·
-  <a href=".github/readme/README.pt-BR.md" title="Português (Brasil)" aria-label="Português (Brasil)">🇧🇷</a> ·
-  <a href=".github/readme/README.ja.md" title="日本語" aria-label="日本語">🇯🇵</a> ·
-  <a href=".github/readme/README.vi.md" title="Tiếng Việt" aria-label="Tiếng Việt">🇻🇳</a> ·
-  <a href=".github/readme/README.ko.md" title="한국어" aria-label="한국어">🇰🇷</a> ·
-  <a href=".github/readme/README.fa.md" title="فارسی" aria-label="فارسی">🇮🇷</a> ·
-  <a href=".github/readme/README.th.md" title="ภาษาไทย" aria-label="ภาษาไทย">🇹🇭</a> ·
-  <a href=".github/readme/README.ar.md" title="العربية" aria-label="العربية">🇸🇦</a>
-</p>
-
-<h2>Install</h2>
-<p>Copy/paste into your CLI prompt:</p>
-<pre><code class="language-text">Install the i-have-adhd skill/plugin from https://github.com/ayghri/i-have-adhd, refer to the repo's AGENTS.md for instructions.
-</code></pre>
-<p>Or 🔗 <a href="INSTALL.md">check the installation instructions</a>.</p>
-<h2>What it does</h2>
-<p>A skill for your coding assistant that stops it from burying the answer. Action first. Steps numbered. No "Hope this helps!"</p>
-<p><a href="https://youtu.be/NEl8kPWZP_Y">Kacper Rutkiewicz | AI Made Simple</a> has made a good breakdown of an earlier version of the skill.</p>
-<h2>What changes</h2>
-<table>
-<tr>
-<td width="50%">
-
-## Before
-
-> Great question! Let me think about this. Your auth flow has a few moving pieces: the middleware, the token verification, and the cookie handling. Looking at `src/auth.ts`, the `verifyToken` function (around lines 42-58) seems to be using an older `jsonwebtoken` API. One approach would be to update the package and rewrite that function. After making the change, you'd want to run the auth tests to confirm nothing breaks. By the way, you might also want to look at your dependency versions overall. Hope this helps! Let me know if you want to dig deeper.
-
-</td>
-
-<td width="50%">
-
-## After
-
-> Edit `src/auth.ts:42` to update the token validation.
->
-> 1. Open `src/auth.ts`
-> 2. Replace `verifyToken` (lines 42–58) with the snippet below
-> 3. Run `npm test -- auth.spec.ts`
->
-> Next: paste the first failing line if any test fails.
-
-</td>
-</tr>
-</table>
-
-<h2>The rules</h2>
-<p>10 rules. Full text in <a href="./skills/i-have-adhd/SKILL.md">SKILL.md</a>.</p>
-<ol>
-<li>Lead with the next action.</li>
-<li>Number multi-step tasks.</li>
-<li>End with one concrete next step.</li>
-<li>Suppress tangents.</li>
-<li>Restate state every turn.</li>
-<li>Specific time estimates (minutes, not "a bit").</li>
-<li>Make wins visible.</li>
-<li>Matter-of-fact errors.</li>
-<li>Cap lists to 5 items.</li>
-<li>No preamble. No recap. No closers.</li>
-</ol>
-<h2>Tune it</h2>
-<p>Fork, edit <code>skills/i-have-adhd/SKILL.md</code>, then swap your copy in:</p>
-<pre><code class="language-bash">claude plugin uninstall i-have-adhd            # drop the upstream copy first:
-claude plugin marketplace remove i-have-adhd   # fork and upstream share both names
-claude plugin marketplace add &lt;your-username&gt;/i-have-adhd
-claude plugin install i-have-adhd@i-have-adhd
-</code></pre>
-<p>Restart your coding assistant, then re-invoke <code>/i-have-adhd</code>.</p>
-<h2>Credits</h2>
-<p>Loosely based on <em>The Adult ADHD Tool Kit</em> by J. Russell Ramsay and Anthony L. Rostain. Adapted for how an LLM should respond, not how a human should organize their day.</p>
-<h2>License</h2>
-<p><a href="LICENSE">MIT</a>.</p>
-<p>Star ⭐ if it saved you one scroll past one "Great question!"</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/ayghri/i-have-adhd#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#5</div>
+  <div class="rank-label">#2</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
@@ -767,9 +311,9 @@ claude plugin install i-have-adhd@i-have-adhd
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#e34c26"></span>HTML</span>
-      <span class="meta-item">⭐ 45,172</span>
-      <span class="meta-item">🍴 2,903</span>
-      <span class="stars-today">⭐ 825 stars today</span>
+      <span class="meta-item">⭐ 46,737</span>
+      <span class="meta-item">🍴 2,972</span>
+      <span class="stars-today">⭐ 1,160 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -851,258 +395,551 @@ claude plugin install i-have-adhd@i-have-adhd
   </div>
 </div>
 <div>
-  <div class="rank-label">#6</div>
+  <div class="rank-label">#3</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">addyosmani /</span>
-          <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener">agent-skills</a>
+          <span class="repo-owner">morluto /</span>
+          <a href="https://github.com/morluto/rea" target="_blank" rel="noopener">rea</a>
         </div>
-        <div class="repo-desc">Production-grade engineering skills for AI coding agents.</div>
+        <div class="repo-desc">Reverse engineer anything with agents, from app behavior down to native binaries.</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
-      <span class="meta-item">⭐ 102,934</span>
-      <span class="meta-item">🍴 10,778</span>
-      <span class="stars-today">⭐ 677 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 30,002</span>
+      <span class="meta-item">🍴 3,573</span>
+      <span class="stars-today">⭐ 7,738 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <h1>Agent Skills</h1>
-<p><strong>Production-grade engineering skills for AI coding agents.</strong></p>
-<p>Skills encode the workflows, quality gates, and best practices that senior engineers use when building software. These ones are packaged so AI agents follow them consistently across every phase of development.</p>
-<p><a href="https://trendshift.io/repositories/25200" target="_blank"><img src="https://trendshift.io/api/badge/repositories/25200" alt="addyosmani%2Fagent-skills | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a></p>
-<p><img alt="Addy's Agent Skills" src="https://addyosmani.com/assets/images/addys-agent-skills.jpg" /></p>
-<pre><code>  DEFINE          PLAN           BUILD          VERIFY         REVIEW          SHIP
- ┌──────┐      ┌──────┐      ┌──────┐      ┌──────┐      ┌──────┐      ┌──────┐
- │ Idea │ ───▶ │ Spec │ ───▶ │ Code │ ───▶ │ Test │ ───▶ │  QA  │ ───▶ │  Go  │
- │Refine│      │  PRD │      │ Impl │      │Debug │      │ Gate │      │ Live │
- └──────┘      └──────┘      └──────┘      └──────┘      └──────┘      └──────┘
-  /spec          /plan          /build        /test         /review       /ship
-</code></pre>
+    <div align="center">
+
+**English** · [简体中文](README_zh.md) · [繁體中文](README_zh-TW.md) · [日本語](README_ja.md) · [한국어](README_ko.md) · [Türkçe](README_tr.md) · [Русский](README_ru.md) · [Tiếng Việt](README_vi.md) · [ไทย](README_th.md) · [Deutsch](README_de.md) · [Español](README_es.md) · [Français](README_fr.md) · [Українська](README_uk.md) · [Polski](README_pl.md) · [Português (Brasil)](README_pt-BR.md) · [العربية](README_ar.md) · [فارسی](README_fa.md)
+
+# REA: Reverse Engineer Anything
+
+### One MCP for reverse engineering across binaries, applications, and runtime behavior.
+
+**See a feature you like. Understand how it works, down to the binary level.**
+
+[![npm version](https://img.shields.io/npm/v/rea-agents?style=flat-square&color=cb3837)](https://www.npmjs.com/package/rea-agents)
+[![CI](https://img.shields.io/github/actions/workflow/status/morluto/rea/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/morluto/rea/actions/workflows/ci.yml)
+[![MCP tool catalog](https://img.shields.io/badge/MCP-tool_catalog-5c4ee5?style=flat-square)](docs/mcp-contracts.md#generated-catalog)
+[![Node.js 22+](https://img.shields.io/badge/Node.js-22.19%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![skills.sh](https://skills.sh/b/morluto/rea?style=flat-square)](https://skills.sh/morluto/rea/reverse-engineer-anything)
+[![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](LICENSE)
+[![Discord](https://img.shields.io/discord/1556595354999332884?logo=discord&logoColor=white&label=Discord&color=5865F2)](https://discord.gg/GkcryMnJDM)
+
+<a href="https://trendshift.io/repositories/82054?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-82054" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/82054" alt="morluto%2Frea | Trendshift" width="250" height="55"/></a>
+
+**[Website](https://rea.tools/) · [Guides](https://rea.tools/guides/) · [Showcases](https://rea.tools/showcase/)**
+
+[Quick start](#quick-start) · [How REA works](#how-rea-works) · [What you can analyze](#what-you-can-analyze) · [Showcases](#showcases) · [FAQ](#faq) · [Documentation](#documentation)
+
+<code>npx rea-agents setup</code>
+
+<br />
+
+<img src="docs/assets/rea-hopper-analysis.png" alt="REA launching its analysis bridge inside Hopper while inspecting a native binary" width="1200" />
+
+<br />
+
+<table aria-label="REA community">
+<tr>
+<td align="center" width="360">
+  <a href="https://discord.gg/GkcryMnJDM">
+    <img src="docs/assets/discord.svg" height="42" alt="Discord" /><br />
+    <strong>Join the Reverse Engineering Community</strong>
+  </a><br />
+  <sub>Discord · Q&amp;A · Show and Tell</sub>
+</td>
+</tr>
+</table>
+
+<br />
+
+</div>
+
 <hr />
-<h2>Commands</h2>
-<p>9 slash commands that map to the development lifecycle. Each one activates the right skills automatically.</p>
+<p>See a feature in an app that you want in your own product? Ask your agent to investigate it with REA. It can inspect the app without its source code, explain how the feature works, show the evidence, and build a version for your project.</p>
+<p>REA connects your agent to tools for inspecting native binaries, JavaScript and Electron apps, .NET assemblies, and websites. You can also use the same tools from your terminal. Analysis runs locally, and results include the evidence and limitations behind each conclusion.</p>
+<p>Setup registers REA with your agent and installs matching workflow instructions. Native analysis can use an existing Hopper or Ghidra installation; setup can optionally install Hopper with approval. Static JavaScript analysis needs neither engine.</p>
+<blockquote>
+<p><strong><a href="https://rea.tools/">Visit the REA website</a></strong> for setup instructions, illustrated guides, and real case studies.</p>
+</blockquote>
+<h2>Quick start</h2>
+<h3>Set up your agent</h3>
+<p>With Node.js and npm installed, run:</p>
+<pre><code class="language-bash">npx rea-agents setup
+</code></pre>
+<p>Choose your agents, review the proposed changes, and approve them. Setup adds<br />
+REA's MCP server and matching workflow instructions, with backups of existing<br />
+configuration. Restart your agent afterward.</p>
+<p>Setup supports Claude Code, Codex, Cursor, Gemini CLI, Grok Build and<br />
+<a href="docs/installation.md#supported-agents">other agents</a>. See<br />
+<a href="docs/installation.md">installation and setup</a> for provider configuration and<br />
+manual MCP registration.</p>
+<h3>Ask your agent</h3>
+<pre><code class="language-text">Understand how search works in the Notes app, show me the evidence, and build a
+similar feature for my project.
+</code></pre>
+<p>Replace Notes with your target app and the feature you want to understand.</p>
+<h3>Use the terminal</h3>
+<p>Inspect an extracted JavaScript/Electron app directory or ASAR:</p>
+<pre><code class="language-bash">npx -y rea-agents@latest analyze-javascript-application /absolute/path/to/app --json
+</code></pre>
+<p>The result includes modules, imports, Electron boundaries and their evidence.<br />
+Replace the path with your target, such as <code>"D:/apps/example"</code> on Windows.</p>
+<p>To install the <code>rea</code> command for regular use:</p>
+<pre><code class="language-bash">npm install --global rea-agents
+rea --help
+</code></pre>
+<p>For native analysis, configure a provider first. See the<br />
+<a href="docs/cli.md">CLI and Evidence guide</a> for native commands, provider selection,<br />
+snapshots and scripting.</p>
+<h3>Update REA</h3>
+<p>REA changes quickly, and new releases include frequent bug fixes. Keep your<br />
+installation up to date.</p>
+<p>For an npm-installed CLI:</p>
+<pre><code class="language-bash">rea update
+</code></pre>
+<p>To refresh your agent registrations and skill, run the setup command printed<br />
+by the update.</p>
+<p>If you use <code>npx</code>, update your agent setup with:</p>
+<pre><code class="language-bash">npx rea-agents@latest setup
+</code></pre>
+<p>Review the setup changes and restart your agent. For one-off CLI commands,<br />
+use <code>npx rea-agents@latest</code> followed by the command.</p>
+<h2>How REA works</h2>
+<p>Your agent calls REA through MCP to inspect the target and trace relevant code.<br />
+REA returns findings with their evidence. The agent uses them to ask follow-up<br />
+questions, explain the behavior, or write and test an implementation.<br />
+CLI commands use the same workflows.</p>
+<p><img alt="REA investigation flow: your agent asks about a local target, REA inspects and traces it using analysis tools, and the agent uses the returned code, references and unknowns to explain, implement and test." src="website/public/assets/figures/rea-investigation-flow.svg" /></p>
+<p><a href="website/public/assets/figures/rea-investigation-flow.svg">Open the full-size figure</a>.</p>
+<p><a id="current-status"></a></p>
+<h2>What you can analyze</h2>
+<p>REA requires Node.js 22.x (&gt;=22.19), 24.x (&gt;=24.11), or 26+, plus npm.<br />
+Additional tools and host support depend on the target:</p>
 <table>
 <thead>
 <tr>
-<th>What you're doing</th>
-<th>Command</th>
-<th>Key principle</th>
+<th>Target</th>
+<th>What REA returns</th>
+<th>Requirements and guide</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Define what to build</td>
-<td><code>/spec</code></td>
-<td>Spec before code</td>
+<td>Native binaries</td>
+<td>Pseudocode, assembly, strings, symbols, calls and references</td>
+<td>Hopper, Ghidra or IDA; <a href="https://rea.tools/guides/native/">native analysis</a></td>
 </tr>
 <tr>
-<td>Plan how to build it</td>
-<td><code>/plan</code></td>
-<td>Small, atomic tasks</td>
+<td>Offline ELF layout</td>
+<td>Sections, segments, original symbols/relocations and static mitigation candidates</td>
+<td>Caller-supplied pwntools on Linux x64; <a href="docs/binary-diagnostics.md">binary diagnostics</a></td>
 </tr>
 <tr>
-<td>Build incrementally</td>
-<td><code>/build</code></td>
-<td>One slice at a time</td>
+<td>EVM bytecode</td>
+<td>Dispatch selectors, byte offsets, inferred arguments and mutability</td>
+<td>Local raw/hex carrier; <a href="docs/evm-bytecode.md">offline EVM guide</a></td>
 </tr>
 <tr>
-<td>Prove it works</td>
-<td><code>/test</code></td>
-<td>Tests are proof</td>
+<td>Recorded Linux crashes</td>
+<td>Raw notes, every recorded thread's registers/signals and optional mapping candidates</td>
+<td>Caller-supplied pwntools; optional GDB/pwndbg; <a href="docs/recorded-crashes.md">recorded crashes</a></td>
 </tr>
 <tr>
-<td>Set the quality bar</td>
-<td><code>/constraints</code></td>
-<td>Decide it once, enforce it everywhere</td>
-</tr>
-<tr>
-<td>Review before merge</td>
-<td><code>/review</code></td>
-<td>Improve code health</td>
-</tr>
-<tr>
-<td>Audit web performance</td>
-<td><code>/webperf</code></td>
-<td>Measure before you optimize</td>
-</tr>
-<tr>
-<td>Simplify the code</td>
-<td><code>/code-simplify</code></td>
-<td>Clarity over cleverness</td>
-</tr>
-<tr>
-<td>Ship to production</td>
-<td><code>/ship</code></td>
-<td>Faster is safer</td>
+<td>JavaScript / Electron</td>
+<td>Modules, imports, source maps, routes, IPC and native add-on relationships</td>
+<td>Node.js and npm; [application analysis](https://rea.tools</td>
 </tr>
 </tbody>
 </table>
-<p>Want fewer manual steps once the spec exists? <strong><code>/build auto</code></strong> generates the plan and implements every task in a single approved pass — you approve the plan once, then it runs autonomously. It removes the human stepping <em>between</em> tasks, not the verification: every task is still test-driven and committed individually, and it pauses on failures or risky steps.</p>
-<p>Skills also activate automatically based on what you're doing — designing an API triggers <code>api-and-interface-design</code>, building UI triggers <code>frontend-ui-engineering</code>, and so on.</p>
-<hr />
-<h2>Quick Start</h2>
-<p><strong>Fastest path — any agent, one command.</strong> The open <a href="https://github.com/vercel-labs/skills">skills CLI</a> installs into 70+ agents (Claude Code, Cursor, Codex, Copilot, Cline, and more):</p>
-<pre><code class="language-bash">npx skills add addyosmani/agent-skills            # install all 25 skills
-npx skills add addyosmani/agent-skills --list     # browse before installing
-</code></pre>
-<p>Or grab individual skills:</p>
-<pre><code class="language-bash">npx skills add addyosmani/agent-skills --skill code-review-and-quality   # five-axis review before merge
-npx skills add addyosmani/agent-skills --skill interview-me              # requirements interrogation, one question at a time
-npx skills add addyosmani/agent-skills --skill test-driven-development   # red-green-refactor, enforced
-</code></pre>
-<blockquote>
-<p><strong>Installing one skill?</strong> A per-skill <code>npx</code> install copies only<br />
-<code>skills/&lt;name&gt;/</code>, not the repo-level <code>references/</code> directory. The skill still<br />
-works, but paths to supplementary shared checklists are unavailable. Use a<br />
-whole-repo integration, clone the repository, or copy the needed checklist into<br />
-a <code>references/</code> directory inside the installed skill. This portability gap is<br />
-tracked in <a href="https://github.com/addyosmani/agent-skills/issues/361">#361</a>.</p>
-</blockquote>
-<p>Prefer a native integration? Pick your tool below.</p>
-<details>
-<summary><b>Claude Code (recommended)</b></summary>
-
-**Marketplace install:**
-
-
-<pre><code>/plugin marketplace add addyosmani/agent-skills
-/plugin install agent-skills@addy-agent-skills
-</code></pre>
-
-
-> **SSH errors?** The marketplace clones repos via SSH. If you don't have SSH keys set up on GitHub, either [add your SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) or use the full HTTPS URL to force HTTPS cloning during the marketplace-add step:
-> ```bash
-> /plugin marketplace add https://github.com/addyosmani/agent-skills.git
-> /plugin install agent-skills@addy-agent-skills
-> ```
->
-> If `/plugin install` still fails with `git@github.com: Permission denied (publickey)` on Windows or macOS, the recommended workaround is to configure Git once to rewrite GitHub SSH URLs to HTTPS for subprocess clones:
-> ```bash
-> git config --global url."https://github.com/".insteadOf git@github.com:
-> ```
-
-**Local / development:**
-
-
-<pre><code class="language-bash">git clone https://github.com/addyosmani/agent-skills.git
-claude --plugin-dir /path/to/agent-skills
-</code></pre>
-
-
-</details>
-
-<details>
-<summary><b>Cursor</b></summary>
-
-Put workflow skills under `.cursor/skills/` (sync from `agent-skills/skills/`) and short policies in `.cursor/rules/*.mdc` — do not paste full skills into rules. See [docs/cursor-setup.md](docs/cursor-setup.md).
-
-</details>
-
-<details>
-<summary><b>Antigravity CLI</b></summary>
-
-Install as a native plugin for skills and subagents. In affected Antigravity CLI releases, legacy command TOMLs are reported as converted but their wrapper commands are not discoverable; invoke the underlying namespaced skills directly. See [docs/antigravity-setup.md](docs/antigravity-setup.md#lifecycle-workflows-and-command-compatibility).
-
-**Install from the repo:**
-
-
-<pre><code class="language-bash">agy plugin install https://github.com/addyosmani/agent-skills.git
-</code></pre>
-
-
-**Install from a local clone:**
-
-
-<pre><code class="language-bash">git clone https://github.com/addyosmani/agent-skills.git
-agy plugin install ./agent-skills
-</code></pre>
-
-
-</details>
-
-<details>
-<summary><b>Gemini CLI</b></summary>
-
-Install as native skills for auto-discovery, or add to `GEMINI.md` for persistent context. See [docs/gemini-cli-setup.md](docs/gemini-cli-setup.md).
-
-**Install from the repo:**
-
-
-<pre><code class="language-bash">gemini skills install https://github.com/addyosmani/agent-skills.git --path skills
-</code></pre>
-
-
-**Install from a local clone:**
-
-
-<pre><code class="language-bash">gemini skills install ./agent-skills/skills/
-</code></pre>
-
-
-</details>
-
-<details>
-<summary><b>Windsurf</b></summary>
-
-Add skill contents to your Windsurf rules configuration. See [docs/windsurf-setup.md](docs/windsurf-setup.md).
-
-</details>
-
-<details>
-<summary><b>OpenCode</b></summary>
-
-Copy skills to `.opencode/skills/` (or `~/.config/opencode/skills/`), add a project-local `AGENTS.md`, and use the built-in `skill` tool for agent-driven execution. Optional slash commands can be added under `.opencode/commands/`.
-
-See [docs/opencode-setup.md](docs/opencode-setup.md).
-
-</details>
-
-<details>
-<summary><b>GitHub Copilot</b></summary>
-
-Use agent definitions from `agents/` as Copilot personas and skill content in `.github/copilot-instructions.md`. See [docs/copilot-setup.md](docs/copilot-setup.md).
-
-Using the standalone `copilot` CLI? Install it as a plugin — see [docs/copilot-cli-setup.md](docs/copilot-cli-setup.md).
-
-</details>
-
-<details>
-  <summary><b>Kiro IDE & CLI </b></summary>
-  Skills for Kiro reside under ".kiro/skills/" and can be stored under Project or Global level. Kiro also supports Agents.md. See Kiro docs at https://kiro.dev/docs/skills/
-</details>
-
-<details>
-<summary><b>Codex</b></summary>
-
-Install as a native Codex plugin (Codex CLI v0.122+):
-
-
-<pre><code class="language-bash">codex plugin marketplace add addyosmani/agent-skills
-codex plugin add agent-skills@agent-skills
-</code></pre>
-
-
-The first command registers the marketplace; the second installs the plugin. Codex reads the root `skills/` directory directly through `.codex-plugin/plugin.json`. Once installed, invoke skills in chat using `@` (e.g., `@spec-driven-development`). See [docs/codex-setup.md](docs/codex-setup.md) for local installation and troubleshooting.
-
-</details>
-
-<details>
-<summary><b>Command Code</b></summary>
-
-Install natively with the built-in `cmd skills` command. Command Code clones the repo, discovers every `SKILL.md`, and installs into `.commandc
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/addyosmani/agent-skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/morluto/rea#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
 </div>
 <div>
-  <div class="rank-label">#7</div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">mattpocock /</span>
+          <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">skills</a>
+        </div>
+        <div class="repo-desc">Skills for Real Engineers. Straight from my .agents directory.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 281,421</span>
+      <span class="meta-item">🍴 23,586</span>
+      <span class="stars-today">⭐ 1,774 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p>
+  <a href="https://www.aihero.dev/s/skills-newsletter">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skills-repo-dark_2x.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png">
+      <img alt="Skills" src="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png" width="369">
+    </picture>
+  </a>
+</p>
+
+<h1>Skills For Real Engineers</h1>
+<p><a href="https://skills.sh/mattpocock/skills"><img alt="skills.sh" src="https://skills.sh/b/mattpocock/skills" /></a></p>
+<p>My agent skills that I use every day to do real engineering - not vibe coding.</p>
+<p>Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.</p>
+<p>These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.</p>
+<p>If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:</p>
+<p><a href="https://www.aihero.dev/s/skills-newsletter">Sign Up To The Newsletter</a></p>
+<h2>Installation (30-second setup)</h2>
+<p>A plugin updates itself. <a href="https://skills.sh/mattpocock/skills">skills.sh</a> copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.</p>
+<h3>1. Get the skills</h3>
+<details>
+<summary><strong>Claude Code</strong></summary>
+
+
+<pre><code class="language-bash">claude plugin install mattpocock-skills@claude-plugins-official
+</code></pre>
+
+
+Updates itself by default.
+
+</details>
+
+<details>
+<summary><strong>Codex</strong></summary>
+
+
+<pre><code class="language-bash">codex plugin marketplace add mattpocock/skills
+codex plugin add mattpocock-skills@mattpocock
+</code></pre>
+
+
+Updates itself at startup.
+
+</details>
+
+<details>
+<summary><strong>GitHub Copilot</strong> (CLI and VS Code)</summary>
+
+
+<pre><code class="language-bash">copilot plugin marketplace add mattpocock/skills
+copilot plugin install mattpocock-skills@mattpocock
+</code></pre>
+
+
+Then, once, add to `~/.copilot/settings.json`:
+
+
+<pre><code class="language-json">{
+  &quot;extraKnownMarketplaces&quot;: {
+    &quot;mattpocock&quot;: { &quot;source&quot;: { &quot;source&quot;: &quot;github&quot;, &quot;repo&quot;: &quot;mattpocock/skills&quot; }, &quot;autoUpdate&quot;: true }
+  }
+}
+</code></pre>
+
+
+In VS Code, run **Chat: Install Plugin From Source** and enter `https://github.com/mattpocock/skills`. It updates daily.
+
+</details>
+
+<details>
+<summary><strong>Gemini CLI</strong> (manual updates)</summary>
+
+
+<pre><code class="language-bash">gemini skills install https://github.com/mattpocock/skills.git --path skills/engineering
+gemini skills install https://github.com/mattpocock/skills.git --path skills/productivity
+</code></pre>
+
+
+Re-run both commands to update.
+
+</details>
+
+<details>
+<summary><strong>Any other agent, or editable files</strong> (manual updates)</summary>
+
+
+<pre><code class="language-bash">npx skills@latest add mattpocock/skills -a &lt;agent&gt;  # cursor, opencode, devin, windsurf, amp, pi; omit -a to choose
+</code></pre>
+
+
+When the installer asks which skills to take, include `setup-matt-pocock-skills`. To update, run `npx skills@latest update`, and re-run `add` to pick up new skills.
+
+</details>
+
+<h3>2. Run <code>/setup-matt-pocock-skills</code></h3>
+<p>In your agent, run it once per repo. It will:</p>
+<ul>
+<li>Ask you which issue tracker you want to use (GitHub, GitLab, local files, or anything else you describe)</li>
+<li>Ask you what labels you apply to tickets when you triage them (<code>/triage</code> uses labels)</li>
+<li>Ask you where you want to save any docs we create</li>
+</ul>
+<h3>3. Bam - you're ready to go.</h3>
+<h2>Why These Skills Exist</h2>
+<p>I built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.</p>
+<h3>#1: The Agent Didn't Do What I Want</h3>
+<blockquote>
+<p>"No-one knows exactly what they want"</p>
+<p>David Thomas &amp; Andrew Hunt, <a href="https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V">The Pragmatic Programmer</a></p>
+</blockquote>
+<p><strong>The Problem</strong>. The most common failure mode in software development is misalignment. You think the dev knows what you want. Then you see what they've built - and you realize it didn't understand you at all.</p>
+<p>This is just the same in the AI age. There is a communication gap between you and the agent. The fix for this is a <strong>grilling session</strong> - getting the agent to ask you detailed questions about what you're building.</p>
+<p><strong>The Fix</strong> is to use:</p>
+<ul>
+<li><a href="./skills/productivity/grill-me/SKILL.md"><code>/grill-me</code></a> - for non-code uses</li>
+<li><a href="./skills/engineering/grill-with-docs/SKILL.md"><code>/grill-with-docs</code></a> - same as <a href="./skills/productivity/grill-me/SKILL.md"><code>/grill-me</code></a>, but adds more goodies (see below)</li>
+</ul>
+<p>These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them <em>every</em> time you want to make a change.</p>
+<h3>#2: The Agent Is Way Too Verbose</h3>
+<blockquote>
+<p>With a ubiquitous language, conversations among developers and expressions of the code are all derived from the same domain model.</p>
+<p>Eric Evans, <a href="https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">Domain-Driven-Design</a></p>
+</blockquote>
+<p><strong>The Problem</strong>: At the start of a project, devs and the people they're building the software for (the domain experts) are usually speaking different languages.</p>
+<p>I felt the same tension with my agents. Agents are usually dropped into a project and asked to figure out the jargon as they go. So they use 20 words where 1 will do.</p>
+<p><strong>The Fix</strong> for this is a shared language. It's a document that helps agents decode the jargon used in the project.</p>
+<details>
+<summary>
+Example
+</summary>
+
+Here's an example [glossary](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md) (still named `CONTEXT.md` at that pinned commit, from before the skills renamed the convention), from my `course-video-manager` repo. Which one is easier to read?
+
+- **BEFORE**: "There's a problem when a lesson inside a section of a course is made 'real' (i.e. given a spot in the file system)"
+- **AFTER**: "There's a problem with the materialization cascade"
+
+This concision pays off session after session.
+
+</details>
+
+<p>This is built into <a href="./skills/engineering/grill-with-docs/SKILL.md"><code>/grill-with-docs</code></a>. It's a grilling session, but that helps you build a shared language with the AI, and document hard-to-explain decisions in ADR's.</p>
+<p>It's hard to explain how powerful this is. It might be the single coolest technique in this repo. Try it, and see.</p>
+<blockquote>
+<p>[!TIP]<br />
+A shared language has many other benefits than reducing verbosity:</p>
+<ul>
+<li><strong>Variables, functions and files are named consistently</strong>, using the shared language</li>
+<li>As a result, the <strong>codebase is easier to navigate</strong> for the agent</li>
+<li>The agent also <strong>spends fewer tokens on thinking</strong>, because it has access to a more concise language</li>
+</ul>
+</blockquote>
+<h3>#3: The Code Doesn't Work</h3>
+<blockquote>
+<p>"Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big."</p>
+<p>David Thomas &amp; Andrew Hunt, <a href="https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V">The Pragmatic Programmer</a></p>
+</blockquote>
+<p><strong>The Problem</strong>: Let's say that you and the agent are aligned on what to build. What happens when the agent <em>still</em> produces crap?</p>
+<p>It's time to look at your feedback loops. Without feedback on how the code it produces actually runs, the agent will be flying blind.</p>
+<p><strong>The Fix</strong>: You need the usual tranche of feedback loops: static types, browser access, and automated tests.</p>
+<p>For automated tests, a red-green-refactor loop is critical. This is where the agent writes a failing test first, then fixes the test. This helps give the agent a consistent level of feedback that results in far better code.</p>
+<p>I've built a <strong><a href="./skills/engineering/tdd/SKILL.md"><code>/tdd</code></a> skill</strong> you can slot into any project. It encourages red-green-refactor and gives the agent plenty of guidance on what ma</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/mattpocock/skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">thedotmack /</span>
+          <a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener">claude-mem</a>
+        </div>
+        <div class="repo-desc">Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 98,656</span>
+      <span class="meta-item">🍴 8,650</span>
+      <span class="stars-today">⭐ 670 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">
+  <br>
+  <a href="https://github.com/thedotmack/claude-mem">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/public/claude-mem-logo-for-dark-mode.webp">
+      <source media="(prefers-color-scheme: light)" srcset="docs/public/claude-mem-logo-for-light-mode.webp">
+      <img src="docs/public/claude-mem-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+    </picture>
+  </a>
+</h1>
+
+<p align="center">
+  <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge-2026.svg" height="24" />
+  &nbsp;&nbsp;&nbsp;
+  <img alt="Greptile" src="docs/public/greptile-wordmark-green.svg" height="24" />
+  &nbsp;&nbsp;&nbsp;
+  <img alt="SerpApi" src="docs/public/serpapi-logo-with-wordmark-gradient.svg" height="24" />
+</p>
+
+<p align="center">
+  <a href="docs/i18n/README.zh.md">🇨🇳 中文</a> •
+  <a href="docs/i18n/README.zh-tw.md">🇹🇼 繁體中文</a> •
+  <a href="docs/i18n/README.ja.md">🇯🇵 日本語</a> •
+  <a href="docs/i18n/README.pt.md">🇵🇹 Português</a> •
+  <a href="docs/i18n/README.pt-br.md">🇧🇷 Português</a> •
+  <a href="docs/i18n/README.ko.md">🇰🇷 한국어</a> •
+  <a href="docs/i18n/README.es.md">🇪🇸 Español</a> •
+  <a href="docs/i18n/README.de.md">🇩🇪 Deutsch</a> •
+  <a href="docs/i18n/README.fr.md">🇫🇷 Français</a> •
+  <a href="docs/i18n/README.he.md">🇮🇱 עברית</a> •
+  <a href="docs/i18n/README.ar.md">🇸🇦 العربية</a> •
+  <a href="docs/i18n/README.ru.md">🇷🇺 Русский</a> •
+  <a href="docs/i18n/README.pl.md">🇵🇱 Polski</a> •
+  <a href="docs/i18n/README.cs.md">🇨🇿 Čeština</a> •
+  <a href="docs/i18n/README.nl.md">🇳🇱 Nederlands</a> •
+  <a href="docs/i18n/README.tr.md">🇹🇷 Türkçe</a> •
+  <a href="docs/i18n/README.uk.md">🇺🇦 Українська</a> •
+  <a href="docs/i18n/README.vi.md">🇻🇳 Tiếng Việt</a> •
+  <a href="docs/i18n/README.tl.md">🇵🇭 Tagalog</a> •
+  <a href="docs/i18n/README.id.md">🇮🇩 Indonesia</a> •
+  <a href="docs/i18n/README.th.md">🇹🇭 ไทย</a> •
+  <a href="docs/i18n/README.hi.md">🇮🇳 हिन्दी</a> •
+  <a href="docs/i18n/README.bn.md">🇧🇩 বাংলা</a> •
+  <a href="docs/i18n/README.ur.md">🇵🇰 اردو</a> •
+  <a href="docs/i18n/README.ro.md">🇷🇴 Română</a> •
+  <a href="docs/i18n/README.sv.md">🇸🇪 Svenska</a> •
+  <a href="docs/i18n/README.it.md">🇮🇹 Italiano</a> •
+  <a href="docs/i18n/README.el.md">🇬🇷 Ελληνικά</a> •
+  <a href="docs/i18n/README.hu.md">🇭🇺 Magyar</a> •
+  <a href="docs/i18n/README.fi.md">🇫🇮 Suomi</a> •
+  <a href="docs/i18n/README.da.md">🇩🇰 Dansk</a> •
+  <a href="docs/i18n/README.no.md">🇳🇴 Norsk</a>
+</p>
+
+<h4 align="center">Persistent memory compression system built for <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
+
+<p align="center">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
+  </a>
+  <a href="package.json">
+    <img src="https://img.shields.io/badge/version-13.35.0-green.svg" alt="Version">
+  </a>
+  <a href="package.json">
+    <img src="https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg" alt="Node">
+  </a>
+  <a href="https://github.com/thedotmack/awesome-claude-code">
+    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/15496" target="_blank">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg">
+      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem | Trendshift" width="250" height="55"/>
+    </picture>
+  </a>
+</p>
+
+<p><br></p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/thedotmack/claude-mem">
+        <picture>
+          <img
+            src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/cm-preview.gif"
+            alt="Claude-Mem Preview"
+            width="500"
+          >
+        </picture>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.star-history.com/#thedotmack/claude-mem&Date">
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&theme=dark&legend=top-left"
+          />
+          <source
+            media="(prefers-color-scheme: light)"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+          />
+          <img
+            alt="Star History Chart"
+            src="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+            width="500"
+          />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#how-it-works">How It Works</a> •
+  <a href="#mcp-search-tools">Search Tools</a> •
+  <a href="#documentation">Documentation</a> •
+  <a href="#configuration">Configuration</a> •
+  <a href="#troubleshooting">Troubleshooting</a> •
+  <a href="#license">License</a>
+</p>
+
+<p align="center">
+  Claude-Mem seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic summaries, and making them available to future sessions. This enables Claude to maintain continuity of knowledge about projects even after sessions end or reconnect.
+</p>
+
+<hr />
+<h2>Quick Start</h2>
+<p>Install claude-mem for Grok Bot:</p>
+<pre><code class="language-bash">npx claude-mem install --ide grok-bot
+</code></pre>
+<p>Grok Bot has no host hooks, so we watch the chat log files. Default is CMEM Pro, the hosted memory. Local observer is opt-in: <code>--provider host</code>. Installing this plugin does not install Cursor.</p>
+<p><strong>Awareness push pilot (LFG + Orifice):</strong> needle observations (<code>decision</code>, <code>bugfix</code>, <code>security_alert</code>, <code>sensitive</code>) are appended as dated <code>- YYYY-MM-DD [awareness] …</code> lines into that bot's <code>memory/log/YYYY-MM.md</code>. Grok Bot already re-reads the log from disk. This does not write <code>profile.md</code>, user-memory, or project memory. Disable with <code>CLAUDE_MEM_GROK_BOT_AWARENESS_ENABLED=false</code>.</p>
+<p>Install with a single command:</p>
+<pre><code class="language-bash">npx claude-mem install
+</code></pre>
+<p>The installer sets everything up first, then asks you to sign in to claude-mem in your browser (email magic link — no card required). Signing in provisions a memory key for your account and unlocks the <strong>claude-mem observer</strong> with a <strong>30 Day Free Trial</strong>: memory runs off-plan, so you get up to 100% more usage from your plan. When the free trial ends, memory automatically falls back to your Anthropic plan unless you subscribe. After sign-in you pick your memory provider — the claude-mem observer, your own OpenRouter or Gemini key, or your Anthropic plan.</p>
+<p>Prefer to skip the sign-in? Pass an explicit <code>--provider</code> flag, set <code>CLAUDE_MEM_ONLINE_OPTIN=false</code>, or run in CI/non-interactive shells — the installer completes without any account interaction.</p>
+<p>Or install for OpenCode:</p>
+<pre><code class="language-bash">npx claude-mem install --ide opencode
+</code></pre>
+<p>This works with OpenCode 1.3.4 or later, including OpenCode 2. Restart OpenCode after installing.</p>
+<p>Or install for <strong>T3 Code</strong> (Codex and Claude Code providers):</p>
+<pre><code class="language-bash">npx claude-mem install --ide t3code
+</code></pre>
+<p>The installer discovers T3 Code's enabled providers, registers native Claude-Mem plugins in their configured homes, and supports T3-managed Codex. Restart T3 Code, trust the provider's hooks when prompted, and start a new thread. See the <a href="https://docs.claude-mem.ai/t3code-integration">T3 Code integration guide</a> for custom server settings, status, and removal.</p>
+<p>Or install for Antigravity CLI (<a href="https://docs.claude-mem.ai/antigravity-cli/setup">setup guide</a>):</p>
+<pre><code class="language-bash">npx claude-mem install --ide antigravity
+</code></pre>
+<p>Or install for OMP (Oh My Pi):</p>
+<pre><code class="language-bash">npx claude-mem install --ide omp
+</code></pre>
+<p>Or install the native Pi extension or Deep</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/thedotmack/claude-mem#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
@@ -1115,9 +952,9 @@ Install natively with the built-in `cmd skills` command. Command Code clones the
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#555555"></span>C</span>
-      <span class="meta-item">⭐ 7,912</span>
-      <span class="meta-item">🍴 384</span>
-      <span class="stars-today">⭐ 90 stars today</span>
+      <span class="meta-item">⭐ 8,166</span>
+      <span class="meta-item">🍴 391</span>
+      <span class="stars-today">⭐ 279 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1278,188 +1115,259 @@ Thread model: posix</p>
   </div>
 </div>
 <div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">anthropics /</span>
+          <a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noopener">knowledge-work-plugins</a>
+        </div>
+        <div class="repo-desc">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 27,789</span>
+      <span class="meta-item">🍴 3,217</span>
+      <span class="stars-today">⭐ 392 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Knowledge Work Plugins</h1>
+<p>Plugins that turn Claude into a specialist for your role, team, and company. Built for <a href="https://claude.com/product/cowork">Claude Cowork</a>, also compatible with <a href="https://claude.com/product/claude-code">Claude Code</a>.</p>
+<h2>Why Plugins</h2>
+<p>Cowork lets you set the goal and Claude delivers finished, professional work. Plugins let you go further: tell Claude how you like work done, which tools and data to pull from, how to handle critical workflows, and what slash commands to expose — so your team gets better and more consistent outcomes.</p>
+<p>Each plugin bundles the skills, connectors, slash commands, and sub-agents for a specific job function. Out of the box, they give Claude a strong starting point for helping anyone in that role. The real power comes when you customize them for your company — your tools, your terminology, your processes — so Claude works like it was built for your team.</p>
+<h2>Plugin Marketplace</h2>
+<p>We're open-sourcing 11 plugins built and inspired by our own work:</p>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>How it helps</th>
+<th>Connectors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="./productivity">productivity</a></strong></td>
+<td>Manage tasks, calendars, daily workflows, and personal context so you spend less time repeating yourself.</td>
+<td>Slack, Notion, Asana, Linear, Jira, Monday, ClickUp, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./sales">sales</a></strong></td>
+<td>Research prospects, prep for calls, review your pipeline, draft outreach, and build competitive battlecards.</td>
+<td>Slack, HubSpot, Close, Clay, ZoomInfo, Notion, Jira, Fireflies, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./customer-support">customer-support</a></strong></td>
+<td>Triage tickets, draft responses, package escalations, research customer context, and turn resolved issues into knowledge base articles.</td>
+<td>Slack, Intercom, HubSpot, Guru, Jira, Notion, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./product-management">product-management</a></strong></td>
+<td>Write specs, plan roadmaps, synthesize user research, keep stakeholders updated, and track the competitive landscape.</td>
+<td>Slack, Linear, Asana, Monday, ClickUp, Jira, Notion, Figma, Amplitude, Pendo, Intercom, Fireflies</td>
+</tr>
+<tr>
+<td><strong><a href="./marketing">marketing</a></strong></td>
+<td>Draft content, plan campaigns, enforce brand voice, brief on competitors, and report on performance across channels.</td>
+<td>Slack, Canva, Figma, HubSpot, Amplitude, Notion, Ahrefs, SimilarWeb, Klaviyo</td>
+</tr>
+<tr>
+<td><strong><a href="./legal">legal</a></strong></td>
+<td>Review contracts, triage NDAs, navigate compliance, assess risk, prep for meetings, and draft templated responses.</td>
+<td>Slack, Box, Egnyte, Jira, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./finance">finance</a></strong></td>
+<td>Prep journal entries, reconcile accounts, generate financial statements, analyze variances, manage close, and support audits.</td>
+<td>Snowflake, Databricks, BigQuery, Slack, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./data">data</a></strong></td>
+<td>Query, visualize, and interpret datasets — write SQL, run statistical analysis, build dashboards, and validate your work before sharing.</td>
+<td>Snowflake, Databricks, BigQuery, Definite, Hex, Amplitude, Jira</td>
+</tr>
+<tr>
+<td><strong><a href="./enterprise-search">enterprise-search</a></strong></td>
+<td>Find anything across email, chat, docs, and wikis — one query across all your company's tools.</td>
+<td>Slack, Notion, Guru, Jira, Asana, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./bio-research">bio-research</a></strong></td>
+<td>Connect to preclinical research tools and databases (literature search, genomics analysis, target prioritization) to accelerate early-stage life sciences R&amp;D.</td>
+<td>PubMed, BioRender, bioRxiv, ClinicalTrials.gov, ChEMBL, Synapse, Wiley, Owkin, Open Targets, Benchling</td>
+</tr>
+<tr>
+<td><strong><a href="./cowork-plugin-management">cowork-plugin-management</a></strong></td>
+<td>Create new plugins or customize existing ones for your organization's specific tools and workflows.</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Install these directly from Cowork, browse the full collection here on GitHub, or build your own.</p>
+<h2>Getting Started</h2>
+<h3>Cowork</h3>
+<p>Install plugins from <a href="https://claude.com/plugins/">claude.com/plugins</a>.</p>
+<h3>Claude Code</h3>
+<pre><code class="language-bash"># Add the marketplace first
+claude plugin marketplace add anthropics/knowledge-work-plugins
+
+# Then install a specific plugin
+claude plugin install sales@knowledge-work-plugins
+</code></pre>
+<p>Once installed, plugins activate automatically. Skills fire when relevant, and slash commands are available in your session (e.g., <code>/sales:call-prep</code>, <code>/data:write-query</code>).</p>
+<h2>How Plugins Work</h2>
+<p>Every plugin follows the same structure:</p>
+<pre><code>plugin-name/
+├── .claude-plugin/plugin.json   # Manifest
+├── .mcp.json                    # Tool connections
+├── commands/                    # Slash commands you invoke explicitly
+└── skills/                      # Domain knowledge Claude draws on automatically
+</code></pre>
+<ul>
+<li><strong>Skills</strong> encode the domain expertise, best practices, and step-by-step workflows Claude needs to give you useful help. Claude draws on them automatically when relevant.</li>
+<li><strong>Commands</strong> are explicit actions you trigger (e.g., <code>/finance:reconciliation</code>, <code>/product-management:write-spec</code>).</li>
+<li><strong>Connectors</strong> wire Claude to the external tools your role depends on — CRMs, project trackers, data warehouses, design tools, and more — via <a href="https://modelcontextprotocol.io/">MCP servers</a>.</li>
+</ul>
+<p>Every component is file-based — markdown and JSON, no code, no infrastructure, no build steps.</p>
+<h2>Making Them Yours</h2>
+<p>These plugins are generic starting points. They become much more useful when you customize them for how your company actually works:</p>
+<ul>
+<li><strong>Swap connectors</strong> — Edit <code>.mcp.json</code> to point at your specific tool stack.</li>
+<li><strong>Add company context</strong> — Drop your terminology, org structure, and processes into skill files so Claude understands your world.</li>
+<li><strong>Adjust workflows</strong> — Modify skill instructions to match how your team actually does things, not how a textbook says to.</li>
+<li><strong>Build new plugins</strong> — Use the <code>cowork-plugin-management</code> plugin or follow the structure above to create plugins for roles and workflows we haven't covered yet.</li>
+</ul>
+<p>As your team builds and shares plugins, Claude becomes a cross-functional expert. The context you define gets baked into every relevant interaction, so leaders and admins can spend less time enforcing processes and more time improving them.</p>
+<h2>Contributing</h2>
+<p>Plugins are just markdown files. Fork the repo, make your changes, and submit a PR.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/anthropics/knowledge-work-plugins#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
   <div class="rank-label">#8</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">thedotmack /</span>
-          <a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener">claude-mem</a>
+          <span class="repo-owner">storytold /</span>
+          <a href="https://github.com/storytold/artcraft" target="_blank" rel="noopener">artcraft</a>
         </div>
-        <div class="repo-desc">Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More</div>
+        <div class="repo-desc">ArtCraft is an intentional crafting engine for artists, designers, and filmmakers</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 97,845</span>
-      <span class="meta-item">🍴 8,607</span>
-      <span class="stars-today">⭐ 578 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 8,658</span>
+      <span class="meta-item">🍴 1,270</span>
+      <span class="stars-today">⭐ 2,103 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <h1 align="center">
-  <br>
-  <a href="https://github.com/thedotmack/claude-mem">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/public/claude-mem-logo-for-dark-mode.webp">
-      <source media="(prefers-color-scheme: light)" srcset="docs/public/claude-mem-logo-for-light-mode.webp">
-      <img src="docs/public/claude-mem-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
-    </picture>
-  </a>
-</h1>
+    <h1 align="center">ArtCraft</h1>
+<p align="center"><strong>The IDE for artists.</strong></p>
 
+<!-- Main video: https://www.youtube.com/watch?v=kzvQMdg66Go
+     GitHub media issue: https://github.com/storytold/artcraft/issues/1951 -->
+
+<p>https://github.com/user-attachments/assets/7339bd09-3e0d-44a7-a024-af9de64e4c11</p>
 <p align="center">
-  <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge-2026.svg" height="24" />
-  &nbsp;&nbsp;&nbsp;
-  <img alt="Greptile" src="docs/public/greptile-wordmark-green.svg" height="24" />
-  &nbsp;&nbsp;&nbsp;
-  <img alt="SerpApi" src="docs/public/serpapi-logo-with-wordmark-gradient.svg" height="24" />
+  <a href="https://www.youtube.com/watch?v=kzvQMdg66Go">Watch the two-minute ArtCraft demo on YouTube</a>
 </p>
 
 <p align="center">
-  <a href="docs/i18n/README.zh.md">🇨🇳 中文</a> •
-  <a href="docs/i18n/README.zh-tw.md">🇹🇼 繁體中文</a> •
-  <a href="docs/i18n/README.ja.md">🇯🇵 日本語</a> •
-  <a href="docs/i18n/README.pt.md">🇵🇹 Português</a> •
-  <a href="docs/i18n/README.pt-br.md">🇧🇷 Português</a> •
-  <a href="docs/i18n/README.ko.md">🇰🇷 한국어</a> •
-  <a href="docs/i18n/README.es.md">🇪🇸 Español</a> •
-  <a href="docs/i18n/README.de.md">🇩🇪 Deutsch</a> •
-  <a href="docs/i18n/README.fr.md">🇫🇷 Français</a> •
-  <a href="docs/i18n/README.he.md">🇮🇱 עברית</a> •
-  <a href="docs/i18n/README.ar.md">🇸🇦 العربية</a> •
-  <a href="docs/i18n/README.ru.md">🇷🇺 Русский</a> •
-  <a href="docs/i18n/README.pl.md">🇵🇱 Polski</a> •
-  <a href="docs/i18n/README.cs.md">🇨🇿 Čeština</a> •
-  <a href="docs/i18n/README.nl.md">🇳🇱 Nederlands</a> •
-  <a href="docs/i18n/README.tr.md">🇹🇷 Türkçe</a> •
-  <a href="docs/i18n/README.uk.md">🇺🇦 Українська</a> •
-  <a href="docs/i18n/README.vi.md">🇻🇳 Tiếng Việt</a> •
-  <a href="docs/i18n/README.tl.md">🇵🇭 Tagalog</a> •
-  <a href="docs/i18n/README.id.md">🇮🇩 Indonesia</a> •
-  <a href="docs/i18n/README.th.md">🇹🇭 ไทย</a> •
-  <a href="docs/i18n/README.hi.md">🇮🇳 हिन्दी</a> •
-  <a href="docs/i18n/README.bn.md">🇧🇩 বাংলা</a> •
-  <a href="docs/i18n/README.ur.md">🇵🇰 اردو</a> •
-  <a href="docs/i18n/README.ro.md">🇷🇴 Română</a> •
-  <a href="docs/i18n/README.sv.md">🇸🇪 Svenska</a> •
-  <a href="docs/i18n/README.it.md">🇮🇹 Italiano</a> •
-  <a href="docs/i18n/README.el.md">🇬🇷 Ελληνικά</a> •
-  <a href="docs/i18n/README.hu.md">🇭🇺 Magyar</a> •
-  <a href="docs/i18n/README.fi.md">🇫🇮 Suomi</a> •
-  <a href="docs/i18n/README.da.md">🇩🇰 Dansk</a> •
-  <a href="docs/i18n/README.no.md">🇳🇴 Norsk</a>
-</p>
-
-<h4 align="center">Persistent memory compression system built for <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
-
-<p align="center">
-  <a href="LICENSE">
-    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/version-13.34.2-green.svg" alt="Version">
-  </a>
-  <a href="package.json">
-    <img src="https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg" alt="Node">
-  </a>
-  <a href="https://github.com/thedotmack/awesome-claude-code">
-    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
-  </a>
+  <a href="https://discord.gg/artcraft"><img alt="Discord members online" src="https://img.shields.io/discord/1359579021108842617?style=for-the-badge&amp;label=Discord&amp;color=5865F2&amp;logo=discord&amp;logoColor=white"></a>
+  <a href="https://www.youtube.com/@OfficialArtCraftStudios"><img alt="YouTube" src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&amp;logo=youtube&amp;logoColor=white"></a>
+  <a href="https://x.com/get_artcraft"><img alt="X" src="https://img.shields.io/badge/X-181717?style=for-the-badge&amp;logo=x&amp;logoColor=white"></a>
+  <a href="https://www.linkedin.com/company/artcraft-ai"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge"></a>
 </p>
 
 <p align="center">
-  <a href="https://trendshift.io/repositories/15496" target="_blank">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge-dark.svg">
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg">
-      <img src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/trendshift-badge.svg" alt="thedotmack/claude-mem | Trendshift" width="250" height="55"/>
-    </picture>
-  </a>
+  <a href="https://getartcraft.com/">Download ArtCraft</a> ·
+  <a href="https://github.com/storytold/artcraft/releases">GitHub releases</a> ·
+  <a href="./_docs/dev_setup.md">Build from source</a>
 </p>
 
-<p><br></p>
-<table align="center">
-  <tr>
-    <td align="center">
-      <a href="https://github.com/thedotmack/claude-mem">
-        <picture>
-          <img
-            src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/cm-preview.gif"
-            alt="Claude-Mem Preview"
-            width="500"
-          >
-        </picture>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://www.star-history.com/#thedotmack/claude-mem&Date">
-        <picture>
-          <source
-            media="(prefers-color-scheme: dark)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&theme=dark&legend=top-left"
-          />
-          <source
-            media="(prefers-color-scheme: light)"
-            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
-          />
-          <img
-            alt="Star History Chart"
-            src="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
-            width="500"
-          />
-        </picture>
-      </a>
-    </td>
-  </tr>
+<p>ArtCraft is the IDE for interactive AI image and video creation. Compose in 2D, stage scenes in 3D, and choose the models that fit your work. Turn prompting into <em>crafting</em> with visual tools for precise, repeatable results.</p>
+<h2>Show, Don't Tell: Advanced Crafting Features</h2>
+<p>Artists need control over composition, character identity, and camera placement. Build the scene before you generate it. Click any preview to view it at full size.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Image to Location</strong><br>Place virtual actors in a consistent environment and plan multiple shots in the same room.</td>
+<td><a href="https://github.com/user-attachments/assets/21f103e3-cc19-4882-a630-9caa1b76ae31"><img src="https://github.com/user-attachments/assets/21f103e3-cc19-4882-a630-9caa1b76ae31" width="180" alt="Image to Location demo"></a></td>
+</tr>
+<tr>
+<td><strong>3D Image Compositing</strong><br>Layer backdrops, foregrounds, and props in 3D to build compositions with depth.</td>
+<td><a href="https://github.com/user-attachments/assets/f93a616f-571d-474e-bcc0-53736de7303d"><img src="https://github.com/user-attachments/assets/f93a616f-571d-474e-bcc0-53736de7303d" width="180" alt="3D Image Compositing demo"></a></td>
+</tr>
+<tr>
+<td><strong>2D Image Compositing</strong><br>Compose a scene with image layers, background removal, and drawing tools.</td>
+<td><a href="https://github.com/user-attachments/assets/d6f99391-e496-4c62-9e37-29734ba5f899"><img src="https://github.com/user-attachments/assets/d6f99391-e496-4c62-9e37-29734ba5f899" width="180" alt="2D Image Compositing demo"></a></td>
+</tr>
+<tr>
+<td><strong>Image to 3D Mesh</strong><br>Turn an image into a 3D object you can position, rotate, and frame precisely.</td>
+<td><a href="https://github.com/user-attachments/assets/600a405c-e360-48c1-9b42-6e657ae6243b"><img src="https://github.com/user-attachments/assets/600a405c-e360-48c1-9b42-6e657ae6243b" width="180" alt="Image to 3D Mesh demo"></a></td>
+</tr>
+<tr>
+<td><strong>Character Posing</strong><br>Pose characters and set your camera before generating the final shot.</td>
+<td><a href="https://raw.githubusercontent.com/storytold/github-media/22a27373707b13f48fc56405f1f89ca143c43d5d/character-posing.webp"><img src="https://raw.githubusercontent.com/storytold/github-media/22a27373707b13f48fc56405f1f89ca143c43d5d/character-posing.webp" width="180" alt="Character Posing demo"></a></td>
+</tr>
+<tr>
+<td><strong>Scene Blocking with Kitbashing</strong><br>Combine 3D asset kits to control camera angles, object placement, and depth.</td>
+<td><a href="https://github.com/user-attachments/assets/eef025ac-0346-4a46-a023-d48e23629eb5"><img src="https://github.com/user-attachments/assets/eef025ac-0346-4a46-a023-d48e23629eb5" width="180" alt="Scene Blocking with Kitbashing demo"></a></td>
+</tr>
+<tr>
+<td><strong>Character Identity Transfer</strong><br>Use a posed mannequin to guide the placement and pose of your character.</td>
+<td><a href="https://github.com/user-attachments/assets/629119ee-8c76-4a83-9827-8c6c995a3ec1"><img src="https://github.com/user-attachments/assets/629119ee-8c76-4a83-9827-8c6c995a3ec1" width="180" alt="Character Identity Transfer demo"></a></td>
+</tr>
+<tr>
+<td><strong>Background Removal</strong><br>Isolate subjects to use as props, layers, or backdrops in 2D and 3D scenes.</td>
+<td><a href="https://github.com/user-attachments/assets/90c65057-5531-404f-83af-b34e66e24ec1"><img src="https://github.com/user-attachments/assets/90c65057-5531-404f-83af-b34e66e24ec1" width="180" alt="Background Removal demo"></a></td>
+</tr>
+<tr>
+<td><strong>Mixed Asset Crafting</strong><br>Combine image cutouts, worlds, and 3D meshes in one scene.</td>
+<td><a href="https://raw.githubusercontent.com/storytold/github-media/main/ship-editing.gif"><img src="https://raw.githubusercontent.com/storytold/github-media/main/ship-editing.gif" width="180" alt="Mixed Asset Crafting demo"></a></td>
+</tr>
+</tbody>
 </table>
-
-<p align="center">
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#how-it-works">How It Works</a> •
-  <a href="#mcp-search-tools">Search Tools</a> •
-  <a href="#documentation">Documentation</a> •
-  <a href="#configuration">Configuration</a> •
-  <a href="#troubleshooting">Troubleshooting</a> •
-  <a href="#license">License</a>
-</p>
-
-<p align="center">
-  Claude-Mem seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic summaries, and making them available to future sessions. This enables Claude to maintain continuity of knowledge about projects even after sessions end or reconnect.
-</p>
-
-<hr />
-<h2>Quick Start</h2>
-<p>Install claude-mem for Grok Bot:</p>
-<pre><code class="language-bash">npx claude-mem install --ide grok-bot
-</code></pre>
-<p>Grok Bot has no host hooks, so we watch the chat log files. Default is CMEM Pro, the hosted memory. Local observer is opt-in: <code>--provider host</code>. Installing this plugin does not install Cursor.</p>
-<p><strong>Awareness push pilot (LFG + Orifice):</strong> needle observations (<code>decision</code>, <code>bugfix</code>, <code>security_alert</code>, <code>sensitive</code>) are appended as dated <code>- YYYY-MM-DD [awareness] …</code> lines into that bot's <code>memory/log/YYYY-MM.md</code>. Grok Bot already re-reads the log from disk. This does not write <code>profile.md</code>, user-memory, or project memory. Disable with <code>CLAUDE_MEM_GROK_BOT_AWARENESS_ENABLED=false</code>.</p>
-<p>Install with a single command:</p>
-<pre><code class="language-bash">npx claude-mem install
-</code></pre>
-<p>The installer sets everything up first, then asks you to sign in to claude-mem in your browser (email magic link — no card required). Signing in provisions a memory key for your account and unlocks the <strong>claude-mem observer</strong> with a <strong>30 Day Free Trial</strong>: memory runs off-plan, so you get up to 100% more usage from your plan. When the free trial ends, memory automatically falls back to your Anthropic plan unless you subscribe. After sign-in you pick your memory provider — the claude-mem observer, your own OpenRouter or Gemini key, or your Anthropic plan.</p>
-<p>Prefer to skip the sign-in? Pass an explicit <code>--provider</code> flag, set <code>CLAUDE_MEM_ONLINE_OPTIN=false</code>, or run in CI/non-interactive shells — the installer completes without any account interaction.</p>
-<p>Or install for OpenCode:</p>
-<pre><code class="language-bash">npx claude-mem install --ide opencode
-</code></pre>
-<p>Or install for <strong>T3 Code</strong> (Codex and Claude Code providers):</p>
-<pre><code class="language-bash">npx claude-mem install --ide t3code
-</code></pre>
-<p>The installer discovers T3 Code's enabled providers, registers native Claude-Mem plugins in their configured homes, and supports T3-managed Codex. Restart T3 Code, trust the provider's hooks when prompted, and start a new thread. See the <a href="https://docs.claude-mem.ai/t3code-integration">T3 Code integration guide</a> for custom server settings, status, and removal.</p>
-<p>Or install for Antigravity CLI (<a href="https://docs.claude-mem.ai/antigravity-cli/setup">setup guide</a>):</p>
-<pre><code class="language-bash">npx claude-mem install --ide antigravity
-</code></pre>
-<p>Or install for OMP (Oh My Pi):</p>
-<pre><code class="language-bash">npx claude-mem install --ide omp
-</code></pre>
-<p>Or install the native Pi extension or DeepSeek Harness plugin:</p>
-<p>```bash<br />
-npx claude-mem install --ide pi<br />
-npx claude-mem install --ide dsh --ds</p>
+<p>More previews are coming for scene blocking, canvas editing, and scene relighting.</p>
+<h2>Quick and Easy Prompting</h2>
+<p>Start with a prompt when you want to explore an idea quickly, then use the canvas and scene tools to refine it.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Text to Image</strong><br>Explore ideas across a wide range of image models with a text prompt.</td>
+<td><a href="https://github.com/user-attachments/assets/9cc289cd-faf4-4eaf-aed2-21134cce127c"><img src="https://github.com/user-attachments/assets/9cc289cd-faf4-4eaf-aed2-21134cce127c" width="180" alt="Text to Image demo"></a></td>
+</tr>
+<tr>
+<td><strong>Prompted Image Editing</strong><br>Describe changes to an image with models such as Nano Banana Pro and GPT Image.</td>
+<td>&lt;a href="https://github.com/user-attachments/asse</td>
+</tr>
+</tbody>
+</table>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/thedotmack/claude-mem#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/storytold/artcraft#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1470,733 +1378,115 @@ npx claude-mem install --ide dsh --ds</p>
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">manaflow-ai /</span>
-          <a href="https://github.com/manaflow-ai/cmux" target="_blank" rel="noopener">cmux</a>
+          <span class="repo-owner">liquidslr /</span>
+          <a href="https://github.com/liquidslr/system-design-notes" target="_blank" rel="noopener">system-design-notes</a>
         </div>
-        <div class="repo-desc">Open source Ghostty-based macOS terminal with vertical tabs and notifications for AI coding agents. Built for multitasking, organization, and programmability.</div>
+        <div class="repo-desc">Notes of the book System Desgin Interview - An Insider&#x27;s Guide</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#F05138"></span>Swift</span>
-      <span class="meta-item">⭐ 27,906</span>
-      <span class="meta-item">🍴 2,463</span>
-      <span class="stars-today">⭐ 44 stars today</span>
+      
+      <span class="meta-item">⭐ 24,859</span>
+      <span class="meta-item">🍴 4,627</span>
+      <span class="stars-today">⭐ 393 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <h1 align="center">cmux</h1>
-<p align="center">A Ghostty-based macOS terminal with vertical tabs and notifications for AI coding agents</p>
-
-<p align="center">
-  <a href="https://github.com/manaflow-ai/cmux/releases/latest/download/cmux-macos.dmg">
-    <img src="./docs/assets/macos-badge.png" alt="Download cmux for macOS" width="180" />
-  </a>
-</p>
-
-<p align="center">
-  English | <a href="README.ja.md">日本語</a> | <a href="README.vi.md">Tiếng Việt</a> | <a href="README.zh-CN.md">简体中文</a> | <a href="README.zh-TW.md">繁體中文</a> | <a href="README.ko.md">한국어</a> | <a href="README.de.md">Deutsch</a> | <a href="README.es.md">Español</a> | <a href="README.fr.md">Français</a> | <a href="README.it.md">Italiano</a> | <a href="README.da.md">Dansk</a> | <a href="README.pl.md">Polski</a> | <a href="README.ru.md">Русский</a> | <a href="README.bs.md">Bosanski</a> | <a href="README.ar.md">العربية</a> | <a href="README.no.md">Norsk</a> | <a href="README.pt-BR.md">Português (Brasil)</a> | <a href="README.th.md">ไทย</a> | <a href="README.tr.md">Türkçe</a> | <a href="README.km.md">ភាសាខ្មែរ</a> | <a href="README.uk.md">Українська</a>
-</p>
-
-<p align="center">
-  <a href="https://x.com/manaflowai"><img src="https://img.shields.io/badge/@manaflow-555?logo=x" alt="X / Twitter" /></a>
-  <a href="https://discord.gg/xsgFEVrWCZ"><img src="https://img.shields.io/badge/Discord-555?logo=discord" alt="Discord" /></a>
-  <a href="https://github.com/manaflow-ai/cmux"><img src="https://img.shields.io/github/stars/manaflow-ai/cmux?style=flat&logo=github&label=stars&color=4c71f2" alt="GitHub stars" /></a>
-</p>
-
-<p align="center">
-  <img src="./docs/assets/main-first-image.png" alt="cmux screenshot" width="900" />
-</p>
-
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=i-WxO5YUTOs">▶ Demo video</a> · <a href="https://cmux.com/blog/zen-of-cmux">The Zen of cmux</a>
-</p>
-
-<p align="center">
-  <a href="https://cmux.com/docs/getting-started">Docs</a> · <a href="https://cmux.com/blog">Blog</a> · <a href="https://cmux.com/docs/changelog">Changelog</a> · <a href="https://cmux.com/community">Community</a>
-</p>
-
-<h2>Features</h2>
-<table>
-<tr>
-<td width="40%" valign="middle">
-<h3>Notification rings</h3>
-Panes get a blue ring and tabs light up when coding agents need your attention
-</td>
-<td width="60%">
-<img src="./docs/assets/notification-rings.png" alt="Notification rings" width="100%" />
-</td>
-</tr>
-<tr>
-<td width="40%" valign="middle">
-<h3>Notification panel</h3>
-See all pending notifications in one place, jump to the most recent unread
-</td>
-<td width="60%">
-<img src="./docs/assets/sidebar-notification-badge.png" alt="Sidebar notification badge" width="100%" />
-</td>
-</tr>
-<tr>
-<td width="40%" valign="middle">
-<h3>In-app browser</h3>
-Split a browser alongside your terminal with a scriptable API ported from <a href="https://github.com/vercel-labs/agent-browser">agent-browser</a>
-</td>
-<td width="60%">
-<img src="./docs/assets/built-in-browser.png" alt="Built-in browser" width="100%" />
-</td>
-</tr>
-<tr>
-<td width="40%" valign="middle">
-<h3>Vertical + horizontal tabs</h3>
-Sidebar shows git branch, linked PR status/number, working directory, listening ports, and latest notification text. Split horizontally and vertically.
-</td>
-<td width="60%">
-<img src="./docs/assets/vertical-horizontal-tabs-and-splits.png" alt="Vertical tabs and split panes" width="100%" />
-</td>
-</tr>
-<tr>
-<td width="40%" valign="middle">
-<h3>SSH</h3>
-<code>cmux ssh user@remote</code> creates a workspace for a remote machine. Pass <code>--command 'omp "investigate auth"'</code> to run an initial command once in its first remote terminal. Browser panes route through the remote network so localhost just works. Drag an image into a remote session to upload via scp.
-</td>
-<td width="60%">
-<img src="./docs/assets/ssh.png" alt="cmux SSH" width="100%" />
-</td>
-</tr>
-<tr>
-<td width="40%" valign="middle">
-<h3>Claude Code Teams</h3>
-<code>cmux claude-teams</code> runs Claude Code's teammate mode with one command. Teammates spawn as native splits with sidebar metadata and notifications. No tmux required.
-</td>
-<td width="60%">
-<img src="./docs/assets/claude-code-teams.png" alt="Claude Code Teams" width="100%" />
-</td>
-</tr>
-</table>
-
+    <h1><a href="https://bytebytego.com/courses/system-design-interview">System Design Interview - An Insider's Guide (Vol 1 and 2)</a></h1>
+<p>These notes are based on the System Design Interview books - <a href="https://www.goodreads.com/book/show/54109255-system-design-interview-an-insider-s-guide">Vol 1 and Vol 2 2nd Ed</a> </p>
+<p>Check the notes here: https://pagefy.io/system-design/system-design-interview-by-alex-xu</p>
+<p><strong>Note:</strong> These notes are a work in progress. </p>
 <ul>
-<li><strong>Browser import</strong> — Import cookies, history, and sessions from Chrome, Firefox, Arc, and 20+ browsers so browser panes start authenticated</li>
-<li><strong>Custom commands</strong> — Define project-specific actions in <a href="https://cmux.com/docs/custom-commands"><code>cmux.json</code></a> that launch from the command palette</li>
-<li><strong>Programmable</strong> — CLI and socket API to create workspaces, split panes, send keystrokes, and automate the browser</li>
-<li><strong>Native macOS app</strong> — Built with Swift and AppKit, not Electron. Fast startup, low memory.</li>
-<li><strong>Ghostty compatible</strong> — Reads your existing <code>~/.config/ghostty/config</code> for themes, fonts, and colors</li>
-<li><strong>GPU-accelerated</strong> — Powered by libghostty for smooth rendering</li>
-<li><strong>Keyboard shortcuts</strong> — <a href="https://cmux.com/docs/keyboard-shortcuts">Extensive shortcuts</a> for workspaces, splits, browser, and more</li>
-<li><strong>Open source</strong> — Free and GPL-licensed</li>
+<li><a href="./01.%20Scaling/">Chapter 1 - Scale From Zero To Millions Of Users</a></li>
+<li><a href="./02.%20Back%20Of%20the%20Envelope%20Estimation/">Chapter 2 - Back-of-the-envelope Estimation</a></li>
+<li><a href="./03.%20System%20Design%20Framework/">Chapter 3 - A Framework For System Design Interviews</a></li>
+<li><a href="./04.%20Rate%20Limiter//">Chapter 4 - Design A Rate Limiter</a></li>
+<li><a href="./05.%20Consistent%20Hashing/">Chapter 5 - Design Consistent Hashing</a></li>
+<li><a href="./06.%20Key-Value%20Store/">Chapter 6 - Design A Key-Value Store</a></li>
+<li><a href="./07.%20Unique-Id%20Generator/">Chapter 7 - Design A Unique ID Generator In Distributed Systems</a></li>
+<li><a href="./08.%20URL%20Shortener/">Chapter 8 - Design A URL Shortener</a></li>
+<li><a href="./09.%20Web%20Crawler/">Chapter 9 - Design A Web Crawler</a></li>
+<li><a href="./10.%20Notification%20System/">Chapter 10 - Design A Notification System</a></li>
+<li><a href="./11.%20News%20Feed%20System/">Chapter 11 - Design A News Feed System</a></li>
+<li><a href="./12.%20Chat%20System/">Chapter 12 - Design A Chat System</a></li>
+<li><a href="./13.%20Search%20Autocomplete/">Chapter 13 - Design A Search Autocomplete System</a></li>
+<li><a href="./14.%20Youtube/">Chapter 14 - Design YouTube</a></li>
+<li><a href="./15.%20Google%20Drive/">Chapter 15 - Design Google Drive</a></li>
+<li><a href="./16.%20Proximity%20Service/">Chapter 16 - Proximity Service</a></li>
+<li><a href="./17.%20Nearby%20Friends/">Chapter 17 - Nearby Friends</a></li>
+<li><a href="./18.%20Google%20Maps/">Chapter 18 - Design Google Maps</a></li>
+<li><a href="./19.%20Distributed%20Message%20Queue/">Chapter 19 - Distributed Message Queue</a></li>
+<li><a href="./20.%20Metrics%20Monitoring%20and%20Alerting%20System/">Chapter 20 - Metrics Monitoring and Alerting System</a></li>
+<li><a href="./21.%20Ad%20Click%20Event%20Aggregation/">Chapter 21 - Ad Click Event Aggregation</a></li>
+<li><a href="./22.%20Hotel%20Reservation%20System/">Chapter 22 - Hotel Reservation System</a></li>
+<li><a href="./23.%20Distributed%20Email%20Service/">Chapter 23 - Distributed Email Service</a></li>
+<li><a href="./24.%20S3-like%20Object%20Storage/">Chapter 24 - S3-like Object Storage</a></li>
+<li><a href="./25.%20Real-time%20Gaming%20Leaderboard/">Chapter 25 - Real-time Gaming Leaderboard</a></li>
+<li><a href="./26.%20Payment%20System/">Chapter 26 - Payment System</a></li>
+<li><a href="./27.%20%20Digital%20Wallet/">Chapter 27 - Digital Wallet</a></li>
+<li><a href="./28.%20Stock%20Exchange/">Chapter 28 - Stock Exchange</a></li>
 </ul>
-<h2>Install</h2>
-<h3>DMG (recommended)</h3>
-<p><a href="https://github.com/manaflow-ai/cmux/releases/latest/download/cmux-macos.dmg"><br />
-  <img src="./docs/assets/macos-badge.png" alt="Download cmux for macOS" width="180" /><br />
-</a></p>
-<p>Open the <code>.dmg</code> and drag cmux to your Applications folder. cmux auto-updates via Sparkle, so you only need to download once.</p>
-<h3>Homebrew</h3>
-<pre><code class="language-bash">brew tap manaflow-ai/cmux
-brew install --cask cmux
-</code></pre>
-<p>To update later:</p>
-<pre><code class="language-bash">brew upgrade --cask cmux
-</code></pre>
-<p>On first launch, macOS may ask you to confirm opening an app from an identified developer. Click <strong>Open</strong> to proceed.</p>
-<h2>Why cmux?</h2>
-<p>I run a lot of Claude Code and Codex sessions in parallel. I was using Ghostty with a bunch of split panes, and relying on native macOS notifications to know when an agent needed me. But Claude Code's notification body is always just "Claude is waiting for your input" with no context, and with enough tabs open I couldn't even read the titles anymore.</p>
-<p>I tried a few coding orchestrators but most of them were Electron/Tauri apps and the performance bugged me. I also just prefer the terminal since GUI orchestrators lock you into their workflow. So I built cmux as a native macOS app in Swift/AppKit. It uses libghostty for terminal rendering and reads your existing Ghostty config for themes, fonts, and colors.</p>
-<p>The main additions are the sidebar and notification system. The sidebar has vertical tabs that show git branch, linked PR status/number, working directory, listening ports, and the latest notification text for each workspace. The notification system picks up terminal sequences (OSC 9/99/777) and has a CLI (<code>cmux notify</code>) you can wire into agent hooks for Claude Code, OpenCode, etc. When an agent is waiting, its pane gets a blue ring and the tab lights up in the sidebar, so I can tell which one needs me across splits and tabs. Cmd+Shift+U jumps to the most recent unread.</p>
-<p>The in-app browser has a scriptable API ported from <a href="https://github.com/vercel-labs/agent-browser">agent-browser</a>. Agents can snapshot the accessibility tree, get element refs, click, fill forms, and evaluate JS. You can split a browser pane next to your terminal and have Claude Code interact with your dev server directly.</p>
-<p>Everything is scriptable through the CLI and socket API — create workspaces/tabs, split panes, send keystrokes, open URLs in the browser.</p>
-<h2>The Zen of cmux</h2>
-<p>cmux is not prescriptive about how developers hold their tools. It's a terminal and browser with a CLI, and the rest is up to you.</p>
-<p>cmux is a primitive, not a solution. It gives you a terminal, a browser, notifications, workspaces, splits, tabs, and a CLI to control all of it. cmux doesn't force you into an opinionated way to use coding agents. What you build with the primitives is yours.</p>
-<p>The best developers have always built their own tools. Nobody has figured out the best way to work with agents yet, and the teams building closed </p>
+<h1>Additonal Resources</h1>
+<h3>Rate Limiting</h3>
+<ul>
+<li><a href="https://martinfowler.com/bliki/CircuitBreaker.html">Circuit Breaker Algorithm</a></li>
+<li><a href="https://github.com/uber-go/ratelimit/blob/master/ratelimit.go">Uber Rate Limiter</a></li>
+</ul>
+<h3>Consistent Hashing</h3>
+<ul>
+<li><a href="https://tom-e-white.com/2007/11/consistent-hashing.html">Consistent Hashing</a></li>
+<li><a href="http://theory.stanford.edu/~tim/s16/l/l1.pdf">CS168: Introduction and Consistent Hashing:</a></li>
+<li><a href="http://www.cs.cornell.edu/Projects/ladis2009/papers/Lakshman-ladis2009.PDF">Apache Cassandra</a></li>
+<li><a href="https://blog.discord.com/scaling-elixir-f9b8e1e7c29b">Scaling Discord</a></li>
+<li><a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf">Google Maglev</a></li>
+</ul>
+<h3>Key-Value Store</h3>
+<ul>
+<li><a href="https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">Amazon Dynamo</a></li>
+<li><a href="https://docs.datastax.com/en/archived/cassandra/3.0/cassandra/architecture/archIntro.html">Cassandra Architecture</a></li>
+<li><a href="https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf">Google BigTable Architecture</a></li>
+<li><a href="https://www.allthingsdistributed.com/2007/10/amazons_dynamo.html">Amazon Dynamo DB Internals</a></li>
+<li><a href="https://www.youtube.com/watch?v=HaEPXoXVf2k">Design Patterns in Amazon Dynamo DB</a></li>
+<li><a href="https://www.youtube.com/watch?v=yvBR71D0nAQ">Internals of Amazon Dynamo DB</a></li>
+</ul>
+<h3>Unique-ID Generator</h3>
+<ul>
+<li><a href="https://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap">Ticket Servers: Distributed Unique Primary Keys on the Cheap</a></li>
+<li><a href="https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake.html">Snowflake</a></li>
+</ul>
+<h3>Web Crawler</h3>
+<ul>
+<li><a href="http://infolab.stanford.edu/~olston/publications/crawling_survey.pdf">Web Crawling</a></li>
+<li><a href="https://developers.google.com/search/docs/guides/dynamic-rendering">Google Dynamic Rendering</a></li>
+</ul>
+<h3>Chat Systems</h3>
+<ul>
+<li><a href="https://discord.com/blog/how-discord-stores-billions-of-messages">How Discord stores billions of messages</a></li>
+<li><a href="https://slack.engineering/flannel-an-application-level-edge-cache-to-make-slack-scale/">Flannel: An Application-Level Edge Cache to Make Slack Scale</a></li>
+</ul>
+<h3>Search Autocomplete</h3>
+<ul>
+<li><a href="https://medium.com/@prefixyteam/how-we-built-prefixy-a-scalable-prefix-search-service-for-powering-autocomplete-c20f98e2eff1">How We Built Prefixy</a></li>
+<li><a href="https://people.eecs.berkeley.edu/~sylvia/papers/pht.pdf">Prefix Hash Tree</a></li>
+</ul>
+<h3>Youtube</h3>
+<ul>
+<li><a href="http://highscalability.com/youtube-architecture">YouTube Architecture</a></li>
+<li><a href="https://www.youtube.com/watch?v=w5WVu624fY8">YouTube scalability 2012</a></li>
+<li><a href="https://www.egnyte.com/blog/2018/12/transcoding-how-we-serve-videos-at-scale/">Transcoding Videos at Scale</a></li>
+<li><a href="https://engineering.fb.com/ios/under-the-hood-broadcasting-live-video-to-millions/">Facebook Video Broadcasting</a></li>
+<li><a href="https://netflixtechblog.com/high-quality-video-encoding-at-scale-d159db052746">Netflix Video Encoding at Scale</a></li>
+<li><a href="https://netflixtechblog.com/optimized-shot-based-encodes-now-streaming-4b9464204830">Netflix Shot based encoding</a></li>
+</ul>
+<h3>Google Drive</h3>
+<ul>
+<li><a href="https://neil.fraser.name/writing/sync/">Differential Synchronization</a></li>
+<li><a href="https://www.youtube.com/watch?v=S2Hp_1jqpY8">Differential Synchronization Video</a></li>
+<li><a href="https://www.youtube.com/watch?v=PE4gwstWhmc&amp;feature=youtu.be">How We’ve Scaled Dropbox</a></li>
+</ul>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/manaflow-ai/cmux#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#10</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">trycua /</span>
-          <a href="https://github.com/trycua/cua" target="_blank" rel="noopener">cua</a>
-        </div>
-        <div class="repo-desc">Scale computer-use 2.0 with open-source drivers, cross-OS fleets, and benchmarks for training, evaluation, and data generation.</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
-      <span class="meta-item">⭐ 28,829</span>
-      <span class="meta-item">🍴 2,042</span>
-      <span class="stars-today">⭐ 228 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <div align="center">
-  <a href="https://cua.ai" target="_blank" rel="noopener noreferrer">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" alt="Cua logo" width="150" srcset="img/logo_white.svg">
-      <source media="(prefers-color-scheme: light)" alt="Cua logo" width="150" srcset="img/logo_black.svg">
-      <img alt="Cua logo" width="150" src="img/logo_black.svg">
-    </picture>
-  </a>
-
-  <p align="center"><strong>Give AI agents computers they can use.</strong><br>Cua Spaces gives your agents full desktops on your Mac and on machines you own. This repository also holds Cua Driver for desktop automation, Lume for local VMs, CUA-S1 decision models and Cua Bench for evaluating computer-use agents.</p>
-
-  <p align="center"><strong><a href="https://spaces.cua.ai">Get Cua Spaces</a></strong></p>
-
-  <p align="center">
-    <a href="https://cua.ai" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/cua.ai-0ea5e9" alt="cua.ai"></a>
-    <a href="https://discord.gg/mVnXXpdE85" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Discord-Join%20Server-10b981?logo=discord&logoColor=white" alt="Discord"></a>
-    <a href="https://x.com/trycua" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/twitter/follow/trycua?style=social" alt="Twitter"></a>
-    <a href="https://cua.ai/docs" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Docs-0ea5e9.svg" alt="Documentation"></a>
-    <br>
-<a href="https://www.star-history.com/#trycua/cua" target="_blank" rel="noopener noreferrer"><img src="https://api.star-history.com/badge?repo=trycua/cua&type=trending" alt="trycua/cua | GitHub Trending on Star History" width="266" height="64"/></a>
-  </p>
-
-</div>
-
-<h2>Choose your path</h2>
-<div align="center">
-  <table width="100%">
-    <tr>
-      <td colspan="3" align="center" valign="top">
-        <a href="#cua-spaces">
-          <img src="img/card-cua-spaces-wide.webp" alt="Cua Spaces: full desktops for your agents. macOS and Linux Spaces on machines you own." width="100%">
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="33.33%">
-        <a href="#cua-driver">
-          <img src="img/card-cua-driver.webp" alt="Cua Driver: inspect and operate apps on macOS, Windows, and Linux" width="100%">
-        </a>
-      </td>
-      <td align="center" valign="top" width="33.33%">
-        <a href="#lume">
-          <img src="img/card-cua-lume.webp" alt="Lume: local macOS and Linux VMs on Apple Silicon" width="100%">
-        </a>
-      </td>
-      <td align="center" valign="top" width="33.33%">
-        <a href="#cua-bench">
-          <img src="img/card-cua-bench.webp" alt="Cua Bench: create tasks, evaluate agents, and export trajectories" width="100%">
-        </a>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<ul>
-<li><strong>Cua Spaces:</strong> <a href="https://cua.ai/docs/spaces/quickstart">Install the app and run your first Space</a>.</li>
-<li><strong>Cua Driver:</strong> <a href="https://cua.ai/docs/cua-driver/quickstart">Operate Calculator and verify its result</a>.</li>
-<li><strong>Lume:</strong> <a href="https://cua.ai/docs/lume/quickstart">Create a Tahoe VM and connect over SSH</a>.</li>
-<li><strong>Cua SDK and CLI:</strong> <a href="#cua-sdk-and-cli">Install <code>cua</code> and create a local sandbox</a>.</li>
-<li><strong>CUA-S1:</strong> <a href="#cua-s1">Explore small, specialized models for computer-use decisions</a>.</li>
-<li><strong>Cua Bench:</strong> <a href="https://cua.ai/docs/cua-bench/quickstart">Create and verify a simulated task</a>.</li>
-</ul>
-<p>Bring your own agent and model, or explore CUA-S1 for specialized decisions. Cua provides the computer and automation tools. <a href="https://cua.ai/docs/cua-driver/concepts/how-cua-driver-works">Computer-Use 2.0</a> describes an agent moving between code, APIs, and graphical interfaces within the same task.</p>
-<hr />
-<h2>Cua Spaces</h2>
-<p>Cua Spaces is a desktop app that gives your agents full desktops. Each desktop is a Space: a macOS VM built locally on your Mac, or a Linux or Omarchy image. Spaces run on your Mac, on other machines you own, and in <a href="https://cua.ai/docs/cua-sdk/guides/your-cloud">your own cloud account</a> (AWS, Google Cloud or Modal), and the app keeps them in your menu bar and notch.</p>
-<ul>
-<li><strong>Teleport.</strong> Move a signed-in app, such as Chrome or Slack, into a Space and it opens there still signed in. Your sessions stay in the Cua Keyvault, encrypted on your Mac, and reach a Space only after you approve.</li>
-<li><strong>Multiplayer.</strong> You and your agents work on the same desktop, each with your own cursor. Step in to make a choice, then hand the desktop back.</li>
-<li><strong>Agent-ready images.</strong> Spaces images ship with <a href="libs/cua-spacesd/README.md">cua-spacesd</a>, so agents get processes, files, screenshots and input as soon as a Space starts.</li>
-</ul>
-<p>https://github.com/user-attachments/assets/a2ccc86b-10d0-48c0-bee6-7ae652ba1c59</p>
-<p><strong>Install on macOS 26 or later</strong></p>
-<pre><code class="language-sh">curl -fsSL https://cua.ai/install.sh | sh
-</code></pre>
-<p>On macOS the installer selects the Cua Spaces app by default and adds the <code>cua</code> CLI. You can also <a href="https://github.com/trycua/cua/releases/download/cua-spaces-v0.1.0/cua-spaces-0.1.0-darwin-universal.dmg">download the signed <code>.dmg</code></a>, or get the <code>.pkg</code> from the <a href="https://github.com/trycua/cua/releases/tag/cua-spaces-v0.1.0">Cua Spaces 0.1.0 release</a>.</p>
-<p>Spaces is free for individuals. Pro and Teams plans are coming soon. The app is source-available under <a href="#licensing">FSL-1.1-MIT</a>.</p>
-<p><strong><a href="https://cua.ai/docs/spaces/quickstart">Quickstart</a></strong> | <strong><a href="https://cua.ai/docs/spaces/guides/teleport-an-app">Teleport an app</a></strong> | <strong><a href="https://cua.ai/docs/spaces/guides/share-a-space">Share a Space</a></strong> | <strong><a href="https://cua.ai/docs/start-here/host-spaces-on-your-spare-mac">Host Spaces on a spare Mac (relay, Tailscale or SSH)</a></strong> | <strong><a href="https://cua.ai/docs/cua-sdk/guides/your-cloud">Your own cloud</a></strong> | <strong><a href="apps/cua-spaces-macos/README.md">App source</a></strong></p>
-<hr />
-<h2>Cua Driver</h2>
-<p>Give your agent tools to inspect and operate native desktop apps and browsers on macOS, Windows, and Linux. Connect through the CLI, MCP, or typed SDKs. Background delivery lets agents work without moving your pointer or taking focus when the app and platform support it; see <a href="https://cua.ai/docs/cua-driver/concepts/platform-support">platform support</a> for the boundaries.</p>
-<p><strong>macOS / Linux</strong></p>
-<pre><code class="language-sh">/bin/bash -c &quot;$(curl -fsSL https://cua.ai/driver/install.sh)&quot;
-</code></pre>
-<p><strong>Windows (PowerShell)</strong></p>
-<pre><code class="language-powershell">irm https://cua.ai/driver/install.ps1 | iex
-</code></pre>
-<p><strong>Your first result:</strong> connect your agent, ask it to compute 6 × 7 in Calculator, and have it verify that the app displays 42. The tutorial covers platform setup, permissions, and agent connection.</p>
-<p><strong><a href="https://cua.ai/docs/cua-driver/quickstart">Drive your first app</a></strong> | <strong><a href="https://cua.ai/docs/cua-driver/quickstart">Installation</a></strong> | <strong><a href="https://cua.ai/docs/cua-driver/reference/cli">CLI Reference</a></strong></p>
-<p>Using Claude Code, Codex, Cursor, OpenClaw, or another agent? <a href="https://cua.ai/docs/cua-driver/guides/connect-your-agent">Find your integration</a>. Source documentation and architecture notes live in <a href="libs/cua-driver/README.md"><code>libs/cua-driver/README.md</code></a>.</p>
-<h3>See Cua Driver in action</h3>
-<p>Two Cua Driver sessions select cells in LibreOffice Calc and objects in Inkscape on an Omarchy desktop while a terminal stays in the foreground. Watch the 50-second demo.</p>
-<p>https://github.com/user-attachments/assets/b4e5517c-d2db-4758-b4cf-07131b0753b2</p>
-<hr />
-<h2>Lume</h2>
-<p>Create and manage local macOS and Linux VMs on Apple Silicon using Apple's Virtualization.Framework.</p>
-<pre><code class="language-bash">/bin/bash -c &quot;$(curl -fsSL https://cua.ai/lume/install.sh)&quot;
-</code></pre>
-<p><strong>Your first result:</strong> create a vanilla macOS Tahoe VM from an Apple restore image, start it, and connect over SSH. The tutorial uses the Lume CLI directly and explains the unattended setup defaults.</p>
-<p><strong><a href="https://cua.ai/docs/lume/quickstart">Create your first Lume VM</a></strong> | <strong><a href="https://cua.ai/docs/lume/quickstart">Installation</a></strong> | <strong><a href="https://cua.ai/docs/lume/reference/cli">CLI reference</a></strong></p>
-<hr />
-<h2>Cua SDK and CLI</h2>
-<p>One SDK and one <code>cua</code> command for local VMs and containers, and for any machine that runs [cua-spacesd](libs/cua-spac</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/trycua/cua#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#11</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">cloudflare /</span>
-          <a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">security-audit-skill</a>
-        </div>
-        <div class="repo-desc">A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
-      <span class="meta-item">⭐ 26,163</span>
-      <span class="meta-item">🍴 1,573</span>
-      <span class="stars-today">⭐ 576 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <h1>security-audit</h1>
-<p>A coding-agent skill that turns your agent into a security auditor. It orchestrates isolated agents through reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification, and target-neutral reporting.</p>
-<p>This is the skill that seeded Cloudflare's vulnerability discovery harness, described in <a href="https://blog.cloudflare.com/build-your-own-vulnerability-harness">Build your own vulnerability harness</a>. The harness grew into a multi-stage, fleet-wide system; this skill is the single-repo starting point it evolved from.</p>
-<h2>What it does</h2>
-<p>The skill runs a structured audit in six phases:</p>
-<ol>
-<li><strong>Reconnaissance</strong> -- map architecture, trust boundaries, input surfaces, prior evidence, and deterministic coverage in <code>architecture.md</code> and <code>coverage-ledger.json</code>.</li>
-<li><strong>Coverage-led hunting</strong> -- assign isolated hunters from ledger units, record their checks, and use coverage critics to find gaps.</li>
-<li><strong>Candidate validation</strong> -- give every unique candidate to a fresh verifier that tries to disprove it.</li>
-<li><strong>Structured output</strong> -- write <code>confirmed</code>, <code>needs_validation</code>, and <code>rejected</code> records to <code>findings.json</code> and validate them against <code>report-schema.json</code>.</li>
-<li><strong>Independent record verification</strong> -- fresh agents verify final source claims. Material replacements receive another independent verifier.</li>
-<li><strong>Target-neutral reporting</strong> -- derive <code>REPORT.md</code>, <code>FINDINGS-DETAIL.md</code>, and <code>NEEDS-VALIDATION.md</code> from the verified records and coverage ledger.</li>
-</ol>
-<p>The parent runs <code>validate-coverage-ledger.cjs</code> after creating the ledger and after each later ledger update. It runs <code>validate-findings.cjs</code> in Phase 4 and again after every Phase 5 replacement.</p>
-<p>The verdicts are distinct: <code>confirmed</code> has a complete source trace and bounded observed result, <code>needs_validation</code> has an exact unresolved fact and no severity, and <code>rejected</code> records a disproved candidate.</p>
-<p>Multiple runs against the same repo are additive. The skill uses prior ledgers and findings to target gaps, revalidate changed source, and carry forward current-source evidence without treating stale or unresolved work as covered.</p>
-<h2>Files</h2>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>SKILL.md</code></td>
-<td>Setup, core principles, platform terminology, workflow overview, and audit anti-patterns</td>
-</tr>
-<tr>
-<td><code>RECONNAISSANCE.md</code></td>
-<td>Phase 1 reconnaissance prompts and synthesis instructions</td>
-</tr>
-<tr>
-<td><code>HUNTING.md</code></td>
-<td>Phase 2 orchestration, hunting methodology, and validation rules</td>
-</tr>
-<tr>
-<td><code>ATTACK-CLASSES.md</code></td>
-<td>Core, wildcard, and obvious-things attack prompts</td>
-</tr>
-<tr>
-<td><code>MEMORY-SAFETY-AND-BINARY.md</code></td>
-<td>Memory-safety, binary, and kernel hunting classes for native targets</td>
-</tr>
-<tr>
-<td><code>AI-AND-LLM.md</code></td>
-<td>Prompt-injection, agent/tool, and output-handling hunting classes for LLM-backed targets</td>
-</tr>
-<tr>
-<td><code>WEB-PROTOCOL-AND-AUTH.md</code></td>
-<td>HTTP request-framing, cache, and authentication-protocol hunting classes for HTTP-protocol and auth targets</td>
-</tr>
-<tr>
-<td><code>CLIENT-SIDE.md</code></td>
-<td>DOM-injection, messaging-trust, UI-redress, and prototype-pollution hunting classes for client-side/browser targets</td>
-</tr>
-<tr>
-<td><code>SUPPLY-CHAIN-AND-RELEASE.md</code></td>
-<td>Dependency, CI, release, signing, update, plugin, and extension hunting classes</td>
-</tr>
-<tr>
-<td><code>CLOUD-AND-DEPLOYMENT.md</code></td>
-<td>IAM, infrastructure-as-code, container, serverless, ingress, and runtime-configuration hunting classes</td>
-</tr>
-<tr>
-<td><code>PROTOCOLS-RPC-AND-MESSAGING.md</code></td>
-<td>RPC, serialization, queue, broker, webhook, and streaming-protocol hunting classes</td>
-</tr>
-<tr>
-<td><code>RESOURCE-EXHAUSTION-AND-AVAILABILITY.md</code></td>
-<td>Shared resource, quota, queue, worker, and operator-spend hunting classes</td>
-</tr>
-<tr>
-<td><code>DATA-ISOLATION-AND-LIFECYCLE.md</code></td>
-<td>Tenant isolation, cache, search, export, backup, migration, deletion, and restore hunting classes</td>
-</tr>
-<tr>
-<td><code>DESKTOP-MOBILE-AND-LOCAL-IPC.md</code></td>
-<td>Native app, deep-link, webview, exported-component, helper, daemon, and local-IPC hunting classes</td>
-</tr>
-<tr>
-<td><code>VALIDATION-AND-REPORTING.md</code></td>
-<td>Phases 3–6 candidate validation, structured output, record verification, and reporting</td>
-</tr>
-<tr>
-<td><code>report-schema.json</code></td>
-<td>JSON schema for all three <code>findings.json</code> verdicts</td>
-</tr>
-<tr>
-<td><code>validate-findings.cjs</code></td>
-<td>Zero-dependency validator for <code>findings.json</code> in Phases 4 and 5</td>
-</tr>
-<tr>
-<td><code>validate-findings.test.cjs</code></td>
-<td>Findings-validator tests and producer-compatible fixture checks</td>
-</tr>
-<tr>
-<td><code>validate-coverage-ledger.cjs</code></td>
-<td>Zero-dependency validator for <code>coverage-ledger.json</code> in Phases 1–5</td>
-</tr>
-<tr>
-<td><code>validate-coverage-ledger.test.cjs</code></td>
-<td>Coverage-ledger validator tests</td>
-</tr>
-</tbody>
-</table>
-<h2>Installation</h2>
-<p>Install the skill with the <a href="https://skills.sh">Skills CLI</a>:</p>
-<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
-  --skill security-audit
-</code></pre>
-<p>Use <code>--global</code> for a user-level installation:</p>
-<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
-  --skill security-audit \
-  --global
-</code></pre>
-<p>Run <code>npx skills --help</code> for agent-selection and non-interactive options.</p>
-<h2>Usage</h2>
-<p>Start your coding agent in (or pointed at) the codebase you want to audit, then ask it to do a security audit:</p>
-<pre><code>security audit this codebase
-</code></pre>
-<pre><code>find security vulnerabilities in ./src
-</code></pre>
-<pre><code>do a security review, output to ~/audits/my-project
-</code></pre>
-<p>The skill activates automatically when the request matches its trigger (security audit, find vulnerabilities, pen-test the code, etc.). A direct codebase audit or pen-test request uses full audit mode. Security questions and focused vulnerability work use guidance mode unless you request report artifacts. In full audit mode, an unspecified output directory defaults to <code>~/security-audit-skill/&lt;repo-name&gt;/run-&lt;N&gt;</code>. The workflow writes inside the target repository only when you explicitly select a directory that version control ignores.</p>
-<h2>Requirements</h2>
-<ul>
-<li>A coding agent with a model that supports tool use and parallel sub-agents</li>
-<li>Node.js for the zero-dependency findings and coverage-ledger validators</li>
-<li>An OS-enforced sandbox for target-controlled builds, tests, processes, browsers, emulators, fuzzers, and fixtures. It must disable external networking, use a sanitized allowlisted environment, enforce resource limits, and allow writes only to assigned scratch paths. Without these controls, the workflow keeps the lead as <code>needs_validation</code> instead of executing target code.</li>
-</ul>
-<h2>Design principles</h2>
-<ul>
-<li><strong>Only confirm established boundary failures.</strong> Keep a source-grounded blocked lead as <code>needs_validation</code> with its exact unresolved fact.</li>
-<li><strong>Adversarial validation.</strong> The agent that checks a finding is never the agent that found it.</li>
-<li><strong>Severity requires impact.</strong> Likelihood x impact, not deviation from a checklist.</li>
-<li><strong>Defense-in-depth gaps are not vulnerabilities.</strong> If Layer A prevents the attack, the absence of Layer B is a hardening note.</li>
-<li><strong>Multiple runs improve coverage.</strong> In our test runs, a single run found roughly half of the vulnerabilities that repeated runs found in total.</li>
-</ul>
-<h2>Contact</h2>
-<p>Questions, feedback, or comparing notes on AI-driven security tooling: security-ai-research@cloudflare.com</p>
-<h2>License</h2>
-<p>MIT -- see <a href="LICENSE">LICENSE</a>.</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/cloudflare/security-audit-skill#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#12</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">tester-army /</span>
-          <a href="https://github.com/tester-army/e2e" target="_blank" rel="noopener">e2e</a>
-        </div>
-        <div class="repo-desc">Next generation e2e testing framework for web and mobile apps.</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 7,661</span>
-      <span class="meta-item">🍴 347</span>
-      <span class="stars-today">⭐ 1,390 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <p><a href="https://tester.army/e2e?utm_source=e2e&utm_medium=github&utm_campaign=readme_banner"><img src="./.github/assets/readme-banner.png" alt="e2e, the open source AI testing framework by TesterArmy" width="100%" /></a></p>
-<p align="center">
-  <a href="https://tester.army?utm_source=e2e&utm_medium=github&utm_campaign=readme_badge"><img alt="Made by TesterArmy" src="./.github/assets/made-by-testerarmy.svg" /></a>
-  <a href="https://www.npmjs.com/package/e2e"><img alt="npm version" src="https://img.shields.io/npm/v/e2e.svg?style=for-the-badge&labelColor=000000" /></a>
-  <a href="./LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-green.svg?style=for-the-badge&labelColor=000000" /></a>
-  <a href="https://tester.army/discord"><img alt="Join the community on Discord" src="https://img.shields.io/badge/Join%20the%20community-5865F2.svg?style=for-the-badge&logo=discord&logoColor=white&labelColor=000000" /></a>
-</p>
-
-<p align="center">
-  <a href="https://www.star-history.com/tester-army/e2e"><picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=tester-army/e2e&type=trending&theme=dark" /><img alt="GitHub Trending Repository of the Day" src="https://api.star-history.com/badge?repo=tester-army/e2e&type=trending" /></picture></a>
-</p>
-
-<h1>e2e</h1>
-<p><a href="https://tester.army/e2e?utm_source=e2e&amp;utm_medium=github&amp;utm_campaign=readme_intro">e2e</a> is an end-to-end testing framework for web and mobile apps. Describe a goal in natural language and an agent drives the app to reach it. Check the result with locators and assertions in the same test.</p>
-<pre><code class="language-ts">// tests/checkout.e2e.ts
-import { test, expect } from 'e2e';
-
-test('a member upgrades to Pro', async ({ app, agent, screen }) =&gt; {
-  await app.open('/settings/billing');
-
-  await agent.act('upgrade the workspace to the Pro plan');
-  await agent.assert('the invoice preview shows a prorated amount');
-
-  await expect(screen.getByRole('status')).toContainText('Pro');
-});
-</code></pre>
-<p>An agent step that a later assertion verifies records its actions, and the<br />
-next run replays them with no model calls until the app changes. Tests<br />
-without agent steps need no model. Bring your own subscription, API key, or<br />
-local model.</p>
-<h2>Quick start</h2>
-<pre><code class="language-bash">npx e2e init
-</code></pre>
-<p><code>init</code> asks for an engine, web or mobile, and a model provider, then writes a<br />
-config and an example test. The<br />
-<a href="https://e2e.tester.army/docs/quickstart">quickstart</a> covers the rest.</p>
-<p>To see a finished setup in your stack, open<br />
-<a href="https://github.com/tester-army/e2e/tree/main/examples"><code>examples/</code></a>:<br />
-Vite, Next.js, Expo, SwiftUI, Jetpack Compose, Kotlin Multiplatform, and<br />
-Flutter, each a standalone project with a passing suite.</p>
-<h2>Packages</h2>
-<table>
-<thead>
-<tr>
-<th>Package</th>
-<th>What it does</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://www.npmjs.com/package/e2e"><code>e2e</code></a></td>
-<td>The SDK, runner, and CLI.</td>
-</tr>
-<tr>
-<td><a href="https://www.npmjs.com/package/@e2e-dev/web"><code>@e2e-dev/web</code></a></td>
-<td>Browser engine: Chromium, Firefox, and WebKit through Playwright.</td>
-</tr>
-<tr>
-<td><a href="https://www.npmjs.com/package/@e2e-dev/mobile"><code>@e2e-dev/mobile</code></a></td>
-<td>iOS and Android engine: simulators and emulators through agent-device.</td>
-</tr>
-<tr>
-<td><a href="https://www.npmjs.com/package/@e2e-dev/github"><code>@e2e-dev/github</code></a></td>
-<td>Reporter that posts results as a pull request comment.</td>
-</tr>
-<tr>
-<td><a href="https://www.npmjs.com/package/@e2e-dev/kernel"><code>@e2e-dev/kernel</code></a></td>
-<td>Kernel hosted browsers for the web engine.</td>
-</tr>
-<tr>
-<td><a href="https://www.npmjs.com/package/@e2e-dev/eas"><code>@e2e-dev/eas</code></a></td>
-<td>EAS Simulators hosted iOS simulators and Android emulators for the mobile engine.</td>
-</tr>
-<tr>
-<td><a href="https://e2e.tester.army/docs/decision-models"><code>@e2e-dev/decision</code></a></td>
-<td>Decision-model executors for bounded semantic actions and assertions.</td>
-</tr>
-</tbody>
-</table>
-<h2>Documentation</h2>
-<p><a href="https://e2e.tester.army/docs">e2e.tester.army/docs</a>. The <code>e2e</code> package ships<br />
-every page, so coding agents can read them offline in <code>node_modules/e2e/docs</code>.</p>
-<h2>Contributing</h2>
-<p>See <a href="./CONTRIBUTING.md">CONTRIBUTING.md</a>. Questions go to<br />
-<a href="https://tester.army/discord">Discord</a>.</p>
-<h2>Security</h2>
-<p>Please don't open public issues for security vulnerabilities. Follow<br />
-<a href="./SECURITY.md">SECURITY.md</a> and report them to<br />
-<a href="mailto:security@tester.army">security@tester.army</a>.</p>
-<h2>Telemetry</h2>
-<p>The CLI sends anonymous usage data, such as which commands and engines run and<br />
-where runs fail, but no test content, app content, or credentials. Opt out with<br />
-<code>npx e2e telemetry disable</code> or <code>E2E_TELEMETRY_DISABLED=1</code>.<br />
-<a href="https://e2e.tester.army/docs/telemetry">Telemetry</a> lists every field.</p>
-<h2>Status</h2>
-<blockquote>
-<p>[!NOTE]<br />
-e2e is in active development on the way to 1.0. APIs and config can still<br />
-change between minor releases.</p>
-</blockquote>
-<h2>Made by TesterArmy</h2>
-<p>e2e is built by <a href="https://tester.army/?utm_source=e2e&amp;utm_medium=github&amp;utm_campaign=readme_footer">TesterArmy</a>,<br />
-the agentic testing platform that runs natural language tests on web and mobile<br />
-apps, on every pull request or on a schedule.</p>
-<p>Apache-2.0.</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/tester-army/e2e#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#13</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">DuarteSantos8 /</span>
-          <a href="https://github.com/DuarteSantos8/openGym" target="_blank" rel="noopener">openGym</a>
-        </div>
-        <div class="repo-desc">Self-hosted gym &amp; body-weight tracker — plan routines, log workouts (supersets, warm-ups, cardio), see which muscles are trained, fatigued or detrained, import from FitNotes/Strong/Hevy, passkey login. Your data, your server.</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
-      <span class="meta-item">⭐ 7,174</span>
-      <span class="meta-item">🍴 932</span>
-      <span class="stars-today">⭐ 1,493 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <div align="center">
-
-<img src="assets/banner.png" alt="openGym" width="720">
-
-**A self-hosted gym and body-weight tracker you actually own.**
-
-Plan your week, run guided workouts, log every set and your body weight —<br>
-on your phone, synced across your devices, behind your own passkey login.
-
-[![Discord](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscord.com%2Fapi%2Finvites%2Fe62jY6fwVb%3Fwith_counts%3Dtrue&query=%24.approximate_member_count&suffix=%20members&label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge)](https://discord.gg/e62jY6fwVb)
-[![Online](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscord.com%2Fapi%2Finvites%2Fe62jY6fwVb%3Fwith_counts%3Dtrue&query=%24.approximate_presence_count&suffix=%20online&label=&logo=discord&logoColor=white&color=3BA55C&style=for-the-badge)](https://discord.gg/e62jY6fwVb)
-[![GitHub stars](https://img.shields.io/github/stars/DuarteSantos8/openGym?style=for-the-badge&logo=github&logoColor=white&color=24292f)](https://github.com/DuarteSantos8/openGym/stargazers)
-
-[![Release](https://img.shields.io/github/v/release/DuarteSantos8/openGym?style=flat-square)](https://github.com/DuarteSantos8/openGym/releases)
-[![Tests](https://img.shields.io/github/actions/workflow/status/DuarteSantos8/openGym/test.yml?branch=main&label=tests&style=flat-square)](https://github.com/DuarteSantos8/openGym/actions/workflows/test.yml)
-[![Pipeline](https://gitlab.com/DuarteSantos8/opengym/badges/main/pipeline.svg?style=flat-square)](https://gitlab.com/DuarteSantos8/opengym/-/pipelines)
-[![Coverage](https://gitlab.com/DuarteSantos8/opengym/badges/main/coverage.svg?job=test:frontend&style=flat-square)](https://gitlab.com/DuarteSantos8/opengym/-/pipelines?ref=main)
-[![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0-a3e635?style=flat-square)](LICENSE)
-
-[Website](https://opengym.duarte-santos.ch) ·
-[Live demo](https://opengym.duarte-santos.ch/demo/) ·
-[Android APK](https://github.com/DuarteSantos8/openGym/releases/latest) ·
-[Self-hosting guide](docs/SELF_HOSTING.md) ·
-[Roadmap](ROADMAP.md) ·
-[Changelog](CHANGELOG.md)
-
-<a href="https://buymeacoffee.com/duartesantos" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="45" width="163"></a>
-
-</div>
-
-<table align="center">
-<tr>
-<td align="center"><img src="assets/screenshots/home.png" alt="Home screen" width="230"><br><sub><b>Home</b> · today's workout and weight</sub></td>
-<td align="center"><img src="assets/screenshots/workout.png" alt="Workout screen" width="230"><br><sub><b>Guided workout</b> · demos and sets</sub></td>
-<td align="center"><img src="assets/screenshots/stats.png" alt="Stats screen" width="230"><br><sub><b>Stats</b> · heatmap, charts and PRs</sub></td>
-</tr>
-</table>
-
-<h2>Why openGym</h2>
-<p>Most workout apps keep your data on their servers, push you towards a subscription, or vanish<br />
-when the company does. openGym runs on your own box, keeps your data in a folder you control, and<br />
-is yours to fork. It still behaves like a modern app: installable on the home screen, passkey<br />
-sign-in, works offline, syncs between your phone and your laptop.</p>
-<p>No account on someone else's server, no subscription, no ads, no telemetry. One<br />
-<code>docker compose up</code> and it's running.</p>
-<p>The <a href="https://opengym.duarte-santos.ch/demo/">in-browser demo</a> is the real app with example data,<br />
-if you want to try it before installing anything.</p>
-<h2>Features</h2>
-<p><strong>Planning</strong></p>
-<ul>
-<li>A routine per weekday over a library of <strong>1,324 exercises</strong> with animated demos, searchable and<br />
-  browsable by muscle on a body map. Filter by the equipment you own.</li>
-<li>Four starter plans (Push/Pull/Legs, Upper/Lower, Full Body, 5×5) that load as ordinary,<br />
-  editable routines.</li>
-<li>Move a session to another day without touching the weekly plan. The week starts on Monday or<br />
-  Sunday, your choice.</li>
-<li>Or skip the weekdays altogether: a <strong>rotation</strong> (A, B, C, A, ...) where the next session is<br />
-  simply the next one you haven't done, however the week went.</li>
-<li>Supersets, warm-up sets, drop sets and rest-pause, timed exercises (planks, hangs, carries),<br />
-  cardio by time and speed, rest time per exercise, planned deloads.</li>
-<li>Your own exercises, with your own photo, GIF or short video. Location data is stripped on the<br />
-  device before upload.</li>
-</ul>
-<p><strong>Training</strong></p>
-<ul>
-<li>Guided sessions: today's workout starts itself, weights are pre-filled from last time, a rest<br />
-  timer runs between sets, PRs are detected as you go. On a rest day it tells you when the next<br />
-  session is.</li>
-<li>A quiet workout screen: one menu per exercise, the set number as the set's own menu, card or<br />
-  list view. Switches in Settings bring the old button rows back if you liked them.</li>
-<li>Optional effort column as RIR or RPE, colour-coded, with a plain-language line per level.</li>
-<li>Plate math for barbell, EZ bar, trap bar and Smith machine, worked out from the plates you own.</li>
-<li>Bodyweight exercises know they carry no load: log reps, add a dip belt if you use one.</li>
-<li>Per-side reps for lunges and single-arm work, the screen stays awake while you train, and a<br />
-  rest-timer alert can flash the screen for loud gyms.</li>
-<li>Swipe a set left to delete it (with Undo) or right to copy it. Pyramid sets with their own reps<br />
-  and rest per set, and a scroll wheel for any rest time up to 15 minutes.</li>
-</ul>
-<p><strong>Progress</strong></p>
-<ul>
-<li>Progression rules per routine or per exercise: linear, Greyskull LP, double progression through a<br />
-  visible rep range, or adding time. Each target explains why it is that number; missed reps never<br />
-  add load, stalls trigger a deload.</li>
-<li>Estimated 1RM per exercise with its own curve, Structural Balance ratios (Poliquin, Thibaudeau,<br />
-  ATG), a year-long activity heatmap.</li>
-<li>A muscle map in three modes: where your volume went, what is still recovering, and what has gone<br />
-  untrained.</li>
-<li>Body-weight chart against a goal line, and progress photos on a timeline with a before/after<br />
-  slider.</li>
-<li>Edit any saved workout after the fact, log one you did on paper, or move it to the right date.<br />
-  Records are re-read from the corrected history.</li>
-</ul>
-<p><strong>Accounts and data</strong></p>
-<ul>
-<li>Passkeys (Face ID, Touch ID, fingerprint) with per-profile data synced across devices. Password<br />
-  sign-in can be switched on per instance; new devices pair with a one-time code or QR.</li>
-<li>Two devices editing at once merge field by field instead of overwriting each other (see<br />
-<a href="#how-sync-works">sync</a>).</li>
-<li>Import from FitNotes, Strong, Hevy (CSV or API key) and Apple Health weight exports. Export<br />
-  everything as one JSON file whenever you like.</li>
-<li>Share a plan as a small file or print it as a PDF.</li>
-<li>Optional admin dashboard with invite-only signup and an activity log.</li>
-<li>18 languages, including right-to-left Arabic and Traditional Chinese. Exercise names and<br />
-  instructions are translated for most of them.</li>
-</ul>
-<p><strong>Optional extras, off by default</strong></p>
-<ul>
-<li>An <a href="docs/AI_COACH.md">AI coach</a> that drafts a week of routines and later suggests changes based on<br />
-  what you logged. You approve every change. It runs on your server with your own provider key<br />
-  (Anthropic, OpenAI, Gemini or any OpenAI-compatible endpoint, Ollama included).</li>
-<li>An <a href="mcp/README.md">MCP server</a> so an assistant like Claude Desktop can answer questions about your<br />
-  training history. Read-only and local; not part of the Docker build.</li>
-</ul>
-<p>The full list of what changed release by release is in the <a href="CHANGELOG.md">changelog</a>.</p>
-<h2>Quick start</h2>
-<p>You need <a href="https://docs.docker.com/get-docker/">Docker</a> with Compose.</p>
-<pre><code class="language-bash">git clone https://github.com/DuarteSantos8/openGym
-cd openGym
-cp .env.example .env
-docker compose pull      # prebuilt images, amd64 + arm64 (skip this to build from source)
-docker compose up -d
-</code></pre>
-<p>Open <a href="http://localhost:8080">http://localhost:8080</a>, tap <strong>Create profile</strong>, and you're in. The first start downloads<br />
-the exercise media (about 140 MB) once.</p>
-<p>To reach it from your phone with passkeys you need HTTPS on a domain; that's a two-line change in<br />
-<code>.env</code>. The <a href="docs/SELF_HOSTING.md">self-hosting guide</a> walks through Cloudflare Tunn</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/DuarteSantos8/openGym#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/liquidslr/system-design-notes#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -2204,7 +1494,7 @@ the exercise media (about 140 MB) once.</p>
 </main>
 
 <footer>
-  Generated by <strong>scrape_github_trending.py</strong> on October 08, 2026  05:23 &nbsp;·&nbsp;
+  Generated by <strong>scrape_github_trending.py</strong> on October 09, 2026  06:36 &nbsp;·&nbsp;
   Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
 </footer>
 
