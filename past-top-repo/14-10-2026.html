@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — October 13, 2026  05:25</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on October 13, 2026  05:25 &nbsp;·&nbsp; 9 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">morluto /</span>
+          <a href="https://github.com/morluto/rea" target="_blank" rel="noopener">rea</a>
+        </div>
+        <div class="repo-desc">Reverse engineer anything with agents, from app behavior down to native binaries.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 167,534</span>
+      <span class="meta-item">🍴 39,783</span>
+      <span class="stars-today">⭐ 45,327 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+**English** · [简体中文](README_zh.md) · [繁體中文](README_zh-TW.md) · [日本語](README_ja.md) · [한국어](README_ko.md) · [Türkçe](README_tr.md) · [Русский](README_ru.md) · [Tiếng Việt](README_vi.md) · [ไทย](README_th.md) · [Deutsch](README_de.md) · [Español](README_es.md) · [Français](README_fr.md) · [Українська](README_uk.md) · [Polski](README_pl.md) · [Português (Brasil)](README_pt-BR.md) · [العربية](README_ar.md) · [فارسی](README_fa.md) · [Bahasa Indonesia](README_id.md) · [Italiano](README_it.md)
+
+# REA: Reverse Engineer Anything
+
+### One MCP for reverse engineering across binaries, applications, and runtime behavior.
+
+**See a feature you like. Understand how it works, down to the binary level.**
+
+[![npm version](https://img.shields.io/npm/v/rea-agents?style=flat-square&color=cb3837)](https://www.npmjs.com/package/rea-agents)
+[![MCP tool catalog](https://img.shields.io/badge/MCP-tool_catalog-5c4ee5?style=flat-square)](docs/mcp-contracts.md#generated-catalog)
+[![Node.js requirements](https://img.shields.io/badge/Node.js-requirements-339933?style=flat-square&logo=nodedotjs&logoColor=white)](#what-you-can-analyze)
+[![skills.sh](https://skills.sh/b/morluto/rea?style=flat-square)](https://skills.sh/morluto/rea/reverse-engineer-anything)
+[![MIT license](https://img.shields.io/badge/license-MIT-f4c430?style=flat-square)](LICENSE)
+[![Discord](https://img.shields.io/discord/1556595354999332884?logo=discord&logoColor=white&label=Discord&color=5865F2)](https://discord.gg/GkcryMnJDM)
+
+<a href="https://trendshift.io/repositories/82054?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-82054" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/82054" alt="morluto%2Frea | Trendshift" width="250" height="55"/></a>
+
+**[Website](https://rea.tools/) · [Guides](https://rea.tools/guides/) · [Showcases](https://rea.tools/showcase/)**
+
+[Quick start](#quick-start) · [How REA works](#how-rea-works) · [What you can analyze](#what-you-can-analyze) · [Showcases](#showcases) · [FAQ](#faq) · [Documentation](#documentation)
+
+<code>npx rea-agents setup</code>
+
+<br />
+
+<img src="docs/assets/rea-hopper-analysis.png" alt="REA launching its analysis bridge inside Hopper while inspecting a native binary" width="1200" />
+
+<br /><br />
+
+<table aria-label="REA community">
+<tr>
+<td align="center" width="360">
+  <a href="https://discord.gg/GkcryMnJDM">
+    <img src="docs/assets/discord.svg" height="42" alt="Discord" /><br />
+    <strong>Join the Reverse Engineering Community</strong>
+  </a><br />
+  <sub>Discord · Q&amp;A · Show and Tell</sub>
+</td>
+</tr>
+</table>
+
+<br />
+
+</div>
+
+<hr />
+<p>See a feature in an app that you want in your own product? Ask your agent to investigate it with REA. It can inspect the app without its source code, explain how the feature works, show the evidence, and build a version for your project.</p>
+<p>REA connects your agent to tools for inspecting native binaries, JavaScript and Electron apps, .NET assemblies, and websites. You can also use the same tools from your terminal. Analysis runs locally, and results include the evidence and limitations behind each conclusion.</p>
+<p>Setup registers REA with your agent and installs matching workflow instructions. Native analysis can use an existing Hopper, Ghidra, or IDA installation; setup can optionally install Hopper with approval. Static JavaScript analysis needs no native analysis engine.</p>
+<blockquote>
+<p><strong><a href="https://rea.tools/">Visit the REA website</a></strong> for setup instructions, illustrated guides, and real case studies.</p>
+</blockquote>
+<h2>Quick start</h2>
+<h3>Set up your agent</h3>
+<p>With Node.js and npm installed, run:</p>
+<pre><code class="language-bash">npx rea-agents setup
+</code></pre>
+<p>Choose your agents, review the proposed changes, and approve them. Setup adds<br />
+REA's MCP server and matching workflow instructions, with backups of existing<br />
+configuration. Restart your agent afterward.</p>
+<p>Setup supports Claude Code, Codex, Cursor, Gemini CLI, Grok Build and<br />
+<a href="docs/installation.md#supported-agents">other agents</a>. See<br />
+<a href="docs/installation.md">installation and setup</a> for provider configuration and<br />
+manual MCP registration.</p>
+<h3>Ask your agent</h3>
+<pre><code class="language-text">Understand how search works in the Notes app, show me the evidence, and build a
+similar feature for my project.
+</code></pre>
+<p>Replace Notes with your target app and the feature you want to understand.</p>
+<h3>Use the terminal</h3>
+<p>Inspect an extracted JavaScript/Electron app directory or ASAR:</p>
+<pre><code class="language-bash">npx -y rea-agents@latest analyze-javascript-application /absolute/path/to/app --json
+</code></pre>
+<p>The result includes modules, imports, Electron boundaries and their evidence.<br />
+Replace the path with your target, such as <code>"D:/apps/example"</code> on Windows.</p>
+<p>To install the <code>rea</code> command for regular use:</p>
+<pre><code class="language-bash">npm install --global rea-agents
+rea --help
+</code></pre>
+<p>For native analysis, configure a provider first. See the<br />
+<a href="docs/cli.md">CLI and Evidence guide</a> for native commands, provider selection,<br />
+snapshots and scripting.</p>
+<h3>Update REA</h3>
+<p>REA changes quickly, and new releases include frequent bug fixes. Keep your<br />
+installation up to date.</p>
+<p>For a CLI installed with <code>npm install --global</code> or <code>bun add --global</code>:</p>
+<pre><code class="language-bash">rea update
+</code></pre>
+<p>Bun global updates require Bun 1.2.17 or later. With an older Bun release,<br />
+upgrade Bun manually before running <code>rea update</code>.</p>
+<p>To refresh your agent registrations and skill, run the setup command printed<br />
+by the update.</p>
+<p>If you use <code>npx</code>, update your agent setup with:</p>
+<pre><code class="language-bash">npx rea-agents@latest setup
+</code></pre>
+<p>Review the setup changes and restart your agent. For one-off CLI commands,<br />
+use <code>npx rea-agents@latest</code> followed by the command. With Bun, use<br />
+<code>bunx rea-agents@latest</code> in place of <code>npx rea-agents@latest</code>.</p>
+<h2>How REA works</h2>
+<p>Your agent calls REA through MCP to inspect the target and trace relevant code.<br />
+REA returns findings with their evidence. The agent uses them to ask follow-up<br />
+questions, explain the behavior, or write and test an implementation.<br />
+CLI commands use the same workflows.</p>
+<p><img alt="REA investigation flow: your agent asks about a local target, REA inspects and traces it using analysis tools, and the agent uses the returned code, references and unknowns to explain, implement and test." src="website/public/assets/figures/rea-investigation-flow.svg" /></p>
+<p><a href="website/public/assets/figures/rea-investigation-flow.svg">Open the full-size figure</a>.</p>
+<p><a id="current-status"></a></p>
+<h2>What you can analyze</h2>
+<p>REA requires Node.js 22.x (&gt;=22.19), 24.x (&gt;=24.11), or 26+, plus npm.<br />
+Additional tools and host support depend on the target:</p>
+<table>
+<thead>
+<tr>
+<th>Target</th>
+<th>What REA returns</th>
+<th>Requirements and guide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Native binaries</td>
+<td>Pseudocode, assembly, strings, symbols, calls and references</td>
+<td>Hopper, Ghidra or IDA; <a href="https://rea.tools/guides/native/">native analysis</a></td>
+</tr>
+<tr>
+<td>Offline ELF layout</td>
+<td>Sections, segments, original symbols/relocations and static mitigation candidates</td>
+<td>Caller-supplied pwntools on Linux x64; <a href="docs/binary-diagnostics.md">binary diagnostics</a></td>
+</tr>
+<tr>
+<td>Go binaries</td>
+<td>Embedded compiler version, modules, replacements and build settings</td>
+<td>Built-in static ELF/PE/thin Mach-O inspection; no Go installation required</td>
+</tr>
+<tr>
+<td>WASM artifact</td>
+<td>Validation, sections, exact import/export WAT forms and decoded WAT</td>
+<td>Caller-supplied WABT 1.0.42; <code>inspect_wasm_artifact</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/morluto/rea#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">bilawalsidhu /</span>
+          <a href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">gods-eye-view</a>
+        </div>
+        <div class="repo-desc">A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 53,968</span>
+      <span class="meta-item">🍴 10,640</span>
+      <span class="stars-today">⭐ 1,895 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+# 🌐 God's Eye View
+
+[![CI](https://github.com/bilawalsidhu/gods-eye-view/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bilawalsidhu/gods-eye-view/actions/workflows/ci.yml) [![Reached #1 on GitHub Trending](https://img.shields.io/badge/%231_GitHub_Trending-thank_you!-F0A63C?style=flat-square&logo=github)](https://x.com/bilawalsidhu/status/2093798887815348521)
+
+### A spy-satellite simulator in your browser — then you realize the sources are public and the data is real.
+
+Photorealistic 3D globe. Live aircraft, ships, satellites, earthquakes, traffic, and public cameras. Hands-free voice control powered by a realtime AI agent.
+
+_No place left behind._
+
+![Orbital HUD, a tracked live globe, FLIR terrain — then OPEN SOURCED](docs/media/hero-open-source-reveal.gif)
+
+<a href="https://www.youtube.com/@bilawalsidhu">
+  <img src="docs/media/youtube-popular-videos.png" alt="The God's Eye View video series on YouTube" width="100%">
+</a>
+
+▶️ **From the project behind the viral God's Eye View series** _(formerly WorldView)_ — [5M+ on YouTube](https://youtube.com/playlist?list=PL6qSg2I-7_koPbDnSMo0QeeHX_RknA2uv&si=nBGYMoHWQw41v93Q) · [25M+ across socials](https://www.google.com/search?q=god%27s+eye+view)
+
+🏆 **Reached #1 on GitHub Trending, daily and weekly · August 2026**
+
+**[#8 Product of the Day](https://www.producthunt.com/products/god-s-eye-view?launch=god-s-eye-view)** · Hunted by Chris Messina, creator of the hashtag
+
+_“pretty cool”_ — [Brendan Eich](https://x.com/BrendanEich/status/2094592096401490266), creator of JavaScript and co-founder of Mozilla and Brave · Featured on **[Pinokio](https://pinokio.co/posts/01m1m4p9xxm3qw7dnnpj2wr93g)**
+
+⚡ **Start without API keys.** Install with [Pinokio](https://pinokio.co/apps/github-com-bilawalsidhu-gods-eye-view) or run locally from the terminal. Add optional keys inside the app. **[→ Quick Start](#-quick-start)**
+
+</div>
+
+<hr />
+<div align="center">
+
+**[Quick Start](#-quick-start) · [First Five Minutes](#-the-first-five-minutes) · [Talk to It](#-talk-to-it) · [What's Live](#-whats-on-the-globe) · [Under the Hood](#-under-the-hood) · [Keys & Costs](#-api-keys) · [Contributing](CONTRIBUTING.md)**
+
+</div>
+
+<hr />
+<h2>🌍 Why This Exists</h2>
+<p>God's Eye View brings public signals into one explorable globe. Track the world live. Talk to it. Break it. Extend it.</p>
+<p>Flight transponders, ship beacons, orbital elements, seismographs, and public cameras already tell us a lot about the world. God's Eye View puts them in the same place, so you can move between a global picture and an individual aircraft, ship, or street. It runs locally in your browser, with source code you can inspect and extend.</p>
+<blockquote>
+<p>Half the magic is that it looks like a forbidden cockpit. The other half is that every line of code is inspectable.</p>
+</blockquote>
+<p>Most feeds are live or regularly refreshed. Traffic is simulated along real<br />
+roads using aggregate location data. CCTV camera poses and rocket launch<br />
+trajectories are coarse estimates.</p>
+<p>Start with the included data sources, then add your own. Each layer is a separate module.</p>
+<hr />
+<h2>🎛️ What This Thing Does</h2>
+<ul>
+<li><strong>🛩️ Cockpit view:</strong> Ride inside a tracked flight — the camera holds the terrain under you all the way down.</li>
+<li><strong>📡 Contacts:</strong> A 250 km roster of everything near your target — step through live aircraft and drop into any cockpit.</li>
+<li><strong>🎯 Click-to-track anything:</strong> Camera locks on, draws a fading trail, surfaces full metadata — and a tracked fire or vessel hands you off to the nearest live camera in one click.</li>
+<li><strong>🖊️ Voice whiteboard:</strong> Speak annotations onto the world — real boundary polygons, marks, and routes.</li>
+<li><strong>🛫 3D hangar:</strong> Real per-class aircraft models — 787, ATR-72, Citation, Bell 206, MQ-9 — and a tracked contact swaps from glyph to 3D model as you close in.</li>
+<li><strong>🎨 Reskin reality:</strong> GLSL sensor looks over the normal globe — CRT, NVG, FLIR/thermal, Noir, Snow.</li>
+<li><strong>🟩 Detection overlay:</strong> Screen-space bounding boxes and IDs on everything in view.</li>
+<li><strong>🎖️ Military HUD:</strong> Tactical heads-up display with intelligence-style telemetry.</li>
+<li><strong>🌐 Global Context:</strong> Stage the full situational picture with one switch — and get your exact view back when you leave.</li>
+<li><strong>🎥 Scene director:</strong> Capture cinematic camera tours for clips and demos.</li>
+<li><strong>🔗 Share Links:</strong> Camera, style, layers, and even one tracked target serialize into a URL — a live target is a handoff, not a bookmark.</li>
+<li><strong>🏠 Reset Globe:</strong> One control — or one sentence — back to the full Earth.</li>
+<li><strong>🌦️ Weather:</strong> Animate GFS or ECMWF forecast wind, replay observed radar, satellite clouds and lightning on one timeline, and follow NHC/CPHC cyclone tracks. No key needed.</li>
+<li><strong>📷 Mapped ALPR cameras:</strong> License-plate-reader camera locations tagged in OpenStreetMap, one city at a time. Locations and tags only; no key needed.</li>
+<li><strong>🔭 Satellite passes:</strong> Ask by voice when any loaded satellite next rises over you: rise, peak and set times, and whether you can see it.</li>
+<li><strong>🔎 Analyst answers:</strong> Count, filter and rank satellites, datacenters and dams by voice, alongside flights, ships, fires and quakes; answers say when a feed is stale or on a fallback.</li>
+<li><strong>🧭 Tilt and North Up:</strong> Switch between straight-down and a 35° oblique, or put north at the top, while a tracked target stays centered.</li>
+<li><strong>🔍 Keyless search:</strong> Type coordinates or a bundled city or landmark to fly there with no network request; other names use Google when configured, then Photon and Nominatim.</li>
+<li><strong>📦 Shareable scenes:</strong> Import, preview and share Director scenes as files or bundles, with camera anchors, authored moves and data packs.</li>
+<li><strong>🌊 Nepal flood scene:</strong> Replay the Bhote Koshi flood: flood path, witness sources and before-and-after imagery (bundled data is non-commercial; see <a href="DATA_SOURCES.md">DATA_SOURCES.md</a>).</li>
+</ul>
+<hr />
+<div align="center">
+
+[![YouTube video about the God's Eye View open source release](https://img.youtube.com/vi/GRJaKcXZS94/maxresdefault.jpg)](https://www.youtube.com/watch?v=GRJaKcXZS94)
+
+▶️ **[The full walkthrough of everything below, on YouTube](https://www.youtube.com/watch?v=GRJaKcXZS94)**
+
+</div>
+
+<h2>⚡ Quick Start</h2>
+<p><strong>Start without an account or API keys.</strong> Both paths open the same app with<br />
+Esri satellite imagery and keyless terrain. OSM is the fallback if Esri is<br />
+unreachable. Flights, military traffic, satellites, earthquakes, public<br />
+cameras, radio, and launches are available without keys.</p>
+<p>For photorealistic 3D, add a <strong>Cesium ion token</strong> for eligible personal,<br />
+non-commercial use, or a <strong>Google Maps key</strong> for the direct, metered route and<br />
+Google place search. Provider terms and quotas apply. Add keys through the<br />
+app's <strong>POWER UP</strong> panel; <a href="#-api-keys">Keys &amp; Costs</a> explains the options.</p>
+<blockquote>
+<p><strong>Already installed?</strong> Update to the latest version. Older versions query<br />
+public OpenStreetMap Overpass servers, which now refuse them, so Traffic,<br />
+Mapped Installations and ALPR stay empty until you update.</p>
+</blockquote>
+<h3>Path 1 — One click, no terminal</h3>
+<ol>
+<li>Install or update <a href="https://desktop.pinokio.co/">Pinokio</a> to <strong>8.2 or later</strong>.</li>
+<li>Open <a href="https://pinokio.co/apps/github-com-bilawalsidhu-gods-eye-view">God's Eye View in Pinokio</a>.</li>
+<li>Click <strong>Install</strong>, then <strong>Start</strong>.</li>
+</ol>
+<p>Available on <strong>Windows, macOS, and Linux</strong>. The Pinokio maintainer reports<br />
+cross-platform testing of the fixed installer. The launcher installs the<br />
+locked dependencies, finds a free local port, and opens the app.</p>
+<p><strong>Tried before and installation failed?</strong> Update Pinokio and try again.<br />
+Version 8.2 fixes the launcher installation issue;<br />
+<a href="https://pinokio.co/posts/01m1m4p9xxm3qw7dnnpj2wr93g">details from the Pinokio maintainer</a>.</p>
+<h3>Path 2 — Terminal / coding agent</h3>
+<p>Use <strong>Node.js 24.x (24.14.0 or later) or 26.x</strong>. The setup doctor warns about<br />
+Node 25, which is end-of-life.</p>
+<pre><code class="language-bash">git clone https://github.com/bilawalsidhu/gods-eye-view.git
+cd gods-eye-view
+npm ci
+npm run doctor
+npm run dev
+</code></pre>
+<p>Open <strong><code>http://localhost:4173</code></strong>. Choose <strong>Live Contacts</strong>, <strong>Space Missions</strong>,<br />
+<strong>Environmental</strong>, or <strong>Explore Manually</strong> fro</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/bilawalsidhu/gods-eye-view#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">mksglu /</span>
+          <a href="https://github.com/mksglu/context-mode" target="_blank" rel="noopener">context-mode</a>
+        </div>
+        <div class="repo-desc">Context window optimization for AI coding agents. Sandboxes tool output (98% reduction), persists session memory, and enforces routing across 17 platforms via MCP + hooks.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 27,446</span>
+      <span class="meta-item">🍴 1,953</span>
+      <span class="stars-today">⭐ 246 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Context Mode</h1>
+<p><strong>The other half of the context problem.</strong></p>
+<p><a href="https://www.npmjs.com/package/context-mode"><img alt="users" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmksglu%2Fcontext-mode%40main%2Fstats.json&amp;query=%24.message&amp;label=users&amp;color=brightgreen" /></a> <a href="https://www.npmjs.com/package/context-mode"><img alt="npm" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmksglu%2Fcontext-mode%40main%2Fstats.json&amp;query=%24.npm&amp;label=npm&amp;color=blue" /></a> <a href="https://github.com/mksglu/context-mode"><img alt="marketplace" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmksglu%2Fcontext-mode%40main%2Fstats.json&amp;query=%24.marketplace&amp;label=marketplace&amp;color=blue" /></a> <a href="https://github.com/mksglu/context-mode/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/mksglu/context-mode?style=flat&amp;color=yellow" /></a> <a href="https://github.com/mksglu/context-mode/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/mksglu/context-mode?style=flat&amp;color=blue" /></a> <a href="https://github.com/mksglu/context-mode/commits"><img alt="Last commit" src="https://img.shields.io/github/last-commit/mksglu/context-mode?color=green" /></a> <a href="LICENSE"><img alt="License: ELv2" src="https://img.shields.io/badge/License-ELv2-blue.svg" /></a><br />
+<a href="https://discord.gg/DCN9jUgN5v"><img alt="Discord" src="https://img.shields.io/discord/1478479412700909750?label=Discord&amp;logo=discord&amp;color=5865f2" /></a><br />
+<a href="https://news.ycombinator.com/item?id=47193064"><img alt="Hacker News #1" src="https://img.shields.io/badge/Hacker%20News-%231%20%E2%80%A2%20570%2B%20points-ff6600?logo=ycombinator&amp;logoColor=white" /></a></p>
+<p align="center">
+<sub>Used across teams at</sub>
+<br><br>
+<a href="#"><img src="https://img.shields.io/badge/Microsoft-141414?style=flat" alt="Microsoft" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Google-141414?style=flat&logo=google&logoColor=white" alt="Google" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Meta-141414?style=flat&logo=meta&logoColor=white" alt="Meta" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Amazon-141414?style=flat" alt="Amazon" /></a>
+<a href="#"><img src="https://img.shields.io/badge/IBM-141414?style=flat" alt="IBM" /></a>
+<a href="#"><img src="https://img.shields.io/badge/NVIDIA-141414?style=flat&logo=nvidia&logoColor=white" alt="NVIDIA" /></a>
+<a href="#"><img src="https://img.shields.io/badge/ByteDance-141414?style=flat&logo=bytedance&logoColor=white" alt="ByteDance" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Stripe-141414?style=flat&logo=stripe&logoColor=white" alt="Stripe" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Datadog-141414?style=flat&logo=datadog&logoColor=white" alt="Datadog" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Salesforce-141414?style=flat" alt="Salesforce" /></a>
+<a href="#"><img src="https://img.shields.io/badge/GitHub-141414?style=flat&logo=github&logoColor=white" alt="GitHub" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Red%20Hat-141414?style=flat&logo=redhat&logoColor=white" alt="Red Hat" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Supabase-141414?style=flat&logo=supabase&logoColor=white" alt="Supabase" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Canva-141414?style=flat" alt="Canva" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Notion-141414?style=flat&logo=notion&logoColor=white" alt="Notion" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Hasura-141414?style=flat&logo=hasura&logoColor=white" alt="Hasura" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Framer-141414?style=flat&logo=framer&logoColor=white" alt="Framer" /></a>
+<a href="#"><img src="https://img.shields.io/badge/Cursor-141414?style=flat&logo=cursor&logoColor=white" alt="Cursor" /></a>
+</p>
+
+<h2>The Problem</h2>
+<p>Every MCP tool call dumps raw data into your context window. A Playwright snapshot costs 56 KB. Twenty GitHub issues cost 59 KB. One access log — 45 KB. After 30 minutes, 40% of your context is gone. And when the agent compacts the conversation to free space, it forgets which files it was editing, what tasks are in progress, and what you last asked for. On top of that, the agent wastes output tokens on filler, pleasantries, and verbose explanations — burning context from both sides.</p>
+<h3>How Context Mode Solves It</h3>
+<p>Context Mode is an MCP server that solves all four sides of this problem:</p>
+<ol>
+<li><strong>Context Saving</strong> — Sandbox tools keep raw data out of the context window. 315 KB becomes 5.4 KB. 98% reduction.</li>
+<li><strong>Session Continuity</strong> — Every file edit, git operation, task, error, and user decision is tracked in SQLite. When the conversation compacts, context-mode doesn't dump this data back into context — it indexes events into FTS5 and retrieves only what's relevant via BM25 search. The model picks up exactly where you left off. If you don't <code>--continue</code>, previous session data is deleted immediately — a fresh session means a clean slate.</li>
+<li><strong>Think in Code</strong> — The LLM should program the analysis, not compute it. Instead of reading 50 files into context to count functions, the agent writes a script that does the counting and <code>console.log()</code>s only the result. One script replaces ten tool calls and saves 100x context. This is a mandatory paradigm across all 17 supported clients, plus the OpenClaw gateway integration: stop treating the LLM as a data processor, treat it as a code generator.</li>
+</ol>
+<p><code>js
+   // Before: 47 × Read() = 700 KB.  After: 1 × ctx_execute() = 3.6 KB.
+   ctx_execute("javascript", `
+     const files = fs.readdirSync('src').filter(f =&gt; f.endsWith('.ts'));
+     files.forEach(f =&gt; console.log(f + ': ' + fs.readFileSync('src/'+f,'utf8').split('\\n').length + ' lines'));
+   `);</code><br />
+4. <strong>No prose-style enforcement</strong> — context-mode keeps raw data out of context but never dictates how the model writes its final answer. Brevity, completeness, formatting — your model's call (or yours via your own <code>CLAUDE.md</code> / <code>AGENTS.md</code>). Aggressive brevity prompts have been shown to degrade coding/reasoning benchmarks (<a href="https://github.com/anomalyco/opencode/issues/20258">Moonshot AI on <code>kimi-k2.5</code></a>) — the routing block stays focused on <em>where data goes</em>, not on <em>how the model talks</em>.</p>
+<p><a href="https://www.youtube.com/watch?v=QUHrntlfPo4"><br />
+  <picture><br />
+    <img src="https://img.youtube.com/vi/QUHrntlfPo4/maxresdefault.jpg" alt="Watch context-mode demo on YouTube" width="100%"><br />
+  </picture><br />
+</a></p>
+<p align="center"><a href="https://www.youtube.com/watch?v=QUHrntlfPo4"><img src="https://img.shields.io/badge/%E2%96%B6%EF%B8%8F_Watch_Demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch on YouTube"></a></p>
+
+<h2>Install</h2>
+<p>Platforms are grouped by install complexity. Hook-capable platforms get automatic routing enforcement. Non-hook platforms need a one-time routing file copy.</p>
+<details open>
+<summary><strong>Claude Code</strong> — plugin marketplace, fully automatic</summary>
+
+**Prerequisites:** Claude Code v1.0.33+ (`claude --version`). If `/plugin` is not recognized, update first: `brew upgrade claude-code` or `npm update -g @anthropic-ai/claude-code`.
+
+**Install:**
+
+
+<pre><code class="language-bash">/plugin marketplace add mksglu/context-mode
+/plugin install context-mode@context-mode
+</code></pre>
+
+
+Restart Claude Code (or run `/reload-plugins`).
+
+**Verify:**
+
+
+<pre><code>/context-mode:ctx-doctor
+</code></pre>
+
+
+All checks should show `[x]`. The doctor validates runtimes, hooks, FTS5, and plugin registration.
+
+**Routing:** Automatic. The SessionStart hook injects routing instructions at runtime — no file is written to your project. The plugin registers all hooks (PreToolUse, PostToolUse, UserPromptSubmit, PreCompact, SessionStart, Stop) and 11 MCP tools — six sandbox tools (`ctx_batch_execute`, `ctx_execute`, `ctx_execute_file`, `ctx_index`, `ctx_search`, `ctx_fetch_and_index`) plus five meta-tools (`ctx_stats`, `ctx_doctor`, `ctx_upgrade`, `ctx_purge`, `ctx_insight`).
+
+| Slash Command | What it does |
+|---|---|
+| `/context-mode:ctx-stats` | Context savings — per-tool
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/mksglu/context-mode#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">storytold /</span>
+          <a href="https://github.com/storytold/artcraft" target="_blank" rel="noopener">artcraft</a>
+        </div>
+        <div class="repo-desc">ArtCraft is an intentional crafting engine for artists, designers, and filmmakers</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 22,662</span>
+      <span class="meta-item">🍴 3,634</span>
+      <span class="stars-today">⭐ 4,095 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">ArtCraft</h1>
+<p align="center"><strong>The IDE for artists.</strong></p>
+
+<!-- Main video: https://www.youtube.com/watch?v=kzvQMdg66Go
+     GitHub media issue: https://github.com/storytold/artcraft/issues/1951 -->
+
+<p>https://github.com/user-attachments/assets/7339bd09-3e0d-44a7-a024-af9de64e4c11</p>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=kzvQMdg66Go">Watch the two-minute ArtCraft demo on YouTube</a>
+</p>
+
+<p align="center">
+  <a href="https://discord.gg/artcraft"><img alt="Discord members online" src="https://img.shields.io/discord/1359579021108842617?style=for-the-badge&amp;label=Discord&amp;color=5865F2&amp;logo=discord&amp;logoColor=white"></a>
+  <a href="https://www.youtube.com/@OfficialArtCraftStudios"><img alt="YouTube" src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&amp;logo=youtube&amp;logoColor=white"></a>
+  <a href="https://x.com/get_artcraft"><img alt="X" src="https://img.shields.io/badge/X-181717?style=for-the-badge&amp;logo=x&amp;logoColor=white"></a>
+  <a href="https://www.linkedin.com/company/artcraft-ai"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge"></a>
+</p>
+
+<p align="center">
+  <a href="https://getartcraft.com/">Download ArtCraft</a> ·
+  <a href="https://github.com/storytold/artcraft/releases">GitHub releases</a> ·
+  <a href="./_docs/dev_setup.md">Build from source</a>
+</p>
+
+<p>ArtCraft is the IDE for interactive AI image and video creation. Compose in 2D, stage scenes in 3D, and choose the models that fit your work. Turn prompting into <em>crafting</em> with visual tools for precise, repeatable results.</p>
+<h2>Show, Don't Tell: Advanced Crafting Features</h2>
+<p>Artists need control over composition, character identity, and camera placement. Build the scene before you generate it. Click any preview to view it at full size.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Image to Location</strong><br>Place virtual actors in a consistent environment and plan multiple shots in the same room.</td>
+<td><a href="https://github.com/user-attachments/assets/21f103e3-cc19-4882-a630-9caa1b76ae31"><img src="https://github.com/user-attachments/assets/21f103e3-cc19-4882-a630-9caa1b76ae31" width="180" alt="Image to Location demo"></a></td>
+</tr>
+<tr>
+<td><strong>3D Image Compositing</strong><br>Layer backdrops, foregrounds, and props in 3D to build compositions with depth.</td>
+<td><a href="https://github.com/user-attachments/assets/f93a616f-571d-474e-bcc0-53736de7303d"><img src="https://github.com/user-attachments/assets/f93a616f-571d-474e-bcc0-53736de7303d" width="180" alt="3D Image Compositing demo"></a></td>
+</tr>
+<tr>
+<td><strong>2D Image Compositing</strong><br>Compose a scene with image layers, background removal, and drawing tools.</td>
+<td><a href="https://github.com/user-attachments/assets/d6f99391-e496-4c62-9e37-29734ba5f899"><img src="https://github.com/user-attachments/assets/d6f99391-e496-4c62-9e37-29734ba5f899" width="180" alt="2D Image Compositing demo"></a></td>
+</tr>
+<tr>
+<td><strong>Image to 3D Mesh</strong><br>Turn an image into a 3D object you can position, rotate, and frame precisely.</td>
+<td><a href="https://github.com/user-attachments/assets/600a405c-e360-48c1-9b42-6e657ae6243b"><img src="https://github.com/user-attachments/assets/600a405c-e360-48c1-9b42-6e657ae6243b" width="180" alt="Image to 3D Mesh demo"></a></td>
+</tr>
+<tr>
+<td><strong>Character Posing</strong><br>Pose characters and set your camera before generating the final shot.</td>
+<td><a href="https://raw.githubusercontent.com/storytold/github-media/22a27373707b13f48fc56405f1f89ca143c43d5d/character-posing.webp"><img src="https://raw.githubusercontent.com/storytold/github-media/22a27373707b13f48fc56405f1f89ca143c43d5d/character-posing.webp" width="180" alt="Character Posing demo"></a></td>
+</tr>
+<tr>
+<td><strong>Scene Blocking with Kitbashing</strong><br>Combine 3D asset kits to control camera angles, object placement, and depth.</td>
+<td><a href="https://github.com/user-attachments/assets/eef025ac-0346-4a46-a023-d48e23629eb5"><img src="https://github.com/user-attachments/assets/eef025ac-0346-4a46-a023-d48e23629eb5" width="180" alt="Scene Blocking with Kitbashing demo"></a></td>
+</tr>
+<tr>
+<td><strong>Character Identity Transfer</strong><br>Use a posed mannequin to guide the placement and pose of your character.</td>
+<td><a href="https://github.com/user-attachments/assets/629119ee-8c76-4a83-9827-8c6c995a3ec1"><img src="https://github.com/user-attachments/assets/629119ee-8c76-4a83-9827-8c6c995a3ec1" width="180" alt="Character Identity Transfer demo"></a></td>
+</tr>
+<tr>
+<td><strong>Background Removal</strong><br>Isolate subjects to use as props, layers, or backdrops in 2D and 3D scenes.</td>
+<td><a href="https://github.com/user-attachments/assets/90c65057-5531-404f-83af-b34e66e24ec1"><img src="https://github.com/user-attachments/assets/90c65057-5531-404f-83af-b34e66e24ec1" width="180" alt="Background Removal demo"></a></td>
+</tr>
+<tr>
+<td><strong>Mixed Asset Crafting</strong><br>Combine image cutouts, worlds, and 3D meshes in one scene.</td>
+<td><a href="https://raw.githubusercontent.com/storytold/github-media/main/ship-editing.gif"><img src="https://raw.githubusercontent.com/storytold/github-media/main/ship-editing.gif" width="180" alt="Mixed Asset Crafting demo"></a></td>
+</tr>
+</tbody>
+</table>
+<p>More previews are coming for scene blocking, canvas editing, and scene relighting.</p>
+<h2>Quick and Easy Prompting</h2>
+<p>Start with a prompt when you want to explore an idea quickly, then use the canvas and scene tools to refine it.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Text to Image</strong><br>Explore ideas across a wide range of image models with a text prompt.</td>
+<td><a href="https://github.com/user-attachments/assets/9cc289cd-faf4-4eaf-aed2-21134cce127c"><img src="https://github.com/user-attachments/assets/9cc289cd-faf4-4eaf-aed2-21134cce127c" width="180" alt="Text to Image demo"></a></td>
+</tr>
+<tr>
+<td><strong>Prompted Image Editing</strong><br>Describe changes to an image with models such as Nano Banana Pro and GPT Image.</td>
+<td>&lt;a href="https://github.com/user-attachments/asse</td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/storytold/artcraft#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">open-webui /</span>
+          <a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">open-webui</a>
+        </div>
+        <div class="repo-desc">User-friendly AI Interface (Supports Ollama, OpenAI API, ...)</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 155,200</span>
+      <span class="meta-item">🍴 22,654</span>
+      <span class="stars-today">⭐ 157 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Open WebUI 👋</h1>
+<p><img alt="GitHub stars" src="https://img.shields.io/github/stars/open-webui/open-webui?style=social" /><br />
+<img alt="GitHub forks" src="https://img.shields.io/github/forks/open-webui/open-webui?style=social" /><br />
+<img alt="GitHub watchers" src="https://img.shields.io/github/watchers/open-webui/open-webui?style=social" /><br />
+<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/open-webui/open-webui" /><br />
+<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/open-webui/open-webui" /><br />
+<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/open-webui/open-webui" /><br />
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/open-webui/open-webui?color=red" /><br />
+<a href="https://discord.gg/5rJgQTnV4s"><img alt="Discord" src="https://img.shields.io/badge/Discord-Open_WebUI-blue?logo=discord&amp;logoColor=white" /></a><br />
+<a href="https://github.com/sponsors/open-webui"><img alt="" src="https://img.shields.io/static/v1?label=Sponsor&amp;message=%E2%9D%A4&amp;logo=GitHub&amp;color=%23fe8e86" /></a></p>
+<p>Open WebUI is <strong>a home for AI</strong>, a self-hosted AI platform that's <strong><a href="https://docs.openwebui.com/features/extensibility/plugin/">extensible</a></strong>, <strong><a href="https://docs.openwebui.com/features/">feature-rich</a></strong>, user-friendly, and built to run <strong><a href="https://openwebui.com/sovereign-ai">entirely offline</a></strong>. With support for <strong>Ollama</strong> and <strong>OpenAI-compatible APIs</strong>, it gives you a powerful, provider-agnostic interface for both local and cloud-based models.</p>
+<p>Passionate about open-source AI? <a href="https://careers.openwebui.com/">Join our team →</a></p>
+<p><img alt="Open WebUI Demo" src="./demo.png" /></p>
+<blockquote>
+<p>[!TIP]<br />
+<strong>Looking for an <a href="https://docs.openwebui.com/enterprise">Enterprise Plan</a>?</strong> – <strong><a href="https://docs.openwebui.com/enterprise">Speak with Our Sales Team Today!</a></strong></p>
+</blockquote>
+<p>For more information, be sure to check out our <a href="https://docs.openwebui.com/">Open WebUI Documentation</a>.</p>
+<h2>Key Features of Open WebUI ⭐</h2>
+<ul>
+<li>
+<p>🚀 <strong>Effortless Setup</strong>: Install seamlessly via pip, uv, Docker, or Kubernetes (kubectl, kustomize, or helm), with <code>:ollama</code> and <code>:cuda</code> tagged images available for container deployments.</p>
+</li>
+<li>
+<p>🤝 <strong>Broad Model &amp; API Integration</strong>: Connect any OpenAI-compatible API alongside local Ollama models. Point the API URL at <strong>LMStudio, GroqCloud, Mistral, OpenRouter, vLLM, and more</strong> to mix and match providers freely.</p>
+</li>
+<li>
+<p>🔐 <strong>Granular RBAC &amp; User Groups</strong>: Administrators define detailed roles, groups, and permissions, giving each user exactly the access they need. Secure by default, with tailored experiences per group.</p>
+</li>
+<li>
+<p>🧩 <strong>Plugin Support</strong>: Extend Open WebUI with <strong>Filters</strong>, <strong>Actions</strong>, <strong>Pipes</strong>, <strong>Tools</strong>, and <strong>Skills</strong>. Connect external services through <strong>MCP</strong>, <strong>MCPO</strong>, and <strong>OpenAPI tool servers</strong>. Build custom integrations, rate limits, approval flows, data connections, and more.</p>
+</li>
+<li>
+<p>🤖 <strong>Models &amp; Agents</strong>: Wrap any base model with custom instructions, tools, and knowledge to build specialized agents. Supports dynamic variables, per-user/group access control, and community preset imports via <a href="https://openwebui.com/">Open WebUI Community</a>.</p>
+</li>
+<li>
+<p>⚡ <strong>Agentic Execution with <a href="https://github.com/open-webui/open-terminal">Open Terminal</a></strong>: Give your agents a terminal and filesystem to carry out multi-step tasks. Let them analyze data, run scripts, fix errors, and produce files directly in chat. Scale to teams with <strong><a href="https://github.com/open-webui/terminals">Terminals (Enterprise)</a></strong> for per-user isolated environments, resource limits, and automatic lifecycle management.</p>
+</li>
+<li>
+<p>📝 <strong>Notes</strong>: A dedicated workspace for content outside conversations. Draft with a rich editor, use AI to rewrite selected text, and attach notes to any chat for full-context injection.</p>
+</li>
+<li>
+<p>📢 <strong>Channels</strong>: Real-time shared spaces where your team and AI models collaborate in one timeline. Tag models to draft or critique, with threads, reactions, pins, and access control.</p>
+</li>
+<li>
+<p>🧠 <strong>Persistent Memory</strong>: The AI remembers facts about you across conversations, carrying context from one chat to the next.</p>
+</li>
+<li>
+<p>✅ <strong>Live Workflow &amp; Message Flow</strong>: Watch the AI build and work through checklists in real time. Queue messages while the AI is still responding; they send automatically when it's ready.</p>
+</li>
+<li>
+<p>📅 <strong>Calendar &amp; AI Scheduling</strong>: Built-in personal and shared calendars with month/week/day views, recurring events, color coding, attendees, and reminders. Models manage your schedule conversationally through native function calling.</p>
+</li>
+<li>
+<p>⏱️ <strong>Automations</strong>: Schedule prompts to run on recurring schedules, with runs surfaced on your calendar and each completed run linking back to the chat it produced.</p>
+</li>
+<li>
+<p>📱 <strong>Responsive Design &amp; PWA</strong>: Seamless experience across desktop, laptop, and mobile, with a Progressive Web App for native app-like feel and offline access on localhost.</p>
+</li>
+<li>
+<p>✒️🔢 <strong>Full Markdown and LaTeX Support</strong>: Comprehensive Markdown and LaTeX capabilities for enriched interaction.</p>
+</li>
+<li>
+<p>🎤📹 <strong>Hands-Free Voice/Video Call</strong>: Integrated voice and video calls with multiple Speech-to-Text providers (Local Whisper, OpenAI, Deepgram, Azure) and Text-to-Speech engines (Azure, ElevenLabs, OpenAI, Transformers, WebAPI).</p>
+</li>
+<li>
+<p>💾 <strong>Persistent Artifact Storage</strong>: Built-in key-value storage API for artifacts, enabling journals, trackers, leaderboards, and collaborative tools with personal and shared data scopes.</p>
+</li>
+<li>
+<p>📚 <strong>Local RAG Integration</strong>: Retrieval Augmented Generation backed by 9 vector databases and multiple content-extraction engines (Tika, Docling, Document Intelligence, Mistral OCR, PaddleOCR-vl, external loaders). Supports hybrid search (BM25 + vector) with reranking and full-context mode. Load documents into chat or pull them from your library with the <code>#</code> command.</p>
+</li>
+<li>
+<p>🔍 <strong>Web Search for RAG</strong>: Search the web through dozens of providers including <code>SearXNG</code>, <code>Google PSE</code>, <code>Brave Search</code>, <code>Kagi</code>, <code>Mojeek</code>, <code>Tavily</code>, <code>Perplexity</code>, <code>Firecrawl</code>, <code>serpstack</code>, <code>serper</code>, <code>Serply</code>, <code>DuckDuckGo</code>, <code>SearchApi</code>, <code>SerpApi</code>, <code>Bing</code>, <code>Jina</code>, <code>Exa</code>, <code>Sougou</code>, <code>Azure AI Search</code>, and <code>Ollama Cloud</code>, injecting results directly into the conversation.</p>
+</li>
+<li>
+<p>🌐 <strong>Web Browsing Capability</strong>: Pull websites into chat with the <code>#</code> command followed by a URL, or let the model fetch them on its own when needed.</p>
+</li>
+<li>
+<p>🎨 <strong>Image Generation &amp; Editing</strong>: Create and edit images with multiple engines including OpenAI DALL·E, Gemini, ComfyUI (local), and AUTOMATIC1111 (local), supporting both generation and prompt-based editing.</p>
+</li>
+<li>
+<p>⚙️ <strong>Multi-Model Conversations</strong>: Engage several models at once, harnessing their individual strengths in parallel for the best possible responses.</p>
+</li>
+<li>
+<p>📊 <strong>Usage Analytics &amp; Model Evaluation</strong>: Admin dashboards track message volume, token consumption, and cost across users and models. Evaluate models with a built-in arena, A/B testing, and ELO-based leaderboards.</p>
+</li>
+<li>
+<p>🗄️ <strong>Flexible Database &amp; Storage</strong>: Choose SQLite (with optional encryption) or PostgreSQL, and store files locally or on S3, Google Cloud Storage, or Azure Blob Storage.</p>
+</li>
+<li>
+<p>🧬 <strong>Advanced Vector Database Support</strong>: Pick from 9 vector databases: ChromaDB, PGVector, Qdrant, Milvus, Elasticsearch, OpenSearch, Pinecone, S3Vector, and Oracle 23ai.</p>
+</li>
+<li>
+<p>🪪 <strong>Enterprise Authentication &amp; Provisioning</strong>: Full LDAP/Active Directory integration, SSO via trusted headers and OAuth providers, and SCIM 2.0 automated provisioning for identity providers like Okta, Azure AD, and Google Workspace.</p>
+</li>
+<li>
+<p>☁️ <strong>Cloud-Native File Integration</strong>: Native Google Drive and OneDrive/SharePoint file picking for seamless document import from enterprise cloud storage.</p>
+</li>
+<li>
+<p>🔭 <strong>Production Observability</strong>: Built-in OpenTelemetry support for traces, metrics, and logs, plugging into your existing monitoring stack.</p>
+</li>
+<li>
+<p>⚖️ <strong>Horizontal Scalability</strong>: Redis-backed session management and WebSocket support for multi-worker, multi-node deployments behind load balancers.</p>
+</li>
+<li>
+<p>🌐🌍 <strong>Multilingual Support</strong>: Use Open WebUI in your preferred language with i18n support. We're actively seeking contributors to expand language coverage!</p>
+</li>
+<li>
+<p>🌟 <strong>Continuous Updates</strong>: We're committed to improving Open WebUI with regular updates, fixes, and new features.</p>
+</li>
+<li>
+<p>🛡️ **Transparent Security Pro</p>
+</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/open-webui/open-webui#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">cathrynlavery /</span>
+          <a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">diagram-design</a>
+        </div>
+        <div class="repo-desc">Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#e34c26"></span>HTML</span>
+      <span class="meta-item">⭐ 52,906</span>
+      <span class="meta-item">🍴 3,344</span>
+      <span class="stars-today">⭐ 2,081 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/hero/hero-dark.webp">
+    <img alt="Diagram Design. Editorial diagrams your designer won't hate." src="docs/hero/hero-light.webp">
+  </picture>
+</h1>
+
+**An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand.<br>45 diagram types. No shadows. No Mermaid slop.**
+
+[![GitHub stars](https://img.shields.io/github/stars/cathrynlavery/diagram-design?style=flat-square&color=bf4520)](https://github.com/cathrynlavery/diagram-design/stargazers)
+[![skills.sh installs](https://skills.sh/b/cathrynlavery/diagram-design?style=flat-square)](https://skills.sh/cathrynlavery/diagram-design/diagram-design)
+[![CI](https://img.shields.io/github/actions/workflow/status/cathrynlavery/diagram-design/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/cathrynlavery/diagram-design/actions/workflows/ci.yml)
+[![Plugin version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcathrynlavery%2Fdiagram-design%2Fmain%2F.claude-plugin%2Fplugin.json&query=%24.version&label=version&style=flat-square&color=555555)](CHANGELOG.md)
+[![MIT license](https://img.shields.io/badge/license-MIT-555555?style=flat-square)](LICENSE)
+
+<a href="https://trendshift.io/repositories/26141" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/26141" alt="cathrynlavery/diagram-design on Trendshift" width="250" height="55"/></a>
+
+**[Website](https://diagramdesign.dev) · [Gallery](https://cathrynlavery.github.io/diagram-design/) · [Changelog](CHANGELOG.md)**
+
+[Install](#install) · [What it makes](#what-it-makes) · [Quickstart](#quickstart) · [Match your brand](#onboarding-make-it-look-like-your-brand) · [Import](#import-from-drawio-mermaid-or-excalidraw) · [Export](#export-to-png--svg) · [Contributing](#contributing)
+
+<code>npx skills add cathrynlavery/diagram-design</code>
+
+<br><br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/hero/demo.gif">
+  <source media="(prefers-color-scheme: light)" srcset="docs/hero/demo-light.gif">
+  <img src="docs/hero/demo.gif" alt="A prompt typed into an agent session becomes a finished architecture diagram, then a plain first-pass diagram is redrawn with the skill, then the gallery of diagram types" width="900">
+</picture>
+
+</div>
+
+<p><br></p>
+<p>Ask your agent in plain words:</p>
+<ul>
+<li><em>"Make me an architecture diagram of my app: frontend, backend, database, Redis cache."</em></li>
+<li><em>"I need a quadrant showing Q2 projects by impact vs effort."</em></li>
+<li><em>"Give me a sequence of a bearer call with token refresh on 401."</em></li>
+<li><em>"Onboard diagram-design to https://yoursite.com"</em> (pulls your palette and fonts so every diagram after this one matches your site)</li>
+</ul>
+<p>The agent picks the type, states its plan, and writes one <code>.html</code> file you can open by double-clicking.</p>
+<hr />
+<h2>Install</h2>
+<p>Works with any host that reads Agent Skills, including Cursor, Claude Code, Codex, GitHub Copilot, Gemini CLI, Cline, Windsurf and Amp:</p>
+<pre><code class="language-bash">npx skills add cathrynlavery/diagram-design
+</code></pre>
+<p>In Claude Code, the plugin marketplace gets you updates and the slash commands:</p>
+<pre><code class="language-text">/plugin marketplace add cathrynlavery/diagram-design
+/plugin install diagram-design@diagram-design
+</code></pre>
+<p>Official builds come only from this repository. LittleMight, Cathryn Lavery's company, publishes the plugin directory listings; a listing under any other name is an unofficial copy. <a href="PRIVACY.md">PRIVACY.md</a> lists what the skill sends over the network.</p>
+<details>
+<summary><b>Claude Code</b>: turn on auto-update</summary>
+
+After installing, run `/plugin`, open **Marketplaces**, select **diagram-design**, and choose **Enable auto-update**. Claude Code disables auto-update by default for third-party marketplaces; after this toggle, it refreshes the marketplace and installed plugin in the background after startup. Run `/reload-plugins` when prompted, or let the next session load the update.
+
+</details>
+
+<details>
+<summary><b>Cursor</b>, Cline, Gemini CLI, Windsurf, Amp, Zed, Warp, Roo, Kilo and other Agent Skills hosts</summary>
+
+The cross-agent [`skills` CLI](https://skills.sh) resolves this repository, detects `skills/diagram-design/SKILL.md`, and installs the whole skill (`references/`, `assets/`, `scripts/`) into every host root you select, including Cursor's:
+
+
+<pre><code class="language-bash">npx skills add cathrynlavery/diagram-design
+</code></pre>
+
+
+When the selected roots resolve to more than one skills directory, the CLI asks for an installation method and recommends **Symlink**: one canonical copy, linked into each root, so a later update reaches all of them at once. Pass `--copy` for independent copies per host instead. A selection that resolves to a single directory is copied, because the distinction is immaterial there. Where symlinks are unavailable (Windows without Developer Mode) the CLI falls back to copies and reports which roots it copied.
+
+This is a standalone install, separate from the marketplaces below: it does not follow marketplace updates automatically. Pull merged updates with `npx skills update diagram-design`. It also installs the Agent Skill only, so the `/export-diagram`, `/import-mermaid`, `/profile`, and `/doctor` command surfaces stay with the native packages. On a host that has one of the marketplaces below, prefer the marketplace.
+
+> **One-time migration:** an existing standalone `npx skills add` copy will not start following the Codex marketplace automatically. Remove that standalone copy, then use the Codex marketplace commands. Likewise, uninstall a personal Cowork copy and reinstall Diagram Design from your organization's marketplace. Future marketplace version bumps then flow through each client's native update path.
+
+</details>
+
+<details>
+<summary><b>Codex</b></summary>
+
+
+<pre><code class="language-bash">codex plugin marketplace add cathrynlavery/diagram-design
+codex plugin add diagram-design@diagram-design
+</code></pre>
+
+
+Codex refreshes configured Git marketplaces at startup. To fetch immediately, run `codex plugin marketplace upgrade diagram-design` and start a new session.
+
+</details>
+
+<details>
+<summary><b>GitHub Copilot</b></summary>
+
+
+<pre><code class="language-bash">copilot plugin marketplace add cathrynlavery/diagram-design
+copilot plugin install diagram-design@diagram-design
+</code></pre>
+
+
+Copilot installs the shared Diagram Design skill plus its doctor, export, import, and profile capabilities from the existing repository marketplace. Confirm discovery with `copilot skill list` (or `/skills` in an interactive session), then ask for a diagram in natural language. To fetch a merged update, run `copilot plugin marketplace update diagram-design`, then `copilot plugin update diagram-design@diagram-design`.
+
+</details>
+
+<details>
+<summary><b>Factory Droid</b></summary>
+
+
+<pre><code class="language-bash">droid plugin marketplace add https://github.com/cathrynlavery/diagram-design
+droid plugin install diagram-design@diagram-design --scope user
+</code></pre>
+
+
+Droid tracks Git plugins by commit rather than the manifest's display version. To fetch a merged update, run `droid plugin marketplace update diagram-design`, then `droid plugin update diagram-design@diagram-design --scope user`, and start a new session.
+
+</details>
+
+<details>
+<summary><b>Claude Cowork</b> (organization marketplace)</summary>
+
+Organization GitHub marketplaces currently require a private or internal repository, so first mirror this public repository into one owned by your organization. In **Organization settings → Plugins**, choose **Add plugin → GitHub**, connect that mirror, and enable **Sync automatically** from the marketplace menu. Automatic sync runs when a pull request containing a plugin version bump is merged to the mirror's default branch; direct pushes do not trigger the webhook. Install Diagram Design from the resulting organization marketplace.
+
+</details>
+
+<details>
+<summary><b>Pi</b></summary>
+
+
+<pre><code class="language-bash">pi install https://github.com/cathrynlavery/diagram-design
+</code></pre>
+
+
+Run `/reload` in an open Pi session. Pi makes the skill availabl
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/cathrynlavery/diagram-design#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">lyogavin /</span>
+          <a href="https://github.com/lyogavin/airllm" target="_blank" rel="noopener">airllm</a>
+        </div>
+        <div class="repo-desc">AirLLM 2.8T LLM inference with single 4GB GPU</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
+      <span class="meta-item">⭐ 37,667</span>
+      <span class="meta-item">🍴 3,881</span>
+      <span class="stars-today">⭐ 879 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><img alt="airllm_logo" src="https://github.com/lyogavin/airllm/blob/main/assets/airllm_logo_sm.png?v=3&amp;raw=true" /></p>
+<p><a href="#quickstart"><strong>Quickstart</strong></a> | <br />
+<a href="#configurations"><strong>Configurations</strong></a> | <br />
+<a href="#macos"><strong>MacOS</strong></a> | <br />
+<a href="#example-python-notebook"><strong>Example notebooks</strong></a> | <br />
+<a href="#faq"><strong>FAQ</strong></a></p>
+<p><strong>AirLLM</strong> dramatically reduces inference memory usage, letting 70B large language models run on a single 4GB GPU card — without quantization, distillation, or pruning. You can even run <strong>Kimi K3 (2.8T)</strong> — the largest open-source model released to date — on <strong>under 4GB</strong>, <strong>Qwen3.8-Flash-Next (125B)</strong> on <strong>6GB</strong>, and <strong>DeepSeek-V3 (671B)</strong> on <strong>~12GB</strong>. We now also support training huge models on small VRAM: <strong>Qwen3.8-Flash-Next (125B)</strong> under <strong>6GB</strong>.</p>
+<p><a href="https://github.com/lyogavin/airllm/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lyogavin/airllm?style=social" /></a><br />
+<a href="https://pepy.tech/project/airllm"><img alt="Downloads" src="https://static.pepy.tech/personalized-badge/airllm?period=total&amp;units=international_system&amp;left_color=grey&amp;right_color=blue&amp;left_text=downloads" /></a></p>
+<p><a href="https://github.com/LianjiaTech/BELLE/blob/main/LICENSE"><img alt="Code License" src="https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg" /></a><br />
+<a href="https://static.aicompose.cn/static/wecom_barcode.png?t=1671918938"><img alt="Generic badge" src="https://img.shields.io/badge/wechat-Anima-brightgreen?logo=wechat" /></a><br />
+<a href="https://discord.gg/2xffU5sn"><img alt="Discord" src="https://img.shields.io/discord/1175437549783760896?logo=discord&amp;color=7289da" /></a><br />
+<a href="https://pypi.org/project/airllm/"><img alt="PyPI - AirLLM" src="https://img.shields.io/pypi/format/airllm?logo=pypi&amp;color=3571a3" /><br />
+</a><br />
+<a href="https://medium.com/@lyo.gavin"><img alt="Website" src="https://img.shields.io/website?up_message=blog&amp;url=https%3A%2F%2Fmedium.com%2F%40lyo.gavin&amp;logo=medium&amp;color=black" /></a><br />
+<a href="https://gavinliblog.com"><img alt="Website" src="https://img.shields.io/badge/Gavin_Li-Blog-blue" /></a><br />
+<a href="https://patreon.com/gavinli"><img alt="Support me on Patreon" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dgavinli%26type%3Dpatrons&amp;style=flat" /></a><br />
+<a href="https://github.com/sponsors/lyogavin"><img alt="GitHub Sponsors" src="https://img.shields.io/github/sponsors/lyogavin?logo=GitHub&amp;color=lightgray" /></a></p>
+<h2>AI Agents Recommendation:</h2>
+<ul>
+<li>
+<p><a href="https://godmodeai.co">Best AI Game Sprite Generator</a></p>
+</li>
+<li>
+<p><a href="https://crazyfaceai.com">Best AI Facial Expression Editor</a></p>
+</li>
+</ul>
+<h2>Updates</h2>
+<p>[2026/09] <strong>Training</strong> support: stream frozen weights one layer at a time and keep adapters on the GPU. <strong>Qwen3.8-Flash-Next (125B)</strong> trains under <strong>6GB</strong> (RTX 3060 Ti); <strong>Qwen3.8-27B</strong> trains in <strong>~2GB</strong> at seq 512. See <a href="#training">Training</a>.</p>
+<p>[2026/08] <strong>Qwen3.8-Flash-Next</strong> support: Qwen's 125B MoE flagship (<code>Qwen4ExpForConditionalGeneration</code>) with a ~51B n-gram embedding runs in <strong>5.95GB</strong> of VRAM, measured end to end on one RTX 4090. The n-gram table is file-mapped on the host (a 64GB machine is enough); decoder layers stream. Needs a <code>transformers</code> build with in-tree <code>qwen4_exp</code> (<code>pip install git+https://github.com/huggingface/transformers.git</code> today) and ~360GB of checkpoint disk (<code>delete_original=True</code> reclaims the originals after the split).</p>
+<p>[2026/08] <strong>Qwen3.8-27B</strong> support: Qwen's new dense VL (Gated DeltaNet + Gated Attention, native vision) runs in <strong>3.33GB</strong> of VRAM, measured end to end on one RTX 3090. Needs <code>transformers</code> 5.8+.</p>
+<p>[2026/07] <strong>Kimi K3 (2.8T)</strong> support: the largest open-source model runs on a single card in <strong>3.72GB</strong> of VRAM, measured end to end on one RTX 6000 Ada. Per-expert streaming loads only the experts a token actually routes to. K3 brings three requirements of its own: <code>pip install compressed-tensors flash-attn</code> (its model code mandates flash attention regardless of what you request), a CUDA 12 build of torch, since no prebuilt flash-attn wheel exists for CUDA 13 yet, and <code>transformers</code> 4.56.x, as its remote code does not load on 5.x.</p>
+<p>[2026/06] <strong>v3.0</strong>: FP8 model support + the latest models. Run <strong>DeepSeek-V3 (671B) on ~12GB</strong> and <strong>Qwen3-235B on ~3GB</strong>, plus Qwen3, Llama 3.x/4, DeepSeek V2/V3, Phi-4, Gemma and more — all through a single <code>AutoModel</code>.</p>
+<p>[2024/08/20] v2.11.0: Support Qwen2.5</p>
+<p>[2024/08/18] v2.10.1 Support CPU inference. Support non sharded models. Thanks @NavodPeiris for the great work! </p>
+<p>[2024/07/30] Support Llama3.1 <strong>405B</strong> (<a href="https://colab.research.google.com/github/lyogavin/airllm/blob/main/air_llm/examples/run_llama3.1_405B.ipynb">example notebook</a>). Support <strong>8bit/4bit quantization</strong>.</p>
+<p>[2024/04/20] AirLLM supports Llama3 natively already. Run Llama3 70B on 4GB single GPU.</p>
+<p>[2023/12/25] v2.8.2: Support MacOS running 70B large language models.</p>
+<p>[2023/12/20] v2.7: Support AirLLMMixtral. </p>
+<p>[2023/12/20] v2.6: Added AutoModel, automatically detect model type, no need to provide model class to initialize model.</p>
+<p>[2023/12/18] v2.5: added prefetching to overlap the model loading and compute. 10% speed improvement.</p>
+<p>[2023/12/03] added support of <strong>ChatGLM</strong>, <strong>QWen</strong>, <strong>Baichuan</strong>, <strong>Mistral</strong>, <strong>InternLM</strong>!</p>
+<p>[2023/12/02] added support for safetensors. Now support all top 10 models in open llm leaderboard.</p>
+<p>[2023/12/01] airllm 2.0. Support compressions: <strong>3x run time speed up!</strong></p>
+<p>[2023/11/20] airllm Initial version!</p>
+<h2>Star History</h2>
+<p><a href="https://star-history.com/#lyogavin/airllm&Timeline"><br />
+  <picture><br />
+    <source media="(prefers-color-scheme: dark)" srcset="assets/star-history-dark.png"><br />
+    <img alt="Star History Chart" src="assets/star-history.png"><br />
+  </picture><br />
+</a></p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#quickstart">Quick start</a></li>
+<li><a href="#model-compression---3x-inference-speed-up">Model Compression</a></li>
+<li><a href="#configurations">Configurations</a></li>
+<li><a href="#macos">Run on MacOS</a></li>
+<li><a href="#example-python-notebook">Example notebooks</a></li>
+<li><a href="#supported-models">Supported Models</a></li>
+<li><a href="#training">Training</a></li>
+<li><a href="#acknowledgement">Acknowledgement</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+<h2>Quickstart</h2>
+<h3>1. Install package</h3>
+<p>First, install the airllm pip package.</p>
+<pre><code class="language-bash">pip install airllm
+</code></pre>
+<h3>2. Inference</h3>
+<p>Then, initialize AirLLMLlama2, pass in the huggingface repo ID of the model being used, or the local path, and inference can be performed similar to a regular transformer model.</p>
+<p>(<em>You can also specify the path to save the splitted layered model through </em><em>layer_shards_saving_path</em><em> when init AirLLMLlama2.</em></p>
+<pre><code class="language-python">from airllm import AutoModel
+
+MAX_LENGTH = 128
+# just pass a hugging face repo id — works with almost any popular model:
+model = AutoModel.from_pretrained(&quot;Qwen/Qwen3-32B&quot;)
+
+# go bigger with the exact same one line:
+#model = AutoModel.from_pretrained(&quot;Qwen/Qwen3.8-27B&quot;)          # 27B dense VL, 3.33GB
+#model = AutoModel.from_pretrained(&quot;Qwen/Qwen3.8-Flash-Next&quot;)    # 125B MoE + 51B PLE, 5.95GB
+#model = AutoModel.from_pretrained(&quot;Qwen/Qwen3-235B-A22B&quot;)     # 235B, runs in ~3GB
+#model = AutoModel.from_pretrained(&quot;deepseek-ai/DeepSeek-V3&quot;)  # 671B, runs in ~12GB
+
+# or use a model's local path...
+#model = AutoModel.from_pretrained(&quot;/home/ubuntu/.cache/huggingface/hub/models--Qwen--Qwen3-32B/snapshots/...&quot;)
+
+input_text = [
+        'What is the capital of United States?',
+        #'I like',
+    ]
+
+input_tokens = model.tokenizer(input_text,
+    return_tensors=&quot;pt&quot;, 
+    return_attention_mask=False, 
+    truncation=True, 
+    max_length=MAX_LENGTH, 
+    padding=False)
+
+generation_output = model.generate(
+    input_tokens['input_ids'].cuda(), 
+    max_new_tokens=20,
+    use_cache=True,
+    return_dict_in_generate=True)
+
+output = model.tokenizer.decode(generation_output.sequences[0])
+
+print(output)
+
+</code></pre>
+<p>Note: During inference, the original model will first be decomposed and saved layer-wise. Please ensure there is sufficient disk space in the huggingface cache directory.</p>
+<h2>Model Compression - 3x Inference Speed Up!</h2>
+<p>We just added model compression based on block-wise quantization-based model compression. Which can further <strong>speed up the inference speed</strong> for up to <strong>3x</strong> , with <strong>almost ignorable accuracy loss!</strong> (see more performance evaluation and why we use block-wise quantization in <a href="https://arxiv.org/abs/2212.09720">this paper</a>)</p>
+<p>![speed_imp</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/lyogavin/airllm#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">microsoft /</span>
+          <a href="https://github.com/microsoft/BitNet" target="_blank" rel="noopener">BitNet</a>
+        </div>
+        <div class="repo-desc">Official inference framework for 1-bit LLMs</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+      <span class="meta-item">⭐ 40,967</span>
+      <span class="meta-item">🍴 3,816</span>
+      <span class="stars-today">⭐ 97 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+# bitnet.cpp
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![version](https://img.shields.io/badge/version-1.0-blue)
+[![Hugging Face](https://img.shields.io/badge/HuggingFace-Collection-orange?logo=huggingface)](https://huggingface.co/collections/microsoft/bitnet)
+[![Technical Report](https://img.shields.io/badge/Technical-Report-red?logo=arxiv)](https://arxiv.org/abs/2502.11880)
+[![Demo](https://img.shields.io/badge/Online-Demo-green?logo=microsoft)](https://demo-bitnet-h0h8hcfqeqhrf5gf.canadacentral-01.azurewebsites.net/)
+[![GPU Kernel](https://img.shields.io/badge/GPU-Kernel-6F42C1?logo=github)](https://github.com/microsoft/BitNet/blob/main/gpu/README.md)
+
+</div>
+
+<div align="left">
+
+<h3>📰 News</h3>
+
+<strong>07/23/2026:</strong> 📣 We released <a href="https://github.com/microsoft/VibeASR.cpp"><strong>VibeASR.cpp</strong></a> — a real-time multilingual ASR inference engine on CPU using BitNet I2_S quantization, achieving RTF < 1 with very few threads on x86 (AVX2) and ARM (NEON) platforms. [<a href="https://github.com/microsoft/VibeASR.cpp">Code</a>] [<a href="https://huggingface.co/microsoft/VibeVoice-ASR-BitNet">Models</a>] [<a href="https://arxiv.org/abs/2607.21075">Report</a>] ![NEW](https://img.shields.io/badge/NEW-red)
+
+<strong>07/20/2026:</strong> 📣 We released <a href="https://huggingface.co/microsoft/BitNet-embedding-0.6B"><strong>BitNet-embedding-0.6B</strong></a> and <a href="https://huggingface.co/microsoft/BitNet-embedding-270M"><strong>BitNet-embedding-270M</strong></a> on Hugging Face — the first 1-bit embedding models that deliver competitive embedding quality with significantly faster inference on CPUs.
+- **1.42x to 2.28x speedup** over F16 on BitNet-embedding-0.6B prefill (8 threads)
+- **1.32x to 1.74x speedup** over F16 on BitNet-embedding-270M prefill (8 threads)
+- Supports I2_S conversion with optimized kernels on x86 CPUs
+- Lossless inference with 2 bits per weight
+
+07/16/2026: 📣 Released [BitNet Embeddings 0.6B/270M: I2_S Conversion and Inference Optimization](docs/bitnet-embeddings-i2s-guide.md) — detailed guide for converting and running BitNet embedding models with optimized I2_S kernels.
+
+01/15/2026: 📣 Released [BitNet CPU Inference Optimization](https://github.com/microsoft/BitNet/blob/main/src/README.md) — parallel kernel implementations with configurable tiling and embedding quantization support, achieving **1.15x to 2.1x** additional speedup over the original implementation.
+
+05/20/2025: 📣 Released [BitNet Official GPU inference kernel](https://github.com/microsoft/BitNet/blob/main/gpu/README.md) — extending 1-bit inference beyond CPUs.
+
+04/14/2025: 📣 Released [BitNet Official 2B Parameter Model](https://huggingface.co/microsoft/BitNet-b1.58-2B-4T) on Hugging Face — the first official BitNet b1.58 model trained with 4T tokens.
+
+02/18/2025: 📑 [Bitnet.cpp: Efficient Edge Inference for Ternary LLMs](https://arxiv.org/abs/2502.11880) — system-level paper on bitnet.cpp's architecture and design.
+
+11/08/2024: 📑 [BitNet a4.8: 4-bit Activations for 1-bit LLMs](https://arxiv.org/abs/2411.04965) — enabling 4-bit activations for further efficiency gains.
+
+10/21/2024: 📑 [1-bit AI Infra: Part 1.1, Fast and Lossless BitNet b1.58 Inference on CPUs](https://arxiv.org/abs/2410.16144) — the technical report behind bitnet.cpp.
+
+10/17/2024: 📣 bitnet.cpp 1.0 released.
+
+03/21/2024: 📑 [The-Era-of-1-bit-LLMs: Training Tips, Code, FAQ](https://github.com/microsoft/unilm/blob/master/bitnet/The-Era-of-1-bit-LLMs__Training_Tips_Code_FAQ.pdf)
+
+02/27/2024: 📑 [The Era of 1-bit LLMs: All Large Language Models are in 1.58 Bits](https://arxiv.org/abs/2402.17764) — the foundational paper introducing BitNet b1.58.
+
+10/17/2023: 📑 [BitNet: Scaling 1-bit Transformers for Large Language Models](https://arxiv.org/abs/2310.11453) — the original BitNet paper.
+
+</div>
+
+<h2>Overview</h2>
+<p>bitnet.cpp is the official inference framework for 1-bit LLMs (e.g., BitNet b1.58). It offers a suite of optimized kernels that support <strong>fast</strong> and <strong>lossless</strong> inference of 1.58-bit models on <strong>CPU</strong> and <strong>GPU</strong> (NPU support coming next).</p>
+<p>Try it out via this <a href="https://demo-bitnet-h0h8hcfqeqhrf5gf.canadacentral-01.azurewebsites.net/">online demo</a>, or build and run it on your own <a href="https://github.com/microsoft/BitNet?tab=readme-ov-file#build-from-source">CPU</a> or <a href="https://github.com/microsoft/BitNet/blob/main/gpu/README.md">GPU</a>.</p>
+<p>bitnet.cpp achieves speedups of <strong>1.37x</strong> to <strong>5.07x</strong> on ARM CPUs, with larger models experiencing greater performance gains. Additionally, it reduces energy consumption by <strong>55.4%</strong> to <strong>70.0%</strong>, further boosting overall efficiency. On x86 CPUs, speedups range from <strong>2.37x</strong> to <strong>6.17x</strong> with energy reductions between <strong>71.9%</strong> to <strong>82.2%</strong>. Furthermore, bitnet.cpp can run a 100B BitNet b1.58 model on a single CPU, achieving speeds comparable to human reading (5-7 tokens per second), significantly enhancing the potential for running LLMs on local devices. Please refer to the <a href="https://arxiv.org/abs/2410.16144">technical report</a> for more details.</p>
+<p><img src="./assets/performance.png" alt="performance_comparison" width="800"/></p>
+<h2>Model Releases</h2>
+<h3>1. <a href="https://huggingface.co/microsoft/BitNet-b1.58-2B-4T">BitNet-b1.58-2B-4T</a> - 1-bit Large Language Model</h3>
+<p><strong>BitNet-b1.58-2B-4T</strong> is the first official BitNet b1.58 model with <strong>2.4B parameters</strong>, trained on <strong>4 trillion tokens</strong>. It is a ternary (1.58-bit) language model that delivers competitive performance with full-precision models of similar size while enabling significantly faster and more energy-efficient inference.</p>
+<ul>
+<li><strong>Fast CPU Inference</strong>: Achieves up to <strong>6.17x speedup</strong> on x86 CPUs and <strong>5.07x</strong> on ARM CPUs compared to full-precision models.</li>
+<li><strong>Energy Efficient</strong>: Reduces energy consumption by up to <strong>82.2%</strong> on x86 and <strong>70.0%</strong> on ARM.</li>
+<li><strong>GPU Support</strong>: Official GPU inference kernel available for accelerated deployment.</li>
+<li><strong>Chat-Ready</strong>: Supports conversational mode for interactive use.</li>
+</ul>
+<p><a href="https://huggingface.co/microsoft/BitNet-b1.58-2B-4T">🤗 Hugging Face</a> | <a href="https://demo-bitnet-h0h8hcfqeqhrf5gf.canadacentral-01.azurewebsites.net/">🔗 Online Demo</a> | <a href="https://arxiv.org/abs/2410.16144">📄 Technical Report</a></p>
+<p><img src="./assets/bitnet_b1.58_2b_benchmark.png" alt="BitNet b1.58 2B Benchmark" width="600"/></p>
+<h3>2. <a href="https://huggingface.co/microsoft/BitNet-embedding-0.6B">BitNet-embedding-0.6B</a> - 1-bit Embedding Model</h3>
+<p><strong>BitNet-embedding-0.6B</strong> is a <strong>0.6B-parameter</strong> 1-bit embedding model that achieves competitive embedding quality with significantly faster CPU inference. It is the first model to demonstrate that ternary weights can deliver strong performance on embedding tasks.</p>
+<ul>
+<li><strong>1.42x to 2.28x speedup</strong> over F16 on prefill (8 threads, x86)</li>
+<li><strong>Lossless Quality</strong>: Competitive embedding quality with 2 bits per weight</li>
+<li><strong>I2_S Kernel</strong>: Supports optimized I2_S conversion on x86 CPUs</li>
+</ul>
+<p><a href="https://huggingface.co/microsoft/BitNet-embedding-0.6B">🤗 Hugging Face</a> | <a href="docs/bitnet-embeddings-i2s-guide.md">📄 I2_S Guide</a></p>
+<p><img src="./assets/embedding_prefill_0.6B.png" alt="BitNet Embedding 0.6B Prefill Performance" width="600"/></p>
+<h3>3. <a href="https://huggingface.co/microsoft/BitNet-embedding-270M">BitNet-embedding-270M</a> - Lightweight 1-bit Embedding Model</h3>
+<p><strong>BitNet-embedding-270M</strong> is a compact <strong>270M-parameter</strong> 1-bit embedding model designed for resource-constrained environments, offering fast inference with minimal memory footprint.</p>
+<ul>
+<li><strong>1.32x to 1.74x speedup</strong> over F16 on prefill (8 threads, x86)</li>
+<li><strong>Lossless Quality</strong>: Competitive embedding quality with 2 bits per weight</li>
+<li><strong>Lightweight</strong>: Only 270M parameters for edge deployment scenarios</li>
+</ul>
+<p><a href="https://huggingface.co/microsoft/BitNet-embedding-270M">🤗 Hugging Face</a> | <a href="docs/bitnet-embeddings-i2s-guide.md">📄 I2_S Guide</a></p>
+<p><img src="./assets/embedding_prefill_270M.png" alt="BitNet Embedding 270M Prefill Performance" width="600"/></p>
+<h2>Supported Models</h2>
+<table>
+    <tr>
+        <th rowspan="2"
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/microsoft/BitNet#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Alishahryar1 /</span>
+          <a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" rel="noopener">free-claude-code</a>
+        </div>
+        <div class="repo-desc">Use Claude Code, Codex, VSCode, Pi, and OpenCode (and 6 other harnesses) for free (1.3B+ free tokens) from your terminal, app, IDE, or phone, and now from the browser with native browser sessions (multi-harness + multi-model) like OpenClaw (voice supported + ToS friendly)</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 59,349</span>
+      <span class="meta-item">🍴 9,343</span>
+      <span class="stars-today">⭐ 626 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="assets/free-claude-code-wordmark-light.svg">
+    <img src="assets/free-claude-code-wordmark-dark.svg" alt="Free Claude Code" width="610">
+  </picture>
+</h1>
+
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-2e7d32.svg?style=for-the-badge)](https://github.com/Alishahryar1/free-claude-code/blob/main/LICENSE)
+[![Python 3.14](https://img.shields.io/badge/python-3.14-3776ab.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![Package Manager: uv](assets/package-manager-uv.svg)](https://github.com/astral-sh/uv)
+[![Testing: Pytest](https://img.shields.io/badge/Testing-Pytest-ad1457.svg?style=for-the-badge)](https://github.com/Alishahryar1/free-claude-code/actions/workflows/tests.yml)
+[![Type Checker: Ty](https://img.shields.io/badge/Type%20Checker-ty-fdd835.svg?style=for-the-badge)](https://pypi.org/project/ty/)
+[![Formatter: Ruff](https://img.shields.io/badge/Formatter-ruff-bf4b00.svg?style=for-the-badge)](https://github.com/astral-sh/ruff)
+[![Logging: Loguru](https://img.shields.io/badge/logging-loguru-00695c.svg?style=for-the-badge)](https://github.com/Delgan/loguru)
+
+[Quick Start](#quick-start) · [Providers](#choose-a-provider) · [Clients](#connect-your-client) · [Integrations](#optional-integrations) · [Manage](#manage-your-installation)
+
+</div>
+
+<p align="center">
+  <em>Independent open-source project. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.</em>
+</p>
+
+<h2>What You Get</h2>
+<ul>
+<li><strong>61 ToS-friendly providers. 1.3B+ free tokens every month.</strong> Use free, paid, subscription, and local models from one searchable UI without putting your account at risk. FCC follows provider terms and removes integrations if they stop being allowed.</li>
+<li><strong>11 coding agents. One model catalog.</strong> Run <a href="https://code.claude.com/docs/en/overview">Claude Code</a>, <a href="https://github.com/openai/codex">Codex</a>, <a href="https://github.com/earendil-works/pi">Pi</a>, <a href="https://github.com/anomalyco/opencode">OpenCode</a>, <a href="https://github.com/cline/cline">Cline</a>, <a href="https://github.com/NousResearch/hermes-agent">Hermes</a>, <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a>, <a href="https://github.com/xai-org/grok-build">Grok Build</a>, <a href="https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2/">Muse Code</a>, <a href="https://aider.chat/">Aider</a>, or <a href="https://code.visualstudio.com/">VS Code Chat</a> with your FCC models.</li>
+<li><strong>Keep coding through provider outages.</strong> After retries are exhausted, FCC automatically tries your next configured model without making you restart the turn. This works across every client.</li>
+<li><strong>Up to 90% lower token usage.</strong> Optional <a href="https://github.com/rtk-ai/rtk">RTK</a> filters common command output, and <a href="https://github.com/headroomlabs-ai/headroom">Headroom</a> compresses tool results. Five FCC optimizations handle quota probes, command-prefix detection, titles, suggestions, and filepaths without calling a provider.</li>
+<li><strong>Native Code sessions in your browser.</strong> Choose a folder and run Codex in the browser with real-time and background support. Freely switch providers/models in the same session. Support for switching harnesses in the same session coming soon!</li>
+<li><strong>Terminal, desktop, IDE, or phone.</strong> Work through native launchers, <a href="https://code.visualstudio.com/">VS Code</a>, <a href="https://learn.chatgpt.com/docs/app">Codex App</a>, <a href="https://www.jetbrains.com/">JetBrains</a>, <a href="https://discord.com/">Discord</a>, or <a href="https://telegram.org/">Telegram</a>.</li>
+<li><strong>Voice notes in. Code out.</strong> Talk to your agent using local <a href="https://github.com/openai/whisper">Whisper</a> or <a href="https://docs.nvidia.com/nim/speech/latest/asr/deploy-asr-models/whisper.html">NVIDIA NIM</a> transcription.</li>
+<li><strong>Agent capabilities stay intact.</strong> Stream responses, use tools, preserve native interleaved thinking for maximum performance, send images, and route <a href="https://www.anthropic.com/claude/fable">Fable</a>, <a href="https://www.anthropic.com/claude/opus">Opus</a>, <a href="https://www.anthropic.com/claude/sonnet">Sonnet</a>, and <a href="https://www.anthropic.com/claude/haiku">Haiku</a> independently with compatible models.</li>
+</ul>
+<p>Free-tier availability and limits are controlled by each provider and may change.</p>
+<div align="center">
+  <img src="assets/pic.png" alt="Claude Code running with Free Claude Code" width="700">
+  <p><em>Claude Code running with FCC.</em></p>
+</div>
+
+<div align="center">
+  <img src="assets/browser-code-session.png" alt="Native Codex browser session in FCC, showing model controls and a repository exploration" width="700">
+  <p><em>A native Codex session in FCC's browser UI.</em></p>
+</div>
+
+<h2>Quick Start</h2>
+<p><a id="install"></a></p>
+<h3>1. Install</h3>
+<p>macOS/Linux:</p>
+<pre><code class="language-bash">curl -fsSL &quot;https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.sh&quot; | sh
+</code></pre>
+<p>Windows PowerShell:</p>
+<pre><code class="language-powershell">&amp; ([scriptblock]::Create((irm &quot;https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.ps1&quot;)))
+</code></pre>
+<p>When prompted, choose at least one coding agent and optionally enable <a href="https://github.com/rtk-ai/rtk">RTK</a> + <a href="https://github.com/headroomlabs-ai/headroom">Headroom</a> token optimization for supported agents. You can review the installers before running them: <a href="scripts/install.sh">install.sh</a> and <a href="scripts/install.ps1">install.ps1</a>.</p>
+<h3>2. Start FCC</h3>
+<h4>Windows</h4>
+<p>Open <strong>Free Claude Code</strong> from your desktop or Start menu.</p>
+<h4>macOS</h4>
+<p>Open <strong>Free Claude Code</strong> from your desktop or Applications folder.</p>
+<h4>Linux</h4>
+<p>Run:</p>
+<pre><code class="language-bash">fcc-server
+</code></pre>
+<p>FCC opens the Admin UI after starting. On Windows and macOS, use the tray or<br />
+menu-bar icon to open Admin, restart, or quit. When using <code>fcc-server</code>, keep its<br />
+terminal open.</p>
+<p><a id="nvidia-nim-provider"></a></p>
+<h3>3. Configure NVIDIA NIM</h3>
+<ol>
+<li>Create an API key at <a href="https://build.nvidia.com/settings/api-keys">build.nvidia.com/settings/api-keys</a>.</li>
+<li>Open the Admin UI URL from the server log.</li>
+<li>Open NVIDIA NIM in <strong>Providers</strong>, click <strong>Add key</strong>, paste the key, and click <strong>Save</strong>.</li>
+<li>Leave <code>MODEL</code> on the default <code>nvidia_nim/nvidia/nemotron-3-super-120b-a12b</code>, or search the model dropdown and select another model.</li>
+<li>Click <strong>Apply</strong> to save your model selection.</li>
+</ol>
+<p>To protect the local proxy with a bearer token, enable <strong>Proxy Authentication</strong><br />
+in Admin.</p>
+<div align="center">
+  <img src="assets/admin-page.png" alt="Free Claude Code Admin UI" width="700">
+</div>
+
+<h3>4. Run Your Coding Agent</h3>
+<p>Claude Code:</p>
+<pre><code class="language-bash">fcc-claude
+</code></pre>
+<p>Codex:</p>
+<pre><code class="language-bash">fcc-codex
+</code></pre>
+<p>Pi:</p>
+<pre><code class="language-bash">fcc-pi
+</code></pre>
+<p>OpenCode 2:</p>
+<pre><code class="language-bash">fcc-opencode
+</code></pre>
+<p>Cline:</p>
+<pre><code class="language-bash">fcc-cline
+</code></pre>
+<p>Hermes:</p>
+<pre><code class="language-bash">fcc-hermes
+</code></pre>
+<p>DeepSeek Harness Web:</p>
+<pre><code class="language-bash">fcc-dsh
+</code></pre>
+<p>Grok Build:</p>
+<pre><code class="language-bash">fcc-grok
+</code></pre>
+<p>Muse Code:</p>
+<pre><code class="language-bash">fcc-muse
+</code></pre>
+<p>Aider:</p>
+<pre><code class="language-bash">fcc-aider
+</code></pre>
+<p><a id="model-picker"></a></p>
+<div align="center">
+  <img src="assets/cc-model-picker.png" alt="Claude Code model picker showing FCC models" width="700">
+  <p><em>Select an FCC model from Claude Code's native <code>/model</code> picker.</em></p>
+</div>
+
+<h2>Choose A Provider</h2>
+<ol>
+<li>Open a provider link below for its key, models, or setup instructions.</li>
+<li>In the Admin UI, configure the listed setting. For OpenAI / ChatGPT<br />
+   subscription access, use <strong>Providers → OAuth providers</strong> instead.</li>
+<li>Search the <code>MODEL</code> dropdown and select a model. If the provider cannot list<br />
+   models, enter <code>&lt;provider-id&gt;/&lt;exact-provider-model-id&gt;</code> manually.</li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<p>Optional: add an ordered <strong>Fallback Models</strong> list under <strong>Model Config</strong>. It<br />
+applies to every connected client. A failed request may reach and consume usage<br />
+from more than one provider before succeeding.</p>
+<p>Provider modals support numbered API keys. Use <strong>Add key</strong>, remove rows, or drag their handles to reorder them. FCC uses key 1. Saving checks every key, blocks confirmed invalid keys, and shows warnings for keys it cannot verify.</p>
+<p>The same API key environment variable also accepts a JSON array:</p>
+<p>```dotenv<br />
+NVIDIA_NIM_API_KEY='["your-first-key","your-second-key</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Alishahryar1/free-claude-code#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on October 13, 2026  05:25 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>

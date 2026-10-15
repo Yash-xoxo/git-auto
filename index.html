@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GitHub Trending — October 13, 2026  05:25</title>
+  <title>GitHub Trending — October 15, 2026  07:59</title>
   <style>
     /* ── reset & tokens ───────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -245,7 +245,7 @@
     <span class="badge">Today</span>
   </a>
   <div class="subtitle">
-    Auto-generated on October 13, 2026  05:25 &nbsp;·&nbsp; 9 trending repositories
+    Auto-generated on October 15, 2026  07:59 &nbsp;·&nbsp; 12 trending repositories
   </div>
 </header>
 
@@ -264,16 +264,17 @@
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 167,534</span>
-      <span class="meta-item">🍴 39,783</span>
-      <span class="stars-today">⭐ 45,327 stars today</span>
+      <span class="meta-item">⭐ 251,284</span>
+      <span class="meta-item">🍴 63,094</span>
+      <span class="stars-today">⭐ 41,034 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
     <div align="center">
 
-**English** · [简体中文](README_zh.md) · [繁體中文](README_zh-TW.md) · [日本語](README_ja.md) · [한국어](README_ko.md) · [Türkçe](README_tr.md) · [Русский](README_ru.md) · [Tiếng Việt](README_vi.md) · [ไทย](README_th.md) · [Deutsch](README_de.md) · [Español](README_es.md) · [Français](README_fr.md) · [Українська](README_uk.md) · [Polski](README_pl.md) · [Português (Brasil)](README_pt-BR.md) · [العربية](README_ar.md) · [فارسی](README_fa.md) · [Bahasa Indonesia](README_id.md) · [Italiano](README_it.md)
+**English** · [简体中文](docs/readme/README_zh.md) · [繁體中文](docs/readme/README_zh-TW.md) · [日本語](docs/readme/README_ja.md) · [한국어](docs/readme/README_ko.md) · [Türkçe](docs/readme/README_tr.md) · [Русский](docs/readme/README_ru.md) · [Tiếng Việt](docs/readme/README_vi.md) · [ไทย](docs/readme/README_th.md) · [Deutsch](docs/readme/README_de.md) · [Español](docs/readme/README_es.md) · [Français](docs/readme/README_fr.md) · [Українська](docs/readme/README_uk.md) · [Polski](docs/readme/README_pl.md) · [Português (Brasil)](docs/readme/README_pt-BR.md) · [العربية](docs/readme/README_ar.md) · [فارسی](docs/readme/README_fa.md) · [Bahasa Indonesia](docs/readme/README_id.md) · [Italiano](docs/readme/README_it.md)
+· [Ελληνικά](docs/readme/README_el.md)
 
 # REA: Reverse Engineer Anything
 
@@ -295,6 +296,17 @@
 [Quick start](#quick-start) · [How REA works](#how-rea-works) · [What you can analyze](#what-you-can-analyze) · [Showcases](#showcases) · [FAQ](#faq) · [Documentation](#documentation)
 
 <code>npx rea-agents setup</code>
+
+</div>
+
+<blockquote>
+<p>[!IMPORTANT]<br />
+Get REA from <a href="https://github.com/morluto/rea">morluto/rea</a>,<br />
+<a href="https://rea.tools/">rea.tools</a>, or the <a href="https://www.npmjs.com/package/rea-agents">rea-agents npm package</a>.<br />
+Follow the installation and release links from these official sources. A similar<br />
+repository name or copied README does not establish that a download is official.</p>
+</blockquote>
+<div align="center">
 
 <br />
 
@@ -326,6 +338,10 @@
 <p><strong><a href="https://rea.tools/">Visit the REA website</a></strong> for setup instructions, illustrated guides, and real case studies.</p>
 </blockquote>
 <h2>Quick start</h2>
+<p>On Linux, Ghidra, JADX, firmware tool launches and static JavaScript/Electron<br />
+analysis require a procps-compatible <code>ps</code> on REA's <code>PATH</code> for process ownership<br />
+checks. Recovery steps are in <code>docs/installation.md</code> under<br />
+"Linux owned-process prerequisite".</p>
 <h3>Set up your agent</h3>
 <p>With Node.js and npm installed, run:</p>
 <pre><code class="language-bash">npx rea-agents setup
@@ -394,26 +410,6 @@ Additional tools and host support depend on the target:</p>
 <tr>
 <td>Native binaries</td>
 <td>Pseudocode, assembly, strings, symbols, calls and references</td>
-<td>Hopper, Ghidra or IDA; <a href="https://rea.tools/guides/native/">native analysis</a></td>
-</tr>
-<tr>
-<td>Offline ELF layout</td>
-<td>Sections, segments, original symbols/relocations and static mitigation candidates</td>
-<td>Caller-supplied pwntools on Linux x64; <a href="docs/binary-diagnostics.md">binary diagnostics</a></td>
-</tr>
-<tr>
-<td>Go binaries</td>
-<td>Embedded compiler version, modules, replacements and build settings</td>
-<td>Built-in static ELF/PE/thin Mach-O inspection; no Go installation required</td>
-</tr>
-<tr>
-<td>WASM artifact</td>
-<td>Validation, sections, exact import/export WAT forms and decoded WAT</td>
-<td>Caller-supplied WABT 1.0.42; <code>inspect_wasm_artifact</code></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
 <td></td>
 </tr>
 </tbody>
@@ -430,141 +426,208 @@ Additional tools and host support depend on the target:</p>
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">bilawalsidhu /</span>
-          <a href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">gods-eye-view</a>
+          <span class="repo-owner">debpalash /</span>
+          <a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">VoiceStudio</a>
         </div>
-        <div class="repo-desc">A spy satellite simulator in your browser, except the data is real. Live open source spatial intelligence on a photorealistic 3D globe.</div>
+        <div class="repo-desc">VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
-      <span class="meta-item">⭐ 53,968</span>
-      <span class="meta-item">🍴 10,640</span>
-      <span class="stars-today">⭐ 1,895 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 67,189</span>
+      <span class="meta-item">🍴 7,384</span>
+      <span class="stars-today">⭐ 3,538 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
     <div align="center">
-
-# 🌐 God's Eye View
-
-[![CI](https://github.com/bilawalsidhu/gods-eye-view/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bilawalsidhu/gods-eye-view/actions/workflows/ci.yml) [![Reached #1 on GitHub Trending](https://img.shields.io/badge/%231_GitHub_Trending-thank_you!-F0A63C?style=flat-square&logo=github)](https://x.com/bilawalsidhu/status/2093798887815348521)
-
-### A spy-satellite simulator in your browser — then you realize the sources are public and the data is real.
-
-Photorealistic 3D globe. Live aircraft, ships, satellites, earthquakes, traffic, and public cameras. Hands-free voice control powered by a realtime AI agent.
-
-_No place left behind._
-
-![Orbital HUD, a tracked live globe, FLIR terrain — then OPEN SOURCED](docs/media/hero-open-source-reveal.gif)
-
-<a href="https://www.youtube.com/@bilawalsidhu">
-  <img src="docs/media/youtube-popular-videos.png" alt="The God's Eye View video series on YouTube" width="100%">
-</a>
-
-▶️ **From the project behind the viral God's Eye View series** _(formerly WorldView)_ — [5M+ on YouTube](https://youtube.com/playlist?list=PL6qSg2I-7_koPbDnSMo0QeeHX_RknA2uv&si=nBGYMoHWQw41v93Q) · [25M+ across socials](https://www.google.com/search?q=god%27s+eye+view)
-
-🏆 **Reached #1 on GitHub Trending, daily and weekly · August 2026**
-
-**[#8 Product of the Day](https://www.producthunt.com/products/god-s-eye-view?launch=god-s-eye-view)** · Hunted by Chris Messina, creator of the hashtag
-
-_“pretty cool”_ — [Brendan Eich](https://x.com/BrendanEich/status/2094592096401490266), creator of JavaScript and co-founder of Mozilla and Brave · Featured on **[Pinokio](https://pinokio.co/posts/01m1m4p9xxm3qw7dnnpj2wr93g)**
-
-⚡ **Start without API keys.** Install with [Pinokio](https://pinokio.co/apps/github-com-bilawalsidhu-gods-eye-view) or run locally from the terminal. Add optional keys inside the app. **[→ Quick Start](#-quick-start)**
-
+  <img src="docs/logo.png" alt="VoiceStudio" width="88" />
+  <h1>VoiceStudio</h1>
+  <p>
+    <a href="https://trendshift.io/repositories/28176?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-28176" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/28176" alt="VoiceStudio ranking on Trendshift" width="220" height="48" /></a>
+  </p>
+  <p><strong>Open-source voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.</strong></p>
+  <p>
+    <a href="https://voicestudio.sh/?utm_source=github&utm_medium=readme&utm_campaign=project">Website</a> ·
+    <a href="https://github.com/debpalash/VoiceStudio/releases/latest">Download</a> ·
+    <a href="#get-started">Get started</a> ·
+    <a href="#documentation">Docs</a> ·
+    <a href="https://discord.gg/bzQavDfVV9">Discord</a> ·
+    <a href="README_CN.md">简体中文</a> ·
+    <a href="README_JA.md">日本語</a>
+  </p>
+  <p>
+    <a href="https://github.com/debpalash/VoiceStudio/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/debpalash/VoiceStudio/ci.yml?branch=main" alt="CI" /></a>
+    <a href="https://github.com/debpalash/VoiceStudio/releases/latest"><img src="https://img.shields.io/github/v/release/debpalash/VoiceStudio" alt="Latest release" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="AGPL-3.0" /></a>
+  </p>
 </div>
 
-<hr />
-<div align="center">
+<p><img alt="A tour of the Electron app: voice cloning, voice design, dubbing, and model management" src="docs/media/electron/voicestudio.gif" /></p>
+<h2>Your voice. Your workflow.</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Create</th>
+<th style="text-align: left;">Produce</th>
+<th style="text-align: left;">Connect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Clone a voice or design your own</td>
+<td style="text-align: left;">Dub videos with timed speech</td>
+<td style="text-align: left;">Local API &amp; MCP for agents</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dictate with a floating widget</td>
+<td style="text-align: left;">Stories, audiobooks &amp; batch jobs</td>
+<td style="text-align: left;">Reusable recipes &amp; watch folders</td>
+</tr>
+</tbody>
+</table>
+<p>Start with <strong>VoiceStudio</strong> (default, powered by k2-fsa/OmniVoice), or choose another engine. <a href="docs/feature-catalog.md">Features &amp; engine catalog</a>.</p>
+<p>Local workflows run on your hardware. Remote services are optional; usage analytics requires consent.</p>
+<details>
+<summary><strong>Explore the workspaces</strong> · Clone, dub, design & models</summary>
 
-**[Quick Start](#-quick-start) · [First Five Minutes](#-the-first-five-minutes) · [Talk to It](#-talk-to-it) · [What's Live](#-whats-on-the-globe) · [Under the Hood](#-under-the-hood) · [Keys & Costs](#-api-keys) · [Contributing](CONTRIBUTING.md)**
+<table>
+  <tr>
+    <td><img src="docs/media/electron/voice-cloning.png" alt="Electron voice cloning workspace with the bundled demo voice" width="100%" /></td>
+    <td><img src="docs/media/electron/dubbing.png" alt="Electron video dubbing workspace" width="100%" /></td>
+  </tr>
+  <tr><td align="center">Voice cloning</td><td align="center">Video dubbing</td></tr>
+  <tr>
+    <td><img src="docs/media/electron/voice-design.png" alt="Describe a voice in the Electron voice design workspace" width="100%" /></td>
+    <td><img src="docs/media/electron/models.png" alt="Install and manage local speech models" width="100%" /></td>
+  </tr>
+  <tr><td align="center">Voice design</td><td align="center">Local models</td></tr>
+</table>
 
-</div>
+<img width="2628" height="1950" alt="VoiceStudio desktop workspace" src="https://github.com/user-attachments/assets/b474497d-a453-49a3-a2dd-f023ec6b7659" />
 
-<hr />
-<h2>🌍 Why This Exists</h2>
-<p>God's Eye View brings public signals into one explorable globe. Track the world live. Talk to it. Break it. Extend it.</p>
-<p>Flight transponders, ship beacons, orbital elements, seismographs, and public cameras already tell us a lot about the world. God's Eye View puts them in the same place, so you can move between a global picture and an individual aircraft, ship, or street. It runs locally in your browser, with source code you can inspect and extend.</p>
-<blockquote>
-<p>Half the magic is that it looks like a forbidden cockpit. The other half is that every line of code is inspectable.</p>
-</blockquote>
-<p>Most feeds are live or regularly refreshed. Traffic is simulated along real<br />
-roads using aggregate location data. CCTV camera poses and rocket launch<br />
-trajectories are coarse estimates.</p>
-<p>Start with the included data sources, then add your own. Each layer is a separate module.</p>
-<hr />
-<h2>🎛️ What This Thing Does</h2>
-<ul>
-<li><strong>🛩️ Cockpit view:</strong> Ride inside a tracked flight — the camera holds the terrain under you all the way down.</li>
-<li><strong>📡 Contacts:</strong> A 250 km roster of everything near your target — step through live aircraft and drop into any cockpit.</li>
-<li><strong>🎯 Click-to-track anything:</strong> Camera locks on, draws a fading trail, surfaces full metadata — and a tracked fire or vessel hands you off to the nearest live camera in one click.</li>
-<li><strong>🖊️ Voice whiteboard:</strong> Speak annotations onto the world — real boundary polygons, marks, and routes.</li>
-<li><strong>🛫 3D hangar:</strong> Real per-class aircraft models — 787, ATR-72, Citation, Bell 206, MQ-9 — and a tracked contact swaps from glyph to 3D model as you close in.</li>
-<li><strong>🎨 Reskin reality:</strong> GLSL sensor looks over the normal globe — CRT, NVG, FLIR/thermal, Noir, Snow.</li>
-<li><strong>🟩 Detection overlay:</strong> Screen-space bounding boxes and IDs on everything in view.</li>
-<li><strong>🎖️ Military HUD:</strong> Tactical heads-up display with intelligence-style telemetry.</li>
-<li><strong>🌐 Global Context:</strong> Stage the full situational picture with one switch — and get your exact view back when you leave.</li>
-<li><strong>🎥 Scene director:</strong> Capture cinematic camera tours for clips and demos.</li>
-<li><strong>🔗 Share Links:</strong> Camera, style, layers, and even one tracked target serialize into a URL — a live target is a handoff, not a bookmark.</li>
-<li><strong>🏠 Reset Globe:</strong> One control — or one sentence — back to the full Earth.</li>
-<li><strong>🌦️ Weather:</strong> Animate GFS or ECMWF forecast wind, replay observed radar, satellite clouds and lightning on one timeline, and follow NHC/CPHC cyclone tracks. No key needed.</li>
-<li><strong>📷 Mapped ALPR cameras:</strong> License-plate-reader camera locations tagged in OpenStreetMap, one city at a time. Locations and tags only; no key needed.</li>
-<li><strong>🔭 Satellite passes:</strong> Ask by voice when any loaded satellite next rises over you: rise, peak and set times, and whether you can see it.</li>
-<li><strong>🔎 Analyst answers:</strong> Count, filter and rank satellites, datacenters and dams by voice, alongside flights, ships, fires and quakes; answers say when a feed is stale or on a fallback.</li>
-<li><strong>🧭 Tilt and North Up:</strong> Switch between straight-down and a 35° oblique, or put north at the top, while a tracked target stays centered.</li>
-<li><strong>🔍 Keyless search:</strong> Type coordinates or a bundled city or landmark to fly there with no network request; other names use Google when configured, then Photon and Nominatim.</li>
-<li><strong>📦 Shareable scenes:</strong> Import, preview and share Director scenes as files or bundles, with camera anchors, authored moves and data packs.</li>
-<li><strong>🌊 Nepal flood scene:</strong> Replay the Bhote Koshi flood: flood path, witness sources and before-and-after imagery (bundled data is non-commercial; see <a href="DATA_SOURCES.md">DATA_SOURCES.md</a>).</li>
-</ul>
-<hr />
-<div align="center">
+</details>
 
-[![YouTube video about the God's Eye View open source release](https://img.youtube.com/vi/GRJaKcXZS94/maxresdefault.jpg)](https://www.youtube.com/watch?v=GRJaKcXZS94)
+<h2>Get started</h2>
+<h3>One-command install (macOS / Linux)</h3>
+<pre><code class="language-sh"># Latest Electron release
+curl -fsSL https://voicestudio.sh/install | sh
 
-▶️ **[The full walkthrough of everything below, on YouTube](https://www.youtube.com/watch?v=GRJaKcXZS94)**
+# A specific published Electron release (replace X.Y.Z)
+curl -fsSL https://voicestudio.sh/install | sh -s -- --version X.Y.Z
 
-</div>
+# Build current main and install the desktop app
+curl -fsSL https://voicestudio.sh/install | sh -s -- --main
 
-<h2>⚡ Quick Start</h2>
-<p><strong>Start without an account or API keys.</strong> Both paths open the same app with<br />
-Esri satellite imagery and keyless terrain. OSM is the fallback if Esri is<br />
-unreachable. Flights, military traffic, satellites, earthquakes, public<br />
-cameras, radio, and launches are available without keys.</p>
-<p>For photorealistic 3D, add a <strong>Cesium ion token</strong> for eligible personal,<br />
-non-commercial use, or a <strong>Google Maps key</strong> for the direct, metered route and<br />
-Google place search. Provider terms and quotas apply. Add keys through the<br />
-app's <strong>POWER UP</strong> panel; <a href="#-api-keys">Keys &amp; Costs</a> explains the options.</p>
-<blockquote>
-<p><strong>Already installed?</strong> Update to the latest version. Older versions query<br />
-public OpenStreetMap Overpass servers, which now refuse them, so Traffic,<br />
-Mapped Installations and ALPR stay empty until you update.</p>
-</blockquote>
-<h3>Path 1 — One click, no terminal</h3>
-<ol>
-<li>Install or update <a href="https://desktop.pinokio.co/">Pinokio</a> to <strong>8.2 or later</strong>.</li>
-<li>Open <a href="https://pinokio.co/apps/github-com-bilawalsidhu-gods-eye-view">God's Eye View in Pinokio</a>.</li>
-<li>Click <strong>Install</strong>, then <strong>Start</strong>.</li>
-</ol>
-<p>Available on <strong>Windows, macOS, and Linux</strong>. The Pinokio maintainer reports<br />
-cross-platform testing of the fixed installer. The launcher installs the<br />
-locked dependencies, finds a free local port, and opens the app.</p>
-<p><strong>Tried before and installation failed?</strong> Update Pinokio and try again.<br />
-Version 8.2 fixes the launcher installation issue;<br />
-<a href="https://pinokio.co/posts/01m1m4p9xxm3qw7dnnpj2wr93g">details from the Pinokio maintainer</a>.</p>
-<h3>Path 2 — Terminal / coding agent</h3>
-<p>Use <strong>Node.js 24.x (24.14.0 or later) or 26.x</strong>. The setup doctor warns about<br />
-Node 25, which is end-of-life.</p>
-<pre><code class="language-bash">git clone https://github.com/bilawalsidhu/gods-eye-view.git
-cd gods-eye-view
-npm ci
-npm run doctor
-npm run dev
+# Uninstall the app, keeping your data
+curl -fsSL https://voicestudio.sh/install | sh -s -- --uninstall
 </code></pre>
-<p>Open <strong><code>http://localhost:4173</code></strong>. Choose <strong>Live Contacts</strong>, <strong>Space Missions</strong>,<br />
-<strong>Environmental</strong>, or <strong>Explore Manually</strong> fro</p>
+<p>On Windows, run <code>irm https://voicestudio.sh/install | iex</code> in PowerShell.<br />
+Release downloads require curl and a SHA-256 tool. <code>--main</code> requires Git,<br />
+Node.js 22+, Bun, Rust/Cargo, and platform build tools; see<br />
+<a href="docs/install/script.md">installer prerequisites and behavior</a>.<br />
+The installer preserves your settings, projects, and models. Older versions<br />
+must contain Electron packages; it never falls back to archived Tauri builds.</p>
+<p>Or download from <a href="https://github.com/debpalash/VoiceStudio/releases/latest">Releases</a> (macOS <code>.dmg</code>, Windows <code>.exe</code>, Linux <code>.AppImage</code> or <code>.deb</code>) and follow your platform guide:</p>
+<p><strong><a href="docs/install/macos.md">macOS</a> · <a href="docs/install/windows.md">Windows</a> · <a href="docs/install/linux.md">Linux</a> · <a href="docs/install/docker.md">Docker</a></strong></p>
+<table>
+<thead>
+<tr>
+<th>Hardware</th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVIDIA GPU (Windows / Linux)</td>
+<td>CUDA acceleration</td>
+</tr>
+<tr>
+<td>Apple Silicon</td>
+<td>Metal (MPS) acceleration</td>
+</tr>
+<tr>
+<td>No dedicated GPU (Intel/AMD integrated graphics, older PCs)</td>
+<td>Fully usable on the CPU, slower; setup installs the small CPU build of PyTorch (about 5 GB free disk)</td>
+</tr>
+<tr>
+<td>Windows on ARM (Snapdragon X etc.)</td>
+<td><strong>Experimental</strong>, validation pending: native ARM64 app, x64 Python backend under emulation, CPU only</td>
+</tr>
+<tr>
+<td>Intel Mac</td>
+<td>App UI only; connect to a remote backend (<a href="docs/install/macos.md">why</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Open <strong>Voice cloning</strong>, choose a voice or add a clean reference recording, enter your text, and generate. Install the required model when prompted. Hardware needs vary by engine; see <a href="docs/performance.md">performance</a>.</p>
+<h3>Install with prompt</h3>
+<p>Paste into your coding agent (Claude Code, Codex, Cursor, …):</p>
+<pre><code class="language-text">Install the VoiceStudio Electron app on this device and verify it works, following
+https://github.com/debpalash/VoiceStudio/blob/main/docs/install/agent.md
+</code></pre>
+<p>The <a href="docs/install/agent.md">agent guide</a> covers hardware detection, reusing existing<br />
+data, asking before model downloads, and a test generation. Agents that support skills<br />
+can also run <code>npx skills add debpalash/VoiceStudio</code>.</p>
+<details>
+<summary><strong>Run the Electron preview from source</strong></summary>
+
+
+<pre><code class="language-bash">git clone https://github.com/debpalash/VoiceStudio.git
+cd VoiceStudio
+bun install
+bun run setup:api  # prepare Python dependencies before starting Electron
+bun run dev
+</code></pre>
+
+
+See [Electron setup](electron/README.md) for prerequisites and backend configuration.
+
+Use `bun run smoke-test` to build and launch an isolated packaged Electron app.
+Add `-- --install` for the networked managed-runtime installation check.
+
+</details>
+
+<blockquote>
+<p><strong>Electron is the only desktop app and web UI.</strong> Version 0.5.3 was the final Tauri release. Existing Tauri users must <a href="docs/electron-migration.md">install Electron separately</a>. The retired Tauri shell and legacy UI entry points have been removed.</p>
+</blockquote>
+<h2>Documentation</h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Start here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup help</td>
+<td><a href="docs/install/troubleshooting.md">Troubleshooting</a> · <a href="docs/downloading-models.md">Model downloads</a></td>
+</tr>
+<tr>
+<td>Models &amp; audio quality</td>
+<td><a href="docs/engines/README.md">Engine guides</a> · <a href="docs/benchmarks.md">Benchmarks</a></td>
+</tr>
+<tr>
+<td>Integrations</td>
+<td><a href="docs/speech-platform.md">Local API</a> · <a href="docs/mcp.md">MCP</a> · <a href="examples/README.md">Examples</a></td>
+</tr>
+<tr>
+<td>Development</td>
+<td><a href=".github/CONTRIBUTING.md">Contributing</a> · <a href="electron/README.md">Electron</a> · <a href="CHANGELOG.md">Changelog</a></td>
+</tr>
+</tbody>
+</table>
+<p>Agent skills: <code>npx skills add debpalash/VoiceStudio</code> — choose <strong>voicestudio</strong> for audio workflows or <strong>voicestudio-maintainer</strong> for repository maintenance.</p>
+<h2>Sponsors</h2>
+<p><a href="https://forms.gle/2PYCvd39hbwijzX37"><img src="docs/media/sponsor-slot.svg" alt="Your brand — apply for a featured VoiceStudio sponsor slot" width="640" /></a></p>
+<p><strong>Become a featured partner.</strong> <a href="https://forms.gle/2PYCvd39hbwijzX37">Apply for a paid placement</a> · <a href="mailto:partner@voicestudio.sh">Email us</a></p>
+<p>Support development: <a href="https://ko-fi.com/debpalash">Ko-fi</a> · <a href="https://paypal.me/palashCoder">PayPal</a> · <a href="SPONSORS.md">Sponsorship details</a></p>
+<h2>License &amp; responsible use</h2>
+<p><a href="LICENSE">AGPL-3.0</a> covers the application, including commercial use under its conditions. Model weights, tokenizers, voices and generated-output conditions are separate; a paid app licence does not grant those rights. Clone voices only with permission. Model Manager now shows versioned model-source notices, evidence links and unresolved review gaps from the <a href="docs/licensing/model-inventory.md">shared inventory</a>. Its optional [reviewed-file pre</p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/bilawalsidhu/gods-eye-view#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/debpalash/VoiceStudio#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -583,9 +646,9 @@ npm run dev
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 27,446</span>
-      <span class="meta-item">🍴 1,953</span>
-      <span class="stars-today">⭐ 246 stars today</span>
+      <span class="meta-item">⭐ 29,374</span>
+      <span class="meta-item">🍴 2,056</span>
+      <span class="stars-today">⭐ 947 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -684,117 +747,176 @@ All checks should show `[x]`. The doctor validates runtimes, hooks, FTS5, and pl
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">storytold /</span>
-          <a href="https://github.com/storytold/artcraft" target="_blank" rel="noopener">artcraft</a>
+          <span class="repo-owner">nvm-sh /</span>
+          <a href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener">nvm</a>
         </div>
-        <div class="repo-desc">ArtCraft is an intentional crafting engine for artists, designers, and filmmakers</div>
+        <div class="repo-desc">Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions.</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
-      <span class="meta-item">⭐ 22,662</span>
-      <span class="meta-item">🍴 3,634</span>
-      <span class="stars-today">⭐ 4,095 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 95,502</span>
+      <span class="meta-item">🍴 10,523</span>
+      <span class="stars-today">⭐ 52 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <h1 align="center">ArtCraft</h1>
-<p align="center"><strong>The IDE for artists.</strong></p>
+    <p><a href="https://github.com/nvm-sh/logos"><br />
+  <picture><br />
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/nvm-sh/logos/HEAD/nvm-logo-white.svg" /><br />
+    <img src="https://raw.githubusercontent.com/nvm-sh/logos/HEAD/nvm-logo-color.svg" height="50" alt="nvm project logo" /><br />
+  </picture><br />
+</a></p>
+<h1>Node Version Manager [<img alt="Tests" src="https://github.com/nvm-sh/nvm/actions/workflows/tests-fast.yml/badge.svg?branch=master" />][3] [<img alt="nvm version" src="https://img.shields.io/badge/version-v0.40.8-yellow.svg" />][4] <a href="https://bestpractices.dev/projects/684"><img alt="CII Best Practices" src="https://bestpractices.dev/projects/684/badge" /></a></h1>
+<!-- To update this table of contents, ensure you have run `npm install` then `npm run doctoc` -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#intro">Intro</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#installing-and-updating">Installing and Updating</a></li>
+<li><a href="#install--update-script">Install &amp; Update Script</a><ul>
+<li><a href="#additional-notes">Additional Notes</a></li>
+<li><a href="#installing-in-docker">Installing in Docker</a></li>
+<li><a href="#installing-in-docker-for-cicd-jobs">Installing in Docker for CICD-Jobs</a></li>
+<li><a href="#troubleshooting-on-linux">Troubleshooting on Linux</a></li>
+<li><a href="#troubleshooting-on-macos">Troubleshooting on macOS</a></li>
+<li><a href="#ansible">Ansible</a></li>
+</ul>
+</li>
+<li><a href="#verify-installation">Verify Installation</a></li>
+<li><a href="#important-notes">Important Notes</a></li>
+<li><a href="#git-install">Git Install</a></li>
+<li><a href="#manual-install">Manual Install</a></li>
+<li><a href="#manual-upgrade">Manual Upgrade</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#long-term-support">Long-term Support</a></li>
+<li><a href="#migrating-global-packages-while-installing">Migrating Global Packages While Installing</a></li>
+<li><a href="#migrating-global-packages-between-installed-versions">Migrating Global Packages Between Installed Versions</a></li>
+<li><a href="#offline-install">Offline Install</a></li>
+<li><a href="#default-global-packages-from-file-while-installing">Default Global Packages From File While Installing</a></li>
+<li><a href="#iojs">io.js</a></li>
+<li><a href="#system-version-of-node">System Version of Node</a></li>
+<li><a href="#listing-versions">Listing Versions</a></li>
+<li><a href="#setting-custom-colors">Setting Custom Colors</a><ul>
+<li><a href="#persisting-custom-colors">Persisting custom colors</a></li>
+<li><a href="#suppressing-colorized-output">Suppressing colorized output</a></li>
+</ul>
+</li>
+<li><a href="#restoring-path">Restoring PATH</a></li>
+<li><a href="#set-default-node-version">Set default node version</a></li>
+<li><a href="#use-a-mirror-of-node-binaries">Use a mirror of node binaries</a><ul>
+<li><a href="#pass-authorization-header-to-mirror">Pass Authorization header to mirror</a></li>
+</ul>
+</li>
+<li><a href="#platforms-without-official-binaries">Platforms without official binaries</a></li>
+<li><a href="#nvmrc">.nvmrc</a></li>
+<li><a href="#deeper-shell-integration">Deeper Shell Integration</a><ul>
+<li><a href="#calling-nvm-use-automatically-in-a-directory-with-a-nvmrc-file">Calling <code>nvm use</code> automatically in a directory with a <code>.nvmrc</code> file</a></li>
+<li><a href="#bash">bash</a></li>
+<li><a href="#zsh">zsh</a></li>
+<li><a href="#fish">fish</a></li>
+</ul>
+</li>
+<li><a href="#running-tests">Running Tests</a></li>
+<li><a href="#environment-variables">Environment variables</a></li>
+<li><a href="#bash-completion">Bash Completion</a></li>
+<li><a href="#usage-1">Usage</a></li>
+<li><a href="#compatibility-issues">Compatibility Issues</a></li>
+<li><a href="#installing-nvm-on-alpine-linux">Installing nvm on Alpine Linux</a></li>
+<li><a href="#alpine-linux-313">Alpine Linux 3.13+</a></li>
+<li><a href="#alpine-linux-35---312">Alpine Linux 3.5 - 3.12</a></li>
+<li><a href="#uninstalling--removal">Uninstalling / Removal</a></li>
+<li><a href="#manual-uninstall">Manual Uninstall</a></li>
+<li><a href="#docker-for-development-environment">Docker For Development Environment</a></li>
+<li><a href="#problems">Problems</a></li>
+<li><a href="#macos-troubleshooting">macOS Troubleshooting</a></li>
+<li><a href="#wsl-troubleshooting">WSL Troubleshooting</a></li>
+<li><a href="#maintainers">Maintainers</a></li>
+<li><a href="#project-support">Project Support</a></li>
+<li><a href="#enterprise-support">Enterprise Support</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#copyright-notice">Copyright notice</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!-- Main video: https://www.youtube.com/watch?v=kzvQMdg66Go
-     GitHub media issue: https://github.com/storytold/artcraft/issues/1951 -->
+<h2>Intro</h2>
+<p><code>nvm</code> allows you to quickly install and use different versions of <a href="https://nodejs.org">node</a> via the command line.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-sh">$ nvm install 24
+Now using node v24.14.0 (npm v11.9.0)
+$ node -v
+v24.14.0
+$ nvm use 22
+Now using node v22.22.1 (npm v10.9.4)
+$ node -v
+v22.22.1
+$ nvm use 20
+Now using node v20.20.1 (npm v10.8.2)
+$ node -v
+v20.20.1
+</code></pre>
+<p>Simple as that!</p>
+<h2>About</h2>
+<p>nvm is a version manager for <a href="https://nodejs.org/en/">node.js</a>, designed to be installed per-user, and invoked per-shell. <code>nvm</code> works on any POSIX-compliant shell (sh, <a href="https://git.kernel.org/pub/scm/utils/dash/dash.git">dash</a>, <a href="https://github.com/ksh93/ksh">ksh</a>, <a href="https://www.zsh.org">zsh</a>, <a href="https://www.gnu.org/software/bash/">bash</a>), in particular on these platforms: unix, <a href="https://www.apple.com/macos/">macOS</a>, and <a href="https://github.com/nvm-sh/nvm#important-notes">Windows WSL</a>.</p>
+<p><a id="installation-and-update"></a><br />
+<a id="install-script"></a></p>
+<h2>Installing and Updating</h2>
+<h3>Install &amp; Update Script</h3>
+<p>To <strong>install</strong> or <strong>update</strong> nvm, you should run the [install script][2]. To do that, you may either download and run the script manually, or use the following <a href="https://curl.se">cURL</a> or <a href="https://www.gnu.org/software/wget/">Wget</a> command:</p>
+<pre><code class="language-sh">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+</code></pre>
+<pre><code class="language-sh">wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+</code></pre>
+<p>Running either of the above commands downloads a script and runs it. The script clones the nvm repository to <code>~/.nvm</code>, and attempts to add the source lines from the snippet below to the correct profile file (<code>~/.bashrc</code>, <code>~/.bash_profile</code>, <code>~/.zshrc</code>, or <code>~/.profile</code>). If you find the install script is updating the wrong profile file, set the <code>$PROFILE</code> env var to the profile file’s path, and then rerun the installation script.</p>
+<p><a id="profile_snippet"></a></p>
+<pre><code class="language-sh">export NVM_DIR=&quot;$([ -z &quot;${XDG_CONFIG_HOME-}&quot; ] &amp;&amp; printf %s &quot;${HOME}/.nvm&quot; || printf %s &quot;${XDG_CONFIG_HOME}/nvm&quot;)&quot;
+[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm
+</code></pre>
+<h4>Additional Notes</h4>
+<ul>
+<li>
+<p>If the environment variable <code>$XDG_CONFIG_HOME</code> is present, it will place the <code>nvm</code> files there.</p>
+</li>
+<li>
+<p>You can add <code>--no-use</code> to the end of the above script to postpone using <code>nvm</code> until you manually <a href="#usage"><code>use</code></a> it:</p>
+</li>
+</ul>
+<pre><code class="language-sh">export NVM_DIR=&quot;$([ -z &quot;${XDG_CONFIG_HOME-}&quot; ] &amp;&amp; printf %s &quot;${HOME}/.nvm&quot; || printf %s &quot;${XDG_CONFIG_HOME}/nvm&quot;)&quot;
+[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot; --no-use # This loads nvm, without auto-using the default version
+</code></pre>
+<ul>
+<li>
+<p>You can customize the install source, directory, profile, and version using the <code>NVM_SOURCE</code>, <code>NVM_DIR</code>, <code>PROFILE</code>, and <code>NODE_VERSION</code> variables.<br />
+Eg: <code>curl ... | NVM_DIR="path/to/nvm"</code>. Ensure that the <code>NVM_DIR</code> does not contain a trailing slash.</p>
+</li>
+<li>
+<p>The installer can use <a href="https://git-scm.com/"><code>git</code></a>, <code>curl</code>, or <code>wget</code> to download <code>nvm</code>, whichever is available.</p>
+</li>
+<li>
+<p>You can instruct the installer to not edit your shell config (for example if you already get completions via a <a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm">zsh nvm plugin</a>) by setting <code>PROFILE=/dev/null</code> before running the <code>install.sh</code> script. Here's an example one-line command to do that: <code>PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash'</code></p>
+</li>
+</ul>
+<h4>Installing in Docker</h4>
+<p>When invoking bash as a non-interactive shell, like in a <a href="https://www.docker.com">Docker</a> container, none of the regular profile files are sourced. In order to use <code>nvm</code>, <code>node</code>, and <a href="https://www.npmjs.com"><code>npm</code></a> like normal, you can instead specify the special <code>BASH_ENV</code> variable, which bash sources when invoked non-interactively.</p>
+<pre><code class="language-Dockerfile"># Use bash for the shell
+SHELL [&quot;/bin/bash&quot;, &quot;-o&quot;, &quot;pipefail&quot;, &quot;-c&quot;]
 
-<p>https://github.com/user-attachments/assets/7339bd09-3e0d-44a7-a024-af9de64e4c11</p>
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=kzvQMdg66Go">Watch the two-minute ArtCraft demo on YouTube</a>
-</p>
+# Create a script file sourced by both interactive and non-interactive bash shells
+ENV BASH_ENV=&quot;${HOME:-/root}/.bash_env&quot;
+RUN touch &quot;${BASH_ENV}&quot;
+RUN echo '. &quot;${BASH_ENV}&quot;' &gt;&gt; ~/.bashrc
 
-<p align="center">
-  <a href="https://discord.gg/artcraft"><img alt="Discord members online" src="https://img.shields.io/discord/1359579021108842617?style=for-the-badge&amp;label=Discord&amp;color=5865F2&amp;logo=discord&amp;logoColor=white"></a>
-  <a href="https://www.youtube.com/@OfficialArtCraftStudios"><img alt="YouTube" src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&amp;logo=youtube&amp;logoColor=white"></a>
-  <a href="https://x.com/get_artcraft"><img alt="X" src="https://img.shields.io/badge/X-181717?style=for-the-badge&amp;logo=x&amp;logoColor=white"></a>
-  <a href="https://www.linkedin.com/company/artcraft-ai"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge"></a>
-</p>
-
-<p align="center">
-  <a href="https://getartcraft.com/">Download ArtCraft</a> ·
-  <a href="https://github.com/storytold/artcraft/releases">GitHub releases</a> ·
-  <a href="./_docs/dev_setup.md">Build from source</a>
-</p>
-
-<p>ArtCraft is the IDE for interactive AI image and video creation. Compose in 2D, stage scenes in 3D, and choose the models that fit your work. Turn prompting into <em>crafting</em> with visual tools for precise, repeatable results.</p>
-<h2>Show, Don't Tell: Advanced Crafting Features</h2>
-<p>Artists need control over composition, character identity, and camera placement. Build the scene before you generate it. Click any preview to view it at full size.</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Preview</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Image to Location</strong><br>Place virtual actors in a consistent environment and plan multiple shots in the same room.</td>
-<td><a href="https://github.com/user-attachments/assets/21f103e3-cc19-4882-a630-9caa1b76ae31"><img src="https://github.com/user-attachments/assets/21f103e3-cc19-4882-a630-9caa1b76ae31" width="180" alt="Image to Location demo"></a></td>
-</tr>
-<tr>
-<td><strong>3D Image Compositing</strong><br>Layer backdrops, foregrounds, and props in 3D to build compositions with depth.</td>
-<td><a href="https://github.com/user-attachments/assets/f93a616f-571d-474e-bcc0-53736de7303d"><img src="https://github.com/user-attachments/assets/f93a616f-571d-474e-bcc0-53736de7303d" width="180" alt="3D Image Compositing demo"></a></td>
-</tr>
-<tr>
-<td><strong>2D Image Compositing</strong><br>Compose a scene with image layers, background removal, and drawing tools.</td>
-<td><a href="https://github.com/user-attachments/assets/d6f99391-e496-4c62-9e37-29734ba5f899"><img src="https://github.com/user-attachments/assets/d6f99391-e496-4c62-9e37-29734ba5f899" width="180" alt="2D Image Compositing demo"></a></td>
-</tr>
-<tr>
-<td><strong>Image to 3D Mesh</strong><br>Turn an image into a 3D object you can position, rotate, and frame precisely.</td>
-<td><a href="https://github.com/user-attachments/assets/600a405c-e360-48c1-9b42-6e657ae6243b"><img src="https://github.com/user-attachments/assets/600a405c-e360-48c1-9b42-6e657ae6243b" width="180" alt="Image to 3D Mesh demo"></a></td>
-</tr>
-<tr>
-<td><strong>Character Posing</strong><br>Pose characters and set your camera before generating the final shot.</td>
-<td><a href="https://raw.githubusercontent.com/storytold/github-media/22a27373707b13f48fc56405f1f89ca143c43d5d/character-posing.webp"><img src="https://raw.githubusercontent.com/storytold/github-media/22a27373707b13f48fc56405f1f89ca143c43d5d/character-posing.webp" width="180" alt="Character Posing demo"></a></td>
-</tr>
-<tr>
-<td><strong>Scene Blocking with Kitbashing</strong><br>Combine 3D asset kits to control camera angles, object placement, and depth.</td>
-<td><a href="https://github.com/user-attachments/assets/eef025ac-0346-4a46-a023-d48e23629eb5"><img src="https://github.com/user-attachments/assets/eef025ac-0346-4a46-a023-d48e23629eb5" width="180" alt="Scene Blocking with Kitbashing demo"></a></td>
-</tr>
-<tr>
-<td><strong>Character Identity Transfer</strong><br>Use a posed mannequin to guide the placement and pose of your character.</td>
-<td><a href="https://github.com/user-attachments/assets/629119ee-8c76-4a83-9827-8c6c995a3ec1"><img src="https://github.com/user-attachments/assets/629119ee-8c76-4a83-9827-8c6c995a3ec1" width="180" alt="Character Identity Transfer demo"></a></td>
-</tr>
-<tr>
-<td><strong>Background Removal</strong><br>Isolate subjects to use as props, layers, or backdrops in 2D and 3D scenes.</td>
-<td><a href="https://github.com/user-attachments/assets/90c65057-5531-404f-83af-b34e66e24ec1"><img src="https://github.com/user-attachments/assets/90c65057-5531-404f-83af-b34e66e24ec1" width="180" alt="Background Removal demo"></a></td>
-</tr>
-<tr>
-<td><strong>Mixed Asset Crafting</strong><br>Combine image cutouts, worlds, and 3D meshes in one scene.</td>
-<td><a href="https://raw.githubusercontent.com/storytold/github-media/main/ship-editing.gif"><img src="https://raw.githubusercontent.com/storytold/github-media/main/ship-editing.gif" width="180" alt="Mixed Asset Crafting demo"></a></td>
-</tr>
-</tbody>
-</table>
-<p>More previews are coming for scene blocking, canvas editing, and scene relighting.</p>
-<h2>Quick and Easy Prompting</h2>
-<p>Start with a prompt when you want to explore an idea quickly, then use the canvas and scene tools to refine it.</p>
-<table>
-<thead>
-<tr>
-<th>Feature</th>
-<th>Preview</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Text to Image</strong><br>Explore ideas across a wide range of image models with a text prompt.</td>
-<td><a href="https://github.com/user-attachments/assets/9cc289cd-faf4-4eaf-aed2-21134cce127c"><img src="https://github.com/user-attachments/assets/9cc289cd-faf4-4eaf-aed2-21134cce127c" width="180" alt="Text to Image demo"></a></td>
-</tr>
-<tr>
-<td><strong>Prompted Image Editing</strong><br>Describe changes to an image with models such as Nano Banana Pro and GPT Image.</td>
-<td>&lt;a href="https://github.com/user-attachments/asse</td>
-</tr>
-</tbody>
-</table>
+# Download and install nvm
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | PROFILE=&quot;${BASH_ENV}&quot; bash
+RUN echo node &gt; .nvmrc
+RUN nvm install
+</code></pre>
+<h5>Installing in Docker for CICD-Jobs</h5>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/storytold/artcraft#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/nvm-sh/nvm#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -805,137 +927,67 @@ All checks should show `[x]`. The doctor validates runtimes, hooks, FTS5, and pl
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">open-webui /</span>
-          <a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">open-webui</a>
+          <span class="repo-owner">K-Dense-AI /</span>
+          <a href="https://github.com/K-Dense-AI/scientific-agent-skills" target="_blank" rel="noopener">scientific-agent-skills</a>
         </div>
-        <div class="repo-desc">User-friendly AI Interface (Supports Ollama, OpenAI API, ...)</div>
+        <div class="repo-desc">Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use validated skills plus 100+ scientific databases covering biology, chemistry, medicine, and drug discovery. Compatible with Cursor, Claude Code, Codex, Pi, Antigravity, and the open Agent Skills standard.</div>
       </div>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 155,200</span>
-      <span class="meta-item">🍴 22,654</span>
-      <span class="stars-today">⭐ 157 stars today</span>
+      <span class="meta-item">⭐ 49,658</span>
+      <span class="meta-item">🍴 4,440</span>
+      <span class="stars-today">⭐ 163 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <h1>Open WebUI 👋</h1>
-<p><img alt="GitHub stars" src="https://img.shields.io/github/stars/open-webui/open-webui?style=social" /><br />
-<img alt="GitHub forks" src="https://img.shields.io/github/forks/open-webui/open-webui?style=social" /><br />
-<img alt="GitHub watchers" src="https://img.shields.io/github/watchers/open-webui/open-webui?style=social" /><br />
-<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/open-webui/open-webui" /><br />
-<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/open-webui/open-webui" /><br />
-<img alt="GitHub top language" src="https://img.shields.io/github/languages/top/open-webui/open-webui" /><br />
-<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/open-webui/open-webui?color=red" /><br />
-<a href="https://discord.gg/5rJgQTnV4s"><img alt="Discord" src="https://img.shields.io/badge/Discord-Open_WebUI-blue?logo=discord&amp;logoColor=white" /></a><br />
-<a href="https://github.com/sponsors/open-webui"><img alt="" src="https://img.shields.io/static/v1?label=Sponsor&amp;message=%E2%9D%A4&amp;logo=GitHub&amp;color=%23fe8e86" /></a></p>
-<p>Open WebUI is <strong>a home for AI</strong>, a self-hosted AI platform that's <strong><a href="https://docs.openwebui.com/features/extensibility/plugin/">extensible</a></strong>, <strong><a href="https://docs.openwebui.com/features/">feature-rich</a></strong>, user-friendly, and built to run <strong><a href="https://openwebui.com/sovereign-ai">entirely offline</a></strong>. With support for <strong>Ollama</strong> and <strong>OpenAI-compatible APIs</strong>, it gives you a powerful, provider-agnostic interface for both local and cloud-based models.</p>
-<p>Passionate about open-source AI? <a href="https://careers.openwebui.com/">Join our team →</a></p>
-<p><img alt="Open WebUI Demo" src="./demo.png" /></p>
+    <h1>Scientific Agent Skills</h1>
+<p><a href="LICENSE.md"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a><br />
+<a href="https://arxiv.org/abs/2609.00065"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2609.00065-b31b1b.svg" /></a><br />
+<a href="pyproject.toml"><img alt="Version" src="https://img.shields.io/badge/Version-2.72.0-blue.svg" /></a><br />
+<a href="#-whats-included"><img alt="Skills" src="https://img.shields.io/badge/Skills-177-brightgreen.svg" /></a><br />
+<a href="#-whats-included"><img alt="Databases" src="https://img.shields.io/badge/Databases-100%2B-orange.svg" /></a><br />
+<a href="https://agentskills.io/"><img alt="Agent Skills" src="https://img.shields.io/badge/Standard-Agent_Skills-blueviolet.svg" /></a><br />
+<a href="https://agent-plugins.org/"><img alt="Agent Plugins" src="https://img.shields.io/badge/Standard-Agent_Plugins-0A7A72.svg" /></a><br />
+<a href="https://github.com/K-Dense-AI/scientific-agent-skills/actions/workflows/security-scan.yml"><img alt="Security Scan" src="https://github.com/K-Dense-AI/scientific-agent-skills/actions/workflows/security-scan.yml/badge.svg" /></a><br />
+<a href="https://github.com/K-Dense-AI/scientific-agent-skills/actions/workflows/skill-tests.yml"><img alt="Skill Tests" src="https://github.com/K-Dense-AI/scientific-agent-skills/actions/workflows/skill-tests.yml/badge.svg" /></a><br />
+<a href="#-getting-started"><img alt="Works with" src="https://img.shields.io/badge/Works_with-Cursor_|_Claude_Code_|_Codex_|_Google_Antigravity-blue.svg" /></a><br />
+<a href="https://x.com/k_dense_ai"><img alt="X" src="https://img.shields.io/badge/Follow_on_X-%40k__dense__ai-000000?logo=x" /></a><br />
+<a href="https://www.linkedin.com/company/k-dense-inc"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-K--Dense_Inc.-0A66C2?logo=linkedin" /></a><br />
+<a href="https://www.youtube.com/@K-Dense-Inc"><img alt="YouTube" src="https://img.shields.io/badge/YouTube-K--Dense_Inc.-FF0000?logo=youtube" /></a><br />
+<a href="https://www.reddit.com/user/-k-dense-/"><img alt="Reddit" src="https://img.shields.io/badge/Reddit-u%2F--k--dense---FF4500?logo=reddit&amp;logoColor=white" /></a></p>
 <blockquote>
-<p>[!TIP]<br />
-<strong>Looking for an <a href="https://docs.openwebui.com/enterprise">Enterprise Plan</a>?</strong> – <strong><a href="https://docs.openwebui.com/enterprise">Speak with Our Sales Team Today!</a></strong></p>
+<p><strong>🔔 Claude Scientific Skills is now Scientific Agent Skills.</strong> Same skills, broader compatibility — now works with any AI agent that supports the open <a href="https://agentskills.io/">Agent Skills</a> standard, not just Claude.</p>
+<p><strong>New: <a href="https://github.com/K-Dense-AI/k-dense-byok">K-Dense BYOK</a></strong> — A free, open-source AI co-scientist that runs on your desktop, powered by Scientific Agent Skills. Bring your own API keys, pick from 40+ models, and get a full research workspace with web search, file handling, 100+ scientific databases, and access to all 177 skills in this repo. Your data stays on your computer, and you can optionally scale to cloud compute via <a href="https://modal.com/">Modal</a> for heavy workloads. <a href="https://github.com/K-Dense-AI/k-dense-byok">Get started here.</a></p>
+<p><strong>🎥 Webinar recording — <a href="https://youtu.be/Du3BIE48DKc?si=9dPpETKSc2PeQbvU">Getting Started with K-Dense BYOK</a></strong><br />
+A hands-on walkthrough of <a href="https://github.com/K-Dense-AI/k-dense-byok">K-Dense BYOK</a>, our free, open-source AI co-scientist that runs locally on your own machine and is powered by Scientific Agent Skills. We cover how to set it up, bring your own API keys, and run real research workflows with these skills. No prior technical experience needed. <strong><a href="https://youtu.be/Du3BIE48DKc?si=9dPpETKSc2PeQbvU">Watch the recording →</a></strong></p>
+<p><strong>Stay up to date:</strong> Follow K-Dense on <a href="https://x.com/k_dense_ai">X</a>, <a href="https://www.linkedin.com/company/k-dense-inc">LinkedIn</a>, <a href="https://www.youtube.com/@K-Dense-Inc">YouTube</a>, and <a href="https://www.reddit.com/user/-k-dense-/">Reddit</a> for new skills, release announcements, walkthroughs, research workflow demos, and examples you can use with your own AI agent.</p>
+<p><strong>📄 Paper:</strong> Scientific Agent Skills is described in <a href="https://arxiv.org/abs/2609.00065"><em>Scientific Agent Skills: A Library of Procedural Knowledge for Research Agents</em></a> (arXiv:2609.00065). If you use these skills in your research, please <a href="#-citation">cite the paper</a>.</p>
 </blockquote>
-<p>For more information, be sure to check out our <a href="https://docs.openwebui.com/">Open WebUI Documentation</a>.</p>
-<h2>Key Features of Open WebUI ⭐</h2>
-<ul>
-<li>
-<p>🚀 <strong>Effortless Setup</strong>: Install seamlessly via pip, uv, Docker, or Kubernetes (kubectl, kustomize, or helm), with <code>:ollama</code> and <code>:cuda</code> tagged images available for container deployments.</p>
-</li>
-<li>
-<p>🤝 <strong>Broad Model &amp; API Integration</strong>: Connect any OpenAI-compatible API alongside local Ollama models. Point the API URL at <strong>LMStudio, GroqCloud, Mistral, OpenRouter, vLLM, and more</strong> to mix and match providers freely.</p>
-</li>
-<li>
-<p>🔐 <strong>Granular RBAC &amp; User Groups</strong>: Administrators define detailed roles, groups, and permissions, giving each user exactly the access they need. Secure by default, with tailored experiences per group.</p>
-</li>
-<li>
-<p>🧩 <strong>Plugin Support</strong>: Extend Open WebUI with <strong>Filters</strong>, <strong>Actions</strong>, <strong>Pipes</strong>, <strong>Tools</strong>, and <strong>Skills</strong>. Connect external services through <strong>MCP</strong>, <strong>MCPO</strong>, and <strong>OpenAPI tool servers</strong>. Build custom integrations, rate limits, approval flows, data connections, and more.</p>
-</li>
-<li>
-<p>🤖 <strong>Models &amp; Agents</strong>: Wrap any base model with custom instructions, tools, and knowledge to build specialized agents. Supports dynamic variables, per-user/group access control, and community preset imports via <a href="https://openwebui.com/">Open WebUI Community</a>.</p>
-</li>
-<li>
-<p>⚡ <strong>Agentic Execution with <a href="https://github.com/open-webui/open-terminal">Open Terminal</a></strong>: Give your agents a terminal and filesystem to carry out multi-step tasks. Let them analyze data, run scripts, fix errors, and produce files directly in chat. Scale to teams with <strong><a href="https://github.com/open-webui/terminals">Terminals (Enterprise)</a></strong> for per-user isolated environments, resource limits, and automatic lifecycle management.</p>
-</li>
-<li>
-<p>📝 <strong>Notes</strong>: A dedicated workspace for content outside conversations. Draft with a rich editor, use AI to rewrite selected text, and attach notes to any chat for full-context injection.</p>
-</li>
-<li>
-<p>📢 <strong>Channels</strong>: Real-time shared spaces where your team and AI models collaborate in one timeline. Tag models to draft or critique, with threads, reactions, pins, and access control.</p>
-</li>
-<li>
-<p>🧠 <strong>Persistent Memory</strong>: The AI remembers facts about you across conversations, carrying context from one chat to the next.</p>
-</li>
-<li>
-<p>✅ <strong>Live Workflow &amp; Message Flow</strong>: Watch the AI build and work through checklists in real time. Queue messages while the AI is still responding; they send automatically when it's ready.</p>
-</li>
-<li>
-<p>📅 <strong>Calendar &amp; AI Scheduling</strong>: Built-in personal and shared calendars with month/week/day views, recurring events, color coding, attendees, and reminders. Models manage your schedule conversationally through native function calling.</p>
-</li>
-<li>
-<p>⏱️ <strong>Automations</strong>: Schedule prompts to run on recurring schedules, with runs surfaced on your calendar and each completed run linking back to the chat it produced.</p>
-</li>
-<li>
-<p>📱 <strong>Responsive Design &amp; PWA</strong>: Seamless experience across desktop, laptop, and mobile, with a Progressive Web App for native app-like feel and offline access on localhost.</p>
-</li>
-<li>
-<p>✒️🔢 <strong>Full Markdown and LaTeX Support</strong>: Comprehensive Markdown and LaTeX capabilities for enriched interaction.</p>
-</li>
-<li>
-<p>🎤📹 <strong>Hands-Free Voice/Video Call</strong>: Integrated voice and video calls with multiple Speech-to-Text providers (Local Whisper, OpenAI, Deepgram, Azure) and Text-to-Speech engines (Azure, ElevenLabs, OpenAI, Transformers, WebAPI).</p>
-</li>
-<li>
-<p>💾 <strong>Persistent Artifact Storage</strong>: Built-in key-value storage API for artifacts, enabling journals, trackers, leaderboards, and collaborative tools with personal and shared data scopes.</p>
-</li>
-<li>
-<p>📚 <strong>Local RAG Integration</strong>: Retrieval Augmented Generation backed by 9 vector databases and multiple content-extraction engines (Tika, Docling, Document Intelligence, Mistral OCR, PaddleOCR-vl, external loaders). Supports hybrid search (BM25 + vector) with reranking and full-context mode. Load documents into chat or pull them from your library with the <code>#</code> command.</p>
-</li>
-<li>
-<p>🔍 <strong>Web Search for RAG</strong>: Search the web through dozens of providers including <code>SearXNG</code>, <code>Google PSE</code>, <code>Brave Search</code>, <code>Kagi</code>, <code>Mojeek</code>, <code>Tavily</code>, <code>Perplexity</code>, <code>Firecrawl</code>, <code>serpstack</code>, <code>serper</code>, <code>Serply</code>, <code>DuckDuckGo</code>, <code>SearchApi</code>, <code>SerpApi</code>, <code>Bing</code>, <code>Jina</code>, <code>Exa</code>, <code>Sougou</code>, <code>Azure AI Search</code>, and <code>Ollama Cloud</code>, injecting results directly into the conversation.</p>
-</li>
-<li>
-<p>🌐 <strong>Web Browsing Capability</strong>: Pull websites into chat with the <code>#</code> command followed by a URL, or let the model fetch them on its own when needed.</p>
-</li>
-<li>
-<p>🎨 <strong>Image Generation &amp; Editing</strong>: Create and edit images with multiple engines including OpenAI DALL·E, Gemini, ComfyUI (local), and AUTOMATIC1111 (local), supporting both generation and prompt-based editing.</p>
-</li>
-<li>
-<p>⚙️ <strong>Multi-Model Conversations</strong>: Engage several models at once, harnessing their individual strengths in parallel for the best possible responses.</p>
-</li>
-<li>
-<p>📊 <strong>Usage Analytics &amp; Model Evaluation</strong>: Admin dashboards track message volume, token consumption, and cost across users and models. Evaluate models with a built-in arena, A/B testing, and ELO-based leaderboards.</p>
-</li>
-<li>
-<p>🗄️ <strong>Flexible Database &amp; Storage</strong>: Choose SQLite (with optional encryption) or PostgreSQL, and store files locally or on S3, Google Cloud Storage, or Azure Blob Storage.</p>
-</li>
-<li>
-<p>🧬 <strong>Advanced Vector Database Support</strong>: Pick from 9 vector databases: ChromaDB, PGVector, Qdrant, Milvus, Elasticsearch, OpenSearch, Pinecone, S3Vector, and Oracle 23ai.</p>
-</li>
-<li>
-<p>🪪 <strong>Enterprise Authentication &amp; Provisioning</strong>: Full LDAP/Active Directory integration, SSO via trusted headers and OAuth providers, and SCIM 2.0 automated provisioning for identity providers like Okta, Azure AD, and Google Workspace.</p>
-</li>
-<li>
-<p>☁️ <strong>Cloud-Native File Integration</strong>: Native Google Drive and OneDrive/SharePoint file picking for seamless document import from enterprise cloud storage.</p>
-</li>
-<li>
-<p>🔭 <strong>Production Observability</strong>: Built-in OpenTelemetry support for traces, metrics, and logs, plugging into your existing monitoring stack.</p>
-</li>
-<li>
-<p>⚖️ <strong>Horizontal Scalability</strong>: Redis-backed session management and WebSocket support for multi-worker, multi-node deployments behind load balancers.</p>
-</li>
-<li>
-<p>🌐🌍 <strong>Multilingual Support</strong>: Use Open WebUI in your preferred language with i18n support. We're actively seeking contributors to expand language coverage!</p>
-</li>
-<li>
-<p>🌟 <strong>Continuous Updates</strong>: We're committed to improving Open WebUI with regular updates, fixes, and new features.</p>
-</li>
-<li>
-<p>🛡️ **Transparent Security Pro</p>
-</li>
-</ul>
+<p>A collection of <strong>177 scientific and research skills</strong> for AI agents, created by <a href="https://k-dense.ai">K-Dense</a>. The skills cover biology, chemistry, medicine, physics, engineering, Earth science, data analysis, and scientific communication. Each provides guidance for a specific package, data source, or workflow, including the scientific conventions and validation checks needed to use it.</p>
+<p>The collection follows the open <a href="https://agentskills.io/">Agent Skills</a> standard and works with <strong>Cursor, Claude Code, Codex, Google Antigravity, and other compatible hosts</strong>. It is also a portable <a href="https://agent-plugins.org/">Agent Plugins</a> package (<code>plugin.json</code> + <code>skills/</code>), so clients that support that standard can load the collection as one plugin. Browse the <a href="docs/skill-guides/README.md">illustrated skill guides</a>, <a href="#-available-skills">skill categories</a>, or <a href="docs/skills.md">complete catalog</a> to choose the skills relevant to your work.</p>
+<blockquote>
+<p>⭐ <strong>Help make AI for science easier to discover:</strong> If Scientific Agent Skills saves you time, teaches your agent a workflow, or helps your lab move faster, please <a href="https://github.com/K-Dense-AI/scientific-agent-skills">star this repository</a>. A star is a public signal that these open, reusable research skills are worth maintaining: it helps scientists, engineers, and open-source contributors find the project, shows which agent-skill standards are gaining real adoption, and gives us a clear reason to keep expanding the collection for the community.</p>
+</blockquote>
+<hr />
+<p>These skills enable your AI agent to seamlessly work with specialized scientific libraries, databases, and tools across multiple scientific domains. While the agent can use any Python package or API on its own, these explicitly defined skills provide curated documentation and examples that make it significantly stronger and more reliable for the workflows below:<br />
+- 🧬 Bioinformatics &amp; Genomics - Sequence analysis, single-cell RNA-seq, pooled CRISPR screens, primer design, amplicon microbiomes, variant annotation, phylogenetics<br />
+- 🧪 Cheminformatics &amp; Drug Discovery - Molecular property prediction, virtual screening, ADMET analysis, molecular docking, lead optimization, calibrated 1D NMR processing<br />
+- 🔬 Proteomics &amp; Mass Spectrometry - LC-MS/MS processing, peptide identification, spectral matching, protein quantification<br />
+- 🏥 Clinical Research &amp; Evidence Workflows - Clinical trials, pharmacogenomics, variant evidence review, pharmacokinetic/pharmacodynamic modelling and dose-regimen evaluation, aggregate decision-support evaluation, source-bound draft report structures, and formatting of clinician-authored treatment decisions<br />
+- 🧠 Healthcare AI &amp; Biosignal Research - EHR and model research, physiological signal analysis, and retrospective validation—not patient-specific diagnosis, treatment, alarms, or deployment decisions<br />
+- 🐭 Preclinical Research &amp; Animal Welfare - Multivariate severity scoring and humane-endpoint forecasting for laboratory animal studies, for 3Rs/refinement analysis and EU Directive 2010/63/EU reporting—an aid to severity assessment, never a decision rule<br />
+- 🖼️ Microscopy, Medical Imaging &amp; Digital Pathology - Quantitative fluorescence microscopy, privacy-aware DICOM processing, research-only whole-slide image analysis, computational pathology, and radiology data workflows<br />
+- 🧠 Neuroscience &amp; Electrophysiology - BIDS datasets, NWB conversion and clock alignment, extracellular recordings, and physiological signals<br />
+- 🤖 Machine Learning &amp; AI - Deep learning, reinforcement learning, time series analysis, model interpretability, Bayesian methods<br />
+- 🔮 Materials Science &amp; Chemistry - Crystal structure analysis, CALPHAD phase equilibria, metabolic modeling, computational chemistry<br />
+- 🌌 Physics &amp; Astronomy - Astronomical data analysis, coordinate transformations, cosmological calculations, symbolic mathematics, physics computations<br />
+- ⚙️ Engineering &amp; Simulation - Battery cycling models, chemical kinetics and ignition delay, fluid dynamics, lab hardware CAD and custom-part fabrication, discrete-event simulation, process optimization<br />
+- 📊 Data Analysis &amp; Visualization - Statistical analysis, network analysis, time series, publication-quality figures, large-scale data processing, EDA<br />
+- 🌊 Chemical Oceanography - Seawater carbonate chemistry, ocean acidification</p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/open-webui/open-webui#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/K-Dense-AI/scientific-agent-skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -946,157 +998,108 @@ All checks should show `[x]`. The doctor validates runtimes, hooks, FTS5, and pl
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">cathrynlavery /</span>
-          <a href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">diagram-design</a>
+          <span class="repo-owner">HKUDS /</span>
+          <a href="https://github.com/HKUDS/CLI-Anything" target="_blank" rel="noopener">CLI-Anything</a>
         </div>
-        <div class="repo-desc">Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, and Pi. 44 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.</div>
+        <div class="repo-desc">&quot;CLI-Anything: Making ALL Software Agent-Native&quot; -- CLI-Hub:https://clianything.cc/</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#e34c26"></span>HTML</span>
-      <span class="meta-item">⭐ 52,906</span>
-      <span class="meta-item">🍴 3,344</span>
-      <span class="stars-today">⭐ 2,081 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 52,742</span>
+      <span class="meta-item">🍴 4,786</span>
+      <span class="stars-today">⭐ 103 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <div align="center">
+    <h1 align="center"><img src="assets/icon.png" alt="" width="64" style="vertical-align: middle;">&nbsp; CLI-Anything: Making ALL Software Agent-Native</h1>
 
-<h1>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/hero/hero-dark.webp">
-    <img alt="Diagram Design. Editorial diagrams your designer won't hate." src="docs/hero/hero-light.webp">
-  </picture>
-</h1>
-
-**An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand.<br>45 diagram types. No shadows. No Mermaid slop.**
-
-[![GitHub stars](https://img.shields.io/github/stars/cathrynlavery/diagram-design?style=flat-square&color=bf4520)](https://github.com/cathrynlavery/diagram-design/stargazers)
-[![skills.sh installs](https://skills.sh/b/cathrynlavery/diagram-design?style=flat-square)](https://skills.sh/cathrynlavery/diagram-design/diagram-design)
-[![CI](https://img.shields.io/github/actions/workflow/status/cathrynlavery/diagram-design/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/cathrynlavery/diagram-design/actions/workflows/ci.yml)
-[![Plugin version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcathrynlavery%2Fdiagram-design%2Fmain%2F.claude-plugin%2Fplugin.json&query=%24.version&label=version&style=flat-square&color=555555)](CHANGELOG.md)
-[![MIT license](https://img.shields.io/badge/license-MIT-555555?style=flat-square)](LICENSE)
-
-<a href="https://trendshift.io/repositories/26141" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/26141" alt="cathrynlavery/diagram-design on Trendshift" width="250" height="55"/></a>
-
-**[Website](https://diagramdesign.dev) · [Gallery](https://cathrynlavery.github.io/diagram-design/) · [Changelog](CHANGELOG.md)**
-
-[Install](#install) · [What it makes](#what-it-makes) · [Quickstart](#quickstart) · [Match your brand](#onboarding-make-it-look-like-your-brand) · [Import](#import-from-drawio-mermaid-or-excalidraw) · [Export](#export-to-png--svg) · [Contributing](#contributing)
-
-<code>npx skills add cathrynlavery/diagram-design</code>
-
-<br><br>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/hero/demo.gif">
-  <source media="(prefers-color-scheme: light)" srcset="docs/hero/demo-light.gif">
-  <img src="docs/hero/demo.gif" alt="A prompt typed into an agent session becomes a finished architecture diagram, then a plain first-pass diagram is redrawn with the skill, then the gallery of diagram types" width="900">
-</picture>
-
+<div align="center">
+<a href="https://www.star-history.com/hkuds/cli-anything"><picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=HKUDS/CLI-Anything&amp;type=trending&amp;theme=dark"><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=HKUDS/CLI-Anything&amp;type=trending"><img alt="GitHub Trending Repository of the Day" src="https://api.star-history.com/badge?repo=HKUDS/CLI-Anything&amp;type=trending" height="55"></picture></a>&#32;<a href="https://trendshift.io/repositories/22991" target="_blank"><img src="https://trendshift.io/api/badge/repositories/22991" alt="HKUDS/CLI-Anything | Trendshift" height="55"></a>&#32;<a href="https://www.star-history.com/hkuds/cli-anything"><picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=HKUDS/CLI-Anything&amp;type=rank&amp;theme=dark"><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=HKUDS/CLI-Anything&amp;type=rank"><img alt="Star History Rank" src="https://api.star-history.com/badge?repo=HKUDS/CLI-Anything&amp;type=rank" height="55"></picture></a>
 </div>
 
-<p><br></p>
-<p>Ask your agent in plain words:</p>
-<ul>
-<li><em>"Make me an architecture diagram of my app: frontend, backend, database, Redis cache."</em></li>
-<li><em>"I need a quadrant showing Q2 projects by impact vs effort."</em></li>
-<li><em>"Give me a sequence of a bearer call with token refresh on 401."</em></li>
-<li><em>"Onboard diagram-design to https://yoursite.com"</em> (pulls your palette and fonts so every diagram after this one matches your site)</li>
-</ul>
-<p>The agent picks the type, states its plan, and writes one <code>.html</code> file you can open by double-clicking.</p>
+<p align="center">
+  <strong>Today's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖.<br>
+CLI-Anything: Bridging the Gap Between AI Agents and the World's Software</strong><br>
+</p>
+
+<p><strong>🌐 <a href="https://hkuds.github.io/CLI-Anything/">CLI-Hub</a></strong>: <code>pip install cli-anything-hub</code> then <code>cli-hub install &lt;name&gt;</code> — browse, install, and manage all community-built CLIs. Want to add your own? <a href="https://github.com/HKUDS/CLI-Anything/blob/main/CONTRIBUTING.md">Open a PR</a> — the hub updates instantly.</p>
+<p><strong>🎬 <a href="#-real-world-demos">See Demos</a></strong>: Watch AI agents use generated CLIs plus preview, live preview, and trajectory loops to produce real artifacts — CAD builds, 3D scenes, diagrams, gameplay, subtitles, and more.</p>
+<p><strong>🙋 [Become a Contributor, or Request a CLI]</strong>: <a href="https://github.com/HKUDS/CLI-Anything/issues/new?template=contributor-signup.yml">Join us</a>! Sign up to build a new CLI harness — once reviewed and merged, you'll gain access as one of our community contributors! Wish CLI-Anything supported a specific software or service? Submit a <a href="https://github.com/HKUDS/CLI-Anything/issues/new?template=cli-wishlist.yml">wishlist request</a>!</p>
+<p align="center">
+  <a href="#-quick-start"><img src="https://img.shields.io/badge/Quick_Start-5_min-blue?style=for-the-badge" alt="Quick Start"></a>
+  <a href="https://hkuds.github.io/CLI-Anything/"><img src="https://img.shields.io/badge/CLI_Hub-Browse_%26_Install-ff69b4?style=for-the-badge" alt="CLI Hub"></a>
+  <a href="#-demonstrations"><img src="https://img.shields.io/badge/Demos-18_Apps-green?style=for-the-badge" alt="Demos"></a>
+  <a href="#-test-results"><img src="https://img.shields.io/badge/Tests-2%2C461_Passing-brightgreen?style=for-the-badge" alt="Tests"></a>
+  <a href="https://arxiv.org/abs/2606.03854"><img src="https://img.shields.io/badge/Tech_Report-arXiv%3A2606.03854-b31b1b?style=for-the-badge" alt="Tech Report"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-yellow?style=for-the-badge" alt="License"></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/python-≥3.10-blue?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/click-≥8.0-green" alt="Click">
+  <img src="https://img.shields.io/badge/pytest-100%25_pass-brightgreen" alt="Pytest">
+  <img src="https://img.shields.io/badge/coverage-unit_%2B_e2e-orange" alt="Coverage">
+  <img src="https://img.shields.io/badge/output-JSON_%2B_Human-blueviolet" alt="Output">
+  <a href="https://github.com/HKUDS/.github/blob/main/profile/README.md"><img src="https://img.shields.io/badge/Feishu-Group-E9DBFC?style=flat&logo=feishu&logoColor=white" alt="Feishu"></a>
+<a href="https://github.com/HKUDS/.github/blob/main/profile/README.md"><img src="https://img.shields.io/badge/WeChat-Group-C5EAB4?style=flat&logo=wechat&logoColor=white" alt="WeChat"></a>
+</p>
+
+<p><strong>One Command Line</strong>: Make any software agent-ready for Pi, OpenClaw, nanobot, Cursor, Claude Code, etc.&nbsp;&nbsp;<a href="README_CN.md"><strong>中文文档</strong></a> | <a href="README_JA.md"><strong>日本語ドキュメント</strong></a> | <a href="README_DE.md"><strong>Deutsch</strong></a></p>
+<p align="center">
+  <img src="assets/cli-typing.gif" alt="CLI-Anything typing demo" width="800">
+</p>
+
+<p align="center">
+  <img src="assets/teaser.png" alt="CLI-Anything Teaser" width="800">
+</p>
+
 <hr />
-<h2>Install</h2>
-<p>Works with any host that reads Agent Skills, including Cursor, Claude Code, Codex, GitHub Copilot, Gemini CLI, Cline, Windsurf and Amp:</p>
-<pre><code class="language-bash">npx skills add cathrynlavery/diagram-design
-</code></pre>
-<p>In Claude Code, the plugin marketplace gets you updates and the slash commands:</p>
-<pre><code class="language-text">/plugin marketplace add cathrynlavery/diagram-design
-/plugin install diagram-design@diagram-design
-</code></pre>
-<p>Official builds come only from this repository. LittleMight, Cathryn Lavery's company, publishes the plugin directory listings; a listing under any other name is an unofficial copy. <a href="PRIVACY.md">PRIVACY.md</a> lists what the skill sends over the network.</p>
+<h2>📰 News</h2>
+<blockquote>
+<p>Thanks to all invaluable efforts from the community! More updates continuously on the way everyday..</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>2026-05-30</strong> 🧭 <strong>Hermes skill</strong> proposed (#320), adding a CLI-Anything orchestration skill with installer scripts and HARNESS fallback guidance. 🗺️ <strong>ArcGIS Pro</strong> was proposed for the public registry (#318) as a Windows/ArcPy CLI for cartography, geoprocessing, feature editing, and live-Pro MCP workflows.</p>
+</li>
+<li>
+<p><strong>2026-05-27</strong> 🔧 <strong>CLI-Hub</strong> registry date updates now handle <code>python -m pip</code> install commands (#312), improving package-date detection for registry automation.</p>
+</li>
+<li>
+<p><strong>2026-05-23</strong> 📝 <strong>Obsidian Agent CLI</strong> was proposed for the public registry (#307), bringing a PyPI-installed Obsidian automation CLI with persistent agent memory workflows and a pinned skill link.</p>
+</li>
+<li>
+<p><strong>2026-05-21</strong> 🔒 <strong>Sketch CLI</strong> token-file handling was hardened against path traversal and symlink escapes (#304).</p>
+</li>
+<li>
+<p><strong>2026-05-20</strong> 📓 <strong>Joplin CLI</strong> was proposed (#300) with notebooks, notes, to-dos, tags, attachments, search/sync, import/export, server/E2EE helpers, full docs, packaged skill docs, and a 134-test validation baseline.</p>
+</li>
+<li>
+<p><strong>2026-05-20</strong> 🎛️ <strong>Rekordbox CLI</strong> merged (#252) with guarded SQLCipher write paths, backup-required forced writes, smoke coverage, and root skill sync. 📚 <strong>Calibre CLI</strong> merged (#223) with library/search/metadata/conversion/export workflows, 41 unit tests, real-Calibre E2E evidence, and root skill validation. 🧊 <strong>3MF CLI</strong> merged (#209) with mesh inspection, hole resizing, repair, comparison, and preserved triangle attributes. 🎙️ <strong>MiniMax CLI</strong> merged (#189) with chat/TTS workflows, JSON-safe model/voice listing, REPL quote handling, and smoke/E2E coverage. 🎮 <strong>UEAtelier</strong> joined the registry (#297) as an Unreal Editor MCP self-extension workbench with a Python CLI proxy.</p>
+</li>
+<li>
+<p><strong>2026-05-19</strong> 🛠️ Existing harnesses got a quality/security pass — <strong>Zoom</strong> downloads recordings from direct URLs (#294), <strong>Obsidian</strong> search now uses the Local REST API vendor content types (#289), <strong>LibreOffice</strong> headless conversion is more robust on macOS (#290), and XML/SVG/ODF/MLT/MusicXML/CSL parsing now routes untrusted input through <code>defusedxml</code> (#296).</p>
+</li>
+<li>
+<p><strong>2026-05-18</strong> 📈 README presentation refreshed with the Trendshift badge and centered project header polish (#285, #286), keeping the landing section focused on discovery and project momentum.</p>
+</li>
+<li>
+<p><strong>2026-05-17</strong> 🌐 <strong>CLI-Hub</strong> registry handling was hardened (#281) — registry entries are now copied before <code>_source</code> tagging, preventing cached or mocked registry data from being mutated in place.</p>
+</li>
+<li>
+<p><strong>2026-05-16</strong> 🔧 <strong>n8n</strong> received the REPL banner crash fix that later merged into main (#280), restoring the no-subcommand interactive startup path with regression coverage.</p>
+</li>
+</ul>
 <details>
-<summary><b>Claude Code</b>: turn on auto-update</summary>
+<summary>Earlier news (Apr 10–18)</summary>
 
-After installing, run `/plugin`, open **Marketplaces**, select **diagram-design**, and choose **Enable auto-update**. Claude Code disables auto-update by default for third-party marketplaces; after this toggle, it refreshes the marketplace and installed plugin in the background after startup. Run `/reload-plugins` when prompted, or let the next session load the update.
+- **2026-04-18** 🧩 **All SKILL.md files are now being unified under the top-level `skills/` directory** — every CLI skill can be installed from one canonical source with `npx skills add HKUDS/CLI-Anything --skill <skill-name> -g -y`. We also added root-skill validation CI, synced contribution / PR docs and REPL skill-path hints to the new layout, and refreshed the **CLI-Hub** install-first frontend around the new `npx skills` flow.
 
-</details>
-
-<details>
-<summary><b>Cursor</b>, Cline, Gemini CLI, Windsurf, Amp, Zed, Warp, Roo, Kilo and other Agent Skills hosts</summary>
-
-The cross-agent [`skills` CLI](https://skills.sh) resolves this repository, detects `skills/diagram-design/SKILL.md`, and installs the whole skill (`references/`, `assets/`, `scripts/`) into every host root you select, including Cursor's:
-
-
-<pre><code class="language-bash">npx skills add cathrynlavery/diagram-design
-</code></pre>
-
-
-When the selected roots resolve to more than one skills directory, the CLI asks for an installation method and recommends **Symlink**: one canonical copy, linked into each root, so a later update reaches all of them at once. Pass `--copy` for independent copies per host instead. A selection that resolves to a single directory is copied, because the distinction is immaterial there. Where symlinks are unavailable (Windows without Developer Mode) the CLI falls back to copies and reports which roots it copied.
-
-This is a standalone install, separate from the marketplaces below: it does not follow marketplace updates automatically. Pull merged updates with `npx skills update diagram-design`. It also installs the Agent Skill only, so the `/export-diagram`, `/import-mermaid`, `/profile`, and `/doctor` command surfaces stay with the native packages. On a host that has one of the marketplaces below, prefer the marketplace.
-
-> **One-time migration:** an existing standalone `npx skills add` copy will not start following the Codex marketplace automatically. Remove that standalone copy, then use the Codex marketplace commands. Likewise, uninstall a personal Cowork copy and reinstall Diagram Design from your organization's marketplace. Future marketplace version bumps then flow through each client's native update path.
-
-</details>
-
-<details>
-<summary><b>Codex</b></summary>
-
-
-<pre><code class="language-bash">codex plugin marketplace add cathrynlavery/diagram-design
-codex plugin add diagram-design@diagram-design
-</code></pre>
-
-
-Codex refreshes configured Git marketplaces at startup. To fetch immediately, run `codex plugin marketplace upgrade diagram-design` and start a new session.
-
-</details>
-
-<details>
-<summary><b>GitHub Copilot</b></summary>
-
-
-<pre><code class="language-bash">copilot plugin marketplace add cathrynlavery/diagram-design
-copilot plugin install diagram-design@diagram-design
-</code></pre>
-
-
-Copilot installs the shared Diagram Design skill plus its doctor, export, import, and profile capabilities from the existing repository marketplace. Confirm discovery with `copilot skill list` (or `/skills` in an interactive session), then ask for a diagram in natural language. To fetch a merged update, run `copilot plugin marketplace update diagram-design`, then `copilot plugin update diagram-design@diagram-design`.
-
-</details>
-
-<details>
-<summary><b>Factory Droid</b></summary>
-
-
-<pre><code class="language-bash">droid plugin marketplace add https://github.com/cathrynlavery/diagram-design
-droid plugin install diagram-design@diagram-design --scope user
-</code></pre>
-
-
-Droid tracks Git plugins by commit rather than the manifest's display version. To fetch a merged update, run `droid plugin marketplace update diagram-design`, then `droid plugin update diagram-design@diagram-design --scope user`, and start a new session.
-
-</details>
-
-<details>
-<summary><b>Claude Cowork</b> (organization marketplace)</summary>
-
-Organization GitHub marketplaces currently require a private or internal repository, so first mirror this public repository into one owned by your organization. In **Organization settings → Plugins**, choose **Add plugin → GitHub**, connect that mirror, and enable **Sync automatically** from the marketplace menu. Automatic sync runs when a pull request containing a plugin version bump is merged to the mirror's default branch; direct pushes do not trigger the webhook. Install Diagram Design from the resulting organization marketplace.
-
-</details>
-
-<details>
-<summary><b>Pi</b></summary>
-
-
-<pre><code class="language-bash">pi install https://github.com/cathrynlavery/diagram-design
-</code></pre>
-
-
-Run `/reload` in an open Pi session. Pi makes the skill availabl
+- **2026-04-17** 🌐 **CLI-Hub** received another install UX pass — public registry metadata and skill coverage were tightened, vis
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/cathrynlavery/diagram-design#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/HKUDS/CLI-Anything#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1107,137 +1110,148 @@ Run `/reload` in an open Pi session. Pi makes the skill availabl
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">lyogavin /</span>
-          <a href="https://github.com/lyogavin/airllm" target="_blank" rel="noopener">airllm</a>
+          <span class="repo-owner">ifixai-ai /</span>
+          <a href="https://github.com/ifixai-ai/iFixAi" target="_blank" rel="noopener">iFixAi</a>
         </div>
-        <div class="repo-desc">AirLLM 2.8T LLM inference with single 4GB GPU</div>
+        <div class="repo-desc">Independent Auditing of AI Agents. Run by human or the agent itself, to answer the most crucial question in the AI Agent Economy. Is the agent doing what is supposed to do? With iFixAi you can have this answer in less than 120 seconds.</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#DA5B0B"></span>Jupyter Notebook</span>
-      <span class="meta-item">⭐ 37,667</span>
-      <span class="meta-item">🍴 3,881</span>
-      <span class="stars-today">⭐ 879 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 27,853</span>
+      <span class="meta-item">🍴 1,519</span>
+      <span class="stars-today">⭐ 2,109 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <p><img alt="airllm_logo" src="https://github.com/lyogavin/airllm/blob/main/assets/airllm_logo_sm.png?v=3&amp;raw=true" /></p>
-<p><a href="#quickstart"><strong>Quickstart</strong></a> | <br />
-<a href="#configurations"><strong>Configurations</strong></a> | <br />
-<a href="#macos"><strong>MacOS</strong></a> | <br />
-<a href="#example-python-notebook"><strong>Example notebooks</strong></a> | <br />
-<a href="#faq"><strong>FAQ</strong></a></p>
-<p><strong>AirLLM</strong> dramatically reduces inference memory usage, letting 70B large language models run on a single 4GB GPU card — without quantization, distillation, or pruning. You can even run <strong>Kimi K3 (2.8T)</strong> — the largest open-source model released to date — on <strong>under 4GB</strong>, <strong>Qwen3.8-Flash-Next (125B)</strong> on <strong>6GB</strong>, and <strong>DeepSeek-V3 (671B)</strong> on <strong>~12GB</strong>. We now also support training huge models on small VRAM: <strong>Qwen3.8-Flash-Next (125B)</strong> under <strong>6GB</strong>.</p>
-<p><a href="https://github.com/lyogavin/airllm/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/lyogavin/airllm?style=social" /></a><br />
-<a href="https://pepy.tech/project/airllm"><img alt="Downloads" src="https://static.pepy.tech/personalized-badge/airllm?period=total&amp;units=international_system&amp;left_color=grey&amp;right_color=blue&amp;left_text=downloads" /></a></p>
-<p><a href="https://github.com/LianjiaTech/BELLE/blob/main/LICENSE"><img alt="Code License" src="https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg" /></a><br />
-<a href="https://static.aicompose.cn/static/wecom_barcode.png?t=1671918938"><img alt="Generic badge" src="https://img.shields.io/badge/wechat-Anima-brightgreen?logo=wechat" /></a><br />
-<a href="https://discord.gg/2xffU5sn"><img alt="Discord" src="https://img.shields.io/discord/1175437549783760896?logo=discord&amp;color=7289da" /></a><br />
-<a href="https://pypi.org/project/airllm/"><img alt="PyPI - AirLLM" src="https://img.shields.io/pypi/format/airllm?logo=pypi&amp;color=3571a3" /><br />
-</a><br />
-<a href="https://medium.com/@lyo.gavin"><img alt="Website" src="https://img.shields.io/website?up_message=blog&amp;url=https%3A%2F%2Fmedium.com%2F%40lyo.gavin&amp;logo=medium&amp;color=black" /></a><br />
-<a href="https://gavinliblog.com"><img alt="Website" src="https://img.shields.io/badge/Gavin_Li-Blog-blue" /></a><br />
-<a href="https://patreon.com/gavinli"><img alt="Support me on Patreon" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dgavinli%26type%3Dpatrons&amp;style=flat" /></a><br />
-<a href="https://github.com/sponsors/lyogavin"><img alt="GitHub Sponsors" src="https://img.shields.io/github/sponsors/lyogavin?logo=GitHub&amp;color=lightgray" /></a></p>
-<h2>AI Agents Recommendation:</h2>
-<ul>
-<li>
-<p><a href="https://godmodeai.co">Best AI Game Sprite Generator</a></p>
-</li>
-<li>
-<p><a href="https://crazyfaceai.com">Best AI Facial Expression Editor</a></p>
-</li>
-</ul>
-<h2>Updates</h2>
-<p>[2026/09] <strong>Training</strong> support: stream frozen weights one layer at a time and keep adapters on the GPU. <strong>Qwen3.8-Flash-Next (125B)</strong> trains under <strong>6GB</strong> (RTX 3060 Ti); <strong>Qwen3.8-27B</strong> trains in <strong>~2GB</strong> at seq 512. See <a href="#training">Training</a>.</p>
-<p>[2026/08] <strong>Qwen3.8-Flash-Next</strong> support: Qwen's 125B MoE flagship (<code>Qwen4ExpForConditionalGeneration</code>) with a ~51B n-gram embedding runs in <strong>5.95GB</strong> of VRAM, measured end to end on one RTX 4090. The n-gram table is file-mapped on the host (a 64GB machine is enough); decoder layers stream. Needs a <code>transformers</code> build with in-tree <code>qwen4_exp</code> (<code>pip install git+https://github.com/huggingface/transformers.git</code> today) and ~360GB of checkpoint disk (<code>delete_original=True</code> reclaims the originals after the split).</p>
-<p>[2026/08] <strong>Qwen3.8-27B</strong> support: Qwen's new dense VL (Gated DeltaNet + Gated Attention, native vision) runs in <strong>3.33GB</strong> of VRAM, measured end to end on one RTX 3090. Needs <code>transformers</code> 5.8+.</p>
-<p>[2026/07] <strong>Kimi K3 (2.8T)</strong> support: the largest open-source model runs on a single card in <strong>3.72GB</strong> of VRAM, measured end to end on one RTX 6000 Ada. Per-expert streaming loads only the experts a token actually routes to. K3 brings three requirements of its own: <code>pip install compressed-tensors flash-attn</code> (its model code mandates flash attention regardless of what you request), a CUDA 12 build of torch, since no prebuilt flash-attn wheel exists for CUDA 13 yet, and <code>transformers</code> 4.56.x, as its remote code does not load on 5.x.</p>
-<p>[2026/06] <strong>v3.0</strong>: FP8 model support + the latest models. Run <strong>DeepSeek-V3 (671B) on ~12GB</strong> and <strong>Qwen3-235B on ~3GB</strong>, plus Qwen3, Llama 3.x/4, DeepSeek V2/V3, Phi-4, Gemma and more — all through a single <code>AutoModel</code>.</p>
-<p>[2024/08/20] v2.11.0: Support Qwen2.5</p>
-<p>[2024/08/18] v2.10.1 Support CPU inference. Support non sharded models. Thanks @NavodPeiris for the great work! </p>
-<p>[2024/07/30] Support Llama3.1 <strong>405B</strong> (<a href="https://colab.research.google.com/github/lyogavin/airllm/blob/main/air_llm/examples/run_llama3.1_405B.ipynb">example notebook</a>). Support <strong>8bit/4bit quantization</strong>.</p>
-<p>[2024/04/20] AirLLM supports Llama3 natively already. Run Llama3 70B on 4GB single GPU.</p>
-<p>[2023/12/25] v2.8.2: Support MacOS running 70B large language models.</p>
-<p>[2023/12/20] v2.7: Support AirLLMMixtral. </p>
-<p>[2023/12/20] v2.6: Added AutoModel, automatically detect model type, no need to provide model class to initialize model.</p>
-<p>[2023/12/18] v2.5: added prefetching to overlap the model loading and compute. 10% speed improvement.</p>
-<p>[2023/12/03] added support of <strong>ChatGLM</strong>, <strong>QWen</strong>, <strong>Baichuan</strong>, <strong>Mistral</strong>, <strong>InternLM</strong>!</p>
-<p>[2023/12/02] added support for safetensors. Now support all top 10 models in open llm leaderboard.</p>
-<p>[2023/12/01] airllm 2.0. Support compressions: <strong>3x run time speed up!</strong></p>
-<p>[2023/11/20] airllm Initial version!</p>
-<h2>Star History</h2>
-<p><a href="https://star-history.com/#lyogavin/airllm&Timeline"><br />
-  <picture><br />
-    <source media="(prefers-color-scheme: dark)" srcset="assets/star-history-dark.png"><br />
-    <img alt="Star History Chart" src="assets/star-history.png"><br />
-  </picture><br />
-</a></p>
-<h2>Table of Contents</h2>
-<ul>
-<li><a href="#quickstart">Quick start</a></li>
-<li><a href="#model-compression---3x-inference-speed-up">Model Compression</a></li>
-<li><a href="#configurations">Configurations</a></li>
-<li><a href="#macos">Run on MacOS</a></li>
-<li><a href="#example-python-notebook">Example notebooks</a></li>
-<li><a href="#supported-models">Supported Models</a></li>
-<li><a href="#training">Training</a></li>
-<li><a href="#acknowledgement">Acknowledgement</a></li>
-<li><a href="#faq">FAQ</a></li>
-</ul>
-<h2>Quickstart</h2>
-<h3>1. Install package</h3>
-<p>First, install the airllm pip package.</p>
-<pre><code class="language-bash">pip install airllm
-</code></pre>
-<h3>2. Inference</h3>
-<p>Then, initialize AirLLMLlama2, pass in the huggingface repo ID of the model being used, or the local path, and inference can be performed similar to a regular transformer model.</p>
-<p>(<em>You can also specify the path to save the splitted layered model through </em><em>layer_shards_saving_path</em><em> when init AirLLMLlama2.</em></p>
-<pre><code class="language-python">from airllm import AutoModel
+    <p align="center">
+  <a href="https://www.ifixai.ai/?utm_source=github&utm_medium=readme&utm_content=masthead">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/ifixai-masthead-dark.svg" />
+      <img src="docs/assets/brand/ifixai-masthead-light.svg" alt="iFixAi: Independent auditing for AI agents" width="440" />
+    </picture>
+  </a>
+</p>
 
-MAX_LENGTH = 128
-# just pass a hugging face repo id — works with almost any popular model:
-model = AutoModel.from_pretrained(&quot;Qwen/Qwen3-32B&quot;)
+<p align="center">
+  <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.ja.md">日本語</a> · <a href="README.ko.md">한국어</a>
+</p>
 
-# go bigger with the exact same one line:
-#model = AutoModel.from_pretrained(&quot;Qwen/Qwen3.8-27B&quot;)          # 27B dense VL, 3.33GB
-#model = AutoModel.from_pretrained(&quot;Qwen/Qwen3.8-Flash-Next&quot;)    # 125B MoE + 51B PLE, 5.95GB
-#model = AutoModel.from_pretrained(&quot;Qwen/Qwen3-235B-A22B&quot;)     # 235B, runs in ~3GB
-#model = AutoModel.from_pretrained(&quot;deepseek-ai/DeepSeek-V3&quot;)  # 671B, runs in ~12GB
+<p align="center">Catch your agent's mistakes and blind spots before the shit hits the fan.</p>
 
-# or use a model's local path...
-#model = AutoModel.from_pretrained(&quot;/home/ubuntu/.cache/huggingface/hub/models--Qwen--Qwen3-32B/snapshots/...&quot;)
+<p align="center">
+  <a href="https://www.producthunt.com/products/ifixai?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_campaign=badge-ifixai" target="_blank" rel="noopener noreferrer"><picture><source media="(min-width: 600px)" srcset="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=1252633&theme=neutral&period=daily&t=1790752077394" width="250" height="54" /><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=1252633&theme=neutral&period=daily&t=1790752077394" alt="iFixAi - Independent auditing of AI agents to uncover misalignment | Product Hunt" width="48.5%" /></picture></a>
+  <a href="https://trendshift.io/repositories/29638?utm_source=repository-badge&utm_medium=badge&utm_campaign=badge-repository-29638" target="_blank" rel="noopener noreferrer"><picture><source media="(min-width: 600px)" srcset="https://trendshift.io/api/badge/repositories/29638" width="250" height="55" /><img src="https://trendshift.io/api/badge/repositories/29638" alt="iFixAi on GitHub Trending | Trendshift" width="48.5%" /></picture></a>
+  <br />
+  <a href="https://trendshift.io/repositories/29638?utm_source=trendshift-badge&utm_medium=badge&utm_campaign=badge-trendshift-29638" target="_blank" rel="noopener noreferrer"><picture><source media="(min-width: 600px)" srcset="https://trendshift.io/api/badge/trendshift/repositories/29638/daily?language=Python" width="250" height="55" /><img src="https://trendshift.io/api/badge/trendshift/repositories/29638/daily?language=Python" alt="iFixAi — Python repository of the day on Trendshift" width="48.5%" /></picture></a>
+  <a href="https://trendshift.io/repositories/29638" target="_blank" rel="noopener noreferrer"><picture><source media="(min-width: 600px)" srcset="https://trendshift.io/api/badge/trendshift/repositories/29638/weekly?language=Python" width="250" height="55" /><img src="https://trendshift.io/api/badge/trendshift/repositories/29638/weekly?language=Python" alt="iFixAi — #1 Python repository of the week on Trendshift" width="48.5%" /></picture></a>
+</p>
 
-input_text = [
-        'What is the capital of United States?',
-        #'I like',
-    ]
+<p align="center">
+  <a href="https://www.ifixai.ai/?utm_source=github&utm_medium=readme&utm_content=hero">
+    <picture>
+      <source media="(max-width: 600px)" srcset="docs/assets/brand/hero-audit-phone.svg" width="100%" />
+      <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/hero-audit-dark.svg" />
+      <img src="docs/assets/brand/hero-audit-light.svg" alt="A customer support agent's refund ticket as its evals see it, every check green, then through an iFixAi audit: it hid a fraud flag, paid a refund a manager had declined and changed a payout account without authorisation, while closing the ticket was handled correctly. Illustrative scenario." width="728" />
+    </picture>
+  </a>
+</p>
 
-input_tokens = model.tokenizer(input_text,
-    return_tensors=&quot;pt&quot;, 
-    return_attention_mask=False, 
-    truncation=True, 
-    max_length=MAX_LENGTH, 
-    padding=False)
+<p align="center">
+  <a href="https://www.ifixai.ai/?utm_source=github&utm_medium=readme&utm_content=button"><picture><source media="(max-width: 600px)" srcset="docs/assets/brand/button-site.svg" width="48.5%" /><source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/button-site-dark.svg" /><img src="docs/assets/brand/button-site-light.svg" alt="Visit ifixai.ai" height="76" /></picture></a>
+  <a href="https://www.ifixai.ai/?utm_source=github&utm_medium=readme&utm_content=pro#pricing"><picture><source media="(max-width: 600px)" srcset="docs/assets/brand/button-pro.svg" width="45.3%" /><source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/button-pro-dark.svg" /><img src="docs/assets/brand/button-pro-light.svg" alt="iFixAi Pro" height="76" /></picture></a>
+</p>
 
-generation_output = model.generate(
-    input_tokens['input_ids'].cuda(), 
-    max_new_tokens=20,
-    use_cache=True,
-    return_dict_in_generate=True)
+<p align="center">
+  <a href="#quick-start">Quick start</a> •
+  <a href="#three-ways-to-run">Three ways to run</a> •
+  <a href="#test-your-own-agent">Test your agent</a> •
+  <a href="#what-you-get-back">Scoring</a> •
+  <a href="docs/trajectory-assurance.md">Audit recorded actions</a> •
+  <a href="docs/">Docs</a> •
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
 
-output = model.tokenizer.decode(generation_output.sequences[0])
+<p align="center">
+  <a href="https://pypi.org/project/ifixai/"><img src="https://img.shields.io/pypi/v/ifixai?logo=pypi&logoColor=white&color=6366f1" alt="PyPI version" /></a>
+  <a href="https://pepy.tech/projects/ifixai"><img src="https://img.shields.io/pepy/dt/ifixai?color=6366f1" alt="Downloads" /></a>
+  <a href="https://github.com/ifixai-ai/iFixAi/stargazers"><img src="https://img.shields.io/github/stars/ifixai-ai/iFixAi?style=flat&logo=github&color=6366f1" alt="GitHub stars" /></a>
+  <a href="pyproject.toml"><img src="https://img.shields.io/badge/python-3.10%2B-6366f1?logo=python&logoColor=white" alt="Python 3.10+" /></a>
+  <a href="#plugin-claude-code-and-codex"><img src="https://img.shields.io/badge/plugin-Claude%20Code%20%C2%B7%20Codex-6366f1?logo=claude&logoColor=white" alt="Plugin for Claude Code and Codex" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/ifixai-ai/iFixAi?color=6366f1" alt="License: Apache 2.0" /></a>
+  <a href="https://github.com/ifixai-ai/iFixAi/actions/workflows/ci.yml"><img src="https://github.com/ifixai-ai/iFixAi/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+</p>
 
-print(output)
-
-</code></pre>
-<p>Note: During inference, the original model will first be decomposed and saved layer-wise. Please ensure there is sufficient disk space in the huggingface cache directory.</p>
-<h2>Model Compression - 3x Inference Speed Up!</h2>
-<p>We just added model compression based on block-wise quantization-based model compression. Which can further <strong>speed up the inference speed</strong> for up to <strong>3x</strong> , with <strong>almost ignorable accuracy loss!</strong> (see more performance evaluation and why we use block-wise quantization in <a href="https://arxiv.org/abs/2212.09720">this paper</a>)</p>
-<p>![speed_imp</p>
+<hr />
+<h2>What it is</h2>
+<p>The existing Eval, Red-teaming, and Observability Tools are evaluating the agent mainly based on tech capability (token efficiency, latency, prompt injections). They cannot answer the most crucial question.</p>
+<p>Is the agent doing the job it is supposed to do based on the business KPIs and Organizational Structure? iFixAi gives you this answer in less than 120 seconds by striking the right balance between AI-Red Teaming and Operational Assurance. </p>
+<p>Adversarial depth. Assurance discipline. All-in-one auditing process.</p>
+<h2>Three ways to run</h2>
+<p>All three run the same diagnostic underneath. The difference is how you configure and drive it.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>CLI: guided wizard</strong></th>
+<th><strong>CLI: explicit flags</strong></th>
+<th><strong>Plugin or Skill</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>How you drive it</strong></td>
+<td><code>ifixai setup</code> once → <code>ifixai run</code> zero-flag every time; config saved to <code>ifixai.yaml</code></td>
+<td>pass every option as a CLI flag; fully scriptable</td>
+<td>the agent is the operator: discovers your setup, builds the fixture, runs it, and explains the scorecard</td>
+</tr>
+<tr>
+<td><strong>Best for</strong></td>
+<td>first-time users, fast repeatable runs, team onboarding</td>
+<td>CI, automation, audit-ready scripted batches</td>
+<td>a guided, explained run with an interactive scorecard, inside the agent you already use</td>
+</tr>
+<tr>
+<td><strong>Setup</strong></td>
+<td><code>pip install "ifixai[&lt;provider&gt;]"</code> + <code>ifixai setup</code></td>
+<td><code>pip install "ifixai[&lt;provider&gt;]"</code> + export keys</td>
+<td>Claude Code or Codex: install the plugin (self-provisions). Any agent: <code>uvx ifixai install</code> scaffolds <code>/ifixai-skill</code></td>
+</tr>
+<tr>
+<td><strong>Keys</strong></td>
+<td>auto-detected by wizard; stored as env-var name in <code>ifixai.yaml</code>, never the secret itself</td>
+<td><code>--api-key</code> flag or env var</td>
+<td>each provider's key from its environment variable, never on the command line</td>
+</tr>
+<tr>
+<td><strong>What you test</strong></td>
+<td>any provider, or your agent's real endpoint</td>
+<td>same</td>
+<td>same</td>
+</tr>
+<tr>
+<td><strong>Who grades it</strong></td>
+<td>self, one independent vendor, or a multi-judge ensemble</td>
+<td>same</td>
+<td>same</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>JSON + Markdown reports + rich terminal scorecard</td>
+<td>same</td>
+<td>interactive results artifact (+ JSON source of truth; static-report fallback)</td>
+</tr>
+<tr>
+<td><strong>Suite</strong></td>
+<td>pick with arrow keys in the wizard</td>
+<td>10 inspections by default; <code>--full-run</code> for all 60, or <code>--suite smoke\|strategic\|essential\|core\|extended\|all</code></td>
+<td>the agent picks <code>--mode</code>/`-</td>
+</tr>
+</tbody>
+</table>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/lyogavin/airllm#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/ifixai-ai/iFixAi#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1248,110 +1262,110 @@ print(output)
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">microsoft /</span>
-          <a href="https://github.com/microsoft/BitNet" target="_blank" rel="noopener">BitNet</a>
+          <span class="repo-owner">vxcontrol /</span>
+          <a href="https://github.com/vxcontrol/pentagi" target="_blank" rel="noopener">pentagi</a>
         </div>
-        <div class="repo-desc">Official inference framework for 1-bit LLMs</div>
+        <div class="repo-desc">Fully autonomous AI Agents system capable of performing complex penetration testing tasks</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
-      <span class="meta-item">⭐ 40,967</span>
-      <span class="meta-item">🍴 3,816</span>
-      <span class="stars-today">⭐ 97 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#00ADD8"></span>Go</span>
+      <span class="meta-item">⭐ 29,931</span>
+      <span class="meta-item">🍴 4,486</span>
+      <span class="stars-today">⭐ 1,025 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <div align="center">
+    <h1>PentAGI</h1>
+<div align="center" style="font-size: 1.5em; margin: 20px 0;">
+    <strong>P</strong>enetration testing <strong>A</strong>rtificial <strong>G</strong>eneral <strong>I</strong>ntelligence
+</div>
+<p><br></p>
+<div align="center">
 
-# bitnet.cpp
+> **Join the Community!** Connect with security researchers, AI enthusiasts, and fellow ethical hackers. Get support, share insights, and stay updated with the latest PentAGI developments.
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![version](https://img.shields.io/badge/version-1.0-blue)
-[![Hugging Face](https://img.shields.io/badge/HuggingFace-Collection-orange?logo=huggingface)](https://huggingface.co/collections/microsoft/bitnet)
-[![Technical Report](https://img.shields.io/badge/Technical-Report-red?logo=arxiv)](https://arxiv.org/abs/2502.11880)
-[![Demo](https://img.shields.io/badge/Online-Demo-green?logo=microsoft)](https://demo-bitnet-h0h8hcfqeqhrf5gf.canadacentral-01.azurewebsites.net/)
-[![GPU Kernel](https://img.shields.io/badge/GPU-Kernel-6F42C1?logo=github)](https://github.com/microsoft/BitNet/blob/main/gpu/README.md)
+[![Discord](https://img.shields.io/badge/Discord-7289DA?logo=discord&logoColor=white)](https://discord.gg/2xrMh7qX6m)⠀[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?logo=telegram&logoColor=white)](https://t.me/+Ka9i6CNwe71hMWQy)
+
+<a href="https://trendshift.io/repositories/15161?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-15161" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/15161" alt="vxcontrol%2Fpentagi | Trendshift" width="250" height="55"/></a> <a href="https://trendshift.io/repositories/15161?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-15161" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/15161/daily" alt="vxcontrol%2Fpentagi | Trendshift" width="250" height="55"/></a>
+
+<a href="https://trendshift.io/repositories/15161?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-15161" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/15161/daily?language=Go" alt="vxcontrol%2Fpentagi | Trendshift" width="250" height="55"/></a> <a href="https://trendshift.io/repositories/15161?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-15161" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/15161/weekly?language=Go" alt="vxcontrol%2Fpentagi | Trendshift" width="250" height="55"/></a> <a href="https://trendshift.io/repositories/15161?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-15161" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/15161/monthly?language=Go" alt="vxcontrol%2Fpentagi | Trendshift" width="250" height="55"/></a>
 
 </div>
 
-<div align="left">
-
-<h3>📰 News</h3>
-
-<strong>07/23/2026:</strong> 📣 We released <a href="https://github.com/microsoft/VibeASR.cpp"><strong>VibeASR.cpp</strong></a> — a real-time multilingual ASR inference engine on CPU using BitNet I2_S quantization, achieving RTF < 1 with very few threads on x86 (AVX2) and ARM (NEON) platforms. [<a href="https://github.com/microsoft/VibeASR.cpp">Code</a>] [<a href="https://huggingface.co/microsoft/VibeVoice-ASR-BitNet">Models</a>] [<a href="https://arxiv.org/abs/2607.21075">Report</a>] ![NEW](https://img.shields.io/badge/NEW-red)
-
-<strong>07/20/2026:</strong> 📣 We released <a href="https://huggingface.co/microsoft/BitNet-embedding-0.6B"><strong>BitNet-embedding-0.6B</strong></a> and <a href="https://huggingface.co/microsoft/BitNet-embedding-270M"><strong>BitNet-embedding-270M</strong></a> on Hugging Face — the first 1-bit embedding models that deliver competitive embedding quality with significantly faster inference on CPUs.
-- **1.42x to 2.28x speedup** over F16 on BitNet-embedding-0.6B prefill (8 threads)
-- **1.32x to 1.74x speedup** over F16 on BitNet-embedding-270M prefill (8 threads)
-- Supports I2_S conversion with optimized kernels on x86 CPUs
-- Lossless inference with 2 bits per weight
-
-07/16/2026: 📣 Released [BitNet Embeddings 0.6B/270M: I2_S Conversion and Inference Optimization](docs/bitnet-embeddings-i2s-guide.md) — detailed guide for converting and running BitNet embedding models with optimized I2_S kernels.
-
-01/15/2026: 📣 Released [BitNet CPU Inference Optimization](https://github.com/microsoft/BitNet/blob/main/src/README.md) — parallel kernel implementations with configurable tiling and embedding quantization support, achieving **1.15x to 2.1x** additional speedup over the original implementation.
-
-05/20/2025: 📣 Released [BitNet Official GPU inference kernel](https://github.com/microsoft/BitNet/blob/main/gpu/README.md) — extending 1-bit inference beyond CPUs.
-
-04/14/2025: 📣 Released [BitNet Official 2B Parameter Model](https://huggingface.co/microsoft/BitNet-b1.58-2B-4T) on Hugging Face — the first official BitNet b1.58 model trained with 4T tokens.
-
-02/18/2025: 📑 [Bitnet.cpp: Efficient Edge Inference for Ternary LLMs](https://arxiv.org/abs/2502.11880) — system-level paper on bitnet.cpp's architecture and design.
-
-11/08/2024: 📑 [BitNet a4.8: 4-bit Activations for 1-bit LLMs](https://arxiv.org/abs/2411.04965) — enabling 4-bit activations for further efficiency gains.
-
-10/21/2024: 📑 [1-bit AI Infra: Part 1.1, Fast and Lossless BitNet b1.58 Inference on CPUs](https://arxiv.org/abs/2410.16144) — the technical report behind bitnet.cpp.
-
-10/17/2024: 📣 bitnet.cpp 1.0 released.
-
-03/21/2024: 📑 [The-Era-of-1-bit-LLMs: Training Tips, Code, FAQ](https://github.com/microsoft/unilm/blob/master/bitnet/The-Era-of-1-bit-LLMs__Training_Tips_Code_FAQ.pdf)
-
-02/27/2024: 📑 [The Era of 1-bit LLMs: All Large Language Models are in 1.58 Bits](https://arxiv.org/abs/2402.17764) — the foundational paper introducing BitNet b1.58.
-
-10/17/2023: 📑 [BitNet: Scaling 1-bit Transformers for Large Language Models](https://arxiv.org/abs/2310.11453) — the original BitNet paper.
-
-</div>
-
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#advanced-agent-supervision">Agent Supervision</a></li>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#giving-agents-docker-without-giving-away-the-host">Agent Docker Access</a></li>
+<li><a href="#running-several-instances-tenant_id">Running Several Instances</a></li>
+<li><a href="#how-to-use-pentagi-after-login">How to Use PentAGI After Login</a></li>
+<li><a href="#api-access">API Access</a></li>
+<li><a href="#custom-llm-provider-configuration">LLM Provider Configuration</a><ul>
+<li><a href="#using-azure-openai">Azure OpenAI</a></li>
+<li><a href="#ollama-provider-configuration">Ollama</a></li>
+<li><a href="#openai-provider-configuration">OpenAI</a></li>
+<li><a href="#anthropic-provider-configuration">Anthropic</a></li>
+<li><a href="#google-ai-gemini-provider-configuration">Google AI (Gemini)</a></li>
+<li><a href="#aws-bedrock-provider-configuration">AWS Bedrock</a></li>
+<li><a href="#deepseek-provider-configuration">DeepSeek</a></li>
+<li><a href="#glm-provider-configuration">GLM</a></li>
+<li><a href="#kimi-provider-configuration">Kimi</a></li>
+<li><a href="#qwen-provider-configuration">Qwen</a></li>
+<li><a href="#minimax-provider-configuration">MiniMax</a></li>
+<li><a href="#mistral-provider-configuration">Mistral</a></li>
+<li><a href="#xai-grok-provider-configuration">xAI (Grok)</a></li>
+</ul>
+</li>
+<li><a href="#advanced-setup">Advanced Setup</a></li>
+<li><a href="#langfuse-integration">Langfuse Integration</a></li>
+<li><a href="#monitoring-and-observability">Monitoring and Observability</a></li>
+<li><a href="#knowledge-graph-integration-graphiti">Knowledge Graph (Graphiti)</a></li>
+<li><a href="#github-and-google-oauth-integration">OAuth Integration</a></li>
+<li><a href="#docker-image-configuration">Docker Image Configuration</a></li>
+<li><a href="#development">Development</a></li>
+<li><a href="#testing-llm-agents">Testing LLM Agents</a></li>
+<li><a href="#embedding-configuration-and-testing">Embedding Configuration and Testing</a></li>
+<li><a href="#function-testing-with-ftester">Function Testing with ftester</a></li>
+<li><a href="#building">Building</a></li>
+<li><a href="#credits">Credits</a></li>
+<li><a href="#license">License</a></li>
+</ul>
 <h2>Overview</h2>
-<p>bitnet.cpp is the official inference framework for 1-bit LLMs (e.g., BitNet b1.58). It offers a suite of optimized kernels that support <strong>fast</strong> and <strong>lossless</strong> inference of 1.58-bit models on <strong>CPU</strong> and <strong>GPU</strong> (NPU support coming next).</p>
-<p>Try it out via this <a href="https://demo-bitnet-h0h8hcfqeqhrf5gf.canadacentral-01.azurewebsites.net/">online demo</a>, or build and run it on your own <a href="https://github.com/microsoft/BitNet?tab=readme-ov-file#build-from-source">CPU</a> or <a href="https://github.com/microsoft/BitNet/blob/main/gpu/README.md">GPU</a>.</p>
-<p>bitnet.cpp achieves speedups of <strong>1.37x</strong> to <strong>5.07x</strong> on ARM CPUs, with larger models experiencing greater performance gains. Additionally, it reduces energy consumption by <strong>55.4%</strong> to <strong>70.0%</strong>, further boosting overall efficiency. On x86 CPUs, speedups range from <strong>2.37x</strong> to <strong>6.17x</strong> with energy reductions between <strong>71.9%</strong> to <strong>82.2%</strong>. Furthermore, bitnet.cpp can run a 100B BitNet b1.58 model on a single CPU, achieving speeds comparable to human reading (5-7 tokens per second), significantly enhancing the potential for running LLMs on local devices. Please refer to the <a href="https://arxiv.org/abs/2410.16144">technical report</a> for more details.</p>
-<p><img src="./assets/performance.png" alt="performance_comparison" width="800"/></p>
-<h2>Model Releases</h2>
-<h3>1. <a href="https://huggingface.co/microsoft/BitNet-b1.58-2B-4T">BitNet-b1.58-2B-4T</a> - 1-bit Large Language Model</h3>
-<p><strong>BitNet-b1.58-2B-4T</strong> is the first official BitNet b1.58 model with <strong>2.4B parameters</strong>, trained on <strong>4 trillion tokens</strong>. It is a ternary (1.58-bit) language model that delivers competitive performance with full-precision models of similar size while enabling significantly faster and more energy-efficient inference.</p>
+<p>PentAGI is an open-source, self-hosted multi-agent system for autonomous penetration testing. You describe a target and a goal in plain language; a team of specialized AI agents plans the work, runs 20+ professional tools such as nmap, Metasploit and sqlmap inside an isolated Docker sandbox, remembers what it learned and hands you a report.</p>
 <ul>
-<li><strong>Fast CPU Inference</strong>: Achieves up to <strong>6.17x speedup</strong> on x86 CPUs and <strong>5.07x</strong> on ARM CPUs compared to full-precision models.</li>
-<li><strong>Energy Efficient</strong>: Reduces energy consumption by up to <strong>82.2%</strong> on x86 and <strong>70.0%</strong> on ARM.</li>
-<li><strong>GPU Support</strong>: Official GPU inference kernel available for accelerated deployment.</li>
-<li><strong>Chat-Ready</strong>: Supports conversational mode for interactive use.</li>
+<li><strong>Who it is for.</strong> Security engineers, penetration testers, researchers and red teams who want an autonomous assistant on their own infrastructure, for authorized testing only.</li>
+<li><strong>What sets it apart.</strong> It runs on your own servers with the model of your choice: 10+ cloud LLM providers, your own OpenAI-compatible gateway, or local models through Ollama or vLLM. Results and successful approaches are kept in PostgreSQL with pgvector for later flows, an optional Neo4j knowledge graph tracks hosts, services and findings, execution monitoring and task planning help smaller open models, and REST and GraphQL APIs automate it. PentAGI Enterprise adds agent profiles, plugins and MCP servers, customer-ready reports and a real-time attack-chain view.</li>
+<li><strong>How to install.</strong> An interactive installer for Linux, macOS and Windows sets PentAGI up with Docker Compose — see <a href="#quick-start">Quick Start</a>.</li>
 </ul>
-<p><a href="https://huggingface.co/microsoft/BitNet-b1.58-2B-4T">🤗 Hugging Face</a> | <a href="https://demo-bitnet-h0h8hcfqeqhrf5gf.canadacentral-01.azurewebsites.net/">🔗 Online Demo</a> | <a href="https://arxiv.org/abs/2410.16144">📄 Technical Report</a></p>
-<p><img src="./assets/bitnet_b1.58_2b_benchmark.png" alt="BitNet b1.58 2B Benchmark" width="600"/></p>
-<h3>2. <a href="https://huggingface.co/microsoft/BitNet-embedding-0.6B">BitNet-embedding-0.6B</a> - 1-bit Embedding Model</h3>
-<p><strong>BitNet-embedding-0.6B</strong> is a <strong>0.6B-parameter</strong> 1-bit embedding model that achieves competitive embedding quality with significantly faster CPU inference. It is the first model to demonstrate that ternary weights can deliver strong performance on embedding tasks.</p>
+<p>PentAGI is developed by <a href="https://vxcontrol.com">VXControl</a>, a security engineering company based in Dubai.</p>
+<p>You can watch the video <strong>PentAGI overview</strong>:<br />
+<a href="https://youtu.be/R70x5Ddzs1o"><img alt="PentAGI Overview Video" src="https://github.com/user-attachments/assets/0828dc3e-15f1-4a1d-858e-9696a146e478" /></a></p>
+<h2>Features</h2>
 <ul>
-<li><strong>1.42x to 2.28x speedup</strong> over F16 on prefill (8 threads, x86)</li>
-<li><strong>Lossless Quality</strong>: Competitive embedding quality with 2 bits per weight</li>
-<li><strong>I2_S Kernel</strong>: Supports optimized I2_S conversion on x86 CPUs</li>
+<li>Secure &amp; Isolated. All operations are performed in a sandboxed Docker environment with complete isolation.</li>
+<li>Fully Autonomous. AI-powered agent that automatically determines and executes penetration testing steps with optional execution monitoring and intelligent task planning for enhanced reliability.</li>
+<li>Professional Pentesting Tools. Built-in suite of 20+ professional security tools including nmap, metasploit, sqlmap, and more.</li>
+<li>Smart Memory System. Long-term storage of research results and successful approaches for future use.</li>
+<li>Optional Knowledge Graph Integration. Graphiti-powered knowledge graph using Neo4j for semantic relationship tracking and advanced context understanding.</li>
+<li>Web Intelligence. Built-in browser via <a href="https://hub.docker.com/r/vxcontrol/scraper">scraper</a> for gathering latest information from web sources.</li>
+<li>External Search Systems. Integration with advanced search APIs including <a href="https://tavily.com">Tavily</a>, <a href="https://www.firecrawl.dev">Firecrawl</a>, <a href="https://traversaal.ai">Traversaal</a>, <a href="https://www.perplexity.ai">Perplexity</a>, <a href="https://duckduckgo.com/">DuckDuckGo</a>, <a href="https://programmablesearchengine.google.com/">Google Custom Search</a>, <a href="https://sploitus.com">Sploitus Search</a> and <a href="https://searxng.org">SearXNG</a> for comprehensive information gathering.</li>
+<li>Team of Specialists. Delegation system with specialized AI agents for research, development, and infrastructure tasks, enhanced with optional execution monitoring and intelligent task planning for optimal performance with smaller models.</li>
+<li>Comprehensive Monitoring. Detailed logging and integration with Grafana/Prometheus for real-time system observation.</li>
+<li>Detailed Reporting. Generation of thorough vulnerability reports with exploitation guides.</li>
+<li>Smart Container Management. Automatic Docker image selection based on specific task requirements.</li>
+<li>Modern Interface. Clean and intuitive web UI for system management and monitoring.</li>
+<li>Comprehensive APIs. Full-featured REST and GraphQL APIs with Bearer token authentication for automation and integration.</li>
+<li>Persistent Storage. All commands and outputs are stored in PostgreSQL with <a href="https://hub.docker.com/r/vxcontrol/pgvector">pgvector</a> extension.</li>
+<li>Scalable Architecture. Microservices-based design supporting horizontal scaling.</li>
+<li>Self-Hosted Solution. Complete control</li>
 </ul>
-<p><a href="https://huggingface.co/microsoft/BitNet-embedding-0.6B">🤗 Hugging Face</a> | <a href="docs/bitnet-embeddings-i2s-guide.md">📄 I2_S Guide</a></p>
-<p><img src="./assets/embedding_prefill_0.6B.png" alt="BitNet Embedding 0.6B Prefill Performance" width="600"/></p>
-<h3>3. <a href="https://huggingface.co/microsoft/BitNet-embedding-270M">BitNet-embedding-270M</a> - Lightweight 1-bit Embedding Model</h3>
-<p><strong>BitNet-embedding-270M</strong> is a compact <strong>270M-parameter</strong> 1-bit embedding model designed for resource-constrained environments, offering fast inference with minimal memory footprint.</p>
-<ul>
-<li><strong>1.32x to 1.74x speedup</strong> over F16 on prefill (8 threads, x86)</li>
-<li><strong>Lossless Quality</strong>: Competitive embedding quality with 2 bits per weight</li>
-<li><strong>Lightweight</strong>: Only 270M parameters for edge deployment scenarios</li>
-</ul>
-<p><a href="https://huggingface.co/microsoft/BitNet-embedding-270M">🤗 Hugging Face</a> | <a href="docs/bitnet-embeddings-i2s-guide.md">📄 I2_S Guide</a></p>
-<p><img src="./assets/embedding_prefill_270M.png" alt="BitNet Embedding 270M Prefill Performance" width="600"/></p>
-<h2>Supported Models</h2>
-<table>
-    <tr>
-        <th rowspan="2"
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/microsoft/BitNet#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/vxcontrol/pentagi#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1362,160 +1376,366 @@ print(output)
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">Alishahryar1 /</span>
-          <a href="https://github.com/Alishahryar1/free-claude-code" target="_blank" rel="noopener">free-claude-code</a>
+          <span class="repo-owner">rust-lang /</span>
+          <a href="https://github.com/rust-lang/rust" target="_blank" rel="noopener">rust</a>
         </div>
-        <div class="repo-desc">Use Claude Code, Codex, VSCode, Pi, and OpenCode (and 6 other harnesses) for free (1.3B+ free tokens) from your terminal, app, IDE, or phone, and now from the browser with native browser sessions (multi-harness + multi-model) like OpenClaw (voice supported + ToS friendly)</div>
+        <div class="repo-desc">Empowering everyone to build reliable and efficient software.</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 59,349</span>
-      <span class="meta-item">🍴 9,343</span>
-      <span class="stars-today">⭐ 626 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 120,173</span>
+      <span class="meta-item">🍴 18,708</span>
+      <span class="stars-today">⭐ 207 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
     <div align="center">
-
-<h1>
   <picture>
-    <source media="(prefers-color-scheme: light)" srcset="assets/free-claude-code-wordmark-light.svg">
-    <img src="assets/free-claude-code-wordmark-dark.svg" alt="Free Claude Code" width="610">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/rust-lang/www.rust-lang.org/master/static/images/rust-social-wide-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/rust-lang/www.rust-lang.org/master/static/images/rust-social-wide-light.svg">
+    <img alt="The Rust Programming Language: A language empowering everyone to build reliable and efficient software"
+         src="https://raw.githubusercontent.com/rust-lang/www.rust-lang.org/master/static/images/rust-social-wide-light.svg"
+         width="50%">
   </picture>
-</h1>
 
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-2e7d32.svg?style=for-the-badge)](https://github.com/Alishahryar1/free-claude-code/blob/main/LICENSE)
-[![Python 3.14](https://img.shields.io/badge/python-3.14-3776ab.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
-[![Package Manager: uv](assets/package-manager-uv.svg)](https://github.com/astral-sh/uv)
-[![Testing: Pytest](https://img.shields.io/badge/Testing-Pytest-ad1457.svg?style=for-the-badge)](https://github.com/Alishahryar1/free-claude-code/actions/workflows/tests.yml)
-[![Type Checker: Ty](https://img.shields.io/badge/Type%20Checker-ty-fdd835.svg?style=for-the-badge)](https://pypi.org/project/ty/)
-[![Formatter: Ruff](https://img.shields.io/badge/Formatter-ruff-bf4b00.svg?style=for-the-badge)](https://github.com/astral-sh/ruff)
-[![Logging: Loguru](https://img.shields.io/badge/logging-loguru-00695c.svg?style=for-the-badge)](https://github.com/Delgan/loguru)
-
-[Quick Start](#quick-start) · [Providers](#choose-a-provider) · [Clients](#connect-your-client) · [Integrations](#optional-integrations) · [Manage](#manage-your-installation)
-
+[Website][Rust] | [Getting started] | [Learn] | [Documentation] | [Contributing]
 </div>
 
-<p align="center">
-  <em>Independent open-source project. Not affiliated with or endorsed by Anthropic. Claude and Claude Code are trademarks of Anthropic.</em>
-</p>
-
-<h2>What You Get</h2>
+<p>This is the main source code repository for <a href="https://www.rust-lang.org/">Rust</a>. It contains the compiler,<br />
+standard library, and documentation.</p>
+<h2>Why Rust?</h2>
 <ul>
-<li><strong>61 ToS-friendly providers. 1.3B+ free tokens every month.</strong> Use free, paid, subscription, and local models from one searchable UI without putting your account at risk. FCC follows provider terms and removes integrations if they stop being allowed.</li>
-<li><strong>11 coding agents. One model catalog.</strong> Run <a href="https://code.claude.com/docs/en/overview">Claude Code</a>, <a href="https://github.com/openai/codex">Codex</a>, <a href="https://github.com/earendil-works/pi">Pi</a>, <a href="https://github.com/anomalyco/opencode">OpenCode</a>, <a href="https://github.com/cline/cline">Cline</a>, <a href="https://github.com/NousResearch/hermes-agent">Hermes</a>, <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a>, <a href="https://github.com/xai-org/grok-build">Grok Build</a>, <a href="https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2/">Muse Code</a>, <a href="https://aider.chat/">Aider</a>, or <a href="https://code.visualstudio.com/">VS Code Chat</a> with your FCC models.</li>
-<li><strong>Keep coding through provider outages.</strong> After retries are exhausted, FCC automatically tries your next configured model without making you restart the turn. This works across every client.</li>
-<li><strong>Up to 90% lower token usage.</strong> Optional <a href="https://github.com/rtk-ai/rtk">RTK</a> filters common command output, and <a href="https://github.com/headroomlabs-ai/headroom">Headroom</a> compresses tool results. Five FCC optimizations handle quota probes, command-prefix detection, titles, suggestions, and filepaths without calling a provider.</li>
-<li><strong>Native Code sessions in your browser.</strong> Choose a folder and run Codex in the browser with real-time and background support. Freely switch providers/models in the same session. Support for switching harnesses in the same session coming soon!</li>
-<li><strong>Terminal, desktop, IDE, or phone.</strong> Work through native launchers, <a href="https://code.visualstudio.com/">VS Code</a>, <a href="https://learn.chatgpt.com/docs/app">Codex App</a>, <a href="https://www.jetbrains.com/">JetBrains</a>, <a href="https://discord.com/">Discord</a>, or <a href="https://telegram.org/">Telegram</a>.</li>
-<li><strong>Voice notes in. Code out.</strong> Talk to your agent using local <a href="https://github.com/openai/whisper">Whisper</a> or <a href="https://docs.nvidia.com/nim/speech/latest/asr/deploy-asr-models/whisper.html">NVIDIA NIM</a> transcription.</li>
-<li><strong>Agent capabilities stay intact.</strong> Stream responses, use tools, preserve native interleaved thinking for maximum performance, send images, and route <a href="https://www.anthropic.com/claude/fable">Fable</a>, <a href="https://www.anthropic.com/claude/opus">Opus</a>, <a href="https://www.anthropic.com/claude/sonnet">Sonnet</a>, and <a href="https://www.anthropic.com/claude/haiku">Haiku</a> independently with compatible models.</li>
+<li>
+<p><strong>Performance:</strong> Fast and memory-efficient, suitable for critical services, embedded devices, and easily integrated with other languages.</p>
+</li>
+<li>
+<p><strong>Reliability:</strong> Our rich type system and ownership model ensure memory and thread safety, reducing bugs at compile-time.</p>
+</li>
+<li>
+<p><strong>Productivity:</strong> Comprehensive documentation, a compiler committed to providing great diagnostics, and advanced tooling including package manager and build tool (<a href="https://github.com/rust-lang/cargo">Cargo</a>), auto-formatter (<a href="https://github.com/rust-lang/rustfmt">rustfmt</a>), linter (<a href="https://github.com/rust-lang/rust-clippy">Clippy</a>) and editor support (<a href="https://github.com/rust-lang/rust-analyzer">rust-analyzer</a>).</p>
+</li>
 </ul>
-<p>Free-tier availability and limits are controlled by each provider and may change.</p>
-<div align="center">
-  <img src="assets/pic.png" alt="Claude Code running with Free Claude Code" width="700">
-  <p><em>Claude Code running with FCC.</em></p>
-</div>
-
-<div align="center">
-  <img src="assets/browser-code-session.png" alt="Native Codex browser session in FCC, showing model controls and a repository exploration" width="700">
-  <p><em>A native Codex session in FCC's browser UI.</em></p>
-</div>
-
 <h2>Quick Start</h2>
-<p><a id="install"></a></p>
-<h3>1. Install</h3>
-<p>macOS/Linux:</p>
-<pre><code class="language-bash">curl -fsSL &quot;https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.sh&quot; | sh
-</code></pre>
-<p>Windows PowerShell:</p>
-<pre><code class="language-powershell">&amp; ([scriptblock]::Create((irm &quot;https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.ps1&quot;)))
-</code></pre>
-<p>When prompted, choose at least one coding agent and optionally enable <a href="https://github.com/rtk-ai/rtk">RTK</a> + <a href="https://github.com/headroomlabs-ai/headroom">Headroom</a> token optimization for supported agents. You can review the installers before running them: <a href="scripts/install.sh">install.sh</a> and <a href="scripts/install.ps1">install.ps1</a>.</p>
-<h3>2. Start FCC</h3>
-<h4>Windows</h4>
-<p>Open <strong>Free Claude Code</strong> from your desktop or Start menu.</p>
-<h4>macOS</h4>
-<p>Open <strong>Free Claude Code</strong> from your desktop or Applications folder.</p>
-<h4>Linux</h4>
-<p>Run:</p>
-<pre><code class="language-bash">fcc-server
-</code></pre>
-<p>FCC opens the Admin UI after starting. On Windows and macOS, use the tray or<br />
-menu-bar icon to open Admin, restart, or quit. When using <code>fcc-server</code>, keep its<br />
-terminal open.</p>
-<p><a id="nvidia-nim-provider"></a></p>
-<h3>3. Configure NVIDIA NIM</h3>
-<ol>
-<li>Create an API key at <a href="https://build.nvidia.com/settings/api-keys">build.nvidia.com/settings/api-keys</a>.</li>
-<li>Open the Admin UI URL from the server log.</li>
-<li>Open NVIDIA NIM in <strong>Providers</strong>, click <strong>Add key</strong>, paste the key, and click <strong>Save</strong>.</li>
-<li>Leave <code>MODEL</code> on the default <code>nvidia_nim/nvidia/nemotron-3-super-120b-a12b</code>, or search the model dropdown and select another model.</li>
-<li>Click <strong>Apply</strong> to save your model selection.</li>
-</ol>
-<p>To protect the local proxy with a bearer token, enable <strong>Proxy Authentication</strong><br />
-in Admin.</p>
-<div align="center">
-  <img src="assets/admin-page.png" alt="Free Claude Code Admin UI" width="700">
-</div>
-
-<h3>4. Run Your Coding Agent</h3>
-<p>Claude Code:</p>
-<pre><code class="language-bash">fcc-claude
-</code></pre>
-<p>Codex:</p>
-<pre><code class="language-bash">fcc-codex
-</code></pre>
-<p>Pi:</p>
-<pre><code class="language-bash">fcc-pi
-</code></pre>
-<p>OpenCode 2:</p>
-<pre><code class="language-bash">fcc-opencode
-</code></pre>
-<p>Cline:</p>
-<pre><code class="language-bash">fcc-cline
-</code></pre>
-<p>Hermes:</p>
-<pre><code class="language-bash">fcc-hermes
-</code></pre>
-<p>DeepSeek Harness Web:</p>
-<pre><code class="language-bash">fcc-dsh
-</code></pre>
-<p>Grok Build:</p>
-<pre><code class="language-bash">fcc-grok
-</code></pre>
-<p>Muse Code:</p>
-<pre><code class="language-bash">fcc-muse
-</code></pre>
-<p>Aider:</p>
-<pre><code class="language-bash">fcc-aider
-</code></pre>
-<p><a id="model-picker"></a></p>
-<div align="center">
-  <img src="assets/cc-model-picker.png" alt="Claude Code model picker showing FCC models" width="700">
-  <p><em>Select an FCC model from Claude Code's native <code>/model</code> picker.</em></p>
-</div>
-
-<h2>Choose A Provider</h2>
-<ol>
-<li>Open a provider link below for its key, models, or setup instructions.</li>
-<li>In the Admin UI, configure the listed setting. For OpenAI / ChatGPT<br />
-   subscription access, use <strong>Providers → OAuth providers</strong> instead.</li>
-<li>Search the <code>MODEL</code> dropdown and select a model. If the provider cannot list<br />
-   models, enter <code>&lt;provider-id&gt;/&lt;exact-provider-model-id&gt;</code> manually.</li>
-<li>Click <strong>Apply</strong>.</li>
-</ol>
-<p>Optional: add an ordered <strong>Fallback Models</strong> list under <strong>Model Config</strong>. It<br />
-applies to every connected client. A failed request may reach and consume usage<br />
-from more than one provider before succeeding.</p>
-<p>Provider modals support numbered API keys. Use <strong>Add key</strong>, remove rows, or drag their handles to reorder them. FCC uses key 1. Saving checks every key, blocks confirmed invalid keys, and shows warnings for keys it cannot verify.</p>
-<p>The same API key environment variable also accepts a JSON array:</p>
-<p>```dotenv<br />
-NVIDIA_NIM_API_KEY='["your-first-key","your-second-key</p>
+<p>Read <a href="https://doc.rust-lang.org/book/ch01-01-installation.html">"Installation"</a> from <a href="https://doc.rust-lang.org/book/index.html">The Book</a>.</p>
+<h2>Installing from Source</h2>
+<p>If you really want to install from source (though this is not recommended), see<br />
+<a href="INSTALL.md">INSTALL.md</a>.</p>
+<h2>Getting Help</h2>
+<p>See https://www.rust-lang.org/community for a list of chat platforms and forums.</p>
+<h2>Contributing</h2>
+<p>See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+<p>For a detailed explanation of the compiler's architecture and how to begin contributing, see the <a href="https://rustc-dev-guide.rust-lang.org/">rustc-dev-guide</a>.</p>
+<h2>License</h2>
+<p>Rust is primarily distributed under the terms of both the MIT license and the<br />
+Apache License (Version 2.0), with portions covered by various BSD-like<br />
+licenses.</p>
+<p>See <a href="LICENSE-APACHE">LICENSE-APACHE</a>, <a href="LICENSE-MIT">LICENSE-MIT</a>, and<br />
+<a href="COPYRIGHT">COPYRIGHT</a> for details.</p>
+<h2>Trademark</h2>
+<p><a href="https://rustfoundation.org/">The Rust Foundation</a> owns and protects the Rust and Cargo<br />
+trademarks and logos (the "Rust Trademarks").</p>
+<p>If you want to use these names or brands, please read the<br />
+<a href="https://rustfoundation.org/policy/rust-trademark-policy/">Rust language trademark policy</a>.</p>
+<p>Third-party logos may be subject to third-party copyrights and trademarks. See<br />
+<a href="https://www.rust-lang.org/policies/licenses">Licenses</a> for details.</p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/Alishahryar1/free-claude-code#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/rust-lang/rust#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">xtool-org /</span>
+          <a href="https://github.com/xtool-org/xtool" target="_blank" rel="noopener">xtool</a>
+        </div>
+        <div class="repo-desc">Cross-platform Xcode replacement. Build and deploy iOS apps with SwiftPM on Linux, Windows, macOS.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#F05138"></span>Swift</span>
+      <span class="meta-item">⭐ 11,177</span>
+      <span class="meta-item">🍴 511</span>
+      <span class="stars-today">⭐ 1,502 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>xtool</h1>
+<p>Cross-platform Xcode replacement. Build and deploy iOS apps with SwiftPM on Linux, Windows, and macOS.</p>
+<h2>Overview</h2>
+<p>xtool is a cross-platform (Linux/WSL/macOS) tool that replicates Xcode functionality with open standards.</p>
+<p>✅ Build a SwiftPM package into an iOS app</p>
+<p>✅ Sign and install iOS apps</p>
+<p>✅ Interact with Apple Developer Services programmatically</p>
+<h2>Getting Started</h2>
+<ol>
+<li>Follow the guide to install <code>xtool</code><ul>
+<li><a href="https://xtool.sh/documentation/xtooldocs/installation-linux">Installation (Linux/Windows)</a></li>
+<li><a href="https://xtool.sh/documentation/xtooldocs/installation-macos">Installation (macOS)</a></li>
+</ul>
+</li>
+<li>Create and run your first xtool-powered app by following the <a href="https://xtool.sh/tutorials/xtooldocs/first-app">tutorial</a>!</li>
+</ol>
+<h2>Examples</h2>
+<h3>Screenshot</h3>
+<p><img alt="A screenshot of xtool being invoked from VSCode" src="Documentation/xtool.docc/Resources/Cover.png" /></p>
+<h3>Command line interface</h3>
+<pre><code class="language-bash">$ xtool --help
+OVERVIEW: Cross-platform Xcode replacement
+
+USAGE: xtool &lt;subcommand&gt;
+
+OPTIONS:
+  -h, --help              Show help information.
+
+CONFIGURATION SUBCOMMANDS:
+  setup                   Set up xtool for iOS development
+  auth                    Manage Apple Developer Services authentication
+  sdk                     Manage the Darwin Swift SDK
+
+DEVELOPMENT SUBCOMMANDS:
+  new                     Create a new xtool SwiftPM project
+  dev                     Build and run an xtool SwiftPM project
+  ds                      Interact with Apple Developer Services
+
+DEVICE SUBCOMMANDS:
+  devices                 List devices
+  install                 Install an ipa file to your device
+  uninstall               Uninstall an installed app
+  launch                  Launch an installed app
+
+  See 'xtool help &lt;subcommand&gt;' for detailed help.
+</code></pre>
+<h3>Library</h3>
+<p>xtool includes a library that you can use to interact with Apple Developer Services, iOS devices, and more from your own app. You can use this by adding <code>XKit</code> as a SwiftPM dependency.</p>
+<pre><code class="language-swift">// package dependency:
+.package(url: &quot;https://github.com/xtool-org/xtool&quot;, .upToNextMinor(from: &quot;1.2.0&quot;))
+// target dependency:
+.product(name: &quot;XKit&quot;, package: &quot;xtool&quot;)
+</code></pre>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/xtool-org/xtool#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">ntdevlabs /</span>
+          <a href="https://github.com/ntdevlabs/tiny11builder" target="_blank" rel="noopener">tiny11builder</a>
+        </div>
+        <div class="repo-desc">WinUI app for building smaller, customized Windows 11 images.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#178600"></span>C#</span>
+      <span class="meta-item">⭐ 20,369</span>
+      <span class="meta-item">🍴 1,561</span>
+      <span class="stars-today">⭐ 139 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Tiny11 Builder</h1>
+<p>Build a smaller Windows 11 ISO with a native WinUI app. Download an official<br />
+Windows image or use your own, choose what to remove, and create your ISO.</p>
+<h2>Download</h2>
+<p><a href="https://github.com/ntdevlabs/tiny11builder/releases/latest"><strong>Get the latest version</strong></a></p>
+<p>Choose <strong>x64</strong> for Intel/AMD PCs or <strong>ARM64</strong> for Windows on ARM. Extract the<br />
+entire ZIP and open <code>Tiny11Builder.exe</code>. Administrator approval is required.</p>
+<h2>Choose your build</h2>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tiny11</td>
+<td>Removes bundled apps and unwanted features while keeping updates, Defender and recovery.</td>
+</tr>
+<tr>
+<td>Tiny11 Core</td>
+<td>Trims further by removing servicing and recovery support and disabling Defender.</td>
+</tr>
+<tr>
+<td>Custom</td>
+<td>Choose individual apps, components, features and services to remove or keep.</td>
+</tr>
+</tbody>
+</table>
+<p>Turbo mode speeds up image processing. Interrupted builds can resume from saved<br />
+progress after the image is committed or compressed. Core and component-store<br />
+removals automatically use the legacy Windows installer.</p>
+<p><strong>Core cannot be updated or serviced. Protected Custom removals can break<br />
+Windows. Test your ISO in a VM before installing it.</strong></p>
+<h2>Video</h2>
+<p><a href="https://youtu.be/LfEWIz5mQ8A"><strong>Watch on YouTube</strong></a></p>
+<h2>Screenshots</h2>
+<h3>Welcome</h3>
+<p><img alt="Tiny11 Builder welcome screen with Tiny11, Tiny11 Core and Custom modes" src="docs/images/ui-welcome.png" /></p>
+<h3>Components</h3>
+<p><img alt="Component choices and the Tiny11 Core warning" src="docs/images/ui-components.png" /></p>
+<h3>Build settings</h3>
+<p><img alt="Build settings with Turbo mode and optional image cleanup" src="docs/images/ui-build-settings.png" /></p>
+<h2>More information</h2>
+<p><a href="docs/usage.md">Usage, compatibility and build instructions</a> ·<br />
+<a href="NOTICE.md">Attribution and distribution notes</a></p>
+<p>The original PowerShell builders remain in this repository.</p>
+<h2>Support the project</h2>
+<p><a href="https://github.com/sponsors/ntdevlabs">GitHub Sponsors</a> ·<br />
+<a href="https://www.patreon.com/ntdev">Patreon</a> ·<br />
+<a href="https://paypal.me/ntdev2">PayPal</a> ·<br />
+<a href="https://ko-fi.com/ntdev">Ko-fi</a></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/ntdevlabs/tiny11builder#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#12</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">NationalSecurityAgency /</span>
+          <a href="https://github.com/NationalSecurityAgency/ghidra" target="_blank" rel="noopener">ghidra</a>
+        </div>
+        <div class="repo-desc">Ghidra is a software reverse engineering (SRE) framework</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#b07219"></span>Java</span>
+      <span class="meta-item">⭐ 87,873</span>
+      <span class="meta-item">🍴 9,801</span>
+      <span class="stars-today">⭐ 1,008 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><img src="Ghidra/Features/Base/src/main/resources/images/GHIDRA_3.png" width="400"></p>
+<h1>Ghidra Software Reverse Engineering Framework</h1>
+<p>Ghidra is a software reverse engineering (SRE) framework created and maintained by the <br />
+<a href="https://www.nsa.gov">National Security Agency</a> Research Directorate. This framework includes a suite of <br />
+full-featured, high-end software analysis tools that enable users to analyze compiled code on a <br />
+variety of platforms including Windows, macOS, and Linux. Capabilities include disassembly, <br />
+assembly, decompilation, graphing, and scripting, along with hundreds of other features. Ghidra <br />
+supports a wide variety of processor instruction sets and executable formats and can be run in both <br />
+user-interactive and automated modes. Users may also develop their own Ghidra extension components <br />
+and/or scripts using Java or Python.</p>
+<p>In support of NSA's Cybersecurity mission, Ghidra was built to solve scaling and teaming problems <br />
+on complex SRE efforts, and to provide a customizable and extensible SRE research platform. NSA has <br />
+applied Ghidra SRE capabilities to a variety of problems that involve analyzing malicious code and <br />
+generating deep insights for SRE analysts who seek a better understanding of potential <br />
+vulnerabilities in networks and systems.</p>
+<p>If you are a U.S. citizen interested in projects like this, to develop Ghidra and other <br />
+cybersecurity tools for NSA to help protect our nation and its allies, consider applying for a <br />
+<a href="https://www.intelligencecareers.gov/nsa">career with us</a>.</p>
+<h2>Security Warning</h2>
+<p><strong>WARNING:</strong> There are known security vulnerabilities within certain versions of Ghidra.  Before <br />
+proceeding, please read through Ghidra's <a href="https://github.com/NationalSecurityAgency/ghidra/security/advisories">Security Advisories</a> for a better understanding <br />
+of how you might be impacted.</p>
+<h2>Install</h2>
+<p>To install an official pre-built multi-platform Ghidra release:<br />
+<em> Install <a href="https://adoptium.net/temurin/releases">JDK 25 64-bit</a><br />
+* Download a Ghidra <a href="https://github.com/NationalSecurityAgency/ghidra/releases">release file</a><br />
+  - </em><em>NOTE:</em><em> The official multi-platform release file is named <br />
+<code>ghidra_&lt;version&gt;_&lt;release&gt;_&lt;date&gt;.zip</code> which can be found under the "Assets" drop-down.<br />
+    Downloading either of the files named "Source Code" is not correct for this step.<br />
+* Extract the Ghidra release file<br />
+  - </em><em>NOTE:</em>* Do not extract on top of an existing installation<br />
+* Launch Ghidra: <code>./ghidraRun</code> (<code>ghidraRun.bat</code> for Windows)<br />
+  - or launch <a href="Ghidra/Features/PyGhidra/README.md">PyGhidra</a>: <code>./support/pyghidraRun</code> (<code>support\pyghidraRun.bat</code> for Windows)</p>
+<p>For additional information and troubleshooting tips about installing and running a Ghidra release, <br />
+please refer to the <a href="GhidraDocs/GettingStarted.md">Getting Started</a> document which can be found at the root of a <br />
+Ghidra installation directory. </p>
+<h2>Build</h2>
+<p><a href="https://github.com/NationalSecurityAgency/ghidra/actions/workflows/build-ghidra.yml"><img alt="Build Ghidra" src="https://github.com/NationalSecurityAgency/ghidra/actions/workflows/build-ghidra.yml/badge.svg" /></a></p>
+<p>To create the latest development build for your platform from this source repository:</p>
+<h5>Install build tools:</h5>
+<ul>
+<li><a href="https://adoptium.net/temurin/releases">JDK 25 64-bit</a></li>
+<li><a href="https://gradle.org/releases/">Gradle 9.1.0+</a> (or provided Gradle wrapper if Internet connection is available)</li>
+<li><a href="https://www.python.org/downloads/">Python3</a> (version 3.9 to 3.15) with bundled pip</li>
+<li>GCC or Clang, and make (Linux/macOS-only)</li>
+<li><a href="https://visualstudio.microsoft.com/vs/community/">Microsoft Visual Studio</a> 2017+ or <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/">Microsoft C++ Build Tools</a> with the<br />
+  following components installed (Windows-only):</li>
+<li>MSVC</li>
+<li>Windows SDK</li>
+<li>C++ ATL</li>
+</ul>
+<h5>Download and extract the source:</h5>
+<p><a href="https://github.com/NationalSecurityAgency/ghidra/archive/refs/heads/master.zip">Download from GitHub</a></p>
+<pre><code>unzip ghidra-master
+cd ghidra-master
+</code></pre>
+<p><strong>NOTE:</strong> Instead of downloading the compressed source, you may instead want to clone the GitHub <br />
+repository: <code>git clone https://github.com/NationalSecurityAgency/ghidra.git</code></p>
+<h5>Download additional build dependencies into source repository:</h5>
+<p><strong>NOTE:</strong> If an Internet connection is available and you did not install Gradle, the <br />
+<code>./gradlew</code> (or <code>gradlew.bat</code>) command may be used in place of the <code>gradle</code> command in the following<br />
+instructions.</p>
+<pre><code>gradle -I gradle/support/fetchDependencies.gradle
+</code></pre>
+<h5>Create development build:</h5>
+<pre><code>gradle buildGhidra
+</code></pre>
+<p>The compressed development build will be located at <code>build/dist/</code>.</p>
+<p>For more detailed information on building Ghidra, please read the <a href="DevGuide.md">Developer's Guide</a>.</p>
+<p>For issues building, please check the <a href="DevGuide.md#known-issues">Known Issues</a> section for possible solutions.</p>
+<h2>Develop</h2>
+<h3>User Scripts and Extensions</h3>
+<p>Ghidra installations support users writing custom scripts and extensions via the <em>GhidraDev</em> plugin <br />
+for Eclipse.  The plugin and its corresponding instructions can be found within a Ghidra release at<br />
+<code>Extensions/Eclipse/GhidraDev/</code> or at <a href="GhidraBuild/EclipsePlugins/GhidraDev/GhidraDevPlugin/README.md">this link</a>.  Alternatively, Visual Studio Code may<br />
+be used to edit scripts by clicking the Visual Studio Code icon in the Script Manager.<br />
+Fully-featured Visual Studio Code projects can be created from a Ghidra CodeBrowser window at <br />
+<em>Tools -&gt; Create VSCode Module project</em>.</p>
+<p><strong>NOTE:</strong> Both the <em>GhidraDev</em> plugin for Eclipse and Visual Studio Code integrations only support <br />
+developing against fully built Ghidra installations which can be downloaded from the<br />
+<a href="https://github.com/NationalSecurityAgency/ghidra/releases">Releases</a> page.</p>
+<h3>Advanced Development</h3>
+<p>To develop the Ghidra tool itself, it is highly recommended to use Eclipse, which the Ghidra <br />
+development process has been highly customized for.</p>
+<h5>Install build and development tools:</h5>
+<ul>
+<li>Follow the above <a href="#build">build instructions</a> so the build completes without errors</li>
+<li>Install <a href="https://www.eclipse.org/downloads/packages/">Eclipse IDE for Java Developers</a></li>
+</ul>
+<h5>Prepare the development environment:</h5>
+<pre><code>gradle prepdev eclipse buildNatives
+</code></pre>
+<h5>Import Ghidra projects into Eclipse:</h5>
+<ul>
+<li><em>File</em> -&gt; <em>Import...</em></li>
+<li><em>General</em> | <em>Existing Projects into Workspace</em></li>
+<li>Select root directory to be your downloaded or cloned ghidra source repository</li>
+<li>Check <em>Search for nested projects</em></li>
+<li>Click <em>Finish</em></li>
+</ul>
+<p>When Eclipse finishes building the projects, Ghidra can be launched and debugged with the provided<br />
+<strong>Ghidra</strong> Eclipse <em>run configuration</em>.</p>
+<p>For more detailed information on developing Ghidra, please read the <a href="DevGuide.md">Developer's Guide</a>.</p>
+<h2>Contribute</h2>
+<p>If you would like to contribute bug fixes, improvements, and new features back to Ghidra, please <br />
+take a look at our <a href="CONTRIBUTING.md">Contributor's Guide</a> to see how you can participate in this open <br />
+source project.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/NationalSecurityAgency/ghidra#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1523,7 +1743,7 @@ NVIDIA_NIM_API_KEY='["your-first-key","your-second-key</p>
 </main>
 
 <footer>
-  Generated by <strong>scrape_github_trending.py</strong> on October 13, 2026  05:25 &nbsp;·&nbsp;
+  Generated by <strong>scrape_github_trending.py</strong> on October 15, 2026  07:59 &nbsp;·&nbsp;
   Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
 </footer>
 
