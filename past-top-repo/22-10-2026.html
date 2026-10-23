@@ -1,0 +1,2180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — October 22, 2026  07:22</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on October 22, 2026  07:22 &nbsp;·&nbsp; 11 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">cloudflare /</span>
+          <a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">security-audit-skill</a>
+        </div>
+        <div class="repo-desc">A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 37,283</span>
+      <span class="meta-item">🍴 2,330</span>
+      <span class="stars-today">⭐ 2,012 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>security-audit</h1>
+<p>A coding-agent skill that turns your agent into a security auditor. It orchestrates isolated agents through reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification, and target-neutral reporting.</p>
+<p>This is the skill that seeded Cloudflare's vulnerability discovery harness, described in <a href="https://blog.cloudflare.com/build-your-own-vulnerability-harness">Build your own vulnerability harness</a>. The harness grew into a multi-stage, fleet-wide system; this skill is the single-repo starting point it evolved from.</p>
+<h2>What it does</h2>
+<p>The skill runs a structured audit in six phases:</p>
+<ol>
+<li><strong>Reconnaissance</strong> -- map architecture, trust boundaries, input surfaces, prior evidence, and deterministic coverage in <code>architecture.md</code> and <code>coverage-ledger.json</code>.</li>
+<li><strong>Coverage-led hunting</strong> -- assign isolated hunters from ledger units, record their checks, and use coverage critics to find gaps.</li>
+<li><strong>Candidate validation</strong> -- give every unique candidate to a fresh verifier that tries to disprove it.</li>
+<li><strong>Structured output</strong> -- write <code>confirmed</code>, <code>needs_validation</code>, and <code>rejected</code> records to <code>findings.json</code> and validate them against <code>report-schema.json</code>.</li>
+<li><strong>Independent record verification</strong> -- fresh agents verify final source claims. Material replacements receive another independent verifier.</li>
+<li><strong>Target-neutral reporting</strong> -- derive <code>REPORT.md</code>, <code>FINDINGS-DETAIL.md</code>, and <code>NEEDS-VALIDATION.md</code> from the verified records and coverage ledger.</li>
+</ol>
+<p>The parent runs <code>validate-coverage-ledger.cjs</code> after creating the ledger and after each later ledger update. It runs <code>validate-findings.cjs</code> in Phase 4 and again after every Phase 5 replacement.</p>
+<p>The verdicts are distinct: <code>confirmed</code> has a complete source trace and bounded observed result, <code>needs_validation</code> has an exact unresolved fact and no severity, and <code>rejected</code> records a disproved candidate.</p>
+<p>Multiple runs against the same repo are additive. The skill uses prior ledgers and findings to target gaps, revalidate changed source, and carry forward current-source evidence without treating stale or unresolved work as covered.</p>
+<h2>Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SKILL.md</code></td>
+<td>Setup, core principles, platform terminology, workflow overview, and audit anti-patterns</td>
+</tr>
+<tr>
+<td><code>RECONNAISSANCE.md</code></td>
+<td>Phase 1 reconnaissance prompts and synthesis instructions</td>
+</tr>
+<tr>
+<td><code>HUNTING.md</code></td>
+<td>Phase 2 orchestration, hunting methodology, and validation rules</td>
+</tr>
+<tr>
+<td><code>ATTACK-CLASSES.md</code></td>
+<td>Core, wildcard, and obvious-things attack prompts</td>
+</tr>
+<tr>
+<td><code>MEMORY-SAFETY-AND-BINARY.md</code></td>
+<td>Memory-safety, binary, and kernel hunting classes for native targets</td>
+</tr>
+<tr>
+<td><code>AI-AND-LLM.md</code></td>
+<td>Prompt-injection, agent/tool, and output-handling hunting classes for LLM-backed targets</td>
+</tr>
+<tr>
+<td><code>WEB-PROTOCOL-AND-AUTH.md</code></td>
+<td>HTTP request-framing, cache, and authentication-protocol hunting classes for HTTP-protocol and auth targets</td>
+</tr>
+<tr>
+<td><code>CLIENT-SIDE.md</code></td>
+<td>DOM-injection, messaging-trust, UI-redress, and prototype-pollution hunting classes for client-side/browser targets</td>
+</tr>
+<tr>
+<td><code>SUPPLY-CHAIN-AND-RELEASE.md</code></td>
+<td>Dependency, CI, release, signing, update, plugin, and extension hunting classes</td>
+</tr>
+<tr>
+<td><code>CLOUD-AND-DEPLOYMENT.md</code></td>
+<td>IAM, infrastructure-as-code, container, serverless, ingress, and runtime-configuration hunting classes</td>
+</tr>
+<tr>
+<td><code>PROTOCOLS-RPC-AND-MESSAGING.md</code></td>
+<td>RPC, serialization, queue, broker, webhook, and streaming-protocol hunting classes</td>
+</tr>
+<tr>
+<td><code>RESOURCE-EXHAUSTION-AND-AVAILABILITY.md</code></td>
+<td>Shared resource, quota, queue, worker, and operator-spend hunting classes</td>
+</tr>
+<tr>
+<td><code>DATA-ISOLATION-AND-LIFECYCLE.md</code></td>
+<td>Tenant isolation, cache, search, export, backup, migration, deletion, and restore hunting classes</td>
+</tr>
+<tr>
+<td><code>DESKTOP-MOBILE-AND-LOCAL-IPC.md</code></td>
+<td>Native app, deep-link, webview, exported-component, helper, daemon, and local-IPC hunting classes</td>
+</tr>
+<tr>
+<td><code>VALIDATION-AND-REPORTING.md</code></td>
+<td>Phases 3–6 candidate validation, structured output, record verification, and reporting</td>
+</tr>
+<tr>
+<td><code>report-schema.json</code></td>
+<td>JSON schema for all three <code>findings.json</code> verdicts</td>
+</tr>
+<tr>
+<td><code>validate-findings.cjs</code></td>
+<td>Zero-dependency validator for <code>findings.json</code> in Phases 4 and 5</td>
+</tr>
+<tr>
+<td><code>validate-findings.test.cjs</code></td>
+<td>Findings-validator tests and producer-compatible fixture checks</td>
+</tr>
+<tr>
+<td><code>validate-coverage-ledger.cjs</code></td>
+<td>Zero-dependency validator for <code>coverage-ledger.json</code> in Phases 1–5</td>
+</tr>
+<tr>
+<td><code>validate-coverage-ledger.test.cjs</code></td>
+<td>Coverage-ledger validator tests</td>
+</tr>
+</tbody>
+</table>
+<h2>Installation</h2>
+<p>Install the skill with the <a href="https://skills.sh">Skills CLI</a>:</p>
+<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
+  --skill security-audit
+</code></pre>
+<p>Use <code>--global</code> for a user-level installation:</p>
+<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
+  --skill security-audit \
+  --global
+</code></pre>
+<p>Run <code>npx skills --help</code> for agent-selection and non-interactive options.</p>
+<h2>Usage</h2>
+<p>Start your coding agent in (or pointed at) the codebase you want to audit, then ask it to do a security audit:</p>
+<pre><code>security audit this codebase
+</code></pre>
+<pre><code>find security vulnerabilities in ./src
+</code></pre>
+<pre><code>do a security review, output to ~/audits/my-project
+</code></pre>
+<p>The skill activates automatically when the request matches its trigger (security audit, find vulnerabilities, pen-test the code, etc.). A direct codebase audit or pen-test request uses full audit mode. Security questions and focused vulnerability work use guidance mode unless you request report artifacts. In full audit mode, an unspecified output directory defaults to <code>~/security-audit-skill/&lt;repo-name&gt;/run-&lt;N&gt;</code>. The workflow writes inside the target repository only when you explicitly select a directory that version control ignores.</p>
+<h2>Requirements</h2>
+<ul>
+<li>A coding agent with a model that supports tool use and parallel sub-agents</li>
+<li>Node.js for the zero-dependency findings and coverage-ledger validators</li>
+<li>An OS-enforced sandbox for target-controlled builds, tests, processes, browsers, emulators, fuzzers, and fixtures. It must disable external networking, use a sanitized allowlisted environment, enforce resource limits, and allow writes only to assigned scratch paths. Without these controls, the workflow keeps the lead as <code>needs_validation</code> instead of executing target code.</li>
+</ul>
+<h2>Design principles</h2>
+<ul>
+<li><strong>Only confirm established boundary failures.</strong> Keep a source-grounded blocked lead as <code>needs_validation</code> with its exact unresolved fact.</li>
+<li><strong>Adversarial validation.</strong> The agent that checks a finding is never the agent that found it.</li>
+<li><strong>Severity requires impact.</strong> Likelihood x impact, not deviation from a checklist.</li>
+<li><strong>Defense-in-depth gaps are not vulnerabilities.</strong> If Layer A prevents the attack, the absence of Layer B is a hardening note.</li>
+<li><strong>Multiple runs improve coverage.</strong> In our test runs, a single run found roughly half of the vulnerabilities that repeated runs found in total.</li>
+</ul>
+<h2>Contact</h2>
+<p>Questions, feedback, or comparing notes on AI-driven security tooling: security-ai-research@cloudflare.com</p>
+<h2>License</h2>
+<p>MIT -- see <a href="LICENSE">LICENSE</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/cloudflare/security-audit-skill#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">vllm-project /</span>
+          <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener">vllm</a>
+        </div>
+        <div class="repo-desc">A high-throughput and memory-efficient inference and serving engine for LLMs</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 94,995</span>
+      <span class="meta-item">🍴 23,771</span>
+      <span class="stars-today">⭐ 441 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!-- markdownlint-disable MD001 MD041 -->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/vllm-project/vllm/main/docs/assets/logos/vllm-logo-text-dark.png">
+    <img alt="vLLM" src="https://raw.githubusercontent.com/vllm-project/vllm/main/docs/assets/logos/vllm-logo-text-light.png" width=55%>
+  </picture>
+</p>
+
+<h3 align="center">
+Easy, fast, and cheap LLM serving for everyone
+</h3>
+
+<p align="center">
+| <a href="https://docs.vllm.ai"><b>Documentation</b></a> | <a href="https://blog.vllm.ai/"><b>Blog</b></a> | <a href="https://arxiv.org/abs/2309.06180"><b>Paper</b></a> | <a href="https://x.com/vllm_project"><b>Twitter/X</b></a> | <a href="https://discuss.vllm.ai"><b>User Forum</b></a> | <a href="https://slack.vllm.ai"><b>Developer Slack</b></a> |
+</p>
+
+<p>🔥 We have built a vLLM website to help you get started with vLLM. Please visit <a href="https://vllm.ai">vllm.ai</a> to learn more.<br />
+For events, please visit <a href="https://vllm.ai/events">vllm.ai/events</a> to join us.</p>
+<hr />
+<h2>About</h2>
+<p>vLLM is a fast and easy-to-use library for LLM inference and serving.</p>
+<p>Originally developed in the <a href="https://sky.cs.berkeley.edu">Sky Computing Lab</a> at UC Berkeley, vLLM has grown into one of the most active open-source AI projects built and maintained by a diverse community of many dozens of academic institutions and companies from over 2000 contributors.</p>
+<p>vLLM is fast with:</p>
+<ul>
+<li>State-of-the-art serving throughput</li>
+<li>Efficient management of attention key and value memory with <a href="https://blog.vllm.ai/2023/06/20/vllm.html"><strong>PagedAttention</strong></a></li>
+<li>Continuous batching of incoming requests, chunked prefill, prefix caching</li>
+<li>Fast and flexible model execution with piecewise and full CUDA/HIP graphs</li>
+<li>Quantization: FP8, MXFP8/MXFP4, NVFP4, INT8, INT4, GPTQ/AWQ, GGUF, compressed-tensors, ModelOpt, TorchAO, and <a href="https://docs.vllm.ai/en/latest/features/quantization/index.html">more</a></li>
+<li>Optimized attention kernels including FlashAttention, FlashInfer, TRTLLM-GEN, FlashMLA, and Triton</li>
+<li>Optimized GEMM/MoE kernels for various precisions using CUTLASS, TRTLLM-GEN, CuTeDSL</li>
+<li>Speculative decoding including n-gram, suffix, EAGLE, DFlash</li>
+<li>Automatic kernel generation and graph-level transformations using torch.compile</li>
+<li>Disaggregated prefill, decode, and encode</li>
+</ul>
+<p>vLLM is flexible and easy to use with:</p>
+<ul>
+<li>Seamless integration with popular Hugging Face models</li>
+<li>High-throughput serving with various decoding algorithms, including <em>parallel sampling</em>, <em>beam search</em>, and more</li>
+<li>Tensor, pipeline, data, expert, and context parallelism for distributed inference</li>
+<li>Streaming outputs</li>
+<li>Generation of structured outputs using xgrammar or guidance</li>
+<li>Tool calling and reasoning parsers</li>
+<li>OpenAI-compatible API server, plus Anthropic Messages API and gRPC support</li>
+<li>Efficient multi-LoRA support for dense and MoE layers</li>
+<li>Support for NVIDIA GPUs, AMD GPUs, Intel GPUs, and x86/ARM/PowerPC CPUs. Additionally, diverse hardware plugins such as Google TPUs, Intel Gaudi, IBM Spyre, Huawei Ascend, Rebellions NPU, Apple Silicon, MetaX GPU, and more.</li>
+</ul>
+<p>vLLM seamlessly supports 200+ model architectures on Hugging Face, including:</p>
+<ul>
+<li>Decoder-only LLMs (e.g., Llama, Qwen, Gemma)</li>
+<li>Mixture-of-Expert LLMs (e.g., Mixtral, DeepSeek-V3, Qwen-MoE, GPT-OSS)</li>
+<li>Hybrid attention and state-space models (e.g., Mamba, Qwen3.5)</li>
+<li>Multi-modal models (e.g., LLaVA, Qwen-VL, Pixtral)</li>
+<li>Embedding and retrieval models (e.g., E5-Mistral, GTE, ColBERT)</li>
+<li>Reward and classification models (e.g., Qwen-Math)</li>
+</ul>
+<p>Find the full list of supported models <a href="https://docs.vllm.ai/en/latest/models/supported_models.html">here</a>.</p>
+<h2>Getting Started</h2>
+<p>Install vLLM with <a href="https://docs.astral.sh/uv/"><code>uv</code></a> (recommended) or <code>pip</code>:</p>
+<pre><code class="language-bash">uv pip install vllm
+vllm download-kernels  # precompiled kernels for faster startup
+</code></pre>
+<p>Or <a href="https://docs.vllm.ai/en/latest/getting_started/installation/gpu/index.html#build-wheel-from-source">build from source</a> for development.</p>
+<p>Visit our <a href="https://docs.vllm.ai/en/latest/">documentation</a> to learn more.</p>
+<ul>
+<li><a href="https://docs.vllm.ai/en/latest/getting_started/installation.html">Installation</a></li>
+<li><a href="https://docs.vllm.ai/en/latest/getting_started/quickstart.html">Quickstart</a></li>
+<li><a href="https://docs.vllm.ai/en/latest/models/supported_models.html">List of Supported Models</a></li>
+</ul>
+<h2>Contributing</h2>
+<p>We welcome and value any contributions and collaborations.<br />
+Please check out <a href="https://docs.vllm.ai/en/latest/contributing/index.html">Contributing to vLLM</a> for how to get involved.</p>
+<h2>Citation</h2>
+<p>If you use vLLM for your research, please cite our <a href="https://arxiv.org/abs/2309.06180">paper</a>:</p>
+<pre><code class="language-bibtex">@inproceedings{kwon2023efficient,
+  title={Efficient Memory Management for Large Language Model Serving with PagedAttention},
+  author={Woosuk Kwon and Zhuohan Li and Siyuan Zhuang and Ying Sheng and Lianmin Zheng and Cody Hao Yu and Joseph E. Gonzalez and Hao Zhang and Ion Stoica},
+  booktitle={Proceedings of the ACM SIGOPS 29th Symposium on Operating Systems Principles},
+  year={2023}
+}
+</code></pre>
+<h2>Contact Us</h2>
+<!-- --8<-- [start:contact-us] -->
+<ul>
+<li>For technical questions and feature requests, please use GitHub <a href="https://github.com/vllm-project/vllm/issues">Issues</a></li>
+<li>For discussing with fellow users, please use the <a href="https://discuss.vllm.ai">vLLM Forum</a></li>
+<li>For coordinating contributions and development, please use <a href="https://slack.vllm.ai">Slack</a></li>
+<li>For security disclosures, please use GitHub's <a href="https://github.com/vllm-project/vllm/security/advisories">Security Advisories</a> feature</li>
+<li>For collaborations and partnerships, please contact us at <a href="mailto:collaboration@vllm.ai">collaboration@vllm.ai</a></li>
+</ul>
+<!-- --8<-- [end:contact-us] -->
+
+<h2>Media Kit</h2>
+<ul>
+<li>If you wish to use vLLM's logo, please refer to <a href="https://github.com/vllm-project/media-kit">our media kit repo</a></li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/vllm-project/vllm#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">stablyai /</span>
+          <a href="https://github.com/stablyai/orca" target="_blank" rel="noopener">orca</a>
+        </div>
+        <div class="repo-desc">Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent with your own subscription. Available on desktop, mobile and remote runtime.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 101,708</span>
+      <span class="meta-item">🍴 6,432</span>
+      <span class="stars-today">⭐ 1,541 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">
+  <a href="https://onOrca.dev"><img src="resources/build/icon.png" alt="Orca" width="64" valign="middle" /></a> Orca
+</h1>
+
+<p align="center">
+  <a href="https://github.com/stablyai/orca"><img src="https://img.shields.io/github/stars/stablyai/orca?style=flat&amp;label=%E2%98%85&amp;color=08C" alt="GitHub stars" /></a>
+  <a href="https://github.com/stablyai/orca/releases"><img src="docs/assets/readme-downloads.svg" alt="Total downloads across all releases" /></a>
+  <img src="https://img.shields.io/badge/license-MIT-08C?style=flat" alt="License: MIT" />
+  <a href="https://discord.gg/fzjDKHxv8Q"><img src="https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white" alt="Join the Orca Discord" /></a>
+  <a href="https://x.com/orca_build"><img src="https://img.shields.io/badge/X-000000?logo=x&logoColor=white" alt="Follow Orca on X" /></a>
+  <img src="https://img.shields.io/badge/macOS%20%7C%20Windows%20%7C%20Linux-4493F8?style=flat-square" alt="Supported platforms: macOS, Windows, and Linux" />
+</p>
+
+<p align="center">
+  <sub><a href="docs/readme/README.zh-CN.md">中文</a> · <a href="docs/readme/README.ja.md">日本語</a> · <a href="docs/readme/README.ko.md">한국어</a> · <a href="docs/readme/README.es.md">Español</a> · <a href="docs/readme/README.fr.md">Français</a> · <a href="docs/readme/README.pt.md">Português</a></sub>
+</p>
+
+<p align="center">
+  <strong>The AI Orchestrator for 100x builders.</strong><br/>
+  Run Codex, ClaudeCode, OpenCode or Pi side-by-side — each in its own worktree, tracked in one place.
+</p>
+
+<h3 align="center"><a href="https://onorca.dev/download"><ins>Download Orca</ins></a></h3>
+
+<p align="center">
+  <img src="docs/assets/readme-hero.jpg" alt="Orca desktop app running agents in parallel worktrees, with the Orca mobile companion app in the corner" width="960" />
+</p>
+
+<h2>Features</h2>
+<table>
+<tr>
+<td width="50%" valign="middle">
+
+### Mobile Companion
+
+Monitor and steer your agents from your phone — get notified when an agent finishes and send follow-ups from anywhere.
+
+[iOS App Store](https://apps.apple.com/us/app/orca-ide/id6766130217) · [Android APK](https://www.onorca.dev/download/android) · [Docs →](https://www.onorca.dev/docs/mobile)
+
+</td>
+<td width="50%">
+  <a href="https://www.onorca.dev/docs/mobile"><picture><source srcset="docs/assets/feature-wall/mobile-companion-app-showcase.gif" type="image/gif"><img src="docs/assets/feature-wall/mobile-companion-app-showcase.jpg" alt="Orca desktop with the mobile companion app" width="100%" /></picture></a>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="middle">
+
+### Parallel Worktrees
+
+Fan one prompt across five agents, each in its own isolated git worktree — compare the results and merge the winner.
+
+[Docs →](https://www.onorca.dev/docs/model/worktrees)
+
+</td>
+<td width="50%">
+  <a href="https://www.onorca.dev/docs/model/worktrees"><picture><source srcset="docs/site/public/docs/tab-split.gif" type="image/gif"><img src="docs/site/public/docs/posters/tab-split.jpg" alt="Parallel worktree orchestration" width="100%" /></picture></a>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="middle">
+
+### Terminal Splits
+
+Ghostty-class terminals with WebGL rendering, infinite splits, and scrollback that survives restarts.
+
+[Docs →](https://www.onorca.dev/docs/terminal)
+
+</td>
+<td width="50%">
+  <a href="https://www.onorca.dev/docs/terminal"><picture><source srcset="resources/onboarding/feature-wall/tile-02.webp" type="image/webp"><img src="resources/onboarding/feature-wall/tile-02.poster.jpg" alt="Terminal splits" width="100%" /></picture></a>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="middle">
+
+### Design Mode
+
+Click any UI element in a real Chromium window to send its HTML, CSS, and a cropped screenshot straight into your agent's prompt.
+
+[Docs →](https://www.onorca.dev/docs/browser/design-mode)
+
+</td>
+<td width="50%">
+  <a href="https://www.onorca.dev/docs/browser/design-mode"><picture><source srcset="docs/site/public/docs/orca-design-mode.gif" type="image/gif"><img src="resources/onboarding/feature-wall/tile-05.poster.jpg" alt="Embedded browser and Design Mode" width="100%" /></picture></a>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="middle">
+
+### GitHub &amp; Linear, Native
+
+Browse PRs, issues, and project boards in-app — open a worktree from any task and review without a context switch.
+
+[Docs →](https://www.onorca.dev/docs/review/linear)
+
+</td>
+<td width="50%">
+  <a href="https://www.onorca.dev/docs/review/linear"><picture><source srcset="resources/onboarding/feature-wall/tile-03.webp" type="image/webp"><img src="resources/onboarding/feature-wall/tile-03.poster.jpg" alt="GitHub and Linear task workflows in Orca" width="100%" /></picture></a>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="middle">
+
+### SSH Worktrees
+
+Run agents on a beefy remote box with full file editing, git, and terminals — auto-reconnect and port forwarding included.
+
+[Docs →](https://www.onorca.dev/docs/ssh)
+
+</td>
+<td width="50%">
+  <a href="https://www.onorca.dev/docs/ssh"><picture><source srcset="resources/onboarding/feature-wall/tile-06.webp" type="image/webp"><img src="resources/onboarding/feature-wall/tile-06.poster.jpg" alt="Remote worktrees over SSH" width="100%" /></picture></a>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="middle">
+
+### Annotate AI Diffs
+
+Drop comments on any diff line and ship them back to the agent — review, edit, and commit without leaving Orca.
+
+[Docs →](https://www.onorca.dev/docs/review/annotate-ai-diff)
+
+</td>
+<td width="50%">
+  <a href="https://www.onorca.dev/docs/review/annotate-ai-diff"><picture><source srcset="docs/site/public/docs/annotate-ai-diff.gif" type="image/gif"><img src="resources/onboarding/feature-wall/tile-08.poster.jpg" alt="Annotate AI-generated diffs" width="100%" /></picture></a>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="middle">
+
+### Drag Files to Agents
+
+VS Code's editor with autosave everywhere — drag files or images straight into an agent prompt.
+
+[Docs →](https://www.onorca.dev/docs/editing/file-explorer)
+
+</td>
+<td width="50%">
+  <a href="https://www.onorca.dev/docs/editing/file-explorer"><picture><source srcset="resources/onboarding/feature-wall/tile-07.gif" type="image/gif"><img src="resources/onboarding/feature-wall/tile-07.poster.jpg" alt="Drag files and images into an agent prompt" width="100%" /></picture></a>
+</td>
+</tr>
+<tr>
+<td width="50%" valign="middle">
+
+### Orca CLI
+
+Agents drive Orca too — script every workflow with `orca worktree create`, `snapshot`, `click`, and `fill`.
+
+[Docs →](https://www.onorca.dev/docs/cli/overview)
+
+</td>
+<td width="50%">
+  <a href="https://www.onorca.dev/docs/cli/overview"><picture><source srcset="resources/onboarding/feature-wall/tile-09.webp" type="image/webp"><img src="resources/onboarding/feature-wall/tile-09.poster.jpg" alt="Script Orca from the CLI" width="100%" /></picture></a>
+</td>
+</tr>
+</table>
+
+<p><strong>Also in the box:</strong></p>
+<ul>
+<li><strong><a href="https://www.onorca.dev/docs/model/quick-open">Quick open</a></strong> — Search across worktrees, files, agents, commands, and repo context without leaving your flow.</li>
+<li><strong><a href="https://www.onorca.dev/docs/agents/usage-tracking">Account switcher &amp; usage tracking</a></strong> — See Claude and Codex usage and rate-limit resets, and hot-swap accounts without re-logging in.</li>
+<li><strong><a href="https://www.onorca.dev/docs/editing/markdown">Rich repo previews</a></strong> — Preview Markdown, images, PDFs, and repo docs in the workspace.</li>
+<li><strong><a href="https://www.onorca.dev/docs/cli/computer-use">Computer Use</a></strong> — Let agents operate desktop apps and visible UI when a workflow needs real interaction.</li>
+<li><strong><a href="https://www.onorca.dev/docs/notifications">Notifications and unread state</a></strong> — Know when an agent finishes or needs attention, then mark threads unread to come back later.</li>
+<li><strong>And many, many more</strong> — we ship daily, so this list is perpetually behind. The <a href="https://github.com/stablyai/orca/releases">changelog</a> is the real feature list.</li>
+</ul>
+<hr />
+<h2>Supported Agents</h2>
+<p>Works with <strong>any CLI agent</strong> — if it runs in a terminal, it runs in Orca.</p>
+<p>
+  <a href="https://docs.ant
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/stablyai/orca#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">headroomlabs-ai /</span>
+          <a href="https://github.com/headroomlabs-ai/headroom" target="_blank" rel="noopener">headroom</a>
+        </div>
+        <div class="repo-desc">Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agents, 60-95% fewer tokens for JSON, same answers. Library, proxy, MCP server.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 77,382</span>
+      <span class="meta-item">🍴 6,009</span>
+      <span class="stars-today">⭐ 474 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<img src=".github/assets/hero.svg" alt="Headroom — the context compression layer for AI agents. A 55,957 token agent prompt compresses to the 24,340 tokens actually sent to the model, and the FATAL line at item 67 survives byte for byte." width="880">
+
+<a href="https://trendshift.io/repositories/20881" target="_blank"><img src="https://trendshift.io/api/badge/repositories/20881" alt="headroomlabs-ai/headroom | Trendshift — #1 Repository Of The Day" width="250" height="55"/></a>
+
+<p>
+  <a href="https://github.com/headroomlabs-ai/headroom"><img src="https://img.shields.io/github/stars/headroomlabs-ai/headroom?style=flat&color=00F0B5&labelColor=0C1118&label=stars" alt="GitHub stars"></a>
+  <a href="https://github.com/headroomlabs-ai/headroom/actions/workflows/ci.yml"><img src="https://github.com/headroomlabs-ai/headroom/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://pypi.org/project/headroom-ai/"><img src="https://img.shields.io/pypi/v/headroom-ai.svg?color=00F0B5&labelColor=0C1118&label=pypi" alt="PyPI"></a>
+  <a href="https://www.npmjs.com/package/headroom-ai"><img src="https://img.shields.io/npm/v/headroom-ai.svg?color=00F0B5&labelColor=0C1118&label=npm" alt="npm"></a>
+  <a href="https://huggingface.co/chopratejas/kompress-v2-base"><img src="https://img.shields.io/badge/model-kompress--v2--base-65D8FF?labelColor=0C1118" alt="Model"></a>
+  <a href="https://docs.headroomlabs.ai/docs"><img src="https://img.shields.io/badge/docs-online-00F0B5?labelColor=0C1118" alt="Docs"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-98A4B3?labelColor=0C1118" alt="License"></a>
+</p>
+
+<p>
+  <b><a href="https://docs.headroomlabs.ai/docs/quickstart">Quickstart</a></b> ·
+  <b><a href="#headroom-for-teams">Headroom for Teams</a></b> ·
+  <a href="#get-started-60-seconds">Install</a> ·
+  <a href="#proof">Proof</a> ·
+  <a href="#agent-compatibility">Agents</a> ·
+  <a href="https://docs.headroomlabs.ai/docs">Docs</a> ·
+  <a href="https://discord.gg/yRmaUNpsPJ">Discord</a> ·
+  <a href="llms.txt">llms.txt</a>
+</p>
+
+<sub><b>AI agents / LLMs:</b> read <a href="llms.txt"><code>/llms.txt</code></a> here, or fetch
+<a href="https://docs.headroomlabs.ai/llms.txt">the live index</a> ·
+<a href="https://docs.headroomlabs.ai/llms-full.txt">full docs blob</a>.</sub>
+
+</div>
+
+<!-- mcp-name: io.github.headroomlabs-ai/headroom -->
+
+<p>Headroom compresses everything your AI agent reads — tool outputs, logs, RAG<br />
+chunks, files, and conversation history — before it reaches the LLM. Same<br />
+answers, fraction of the tokens. Compression runs on your machine; no prompt or<br />
+file content is sent anywhere to be compressed.</p>
+<p align="center">
+  <a href="https://headroom-perks.vercel.app/?source=github&utm_source=github&utm_medium=readme&utm_content=banner"><img src=".github/assets/enterprise-perk.svg" alt="Headroom Enterprise for teams: 3 months free with a 12-month plan. Claim the perk." width="880"></a>
+</p>
+
+<div align="center">
+  <img src="HeadroomDemo-Fast.gif" alt="Headroom compressing a 10,144 token log dump to 1,260 tokens while preserving the FATAL line" width="820">
+  <br><sub>10,144 → 1,260 tokens. The same <code>FATAL</code> found.</sub>
+</div>
+
+<h2>What it does</h2>
+<ul>
+<li><strong>Library</strong> — <code>compress(messages)</code> in Python or TypeScript, inline in any app.</li>
+<li><strong>Proxy</strong> — <code>headroom proxy --port 8787</code>, zero code changes, any language.</li>
+<li><strong>Agent wrap</strong> — <code>headroom wrap claude|codex|grok|copilot|cursor|aider|opencode|cline|continue|goose|openhands|openclaw|vibe|omp|zcode</code> in one command; undo with <code>headroom unwrap &lt;tool&gt;</code>.</li>
+<li><strong>MCP server</strong> — <code>headroom_compress</code>, <code>headroom_retrieve</code>, <code>headroom_stats</code> for any MCP client.</li>
+<li><strong>Cross-agent memory</strong> — one shared store across Claude, Codex, Gemini and Grok, with automatic dedup.</li>
+<li><strong><code>headroom learn</code></strong> — mines failed sessions and writes corrections to <code>CLAUDE.local.md</code> (default, gitignored), <code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>GEMINI.md</code> or <code>GROK.md</code>.</li>
+<li><strong>Output token reduction</strong> — trims what the model <em>writes back</em>, not only what you send. See <a href="#output-token-reduction">below</a>.</li>
+<li><strong>Reversible (CCR)</strong> — originals are cached locally and retrieved on demand.</li>
+</ul>
+<h2>How it works</h2>
+<pre><code> Your agent / app
+   (Claude Code, Cursor, Codex, LangChain, Agno, Strands, your own code…)
+        │   prompts · tool outputs · logs · RAG results · files
+        ▼
+    ┌────────────────────────────────────────────────────┐
+    │  Headroom   (runs locally — your data stays here)  │
+    │  ────────────────────────────────────────────────  │
+    │  CacheAligner  →  ContentRouter  →  CCR            │
+    │                    ├─ SmartCrusher   (JSON)        │
+    │                    ├─ CodeCompressor (AST)         │
+    │                    └─ Kompress-v2-base (text, HF)  │
+    │                                                    │
+    │  Cross-agent memory  ·  headroom learn  ·  MCP     │
+    └────────────────────────────────────────────────────┘
+        │   compressed prompt  +  retrieval tool
+        ▼
+ LLM provider  (Anthropic · OpenAI · Bedrock · …)
+</code></pre>
+<ul>
+<li><strong>ContentRouter</strong> detects the content type and selects a compressor for it.</li>
+<li><strong>SmartCrusher / CodeCompressor / Kompress-v2-base</strong> handle JSON, source code and prose respectively.</li>
+<li><strong>CacheAligner</strong> flags volatile content that would bust a provider KV-cache prefix. It never rewrites prompts.</li>
+<li><strong>CCR</strong> stores originals locally so the model can call <code>headroom_retrieve</code> when it needs the full text.</li>
+</ul>
+<p>→ <a href="https://docs.headroomlabs.ai/docs/architecture">Architecture</a> ·<br />
+<a href="https://docs.headroomlabs.ai/docs/ccr">CCR</a> ·<br />
+<a href="https://huggingface.co/chopratejas/kompress-v2-base">Kompress-v2-base model card</a></p>
+<h2>Get started (60 seconds)</h2>
+<pre><code class="language-bash"># 1 — Install
+uv tool install --python 3.13 &quot;headroom-ai[all]&quot;  # CLI in a self-contained env
+pip install &quot;headroom-ai[all]&quot;                    # Python — ships the `headroom` CLI
+npm install headroom-ai                           # TypeScript SDK only — no CLI
+
+# 2 — Pick a mode
+headroom deploy                         # turnkey local deployment + agent config
+headroom wrap claude                    # wrap a coding agent
+headroom proxy --port 8787              # drop-in proxy, zero code changes
+# or: from headroom import compress     # inline library
+
+# 3 — Check it and watch the savings
+headroom doctor                         # health check — confirms routing works
+headroom perf
+headroom dashboard                      # live savings (proxy must be running)
+</code></pre>
+<p>Inline, in Python:</p>
+<pre><code class="language-python">from headroom import compress
+from openai import OpenAI
+
+messages = [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Analyze these results&quot;}]
+result = compress(messages, model=&quot;gpt-4o&quot;)
+
+client = OpenAI()
+response = client.chat.completions.create(model=&quot;gpt-4o&quot;, messages=result.messages)
+print(f&quot;Saved {result.tokens_saved} tokens ({result.compression_ratio:.0%})&quot;)
+</code></pre>
+<p>Launch a wrapped agent session each time, so the setup runs. <code>headroom wrap</code><br />
+starts a local proxy, installs <strong><a href="https://github.com/oraios/serena">Serena</a></strong> for<br />
+semantic code navigation, and launches the agent configured to route through<br />
+Headroom. For Claude Code, Serena is registered for the wrapped project only<br />
+(as a <code>local</code>-scope MCP server in <code>~/.claude.json</code>). Use<br />
+<code>--code-memory-scope user</code> to make it available in every project, or<br />
+<code>--code-memory none</code> to skip it. <code>headroom unwrap</code> removes either registration.</p>
+<p>The <code>headroom</code> CLI ships only in the PyPI package. The npm <code>headroom-ai</code> package<br />
+is the TypeScript SDK — a library you import<br />
+(<code>import { compress } from 'headroom-ai'</code>) — and provides no <code>headroom</code> command.</p>
+<h2>Proof</h2>
+<p>Four scenarios built from real MCP server output formats, measured with the<br />
+provider tokenizer and the shipped <code>compress()</code>. Seeded and offline, so you get<br />
+the same numbers we did:</p>
+<pre><code class="language-bash">uv run python benchmarks/index_proof_table.py --seed 20260902
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th style="text-align: right;">Before</th>
+<th style="text-align: right;">After</th>
+<th style="text-align: right;">Saved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code search (100 results)</td>
+<td style="text-align: right;">17,199</td>
+<td style="text-align: right;">13,597</td>
+<td style="text-align: right;"><strong>21%</strong></td>
+</tr>
+<tr>
+<td>SRE incident debugging</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/headroomlabs-ai/headroom#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">DietrichGebert /</span>
+          <a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">ponytail</a>
+        </div>
+        <div class="repo-desc">Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 172,086</span>
+      <span class="meta-item">🍴 9,366</span>
+      <span class="stars-today">⭐ 2,079 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.png">
+    <img src="assets/logo.png" width="220" alt="Ponytail, the lazy senior dev">
+  </picture>
+</p>
+
+<h1 align="center">Ponytail</h1>
+
+<p align="center">
+  <em>He says nothing. He writes one line. It works.</em>
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/50668?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/50668" alt="DietrichGebert%2Fponytail | Trendshift" width="250" height="55"/></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/DietrichGebert/ponytail?style=flat-square&color=111111&label=stars" alt="Stars">
+  <img src="https://img.shields.io/github/v/release/DietrichGebert/ponytail?style=flat-square&color=111111&label=release" alt="Release">
+  <img src="https://img.shields.io/npm/v/@dietrichgebert/ponytail?style=flat-square&color=111111&label=npm" alt="npm">
+  <img src="https://img.shields.io/badge/works%20with-20%20agents-111111?style=flat-square" alt="Works with 20 agents">
+  <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
+</p>
+
+<p align="center">
+  <a href="https://ponytail.dev/stories"><img src="assets/stories-banner.png" alt="Using Ponytail at work? Tell us your story" width="760"></a>
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/daily" alt="DietrichGebert/ponytail | Trendshift" width="250" height="55"/></a>
+  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/weekly" alt="DietrichGebert/ponytail | Trendshift" width="250" height="55"/></a>
+  <a href="https://trendshift.io/repositories/50668?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/monthly?language=JavaScript" alt="DietrichGebert%2Fponytail | Trendshift monthly ranking" width="250" height="55"/></a>
+</p>
+
+<p align="center">
+  <img src="assets/v5/hero.jpg" width="880" alt="Ponytail 5, rebuilt from the ground up: -53% code, -41% time, -26% cost, -45% tokens. And yet 98% of risky logic ships with a test, without Ponytail 68%.">
+</p>
+
+<p align="center">
+  <strong>Ponytail 5: rebuilt from the ground up.</strong><br>
+  <strong>-53% code &middot; -41% time &middot; -26% cost &middot; -45% tokens</strong><br>
+  <strong>And yet: 98% of risky logic ships with a test.</strong> Without Ponytail: 68%.<br>
+  <sub>Benchmarked in Claude Code, the same agent with and without the skill: 39 tasks including a real FastAPI + React repo, Opus 5.5, 5 runs each. <a href="#numbers">Details</a>.</sub>
+</p>
+
+<p align="center">
+  <sub><a href="i18n/README.es.md">Español</a> &middot; <a href="i18n/README.ko.md">한국어</a> &middot; <a href="i18n/README.zh-CN.md">简体中文</a> &middot; <a href="i18n/README.ja.md">日本語</a></sub>
+</p>
+
+<hr />
+<p align="center">
+  <a href="https://ponytail.dev/soon"><img src="assets/waitlist-banner.png" alt="Something's coming, join the waitlist" width="760"></a>
+</p>
+
+<h2>Already built with Ponytail</h2>
+<p><a href="https://theretriever.app"><br />
+  <picture><br />
+    <source media="(prefers-color-scheme: dark)" srcset="assets/retriever-logo-dark.svg"><br />
+    <img src="assets/retriever-logo-light.svg" height="128" alt="Retriever"><br />
+  </picture><br />
+</a></p>
+<hr />
+<p>You know him. Long ponytail. Oval glasses. Has been at the company longer than the version control. You show him fifty lines; he looks at them, says nothing, and replaces them with one.</p>
+<p>Ponytail puts him inside your AI agent.</p>
+<h2>Numbers</h2>
+<p align="center">
+  <img src="assets/v5/chart.png" width="880" alt="Share of the no-skill baseline. Lines of code: Ponytail v4.13 52%, Ponytail 5 47%. Output tokens: 57% and 55%. Cost: 84% and 74%. Time: 62% and 59%.">
+</p>
+
+<p align="center">
+  <img src="assets/v5/tests.png" width="880" alt="Half the code, and yet better: 98% of risky logic ships with a test (no skill 68%); the agent's own tests catch 66% of injected bugs (no skill 46%).">
+</p>
+
+<p>Two things the chart does not show: in a blind comparison, Ponytail 5's replies beat the previous Ponytail's 110 to 67. And on the six security tasks (SQL injection, path traversal, forged tokens, rate limiting, malformed CSV rows, caching) it passed all 30 runs: less code, no less safe. Method, per-task tables and limits: <a href="benchmarks/results/2026-10-07-agentic.md">benchmarks/results/2026-10-07-agentic.md</a>.</p>
+<p><strong>The rule was never "fewest tokens."</strong> It is: write only what the task needs, and never cut validation, error handling, security, or accessibility. The code ends up small because it is necessary, not golfed. Lower cost and latency are a side effect.</p>
+<h2>Before / after</h2>
+<p align="center">
+  <img src="assets/v5/beforeafter.png" width="880" alt="Add a date picker to the frontend. No skill: 335 lines, a calendar and a date picker built by hand. Ponytail 5: one 10-line file that reuses the repo's Input with type date, so the browser brings the calendar.">
+</p>
+
+<p>You ask for a date picker. Without Ponytail, the agent installs a date picker library or builds a whole calendar by hand: 335 lines. Ponytail 5 first looks at what is already there: the repo has an <code>Input</code> component, and every browser has a date picker. It puts the two together. 10 lines.</p>
+<p>More survivors in <a href="examples/">examples/</a>.</p>
+<h2>The review, rebuilt</h2>
+<p align="center">
+  <img src="assets/v5/review.png" width="880" alt="The review, rebuilt. A real /ponytail-review finding from the benchmark: the change renamed a field, and an untouched file, src/routes/feed.js, now crashes. Must fix: the Atom feed now crashes on every request, with what this is, the problem, the fix, and what happens if we skip it. 100% of planted problems found, no skill 87%. 100% of problems outside the diff found, no skill 78%.">
+</p>
+
+<p><code>/ponytail-review</code> used to look only for code to cut. Now it reviews like the senior dev who gets paged when it breaks: it reads the code your change touches, not just the diff, and checks bugs, security, real load, missing tests, speed, and what to cut. Each finding says what the code does, what goes wrong, how to fix it, and what happens if you don't.</p>
+<h2>The audit, rebuilt</h2>
+<p align="center">
+  <img src="assets/v5/audit.png" width="880" alt="Your whole repo, ranked. Fix this first. A real /ponytail-audit from the benchmark on a warehouse stock repo: 1 must fix, office batches with 1,200 fail completely; 2 must fix, the import silently skips bad rows; 3 must fix, a mistyped SKU in an office batch is silently ignored; 4 should fix, the risky code paths have no tests; 5 nice to have, the API crashes on a body that isn't an object. Verdict: fix 1 first.">
+</p>
+
+<p><code>/ponytail-audit</code> runs the same checks on the whole repo. It maps the code first: entry points, how data moves, what load the project expects. Then it ranks what it finds and tells you what to fix first. The old audit only listed what to delete.</p>
+<h2>New in 5.3: the band</h2>
+<p align="center">
+  <img src="assets/band/band.png" width="880" alt="The ponytail band in Claude Code, above the prompt. Detail mode: cost $23.80, last turn $1.14, average $0.72 per turn; 56.7M tokens, 168k output, 33 turns; agent time 52m 14s; reuse 71%, 5 used, 2 new; tests passed after the last change. Compact mode shows the same in one line.">
+</p>
+
+<p>In Claude Code, ponytail now shows a band above the prompt: what the current task costs, how many tokens and how much agent time it used, how often it reused existing code instead of writing new code, and whether the tests passed after the last change. Its buttons switch the level, run `/ponytail-</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/DietrichGebert/ponytail#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Comfy-Org /</span>
+          <a href="https://github.com/Comfy-Org/ComfyUI" target="_blank" rel="noopener">ComfyUI</a>
+        </div>
+        <div class="repo-desc">The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. The fastest local inference engine in the world.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 141,701</span>
+      <span class="meta-item">🍴 16,746</span>
+      <span class="stars-today">⭐ 939 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+# ComfyUI
+**The most powerful and modular AI engine for content creation.**
+
+
+[![Website][website-shield]][website-url]
+[![Dynamic JSON Badge][discord-shield]][discord-url]
+[![Twitter][twitter-shield]][twitter-url]
+[![Matrix][matrix-shield]][matrix-url]
+<br>
+[![][github-release-shield]][github-release-link]
+[![][github-release-date-shield]][github-release-link]
+[![][github-downloads-shield]][github-downloads-link]
+[![][github-downloads-latest-shield]][github-downloads-link]
+
+[matrix-shield]: https://img.shields.io/badge/Matrix-000000?style=flat&logo=matrix&logoColor=white
+[matrix-url]: https://app.element.io/#/room/%23comfyui_space%3Amatrix.org
+[website-shield]: https://img.shields.io/badge/ComfyOrg-4285F4?style=flat
+[website-url]: https://www.comfy.org/
+<!-- Workaround to display total user from https://github.com/badges/shields/issues/4500#issuecomment-2060079995 -->
+[discord-shield]: https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscord.com%2Fapi%2Finvites%2Fcomfyorg%3Fwith_counts%3Dtrue&query=%24.approximate_member_count&logo=discord&logoColor=white&label=Discord&color=green&suffix=%20total
+[discord-url]: https://discord.com/invite/comfyorg
+[twitter-shield]: https://img.shields.io/twitter/follow/ComfyUI
+[twitter-url]: https://x.com/ComfyUI
+
+[github-release-shield]: https://img.shields.io/github/v/release/comfyanonymous/ComfyUI?style=flat&sort=semver
+[github-release-link]: https://github.com/comfyanonymous/ComfyUI/releases
+[github-release-date-shield]: https://img.shields.io/github/release-date/comfyanonymous/ComfyUI?style=flat
+[github-downloads-shield]: https://img.shields.io/github/downloads/comfyanonymous/ComfyUI/total?style=flat
+[github-downloads-latest-shield]: https://img.shields.io/github/downloads/comfyanonymous/ComfyUI/latest/total?style=flat&label=downloads%40latest
+[github-downloads-link]: https://github.com/comfyanonymous/ComfyUI/releases
+
+<img width="1590" height="795" alt="ComfyUI Screenshot" src="https://github.com/user-attachments/assets/36e065e0-bfae-4456-8c7f-8369d5ea48a2" />
+<br>
+</div>
+
+<p>ComfyUI is the AI creation engine for visual professionals who demand control over every model, every parameter, and every output. Its powerful and modular node graph interface empowers creatives to generate images, videos, 3D models, audio, and more...<br />
+- ComfyUI natively supports the latest open-source state of the art models.<br />
+- It is by far the most optimized inference engine for diffusion models in the world with a focus on local consumer hardware.<br />
+- Can run even the biggest open source models on as low as 4GB vram + 8GB ram relatively quickly (saturating your GPU compute) using our state of the art asynchronous weight streaming technology.<br />
+- <a href="https://docs.comfy.org/tutorials/partner-nodes/overview#partner-nodes">Partner nodes</a> provide access to the best closed source models such as Nano Banana, Seedance, Hunyuan3D, etc.<br />
+- It is available on Windows, Linux, and macOS, locally with our <a href="https://www.comfy.org/download">desktop application</a>, our <a href="#installing">portable install</a> or on our <a href="https://www.comfy.org/cloud">cloud</a>.<br />
+- The most sophisticated workflows can be exposed through a simple UI thanks to App Mode.<br />
+- It integrates seamlessly into production pipelines with our API endpoints.</p>
+<h2>Get Started</h2>
+<h3>Local</h3>
+<h4><a href="https://www.comfy.org/download">Desktop Application</a></h4>
+<ul>
+<li>The easiest way to get started.</li>
+<li>Available on Windows &amp; macOS.</li>
+</ul>
+<h4><a href="#manual-install-windows-linux">Manual Install</a></h4>
+<p>Supports all operating systems and GPU types (NVIDIA, AMD, Intel, Apple Silicon, Ascend).</p>
+<h3>Cloud</h3>
+<h4><a href="https://www.comfy.org/cloud">Comfy Cloud</a></h4>
+<ul>
+<li>Our official paid cloud version for those who can't afford local hardware.</li>
+</ul>
+<h2>Examples</h2>
+<p>See what ComfyUI can do with the <a href="https://comfy.org/workflows">newer template workflows</a> or old <a href="https://comfyanonymous.github.io/ComfyUI_examples/">example workflows</a>.</p>
+<h2>Features</h2>
+<ul>
+<li>A visual node graph for building and reusing image, video, audio, 3D, and text workflows without code.</li>
+<li>Reusable subgraphs, workflow templates, App Mode, and a local API for integrating workflows into applications.</li>
+<li>Efficient local execution with asynchronous queueing, partial graph re-execution, smart VRAM and RAM management, model offloading, and support for quantized models.</li>
+<li>Broad native model support. This is a representative list; browse the <a href="https://comfy.org/workflows/">workflow library</a> for maintained, ready-to-run templates.</li>
+<li><a href="https://comfy.org/workflows/tag/text-to-image/">Image generation</a>: Stable Diffusion 1.5, SDXL, SD3.5, Flux.1, Flux.2, Qwen Image, Z-Image, Hunyuan Image 2.1, HiDream, Lumina Image 2.0, Chroma, Anima, LongCat Image, Ideogram 4, Krea 2, MageFlow, Microsoft Lens, PixelDiT, Kandinsky 5, Ernie Image and Moss Image.</li>
+<li><a href="https://comfy.org/workflows/tag/image-edit/">Image editing</a>: Flux Kontext, Flux.2 Klein, Qwen Image Edit, HiDream E1.1 and O1, OmniGen2, Boogu, JoyImage Edit, MageFlow Edit, and LongCat Image Edit.</li>
+<li><a href="https://comfy.org/workflows/tag/video-generation/">Video generation</a>: Wan 2.1 and 2.2, LTX-Video 2 and 2.3, HunyuanVideo 1.5, Kandinsky 5 Video, CogVideoX, Cosmos Predict2, Bernini-R, SCAIL 2, and Mochi.</li>
+<li><a href="https://comfy.org/workflows/">Audio and video generation</a>: MiniMax H3 and LTX-AV.</li>
+<li><a href="https://comfy.org/workflows/tag/text-to-audio/">Audio generation</a>: ACE-Step 1.5, Stable Audio 3, MiniMax Music 3 and Yue 2.</li>
+<li><a href="https://comfy.org/workflows/">3D and vision</a>: Hunyuan3D 2.1, TripoSplat, SeedVR2, SUPIR, Depth Anything 3, MoGe, SAM 3 and 3.1, RT-DETRv4, and BiRefNet.</li>
+<li><a href="https://comfy.org/workflows/tag/text-generation/">Text generation</a>: Gemma 3 and 4, Qwen3, Qwen3.5, and Qwen3-VL, including multimodal inputs.</li>
+<li>Load complete checkpoints or separate diffusion models, VAEs, text encoders, LoRAs, ControlNets, adapters, and upscalers from supported model formats.</li>
+<li>Built-in tools for inpainting, outpainting, reference conditioning, masks and compositing, model merging, upscaling, frame interpolation, segmentation, depth estimation, and media processing.</li>
+<li>Save and load workflows as JSON, or recover complete workflows and seeds from supported generated media.</li>
+<li>Runs fully offline: core does not download anything unless you request it. Use <code>--offline</code> to disable the optional paid <a href="https://docs.comfy.org/tutorials/api-nodes/overview">Comfy API nodes</a> and force all built-in functionality to stay offline, or <code>--disable-partner-nodes</code> to only disable the API nodes.</li>
+<li>Extend ComfyUI with custom nodes</li>
+<li>Configure additional model locations with <a href="extra_model_paths.yaml.example"><code>extra_model_paths.yaml</code></a>.</li>
+<li>Support for saving and loading high bit depth images and videos: 16 bit PNG images, 32 bit EXR, 10 bit AVIF are supported and more.</li>
+<li>Support for saving and loading HDR videos and images in various formats.</li>
+</ul>
+<h2>Release Process</h2>
+<p>ComfyUI follows a weekly release cycle targeting Monday but this regularly changes because of model releases or large changes to the codebase. There are three interconnected repositories:</p>
+<ol>
+<li><strong><a href="https://github.com/comfyanonymous/ComfyUI">ComfyUI Core</a></strong></li>
+<li>Releases a new major stable version (e.g., v0.7.0) roughly every 2 weeks.</li>
+<li>Starting from v0.4.0 patch versions will be used for fixes backported onto the current stable release.</li>
+<li>Minor versions will be used for releases off the master branch.</li>
+<li>Patch versions may still be used for releases on the master branch in cases where a backport would not make sense.</li>
+<li>Commits outside of the stable release tags may be very unstable and break many custom nodes.</li>
+<li>
+<p>Serves as the foundation for the desktop release</p>
+</li>
+<li>
+<p><strong><a href="https://github.com/Comfy-Org/Comfy-Desktop">Comfy Desktop</a></strong></p>
+</li>
+<li>
+<p>Builds a new release using the latest stable core version</p>
+</li>
+<li>
+<p><strong><a href="https://github.com/Comfy-Org/ComfyUI_frontend">ComfyUI Frontend</a></strong></p>
+</li>
+<li>Every 2+ weeks frontend updates are merged into the core repository</li>
+<li>Features are frozen for the upcoming core release</li>
+<li>Development continues for the next r</li>
+</ol>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Comfy-Org/ComfyUI#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">supabase /</span>
+          <a href="https://github.com/supabase/supabase" target="_blank" rel="noopener">supabase</a>
+        </div>
+        <div class="repo-desc">The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 113,154</span>
+      <span class="meta-item">🍴 16,977</span>
+      <span class="stars-today">⭐ 504 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+<img src="https://user-images.githubusercontent.com/8291514/213727234-cda046d6-28c6-491a-b284-b86c5cede25d.png#gh-light-mode-only">
+<img src="https://user-images.githubusercontent.com/8291514/213727225-56186826-bee8-43b5-9b15-86e839d89393.png#gh-dark-mode-only">
+</p>
+
+<h1>Supabase</h1>
+<p><a href="https://supabase.com">Supabase</a> is the Postgres development platform. We're building the features of Firebase using enterprise-grade open source tools.</p>
+<ul>
+<li>[x] Hosted Postgres Database. <a href="https://supabase.com/docs/guides/database">Docs</a></li>
+<li>[x] Authentication and Authorization. <a href="https://supabase.com/docs/guides/auth">Docs</a></li>
+<li>[x] Auto-generated APIs.</li>
+<li>[x] REST. <a href="https://supabase.com/docs/guides/api">Docs</a></li>
+<li>[x] GraphQL. <a href="https://supabase.com/docs/guides/graphql">Docs</a></li>
+<li>[x] Realtime subscriptions. <a href="https://supabase.com/docs/guides/realtime">Docs</a></li>
+<li>[x] Functions.</li>
+<li>[x] Database Functions. <a href="https://supabase.com/docs/guides/database/functions">Docs</a></li>
+<li>[x] Edge Functions <a href="https://supabase.com/docs/guides/functions">Docs</a></li>
+<li>[x] File Storage. <a href="https://supabase.com/docs/guides/storage">Docs</a></li>
+<li>[x] AI + Vector/Embeddings Toolkit. <a href="https://supabase.com/docs/guides/ai">Docs</a></li>
+<li>[x] Dashboard</li>
+</ul>
+<p><img alt="Supabase Dashboard" src="https://raw.githubusercontent.com/supabase/supabase/master/apps/www/public/images/github/supabase-dashboard.png" /></p>
+<p>Watch "releases" of this repo to get notified of major updates.</p>
+<p><kbd><img src="https://raw.githubusercontent.com/supabase/supabase/d5f7f413ab356dc1a92075cb3cee4e40a957d5b1/web/static/watch-repo.gif" alt="Watch this repo"/></kbd></p>
+<h2>Documentation</h2>
+<p>For full documentation, visit <a href="https://supabase.com/docs">supabase.com/docs</a></p>
+<p>To see how to Contribute, visit <a href="./DEVELOPERS.md">Getting Started</a></p>
+<h2>Community &amp; Support</h2>
+<ul>
+<li><a href="https://github.com/supabase/supabase/discussions">Community Forum</a>. Best for: help with building, discussion about database best practices.</li>
+<li><a href="https://github.com/supabase/supabase/issues">GitHub Issues</a>. Best for: bugs and errors you encounter using Supabase.</li>
+<li><a href="https://supabase.com/docs/support#business-support">Email Support</a>. Best for: problems with your database or infrastructure.</li>
+<li><a href="https://discord.supabase.com">Discord</a>. Best for: sharing your applications and hanging out with the community.</li>
+</ul>
+<h2>How it works</h2>
+<p>Supabase is a combination of open source tools. We’re building the features of Firebase using enterprise-grade, open source products. If the tools and communities exist, with an MIT, Apache 2, or equivalent open license, we will use and support that tool. If the tool doesn't exist, we build and open source it ourselves. Supabase is not a 1-to-1 mapping of Firebase. Our aim is to give developers a Firebase-like developer experience using open source tools.</p>
+<p><strong>Architecture</strong></p>
+<p>Supabase is a <a href="https://supabase.com/dashboard">hosted platform</a>. You can sign up and start using Supabase without installing anything.<br />
+You can also <a href="https://supabase.com/docs/guides/hosting/overview">self-host</a> and <a href="https://supabase.com/docs/guides/local-development">develop locally</a>.</p>
+<p><img alt="Architecture" src="apps/docs/public/img/supabase-architecture.svg" /></p>
+<ul>
+<li><a href="https://www.postgresql.org/">Postgres</a> is an object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.</li>
+<li><a href="https://github.com/supabase/realtime">Realtime</a> is an Elixir server that allows you to listen to PostgreSQL inserts, updates, and deletes using websockets. Realtime polls Postgres' built-in replication functionality for database changes, converts changes to JSON, then broadcasts the JSON over websockets to authorized clients.</li>
+<li><a href="http://postgrest.org/">PostgREST</a> is a web server that turns your PostgreSQL database directly into a RESTful API.</li>
+<li><a href="https://github.com/supabase/gotrue">GoTrue</a> is a JWT-based authentication API that simplifies user sign-ups, logins, and session management in your applications.</li>
+<li><a href="https://github.com/supabase/storage-api">Storage</a> a RESTful API for managing files in S3, with Postgres handling permissions.</li>
+<li><a href="http://github.com/supabase/pg_graphql/">pg_graphql</a> a PostgreSQL extension that exposes a GraphQL API.</li>
+<li><a href="https://github.com/supabase/postgres-meta">postgres-meta</a> is a RESTful API for managing your Postgres, allowing you to fetch tables, add roles, and run queries, etc.</li>
+<li><a href="https://github.com/envoyproxy/envoy">Envoy</a> is a cloud-native, high-performance edge and service proxy.</li>
+</ul>
+<h4>Client libraries</h4>
+<p>Our approach for client libraries is modular. Each sub-library is a standalone implementation for a single external system. This is one of the ways we support existing tools.</p>
+<table style="table-layout:fixed; white-space: nowrap;">
+  <tr>
+    <th>Language</th>
+    <th>Client</th>
+    <th colspan="5">Feature-Clients (bundled in Supabase client)</th>
+  </tr>
+  <!-- notranslate -->
+  <tr>
+    <th></th>
+    <th>Supabase</th>
+    <th><a href="https://github.com/postgrest/postgrest" target="_blank" rel="noopener noreferrer">PostgREST</a></th>
+    <th><a href="https://github.com/supabase/gotrue" target="_blank" rel="noopener noreferrer">GoTrue</a></th>
+    <th><a href="https://github.com/supabase/realtime" target="_blank" rel="noopener noreferrer">Realtime</a></th>
+    <th><a href="https://github.com/supabase/storage-api" target="_blank" rel="noopener noreferrer">Storage</a></th>
+    <th>Functions</th>
+  </tr>
+  <!-- TEMPLATE FOR NEW ROW -->
+  <!-- START ROW
+  <tr>
+    <td>lang</td>
+    <td><a href="https://github.com/supabase-community/supabase-lang" target="_blank" rel="noopener noreferrer">supabase-lang</a></td>
+    <td><a href="https://github.com/supabase-community/postgrest-lang" target="_blank" rel="noopener noreferrer">postgrest-lang</a></td>
+    <td><a href="https://github.com/supabase-community/gotrue-lang" target="_blank" rel="noopener noreferrer">gotrue-lang</a></td>
+    <td><a href="https://github.com/supabase-community/realtime-lang" target="_blank" rel="noopener noreferrer">realtime-lang</a></td>
+    <td><a href="https://github.com/supabase-community/storage-lang" target="_blank" rel="noopener noreferrer">storage-lang</a></td>
+  </tr>
+  END ROW -->
+  <!-- /notranslate -->
+  <th colspan="7">⚡️ Official ⚡️</th>
+  <!-- notranslate -->
+  <tr>
+    <td>JavaScript (TypeScript)</td>
+    <td><a href="https://github.com/supabase/supabase-js" target="_blank" rel="noopener noreferrer">supabase-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/postgrest-js" target="_blank" rel="noopener noreferrer">postgrest-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/auth-js" target="_blank" rel="noopener noreferrer">auth-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/realtime-js" target="_blank" rel="noopener noreferrer">realtime-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/storage-js" target="_blank" rel="noopener noreferrer">storage-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/functions-js" target="_blank" rel="noopener noreferrer">functions-js</a></td>
+  </tr>
+    <tr>
+    <td>Flutter</td>
+    <td><a href="https://github.com/supabase/supabase-flutter" target="_blank" rel="noopener noreferrer">supabase-flutter</a></td>
+    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/postgrest" target="_blank" rel="noopener noreferrer">postgrest</a></td>
+    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/supabase_auth" target="_blank" rel="noopener noreferrer">supabase_auth</a></td>
+    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/supabase_realtime" target="_blank" rel="noopener noreferrer">supabase_realtime</a></td>
+    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/supabase_storage" target="_blank" rel="noopener noreferrer">supab
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/supabase/supabase#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">twentyhq /</span>
+          <a href="https://github.com/twentyhq/twenty" target="_blank" rel="noopener">twenty</a>
+        </div>
+        <div class="repo-desc">The open alternative to Salesforce, designed for AI.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 59,359</span>
+      <span class="meta-item">🍴 9,674</span>
+      <span class="stars-today">⭐ 112 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <a href="https://www.twenty.com">
+    <img src="./packages/twenty-website/public/images/core/logo.svg" width="100px" alt="Twenty logo" />
+  </a>
+</p>
+
+<h2 align="center">The #1 Open-Source CRM</h2>
+
+<p align="center"><a href="https://twenty.com"><img src="./packages/twenty-website/public/images/readme/globe-icon.svg" width="12" height="12"/> Website</a> · <a href="https://docs.twenty.com"><img src="./packages/twenty-website/public/images/readme/book-icon.svg" width="12" height="12"/> Documentation</a> · <a href="https://github.com/orgs/twentyhq/projects/1"><img src="./packages/twenty-website/public/images/readme/map-icon.svg" width="12" height="12"/> Roadmap </a> · <a href="https://discord.gg/cx5n4Jzs57"><img src="./packages/twenty-website/public/images/readme/discord-icon.svg" width="12" height="12"/> Discord</a> · <a href="https://www.figma.com/file/xt8O9mFeLl46C5InWwoMrN/Twenty"><img src="./packages/twenty-website/public/images/readme/figma-icon.webp"  width="12" height="12"/>  Figma</a></p>
+
+<p align="center">
+  <a href="https://www.twenty.com">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./packages/twenty-website/public/images/readme/github-cover-dark.webp" />
+      <source media="(prefers-color-scheme: light)" srcset="./packages/twenty-website/public/images/readme/github-cover-light.webp" />
+      <img src="./packages/twenty-website/public/images/readme/github-cover-light.webp" alt="Twenty banner" />
+    </picture>
+  </a>
+</p>
+
+<p><br /></p>
+<h1>Why Twenty</h1>
+<p>Twenty gives technical teams the building blocks for a custom CRM that meets complex business needs and quickly adapts as the business evolves. Twenty is the CRM you build, ship, and version like the rest of your stack.</p>
+<p><a href="https://twenty.com/resources/why-twenty"><img src="./packages/twenty-website/public/images/readme/star-icon.svg" width="14" height="14"/> Learn more about why we built Twenty</a></p>
+<p><br /></p>
+<h1>Installation</h1>
+<h3><img src="./packages/twenty-website/public/images/readme/globe-icon.svg" width="14" height="14"/> Cloud</h3>
+<p>The fastest way to get started. Sign up at <a href="https://twenty.com">twenty.com</a> and spin up a workspace in under a minute, with no infrastructure to manage and always up to date.</p>
+<h3><img src="./packages/twenty-website/public/images/readme/book-icon.svg" width="14" height="14"/> Build an app</h3>
+<p>Scaffold a new app with the Twenty CLI:</p>
+<pre><code class="language-bash">npx create-twenty-app my-app
+</code></pre>
+<p>Define objects, fields, and views as code:</p>
+<pre><code class="language-ts">import { defineObject, FieldType } from 'twenty-sdk/define';
+
+export default defineObject({
+  nameSingular: 'deal',
+  namePlural: 'deals',
+  labelSingular: 'Deal',
+  labelPlural: 'Deals',
+  fields: [
+    { name: 'name', label: 'Name', type: FieldType.TEXT },
+    { name: 'amount', label: 'Amount', type: FieldType.CURRENCY },
+    { name: 'closeDate', label: 'Close Date', type: FieldType.DATE_TIME },
+  ],
+});
+</code></pre>
+<p>Then ship it to your workspace:</p>
+<pre><code class="language-bash">npx twenty app:publish --private
+</code></pre>
+<p>See the <a href="https://docs.twenty.com/developers/extend/apps/getting-started">app development guide</a> for objects, views, agents, and logic functions.</p>
+<p>Building with a coding agent? Install the official <a href="./packages/twenty-agent-skills">Twenty app skills</a>, which work in Claude Code, Codex, Cursor, Pi, and any other harness supported by the <code>skills</code> CLI:</p>
+<pre><code class="language-bash">npx skills add https://github.com/twentyhq/twenty/tree/agent-skills --list
+</code></pre>
+<p>The <code>agent-skills</code> branch is created by the first successful publish from <code>main</code>. Until then, use the <a href="./packages/twenty-agent-skills#local-development">local build instructions</a>. <a href="./SKILLS.md"><code>SKILLS.md</code></a> explains the other skill families in this repository and who they are for.</p>
+<h3><img src="./packages/twenty-website/public/images/readme/rocket-icon.svg" width="14" height="14"/> Self-hosting</h3>
+<p>Run Twenty on your own infrastructure with <a href="https://docs.twenty.com/developers/self-host/capabilities/docker-compose">Docker Compose</a>, or contribute locally via the <a href="https://docs.twenty.com/developers/contribute/capabilities/local-setup">local setup guide</a>.</p>
+<p><br /><br />
+<br /></p>
+<h1>Everything you need</h1>
+<p>Twenty gives you the building blocks of a modern CRM (objects, views, workflows, and agents) and lets you extend them as code. Here's a tour of what's in the box.</p>
+<p>Want to go deeper? Read the <a href="https://docs.twenty.com/user-guide/introduction"><img src="./packages/twenty-website/public/images/readme/planner-icon.svg" width="14" height="14"/> User Guide</a> for product walkthroughs, or the <a href="https://docs.twenty.com"><img src="./packages/twenty-website/public/images/readme/book-icon.svg" width="14" height="14"/> Documentation</a> for developer reference.</p>
+<table align="center">
+  <tr>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./packages/twenty-website/public/images/readme/v2-build-apps-dark.webp" />
+        <source media="(prefers-color-scheme: light)" srcset="./packages/twenty-website/public/images/readme/v2-build-apps-light.webp" />
+        <img src="./packages/twenty-website/public/images/readme/v2-build-apps-light.webp" alt="Create your apps" />
+      </picture>
+      <p align="center"><a href="https://docs.twenty.com/developers/extend/apps/getting-started"><img src="./packages/twenty-website/public/images/readme/code-icon.svg" width="16" height="16"/> Learn more about apps in doc</a></p>
+    </td>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./packages/twenty-website/public/images/readme/v2-version-control-dark.webp" />
+        <source media="(prefers-color-scheme: light)" srcset="./packages/twenty-website/public/images/readme/v2-version-control-light.webp" />
+        <img src="./packages/twenty-website/public/images/readme/v2-version-control-light.webp" alt="Stay on top with version control" />
+      </picture>
+      <p align="center"><a href="https://docs.twenty.com/developers/extend/apps/publishing"><img src="./packages/twenty-website/public/images/readme/monitor-icon.svg" width="16" height="16"/> Learn more about version control in doc</a></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./packages/twenty-website/public/images/readme/v2-all-tools-dark.webp" />
+        <source media="(prefers-color-scheme: light)" srcset="./packages/twenty-website/public/images/readme/v2-all-tools-light.webp" />
+        <img src="./packages/twenty-website/public/images/readme/v2-all-tools-light.webp" alt="All the tools you need to build anything" />
+      </picture>
+      <p align="center"><a href="https://docs.twenty.com/developers/extend/apps/building"><img src="./packages/twenty-website/public/images/readme/rocket-icon.svg" width="16" height="16"/> Learn more about primitives in doc</a></p>
+    </td>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./packages/twenty-website/public/images/readme/v2-tools-dark.webp" />
+        <source media="(prefers-color-scheme: light)" srcset="./packages/twenty-website/public/images/readme/v2-tools-light.webp" />
+        <img src="./packages/twenty-website/public/images/readme/v2-tools-light.webp" alt="Customize your layouts" />
+      </picture>
+      <p align="center"><a href="https://docs.twenty.com/user-guide/layout/overview"><img src="./packages/twenty-website/public/images/readme/planner-icon.svg" width="16" height="16"/> Learn more about layouts in doc</a></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./packages/twenty-website/public/images/readme/v2-ai-agents-dark.webp" />
+        <source media="(prefers-color-scheme: light)" srcset="./packages/twenty-website/public/images/readme/v2-ai-agents-light.webp" />
+        <img src="./packages/twenty-website/public/images/readme/v2-ai-agents-light.webp" alt="AI agents and chats" />
+      </picture>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/twentyhq/twenty#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">shiyu-coder /</span>
+          <a href="https://github.com/shiyu-coder/Kronos" target="_blank" rel="noopener">Kronos</a>
+        </div>
+        <div class="repo-desc">Kronos: A Foundation Model for the Language of Financial Markets</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 42,955</span>
+      <span class="meta-item">🍴 7,083</span>
+      <span class="stars-today">⭐ 575 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+  <h2><b>Kronos: A Foundation Model for the Language of Financial Markets </b></h2>
+</div>
+
+<div align="center">
+
+</a> 
+<a href="https://huggingface.co/NeoQuasar"> 
+<img src="https://img.shields.io/badge/🤗-Hugging_Face-yellow" alt="Hugging Face"> 
+</a> 
+<a href="https://shiyu-coder.github.io/Kronos-demo/"> <img src="https://img.shields.io/badge/🚀-Live_Demo-brightgreen" alt="Live Demo"> </a>
+<a href="https://github.com/shiyu-coder/Kronos/graphs/commit-activity"> 
+<img src="https://img.shields.io/github/last-commit/shiyu-coder/Kronos?color=blue" alt="Last Commit"> 
+</a> 
+<a href="https://github.com/shiyu-coder/Kronos/stargazers"> 
+<img src="https://img.shields.io/github/stars/shiyu-coder/Kronos?color=lightblue" alt="GitHub Stars"> 
+</a> 
+<a href="https://github.com/shiyu-coder/Kronos/network/members"> 
+<img src="https://img.shields.io/github/forks/shiyu-coder/Kronos?color=yellow" alt="GitHub Forks"> 
+</a> 
+<a href="./LICENSE"> 
+<img src="https://img.shields.io/github/license/shiyu-coder/Kronos?color=green" alt="License"> 
+</a>
+
+</div>
+
+<div align="center">
+  <!-- Keep these links. Translations will automatically update with the README. -->
+  <a href="https://zdoc.app/de/shiyu-coder/Kronos">Deutsch</a> | 
+  <a href="https://zdoc.app/es/shiyu-coder/Kronos">Español</a> | 
+  <a href="https://zdoc.app/fr/shiyu-coder/Kronos">Français</a> | 
+  <a href="https://zdoc.app/ja/shiyu-coder/Kronos">日本語</a> | 
+  <a href="https://zdoc.app/ko/shiyu-coder/Kronos">한국어</a> | 
+  <a href="https://zdoc.app/pt/shiyu-coder/Kronos">Português</a> | 
+  <a href="https://zdoc.app/ru/shiyu-coder/Kronos">Русский</a> | 
+  <a href="https://zdoc.app/zh/shiyu-coder/Kronos">中文</a>
+</div>
+
+<p align="center">
+
+<img src="./figures/logo.png" width="100">
+
+</p>
+
+<blockquote>
+<p>Kronos is the <strong>first open-source foundation model</strong> for financial candlesticks (K-lines), <br />
+trained on data from over <strong>45 global exchanges</strong>.</p>
+</blockquote>
+</div>
+<h2>📰 News</h2>
+<ul>
+<li>🚩 <strong>[2025.11.10]</strong> Kronos has been accpeted by AAAI 2026.</li>
+<li>🚩 <strong>[2025.08.17]</strong> We have released the scripts for fine-tuning! Check them out to adapt Kronos to your own tasks.</li>
+<li>🚩 <strong>[2025.08.02]</strong> Our paper is now available on <a href="https://arxiv.org/abs/2508.02739">arXiv</a>!</li>
+</ul>
+<p align="center">
+
+## 📜 Introduction
+
+**Kronos** is a family of decoder-only foundation models, pre-trained specifically for the "language" of financial markets—K-line sequences. Unlike general-purpose TSFMs, Kronos is designed to handle the unique, high-noise characteristics of financial data. It leverages a novel two-stage framework: 
+1. A specialized tokenizer first quantizes continuous, multi-dimensional K-line data (OHLCV) into **hierarchical discrete tokens**. 
+2. A large, autoregressive Transformer is then pre-trained on these tokens, enabling it to serve as a unified model for diverse quantitative tasks.
+
+<p align="center">
+    <img src="figures/overview.png" alt="" align="center" width="700px" />
+</p>
+
+## ✨ Live Demo 
+We have set up a live demo to visualize Kronos's forecasting results. The webpage showcases a forecast for the **BTC/USDT** trading pair over the next 24 hours. 
+
+**👉 [Access the Live Demo Here](https://shiyu-coder.github.io/Kronos-demo/)** 
+
+## 📦 Model Zoo 
+We release a family of pre-trained models with varying capacities to suit different computational and application needs. All models are readily accessible from the Hugging Face Hub.
+
+| Model        | Tokenizer                                                                       | Context length | Params  | Open-source                                                               |
+|--------------|---------------------------------------------------------------------------------| -------------- | ------ |---------------------------------------------------------------------------|
+| Kronos-mini  | [Kronos-Tokenizer-2k](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-2k)     | 2048           | 4.1M   | ✅ [NeoQuasar/Kronos-mini](https://huggingface.co/NeoQuasar/Kronos-mini)  |
+| Kronos-small | [Kronos-Tokenizer-base](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-base) | 512            | 24.7M  | ✅ [NeoQuasar/Kronos-small](https://huggingface.co/NeoQuasar/Kronos-small) |
+| Kronos-base  | [Kronos-Tokenizer-base](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-base) | 512            | 102.3M | ✅ [NeoQuasar/Kronos-base](https://huggingface.co/NeoQuasar/Kronos-base)   |
+| Kronos-large | [Kronos-Tokenizer-base](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-base) | 512            | 499.2M | ❌                                                                         |
+
+
+## 🚀 Getting Started
+
+### Installation
+
+1. Install Python 3.10+, and then install the dependencies:
+
+
+<pre><code class="language-shell">pip install -r requirements.txt
+</code></pre>
+
+
+### 📈 Making Forecasts
+
+Forecasting with Kronos is straightforward using the `KronosPredictor` class. It handles data preprocessing, normalization, prediction, and inverse normalization, allowing you to get from raw data to forecasts in just a few lines of code.
+
+**Important Note**: The `max_context` for `Kronos-small` and `Kronos-base` is **512**. This is the maximum sequence length the model can process. For optimal performance, it is recommended that your input data length (i.e., `lookback`) does not exceed this limit. The `KronosPredictor` will automatically handle truncation for longer contexts.
+
+Here is a step-by-step guide to making your first forecast.
+
+#### 1. Load the Tokenizer and Model
+
+First, load a pre-trained Kronos model and its corresponding tokenizer from the Hugging Face Hub.
+
+
+<pre><code class="language-python">from model import Kronos, KronosTokenizer, KronosPredictor
+
+# Load from Hugging Face Hub
+tokenizer = KronosTokenizer.from_pretrained(&quot;NeoQuasar/Kronos-Tokenizer-base&quot;)
+model = Kronos.from_pretrained(&quot;NeoQuasar/Kronos-small&quot;)
+</code></pre>
+
+
+#### 2. Instantiate the Predictor
+
+Create an instance of `KronosPredictor`, passing the model, tokenizer, and desired device.
+
+
+<pre><code class="language-python"># Initialize the predictor
+predictor = KronosPredictor(model, tokenizer, max_context=512)
+</code></pre>
+
+
+#### 3. Prepare Input Data
+
+The `predict` method requires three main inputs:
+-   `df`: A pandas DataFrame containing the historical K-line data. It must include columns `['open', 'high', 'low', 'close']`. `volume` and `amount` are optional.
+-   `x_timestamp`: A pandas Series of timestamps corresponding to the historical data in `df`.
+-   `y_timestamp`: A pandas Series of timestamps for the future periods you want to predict.
+
+
+<pre><code class="language-python">import pandas as pd
+
+# Load your data
+df = pd.read_csv(&quot;./data/XSHG_5min_600977.csv&quot;)
+df['timestamps'] = pd.to_datetime(df['timestamps'])
+
+# Define context window and prediction length
+lookback = 400
+pred_len = 120
+
+# Prepare inputs for the predictor
+x_df = df.loc[:lookback-1, ['open', 'high', 'low', 'close', 'volume', 'amount']]
+x_timestamp = df.loc[:lookback-1, 'timestamps']
+y_timestamp = df.loc[lookback:lookback+pred_len-1, 'timestamps']
+</code></pre>
+
+
+#### 4. Generate Forecasts 
+
+Call the `predict` method to generate forecasts. You can control the sampling process with parameters like `T`, `top_p`, and `sample_count` for probabilistic forecasting.
+
+
+<pre><code class="language-python"># Generate predictions
+pred_df = predictor.predict(
+    df=x_df,
+    x_timestamp=x_timestamp,
+    y_timestamp=y_timestamp,
+    pred_len=pred_len,
+    T=1.0,          # Temperature for sampling
+    top_p=0.9,      # Nucleus sampling probability
+    sample_count=1  # Number of forecast paths to generate and average
+)
+
+print(&quot;Forecasted Data Head:&quot;)
+print(pred_df.head())
+</code></pre>
+
+
+The `predict` method returns a pandas DataFrame containing the forecasted values for `open`, `high`, `low`, `close`, `volume`, and `amount`, indexed by the `y_timestamp` you provided.
+
+For efficient processing of multiple time series, Kronos provides a `predict_batch` method that enables parallel prediction on multiple dat
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/shiyu-coder/Kronos#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">akitaonrails /</span>
+          <a href="https://github.com/akitaonrails/ai-memory" target="_blank" rel="noopener">ai-memory</a>
+        </div>
+        <div class="repo-desc">Solution for long term memory for agent coding CLIs and to facilitate handoff between different agent vendors</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 12,503</span>
+      <span class="meta-item">🍴 882</span>
+      <span class="stars-today">⭐ 286 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.png">
+    <img alt="ai-memory" src="docs/logo-light.png" width="480">
+  </picture>
+</p>
+
+<blockquote>
+<p>Long-term memory for AI coding agents. Quit Claude Code mid-task,<br />
+start OpenAI Codex in the same directory, continue without<br />
+re-explaining the architecture, the failed approaches, or the open<br />
+questions.</p>
+</blockquote>
+<p><strong>Website: <a href="https://aimemory.sh">aimemory.sh</a></strong></p>
+<p><a href="https://aimemory.sh"><img alt="Website" src="https://img.shields.io/badge/website-aimemory.sh-blue" /></a><br />
+<a href="https://github.com/akitaonrails/ai-memory/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/akitaonrails/ai-memory" /></a><br />
+<a href="rust-toolchain.toml"><img alt="Rust" src="https://img.shields.io/badge/rust-1.95+-blue" /></a><br />
+<a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue" /></a></p>
+<h2>Why ai-memory</h2>
+<p>Your coding agent probably has a memory feature already. Claude Code takes its<br />
+own notes, Cursor remembers some things, and every platform is adding more. They<br />
+all have the same limits: the notes live on one machine, belong to one agent,<br />
+and drop out of view when you switch tools or hand the work to a teammate.</p>
+<p>ai-memory removes those limits.</p>
+<ul>
+<li>
+<p><strong>It follows you across agents.</strong> More than twenty harnesses (Claude Code,<br />
+  Codex, Cursor, Gemini CLI, OpenCode, Grok, Devin, Kimi, Kiro, and others)<br />
+  feed one shared memory. Quit Claude Code mid-task, open Codex in the same<br />
+  directory, and the next agent picks up a handoff that says where you left<br />
+  off, what failed, and what is still open. Handoffs are a typed protocol:<br />
+  each one has an owner and is claimed exactly once.</p>
+</li>
+<li>
+<p><strong>It can carry the session, not just a summary.</strong> Start agents with<br />
+<code>ai-memory run</code>: quit Claude Code, run <code>ai-memory run codex</code>, and Codex gets<br />
+  the shared workstream plus a private, temporary local projection of Claude's<br />
+  visible native history for exact details the bounded startup packet omitted.<br />
+  The remote server receives only the harness and session identity, never the<br />
+  local transcript path or body. Direct harness launches behave exactly as<br />
+  before.</p>
+</li>
+<li>
+<p><strong>It follows you across projects.</strong> A small profile of how you usually<br />
+  work (your package manager, test layout, architecture habits) reaches<br />
+  every new repository at session start, so you stop re-explaining yourself.<br />
+  It sits below each repository's rules file as a default. It is on by<br />
+  default for a single user, and on a shared server it is opt-in and private<br />
+  per person. See <a href="docs/cross-project-profile.md"><code>docs/cross-project-profile.md</code></a>.</p>
+</li>
+<li>
+<p><strong>It follows you across machines.</strong> Memory lives in a server you run, on<br />
+  the same laptop, a homelab box, or anywhere else, so the project you left<br />
+  on the desktop is the project you resume on the laptop, with the same<br />
+  knowledge and the same open questions.</p>
+</li>
+<li>
+<p><strong>It works for a team.</strong> Point everyone at one server, and what one<br />
+  person's sessions learn, everyone's agents can retrieve. Knowledge is<br />
+  shared per project; personal handoffs stay personal. Multi-user auth,<br />
+  per-person attribution, and an audit log are built in and are not a paid tier.</p>
+</li>
+<li>
+<p><strong>Your memory is plain markdown.</strong> The source of truth is a git-backed<br />
+  wiki of ordinary <code>.md</code> files: <code>grep</code> it, open it in Obsidian, edit it by<br />
+  hand, <code>rsync</code> it. The database is a derived index that can always be<br />
+  rebuilt from the files. There is no vector store to maintain and no<br />
+  content locked in a binary blob.</p>
+</li>
+<li>
+<p><strong>It captures the work itself, silently.</strong> Lifecycle hooks record what<br />
+  happened (prompts, tool calls, session boundaries), sanitize it at a typed<br />
+  privacy boundary before anything is stored, and the server consolidates it<br />
+  into readable pages. You do not have to ask it to remember anything. The<br />
+  default path uses <strong>zero LLM calls</strong>: capture, search, and handoffs all<br />
+  work with no API key.</p>
+</li>
+<li>
+<p><strong>It ages memory without an LLM.</strong> Memory decays on a schedule you can<br />
+  tune per tier, and memory you use decays <em>slower</em>: opening a page,<br />
+  searching it, or reaching it through a link counts as use. When episodic<br />
+  notes go cold they can be compacted down to their durable facts (file<br />
+  paths, error codes, decisions) instead of dropped. Near-duplicates<br />
+  collapse into one, and likely contradictions get flagged, all with <strong>zero<br />
+  API calls</strong>. Nothing is hard-deleted: the original stays in git and the<br />
+  version chain (<code>restore-page</code> brings it back). Access-weighted retention is<br />
+  always on because it can only keep memory <em>longer</em>. The parts that rewrite<br />
+  or drop content (compaction, dedup, per-tier curves) stay off by default<br />
+  until you turn them on.</p>
+</li>
+<li>
+<p><strong>It can also "dream", if you let it.</strong> With an LLM configured, an opt-in<br />
+  background pass rewrites whole clusters of cold notes into single coherent<br />
+  pages while you are idle, and cancels as soon as you come back to work. It<br />
+  never deletes a source (the pre-merge versions stay reachable), it is off<br />
+  by default, and it has to pass a recall eval before it could become<br />
+  default behavior. Unless you ask for more, the zero-LLM path above is what<br />
+  runs.</p>
+</li>
+<li>
+<p><strong>It is honest about itself.</strong> It ships as one self-contained binary.<br />
+  Purge commands say exactly what "deleted" means. The write ceiling<br />
+  (~700/s) is measured, not guessed. An audit log records every mutation.</p>
+</li>
+</ul>
+<h2>How it works</h2>
+<pre><code>capture ──▶ consolidate ──▶ recall ──▶ handoff
+ hooks        session-end      search     next agent,
+ observe      summaries as     + brief    any harness
+ silently     wiki pages       injection
+</code></pre>
+<p>Agents emit sanitized observations through lifecycle hooks as you work.<br />
+At session end, observations become coherent markdown pages in the<br />
+project's wiki (optionally LLM-written; useful even without). The next<br />
+session, in any agent on any machine, gets a bounded brief and can search<br />
+everything: full-text, entities, links, and (optionally) vectors, fused<br />
+into one ranking. Cross-agent handoffs pass the baton explicitly.</p>
+<p>The full design, including the invariants that keep multi-user and<br />
+multi-session use safe, is in <a href="docs/ARCHITECTURE.md"><code>docs/ARCHITECTURE.md</code></a>.</p>
+<p>An optional <a href="docs/management-ui.md">server-rendered management console</a> provides<br />
+user administration, session inspection and deletion, and personal MCP API keys.<br />
+Build with <code>--features management-ui</code> and start <code>serve --transport http
+--enable-management-ui</code>; both compile-time and runtime opt-ins are required.</p>
+<h2>Support matrix</h2>
+<p>Every row below is a first-party integration (MCP registration, lifecycle<br />
+hooks, or both) checked by CI. The full matrix with per-agent notes and<br />
+caveats is in <a href="docs/support-matrix.md"><code>docs/support-matrix.md</code></a>.</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>NixOS module</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Windows via WSL2</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Native Windows</td>
+<td>Experimental</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Command Code</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Devin CLI</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>OpenCode (V1/V2 auto-detected)</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>OpenCode V2 compatibility aliases (<code>opencode2</code>, <code>opencode-v2</code>, <code>open-code2</code>)</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Gemini CLI</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Oh My Pi / OMP</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Pi</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Crush</td>
+<td>Managed-only</td>
+</tr>
+<tr>
+<td>Managed workstreams</td>
+<td>Opt-in</td>
+</tr>
+<tr>
+<td>Claude Desktop</td>
+<td>MCP-only</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Antigravity CLI</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Grok Build CLI</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Swival CLI</td>
+<td>MCP-only</td>
+</tr>
+<tr>
+<td>Zero</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>ZCode</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Kimi Code</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Kiro CLI</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Pool</td>
+<td>Hooks-only</td>
+</tr>
+<tr>
+<td>GitHub Copilot CLI</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Factory Droid</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Meta Muse Code</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>CodeBuddy Code</td>
+<td>Hooks-only</td>
+</tr>
+<tr>
+<td>IBM Bob</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Qwen Code</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>VS Code Copilot</td>
+<td>MCP-only</td>
+</tr>
+<tr>
+<td>Zed</td>
+<td>MCP-only</td>
+</tr>
+<tr>
+<td>DeepSeek Harness (DSH)</td>
+<td>Hooks + MCP</td>
+</tr>
+<tr>
+<td>Cline CLI</td>
+<td>Hooks + MCP</td>
+</tr>
+<tr>
+<td>FreeBuff</td>
+<td>MCP-only</td>
+</tr>
+<tr>
+<td>Prime Agent</td>
+<td>MCP-only</td>
+</tr>
+<tr>
+<td>Hermes Agent</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>GrizzyBot</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>LLM/auth providers</td>
+<td>Supported</td>
+</tr>
+<tr>
+<td>Embedding providers</td>
+<td>Supported</td>
+</tr>
+</tbody>
+</table>
+<h2>Coming from another tool?</h2>
+<p>Most agent-memory tools optimize for one thin</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/akitaonrails/ai-memory#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Graphify-Labs /</span>
+          <a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noopener">graphify</a>
+        </div>
+        <div class="repo-desc">Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 131,946</span>
+      <span class="meta-item">🍴 12,660</span>
+      <span class="stars-today">⭐ 1,433 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>graphify</h1>
+<p><a href="https://github.com/safishamsi/graphify/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/safishamsi/graphify/actions/workflows/ci.yml/badge.svg?branch=v1" /></a></p>
+<p><strong>A Claude Code skill.</strong> Type <code>/graphify</code> in Claude Code - it reads your files, builds a knowledge graph, and gives you back structure you didn't know was there.</p>
+<p>Fully multimodal. Drop in code, PDFs, markdown, screenshots, diagrams, whiteboard photos, even images in other languages - graphify uses Claude vision to extract concepts and relationships from all of it and connects them into one graph.</p>
+<blockquote>
+<p>Andrej Karpathy keeps a <code>/raw</code> folder where he drops papers, tweets, screenshots, and notes. graphify is the answer to that problem - 71.5x fewer tokens per query vs reading the raw files, persistent across sessions, honest about what it found vs guessed.</p>
+</blockquote>
+<pre><code>/graphify .                        # works on any folder - your codebase, notes, papers, anything
+</code></pre>
+<pre><code>graphify-out/
+├── graph.html       interactive graph - click nodes, search, filter by community
+├── obsidian/        open as Obsidian vault
+├── wiki/            Wikipedia-style articles for agent navigation (--wiki)
+├── GRAPH_REPORT.md  god nodes, surprising connections, suggested questions
+├── graph.json       persistent graph - query weeks later without re-reading
+└── cache/           SHA256 cache - re-runs only process changed files
+</code></pre>
+<h2>Install</h2>
+<p><strong>Requires:</strong> <a href="https://claude.ai/code">Claude Code</a> and Python 3.10+</p>
+<pre><code class="language-bash">pip install graphifyy &amp;&amp; graphify install
+</code></pre>
+<blockquote>
+<p>The PyPI package is temporarily named <code>graphifyy</code> while the <code>graphify</code> name is being reclaimed. The CLI and skill command are still <code>graphify</code>.</p>
+<p><strong>Windows:</strong> If <code>graphify</code> is not recognized after install, add the Python Scripts folder to your PATH: <code>%APPDATA%\Python\Python3xx\Scripts</code> (replace <code>3xx</code> with your Python version, e.g. <code>313</code>). Or use <code>pipx install graphifyy</code> which handles PATH automatically.<br />
+<strong>macOS (externally managed):</strong> Use <code>pipx install graphifyy</code> if <code>pip install</code> fails with an "externally-managed-environment" error.</p>
+</blockquote>
+<p>Then open Claude Code in any directory and type:</p>
+<pre><code>/graphify .
+</code></pre>
+<details>
+<summary>Manual install (curl)</summary>
+
+
+<pre><code class="language-bash">mkdir -p ~/.claude/skills/graphify
+curl -fsSL https://raw.githubusercontent.com/safishamsi/graphify/v1/skills/graphify/skill.md \
+  &gt; ~/.claude/skills/graphify/SKILL.md
+</code></pre>
+
+
+Add to `~/.claude/CLAUDE.md`:
+
+
+<pre><code>- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+When the user types `/graphify`, invoke the Skill tool with `skill: &quot;graphify&quot;` before doing anything else.
+</code></pre>
+
+
+</details>
+
+<h2>Usage</h2>
+<pre><code>/graphify                          # run on current directory
+/graphify ./raw                    # run on a specific folder
+/graphify ./raw --mode deep        # more aggressive INFERRED edge extraction
+/graphify ./raw --update           # re-extract only changed files, merge into existing graph
+
+/graphify add https://arxiv.org/abs/1706.03762        # fetch a paper, save, update graph
+/graphify add https://x.com/karpathy/status/...       # fetch a tweet
+
+/graphify query &quot;what connects attention to the optimizer?&quot;
+/graphify path &quot;DigestAuth&quot; &quot;Response&quot;
+/graphify explain &quot;SwinTransformer&quot;
+
+/graphify ./raw --watch            # auto-sync graph as files change (code: instant, docs: notifies you)
+/graphify ./raw --wiki             # build agent-crawlable wiki (index.md + article per community)
+/graphify ./raw --svg              # export graph.svg
+/graphify ./raw --graphml          # export graph.graphml (Gephi, yEd)
+/graphify ./raw --neo4j            # generate cypher.txt for Neo4j
+/graphify ./raw --mcp              # start MCP stdio server
+
+graphify hook install              # post-commit git hook - rebuilds graph on every commit automatically
+</code></pre>
+<p>Works with any mix of file types:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Extensions</th>
+<th>Extraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code</td>
+<td><code>.py .ts .js .go .rs .java .c .cpp .rb .cs .kt .scala .php</code></td>
+<td>AST via tree-sitter + call-graph pass</td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><code>.md .txt .rst</code></td>
+<td>Concepts + relationships via Claude</td>
+</tr>
+<tr>
+<td>Papers</td>
+<td><code>.pdf</code></td>
+<td>Citation mining + concept extraction</td>
+</tr>
+<tr>
+<td>Images</td>
+<td><code>.png .jpg .webp .gif</code></td>
+<td>Claude vision - screenshots, diagrams, any language</td>
+</tr>
+</tbody>
+</table>
+<h2>What you get</h2>
+<p><strong>God nodes</strong> - highest-degree concepts (what everything connects through)</p>
+<p><strong>Surprising connections</strong> - ranked by composite score. Code-paper edges rank higher than code-code. Each result includes a plain-English why.</p>
+<p><strong>Suggested questions</strong> - 4-5 questions the graph is uniquely positioned to answer</p>
+<p><strong>Token benchmark</strong> - printed automatically after every run. On a mixed corpus (Karpathy repos + papers + images): <strong>71.5x</strong> fewer tokens per query vs reading raw files.</p>
+<p><strong>Auto-sync</strong> (<code>--watch</code>) - run in a background terminal and the graph updates itself as your codebase changes. Code file saves trigger an instant rebuild (AST only, no LLM). Doc/image changes notify you to run <code>--update</code> for the LLM re-pass. Useful for agentic workflows where multiple agents are writing code in parallel - the graph stays current between waves automatically.</p>
+<p><strong>Git commit hook</strong> (<code>graphify hook install</code>) - installs a post-commit hook that rebuilds the graph after every commit. No background process needed. Triggers once per commit, works with any editor, safe to add alongside existing hooks.</p>
+<p><strong>Wiki</strong> (<code>--wiki</code>) - Wikipedia-style markdown articles per community and god node, with an <code>index.md</code> entry point. Point any agent at <code>index.md</code> and it can navigate the knowledge base by reading files instead of parsing JSON.</p>
+<p>Every edge is tagged <code>EXTRACTED</code>, <code>INFERRED</code>, or <code>AMBIGUOUS</code> - you always know what was found vs guessed.</p>
+<h2>Worked examples</h2>
+<table>
+<thead>
+<tr>
+<th>Corpus</th>
+<th>Files</th>
+<th>Reduction</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Karpathy repos + 5 papers + 4 images</td>
+<td>52</td>
+<td><strong>71.5x</strong></td>
+<td><a href="worked/karpathy-repos/"><code>worked/karpathy-repos/</code></a></td>
+</tr>
+<tr>
+<td>graphify source + Transformer paper</td>
+<td>4</td>
+<td><strong>5.4x</strong></td>
+<td><a href="worked/mixed-corpus/"><code>worked/mixed-corpus/</code></a></td>
+</tr>
+<tr>
+<td>httpx (synthetic Python library)</td>
+<td>6</td>
+<td>~1x</td>
+<td><a href="worked/httpx/"><code>worked/httpx/</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Token reduction scales with corpus size. 6 files fits in a context window anyway, so graph value there is structural clarity, not compression. At 52 files (code + papers + images) you get 71x+. Each <code>worked/</code> folder has the raw input files and the actual output (<code>GRAPH_REPORT.md</code>, <code>graph.json</code>) so you can run it yourself and verify the numbers.</p>
+<h2>Tech stack</h2>
+<p>NetworkX + Leiden (graspologic) + tree-sitter + Claude + vis.js. No Neo4j required, no server, runs entirely locally.</p>
+<details>
+<summary>Contributing</summary>
+
+**Worked examples** are the most trust-building contribution. Run `/graphify` on a real corpus, save output to `worked/{slug}/`, write an honest `review.md` evaluating what the graph got right and wrong, submit a PR.
+
+**Extraction bugs** - open an issue with the input file, the cache entry (`graphify-out/cache/`), and what was missed or invented.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for module responsibilities and how to add a language.
+
+</details>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Graphify-Labs/graphify#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on October 22, 2026  07:22 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
