@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GitHub Trending — October 23, 2026  05:56</title>
+  <title>GitHub Trending — October 25, 2026  09:15</title>
   <style>
     /* ── reset & tokens ───────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -245,420 +245,13 @@
     <span class="badge">Today</span>
   </a>
   <div class="subtitle">
-    Auto-generated on October 23, 2026  05:56 &nbsp;·&nbsp; 9 trending repositories
+    Auto-generated on October 25, 2026  09:15 &nbsp;·&nbsp; 10 trending repositories
   </div>
 </header>
 
 <main>
 <div>
   <div class="rank-label">#1</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">php /</span>
-          <a href="https://github.com/php/php-src" target="_blank" rel="noopener">php-src</a>
-        </div>
-        <div class="repo-desc">The PHP Interpreter</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#555555"></span>C</span>
-      <span class="meta-item">⭐ 41,265</span>
-      <span class="meta-item">🍴 8,323</span>
-      <span class="stars-today">⭐ 287 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <div align="center">
-    <a href="https://www.php.net">
-        <img
-            alt="PHP"
-            src="https://www.php.net/images/logos/new-php-logo.svg"
-            width="150">
-    </a>
-</div>
-
-<h1>The PHP Interpreter</h1>
-<p>PHP is a popular general-purpose scripting language that is especially suited to<br />
-web development. Fast, flexible and pragmatic, PHP powers everything from your<br />
-blog to the most popular websites in the world.</p>
-<p>PHP is distributed under the <a href="LICENSE">Modified BSD License</a><br />
-(SPDX-License-Identifier: <code>BSD-3-Clause</code>).</p>
-<p><a href="https://github.com/php/php-src/actions/workflows/test.yml"><img alt="Test" src="https://github.com/php/php-src/actions/workflows/test.yml/badge.svg" /></a><br />
-<a href="https://issues.oss-fuzz.com/issues?q=project:php"><img alt="Fuzzing Status" src="https://oss-fuzz-build-logs.storage.googleapis.com/badges/php.svg" /></a></p>
-<h2>Documentation</h2>
-<p>The PHP manual is available at <a href="https://www.php.net/docs">php.net/docs</a>.</p>
-<h2>Installation</h2>
-<h3>Prebuilt packages and binaries</h3>
-<p>Prebuilt packages and binaries can be used to get up and running fast with PHP.</p>
-<p>For Windows, the PHP binaries can be obtained from<br />
-<a href="https://windows.php.net">windows.php.net</a>. After extracting the archive the<br />
-<code>*.exe</code> files are ready to use.</p>
-<p>For other systems, see the <a href="https://www.php.net/install">installation chapter</a>.</p>
-<h3>Building PHP source code</h3>
-<p><em>For Windows, see <a href="https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2">Build your own PHP on Windows</a>.</em></p>
-<p>For a minimal PHP build from Git, you will need autoconf, bison, and re2c. For<br />
-a default build, you will additionally need libxml2 and libsqlite3.</p>
-<p>On Ubuntu, you can install these using:</p>
-<pre><code class="language-shell">sudo apt install -y pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
-</code></pre>
-<p>On Fedora, you can install these using:</p>
-<pre><code class="language-shell">sudo dnf install re2c bison autoconf make ccache libxml2-devel sqlite-devel
-</code></pre>
-<p>On MacOS, you can install these using <code>brew</code>:</p>
-<pre><code class="language-shell">brew install autoconf bison re2c libiconv libxml2 sqlite
-</code></pre>
-<p>or with <code>MacPorts</code>:</p>
-<pre><code class="language-shell">sudo port install autoconf bison re2c libiconv libxml2 sqlite3
-</code></pre>
-<p>Generate configure:</p>
-<pre><code class="language-shell">./buildconf
-</code></pre>
-<p>Configure your build. <code>--enable-debug</code> is recommended for development, see<br />
-<code>./configure --help</code> for a full list of options.</p>
-<pre><code class="language-shell"># For development
-./configure --enable-debug
-# For production
-./configure
-</code></pre>
-<p>Build PHP. To speed up the build, specify the maximum number of jobs using the<br />
-<code>-j</code> argument:</p>
-<pre><code class="language-shell">make -j4
-</code></pre>
-<p>The number of jobs should usually match the number of available cores, which<br />
-can be determined using <code>nproc</code>.</p>
-<h2>Testing PHP source code</h2>
-<p>PHP ships with an extensive test suite, the command <code>make test</code> is used after<br />
-successful compilation of the sources to run this test suite.</p>
-<p>Tests run in parallel by default, using up to 10 detected logical processors.<br />
-Set <code>-jN</code> in <code>TEST_PHP_ARGS</code> or <code>TESTS</code> to override the worker count:</p>
-<pre><code class="language-shell">make TEST_PHP_ARGS=-j4 test
-</code></pre>
-<p>This runs <code>make test</code> with a maximum of 4 concurrent jobs. Alternatively,<br />
-use <code>-j1</code> to run tests sequentially.</p>
-<p>Use the <code>TEST_PHP_ARGS</code> or <code>TESTS</code> variable to test only specific directories:</p>
-<pre><code class="language-shell">make TESTS=tests/lang/ test
-</code></pre>
-<p>The <a href="https://qa.php.net">qa.php.net</a> site provides more detailed info about<br />
-testing and quality assurance.</p>
-<h2>Installing PHP built from source</h2>
-<p>After a successful build (and test), PHP may be installed with:</p>
-<pre><code class="language-shell">make install
-</code></pre>
-<p>Depending on your permissions and prefix, <code>make install</code> may need superuser<br />
-permissions.</p>
-<h2>PHP extensions</h2>
-<p>Extensions provide additional functionality on top of PHP. PHP consists of many<br />
-essential bundled extensions. Additional extensions can be found on the<br />
-<a href="https://packagist.org/extensions">PIE Extensions</a> list, and installed with<br />
-<a href="https://github.com/php/pie">🥧 PIE, the PHP Installer for Extensions</a> or the<br />
-deprecated PHP Extension Community Library - <a href="https://pecl.php.net">PECL</a>.</p>
-<h2>Contributing</h2>
-<p>The PHP source code is located in the Git repository at<br />
-<a href="https://github.com/php/php-src">github.com/php/php-src</a>. Contributions are most<br />
-welcome by forking the repository and sending a pull request.</p>
-<p>Discussions are done on GitHub, but depending on the topic can also be relayed<br />
-to the official PHP developer mailing list internals@lists.php.net.</p>
-<p>New features require an RFC and must be accepted by the developers. See<br />
-<a href="https://wiki.php.net/rfc">Request for comments - RFC</a> and<br />
-<a href="https://wiki.php.net/rfc/voting">Voting on PHP features</a> for more information<br />
-on the process.</p>
-<p>Bug fixes don't require an RFC. If the bug has a GitHub issue, reference it in<br />
-the commit message using <code>GH-NNNNNN</code>. Use <code>#NNNNNN</code> for tickets in the old<br />
-<a href="https://bugs.php.net">bugs.php.net</a> bug tracker.</p>
-<pre><code>Fix GH-7815: php_uname doesn't recognise latest Windows versions
-Fix #55371: get_magic_quotes_gpc() throws deprecation warning
-</code></pre>
-<p>See <a href="https://wiki.php.net/vcs/gitworkflow">Git workflow</a> for details on how pull<br />
-requests are merged.</p>
-<h3>Guidelines for contributors</h3>
-<p>See further documents in the repository for more information on how to<br />
-contribute:</p>
-<ul>
-<li><a href="/CONTRIBUTING.md">Contributing to PHP</a></li>
-<li><a href="/CODING_STANDARDS.md">PHP coding standards</a></li>
-<li><a href="https://php.github.io/php-src/">Internal documentation</a></li>
-<li><a href="/docs/mailinglist-rules.md">Mailing list rules</a></li>
-<li><a href="/docs/release-process.md">PHP release process</a></li>
-</ul>
-<h2>Credits</h2>
-<p>For the list of people who've put work into PHP, please see the<br />
-<a href="https://www.php.net/credits.php">PHP credits page</a>.</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/php/php-src#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#2</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">anthropics /</span>
-          <a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noopener">knowledge-work-plugins</a>
-        </div>
-        <div class="repo-desc">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 31,728</span>
-      <span class="meta-item">🍴 3,542</span>
-      <span class="stars-today">⭐ 303 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <h1>Knowledge Work Plugins</h1>
-<p>Plugins that turn Claude into a specialist for your role, team, and company. Built for <a href="https://claude.com/product/cowork">Claude Cowork</a>, also compatible with <a href="https://claude.com/product/claude-code">Claude Code</a>.</p>
-<h2>Why Plugins</h2>
-<p>Cowork lets you set the goal and Claude delivers finished, professional work. Plugins let you go further: tell Claude how you like work done, which tools and data to pull from, how to handle critical workflows, and what slash commands to expose — so your team gets better and more consistent outcomes.</p>
-<p>Each plugin bundles the skills, connectors, slash commands, and sub-agents for a specific job function. Out of the box, they give Claude a strong starting point for helping anyone in that role. The real power comes when you customize them for your company — your tools, your terminology, your processes — so Claude works like it was built for your team.</p>
-<h2>Plugin Marketplace</h2>
-<p>We're open-sourcing 11 plugins built and inspired by our own work:</p>
-<table>
-<thead>
-<tr>
-<th>Plugin</th>
-<th>How it helps</th>
-<th>Connectors</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong><a href="./productivity">productivity</a></strong></td>
-<td>Manage tasks, calendars, daily workflows, and personal context so you spend less time repeating yourself.</td>
-<td>Slack, Notion, Asana, Linear, Jira, Monday, ClickUp, Microsoft 365</td>
-</tr>
-<tr>
-<td><strong><a href="./sales">sales</a></strong></td>
-<td>Research prospects, prep for calls, review your pipeline, draft outreach, and build competitive battlecards.</td>
-<td>Slack, HubSpot, Close, Clay, ZoomInfo, Notion, Jira, Fireflies, Microsoft 365</td>
-</tr>
-<tr>
-<td><strong><a href="./customer-support">customer-support</a></strong></td>
-<td>Triage tickets, draft responses, package escalations, research customer context, and turn resolved issues into knowledge base articles.</td>
-<td>Slack, Intercom, HubSpot, Guru, Jira, Notion, Microsoft 365</td>
-</tr>
-<tr>
-<td><strong><a href="./product-management">product-management</a></strong></td>
-<td>Write specs, plan roadmaps, synthesize user research, keep stakeholders updated, and track the competitive landscape.</td>
-<td>Slack, Linear, Asana, Monday, ClickUp, Jira, Notion, Figma, Amplitude, Pendo, Intercom, Fireflies</td>
-</tr>
-<tr>
-<td><strong><a href="./marketing">marketing</a></strong></td>
-<td>Draft content, plan campaigns, enforce brand voice, brief on competitors, and report on performance across channels.</td>
-<td>Slack, Canva, Figma, HubSpot, Amplitude, Notion, Ahrefs, SimilarWeb, Klaviyo</td>
-</tr>
-<tr>
-<td><strong><a href="./legal">legal</a></strong></td>
-<td>Review contracts, triage NDAs, navigate compliance, assess risk, prep for meetings, and draft templated responses.</td>
-<td>Slack, Box, Egnyte, Jira, Microsoft 365</td>
-</tr>
-<tr>
-<td><strong><a href="./finance">finance</a></strong></td>
-<td>Prep journal entries, reconcile accounts, generate financial statements, analyze variances, manage close, and support audits.</td>
-<td>Snowflake, Databricks, BigQuery, Slack, Microsoft 365</td>
-</tr>
-<tr>
-<td><strong><a href="./data">data</a></strong></td>
-<td>Query, visualize, and interpret datasets — write SQL, run statistical analysis, build dashboards, and validate your work before sharing.</td>
-<td>Snowflake, Databricks, BigQuery, Definite, Hex, Amplitude, Jira</td>
-</tr>
-<tr>
-<td><strong><a href="./enterprise-search">enterprise-search</a></strong></td>
-<td>Find anything across email, chat, docs, and wikis — one query across all your company's tools.</td>
-<td>Slack, Notion, Guru, Jira, Asana, Microsoft 365</td>
-</tr>
-<tr>
-<td><strong><a href="./bio-research">bio-research</a></strong></td>
-<td>Connect to preclinical research tools and databases (literature search, genomics analysis, target prioritization) to accelerate early-stage life sciences R&amp;D.</td>
-<td>PubMed, BioRender, bioRxiv, ClinicalTrials.gov, ChEMBL, Synapse, Wiley, Owkin, Open Targets, Benchling</td>
-</tr>
-<tr>
-<td><strong><a href="./cowork-plugin-management">cowork-plugin-management</a></strong></td>
-<td>Create new plugins or customize existing ones for your organization's specific tools and workflows.</td>
-<td>—</td>
-</tr>
-</tbody>
-</table>
-<p>Install these directly from Cowork, browse the full collection here on GitHub, or build your own.</p>
-<h2>Getting Started</h2>
-<h3>Cowork</h3>
-<p>Install plugins from <a href="https://claude.com/plugins/">claude.com/plugins</a>.</p>
-<h3>Claude Code</h3>
-<pre><code class="language-bash"># Add the marketplace first
-claude plugin marketplace add anthropics/knowledge-work-plugins
-
-# Then install a specific plugin
-claude plugin install sales@knowledge-work-plugins
-</code></pre>
-<p>Once installed, plugins activate automatically. Skills fire when relevant, and slash commands are available in your session (e.g., <code>/sales:call-prep</code>, <code>/data:write-query</code>).</p>
-<h2>How Plugins Work</h2>
-<p>Every plugin follows the same structure:</p>
-<pre><code>plugin-name/
-├── .claude-plugin/plugin.json   # Manifest
-├── .mcp.json                    # Tool connections
-├── commands/                    # Slash commands you invoke explicitly
-└── skills/                      # Domain knowledge Claude draws on automatically
-</code></pre>
-<ul>
-<li><strong>Skills</strong> encode the domain expertise, best practices, and step-by-step workflows Claude needs to give you useful help. Claude draws on them automatically when relevant.</li>
-<li><strong>Commands</strong> are explicit actions you trigger (e.g., <code>/finance:reconciliation</code>, <code>/product-management:write-spec</code>).</li>
-<li><strong>Connectors</strong> wire Claude to the external tools your role depends on — CRMs, project trackers, data warehouses, design tools, and more — via <a href="https://modelcontextprotocol.io/">MCP servers</a>.</li>
-</ul>
-<p>Every component is file-based — markdown and JSON, no code, no infrastructure, no build steps.</p>
-<h2>Making Them Yours</h2>
-<p>These plugins are generic starting points. They become much more useful when you customize them for how your company actually works:</p>
-<ul>
-<li><strong>Swap connectors</strong> — Edit <code>.mcp.json</code> to point at your specific tool stack.</li>
-<li><strong>Add company context</strong> — Drop your terminology, org structure, and processes into skill files so Claude understands your world.</li>
-<li><strong>Adjust workflows</strong> — Modify skill instructions to match how your team actually does things, not how a textbook says to.</li>
-<li><strong>Build new plugins</strong> — Use the <code>cowork-plugin-management</code> plugin or follow the structure above to create plugins for roles and workflows we haven't covered yet.</li>
-</ul>
-<p>As your team builds and shares plugins, Claude becomes a cross-functional expert. The context you define gets baked into every relevant interaction, so leaders and admins can spend less time enforcing processes and more time improving them.</p>
-<h2>Contributing</h2>
-<p>Plugins are just markdown files. Fork the repo, make your changes, and submit a PR.</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/anthropics/knowledge-work-plugins#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#3</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">DietrichGebert /</span>
-          <a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">ponytail</a>
-        </div>
-        <div class="repo-desc">Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
-      <span class="meta-item">⭐ 173,787</span>
-      <span class="meta-item">🍴 9,464</span>
-      <span class="stars-today">⭐ 1,948 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.png">
-    <img src="assets/logo.png" width="220" alt="Ponytail, the lazy senior dev">
-  </picture>
-</p>
-
-<h1 align="center">Ponytail</h1>
-
-<p align="center">
-  <em>He says nothing. He writes one line. It works.</em>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/50668?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/50668" alt="DietrichGebert%2Fponytail | Trendshift" width="250" height="55"/></a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/github/stars/DietrichGebert/ponytail?style=flat-square&color=111111&label=stars" alt="Stars">
-  <img src="https://img.shields.io/github/v/release/DietrichGebert/ponytail?style=flat-square&color=111111&label=release" alt="Release">
-  <img src="https://img.shields.io/npm/v/@dietrichgebert/ponytail?style=flat-square&color=111111&label=npm" alt="npm">
-  <img src="https://img.shields.io/badge/works%20with-20%20agents-111111?style=flat-square" alt="Works with 20 agents">
-  <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
-</p>
-
-<p align="center">
-  <a href="https://ponytail.dev/stories"><img src="assets/stories-banner.png" alt="Using Ponytail at work? Tell us your story" width="760"></a>
-</p>
-
-<p align="center">
-  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/daily" alt="DietrichGebert/ponytail | Trendshift" width="250" height="55"/></a>
-  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/weekly" alt="DietrichGebert/ponytail | Trendshift" width="250" height="55"/></a>
-  <a href="https://trendshift.io/repositories/50668?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/monthly?language=JavaScript" alt="DietrichGebert%2Fponytail | Trendshift monthly ranking" width="250" height="55"/></a>
-</p>
-
-<p align="center">
-  <img src="assets/v5/hero.jpg" width="880" alt="Ponytail 5, rebuilt from the ground up: -53% code, -41% time, -26% cost, -45% tokens. And yet 98% of risky logic ships with a test, without Ponytail 68%.">
-</p>
-
-<p align="center">
-  <strong>Ponytail 5: rebuilt from the ground up.</strong><br>
-  <strong>-53% code &middot; -41% time &middot; -26% cost &middot; -45% tokens</strong><br>
-  <strong>And yet: 98% of risky logic ships with a test.</strong> Without Ponytail: 68%.<br>
-  <sub>Benchmarked in Claude Code, the same agent with and without the skill: 39 tasks including a real FastAPI + React repo, Opus 5.5, 5 runs each. <a href="#numbers">Details</a>.</sub>
-</p>
-
-<p align="center">
-  <sub><a href="i18n/README.es.md">Español</a> &middot; <a href="i18n/README.ko.md">한국어</a> &middot; <a href="i18n/README.zh-CN.md">简体中文</a> &middot; <a href="i18n/README.ja.md">日本語</a></sub>
-</p>
-
-<hr />
-<p align="center">
-  <a href="https://ponytail.dev/soon"><img src="assets/waitlist-banner.png" alt="Something's coming, join the waitlist" width="760"></a>
-</p>
-
-<h2>Already built with Ponytail</h2>
-<p><a href="https://theretriever.app"><br />
-  <picture><br />
-    <source media="(prefers-color-scheme: dark)" srcset="assets/retriever-logo-dark.svg"><br />
-    <img src="assets/retriever-logo-light.svg" height="128" alt="Retriever"><br />
-  </picture><br />
-</a></p>
-<hr />
-<p>You know him. Long ponytail. Oval glasses. Has been at the company longer than the version control. You show him fifty lines; he looks at them, says nothing, and replaces them with one.</p>
-<p>Ponytail puts him inside your AI agent.</p>
-<h2>Numbers</h2>
-<p align="center">
-  <img src="assets/v5/chart.png" width="880" alt="Share of the no-skill baseline. Lines of code: Ponytail v4.13 52%, Ponytail 5 47%. Output tokens: 57% and 55%. Cost: 84% and 74%. Time: 62% and 59%.">
-</p>
-
-<p align="center">
-  <img src="assets/v5/tests.png" width="880" alt="Half the code, and yet better: 98% of risky logic ships with a test (no skill 68%); the agent's own tests catch 66% of injected bugs (no skill 46%).">
-</p>
-
-<p>Two things the chart does not show: in a blind comparison, Ponytail 5's replies beat the previous Ponytail's 110 to 67. And on the six security tasks (SQL injection, path traversal, forged tokens, rate limiting, malformed CSV rows, caching) it passed all 30 runs: less code, no less safe. Method, per-task tables and limits: <a href="benchmarks/results/2026-10-07-agentic.md">benchmarks/results/2026-10-07-agentic.md</a>.</p>
-<p><strong>The rule was never "fewest tokens."</strong> It is: write only what the task needs, and never cut validation, error handling, security, or accessibility. The code ends up small because it is necessary, not golfed. Lower cost and latency are a side effect.</p>
-<h2>Before / after</h2>
-<p align="center">
-  <img src="assets/v5/beforeafter.png" width="880" alt="Add a date picker to the frontend. No skill: 335 lines, a calendar and a date picker built by hand. Ponytail 5: one 10-line file that reuses the repo's Input with type date, so the browser brings the calendar.">
-</p>
-
-<p>You ask for a date picker. Without Ponytail, the agent installs a date picker library or builds a whole calendar by hand: 335 lines. Ponytail 5 first looks at what is already there: the repo has an <code>Input</code> component, and every browser has a date picker. It puts the two together. 10 lines.</p>
-<p>More survivors in <a href="examples/">examples/</a>.</p>
-<h2>The review, rebuilt</h2>
-<p align="center">
-  <img src="assets/v5/review.png" width="880" alt="The review, rebuilt. A real /ponytail-review finding from the benchmark: the change renamed a field, and an untouched file, src/routes/feed.js, now crashes. Must fix: the Atom feed now crashes on every request, with what this is, the problem, the fix, and what happens if we skip it. 100% of planted problems found, no skill 87%. 100% of problems outside the diff found, no skill 78%.">
-</p>
-
-<p><code>/ponytail-review</code> used to look only for code to cut. Now it reviews like the senior dev who gets paged when it breaks: it reads the code your change touches, not just the diff, and checks bugs, security, real load, missing tests, speed, and what to cut. Each finding says what the code does, what goes wrong, how to fix it, and what happens if you don't.</p>
-<h2>The audit, rebuilt</h2>
-<p align="center">
-  <img src="assets/v5/audit.png" width="880" alt="Your whole repo, ranked. Fix this first. A real /ponytail-audit from the benchmark on a warehouse stock repo: 1 must fix, office batches with 1,200 fail completely; 2 must fix, the import silently skips bad rows; 3 must fix, a mistyped SKU in an office batch is silently ignored; 4 should fix, the risky code paths have no tests; 5 nice to have, the API crashes on a body that isn't an object. Verdict: fix 1 first.">
-</p>
-
-<p><code>/ponytail-audit</code> runs the same checks on the whole repo. It maps the code first: entry points, how data moves, what load the project expects. Then it ranks what it finds and tells you what to fix first. The old audit only listed what to delete.</p>
-<h2>New in 5.3: the band</h2>
-<p align="center">
-  <img src="assets/band/band.png" width="880" alt="The ponytail band in Claude Code, above the prompt. Detail mode: cost $23.80, last turn $1.14, average $0.72 per turn; 56.7M tokens, 168k output, 33 turns; agent time 52m 14s; reuse 71%, 5 used, 2 new; tests passed after the last change. Compact mode shows the same in one line.">
-</p>
-
-<p>In Claude Code, ponytail now shows a band above the prompt: what the current task costs, how many tokens and how much agent time it used, how often it reused existing code instead of writing new code, and whether the tests passed after the last change. Its buttons switch the level, run `/ponytail-</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/DietrichGebert/ponytail#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#4</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
@@ -671,9 +264,9 @@ claude plugin install sales@knowledge-work-plugins
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
-      <span class="meta-item">⭐ 39,933</span>
-      <span class="meta-item">🍴 2,493</span>
-      <span class="stars-today">⭐ 2,979 stars today</span>
+      <span class="meta-item">⭐ 45,483</span>
+      <span class="meta-item">🍴 2,821</span>
+      <span class="stars-today">⭐ 2,264 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -830,442 +423,409 @@ claude plugin install sales@knowledge-work-plugins
   </div>
 </div>
 <div>
-  <div class="rank-label">#5</div>
+  <div class="rank-label">#2</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">Graphify-Labs /</span>
-          <a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noopener">graphify</a>
+          <span class="repo-owner">NVIDIA /</span>
+          <a href="https://github.com/NVIDIA/OpenShell" target="_blank" rel="noopener">OpenShell</a>
         </div>
-        <div class="repo-desc">Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.</div>
+        <div class="repo-desc">OpenShell is the safe, private runtime for autonomous AI agents.</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 133,180</span>
-      <span class="meta-item">🍴 12,736</span>
-      <span class="stars-today">⭐ 1,408 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 19,678</span>
+      <span class="meta-item">🍴 1,943</span>
+      <span class="stars-today">⭐ 896 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <h1>graphify</h1>
-<p><a href="https://github.com/safishamsi/graphify/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/safishamsi/graphify/actions/workflows/ci.yml/badge.svg?branch=v1" /></a></p>
-<p><strong>A Claude Code skill.</strong> Type <code>/graphify</code> in Claude Code - it reads your files, builds a knowledge graph, and gives you back structure you didn't know was there.</p>
-<p>Fully multimodal. Drop in code, PDFs, markdown, screenshots, diagrams, whiteboard photos, even images in other languages - graphify uses Claude vision to extract concepts and relationships from all of it and connects them into one graph.</p>
+    <!-- markdownlint-disable MD033 MD041 -->
+
+<p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset="docs/brand/assets/openshell-banner-dark.png"><br />
+  <source media="(prefers-color-scheme: light)" srcset="docs/brand/assets/openshell-banner-light.png"><br />
+  <img alt="OpenShell" src="docs/brand/assets/openshell-banner-light.png" width="430"><br />
+</picture></p>
+<!-- markdownlint-enable MD033 MD041 -->
+
+<p><a href="https://github.com/NVIDIA/OpenShell/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-blue" /></a><br />
+<a href="https://pypi.org/project/openshell/"><img alt="PyPI" src="https://img.shields.io/badge/PyPI-openshell-orange?logo=pypi" /></a><br />
+<a href="SECURITY.md"><img alt="Security Policy" src="https://img.shields.io/badge/Security-Report%20a%20Vulnerability-red" /></a><br />
+<a href="https://docs.nvidia.com/openshell/latest/index.html"><img alt="Documentation" src="https://img.shields.io/badge/docs-latest-brightgreen" /></a></p>
 <blockquote>
-<p>Andrej Karpathy keeps a <code>/raw</code> folder where he drops papers, tweets, screenshots, and notes. graphify is the answer to that problem - 71.5x fewer tokens per query vs reading the raw files, persistent across sessions, honest about what it found vs guessed.</p>
+<p>[!IMPORTANT]<br />
+<strong>New in OpenShell 0.1.x:</strong> a stable release cadence, new isolation primitives, an expanded extension surface, and new APIs. <a href="https://docs.nvidia.com/openshell/latest/upgrade/0-1-0">Read the 0.1.0 upgrade guide</a>.</p>
 </blockquote>
-<pre><code>/graphify .                        # works on any folder - your codebase, notes, papers, anything
+<p>OpenShell is the safe, private runtime for fleets of autonomous AI agents. Agents are most useful when they can read files, install packages, call APIs, and use credentials. OpenShell gives them that capability without giving them unrestricted access to your data, secrets, or network. You declare what each agent can touch in a policy, and OpenShell enforces it.</p>
+<h2>How It Works</h2>
+<p>OpenShell governs what agents can do in two ways: it instruments the kernel to enforce policy on every file access, system call, and network connection at runtime, and it uses formal verification to check what a policy change would allow before it is applied.</p>
+<ul>
+<li><strong>Kernel-level enforcement.</strong> Each agent runs in an isolated sandbox. Kernel controls confine which files it can access and which system calls it can make, and every network connection passes through a policy check before it leaves the sandbox. Agents never see real credentials; OpenShell adds them only to requests bound for approved endpoints.</li>
+<li><strong>Formally verified policy changes.</strong> Before a policy change is approved, OpenShell uses formal verification to flag risky new access it would grant, such as reaching a new host with credentials or calling a new API method, so those changes wait for human review.</li>
+</ul>
+<p>See <a href="https://docs.nvidia.com/openshell/latest/about/architecture">Architecture</a> for how the gateway, supervisor, and sandbox fit together.</p>
+<h2>Quickstart</h2>
+<p>You need Linux, macOS on Apple Silicon, or Windows with WSL 2 (experimental), plus Docker, Podman, or host virtualization. See the <a href="https://docs.nvidia.com/openshell/latest/about/support-matrix">Support Matrix</a> for details.</p>
+<pre><code class="language-shell">curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh | sh
+openshell sandbox create --name demo
 </code></pre>
-<pre><code>graphify-out/
-├── graph.html       interactive graph - click nodes, search, filter by community
-├── obsidian/        open as Obsidian vault
-├── wiki/            Wikipedia-style articles for agent navigation (--wiki)
-├── GRAPH_REPORT.md  god nodes, surprising connections, suggested questions
-├── graph.json       persistent graph - query weeks later without re-reading
-└── cache/           SHA256 cache - re-runs only process changed files
+<p>The installer sets up the CLI and a local gateway. The default sandbox image is minimal Ubuntu with no agent installed. To run a real agent, follow <a href="https://docs.nvidia.com/openshell/latest/about/run-your-first-agent">Run Your First Agent</a>: it runs OpenCode against a free OpenRouter model and shows how to approve new access as the agent needs it.</p>
+<h2>Explore Further</h2>
+<ul>
+<li><a href="https://docs.nvidia.com/openshell/latest/how-it-works/sandboxes/overview">Sandboxes</a>: images, runtimes, GPUs, and lifecycle.</li>
+<li><a href="https://docs.nvidia.com/openshell/latest/how-it-works/policies/overview">Policies</a>: filesystem, network, and process rules, with the <a href="https://docs.nvidia.com/openshell/latest/how-it-works/policies/advisor">advisor</a> and <a href="https://docs.nvidia.com/openshell/latest/how-it-works/policies/prover">prover</a> for reviewing changes.</li>
+<li><a href="https://docs.nvidia.com/openshell/latest/how-it-works/providers/overview">Providers</a>: credentials that work only at approved endpoints, including <a href="https://docs.nvidia.com/openshell/latest/how-it-works/inference">inference</a>.</li>
+<li><a href="https://docs.nvidia.com/openshell/latest/how-it-works/gateways/overview">Gateways</a>: the control plane for sandboxes, policy, and access.</li>
+<li><a href="https://docs.nvidia.com/openshell/latest/kubernetes/setup">Kubernetes</a>: deploy the gateway with Helm. Your CNI must enforce <code>NetworkPolicy</code>.</li>
+<li><a href="https://docs.nvidia.com/openshell/latest/extensibility/overview">Extensibility</a>: middleware, interceptors, and compute drivers.</li>
+<li><a href="https://docs.nvidia.com/openshell/latest/tutorials/first-network-policy">Tutorials</a>: step-by-step policy and agent walkthroughs.</li>
+<li><a href="https://docs.nvidia.com/openshell/latest/about/installation#prerelease-and-development-builds">Prerelease and development builds</a>: try an upcoming release or the latest commit on <code>main</code>.</li>
+</ul>
+<h2>Agent Skills</h2>
+<p>Install the public OpenShell skills for your coding agent:</p>
+<pre><code class="language-shell">npx skills add NVIDIA/OpenShell
 </code></pre>
+<p>The skills teach your agent to drive the OpenShell CLI, write sandbox policies, and debug gateways and inference routing. They live in <a href="skills/"><code>skills/</code></a> and work without an OpenShell source checkout.</p>
+<h2>SDKs</h2>
+<p>SDKs connect applications to an OpenShell gateway. They do not install the CLI. Use the same OpenShell release for the SDK and the gateway when possible.</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Install</th>
+<th>Docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td><code>uv add openshell</code></td>
+<td><a href="python/openshell/">README</a></td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td><code>npm install @nvidia/openshell-sdk</code> (GitHub Packages)</td>
+<td><a href="sdk/typescript/README.md">README</a></td>
+</tr>
+<tr>
+<td>Go</td>
+<td><code>go get github.com/NVIDIA/OpenShell/sdk/go@latest</code></td>
+<td><a href="sdk/go/README.md">README</a></td>
+</tr>
+<tr>
+<td>Rust</td>
+<td><code>cargo add openshell-sdk --git https://github.com/NVIDIA/OpenShell --tag &lt;release-tag&gt;</code></td>
+<td><a href="docs/sdk/rust.mdx">Installation and usage</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Community</h2>
+<ul>
+<li><strong>Questions and discussion:</strong> <a href="https://github.com/NVIDIA/OpenShell/discussions">GitHub Discussions</a></li>
+<li><strong>Bug reports and feature requests:</strong> <a href="https://github.com/NVIDIA/OpenShell/issues">GitHub Issues</a>, using the issue templates</li>
+<li><strong>Security vulnerabilities:</strong> follow <a href="SECURITY.md">SECURITY.md</a>. Do not open a GitHub issue.</li>
+<li><strong>Roadmap:</strong> <a href="https://github.com/orgs/NVIDIA/projects/233">OpenShell Roadmap</a> and the <a href="https://github.com/orgs/NVIDIA/projects/233/views/6">RFC board</a></li>
+<li><strong>Try it in the cloud:</strong> <a href="https://brev.nvidia.com/launchable/deploy/now?launchableID=env-3Ap3tL55zq4a8kew1AuW0FpSLsg">Brev Launchable</a></li>
+</ul>
+<p>OpenShell is built agent-first: it is developed with the same agent-driven workflows it enables. See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for development setup and the contribution workflow, and <a href="AGENTS.md">AGENTS.md</a> for repository coding conventions.</p>
+<h2>Telemetry</h2>
+<p>OpenShell collects anonymous telemetry, limited to operational categories and counts, to help improve the project. It does not collect sandbox names, hostnames, file paths, prompts, credentials, provider or model names, or user content. To disable it, set <code>OPENSHELL_TELEMETRY_ENABLED=false</code> on the gateway, or <code>server.telemetryEnabled=false</code> for Helm installs. You can also compile telemetry out entirely. See <a href="https://docs.nvidia.com/openshell/latest/observability/telemetry">Telemetry</a> for details and the <a href="telemetry/README.md">community telemetry reports</a> for published usage trends.</p>
+<h2>Notice and Disclaimer</h2>
+<p>This software automatically retrieves, accesses or interacts with external materials. Those retrieved materials are not distributed with this software and are governed solely by separate terms, conditions and licenses. You are solely responsible for finding, reviewing and complying with all applicable terms, conditions, and licenses, and for verifying the security, integrity and suitability of any retrieved materials for your specific use case. This software is provided "AS IS", without warranty of any kind. The author makes no representations or warranties regarding any retrieved materials, and assumes no liability for any losses, damages, liabilities or legal consequences from your use or inability to use this software or any retrieved materials. Use this software and the retrieved materials at your own risk.</p>
+<h2>License</h2>
+<p>This project is licensed under the [Apache License 2.0](https:</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/NVIDIA/OpenShell#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">aws /</span>
+          <a href="https://github.com/aws/agent-toolkit-for-aws" target="_blank" rel="noopener">agent-toolkit-for-aws</a>
+        </div>
+        <div class="repo-desc">Official, AWS-supported MCP servers, skills, and plugins to help AI agents build on AWS</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 3,241</span>
+      <span class="meta-item">🍴 403</span>
+      <span class="stars-today">⭐ 13 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Agent Toolkit for AWS</h1>
+<p><a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a><br />
+<a href="https://github.com/aws/agent-toolkit-for-aws/actions/workflows/build.yml"><img alt="Build" src="https://github.com/aws/agent-toolkit-for-aws/actions/workflows/build.yml/badge.svg" /></a><br />
+<a href="https://github.com/aws/agent-toolkit-for-aws"><img alt="Status" src="https://img.shields.io/badge/status-GA-green.svg" /></a></p>
+<p>Help AI coding agents build, deploy, and manage applications on AWS.</p>
+<p>The Agent Toolkit for AWS gives AI coding agents the tools, knowledge, and guardrails they need to work with AWS services. It works with the coding agents developers already use — including Claude Code, Codex, Cursor, Devin, Kiro, and fx.</p>
+<h2>Quick start</h2>
+<h3>AWS CLI</h3>
+<p>Use the Agent Toolkit directly from your terminal with the AWS CLI:</p>
+<pre><code>aws configure agent-toolkit
+</code></pre>
+<p>See the <a href="https://docs.aws.amazon.com/agent-toolkit/latest/userguide/aws-cli.html">AWS CLI integration guide</a> for setup, configuration, and usage instructions.</p>
+<h3>Claude Code</h3>
+<p>The plugins are available on the official Anthropic marketplace (<code>claude-plugins-official</code>) which is added to your Claude Code installation by default.<br />
+Use the following commands to install supported plugins from the toolkit:</p>
+<p>For <code>aws-core</code> that covers service selection, CDK/CloudFormation, serverless, containers, storage, observability, billing, SDK usage, and deployment:</p>
+<pre><code>/plugin install aws-core@claude-plugins-official
+</code></pre>
+<blockquote>
+<p><strong>Tip:</strong> If you get <code>Plugin not found</code>, update your local marketplace index first:</p>
+<p><code>/plugin marketplace update claude-plugins-official</code></p>
+</blockquote>
+<p>For <code>aws-agents</code> that covers building AI agents on AWS with Amazon Bedrock and AgentCore:</p>
+<pre><code>/plugin install aws-agents@claude-plugins-official
+</code></pre>
+<p>For <code>aws-data-analytics</code> that covers data lake, analytics, and ETL workflows with S3 Tables, AWS Glue, and Athena:</p>
+<pre><code>/plugin install aws-data-analytics@claude-plugins-official
+</code></pre>
+<p>For <code>aws-agents-for-devsecops</code> used to investigate incidents, review code and execute UAT for release readiness, scan code for vulnerabilities, and run penetration tests with AWS DevOps Agent and AWS Security Agent.</p>
+<pre><code>/plugin marketplace add aws/agent-toolkit-for-aws
+/plugin install aws-agents-for-devsecops
+/reload-plugins
+
+# Or from Claude's official marketplace:
+/plugin install aws-agents-for-devsecops@claude-plugins-official
+/reload-plugins
+
+# Setup:
+/aws-agents-for-devsecops:setup
+</code></pre>
+<p>For <code>aws-startup-advisor</code> that covers startup-focused architecture, cost, security, and AWS Activate guidance, plus migrations to AWS from Azure, GCP, Heroku, and AI stacks such as OpenAI and Gemini, install from this repository's marketplace:</p>
+<pre><code>/plugin marketplace add aws/agent-toolkit-for-aws
+/plugin install aws-startup-advisor@agent-toolkit-for-aws
+/reload-plugins
+</code></pre>
+<h3>Codex</h3>
+<p>In your terminal:</p>
+<pre><code>codex plugin marketplace add aws/agent-toolkit-for-aws
+</code></pre>
+<p>Then launch Codex and run <code>/plugins</code> to browse and install the <strong>aws-core</strong> plugin.</p>
+<h3>Cursor</h3>
+<p>Add this repository as a team marketplace from <strong>Settings → Plugins → Team Marketplaces → Add Marketplace → Import from Repo</strong>, pointing it at <code>aws/agent-toolkit-for-aws</code>. Cursor indexes the plugins listed in <a href=".cursor-plugin/marketplace.json"><code>.cursor-plugin/marketplace.json</code></a> on import.</p>
+<p>Then open the <strong>Plugins</strong> panel and install the <strong>aws-core</strong> plugin (start here), or <strong>aws-agents</strong> and <strong>aws-data-analytics</strong> as needed. Each plugin bundles the AWS MCP Server configuration and agent skills.</p>
+<h3>Devin</h3>
+<p>In your terminal:</p>
+<pre><code>devin plugins install aws/agent-toolkit-for-aws#plugins/aws-core
+</code></pre>
+<p>This requires <code>devin auth login</code> and adds the plugin to your personal plugins, so it also loads in Devin cloud sessions and Devin Desktop. Add <code>--local</code> to install on this machine only. To install a different plugin, replace <code>aws-core</code> with its name from <a href="#plugins">Plugins</a>, such as <code>aws-agents</code> or <code>aws-data-analytics</code>.</p>
+<p>In the Devin web app, choose <strong>Customize → Plugins → Add plugin → From repository</strong>, enter <code>aws/agent-toolkit-for-aws</code>, and set the subdirectory to <code>plugins/aws-core</code> (or another plugin's directory). Personal plugins added there are also available in the Devin CLI and Devin Desktop.</p>
+<h3>Kiro</h3>
+<p>Kiro setup has two independent parts: the AWS MCP Server (for runtime AWS API access and documentation search) and local skills (for task-specific agent guidance). They complement each other but work independently — skills don't require the MCP server, and the MCP server doesn't serve locally-installed skills.</p>
+<p><strong>1. Add the AWS MCP Server</strong> to your Kiro MCP configuration (<code>.kiro/settings/mcp.json</code>):</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;aws&quot;: {
+      &quot;command&quot;: &quot;uvx&quot;,
+      &quot;args&quot;: [
+        &quot;mcp-proxy-for-aws-cli@latest&quot;,
+        &quot;https://aws-mcp.us-east-1.api.aws/mcp&quot;,
+        &quot;--metadata&quot;,
+        &quot;AWS_REGION=us-west-2&quot;
+      ]
+    }
+  }
+}
+</code></pre>
+<p>The MCP server gives your agent access to AWS APIs, sandboxed script execution, and real-time documentation search.</p>
+<p><strong>2. Install skills</strong> from this repository:</p>
+<pre><code>npx skills add aws/agent-toolkit-for-aws/skills
+</code></pre>
+<p>This installs skill files to <code>~/.kiro/skills/</code> (global) or <code>.kiro/skills/</code> (project-level). Each skill is a directory containing a <code>SKILL.md</code> file and optionally a <code>references/</code> subdirectory with additional context the agent reads from the local filesystem when needed. Kiro discovers installed skills automatically and activates them on demand when a task matches.</p>
+<blockquote>
+<p><strong>Prerequisites:</strong> You need <a href="https://docs.astral.sh/uv/">uv</a> installed. An AWS account with credentials configured locally is required for API calls and script execution, but not for documentation search or skill discovery. See the <a href="https://docs.aws.amazon.com/agent-toolkit/latest/userguide/">user guide</a> for detailed setup instructions.</p>
+</blockquote>
+<h3>fx</h3>
+<p><a href="https://fx.sh">fx</a> setup has the same two independent parts as Kiro: the AWS MCP Server (for runtime AWS API access and documentation search) and local skills (for task-specific agent guidance). Skills don't require the MCP server, and the MCP server doesn't serve locally-installed skills.</p>
+<p><strong>1. Add the AWS MCP Server</strong> from your terminal. fx stores MCP servers in <code>~/.fx/mcp.json</code>, so the server is available in every project:</p>
+<pre><code>fx mcp add aws uvx mcp-proxy-for-aws-cli@latest https://aws-mcp.us-east-1.api.aws/mcp --metadata AWS_REGION=us-west-2
+</code></pre>
+<p>Or add it to <code>~/.fx/mcp.json</code> by hand. fx uses the <code>mcp</code> key rather than <code>mcpServers</code>, <code>type</code> to select the transport, and a single <code>command</code> array holding the executable and its arguments:</p>
+<pre><code class="language-json">{
+  &quot;mcp&quot;: {
+    &quot;aws&quot;: {
+      &quot;type&quot;: &quot;local&quot;,
+      &quot;command&quot;: [
+        &quot;uvx&quot;,
+        &quot;mcp-proxy-for-aws-cli@latest&quot;,
+        &quot;https://aws-mcp.us-east-1.api.aws/mcp&quot;,
+        &quot;--metadata&quot;,
+        &quot;AWS_REGION=us-west-2&quot;
+      ]
+    }
+  }
+}
+</code></pre>
+<p>If a session is already open when you edit the file, run <code>/mcp reload</code> to pick up the change. The MCP server gives your agent access to AWS APIs, sandboxed script execution, and real-time documentation search.</p>
+<p><strong>2. Install skills</strong> from this repository:</p>
+<pre><code>npx skills add aws/agent-toolkit-for-aws/skills -a fx
+</code></pre>
+<p>This installs skill files to <code>.fx/skills/</code> (project-level); add <code>-g</code> to install to <code>~/.fx/skills/</code> (global). fx also discovers skills already installed for other agents in <code>.agents/skills/</code>, <code>.claude/skills/</code>, and <code>.codex/skills/</code>, so a project set up for Codex or Claude Code needs no second copy. Each skill is a directory containing a <code>SKILL.md</code> file and optionally a <code>references/</code> subdirectory with additional context the agent reads from the local filesystem when needed. fx reads skill metadata at startup and loads a skill's instructions when you or the agent invokes it; type <code>$</code> in the composer or run <code>/skills</code> to browse what's installed.</p>
+<blockquote>
+<p><strong>Prerequisites:</strong> You need <a href="https://docs.astral.sh/uv/">uv</a> installed. An AWS account with credentials configured locally is required for API calls and script execution, but not for documentation search or skill </p>
+</blockquote>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/aws/agent-toolkit-for-aws#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Nutlope /</span>
+          <a href="https://github.com/Nutlope/hallmark" target="_blank" rel="noopener">hallmark</a>
+        </div>
+        <div class="repo-desc">Anti-AI-slop design skill for Claude Code, Cursor, and Codex.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#563d7c"></span>CSS</span>
+      <span class="meta-item">⭐ 32,644</span>
+      <span class="meta-item">🍴 1,683</span>
+      <span class="stars-today">⭐ 455 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Hallmark</h1>
+<p><strong>A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated.</strong></p>
+<p><a href="https://www.usehallmark.com">usehallmark.com</a> &nbsp;·&nbsp; forty-eight themes &nbsp;·&nbsp; custom on request &nbsp;·&nbsp; redesign and audit by name</p>
+<p>Made by Together AI.</p>
+<p align="center">
+  <img src="site/OG-hallmark.png" alt="Hallmark, the design skill that ends AI slop" />
+</p>
+
+<p>Hallmark holds a hard floor and then gets out of the way. It deals three themes from a catalog of forty-eight materials, builds the page around what the visitor came to do, and lints the result in a real browser against the tells that read as machine-made: the eyebrow above every heading, tracked-capital labels, one coloured word in a headline, a page of empty frames or nothing but photographs, a hero that misses its screen, an email sign-up at the end of every page, a form that says thanks without sending anything. A fresh-context reviewer gets the last word.</p>
+<p>The gates come in tiers. The <strong>Floor</strong> never ships (contrast, focus, reduced motion, invented facts, a broken phone layout). <strong>Reflex</strong> gates are the defaults a model falls into; a build with a reason may overrule one on the record. <strong>Finish</strong> checks are craft detail that never blocks a ship.</p>
+<h2>New in v2</h2>
+<ul>
+<li><strong>Forty-eight themes.</strong> Each is a material (paper, type, colour, surfaces, its own components and texture) with a picture of a finished page, and the build lays out its own page in it.</li>
+<li><strong>Built from the job.</strong> A booking page books, a shop sells, a newsletter subscribes: the action sits where the category puts it, and the page ends on it.</li>
+<li><strong>Custom.</strong> Ask for a custom page and Hallmark designs from your prompt alone, under the same rules and checks.</li>
+<li><strong>Your real product.</strong> Point it at a URL, a dev server or an app and it captures the screenshots itself.</li>
+<li><strong>Real photographs.</strong> 755 openly licensed photos, picked per subject and credited on the page.</li>
+<li><strong>Redesign and audit.</strong> <code>/hallmark redesign &lt;path&gt;</code> rebuilds a page and keeps its content and wiring; <code>/hallmark audit &lt;path&gt;</code> only reports.</li>
+</ul>
+<h2>Themes</h2>
+<table>
+  <tr>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/dusk/"><img src="docs/screenshots/dusk.jpg" alt="Dusk theme: Closewise, bank reconciliation" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/cobalt/"><img src="docs/screenshots/cobalt.jpg" alt="Cobalt theme: Relay, a webhook API" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/studio/"><img src="docs/screenshots/studio.jpg" alt="Studio theme: Field Office, an identity studio" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/atelier/"><img src="docs/screenshots/atelier.jpg" alt="Atelier theme: Maison Orla, a fragrance atelier" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/ribbon/"><img src="docs/screenshots/ribbon.jpg" alt="Ribbon theme: Lull, a sleep sounds app" /></a></td>
+  </tr>
+  <tr>
+    <td><b>Dusk</b><br/><sub>Closewise, bank reconciliation</sub></td>
+    <td><b>Cobalt</b><br/><sub>Relay, a webhook API</sub></td>
+    <td><b>Studio</b><br/><sub>Field Office, an identity studio</sub></td>
+    <td><b>Atelier</b><br/><sub>Maison Orla, a fragrance atelier</sub></td>
+    <td><b>Ribbon</b><br/><sub>Lull, a sleep sounds app</sub></td>
+  </tr>
+  <tr>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/furrow/"><img src="docs/screenshots/furrow.jpg" alt="Furrow theme: Fieldbook, farm records" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/dose/"><img src="docs/screenshots/dose.jpg" alt="Dose theme: Tandem, a family medication app" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/hum/"><img src="docs/screenshots/hum.jpg" alt="Hum theme: Sprout, a reading game for kids" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/terminal/"><img src="docs/screenshots/terminal.jpg" alt="Terminal theme: burrow, a dotfiles CLI" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/hedgerow/"><img src="docs/screenshots/hedgerow.jpg" alt="Hedgerow theme: Five Mile Gin, a distillery" /></a></td>
+  </tr>
+  <tr>
+    <td><b>Furrow</b><br/><sub>Fieldbook, farm records</sub></td>
+    <td><b>Dose</b><br/><sub>Tandem, a family medication app</sub></td>
+    <td><b>Hum</b><br/><sub>Sprout, a reading game for kids</sub></td>
+    <td><b>Terminal</b><br/><sub>burrow, a dotfiles CLI</sub></td>
+    <td><b>Hedgerow</b><br/><sub>Five Mile Gin, a distillery</sub></td>
+  </tr>
+</table>
+
+<p>Ten of the forty-eight. A theme is a material, not a plan: it never says what a page contains or in what order, so two prompts in one theme make two different pages. Each is one file of at most 8 KB in <a href="skills/hallmark/references/themes/"><code>references/themes/</code></a> with a picture beside it; a build reads exactly one. See them all at <a href="https://www.usehallmark.com">usehallmark.com</a>.</p>
+<h2>Custom</h2>
+<p>Say <strong>custom</strong> and Hallmark drops the themes: no plan, no components, no palette recipe, only the floor, the gates and a short direction in <a href="skills/hallmark/references/direction.md"><code>direction.md</code></a> to find one idea that only this client has and let it run the page.</p>
+<h2>How a build runs</h2>
+<ol>
+<li>Pre-flight reads the project (fonts, palette, framework, a locked <code>design.md</code>) and asks once for the material: photos, screenshots, real numbers. Nothing is invented.</li>
+<li><code>scripts/theme.mjs deal</code> offers three themes that fit the prompt and clear the log; <code>draw</code> deals the page's anatomy from its job.</li>
+<li>The hero is built alone, rendered and reviewed cold before the rest of the page exists.</li>
+<li><code>scripts/sloplint.mjs --render</code> checks the page at eight widths, then a subagent reviews it with fresh eyes.</li>
+</ol>
+<p>Each page is self-contained HTML and CSS, stamped in its first CSS comment with the decisions it took.</p>
+<h2>Redesign</h2>
+<p>Hallmark never starts on a design that already exists unless you name it:</p>
+<pre><code>/hallmark redesign ./src/app
+/hallmark audit ./index.html
+</code></pre>
+<p>A full redesign keeps the content and the wiring and changes the system and the layout; say <em>keep the layout</em> for a restyle or <em>polish</em> for only the tells. <code>sloplint --before</code> records every link, field, handler and heading first, <code>sloplint --kept</code> fails the redesign if one went missing, and the handoff is a side-by-side before and after.</p>
 <h2>Install</h2>
-<p><strong>Requires:</strong> <a href="https://claude.ai/code">Claude Code</a> and Python 3.10+</p>
-<pre><code class="language-bash">pip install graphifyy &amp;&amp; graphify install
+<pre><code>npx skills add nutlope/hallmark -g
 </code></pre>
-<blockquote>
-<p>The PyPI package is temporarily named <code>graphifyy</code> while the <code>graphify</code> name is being reclaimed. The CLI and skill command are still <code>graphify</code>.</p>
-<p><strong>Windows:</strong> If <code>graphify</code> is not recognized after install, add the Python Scripts folder to your PATH: <code>%APPDATA%\Python\Python3xx\Scripts</code> (replace <code>3xx</code> with your Python version, e.g. <code>313</code>). Or use <code>pipx install graphifyy</code> which handles PATH automatically.<br />
-<strong>macOS (externally managed):</strong> Use <code>pipx install graphifyy</code> if <code>pip install</code> fails with an "externally-managed-environment" error.</p>
-</blockquote>
-<p>Then open Claude Code in any directory and type:</p>
-<pre><code>/graphify .
-</code></pre>
-<details>
-<summary>Manual install (curl)</summary>
-
-
-<pre><code class="language-bash">mkdir -p ~/.claude/skills/graphify
-curl -fsSL https://raw.githubusercontent.com/safishamsi/graphify/v1/skills/graphify/skill.md \
-  &gt; ~/.claude/skills/graphify/SKILL.md
-</code></pre>
-
-
-Add to `~/.claude/CLAUDE.md`:
-
-
-<pre><code>- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
-When the user types `/graphify`, invoke the Skill tool with `skill: &quot;graphify&quot;` before doing anything else.
-</code></pre>
-
-
-</details>
-
-<h2>Usage</h2>
-<pre><code>/graphify                          # run on current directory
-/graphify ./raw                    # run on a specific folder
-/graphify ./raw --mode deep        # more aggressive INFERRED edge extraction
-/graphify ./raw --update           # re-extract only changed files, merge into existing graph
-
-/graphify add https://arxiv.org/abs/1706.03762        # fetch a paper, save, update graph
-/graphify add https://x.com/karpathy/status/...       # fetch a tweet
-
-/graphify query &quot;what connects attention to the optimizer?&quot;
-/graphify path &quot;DigestAuth&quot; &quot;Response&quot;
-/graphify explain &quot;SwinTransformer&quot;
-
-/graphify ./raw --watch            # auto-sync graph as files change (code: instant, docs: notifies you)
-/graphify ./raw --wiki             # build agent-crawlable wiki (index.md + article per community)
-/graphify ./raw --svg              # export graph.svg
-/graphify ./raw --graphml          # export graph.graphml (Gephi, yEd)
-/graphify ./raw --neo4j            # generate cypher.txt for Neo4j
-/graphify ./raw --mcp              # start MCP stdio server
-
-graphify hook install              # post-commit git hook - rebuilds graph on every commit automatically
-</code></pre>
-<p>Works with any mix of file types:</p>
+<p><code>-g</code> installs for every project; leave it off to install into the current one. Needs Node 18 or later. The browser checks (<code>sloplint --render</code>, screenshots) also need <code>npm i -g puppeteer-core</code> and Chrome; without them the static checks still run.</p>
 <table>
 <thead>
 <tr>
-<th>Type</th>
-<th>Extensions</th>
-<th>Extraction</th>
+<th>Harness</th>
+<th>Lands in</th>
+<th>Invoke</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Code</td>
-<td><code>.py .ts .js .go .rs .java .c .cpp .rb .cs .kt .scala .php</code></td>
-<td>AST via tree-sitter + call-graph pass</td>
+<td>Claude Code</td>
+<td><code>~/.claude/skills/hallmark</code></td>
+<td><code>/hallmark &lt;prompt&gt;</code> or describe a new build</td>
 </tr>
 <tr>
-<td>Docs</td>
-<td><code>.md .txt .rst</code></td>
-<td>Concepts + relationships via Claude</td>
+<td>Codex CLI</td>
+<td><code>~/.agents/skills/hallmark</code></td>
+<td><code>$hallmark &lt;prompt&gt;</code> or describe a new build</td>
 </tr>
 <tr>
-<td>Papers</td>
-<td><code>.pdf</code></td>
-<td>Citation mining + concept extraction</td>
+<td>Cursor</td>
+<td>finds the copies above</td>
+<td><code>/hallmark &lt;prompt&gt;</code> or describe a new build</td>
 </tr>
 <tr>
-<td>Images</td>
-<td><code>.png .jpg .webp .gif</code></td>
-<td>Claude vision - screenshots, diagrams, any language</td>
+<td>OpenCode</td>
+<td>finds the copies above</td>
+<td><code>/hallmark &lt;prompt&gt;</code> or describe a new build</td>
 </tr>
 </tbody>
 </table>
-<h2>What you get</h2>
-<p><strong>God nodes</strong> - highest-degree concepts (what everything connects through)</p>
-<p><strong>Surprising connections</strong> - ranked by composite score. Code-paper edges rank higher than code-code. Each result includes a plain-English why.</p>
-<p><strong>Suggested questions</strong> - 4-5 questions the graph is uniquely positioned to answer</p>
-<p><strong>Token benchmark</strong> - printed automatically after every run. On a mixed corpus (Karpathy repos + papers + images): <strong>71.5x</strong> fewer tokens per query vs reading raw files.</p>
-<p><strong>Auto-sync</strong> (<code>--watch</code>) - run in a background terminal and the graph updates itself as your codebase changes. Code file saves trigger an instant rebuild (AST only, no LLM). Doc/image changes notify you to run <code>--update</code> for the LLM re-pass. Useful for agentic workflows where multiple agents are writing code in parallel - the graph stays current between waves automatically.</p>
-<p><strong>Git commit hook</strong> (<code>graphify hook install</code>) - installs a post-commit hook that rebuilds the graph after every commit. No background process needed. Triggers once per commit, works with any editor, safe to add alongside existing hooks.</p>
-<p><strong>Wiki</strong> (<code>--wiki</code>) - Wikipedia-style markdown articles per community and god node, with an <code>index.md</code> entry point. Point any agent at <code>index.md</code> and it can navigate the knowledge base by reading files instead of parsing JSON.</p>
-<p>Every edge is tagged <code>EXTRACTED</code>, <code>INFERRED</code>, or <code>AMBIGUOUS</code> - you always know what was found vs guessed.</p>
-<h2>Worked examples</h2>
-<table>
-<thead>
-<tr>
-<th>Corpus</th>
-<th>Files</th>
-<th>Reduction</th>
-<th>Output</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Karpathy repos + 5 papers + 4 images</td>
-<td>52</td>
-<td><strong>71.5x</strong></td>
-<td><a href="worked/karpathy-repos/"><code>worked/karpathy-repos/</code></a></td>
-</tr>
-<tr>
-<td>graphify source + Transformer paper</td>
-<td>4</td>
-<td><strong>5.4x</strong></td>
-<td><a href="worked/mixed-corpus/"><code>worked/mixed-corpus/</code></a></td>
-</tr>
-<tr>
-<td>httpx (synthetic Python library)</td>
-<td>6</td>
-<td>~1x</td>
-<td><a href="worked/httpx/"><code>worked/httpx/</code></a></td>
-</tr>
-</tbody>
-</table>
-<p>Token reduction scales with corpus size. 6 files fits in a context window anyway, so graph value there is structural clarity, not compression. At 52 files (code + papers + images) you get 71x+. Each <code>worked/</code> folder has the raw input files and the actual output (<code>GRAPH_REPORT.md</code>, <code>graph.json</code>) so you can run it yourself and verify the numbers.</p>
-<h2>Tech stack</h2>
-<p>NetworkX + Leiden (graspologic) + tree-sitter + Claude + vis.js. No Neo4j required, no server, runs entirely locally.</p>
-<details>
-<summary>Contributing</summary>
-
-**Worked examples** are the most trust-building contribution. Run `/graphify` on a real corpus, save output to `worked/{slug}/`, write an honest `review.md` evaluating what the graph got right and wrong, submit a PR.
-
-**Extraction bugs** - open an issue with the input file, the cache entry (`graphify-out/cache/`), and what was missed or invented.
-
-See [ARCHITECTURE.md](ARCHITECTURE.md) for module responsibilities and how to add a language.
-
-</details>
+<ul>
+<li><strong>One harness only:</strong> <code>npx skills add nutlope/hallmark -g --agent claude-code</code> (or <code>codex</code>, <code>opencode</code>, <code>cursor</code>, <code>github-copilot</code>).</li>
+<li><strong>As a Claude Code plugin:</strong> <code>/plugin marketplace add nutlope/hallmark</code>, then <code>/plugin install hallmark@hallmark</code> (invoked as <code>/hallmark:hallmark</code>).</li>
+<li><strong>From a clone:</strong> <code>node skills/hallmark/scripts/install.mjs</code> validates every theme and reference before it copies; <code>install-hook.mjs</code> adds an edit-time Floor check to Claude Code.</li>
+<li><strong>Lint any page:</strong> <code>node skills/hallmark/scripts/sloplint.mjs &lt;file-or-dir&gt; --render</code>.</li>
+<li><strong>If it does not fire on its own,</strong> name it: <em>use hallmark to build ...</em>.</li>
+</ul>
+<h2>Licence</h2>
+<p>MIT. Use it, fork it, ship it.</p>
+<p>The photo library (<code>skills/hallmark/scripts/photos.json</code>) lists photographs hosted on Wikimedia Commons and holds no image files. Each keeps its own licence (CC0, public domain, CC BY or CC BY-SA), and Hallmark credits every one it uses on t</p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/Graphify-Labs/graphify#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/Nutlope/hallmark#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
 </div>
 <div>
-  <div class="rank-label">#6</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">supabase /</span>
-          <a href="https://github.com/supabase/supabase" target="_blank" rel="noopener">supabase</a>
-        </div>
-        <div class="repo-desc">The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 113,560</span>
-      <span class="meta-item">🍴 17,010</span>
-      <span class="stars-today">⭐ 693 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <p align="center">
-<img src="https://user-images.githubusercontent.com/8291514/213727234-cda046d6-28c6-491a-b284-b86c5cede25d.png#gh-light-mode-only">
-<img src="https://user-images.githubusercontent.com/8291514/213727225-56186826-bee8-43b5-9b15-86e839d89393.png#gh-dark-mode-only">
-</p>
-
-<h1>Supabase</h1>
-<p><a href="https://supabase.com">Supabase</a> is the Postgres development platform. We're building the features of Firebase using enterprise-grade open source tools.</p>
-<ul>
-<li>[x] Hosted Postgres Database. <a href="https://supabase.com/docs/guides/database">Docs</a></li>
-<li>[x] Authentication and Authorization. <a href="https://supabase.com/docs/guides/auth">Docs</a></li>
-<li>[x] Auto-generated APIs.</li>
-<li>[x] REST. <a href="https://supabase.com/docs/guides/api">Docs</a></li>
-<li>[x] GraphQL. <a href="https://supabase.com/docs/guides/graphql">Docs</a></li>
-<li>[x] Realtime subscriptions. <a href="https://supabase.com/docs/guides/realtime">Docs</a></li>
-<li>[x] Functions.</li>
-<li>[x] Database Functions. <a href="https://supabase.com/docs/guides/database/functions">Docs</a></li>
-<li>[x] Edge Functions <a href="https://supabase.com/docs/guides/functions">Docs</a></li>
-<li>[x] File Storage. <a href="https://supabase.com/docs/guides/storage">Docs</a></li>
-<li>[x] AI + Vector/Embeddings Toolkit. <a href="https://supabase.com/docs/guides/ai">Docs</a></li>
-<li>[x] Dashboard</li>
-</ul>
-<p><img alt="Supabase Dashboard" src="https://raw.githubusercontent.com/supabase/supabase/master/apps/www/public/images/github/supabase-dashboard.png" /></p>
-<p>Watch "releases" of this repo to get notified of major updates.</p>
-<p><kbd><img src="https://raw.githubusercontent.com/supabase/supabase/d5f7f413ab356dc1a92075cb3cee4e40a957d5b1/web/static/watch-repo.gif" alt="Watch this repo"/></kbd></p>
-<h2>Documentation</h2>
-<p>For full documentation, visit <a href="https://supabase.com/docs">supabase.com/docs</a></p>
-<p>To see how to Contribute, visit <a href="./DEVELOPERS.md">Getting Started</a></p>
-<h2>Community &amp; Support</h2>
-<ul>
-<li><a href="https://github.com/supabase/supabase/discussions">Community Forum</a>. Best for: help with building, discussion about database best practices.</li>
-<li><a href="https://github.com/supabase/supabase/issues">GitHub Issues</a>. Best for: bugs and errors you encounter using Supabase.</li>
-<li><a href="https://supabase.com/docs/support#business-support">Email Support</a>. Best for: problems with your database or infrastructure.</li>
-<li><a href="https://discord.supabase.com">Discord</a>. Best for: sharing your applications and hanging out with the community.</li>
-</ul>
-<h2>How it works</h2>
-<p>Supabase is a combination of open source tools. We’re building the features of Firebase using enterprise-grade, open source products. If the tools and communities exist, with an MIT, Apache 2, or equivalent open license, we will use and support that tool. If the tool doesn't exist, we build and open source it ourselves. Supabase is not a 1-to-1 mapping of Firebase. Our aim is to give developers a Firebase-like developer experience using open source tools.</p>
-<p><strong>Architecture</strong></p>
-<p>Supabase is a <a href="https://supabase.com/dashboard">hosted platform</a>. You can sign up and start using Supabase without installing anything.<br />
-You can also <a href="https://supabase.com/docs/guides/hosting/overview">self-host</a> and <a href="https://supabase.com/docs/guides/local-development">develop locally</a>.</p>
-<p><img alt="Architecture" src="apps/docs/public/img/supabase-architecture.svg" /></p>
-<ul>
-<li><a href="https://www.postgresql.org/">Postgres</a> is an object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.</li>
-<li><a href="https://github.com/supabase/realtime">Realtime</a> is an Elixir server that allows you to listen to PostgreSQL inserts, updates, and deletes using websockets. Realtime polls Postgres' built-in replication functionality for database changes, converts changes to JSON, then broadcasts the JSON over websockets to authorized clients.</li>
-<li><a href="http://postgrest.org/">PostgREST</a> is a web server that turns your PostgreSQL database directly into a RESTful API.</li>
-<li><a href="https://github.com/supabase/gotrue">GoTrue</a> is a JWT-based authentication API that simplifies user sign-ups, logins, and session management in your applications.</li>
-<li><a href="https://github.com/supabase/storage-api">Storage</a> a RESTful API for managing files in S3, with Postgres handling permissions.</li>
-<li><a href="http://github.com/supabase/pg_graphql/">pg_graphql</a> a PostgreSQL extension that exposes a GraphQL API.</li>
-<li><a href="https://github.com/supabase/postgres-meta">postgres-meta</a> is a RESTful API for managing your Postgres, allowing you to fetch tables, add roles, and run queries, etc.</li>
-<li><a href="https://github.com/envoyproxy/envoy">Envoy</a> is a cloud-native, high-performance edge and service proxy.</li>
-</ul>
-<h4>Client libraries</h4>
-<p>Our approach for client libraries is modular. Each sub-library is a standalone implementation for a single external system. This is one of the ways we support existing tools.</p>
-<table style="table-layout:fixed; white-space: nowrap;">
-  <tr>
-    <th>Language</th>
-    <th>Client</th>
-    <th colspan="5">Feature-Clients (bundled in Supabase client)</th>
-  </tr>
-  <!-- notranslate -->
-  <tr>
-    <th></th>
-    <th>Supabase</th>
-    <th><a href="https://github.com/postgrest/postgrest" target="_blank" rel="noopener noreferrer">PostgREST</a></th>
-    <th><a href="https://github.com/supabase/gotrue" target="_blank" rel="noopener noreferrer">GoTrue</a></th>
-    <th><a href="https://github.com/supabase/realtime" target="_blank" rel="noopener noreferrer">Realtime</a></th>
-    <th><a href="https://github.com/supabase/storage-api" target="_blank" rel="noopener noreferrer">Storage</a></th>
-    <th>Functions</th>
-  </tr>
-  <!-- TEMPLATE FOR NEW ROW -->
-  <!-- START ROW
-  <tr>
-    <td>lang</td>
-    <td><a href="https://github.com/supabase-community/supabase-lang" target="_blank" rel="noopener noreferrer">supabase-lang</a></td>
-    <td><a href="https://github.com/supabase-community/postgrest-lang" target="_blank" rel="noopener noreferrer">postgrest-lang</a></td>
-    <td><a href="https://github.com/supabase-community/gotrue-lang" target="_blank" rel="noopener noreferrer">gotrue-lang</a></td>
-    <td><a href="https://github.com/supabase-community/realtime-lang" target="_blank" rel="noopener noreferrer">realtime-lang</a></td>
-    <td><a href="https://github.com/supabase-community/storage-lang" target="_blank" rel="noopener noreferrer">storage-lang</a></td>
-  </tr>
-  END ROW -->
-  <!-- /notranslate -->
-  <th colspan="7">⚡️ Official ⚡️</th>
-  <!-- notranslate -->
-  <tr>
-    <td>JavaScript (TypeScript)</td>
-    <td><a href="https://github.com/supabase/supabase-js" target="_blank" rel="noopener noreferrer">supabase-js</a></td>
-    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/postgrest-js" target="_blank" rel="noopener noreferrer">postgrest-js</a></td>
-    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/auth-js" target="_blank" rel="noopener noreferrer">auth-js</a></td>
-    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/realtime-js" target="_blank" rel="noopener noreferrer">realtime-js</a></td>
-    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/storage-js" target="_blank" rel="noopener noreferrer">storage-js</a></td>
-    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/functions-js" target="_blank" rel="noopener noreferrer">functions-js</a></td>
-  </tr>
-    <tr>
-    <td>Flutter</td>
-    <td><a href="https://github.com/supabase/supabase-flutter" target="_blank" rel="noopener noreferrer">supabase-flutter</a></td>
-    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/postgrest" target="_blank" rel="noopener noreferrer">postgrest</a></td>
-    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/supabase_auth" target="_blank" rel="noopener noreferrer">supabase_auth</a></td>
-    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/supabase_realtime" target="_blank" rel="noopener noreferrer">supabase_realtime</a></td>
-    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/supabase_storage" target="_blank" rel="noopener noreferrer">supab
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/supabase/supabase#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#7</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">fastapi /</span>
-          <a href="https://github.com/fastapi/fastapi" target="_blank" rel="noopener">fastapi</a>
-        </div>
-        <div class="repo-desc">FastAPI framework, high performance, easy to learn, fast to code, ready for production</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 103,875</span>
-      <span class="meta-item">🍴 10,093</span>
-      <span class="stars-today">⭐ 101 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <p align="center">
-  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
-</p>
-<p align="center">
-    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
-</p>
-<p align="center">
-<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster">
-    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
-</a>
-<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
-</a>
-<a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
-</a>
-<a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
-</a>
-</p>
-
-<hr />
-<p><strong>Documentation</strong>: <a href="https://fastapi.tiangolo.com">https://fastapi.tiangolo.com</a></p>
-<p><strong>Source Code</strong>: <a href="https://github.com/fastapi/fastapi">https://github.com/fastapi/fastapi</a></p>
-<hr />
-<p>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.</p>
-<p>The key features are:</p>
-<ul>
-<li><strong>Fast</strong>: Very high performance, on par with <strong>NodeJS</strong> and <strong>Go</strong> (thanks to Starlette and Pydantic). <a href="#performance">One of the fastest Python frameworks available</a>.</li>
-<li><strong>Fast to code</strong>: Increase the speed to develop features by about 200% to 300%. *</li>
-<li><strong>Fewer bugs</strong>: Reduce about 40% of human (developer) induced errors. *</li>
-<li><strong>Intuitive</strong>: Great editor support. <dfn title="also known as auto-complete, autocompletion, IntelliSense">Completion</dfn> everywhere. Less time debugging.</li>
-<li><strong>Easy</strong>: Designed to be easy to use and learn. Less time reading docs.</li>
-<li><strong>Short</strong>: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.</li>
-<li><strong>Robust</strong>: Get production-ready code. With automatic interactive documentation.</li>
-<li><strong>Standards-based</strong>: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/">JSON Schema</a>.</li>
-</ul>
-<p><small>* estimation based on tests conducted by an internal development team, building production applications.</small></p>
-<h2>Sponsors</h2>
-<!-- sponsors -->
-<h3>Keystone Sponsor</h3>
-<p><a href="https://fastapicloud.com" target="_blank" title="FastAPI Cloud. By the same team behind FastAPI. You code. We Cloud."><img src="https://fastapi.tiangolo.com/img/sponsors/fastapicloud.png"></a></p>
-<h3>Gold Sponsors</h3>
-<p><a href="https://blockbee.io?ref=fastapi" target="_blank" title="BlockBee Cryptocurrency Payment Gateway"><img src="https://fastapi.tiangolo.com/img/sponsors/blockbee.png"></a><br />
-<a href="https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge" target="_blank" title="Auth, user management and more for your B2B product"><img src="https://fastapi.tiangolo.com/img/sponsors/propelauth.png"></a><br />
-<a href="https://www.coderabbit.ai/?utm_source=fastapi&utm_medium=badge&utm_campaign=fastapi" target="_blank" title="Cut Code Review Time & Bugs in Half with CodeRabbit"><img src="https://fastapi.tiangolo.com/img/sponsors/coderabbit.png"></a><br />
-<a href="https://subtotal.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=open-source" target="_blank" title="The Gold Standard in Retail Account Linking"><img src="https://fastapi.tiangolo.com/img/sponsors/subtotal.svg"></a><br />
-<a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" target="_blank" title="Deploy enterprise applications at startup speed"><img src="https://fastapi.tiangolo.com/img/sponsors/railway.png"></a><br />
-<a href="https://serpapi.com/?utm_source=fastapi_website" target="_blank" title="SerpApi: Web Search API"><img src="https://fastapi.tiangolo.com/img/sponsors/serpapi.png"></a><br />
-<a href="https://www.greptile.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=fastapi_sponsor_page" target="_blank" title="Greptile: The AI Code Reviewer"><img src="https://fastapi.tiangolo.com/img/sponsors/greptile.png"></a></p>
-<h3>Silver Sponsors</h3>
-<p><a href="https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display" target="_blank" title="Pay as you go for market data"><img src="https://fastapi.tiangolo.com/img/sponsors/databento.svg"></a><br />
-<a href="https://www.svix.com/" target="_blank" title="Svix - Webhooks as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/svix.svg"></a><br />
-<a href="https://dribia.com/en/" target="_blank" title="Dribia - Data Science within your reach"><img src="https://fastapi.tiangolo.com/img/sponsors/dribia.png"></a><br />
-<a href="https://www.bairesdev.com/" target="_blank" title="BairesDev | Nearshore Software Development & Staff Augmentation Company"><img src="https://fastapi.tiangolo.com/img/sponsors/bairesdev.svg"></a><br />
-<a href="https://tutorcruncher.com/?utm_source=fastapi" target="_blank" title="TutorCruncher"><img src="https://fastapi.tiangolo.com/img/sponsors/tutorcruncher.png"></a></p>
-<!-- /sponsors -->
-
-<p><a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors">Other sponsors</a></p>
-<h2>Opinions</h2>
-<div class="only-github" markdown="1">
-
-"_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
-
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
-
----
-
-"_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
-
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
-
----
-
-"_**Netflix** is pleased to announce the open-source release of our **crisis management** orchestration framework: **Dispatch**! [built with **FastAPI**]_"
-
-<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(ref)</small></a></div>
-
----
-
-"_If anyone is looking to build a production Python API, I would highly recommend **FastAPI**. It is **beautifully designed**, **simple to use** and **highly scalable**, it has become a **key component** in our API first development strategy and is driving many automations and services such as our Virtual TAC Engineer._"
-
-<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
-
----
-
-</div>
-
-<h2>FastAPI mini documentary</h2>
-<p>There's a <a href="https://www.youtube.com/watch?v=mpR8ngthqiE">FastAPI mini documentary</a> released at the end of 2025, you can watch it online:</p>
-<p><a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a></p>
-<h2><strong>Typer</strong>, the FastAPI of CLIs</h2>
-<p><a href="https://typer.tiangolo.com"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a></p>
-<p>If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/"><strong>Typer</strong></a>.</p>
-<p><strong>Typer</strong> is FastAPI's little sibling. And it's intended to be the <strong>FastAPI of CLIs</strong>. ⌨️ 🚀</p>
-<h2>Requirements</h2>
-<p>FastAPI stands on the shoulders of giants:</p>
-<ul>
-<li>[Starlette](htt</li>
-</ul>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/fastapi/fastapi#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#8</div>
+  <div class="rank-label">#5</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
@@ -1278,9 +838,9 @@ You can also <a href="https://supabase.com/docs/guides/hosting/overview">self-ho
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 43,421</span>
-      <span class="meta-item">🍴 5,406</span>
-      <span class="stars-today">⭐ 177 stars today</span>
+      <span class="meta-item">⭐ 44,804</span>
+      <span class="meta-item">🍴 5,511</span>
+      <span class="stars-today">⭐ 392 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1542,43 +1102,911 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
   </div>
 </div>
 <div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">pbakaus /</span>
+          <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">impeccable</a>
+        </div>
+        <div class="repo-desc">The design language that makes your AI harness better at design.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 86,774</span>
+      <span class="meta-item">🍴 5,180</span>
+      <span class="stars-today">⭐ 619 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Impeccable</h1>
+<p>Design guidance for AI coding agents. 1 skill, 24 commands, live browser iteration, and 62 deterministic detector rules for AI-generated frontend design.</p>
+<blockquote>
+<p><strong>Quick start:</strong> From your project root, run <code>npx impeccable install</code>, then run <code>/impeccable init</code> inside your AI coding tool. Full docs: <a href="https://impeccable.style">impeccable.style</a>.</p>
+</blockquote>
+<h2>Why Impeccable?</h2>
+<p>Anthropic's <a href="https://github.com/anthropics/skills/tree/main/skills/frontend-design">frontend-design</a> was the first widely-used design skill for Claude. Impeccable started from there.</p>
+<p>Every model trained on the same SaaS templates. Skip the guidance and you get the same handful of tells on every project: Inter for everything, purple-to-blue gradients, cards nested in cards, gray text on colored backgrounds, the rounded-square icon tile above every heading.</p>
+<p>Impeccable adds:<br />
+- <strong>One setup flow.</strong> <code>/impeccable init</code> records durable product truth in <code>PRODUCT.md</code>, so later commands know the audience, purpose, operating context, constraints, voice, and evidence without confusing those facts with surface-level visual direction.<br />
+- <strong>24 commands.</strong> A shared design vocabulary with your AI: <code>polish</code>, <code>audit</code>, <code>critique</code>, <code>distill</code>, <code>animate</code>, <code>bolder</code>, <code>quieter</code>, and more.<br />
+- <strong>62 deterministic detector rules</strong> plus LLM-only critique checks. The CLI and browser extension run the deterministic rules with no LLM and no API key.</p>
+<h2>What's Included</h2>
+<h3>The Skill: impeccable</h3>
+<p>The skill installs as one command:</p>
+<pre><code class="language-bash">/impeccable &lt;command&gt; &lt;target&gt;
+</code></pre>
+<p>Start every new project with:</p>
+<pre><code class="language-bash">/impeccable init
+</code></pre>
+<p><code>init</code> inspects the project, asks only for material gaps in durable product truth, and writes <code>PRODUCT.md</code>. Visitor mode and visual direction are chosen later for each surface; incumbent or newly built visual systems are recorded separately in <code>DESIGN.md</code>.</p>
+<h3>24 Commands</h3>
+<p>All commands are accessed through <code>/impeccable</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/impeccable craft</code></td>
+<td>Full shape-then-build flow with visual iteration</td>
+</tr>
+<tr>
+<td><code>/impeccable init</code></td>
+<td>One-time setup: gather durable product context, write PRODUCT.md, configure live mode when applicable, recommend next steps</td>
+</tr>
+<tr>
+<td><code>/impeccable document</code></td>
+<td>Generate root DESIGN.md from existing project code</td>
+</tr>
+<tr>
+<td><code>/impeccable extract</code></td>
+<td>Pull reusable components and tokens into the design system</td>
+</tr>
+<tr>
+<td><code>/impeccable shape</code></td>
+<td>Plan UX/UI before writing code</td>
+</tr>
+<tr>
+<td><code>/impeccable critique</code></td>
+<td>UX design review: hierarchy, clarity, emotional resonance</td>
+</tr>
+<tr>
+<td><code>/impeccable audit</code></td>
+<td>Run technical quality checks (a11y, performance, responsive)</td>
+</tr>
+<tr>
+<td><code>/impeccable polish</code></td>
+<td>Final pass, design system alignment, and shipping readiness</td>
+</tr>
+<tr>
+<td><code>/impeccable bolder</code></td>
+<td>Amplify boring designs</td>
+</tr>
+<tr>
+<td><code>/impeccable quieter</code></td>
+<td>Tone down overly bold designs</td>
+</tr>
+<tr>
+<td><code>/impeccable distill</code></td>
+<td>Strip to essence</td>
+</tr>
+<tr>
+<td><code>/impeccable harden</code></td>
+<td>Error handling, i18n, text overflow, edge cases</td>
+</tr>
+<tr>
+<td><code>/impeccable onboard</code></td>
+<td>First-run flows, empty states, activation paths</td>
+</tr>
+<tr>
+<td><code>/impeccable animate</code></td>
+<td>Add purposeful motion</td>
+</tr>
+<tr>
+<td><code>/impeccable colorize</code></td>
+<td>Introduce strategic color</td>
+</tr>
+<tr>
+<td><code>/impeccable typeset</code></td>
+<td>Fix font choices, hierarchy, sizing</td>
+</tr>
+<tr>
+<td><code>/impeccable layout</code></td>
+<td>Fix layout, spacing, visual rhythm</td>
+</tr>
+<tr>
+<td><code>/impeccable delight</code></td>
+<td>Add moments of joy</td>
+</tr>
+<tr>
+<td><code>/impeccable overdrive</code></td>
+<td>Add technically extraordinary effects</td>
+</tr>
+<tr>
+<td><code>/impeccable clarify</code></td>
+<td>Improve unclear UX copy</td>
+</tr>
+<tr>
+<td><code>/impeccable adapt</code></td>
+<td>Adapt for different devices</td>
+</tr>
+<tr>
+<td><code>/impeccable optimize</code></td>
+<td>Performance improvements</td>
+</tr>
+<tr>
+<td><code>/impeccable live</code></td>
+<td>Visual variant mode: iterate on elements in the browser</td>
+</tr>
+<tr>
+<td><code>/impeccable generate</code></td>
+<td>Generate variants of a named element in the live browser, no manual picking</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>/impeccable pin &lt;command&gt;</code> to create standalone shortcuts (e.g., <code>pin audit</code> creates <code>/audit</code>).</p>
+<h4>Usage Examples</h4>
+<pre><code>/impeccable audit blog           # Audit blog hub + post pages
+/impeccable critique landing     # UX design review
+/impeccable polish settings      # Final pass before shipping
+/impeccable harden checkout      # Add error handling + edge cases
+</code></pre>
+<p>Or use <code>/impeccable</code> directly with a description:</p>
+<pre><code>/impeccable redo this hero section
+</code></pre>
+<h3>Anti-Patterns</h3>
+<p>The skill includes explicit guidance on what to avoid:</p>
+<ul>
+<li>Don't use overused fonts (Arial, Inter, system defaults)</li>
+<li>Don't use gray text on colored backgrounds</li>
+<li>Don't use pure black/gray (always tint)</li>
+<li>Don't wrap everything in cards or nest cards inside cards</li>
+<li>Don't use bounce/elastic easing (feels dated)</li>
+</ul>
+<h2>See It In Action</h2>
+<p>Visit <a href="https://impeccable.style/cases/neo-mirai">the Neo Mirai case study</a> to see a before/after case study of a real project transformed with Impeccable commands.</p>
+<h2>Installation</h2>
+<p>The skill needs no runtime of its own. Every skill copy ships a small launcher (<code>scripts/impeccable</code>, plus <code>impeccable.cmd</code> for Windows) that runs the Impeccable engine, a self-contained binary that either sits next to the launcher or is downloaded once on first run into <code>~/.impeccable/bin/</code>. Node is only involved if you use the <code>npx impeccable</code> installer, which is a shim around the same binary; the manual and Git options below work without it.</p>
+<h3>Option 1: CLI installer (Recommended)</h3>
+<p>From the root of your project, run:</p>
+<pre><code class="language-bash">npx impeccable install
+</code></pre>
+<p>This shows the harness folders or installed CLIs it detected (for example <code>~/.claude</code>, <code>~/.codex</code>, <code>~/.grok</code>, <code>~/.hermes</code>, <code>~/.veto</code>, or project-local <code>.cursor</code>), lets you keep the detected set or customize providers, then asks whether to install into the current project or globally. Use <code>--providers=claude,codex,cursor,grok,hermes,veto</code> and <code>--scope=project|global</code> to skip those choices in scripts. On Claude Code, Cursor, Codex, GitHub Copilot, and Grok Build, it also installs the provider-native hook manifest for the current project. Veto receives the packaged skill under <code>~/.veto/skills/</code> and does not run native Impeccable edit hooks. Works with Cursor, Claude Code, Gemini CLI, Codex CLI, Grok Build, Hermes Agent, Veto, and every other supported tool. Reload your harness afterward.</p>
+<p>To refresh an existing install, run:</p>
+<pre><code class="language-bash">npx impeccable update
+</code></pre>
+<p>Codex users should open <code>/hooks</code> after install or update and approve the project hook when prompted. Codex tracks trust by hook definition, so updates that change <code>.codex/hooks.json</code> can require approval again. Grok Build users need project folder trust (<code>/hooks-trust</code> or launch with <code>--trust</code>) before <code>.grok/hooks/</code> scripts run.</p>
+<p>See <a href="https://impeccable.style/docs/hooks#allow-the-hook-in-your-harness">Allow the hook in your harness</a> for harness-specific trust and verification steps.</p>
+<h3>Option 2: Git Submodule</h3>
+<p>For teams that want to keep Impeccable vendored and updated through Git, add this repo as a submodule and link the compiled provider build into your harness folders:</p>
+<pre><code class="language-bash">git submodule add https://github.com/pbakaus/impeccable .impeccable
+npx impeccable link --source=.impeccable --providers=claude,cursor
+git add .gitmodules .impeccable .claude .cursor
+git commit -m &quot;Add Impeccable skills&quot;
+</code></pre>
+<p>Use the providers your project needs, for example <code>claude</code>, <code>cursor</code>, <code>gemini</code>, <code>codex</code>, <code>github</code>, <code>grok</code>, <code>hermes</code>, <code>opencode</code>, <code>pi</code>, <code>qoder</code>, <code>trae</code>, <code>trae-cn</code>, <code>rovo-dev</code>, <code>vibe</code>, or <code>veto</code>. The command links individual skill folders from <code>.impeccable/dist/universal/</code> and leaves existing real skill directories untouched unless you pass <code>--force</code>.</p>
+<p>To update later:</p>
+<pre><code class="language-bash">git submodule update --remote .impeccable
+npx impeccable link --source=.impeccable --providers=claude,cursor
+</code></pre>
+<h3>Option 3: Plugin install</h3>
+<p><strong>GitHub Copilot in VS Code:</strong></p>
+<p>Install <a href="https://marketplace.visualstudio.com/items?itemName=renaissance-geek.impeccable">Impeccable from the Visual Studio Marketplace</a>, or run:</p>
+<pre><code class="language-bash">code --install-extension renaissance-geek.impeccable
+</code></pre>
+<p>Requires VS Code 1.109.3+, Copilot Chat access, and a trusted local workspace. Open Chat in Agent mode and try <code>/impeccable polish</code>. This skill-only extension does not install automatic hooks; </p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/pbakaus/impeccable#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">pollen-robotics /</span>
+          <a href="https://github.com/pollen-robotics/microduck" target="_blank" rel="noopener">microduck</a>
+        </div>
+        <div class="repo-desc">A Tiny biped duck robot 🦆</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 11,213</span>
+      <span class="meta-item">🍴 1,434</span>
+      <span class="stars-today">⭐ 319 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="https://github.com/user-attachments/assets/c2f7c245-8217-46a1-8d1e-e0ba967cd969" alt="microduck" width="820">
+</p>
+
+<h1 align="center">Microduck</h1>
+
+<p align="center">
+  <em>A tiny biped robot that moves using reinforcement learning policies.</em>
+</p>
+
+<p align="center">
+  <a href="https://pollen-robotics.com/microduck"><b>Get yours here</b></a> ·
+  <a href="docs/robot/cheatsheet.md">Cheat sheet</a> ·
+  <a href="https://github.com/pollen-robotics/microduck_rl">Training the policies</a> ·
+  <a href="docs/design/architecture.md">How it works</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml"><img src="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+</p>
+
+<hr />
+<p><strong>This repo is the duck's brain.</strong> About 25 cm and 800 g of robot, run by a handful of daemons on a<br />
+Rockchip RK3566: a 50 Hz control loop driving fifteen servos from neural policies, the radios and<br />
+the camera, and the update machinery that gets new software onto a robot without bricking it.</p>
+<p>Everything you need to run a Microduck is here. <strong>If you want one,<br />
+<a href="https://pollen-robotics.com/microduck">get yours here</a>.</strong></p>
+<p>The policies it runs are trained next door, in<br />
+<strong><a href="https://github.com/pollen-robotics/microduck_rl">microduck_rl</a></strong> — MuJoCo and PPO, the sim2real<br />
+recipe, and the export to ONNX that this repo loads.</p>
+<h2>It does things</h2>
+<table>
+<tr>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/356a6011-8e0d-4b28-bda9-da78646583a3" controls width="100%"></video>
+</td>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/abfbf250-1b1c-42cb-8430-00267e2b148a" controls width="100%"></video>
+
+</td>
+</tr>
+<tr>
+<td><b>It walks.</b> Pick up a gamepad and drive.</td>
+<td><b>It rolls.</b> Put wheels on, ask for roller mode, and it loads the other brain.</td>
+</tr>
+<tr>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/7e70c1da-e120-428f-ae0b-f4de62f25984" controls width="100%"></video>
+</td>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/3eef63a5-6f84-47cf-90de-e717e6d7f8f0" controls width="100%"></video>
+</td>
+</tr>
+<tr>
+<td><b>It picks things up.</b> Beak to the floor, one button.</td>
+<td><b>It gets back up.</b> Knock it over and it stands itself up.</td>
+</tr>
+</table>
+
+<p>It also sits, kicks a ball, rolls forward on command, and quacks in a voice that is its own.</p>
+<h2>Where to find things</h2>
+<h3>You have a duck</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="docs/robot/cheatsheet.md">Cheat sheet</a></td>
+<td>Every <code>robotctl</code> command: drive, configure, voice, chorale, theremin, wifi, updates, logs. Start here.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/cheatsheet.md#gamepad-configd">Gamepad</a></td>
+<td>The full button mapping, and pairing a pad — <a href="docs/robot/pair-a-gamepad.md">once per pad</a>, plus what to do when it will not bond.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/duckctl.md"><code>duckctl</code></a></td>
+<td>The robot from a laptop over Bluetooth, with no network and no ssh.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/cheatsheet.md#updates-updaterd">Updates</a></td>
+<td>Install, roll back, pin. Every update is verified, health-gated and reversible.</td>
+</tr>
+</tbody>
+</table>
+<h3>You are building on it</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/pollen-robotics/microduck_rl">microduck_rl</a></td>
+<td>Where the policies come from: MuJoCo, PPO, domain randomisation, and the ONNX export this repo loads.</td>
+</tr>
+<tr>
+<td><a href="docs/design/architecture.md">How it works</a></td>
+<td>The whole system on one page — the daemons, the bus, how an update reaches a robot — then a page per part.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/install-dev.md">Set up a dev board</a></td>
+<td>From a blank board to a robot that takes branch builds.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/cheatsheet-dev.md">Dev cheat sheet</a></td>
+<td>Branch builds, release candidates, driving from a laptop, and the restart traps after an update.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/dev-push.md">Push your branch</a></td>
+<td>Build on your machine, install over ssh, about a minute.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/simulation.md">The simulated duck</a></td>
+<td>No robot on the desk? <code>scripts/duck-sim</code> runs the real daemons against a body in MuJoCo — one duck in a window, or four as machines you log into.</td>
+</tr>
+<tr>
+<td><a href="CONTRIBUTING.md">CONTRIBUTING.md</a></td>
+<td>Building, testing, layout, conventions, releasing.</td>
+</tr>
+<tr>
+<td><a href="docs/README.md">Docs index</a></td>
+<td>Everything, including the design pages and the open problems.</td>
+</tr>
+</tbody>
+</table>
+<h2>Under the hood</h2>
+<p>Rust, no framework, one workspace. <code>robotd</code> owns the control loop and the motor bus; <code>updaterd</code><br />
+installs signed releases and rolls them back when a robot comes up unhealthy; <code>configd</code> owns wifi<br />
+and identity; <code>btd</code> is the Bluetooth path a phone uses; <code>padd</code> reads the gamepad; <code>mediad</code> streams<br />
+the camera over WebRTC; <code>tofd</code> serves the depth sensor. They talk over one JSON-RPC contract on<br />
+Unix sockets, and every client — the app, the console, the gamepad, your script — sends exactly the<br />
+same calls.</p>
+<p>The interesting decisions are written down: <a href="docs/design/"><code>docs/design/</code></a> is why things are the<br />
+way they are, and <a href="docs/project/"><code>docs/project/</code></a> is what has gone wrong and what would close it.</p>
+<h2>A note on ducks</h2>
+<p>No duck was harmed in the making of this robot. Several were consulted.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/pollen-robotics/microduck#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">google-gemini /</span>
+          <a href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener">gemini-cli</a>
+        </div>
+        <div class="repo-desc">An open-source AI agent that brings the power of Gemini directly into your terminal.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 108,313</span>
+      <span class="meta-item">🍴 14,826</span>
+      <span class="stars-today">⭐ 44 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <blockquote>
+<p>[!NOTE]</p>
+<p><strong>Unpaid tier and Google One users:</strong> Gemini CLI was replaced by Antigravity<br />
+CLI on June 18th, 2026. To learn more, see our<br />
+<a href="https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli">blog post</a>.</p>
+<p><strong>Gemini CLI has not been optimized for Gemini 4 Argon.</strong> To use Gemini 4<br />
+Argon, please use Antigravity.</p>
+</blockquote>
+<h1>Gemini CLI</h1>
+<p><a href="https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml"><img alt="Gemini CLI CI" src="https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg" /></a><br />
+<a href="https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml"><img alt="Gemini CLI E2E (Chained)" src="https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml/badge.svg" /></a><br />
+<a href="https://www.npmjs.com/package/@google/gemini-cli"><img alt="Version" src="https://img.shields.io/npm/v/@google/gemini-cli" /></a><br />
+<a href="https://github.com/google-gemini/gemini-cli/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/google-gemini/gemini-cli" /></a><br />
+<a href="https://codewiki.google/github.com/google-gemini/gemini-cli?utm_source=badge&amp;utm_medium=github&amp;utm_campaign=github.com/google-gemini/gemini-cli"><img alt="View Code Wiki" src="https://assets.codewiki.google/readme-badge/static.svg" /></a></p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>Gemini CLI is not optimized for the latest Gemini models. For the best coding<br />
+experience with Gemini models use<br />
+<a href="https://antigravity.google/product/antigravity-cli">Antigravity CLI</a></p>
+</blockquote>
+<p>Gemini CLI is an open-source AI agent that brings the power of Gemini directly<br />
+into your terminal. It provides lightweight access to Gemini, giving you the<br />
+most direct path from your prompt to our model.</p>
+<p>Learn all about Gemini CLI in our <a href="https://geminicli.com/docs/">documentation</a>.</p>
+<h2>📦 Installation</h2>
+<p>See<br />
+<a href="https://www.geminicli.com/docs/get-started/installation">Gemini CLI installation, execution, and releases</a><br />
+for recommended system specifications and a detailed installation guide.</p>
+<h3>Quick Install</h3>
+<h4>Run instantly with npx</h4>
+<pre><code class="language-bash"># Using npx (no installation required)
+npx @google/gemini-cli
+</code></pre>
+<h4>Install globally with npm</h4>
+<pre><code class="language-bash">npm install -g @google/gemini-cli
+</code></pre>
+<h4>Install globally with Homebrew (macOS/Linux)</h4>
+<pre><code class="language-bash">brew install gemini-cli
+</code></pre>
+<h4>Install globally with MacPorts (macOS)</h4>
+<pre><code class="language-bash">sudo port install gemini-cli
+</code></pre>
+<h4>Install with Anaconda (for restricted environments)</h4>
+<pre><code class="language-bash"># Create and activate a new environment
+conda create -y -n gemini_env -c conda-forge nodejs
+conda activate gemini_env
+
+# Install Gemini CLI globally via npm (inside the environment)
+npm install -g @google/gemini-cli
+</code></pre>
+<h2>Release Channels</h2>
+<p>See <a href="https://www.geminicli.com/docs/changelogs">Releases</a> for more details.</p>
+<h3>Preview</h3>
+<p>New preview releases will be published each week at UTC 23:59 on Tuesdays. These<br />
+releases will not have been fully vetted and may contain regressions or other<br />
+outstanding issues. Please help us test and install with <code>preview</code> tag.</p>
+<pre><code class="language-bash">npm install -g @google/gemini-cli@preview
+</code></pre>
+<h3>Stable</h3>
+<ul>
+<li>New stable releases will be published each week at UTC 20:00 on Tuesdays, this<br />
+  will be the full promotion of last week's <code>preview</code> release + any bug fixes<br />
+  and validations. Use <code>latest</code> tag.</li>
+</ul>
+<pre><code class="language-bash">npm install -g @google/gemini-cli@latest
+</code></pre>
+<h3>Nightly</h3>
+<ul>
+<li>New releases will be published each day at UTC 00:00. This will be all changes<br />
+  from the main branch as represented at time of release. It should be assumed<br />
+  there are pending validations and issues. Use <code>nightly</code> tag.</li>
+</ul>
+<pre><code class="language-bash">npm install -g @google/gemini-cli@nightly
+</code></pre>
+<h2>📋 Key Features</h2>
+<h3>Code Understanding &amp; Generation</h3>
+<ul>
+<li>Query and edit large codebases</li>
+<li>Generate new apps from PDFs, images, or sketches using multimodal capabilities</li>
+<li>Debug issues and troubleshoot with natural language</li>
+</ul>
+<h3>Automation &amp; Integration</h3>
+<ul>
+<li>Automate operational tasks like querying pull requests or handling complex<br />
+  rebases</li>
+<li>Use MCP servers to connect new capabilities, including<br />
+<a href="https://github.com/GoogleCloudPlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia">media generation with Imagen, Veo or Lyria</a></li>
+<li>Run non-interactively in scripts for workflow automation</li>
+</ul>
+<h2>🔐 Authentication Options</h2>
+<p>Choose the authentication method that best fits your needs:</p>
+<h3>Option 1: Sign in with Google (OAuth login using your Google Account)</h3>
+<h4>When using a paid Code Assist License from your organization, remember to set the Google Cloud Project</h4>
+<pre><code class="language-bash"># Set your Google Cloud Project
+export GOOGLE_CLOUD_PROJECT=&quot;YOUR_PROJECT_ID&quot;
+gemini
+</code></pre>
+<h3>Option 2: Gemini API Key</h3>
+<p><strong>✨ Best for:</strong> Developers who need specific model control or paid tier access</p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li><strong>Model selection</strong>: Choose specific Gemini models</li>
+<li><strong>Usage-based billing</strong>: Upgrade for higher limits when needed</li>
+</ul>
+<pre><code class="language-bash"># Get your key from https://aistudio.google.com/apikey
+export GEMINI_API_KEY=&quot;YOUR_API_KEY&quot;
+gemini
+</code></pre>
+<h3>Option 3: Vertex AI</h3>
+<p><strong>✨ Best for:</strong> Enterprise teams and production workloads</p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li><strong>Enterprise features</strong>: Advanced security and compliance</li>
+<li><strong>Scalable</strong>: Higher rate limits with billing account</li>
+<li><strong>Integration</strong>: Works with existing Google Cloud infrastructure</li>
+</ul>
+<pre><code class="language-bash"># Get your key from Google Cloud Console
+export GOOGLE_API_KEY=&quot;YOUR_API_KEY&quot;
+export GOOGLE_GENAI_USE_VERTEXAI=true
+gemini
+</code></pre>
+<p>For Google Workspace accounts and other authentication methods, see the<br />
+<a href="https://www.geminicli.com/docs/get-started/authentication">authentication guide</a>.</p>
+<h2>🚀 Getting Started</h2>
+<blockquote>
+<p>[!NOTE]</p>
+<p>Gemini CLI is not optimized for the latest Gemini models. For the best coding<br />
+experience with Gemini models use<br />
+<a href="https://antigravity.google/product/antigravity-cli">Antigravity CLI</a></p>
+</blockquote>
+<h3>Basic Usage</h3>
+<h4>Start in current directory</h4>
+<pre><code class="language-bash">gemini
+</code></pre>
+<h4>Include multiple directories</h4>
+<pre><code class="language-bash">gemini --include-directories ../lib,../docs
+</code></pre>
+<h4>Use specific model</h4>
+<pre><code class="language-bash">gemini -m gemini-2.5-flash
+</code></pre>
+<h4>Non-interactive mode for scripts</h4>
+<p>Get a simple text response:</p>
+<pre><code class="language-bash">gemini -p &quot;Explain the architecture of this codebase&quot;
+</code></pre>
+<p>For more advanced scripting, including how to parse JSON and handle errors, use<br />
+the <code>--output-format json</code> flag to get structured output:</p>
+<pre><code class="language-bash">gemini -p &quot;Explain the architecture of this codebase&quot; --output-format json
+</code></pre>
+<p>For real-time event streaming (useful for monitoring long-running operations),<br />
+use <code>--output-format stream-json</code> to get newline-delimited JSON events:</p>
+<pre><code class="language-bash">gemini -p &quot;Run tests and deploy&quot; --output-format stream-json
+</code></pre>
+<h3>Quick Examples</h3>
+<h4>Start a new project</h4>
+<pre><code class="language-bash">cd new-project/
+gemini
+&gt; Write me a Discord bot that answers questions using a FAQ.md file I will provide
+</code></pre>
+<h4>Analyze existing code</h4>
+<pre><code class="language-bash">git clone https://github.com/google-gemini/gemini-cli
+cd gemini-cli
+gemini
+&gt; Give me a summary of all of the changes that went in yesterday
+</code></pre>
+<h2>📚 Documentation</h2>
+<h3>Getting Started</h3>
+<ul>
+<li><a href="https://www.geminicli.com/docs/get-started"><strong>Quickstart Guide</strong></a> - Get up<br />
+  and running quickly.</li>
+<li><a href="https://www.geminicli.com/docs/get-started/authentication"><strong>Authentication Setup</strong></a> -<br />
+  Detailed auth configuration.</li>
+<li><a href="https://www.geminicli.com/docs/reference/configuration"><strong>Configuration Guide</strong></a> -<br />
+  Settings and customization.</li>
+<li><a href="https://www.geminicli.com/docs/reference/keyboard-shortcuts"><strong>Keyboard Shortcuts</strong></a> -<br />
+  Productivity tips.</li>
+</ul>
+<h3>Core Features</h3>
+<ul>
+<li><a href="https://www.geminicli.com/docs/reference/commands"><strong>Commands Reference</strong></a> -<br />
+  All slash commands (<code>/help</code>, <code>/chat</code>, etc).</li>
+<li><a href="https://www.geminicli.com/docs/cli/custom-commands"><strong>Custom Commands</strong></a> -<br />
+  Create your own reusable commands.</li>
+<li><a href="https://www.geminicli.com/docs/cli/gemini-md"><strong>Context Files (GEMINI.md)</strong></a> -<br />
+  Provide persistent context to Gemini CLI.</li>
+<li><a href="https://www.geminicli.com/docs/cli/checkpointing"><strong>Checkpointing</strong></a> - Save<br />
+  and resume conversations.</li>
+<li><a href="https://www.geminicli.com/docs/cli/token-caching"><strong>Token Caching</strong></a> -<br />
+  Optimize token usage.</li>
+</ul>
+<h3>Tools &amp; Extensions</h3>
+<ul>
+<li>[<strong>Built-in Tools Overview</strong>](https://www.geminicli.com/docs/refere</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/google-gemini/gemini-cli#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
   <div class="rank-label">#9</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">Meloong-Git /</span>
-          <a href="https://github.com/Meloong-Git/PCL" target="_blank" rel="noopener">PCL</a>
+          <span class="repo-owner">jbiaojerry /</span>
+          <a href="https://github.com/jbiaojerry/ebook-treasure-chest" target="_blank" rel="noopener">ebook-treasure-chest</a>
         </div>
-        <div class="repo-desc">Minecraft 启动器 Plain Craft Launcher（PCL）。</div>
+        <div class="repo-desc">欢迎来到电子书下载宝库，一个汇聚了各类电子书下载链接的地方。无论你是喜欢阅读经典文学、经管励志、终身学习、职场创业、技术手册还是其他类型的书籍，这里都能满足你的需求。 该库涵盖了帆书app(原樊登读书)、微信读书、京东读书、喜马拉雅等读书app的大部分电子书。</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#8b949e"></span>Visual Basic .NET</span>
-      <span class="meta-item">⭐ 8,757</span>
-      <span class="meta-item">🍴 1,214</span>
-      <span class="stars-today">⭐ 119 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 22,955</span>
+      <span class="meta-item">🍴 3,214</span>
+      <span class="stars-today">⭐ 227 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <h1>Plain Craft Launcher</h1>
-<p><a href="https://github.com/Meloong-Git/PCL/"><img alt="Stars" src="https://img.shields.io/github/stars/Meloong-Git/PCL?style=flat&amp;logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZD0iTTggLjI1YS43NS43NSAwIDAgMSAuNjczLjQxOGwxLjg4MiAzLjgxNSA0LjIxLjYxMmEuNzUuNzUgMCAwIDEgLjQxNiAxLjI3OWwtMy4wNDYgMi45Ny43MTkgNC4xOTJhLjc1MS43NTEgMCAwIDEtMS4wODguNzkxTDggMTIuMzQ3bC0zLjc2NiAxLjk4YS43NS43NSAwIDAgMS0xLjA4OC0uNzlsLjcyLTQuMTk0TC44MTggNi4zNzRhLjc1Ljc1IDAgMCAxIC40MTYtMS4yOGw0LjIxLS42MTFMNy4zMjcuNjY4QS43NS43NSAwIDAgMSA4IC4yNVoiIGZpbGw9IiNlYWM1NGYiLz48L3N2Zz4=&amp;logoSize=auto&amp;label=Stars&amp;labelColor=444444&amp;color=eac54f" /></a><br />
-<a href="https://github.com/Meloong-Git/PCL/issues"><img alt="Issues" src="https://img.shields.io/github/issues/Meloong-Git/PCL?style=flat&amp;label=Issues&amp;labelColor=444444&amp;color=1F883D" /></a><br />
-<a href="https://space.bilibili.com/11343203/dynamic"><img alt="哔哩哔哩" src="https://img.shields.io/badge/动态-BiliBili-00A4DB?style=flat&amp;labelColor=444444&amp;logoSize=auto" /></a><br />
-<a href="https://meloong.com/afd/a/LTCat"><img alt="爱发电" src="https://img.shields.io/badge/赞助-爱发电-946ce6?style=flat&amp;labelColor=444444&amp;logoSize=auto" /></a></p>
-<p>包含 PCL 的大部分源代码，包括 UI 库、动画模块、下载模块、Minecraft 启动模块等！<br/><br />
-代码并不是实时更新的，它会在每次 PCL 发布更新时同步一次。<br/><br />
-非常感谢社区的大力支持！</p>
-<p><br/></p>
-<h3>相关资源</h3>
+    <p align="center">
+<img src=".github/logo.png" alt="Project Logo">
+</p>
+
+<h1>电子书下载宝库</h1>
+<p><img alt="GitHub" src="https://img.shields.io/github/license/jbiaojerry/ebook-treasure-chest" /><br />
+<img alt="GitHub stars" src="https://img.shields.io/github/stars/jbiaojerry/ebook-treasure-chest?style=social" /><br />
+<img alt="GitHub forks" src="https://img.shields.io/github/forks/jbiaojerry/ebook-treasure-chest?style=social" /></p>
+<blockquote>
+<p><strong>🌐 <a href="https://jbiaojerry.github.io/ebook-treasure-chest/">在线访问 GitHub Pages</a></strong> - 体验强大的实时搜索功能和多关键字搜索，快速找到你想要的电子书！</p>
+</blockquote>
+<p>欢迎来到电子书下载宝库，一个汇聚了各类电子书下载链接的地方。无论你是喜欢阅读经典文学、经管励志、终身学习、职场创业、技术手册还是其他类型的书籍，这里都能满足你的需求。<br />
+该库涵盖了帆书app(原樊登读书)、微信读书、京东读书、喜马拉雅等读书app的大部分电子书。</p>
+<h2>简介</h2>
+<p>我们从各个电子书网站上精心收集了各种电子书下载链接，并根据常用的标签对它们进行了简单分类。每本书都包括了三种常见格式文件：epub、mobi 和 azw3，以满足不同阅读设备和喜好的需求。</p>
+<h2>🔍 如何使用</h2>
+<p>浏览我们的下载宝库非常简单：</p>
+<h3>🌐 实时快速搜索（推荐）</h3>
+<p><strong>访问 <a href="https://jbiaojerry.github.io/ebook-treasure-chest/">GitHub Pages 实时在线搜索页面</a></strong>，体验强大的实时快速搜索和多关键词搜索功能：</p>
 <ul>
-<li><a href="https://meloong.com/pcl">PCL 下载</a>：下载可免费使用的正式版 PCL！</li>
-<li><a href="https://github.com/Meloong-Git/PCL/discussions/2">PCL 功能投票</a>：来参加投票吧，开发者会优先处理票数较高的项目！</li>
-<li><a href="https://github.com/LTCatt/PCL2Help">帮助文档库</a>：PCL 内置帮助文档的存储库</li>
+<li><strong>🔎 实时搜索</strong>：输入书名、作者或分类关键词，即时显示匹配结果</li>
+<li><strong>💡 多关键词搜索</strong>：支持同时搜索多个关键词（用空格分隔）</li>
+</ul>
+<p><img alt="搜索功能演示" src=".github/search-demo.gif?v=2" /></p>
+<h3>💡 搜索技巧</h3>
+<ul>
+<li><strong>在线搜索</strong>：访问 GitHub Pages 页面，使用实时搜索功能（推荐）</li>
+<li><strong>Ctrl+F</strong>：在 GitHub 页面使用浏览器搜索功能</li>
+<li><strong>热门分类</strong>：文学、历史、科普、管理、社会、推理等</li>
+<li><strong>按需查找</strong>：职场、创业、技术、投资、心理学等专业领域</li>
+</ul>
+<h2>☕ 请我们喝咖啡</h2>
+<blockquote>
+<p><strong>🌟 如果这个项目对你有帮助，欢迎请我们喝杯咖啡！你的支持是我们持续维护和更新这个项目的动力。</strong></p>
+</blockquote>
+<div align="center">
+
+<img src=".github/赞赏码.jpg" alt="赞赏码" width="200">
+
+**感谢所有支持我们的赞助人！**  
+查看 [📋 赞助人名单](sponsors.md) 了解已赞赏的赞助人信息。
+
+</div>
+
+<h1>📚 索引目录</h1>
+<blockquote>
+<p><strong>💡 使用 Ctrl+F 快速搜索关键词，或点击下方标签直接进入分类页面</strong></p>
+</blockquote>
+<h2>🔥 热门分类</h2>
+<ul>
+<li><a href="md/文学.md">文学(2711)</a>  | - <a href="md/历史.md">历史(1748)</a>  | - <a href="md/科普.md">科普(743)</a>  | - <a href="md/管理.md">管理(613)</a>  | - <a href="md/社会.md">社会(558)</a>  | - <a href="md/推理.md">推理(531)</a>  | - <a href="md/经典.md">经典(494)</a>  | - <a href="md/经济.md">经济(487)</a> </li>
+<li><a href="md/哲学.md">哲学(431)</a>  | - <a href="md/传记.md">传记(413)</a>  | - <a href="md/美国.md">美国(399)</a>  | - <a href="md/心理.md">心理(396)</a>  | - <a href="md/悬疑.md">悬疑(393)</a>  | - <a href="md/商业.md">商业(387)</a>  | - <a href="md/励志.md">励志(373)</a>  | - <a href="md/金融.md">金融(370)</a> </li>
+<li><a href="md/随笔.md">随笔(368)</a>  | - <a href="md/投资.md">投资(365)</a>  | - <a href="md/思维.md">思维(353)</a>  | - <a href="md/文化.md">文化(344)</a>  | - <a href="md/科幻.md">科幻(286)</a>  | - <a href="md/中国.md">中国(281)</a>  | - <a href="md/成长.md">成长(248)</a>  | - <a href="md/漫画.md">漫画(227)</a> </li>
+<li><a href="md/英国.md">英国(223)</a>  | - <a href="md/政治.md">政治(202)</a>  | - <a href="md/纪实.md">纪实(199)</a>  | - <a href="md/艺术.md">艺术(191)</a>  | - <a href="md/科学.md">科学(177)</a>  | - <a href="md/散文.md">散文(168)</a>  | - <a href="md/职场.md">职场(155)</a>  | - <a href="md/法国.md">法国(147)</a> </li>
+<li><a href="md/生活.md">生活(145)</a>  | - <a href="md/互联网.md">互联网(138)</a>  | - <a href="md/营销.md">营销(128)</a>  | - <a href="md/女性.md">女性(125)</a>  | - <a href="md/二战.md">二战(118)</a>  | - <a href="md/奇幻.md">奇幻(116)</a>  | - <a href="md/股票.md">股票(115)</a>  | - <a href="md/德国.md">德国(101)</a> </li>
+<li><a href="md/战争.md">战争(101)</a>  | - <a href="md/学习.md">学习(101)</a>  | - <a href="md/绘本.md">绘本(100)</a>  | - <a href="md/理财.md">理财(96)</a>  | - <a href="md/世界.md">世界(92)</a>  | - <a href="md/教育.md">教育(88)</a>  | - <a href="md/创业.md">创业(86)</a>  | - <a href="md/欧洲.md">欧洲(85)</a> </li>
+<li><a href="md/治愈.md">治愈(84)</a>  | - <a href="md/沟通.md">沟通(84)</a>  | - <a href="md/名著.md">名著(81)</a>  | - <a href="md/军事.md">军事(80)</a>  | - <a href="md/爱情.md">爱情(78)</a>  | - <a href="md/人物.md">人物(77)</a>  | - <a href="md/医学.md">医学(74)</a>  | - <a href="md/物理.md">物理(70)</a> </li>
+<li><a href="md/诗歌.md">诗歌(67)</a>  | - <a href="md/国学.md">国学(66)</a>  | - <a href="md/健康.md">健康(65)</a>  | - <a href="md/科技.md">科技(60)</a>  | - <a href="md/写作.md">写作(58)</a>  | - <a href="md/人文.md">人文(57)</a>  | - <a href="md/旅行.md">旅行(55)</a>  | - <a href="md/个人.md">个人(55)</a> </li>
+<li><a href="md/民国.md">民国(53)</a>  | - <a href="md/心理学.md">心理学(53)</a>  | - <a href="md/自然.md">自然(52)</a>  | - <a href="md/当代.md">当代(52)</a>  | - <a href="md/杂文.md">杂文(51)</a>  | - <a href="md/外国.md">外国(48)</a>  | - <a href="md/思想.md">思想(47)</a>  | - <a href="md/育儿.md">育儿(47)</a> </li>
+<li><a href="md/人类.md">人类(47)</a>  | - <a href="md/计算机.md">计算机(47)</a>  | - <a href="md/宗教.md">宗教(46)</a>  | - <a href="md/犯罪.md">犯罪(44)</a>  | - <a href="md/人生.md">人生(44)</a>  | - <a href="md/美食.md">美食(43)</a>  | - <a href="md/古典.md">古典(43)</a>  | - <a href="md/编程.md">编程(43)</a> </li>
+<li><a href="md/逻辑.md">逻辑(42)</a>  | - <a href="md/诗词.md">诗词(42)</a>  | - <a href="md/交易.md">交易(42)</a>  | - <a href="md/言情.md">言情(40)</a>  | - <a href="md/未来.md">未来(40)</a>  | - <a href="md/回忆录.md">回忆录(39)</a>  | - <a href="md/神话.md">神话(39)</a>  | - <a href="md/数学.md">数学(39)</a> </li>
+<li><a href="md/晚清.md">晚清(38)</a>  | - <a href="md/侦探.md">侦探(38)</a>  | - <a href="md/人工智能.md">人工智能(38)</a>  | - <a href="md/青春.md">青春(38)</a>  | - <a href="md/近代史.md">近代史(38)</a>  | - <a href="md/方法.md">方法(37)</a>  | - <a href="md/儿童.md">儿童(37)</a>  | - <a href="md/社交.md">社交(36)</a> </li>
+<li><a href="md/创新.md">创新(36)</a>  | - <a href="md/生物.md">生物(35)</a>  | - <a href="md/宇宙.md">宇宙(35)</a>  | - <a href="md/电影.md">电影(34)</a>  | - <a href="md/意大利.md">意大利(34)</a>  | - <a href="md/运营.md">运营(34)</a>  | - <a href="md/游记.md">游记(33)</a>  | - <a href="md/饮食.md">饮食(32)</a> </li>
+<li><a href="md/情绪.md">情绪(31)</a>  | - <a href="md/企业.md">企业(31)</a>  | - <a href="md/罗马.md">罗马(31)</a>  | - <a href="md/博物馆.md">博物馆(29)</a>  | - <a href="md/心灵.md">心灵(29)</a>  | - <a href="md/武侠.md">武侠(29)</a>  | - <a href="md/Python.md">Python(28)</a>  | - <a href="md/台湾.md">台湾(28)</a> </li>
+<li><a href="md/音乐.md">音乐(27)</a>  | - <a href="md/思考.md">思考(27)</a>  | - <a href="md/明朝.md">明朝(26)</a>  | - <a href="md/销售.md">销售(26)</a>  | - <a href="md/三国.md">三国(26)</a>  | - <a href="md/运动.md">运动(26)</a>  | - <a href="md/玄幻.md">玄幻(26)</a>  | - <a href="md/阅读.md">阅读(26)</a> </li>
+<li><a href="md/英语.md">英语(26)</a>  | - <a href="md/工作.md">工作(26)</a>  | - <a href="md/健身.md">健身(25)</a>  | - <a href="md/俄罗斯.md">俄罗斯(25)</a>  | - <a href="md/人性.md">人性(25)</a>  | - <a href="md/戏剧.md">戏剧(23)</a>  | - <a href="md/天文.md">天文(23)</a>  | - <a href="md/经济学.md">经济学(23)</a> </li>
+<li><a href="md/动物.md">动物(23)</a>  | - <a href="md/法律.md">法律(23)</a>  | - <a href="md/绘画.md">绘画(22)</a>  | - <a href="md/情感.md">情感(21)</a>  | - <a href="md/恐怖.md">恐怖(21)</a>  | - <a href="md/情商.md">情商(21)</a>  | - <a href="md/建筑.md">建筑(20)</a>  | - <a href="md/清史.md">清史(20)</a> </li>
+<li><a href="md/西方.md">西方(20)</a>  | - <a href="md/苏联.md">苏联(20)</a>  | - <a href="md/进化.md">进化(20)</a>  | - <a href="md/城市.md">城市(20)</a>  | - <a href="md/货币.md">货币(20)</a>  | - <a href="md/现代.md">现代(20)</a>  | - <a href="md/时间.md">时间(19)</a>  | - <a href="md/魔幻.md">魔幻(19)</a> </li>
+<li><a href="md/演讲.md">演讲(19)</a>  | - <a href="md/惊悚.md">惊悚(19)</a>  | - <a href="md/英文.md">英文(19)</a>  | - <a href="md/摄影.md">摄影(19)</a>  | - <a href="md/读书.md">读书(19)</a>  | - <a href="md/古籍.md">古籍(19)</a>  | - <a href="md/决策.md">决策(18)</a>  | - <a href="md/考古.md">考古(18)</a> </li>
+<li><a href="md/古代.md">古代(18)</a>  | - <a href="md/成功.md">成功(18)</a>  | - <a href="md/设计.md">设计(18)</a>  | - <a href="md/社科.md">社科(18)</a>  | - <a href="md/印度.md">印度(18)</a>  | - <a href="md/经管.md">经管(18)</a>  | - <a href="md/地理.md">地理(18)</a>  | - <a href="md/社会学.md">社会学(17)</a> </li>
+<li><a href="md/文案.md">文案(17)</a>  | - <a href="md/世界史.md">世界史(17)</a>  | - <a href="md/童话.md">童话(17)</a>  | - <a href="md/人类学.md">人类学(17)</a>  | - <a href="md/社会学人类学.md">社会学人类学(17)</a>  | - <a href="md/鸡汤.md">鸡汤(17)</a>  | - <a href="md/广告.md">广告(16)</a>  | - <a href="md/生命.md">生命(16)</a> </li>
+<li><a href="md/唐朝.md">唐朝(16)</a>  | - <a href="md/自传.md">自传(16)</a>  | - <a href="md/财富.md">财富(16)</a>  | - <a href="md/口才.md">口才(16)</a>  | - <a href="md/语言.md">语言(16)</a>  | - <a href="md/市场.md">市场(15)</a>  | - <a href="md/古希腊.md">古希腊(15)</a>  | - <a href="md/巴菲特.md">巴菲特(15)</a> </li>
+<li><a href="md/欧洲史.md">欧洲史(15)</a>  | - <a href="md/法医.md">法医(15)</a>  | - <a href="md/文明.md">文明(15)</a>  | - <a href="md/养生.md">养生(15)</a>  | - <a href="md/明史.md">明史(15)</a>  | - <a href="md/佛学.md">佛学(15)</a>  | - <a href="md/战略.md">战略(15)</a>  | - <a href="md/拉美.md">拉美(15)</a> </li>
+<li><a href="md/以色列.md">以色列(15)</a>  | - <a href="md/文革.md">文革(15)</a>  | - <a href="md/食帖.md">食帖(14)</a>  | - <a href="md/认知.md">认知(14)</a>  | - <a href="md/效率.md">效率(14)</a>  | - <a href="md/间谍.md">间谍(14)</a>  | - <a href="md/挪威.md">挪威(13)</a>  | - <a href="md/大数据.md">大数据(13)</a> </li>
+<li><a href="md/中世纪.md">中世纪(13)</a>  | - <a href="md/非洲.md">非洲(13)</a>  | - <a href="md/谈判.md">谈判(13)</a>  | - <a href="md/一战.md">一战(12)</a>  | - <a href="md/数据.md">数据(12)</a>  | - <a href="md/财务.md">财务(12)</a>  | - <a href="md/零售.md">零售(12)</a>  | - <a href="md/新经济.md">新经济(12)</a> </li>
+<li><a href="md/记忆.md">记忆(12)</a>  | - <a href="md/基因.md">基因(12)</a>  | - <a href="md/创意.md">创意(12)</a>  | - <a href="md/领导力.md">领导力(12)</a>  | - <a href="md/技术.md">技术(12)</a>  | - <a href="md/区块链.md">区块链(11)</a>  | - <a href="md/跑步.md">跑步(11)</a>  | - <a href="md/西班牙.md">西班牙(11)</a> </li>
+<li><a href="md/家庭.md">家庭(11)</a>  | - <a href="md/焦虑.md">焦虑(11)</a>  | - <a href="md/灵异.md">灵异(11)</a>  | - <a href="md/人格.md">人格(11)</a>  | - <a href="md/猫.md">猫(11)</a>  | - <a href="md/俄国.md">俄国(11)</a>  | - <a href="md/思想史.md">思想史(11)</a>  | - <a href="md/西藏.md">西藏(11)</a> </li>
+<li><a href="md/趋势.md">趋势(11)</a>  | - <a href="md/博弈.md">博弈(11)</a>  | - <a href="md/蒙古.md">蒙古(11)</a>  | - <a href="md/温暖.md">温暖(11)</a>  | - <a href="md/植物.md">植物(11)</a>  | - <a href="md/两性.md">两性(11)</a>  | - <a href="md/中东.md">中东(11)</a>  | - <a href="md/抗战.md">抗战(11)</a> </li>
+<li><a href="md/谍战.md">谍战(11)</a>  | - <a href="md/探险.md">探险(10)</a>  | - <a href="md/通识.md">通识(10)</a>  | - <a href="md/量子.md">量子(10)</a>  | - <a href="md/近代.md">近代(10)</a>  | - <a href="md/海洋.md">海洋(10)</a>  | - <a href="md/美学.md">美学(10)</a>  | - <a href="md/诗集.md">诗集(10)</a> </li>
+<li><a href="md/汉朝.md">汉朝(10)</a>  | - <a href="md/保健.md">保健(10)</a>  | - <a href="md/华尔街.md">华尔街(10)</a>  | - <a href="md/经营.md">经营(10)</a>  | - <a href="md/医疗.md">医疗(10)</a>  | - <a href="md/期货.md">期货(10)</a>  | - <a href="md/新媒体.md">新媒体(10)</a>  | - <a href="md/工具.md">工具(10)</a> </li>
+<li><a href="md/茶.md">茶(10)</a>  | - <a href="md/算法.md">算法(10)</a>  | - <a href="md/希腊.md">希腊(10)</a>  | - <a href="md/探险，艺术.md">探险，艺术(10)</a>  | - <a href="md/百科.md">百科(10)</a>  | - <a href="md/清朝.md">清朝(10)</a>  | - <a href="md/文艺.md">文艺(10)</a>  | - <a href="md/睡眠.md">睡眠(10)</a> </li>
+<li><a href="md/基金.md">基金(10)</a>  | - <a href="md/莎士比亚.md">莎士比亚(10)</a>  | - <a href="md/商战.md">商战(9)</a>  | - <a href="md/网络.md">网络(9)</a>  | - <a href="md/通俗.md">通俗(9)</a>  | - <a href="md/幽默.md">幽默(9)</a>  | - <a href="md/中医.md">中医(9)</a>  | - <a href="md/春秋.md">春秋(9)</a> </li>
+<li><a href="md/投机.md">投机(9)</a>  | - <a href="md/官场.md">官场(9)</a>  | - <a href="md/战国.md">战国(9)</a>  | - <a href="md/北京.md">北京(9)</a>  | - <a href="md/瑞典.md">瑞典(9)</a>  | - <a href="md/技巧.md">技巧(9)</a>  | - <a href="md/规划.md">规划(9)</a>  | - <a href="md/证券.md">证券(9)</a> </li>
+<li><a href="md/红楼梦.md">红楼梦(9)</a>  | - <a href="md/习惯.md">习惯(9)</a>  | - <a href="md/故事.md">故事(9)</a>  | - <a href="md/华为.md">华为(9)</a>  | - <a href="md/减肥.md">减肥(9)</a>  | - <a href="md/资本.md">资本(8)</a>  | - <a href="md/古罗马.md">古罗马(8)</a>  | - <a href="md/埃及.md">埃及(8)</a> </li>
+<li><a href="md/硅谷.md">硅谷(8)</a>  | - [冷战(8)](md/冷战</li>
 </ul>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/Meloong-Git/PCL#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/jbiaojerry/ebook-treasure-chest#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">makecindy /</span>
+          <a href="https://github.com/makecindy/cindy" target="_blank" rel="noopener">cindy</a>
+        </div>
+        <div class="repo-desc">Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 4,341</span>
+      <span class="meta-item">🍴 619</span>
+      <span class="stars-today">⭐ 477 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <a href="https://cindy.app"><img src=".github/assets/hero-en.webp" width="100%" alt="CINDY — Consider it done. The open-source AI agent that works out of the box, doing real work on your own computer."></a>
+</p>
+
+<p align="center">
+  <strong>English</strong> · <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License" /></a>
+  <a href="https://github.com/makecindy/cindy/actions/workflows/ci.yml"><img src="https://github.com/makecindy/cindy/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-22.x-brightgreen.svg" alt="Node.js 22.x" /></a>
+  <a href="https://pnpm.io"><img src="https://img.shields.io/badge/pnpm-10-orange.svg" alt="pnpm" /></a>
+</p>
+
+<p align="center">
+  🌐 <a href="https://cindy.app">cindy.app</a> &nbsp;·&nbsp; ⬇️ <a href="https://cindy.app/download/">Download</a>
+</p>
+
+<p>Cindy is an open-source AI agent that works out of the box. She brings multiple<br />
+harnesses, models and tools into one agent that finishes real work in your<br />
+projects and apps. Ready from day one, yours to shape over time.</p>
+<p>Cindy runs locally on your own machine, using your real files and logged-in<br />
+apps. The first supported harnesses are <strong>Claude Code</strong> and <strong>Codex</strong> — more are<br />
+being added, and a native harness is in the works. Models and harnesses mix<br />
+freely and can switch mid-task while your workspace, memory, skills and tools<br />
+stay continuous; one task can even be planned, executed in parallel, and<br />
+reviewed by agents on different harness × model combos. She can drive your<br />
+browser, computer and phone, and take work from IM and schedules.</p>
+<p>This repository is the open-source <strong>client</strong> for Cindy — the desktop and mobile<br />
+apps plus their shared packages, organized as a pnpm monorepo.</p>
+<p>The client is free to use, and its source code is open under Apache-2.0. Bring<br />
+models your way: sign in to the official Cindy service (usage deducted<br />
+transparently), authorize the <strong>Claude Code / Codex Coding Plan</strong> you already<br />
+pay for and keep using it inside Cindy — no duplicate bill — connect your own<br />
+API keys, or use local models.<br />
+See <a href="https://cindy.app">cindy.app</a> for service details,<br />
+<a href="https://cindy.app/#pricing">pricing</a>, and <a href="https://cindy.app/download/">downloads</a>.</p>
+<p>Linux users: see the <a href="docs/linux.md">Ubuntu, Arch Linux and Omarchy installation guide</a><br />
+for installation, updates, keyring setup and migration from a manual install.</p>
+<h2>Yours to shape</h2>
+<p>Open source means more than visible — it means changeable:</p>
+<ul>
+<li><strong>Memory</strong> — correct her once and she does it right from then on, shared across harnesses.</li>
+<li><strong>Skills</strong> — teach a way of working once and reuse it everywhere; handing them to your team is in the making.</li>
+<li><strong>Automation</strong> — recurring work schedules itself, runs itself, reports back.</li>
+<li><strong>MCP</strong> — wire your internal tools and business systems into her reach.</li>
+<li><strong>Plugins</strong> — reshape features, UI and interactions, shared through an open marketplace <em>(in the making)</em>.</li>
+<li><strong>Source</strong> — audit, fork, extend, and contribute improvements back under Apache-2.0.</li>
+</ul>
+<p>Ready out of the box, never boxed in — start with<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> and build Cindy with us.</p>
+<h2>What's in this repo</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apps/desktop</code></td>
+<td>Electron desktop client</td>
+</tr>
+<tr>
+<td><code>apps/mobile</code></td>
+<td>Expo / React Native mobile client</td>
+</tr>
+<tr>
+<td><code>packages/*</code></td>
+<td>Shared client capabilities (auth, device-link, agent orchestration, model providers, …)</td>
+</tr>
+<tr>
+<td><code>apps/*-bin</code></td>
+<td>Tool binaries shipped with the desktop app; none are committed — claude-code, codex, and ripgrep are downloaded per platform by <code>pnpm install</code>, and the Android platform-tools binaries are fetched (pinned version, sha256-verified) before Windows packaging</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Not in this repo:</strong> the backend service lives in a separate<br />
+repository and is not part of this monorepo.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Account requirement</th>
+<th>Availability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hosted service</td>
+<td>Cindy cloud account</td>
+<td>Use Cindy's full hosted service. See <a href="https://cindy.app/#pricing">pricing</a>.</td>
+</tr>
+<tr>
+<td>Skip Sign-In</td>
+<td>No Cindy sign-in required</td>
+<td>Choose “Skip Sign-In” on the login screen to use local agents; the app then shows the account state as “Not signed in”. Server-backed capabilities are unavailable in this state.</td>
+</tr>
+</tbody>
+</table>
+<h2>Prerequisites</h2>
+<ul>
+<li><strong>Node.js</strong> 22.x</li>
+<li><strong>pnpm</strong> 10.x (v11 is not yet supported)</li>
+<li><strong>Git LFS</strong></li>
+</ul>
+<h2>Getting started</h2>
+<p>Contributor setup, Git LFS, dependency updates, and access requirements are maintained in<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.<br />
+Plugins are installed through SkillHub or manually.</p>
+<p>Minimal entry point:</p>
+<pre><code class="language-bash">git clone https://github.com/makecindy/cindy.git
+cd cindy
+git lfs pull
+pnpm install
+</code></pre>
+<h2>Development entry points</h2>
+<pre><code class="language-bash"># Mainland China Cindy account
+pnpm restart:desktop:remote --region=cn
+
+# Global Cindy account
+pnpm restart:desktop:remote --region=global
+</code></pre>
+<p>Remote development uses your own Cindy cloud account and existing login state, so<br />
+you can continue existing sessions and work while developing the client. Use <code>cn</code><br />
+for Mainland China accounts and <code>global</code> for everyone else; do not rely<br />
+on the internal default. Full desktop, mobile, data-isolation, and validation<br />
+workflows are in <a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.</p>
+<p>“Skip Sign-In” on the login screen runs local agents without a Cindy account<br />
+(shown in the app as “Not signed in”), not a connection to a local server.<br />
+Server-backed capabilities are unavailable in this state.</p>
+<p><strong>About the default servers:</strong> the client connects to Cindy's official cloud<br />
+services by default (endpoint manifests in<br />
+<a href="config/endpoint.json"><code>config/endpoint.json</code></a> and<br />
+<a href="config/endpoint.global.json"><code>config/endpoint.global.json</code></a>; desktop<br />
+auto-updates also come from the official CDN). This is intentional — external<br />
+developers don't need to self-host a server: sign in with your own Cindy<br />
+account in a dev build and develop / test directly against the official<br />
+servers.</p>
+<p>Skill Hub migration uses two separate manifest fields: released clients keep<br />
+using <code>skillhubApiBaseUrl</code> (the deprecated XD proxy), while current clients use<br />
+<code>cindySkillHubApiBaseUrl</code>. The current client deliberately does not fall back to<br />
+the legacy field when the new endpoint is absent.</p>
+<h2>Architecture</h2>
+<ul>
+<li><a href="DESIGN.md"><code>DESIGN.md</code></a> — visual design system, color tokens, and UI conventions</li>
+<li><a href="docs/README.md"><code>docs/README.md</code></a> — complete documentation and rules index</li>
+<li><a href="docs/auth-realm-routing.md"><code>docs/auth-realm-routing.md</code></a> — organization SSO region discovery and session endpoint routing</li>
+<li><a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> — contributor setup, validation, and submission workflow</li>
+<li><a href="AGENTS.md"><code>AGENTS.md</code></a> — engineering rules, launch/runtime contracts, and module boundaries</li>
+<li><a href="docs/dev-rules/"><code>docs/dev-rules/</code></a> — deep-dive architecture docs (e.g. Orca multi-agent orchestration)</li>
+</ul>
+<h2>Contributing</h2>
+<p>Contributions go through pull requests into <code>main</code>. Read<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> first, then use<br />
+<a href=".github/PULL_REQUEST_TEMPLATE.md"><code>.github/PULL_REQUEST_TEMPLATE.md</code></a>.<br />
+Every commit needs a <a href="DCO">Developer Certificate of Origin</a> sign-off<br />
+(<code>git commit -s</code>); a DCO check on each pull request enforces it, and no CLA is<br />
+required.<br />
+Please also follow <a href="CODE_OF_CONDUCT.en.md"><code>CODE_OF_CONDUCT.en.md</code></a>. For ordinary<br />
+usage questions, see <a href="SUPPORT.en.md"><code>SUPPORT.en.md</code></a>; report security issues<br />
+privately through <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a>.</p>
+<h2>Security</h2>
+<p>Never commit credentials or authorization files to the working tree. If you<br />
+discover a security issue, follow <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a> to report it<br />
+privately rather than opening a public issue.</p>
+<h2>Privacy &amp; telemetry</h2>
+<p><strong>Official distribution builds</strong> include <a href="https://www.taptap.io/tapdb">TapDB</a><br />
+usage analytics for product-level aggregate statistics (device / OS / app-version<br />
+metadata; associated with your account ID after sign-in). It does <strong>not</strong> collect<br />
+chat content, file content, </p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/makecindy/cindy#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1586,7 +2014,7 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
 </main>
 
 <footer>
-  Generated by <strong>scrape_github_trending.py</strong> on October 23, 2026  05:56 &nbsp;·&nbsp;
+  Generated by <strong>scrape_github_trending.py</strong> on October 25, 2026  09:15 &nbsp;·&nbsp;
   Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
 </footer>
 

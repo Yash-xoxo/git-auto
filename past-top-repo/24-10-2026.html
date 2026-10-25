@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — October 23, 2026  05:56</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on October 23, 2026  05:56 &nbsp;·&nbsp; 9 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">php /</span>
+          <a href="https://github.com/php/php-src" target="_blank" rel="noopener">php-src</a>
+        </div>
+        <div class="repo-desc">The PHP Interpreter</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#555555"></span>C</span>
+      <span class="meta-item">⭐ 41,265</span>
+      <span class="meta-item">🍴 8,323</span>
+      <span class="stars-today">⭐ 287 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+    <a href="https://www.php.net">
+        <img
+            alt="PHP"
+            src="https://www.php.net/images/logos/new-php-logo.svg"
+            width="150">
+    </a>
+</div>
+
+<h1>The PHP Interpreter</h1>
+<p>PHP is a popular general-purpose scripting language that is especially suited to<br />
+web development. Fast, flexible and pragmatic, PHP powers everything from your<br />
+blog to the most popular websites in the world.</p>
+<p>PHP is distributed under the <a href="LICENSE">Modified BSD License</a><br />
+(SPDX-License-Identifier: <code>BSD-3-Clause</code>).</p>
+<p><a href="https://github.com/php/php-src/actions/workflows/test.yml"><img alt="Test" src="https://github.com/php/php-src/actions/workflows/test.yml/badge.svg" /></a><br />
+<a href="https://issues.oss-fuzz.com/issues?q=project:php"><img alt="Fuzzing Status" src="https://oss-fuzz-build-logs.storage.googleapis.com/badges/php.svg" /></a></p>
+<h2>Documentation</h2>
+<p>The PHP manual is available at <a href="https://www.php.net/docs">php.net/docs</a>.</p>
+<h2>Installation</h2>
+<h3>Prebuilt packages and binaries</h3>
+<p>Prebuilt packages and binaries can be used to get up and running fast with PHP.</p>
+<p>For Windows, the PHP binaries can be obtained from<br />
+<a href="https://windows.php.net">windows.php.net</a>. After extracting the archive the<br />
+<code>*.exe</code> files are ready to use.</p>
+<p>For other systems, see the <a href="https://www.php.net/install">installation chapter</a>.</p>
+<h3>Building PHP source code</h3>
+<p><em>For Windows, see <a href="https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2">Build your own PHP on Windows</a>.</em></p>
+<p>For a minimal PHP build from Git, you will need autoconf, bison, and re2c. For<br />
+a default build, you will additionally need libxml2 and libsqlite3.</p>
+<p>On Ubuntu, you can install these using:</p>
+<pre><code class="language-shell">sudo apt install -y pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev
+</code></pre>
+<p>On Fedora, you can install these using:</p>
+<pre><code class="language-shell">sudo dnf install re2c bison autoconf make ccache libxml2-devel sqlite-devel
+</code></pre>
+<p>On MacOS, you can install these using <code>brew</code>:</p>
+<pre><code class="language-shell">brew install autoconf bison re2c libiconv libxml2 sqlite
+</code></pre>
+<p>or with <code>MacPorts</code>:</p>
+<pre><code class="language-shell">sudo port install autoconf bison re2c libiconv libxml2 sqlite3
+</code></pre>
+<p>Generate configure:</p>
+<pre><code class="language-shell">./buildconf
+</code></pre>
+<p>Configure your build. <code>--enable-debug</code> is recommended for development, see<br />
+<code>./configure --help</code> for a full list of options.</p>
+<pre><code class="language-shell"># For development
+./configure --enable-debug
+# For production
+./configure
+</code></pre>
+<p>Build PHP. To speed up the build, specify the maximum number of jobs using the<br />
+<code>-j</code> argument:</p>
+<pre><code class="language-shell">make -j4
+</code></pre>
+<p>The number of jobs should usually match the number of available cores, which<br />
+can be determined using <code>nproc</code>.</p>
+<h2>Testing PHP source code</h2>
+<p>PHP ships with an extensive test suite, the command <code>make test</code> is used after<br />
+successful compilation of the sources to run this test suite.</p>
+<p>Tests run in parallel by default, using up to 10 detected logical processors.<br />
+Set <code>-jN</code> in <code>TEST_PHP_ARGS</code> or <code>TESTS</code> to override the worker count:</p>
+<pre><code class="language-shell">make TEST_PHP_ARGS=-j4 test
+</code></pre>
+<p>This runs <code>make test</code> with a maximum of 4 concurrent jobs. Alternatively,<br />
+use <code>-j1</code> to run tests sequentially.</p>
+<p>Use the <code>TEST_PHP_ARGS</code> or <code>TESTS</code> variable to test only specific directories:</p>
+<pre><code class="language-shell">make TESTS=tests/lang/ test
+</code></pre>
+<p>The <a href="https://qa.php.net">qa.php.net</a> site provides more detailed info about<br />
+testing and quality assurance.</p>
+<h2>Installing PHP built from source</h2>
+<p>After a successful build (and test), PHP may be installed with:</p>
+<pre><code class="language-shell">make install
+</code></pre>
+<p>Depending on your permissions and prefix, <code>make install</code> may need superuser<br />
+permissions.</p>
+<h2>PHP extensions</h2>
+<p>Extensions provide additional functionality on top of PHP. PHP consists of many<br />
+essential bundled extensions. Additional extensions can be found on the<br />
+<a href="https://packagist.org/extensions">PIE Extensions</a> list, and installed with<br />
+<a href="https://github.com/php/pie">🥧 PIE, the PHP Installer for Extensions</a> or the<br />
+deprecated PHP Extension Community Library - <a href="https://pecl.php.net">PECL</a>.</p>
+<h2>Contributing</h2>
+<p>The PHP source code is located in the Git repository at<br />
+<a href="https://github.com/php/php-src">github.com/php/php-src</a>. Contributions are most<br />
+welcome by forking the repository and sending a pull request.</p>
+<p>Discussions are done on GitHub, but depending on the topic can also be relayed<br />
+to the official PHP developer mailing list internals@lists.php.net.</p>
+<p>New features require an RFC and must be accepted by the developers. See<br />
+<a href="https://wiki.php.net/rfc">Request for comments - RFC</a> and<br />
+<a href="https://wiki.php.net/rfc/voting">Voting on PHP features</a> for more information<br />
+on the process.</p>
+<p>Bug fixes don't require an RFC. If the bug has a GitHub issue, reference it in<br />
+the commit message using <code>GH-NNNNNN</code>. Use <code>#NNNNNN</code> for tickets in the old<br />
+<a href="https://bugs.php.net">bugs.php.net</a> bug tracker.</p>
+<pre><code>Fix GH-7815: php_uname doesn't recognise latest Windows versions
+Fix #55371: get_magic_quotes_gpc() throws deprecation warning
+</code></pre>
+<p>See <a href="https://wiki.php.net/vcs/gitworkflow">Git workflow</a> for details on how pull<br />
+requests are merged.</p>
+<h3>Guidelines for contributors</h3>
+<p>See further documents in the repository for more information on how to<br />
+contribute:</p>
+<ul>
+<li><a href="/CONTRIBUTING.md">Contributing to PHP</a></li>
+<li><a href="/CODING_STANDARDS.md">PHP coding standards</a></li>
+<li><a href="https://php.github.io/php-src/">Internal documentation</a></li>
+<li><a href="/docs/mailinglist-rules.md">Mailing list rules</a></li>
+<li><a href="/docs/release-process.md">PHP release process</a></li>
+</ul>
+<h2>Credits</h2>
+<p>For the list of people who've put work into PHP, please see the<br />
+<a href="https://www.php.net/credits.php">PHP credits page</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/php/php-src#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">anthropics /</span>
+          <a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noopener">knowledge-work-plugins</a>
+        </div>
+        <div class="repo-desc">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 31,728</span>
+      <span class="meta-item">🍴 3,542</span>
+      <span class="stars-today">⭐ 303 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Knowledge Work Plugins</h1>
+<p>Plugins that turn Claude into a specialist for your role, team, and company. Built for <a href="https://claude.com/product/cowork">Claude Cowork</a>, also compatible with <a href="https://claude.com/product/claude-code">Claude Code</a>.</p>
+<h2>Why Plugins</h2>
+<p>Cowork lets you set the goal and Claude delivers finished, professional work. Plugins let you go further: tell Claude how you like work done, which tools and data to pull from, how to handle critical workflows, and what slash commands to expose — so your team gets better and more consistent outcomes.</p>
+<p>Each plugin bundles the skills, connectors, slash commands, and sub-agents for a specific job function. Out of the box, they give Claude a strong starting point for helping anyone in that role. The real power comes when you customize them for your company — your tools, your terminology, your processes — so Claude works like it was built for your team.</p>
+<h2>Plugin Marketplace</h2>
+<p>We're open-sourcing 11 plugins built and inspired by our own work:</p>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>How it helps</th>
+<th>Connectors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="./productivity">productivity</a></strong></td>
+<td>Manage tasks, calendars, daily workflows, and personal context so you spend less time repeating yourself.</td>
+<td>Slack, Notion, Asana, Linear, Jira, Monday, ClickUp, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./sales">sales</a></strong></td>
+<td>Research prospects, prep for calls, review your pipeline, draft outreach, and build competitive battlecards.</td>
+<td>Slack, HubSpot, Close, Clay, ZoomInfo, Notion, Jira, Fireflies, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./customer-support">customer-support</a></strong></td>
+<td>Triage tickets, draft responses, package escalations, research customer context, and turn resolved issues into knowledge base articles.</td>
+<td>Slack, Intercom, HubSpot, Guru, Jira, Notion, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./product-management">product-management</a></strong></td>
+<td>Write specs, plan roadmaps, synthesize user research, keep stakeholders updated, and track the competitive landscape.</td>
+<td>Slack, Linear, Asana, Monday, ClickUp, Jira, Notion, Figma, Amplitude, Pendo, Intercom, Fireflies</td>
+</tr>
+<tr>
+<td><strong><a href="./marketing">marketing</a></strong></td>
+<td>Draft content, plan campaigns, enforce brand voice, brief on competitors, and report on performance across channels.</td>
+<td>Slack, Canva, Figma, HubSpot, Amplitude, Notion, Ahrefs, SimilarWeb, Klaviyo</td>
+</tr>
+<tr>
+<td><strong><a href="./legal">legal</a></strong></td>
+<td>Review contracts, triage NDAs, navigate compliance, assess risk, prep for meetings, and draft templated responses.</td>
+<td>Slack, Box, Egnyte, Jira, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./finance">finance</a></strong></td>
+<td>Prep journal entries, reconcile accounts, generate financial statements, analyze variances, manage close, and support audits.</td>
+<td>Snowflake, Databricks, BigQuery, Slack, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./data">data</a></strong></td>
+<td>Query, visualize, and interpret datasets — write SQL, run statistical analysis, build dashboards, and validate your work before sharing.</td>
+<td>Snowflake, Databricks, BigQuery, Definite, Hex, Amplitude, Jira</td>
+</tr>
+<tr>
+<td><strong><a href="./enterprise-search">enterprise-search</a></strong></td>
+<td>Find anything across email, chat, docs, and wikis — one query across all your company's tools.</td>
+<td>Slack, Notion, Guru, Jira, Asana, Microsoft 365</td>
+</tr>
+<tr>
+<td><strong><a href="./bio-research">bio-research</a></strong></td>
+<td>Connect to preclinical research tools and databases (literature search, genomics analysis, target prioritization) to accelerate early-stage life sciences R&amp;D.</td>
+<td>PubMed, BioRender, bioRxiv, ClinicalTrials.gov, ChEMBL, Synapse, Wiley, Owkin, Open Targets, Benchling</td>
+</tr>
+<tr>
+<td><strong><a href="./cowork-plugin-management">cowork-plugin-management</a></strong></td>
+<td>Create new plugins or customize existing ones for your organization's specific tools and workflows.</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Install these directly from Cowork, browse the full collection here on GitHub, or build your own.</p>
+<h2>Getting Started</h2>
+<h3>Cowork</h3>
+<p>Install plugins from <a href="https://claude.com/plugins/">claude.com/plugins</a>.</p>
+<h3>Claude Code</h3>
+<pre><code class="language-bash"># Add the marketplace first
+claude plugin marketplace add anthropics/knowledge-work-plugins
+
+# Then install a specific plugin
+claude plugin install sales@knowledge-work-plugins
+</code></pre>
+<p>Once installed, plugins activate automatically. Skills fire when relevant, and slash commands are available in your session (e.g., <code>/sales:call-prep</code>, <code>/data:write-query</code>).</p>
+<h2>How Plugins Work</h2>
+<p>Every plugin follows the same structure:</p>
+<pre><code>plugin-name/
+├── .claude-plugin/plugin.json   # Manifest
+├── .mcp.json                    # Tool connections
+├── commands/                    # Slash commands you invoke explicitly
+└── skills/                      # Domain knowledge Claude draws on automatically
+</code></pre>
+<ul>
+<li><strong>Skills</strong> encode the domain expertise, best practices, and step-by-step workflows Claude needs to give you useful help. Claude draws on them automatically when relevant.</li>
+<li><strong>Commands</strong> are explicit actions you trigger (e.g., <code>/finance:reconciliation</code>, <code>/product-management:write-spec</code>).</li>
+<li><strong>Connectors</strong> wire Claude to the external tools your role depends on — CRMs, project trackers, data warehouses, design tools, and more — via <a href="https://modelcontextprotocol.io/">MCP servers</a>.</li>
+</ul>
+<p>Every component is file-based — markdown and JSON, no code, no infrastructure, no build steps.</p>
+<h2>Making Them Yours</h2>
+<p>These plugins are generic starting points. They become much more useful when you customize them for how your company actually works:</p>
+<ul>
+<li><strong>Swap connectors</strong> — Edit <code>.mcp.json</code> to point at your specific tool stack.</li>
+<li><strong>Add company context</strong> — Drop your terminology, org structure, and processes into skill files so Claude understands your world.</li>
+<li><strong>Adjust workflows</strong> — Modify skill instructions to match how your team actually does things, not how a textbook says to.</li>
+<li><strong>Build new plugins</strong> — Use the <code>cowork-plugin-management</code> plugin or follow the structure above to create plugins for roles and workflows we haven't covered yet.</li>
+</ul>
+<p>As your team builds and shares plugins, Claude becomes a cross-functional expert. The context you define gets baked into every relevant interaction, so leaders and admins can spend less time enforcing processes and more time improving them.</p>
+<h2>Contributing</h2>
+<p>Plugins are just markdown files. Fork the repo, make your changes, and submit a PR.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/anthropics/knowledge-work-plugins#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">DietrichGebert /</span>
+          <a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener">ponytail</a>
+        </div>
+        <div class="repo-desc">Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 173,787</span>
+      <span class="meta-item">🍴 9,464</span>
+      <span class="stars-today">⭐ 1,948 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.png">
+    <img src="assets/logo.png" width="220" alt="Ponytail, the lazy senior dev">
+  </picture>
+</p>
+
+<h1 align="center">Ponytail</h1>
+
+<p align="center">
+  <em>He says nothing. He writes one line. It works.</em>
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/50668?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/50668" alt="DietrichGebert%2Fponytail | Trendshift" width="250" height="55"/></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/DietrichGebert/ponytail?style=flat-square&color=111111&label=stars" alt="Stars">
+  <img src="https://img.shields.io/github/v/release/DietrichGebert/ponytail?style=flat-square&color=111111&label=release" alt="Release">
+  <img src="https://img.shields.io/npm/v/@dietrichgebert/ponytail?style=flat-square&color=111111&label=npm" alt="npm">
+  <img src="https://img.shields.io/badge/works%20with-20%20agents-111111?style=flat-square" alt="Works with 20 agents">
+  <img src="https://img.shields.io/badge/license-MIT-111111?style=flat-square" alt="MIT license">
+</p>
+
+<p align="center">
+  <a href="https://ponytail.dev/stories"><img src="assets/stories-banner.png" alt="Using Ponytail at work? Tell us your story" width="760"></a>
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/daily" alt="DietrichGebert/ponytail | Trendshift" width="250" height="55"/></a>
+  <a href="https://trendshift.io/repositories/50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/weekly" alt="DietrichGebert/ponytail | Trendshift" width="250" height="55"/></a>
+  <a href="https://trendshift.io/repositories/50668?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-50668" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/50668/monthly?language=JavaScript" alt="DietrichGebert%2Fponytail | Trendshift monthly ranking" width="250" height="55"/></a>
+</p>
+
+<p align="center">
+  <img src="assets/v5/hero.jpg" width="880" alt="Ponytail 5, rebuilt from the ground up: -53% code, -41% time, -26% cost, -45% tokens. And yet 98% of risky logic ships with a test, without Ponytail 68%.">
+</p>
+
+<p align="center">
+  <strong>Ponytail 5: rebuilt from the ground up.</strong><br>
+  <strong>-53% code &middot; -41% time &middot; -26% cost &middot; -45% tokens</strong><br>
+  <strong>And yet: 98% of risky logic ships with a test.</strong> Without Ponytail: 68%.<br>
+  <sub>Benchmarked in Claude Code, the same agent with and without the skill: 39 tasks including a real FastAPI + React repo, Opus 5.5, 5 runs each. <a href="#numbers">Details</a>.</sub>
+</p>
+
+<p align="center">
+  <sub><a href="i18n/README.es.md">Español</a> &middot; <a href="i18n/README.ko.md">한국어</a> &middot; <a href="i18n/README.zh-CN.md">简体中文</a> &middot; <a href="i18n/README.ja.md">日本語</a></sub>
+</p>
+
+<hr />
+<p align="center">
+  <a href="https://ponytail.dev/soon"><img src="assets/waitlist-banner.png" alt="Something's coming, join the waitlist" width="760"></a>
+</p>
+
+<h2>Already built with Ponytail</h2>
+<p><a href="https://theretriever.app"><br />
+  <picture><br />
+    <source media="(prefers-color-scheme: dark)" srcset="assets/retriever-logo-dark.svg"><br />
+    <img src="assets/retriever-logo-light.svg" height="128" alt="Retriever"><br />
+  </picture><br />
+</a></p>
+<hr />
+<p>You know him. Long ponytail. Oval glasses. Has been at the company longer than the version control. You show him fifty lines; he looks at them, says nothing, and replaces them with one.</p>
+<p>Ponytail puts him inside your AI agent.</p>
+<h2>Numbers</h2>
+<p align="center">
+  <img src="assets/v5/chart.png" width="880" alt="Share of the no-skill baseline. Lines of code: Ponytail v4.13 52%, Ponytail 5 47%. Output tokens: 57% and 55%. Cost: 84% and 74%. Time: 62% and 59%.">
+</p>
+
+<p align="center">
+  <img src="assets/v5/tests.png" width="880" alt="Half the code, and yet better: 98% of risky logic ships with a test (no skill 68%); the agent's own tests catch 66% of injected bugs (no skill 46%).">
+</p>
+
+<p>Two things the chart does not show: in a blind comparison, Ponytail 5's replies beat the previous Ponytail's 110 to 67. And on the six security tasks (SQL injection, path traversal, forged tokens, rate limiting, malformed CSV rows, caching) it passed all 30 runs: less code, no less safe. Method, per-task tables and limits: <a href="benchmarks/results/2026-10-07-agentic.md">benchmarks/results/2026-10-07-agentic.md</a>.</p>
+<p><strong>The rule was never "fewest tokens."</strong> It is: write only what the task needs, and never cut validation, error handling, security, or accessibility. The code ends up small because it is necessary, not golfed. Lower cost and latency are a side effect.</p>
+<h2>Before / after</h2>
+<p align="center">
+  <img src="assets/v5/beforeafter.png" width="880" alt="Add a date picker to the frontend. No skill: 335 lines, a calendar and a date picker built by hand. Ponytail 5: one 10-line file that reuses the repo's Input with type date, so the browser brings the calendar.">
+</p>
+
+<p>You ask for a date picker. Without Ponytail, the agent installs a date picker library or builds a whole calendar by hand: 335 lines. Ponytail 5 first looks at what is already there: the repo has an <code>Input</code> component, and every browser has a date picker. It puts the two together. 10 lines.</p>
+<p>More survivors in <a href="examples/">examples/</a>.</p>
+<h2>The review, rebuilt</h2>
+<p align="center">
+  <img src="assets/v5/review.png" width="880" alt="The review, rebuilt. A real /ponytail-review finding from the benchmark: the change renamed a field, and an untouched file, src/routes/feed.js, now crashes. Must fix: the Atom feed now crashes on every request, with what this is, the problem, the fix, and what happens if we skip it. 100% of planted problems found, no skill 87%. 100% of problems outside the diff found, no skill 78%.">
+</p>
+
+<p><code>/ponytail-review</code> used to look only for code to cut. Now it reviews like the senior dev who gets paged when it breaks: it reads the code your change touches, not just the diff, and checks bugs, security, real load, missing tests, speed, and what to cut. Each finding says what the code does, what goes wrong, how to fix it, and what happens if you don't.</p>
+<h2>The audit, rebuilt</h2>
+<p align="center">
+  <img src="assets/v5/audit.png" width="880" alt="Your whole repo, ranked. Fix this first. A real /ponytail-audit from the benchmark on a warehouse stock repo: 1 must fix, office batches with 1,200 fail completely; 2 must fix, the import silently skips bad rows; 3 must fix, a mistyped SKU in an office batch is silently ignored; 4 should fix, the risky code paths have no tests; 5 nice to have, the API crashes on a body that isn't an object. Verdict: fix 1 first.">
+</p>
+
+<p><code>/ponytail-audit</code> runs the same checks on the whole repo. It maps the code first: entry points, how data moves, what load the project expects. Then it ranks what it finds and tells you what to fix first. The old audit only listed what to delete.</p>
+<h2>New in 5.3: the band</h2>
+<p align="center">
+  <img src="assets/band/band.png" width="880" alt="The ponytail band in Claude Code, above the prompt. Detail mode: cost $23.80, last turn $1.14, average $0.72 per turn; 56.7M tokens, 168k output, 33 turns; agent time 52m 14s; reuse 71%, 5 used, 2 new; tests passed after the last change. Compact mode shows the same in one line.">
+</p>
+
+<p>In Claude Code, ponytail now shows a band above the prompt: what the current task costs, how many tokens and how much agent time it used, how often it reused existing code instead of writing new code, and whether the tests passed after the last change. Its buttons switch the level, run `/ponytail-</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/DietrichGebert/ponytail#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">cloudflare /</span>
+          <a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">security-audit-skill</a>
+        </div>
+        <div class="repo-desc">A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 39,933</span>
+      <span class="meta-item">🍴 2,493</span>
+      <span class="stars-today">⭐ 2,979 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>security-audit</h1>
+<p>A coding-agent skill that turns your agent into a security auditor. It orchestrates isolated agents through reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification, and target-neutral reporting.</p>
+<p>This is the skill that seeded Cloudflare's vulnerability discovery harness, described in <a href="https://blog.cloudflare.com/build-your-own-vulnerability-harness">Build your own vulnerability harness</a>. The harness grew into a multi-stage, fleet-wide system; this skill is the single-repo starting point it evolved from.</p>
+<h2>What it does</h2>
+<p>The skill runs a structured audit in six phases:</p>
+<ol>
+<li><strong>Reconnaissance</strong> -- map architecture, trust boundaries, input surfaces, prior evidence, and deterministic coverage in <code>architecture.md</code> and <code>coverage-ledger.json</code>.</li>
+<li><strong>Coverage-led hunting</strong> -- assign isolated hunters from ledger units, record their checks, and use coverage critics to find gaps.</li>
+<li><strong>Candidate validation</strong> -- give every unique candidate to a fresh verifier that tries to disprove it.</li>
+<li><strong>Structured output</strong> -- write <code>confirmed</code>, <code>needs_validation</code>, and <code>rejected</code> records to <code>findings.json</code> and validate them against <code>report-schema.json</code>.</li>
+<li><strong>Independent record verification</strong> -- fresh agents verify final source claims. Material replacements receive another independent verifier.</li>
+<li><strong>Target-neutral reporting</strong> -- derive <code>REPORT.md</code>, <code>FINDINGS-DETAIL.md</code>, and <code>NEEDS-VALIDATION.md</code> from the verified records and coverage ledger.</li>
+</ol>
+<p>The parent runs <code>validate-coverage-ledger.cjs</code> after creating the ledger and after each later ledger update. It runs <code>validate-findings.cjs</code> in Phase 4 and again after every Phase 5 replacement.</p>
+<p>The verdicts are distinct: <code>confirmed</code> has a complete source trace and bounded observed result, <code>needs_validation</code> has an exact unresolved fact and no severity, and <code>rejected</code> records a disproved candidate.</p>
+<p>Multiple runs against the same repo are additive. The skill uses prior ledgers and findings to target gaps, revalidate changed source, and carry forward current-source evidence without treating stale or unresolved work as covered.</p>
+<h2>Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SKILL.md</code></td>
+<td>Setup, core principles, platform terminology, workflow overview, and audit anti-patterns</td>
+</tr>
+<tr>
+<td><code>RECONNAISSANCE.md</code></td>
+<td>Phase 1 reconnaissance prompts and synthesis instructions</td>
+</tr>
+<tr>
+<td><code>HUNTING.md</code></td>
+<td>Phase 2 orchestration, hunting methodology, and validation rules</td>
+</tr>
+<tr>
+<td><code>ATTACK-CLASSES.md</code></td>
+<td>Core, wildcard, and obvious-things attack prompts</td>
+</tr>
+<tr>
+<td><code>MEMORY-SAFETY-AND-BINARY.md</code></td>
+<td>Memory-safety, binary, and kernel hunting classes for native targets</td>
+</tr>
+<tr>
+<td><code>AI-AND-LLM.md</code></td>
+<td>Prompt-injection, agent/tool, and output-handling hunting classes for LLM-backed targets</td>
+</tr>
+<tr>
+<td><code>WEB-PROTOCOL-AND-AUTH.md</code></td>
+<td>HTTP request-framing, cache, and authentication-protocol hunting classes for HTTP-protocol and auth targets</td>
+</tr>
+<tr>
+<td><code>CLIENT-SIDE.md</code></td>
+<td>DOM-injection, messaging-trust, UI-redress, and prototype-pollution hunting classes for client-side/browser targets</td>
+</tr>
+<tr>
+<td><code>SUPPLY-CHAIN-AND-RELEASE.md</code></td>
+<td>Dependency, CI, release, signing, update, plugin, and extension hunting classes</td>
+</tr>
+<tr>
+<td><code>CLOUD-AND-DEPLOYMENT.md</code></td>
+<td>IAM, infrastructure-as-code, container, serverless, ingress, and runtime-configuration hunting classes</td>
+</tr>
+<tr>
+<td><code>PROTOCOLS-RPC-AND-MESSAGING.md</code></td>
+<td>RPC, serialization, queue, broker, webhook, and streaming-protocol hunting classes</td>
+</tr>
+<tr>
+<td><code>RESOURCE-EXHAUSTION-AND-AVAILABILITY.md</code></td>
+<td>Shared resource, quota, queue, worker, and operator-spend hunting classes</td>
+</tr>
+<tr>
+<td><code>DATA-ISOLATION-AND-LIFECYCLE.md</code></td>
+<td>Tenant isolation, cache, search, export, backup, migration, deletion, and restore hunting classes</td>
+</tr>
+<tr>
+<td><code>DESKTOP-MOBILE-AND-LOCAL-IPC.md</code></td>
+<td>Native app, deep-link, webview, exported-component, helper, daemon, and local-IPC hunting classes</td>
+</tr>
+<tr>
+<td><code>VALIDATION-AND-REPORTING.md</code></td>
+<td>Phases 3–6 candidate validation, structured output, record verification, and reporting</td>
+</tr>
+<tr>
+<td><code>report-schema.json</code></td>
+<td>JSON schema for all three <code>findings.json</code> verdicts</td>
+</tr>
+<tr>
+<td><code>validate-findings.cjs</code></td>
+<td>Zero-dependency validator for <code>findings.json</code> in Phases 4 and 5</td>
+</tr>
+<tr>
+<td><code>validate-findings.test.cjs</code></td>
+<td>Findings-validator tests and producer-compatible fixture checks</td>
+</tr>
+<tr>
+<td><code>validate-coverage-ledger.cjs</code></td>
+<td>Zero-dependency validator for <code>coverage-ledger.json</code> in Phases 1–5</td>
+</tr>
+<tr>
+<td><code>validate-coverage-ledger.test.cjs</code></td>
+<td>Coverage-ledger validator tests</td>
+</tr>
+</tbody>
+</table>
+<h2>Installation</h2>
+<p>Install the skill with the <a href="https://skills.sh">Skills CLI</a>:</p>
+<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
+  --skill security-audit
+</code></pre>
+<p>Use <code>--global</code> for a user-level installation:</p>
+<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
+  --skill security-audit \
+  --global
+</code></pre>
+<p>Run <code>npx skills --help</code> for agent-selection and non-interactive options.</p>
+<h2>Usage</h2>
+<p>Start your coding agent in (or pointed at) the codebase you want to audit, then ask it to do a security audit:</p>
+<pre><code>security audit this codebase
+</code></pre>
+<pre><code>find security vulnerabilities in ./src
+</code></pre>
+<pre><code>do a security review, output to ~/audits/my-project
+</code></pre>
+<p>The skill activates automatically when the request matches its trigger (security audit, find vulnerabilities, pen-test the code, etc.). A direct codebase audit or pen-test request uses full audit mode. Security questions and focused vulnerability work use guidance mode unless you request report artifacts. In full audit mode, an unspecified output directory defaults to <code>~/security-audit-skill/&lt;repo-name&gt;/run-&lt;N&gt;</code>. The workflow writes inside the target repository only when you explicitly select a directory that version control ignores.</p>
+<h2>Requirements</h2>
+<ul>
+<li>A coding agent with a model that supports tool use and parallel sub-agents</li>
+<li>Node.js for the zero-dependency findings and coverage-ledger validators</li>
+<li>An OS-enforced sandbox for target-controlled builds, tests, processes, browsers, emulators, fuzzers, and fixtures. It must disable external networking, use a sanitized allowlisted environment, enforce resource limits, and allow writes only to assigned scratch paths. Without these controls, the workflow keeps the lead as <code>needs_validation</code> instead of executing target code.</li>
+</ul>
+<h2>Design principles</h2>
+<ul>
+<li><strong>Only confirm established boundary failures.</strong> Keep a source-grounded blocked lead as <code>needs_validation</code> with its exact unresolved fact.</li>
+<li><strong>Adversarial validation.</strong> The agent that checks a finding is never the agent that found it.</li>
+<li><strong>Severity requires impact.</strong> Likelihood x impact, not deviation from a checklist.</li>
+<li><strong>Defense-in-depth gaps are not vulnerabilities.</strong> If Layer A prevents the attack, the absence of Layer B is a hardening note.</li>
+<li><strong>Multiple runs improve coverage.</strong> In our test runs, a single run found roughly half of the vulnerabilities that repeated runs found in total.</li>
+</ul>
+<h2>Contact</h2>
+<p>Questions, feedback, or comparing notes on AI-driven security tooling: security-ai-research@cloudflare.com</p>
+<h2>License</h2>
+<p>MIT -- see <a href="LICENSE">LICENSE</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/cloudflare/security-audit-skill#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Graphify-Labs /</span>
+          <a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noopener">graphify</a>
+        </div>
+        <div class="repo-desc">Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 133,180</span>
+      <span class="meta-item">🍴 12,736</span>
+      <span class="stars-today">⭐ 1,408 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>graphify</h1>
+<p><a href="https://github.com/safishamsi/graphify/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/safishamsi/graphify/actions/workflows/ci.yml/badge.svg?branch=v1" /></a></p>
+<p><strong>A Claude Code skill.</strong> Type <code>/graphify</code> in Claude Code - it reads your files, builds a knowledge graph, and gives you back structure you didn't know was there.</p>
+<p>Fully multimodal. Drop in code, PDFs, markdown, screenshots, diagrams, whiteboard photos, even images in other languages - graphify uses Claude vision to extract concepts and relationships from all of it and connects them into one graph.</p>
+<blockquote>
+<p>Andrej Karpathy keeps a <code>/raw</code> folder where he drops papers, tweets, screenshots, and notes. graphify is the answer to that problem - 71.5x fewer tokens per query vs reading the raw files, persistent across sessions, honest about what it found vs guessed.</p>
+</blockquote>
+<pre><code>/graphify .                        # works on any folder - your codebase, notes, papers, anything
+</code></pre>
+<pre><code>graphify-out/
+├── graph.html       interactive graph - click nodes, search, filter by community
+├── obsidian/        open as Obsidian vault
+├── wiki/            Wikipedia-style articles for agent navigation (--wiki)
+├── GRAPH_REPORT.md  god nodes, surprising connections, suggested questions
+├── graph.json       persistent graph - query weeks later without re-reading
+└── cache/           SHA256 cache - re-runs only process changed files
+</code></pre>
+<h2>Install</h2>
+<p><strong>Requires:</strong> <a href="https://claude.ai/code">Claude Code</a> and Python 3.10+</p>
+<pre><code class="language-bash">pip install graphifyy &amp;&amp; graphify install
+</code></pre>
+<blockquote>
+<p>The PyPI package is temporarily named <code>graphifyy</code> while the <code>graphify</code> name is being reclaimed. The CLI and skill command are still <code>graphify</code>.</p>
+<p><strong>Windows:</strong> If <code>graphify</code> is not recognized after install, add the Python Scripts folder to your PATH: <code>%APPDATA%\Python\Python3xx\Scripts</code> (replace <code>3xx</code> with your Python version, e.g. <code>313</code>). Or use <code>pipx install graphifyy</code> which handles PATH automatically.<br />
+<strong>macOS (externally managed):</strong> Use <code>pipx install graphifyy</code> if <code>pip install</code> fails with an "externally-managed-environment" error.</p>
+</blockquote>
+<p>Then open Claude Code in any directory and type:</p>
+<pre><code>/graphify .
+</code></pre>
+<details>
+<summary>Manual install (curl)</summary>
+
+
+<pre><code class="language-bash">mkdir -p ~/.claude/skills/graphify
+curl -fsSL https://raw.githubusercontent.com/safishamsi/graphify/v1/skills/graphify/skill.md \
+  &gt; ~/.claude/skills/graphify/SKILL.md
+</code></pre>
+
+
+Add to `~/.claude/CLAUDE.md`:
+
+
+<pre><code>- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+When the user types `/graphify`, invoke the Skill tool with `skill: &quot;graphify&quot;` before doing anything else.
+</code></pre>
+
+
+</details>
+
+<h2>Usage</h2>
+<pre><code>/graphify                          # run on current directory
+/graphify ./raw                    # run on a specific folder
+/graphify ./raw --mode deep        # more aggressive INFERRED edge extraction
+/graphify ./raw --update           # re-extract only changed files, merge into existing graph
+
+/graphify add https://arxiv.org/abs/1706.03762        # fetch a paper, save, update graph
+/graphify add https://x.com/karpathy/status/...       # fetch a tweet
+
+/graphify query &quot;what connects attention to the optimizer?&quot;
+/graphify path &quot;DigestAuth&quot; &quot;Response&quot;
+/graphify explain &quot;SwinTransformer&quot;
+
+/graphify ./raw --watch            # auto-sync graph as files change (code: instant, docs: notifies you)
+/graphify ./raw --wiki             # build agent-crawlable wiki (index.md + article per community)
+/graphify ./raw --svg              # export graph.svg
+/graphify ./raw --graphml          # export graph.graphml (Gephi, yEd)
+/graphify ./raw --neo4j            # generate cypher.txt for Neo4j
+/graphify ./raw --mcp              # start MCP stdio server
+
+graphify hook install              # post-commit git hook - rebuilds graph on every commit automatically
+</code></pre>
+<p>Works with any mix of file types:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Extensions</th>
+<th>Extraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code</td>
+<td><code>.py .ts .js .go .rs .java .c .cpp .rb .cs .kt .scala .php</code></td>
+<td>AST via tree-sitter + call-graph pass</td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><code>.md .txt .rst</code></td>
+<td>Concepts + relationships via Claude</td>
+</tr>
+<tr>
+<td>Papers</td>
+<td><code>.pdf</code></td>
+<td>Citation mining + concept extraction</td>
+</tr>
+<tr>
+<td>Images</td>
+<td><code>.png .jpg .webp .gif</code></td>
+<td>Claude vision - screenshots, diagrams, any language</td>
+</tr>
+</tbody>
+</table>
+<h2>What you get</h2>
+<p><strong>God nodes</strong> - highest-degree concepts (what everything connects through)</p>
+<p><strong>Surprising connections</strong> - ranked by composite score. Code-paper edges rank higher than code-code. Each result includes a plain-English why.</p>
+<p><strong>Suggested questions</strong> - 4-5 questions the graph is uniquely positioned to answer</p>
+<p><strong>Token benchmark</strong> - printed automatically after every run. On a mixed corpus (Karpathy repos + papers + images): <strong>71.5x</strong> fewer tokens per query vs reading raw files.</p>
+<p><strong>Auto-sync</strong> (<code>--watch</code>) - run in a background terminal and the graph updates itself as your codebase changes. Code file saves trigger an instant rebuild (AST only, no LLM). Doc/image changes notify you to run <code>--update</code> for the LLM re-pass. Useful for agentic workflows where multiple agents are writing code in parallel - the graph stays current between waves automatically.</p>
+<p><strong>Git commit hook</strong> (<code>graphify hook install</code>) - installs a post-commit hook that rebuilds the graph after every commit. No background process needed. Triggers once per commit, works with any editor, safe to add alongside existing hooks.</p>
+<p><strong>Wiki</strong> (<code>--wiki</code>) - Wikipedia-style markdown articles per community and god node, with an <code>index.md</code> entry point. Point any agent at <code>index.md</code> and it can navigate the knowledge base by reading files instead of parsing JSON.</p>
+<p>Every edge is tagged <code>EXTRACTED</code>, <code>INFERRED</code>, or <code>AMBIGUOUS</code> - you always know what was found vs guessed.</p>
+<h2>Worked examples</h2>
+<table>
+<thead>
+<tr>
+<th>Corpus</th>
+<th>Files</th>
+<th>Reduction</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Karpathy repos + 5 papers + 4 images</td>
+<td>52</td>
+<td><strong>71.5x</strong></td>
+<td><a href="worked/karpathy-repos/"><code>worked/karpathy-repos/</code></a></td>
+</tr>
+<tr>
+<td>graphify source + Transformer paper</td>
+<td>4</td>
+<td><strong>5.4x</strong></td>
+<td><a href="worked/mixed-corpus/"><code>worked/mixed-corpus/</code></a></td>
+</tr>
+<tr>
+<td>httpx (synthetic Python library)</td>
+<td>6</td>
+<td>~1x</td>
+<td><a href="worked/httpx/"><code>worked/httpx/</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>Token reduction scales with corpus size. 6 files fits in a context window anyway, so graph value there is structural clarity, not compression. At 52 files (code + papers + images) you get 71x+. Each <code>worked/</code> folder has the raw input files and the actual output (<code>GRAPH_REPORT.md</code>, <code>graph.json</code>) so you can run it yourself and verify the numbers.</p>
+<h2>Tech stack</h2>
+<p>NetworkX + Leiden (graspologic) + tree-sitter + Claude + vis.js. No Neo4j required, no server, runs entirely locally.</p>
+<details>
+<summary>Contributing</summary>
+
+**Worked examples** are the most trust-building contribution. Run `/graphify` on a real corpus, save output to `worked/{slug}/`, write an honest `review.md` evaluating what the graph got right and wrong, submit a PR.
+
+**Extraction bugs** - open an issue with the input file, the cache entry (`graphify-out/cache/`), and what was missed or invented.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for module responsibilities and how to add a language.
+
+</details>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Graphify-Labs/graphify#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">supabase /</span>
+          <a href="https://github.com/supabase/supabase" target="_blank" rel="noopener">supabase</a>
+        </div>
+        <div class="repo-desc">The Postgres development platform. Supabase gives you a dedicated Postgres database to build your web, mobile, and AI applications.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 113,560</span>
+      <span class="meta-item">🍴 17,010</span>
+      <span class="stars-today">⭐ 693 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+<img src="https://user-images.githubusercontent.com/8291514/213727234-cda046d6-28c6-491a-b284-b86c5cede25d.png#gh-light-mode-only">
+<img src="https://user-images.githubusercontent.com/8291514/213727225-56186826-bee8-43b5-9b15-86e839d89393.png#gh-dark-mode-only">
+</p>
+
+<h1>Supabase</h1>
+<p><a href="https://supabase.com">Supabase</a> is the Postgres development platform. We're building the features of Firebase using enterprise-grade open source tools.</p>
+<ul>
+<li>[x] Hosted Postgres Database. <a href="https://supabase.com/docs/guides/database">Docs</a></li>
+<li>[x] Authentication and Authorization. <a href="https://supabase.com/docs/guides/auth">Docs</a></li>
+<li>[x] Auto-generated APIs.</li>
+<li>[x] REST. <a href="https://supabase.com/docs/guides/api">Docs</a></li>
+<li>[x] GraphQL. <a href="https://supabase.com/docs/guides/graphql">Docs</a></li>
+<li>[x] Realtime subscriptions. <a href="https://supabase.com/docs/guides/realtime">Docs</a></li>
+<li>[x] Functions.</li>
+<li>[x] Database Functions. <a href="https://supabase.com/docs/guides/database/functions">Docs</a></li>
+<li>[x] Edge Functions <a href="https://supabase.com/docs/guides/functions">Docs</a></li>
+<li>[x] File Storage. <a href="https://supabase.com/docs/guides/storage">Docs</a></li>
+<li>[x] AI + Vector/Embeddings Toolkit. <a href="https://supabase.com/docs/guides/ai">Docs</a></li>
+<li>[x] Dashboard</li>
+</ul>
+<p><img alt="Supabase Dashboard" src="https://raw.githubusercontent.com/supabase/supabase/master/apps/www/public/images/github/supabase-dashboard.png" /></p>
+<p>Watch "releases" of this repo to get notified of major updates.</p>
+<p><kbd><img src="https://raw.githubusercontent.com/supabase/supabase/d5f7f413ab356dc1a92075cb3cee4e40a957d5b1/web/static/watch-repo.gif" alt="Watch this repo"/></kbd></p>
+<h2>Documentation</h2>
+<p>For full documentation, visit <a href="https://supabase.com/docs">supabase.com/docs</a></p>
+<p>To see how to Contribute, visit <a href="./DEVELOPERS.md">Getting Started</a></p>
+<h2>Community &amp; Support</h2>
+<ul>
+<li><a href="https://github.com/supabase/supabase/discussions">Community Forum</a>. Best for: help with building, discussion about database best practices.</li>
+<li><a href="https://github.com/supabase/supabase/issues">GitHub Issues</a>. Best for: bugs and errors you encounter using Supabase.</li>
+<li><a href="https://supabase.com/docs/support#business-support">Email Support</a>. Best for: problems with your database or infrastructure.</li>
+<li><a href="https://discord.supabase.com">Discord</a>. Best for: sharing your applications and hanging out with the community.</li>
+</ul>
+<h2>How it works</h2>
+<p>Supabase is a combination of open source tools. We’re building the features of Firebase using enterprise-grade, open source products. If the tools and communities exist, with an MIT, Apache 2, or equivalent open license, we will use and support that tool. If the tool doesn't exist, we build and open source it ourselves. Supabase is not a 1-to-1 mapping of Firebase. Our aim is to give developers a Firebase-like developer experience using open source tools.</p>
+<p><strong>Architecture</strong></p>
+<p>Supabase is a <a href="https://supabase.com/dashboard">hosted platform</a>. You can sign up and start using Supabase without installing anything.<br />
+You can also <a href="https://supabase.com/docs/guides/hosting/overview">self-host</a> and <a href="https://supabase.com/docs/guides/local-development">develop locally</a>.</p>
+<p><img alt="Architecture" src="apps/docs/public/img/supabase-architecture.svg" /></p>
+<ul>
+<li><a href="https://www.postgresql.org/">Postgres</a> is an object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.</li>
+<li><a href="https://github.com/supabase/realtime">Realtime</a> is an Elixir server that allows you to listen to PostgreSQL inserts, updates, and deletes using websockets. Realtime polls Postgres' built-in replication functionality for database changes, converts changes to JSON, then broadcasts the JSON over websockets to authorized clients.</li>
+<li><a href="http://postgrest.org/">PostgREST</a> is a web server that turns your PostgreSQL database directly into a RESTful API.</li>
+<li><a href="https://github.com/supabase/gotrue">GoTrue</a> is a JWT-based authentication API that simplifies user sign-ups, logins, and session management in your applications.</li>
+<li><a href="https://github.com/supabase/storage-api">Storage</a> a RESTful API for managing files in S3, with Postgres handling permissions.</li>
+<li><a href="http://github.com/supabase/pg_graphql/">pg_graphql</a> a PostgreSQL extension that exposes a GraphQL API.</li>
+<li><a href="https://github.com/supabase/postgres-meta">postgres-meta</a> is a RESTful API for managing your Postgres, allowing you to fetch tables, add roles, and run queries, etc.</li>
+<li><a href="https://github.com/envoyproxy/envoy">Envoy</a> is a cloud-native, high-performance edge and service proxy.</li>
+</ul>
+<h4>Client libraries</h4>
+<p>Our approach for client libraries is modular. Each sub-library is a standalone implementation for a single external system. This is one of the ways we support existing tools.</p>
+<table style="table-layout:fixed; white-space: nowrap;">
+  <tr>
+    <th>Language</th>
+    <th>Client</th>
+    <th colspan="5">Feature-Clients (bundled in Supabase client)</th>
+  </tr>
+  <!-- notranslate -->
+  <tr>
+    <th></th>
+    <th>Supabase</th>
+    <th><a href="https://github.com/postgrest/postgrest" target="_blank" rel="noopener noreferrer">PostgREST</a></th>
+    <th><a href="https://github.com/supabase/gotrue" target="_blank" rel="noopener noreferrer">GoTrue</a></th>
+    <th><a href="https://github.com/supabase/realtime" target="_blank" rel="noopener noreferrer">Realtime</a></th>
+    <th><a href="https://github.com/supabase/storage-api" target="_blank" rel="noopener noreferrer">Storage</a></th>
+    <th>Functions</th>
+  </tr>
+  <!-- TEMPLATE FOR NEW ROW -->
+  <!-- START ROW
+  <tr>
+    <td>lang</td>
+    <td><a href="https://github.com/supabase-community/supabase-lang" target="_blank" rel="noopener noreferrer">supabase-lang</a></td>
+    <td><a href="https://github.com/supabase-community/postgrest-lang" target="_blank" rel="noopener noreferrer">postgrest-lang</a></td>
+    <td><a href="https://github.com/supabase-community/gotrue-lang" target="_blank" rel="noopener noreferrer">gotrue-lang</a></td>
+    <td><a href="https://github.com/supabase-community/realtime-lang" target="_blank" rel="noopener noreferrer">realtime-lang</a></td>
+    <td><a href="https://github.com/supabase-community/storage-lang" target="_blank" rel="noopener noreferrer">storage-lang</a></td>
+  </tr>
+  END ROW -->
+  <!-- /notranslate -->
+  <th colspan="7">⚡️ Official ⚡️</th>
+  <!-- notranslate -->
+  <tr>
+    <td>JavaScript (TypeScript)</td>
+    <td><a href="https://github.com/supabase/supabase-js" target="_blank" rel="noopener noreferrer">supabase-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/postgrest-js" target="_blank" rel="noopener noreferrer">postgrest-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/auth-js" target="_blank" rel="noopener noreferrer">auth-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/realtime-js" target="_blank" rel="noopener noreferrer">realtime-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/storage-js" target="_blank" rel="noopener noreferrer">storage-js</a></td>
+    <td><a href="https://github.com/supabase/supabase-js/tree/master/packages/core/functions-js" target="_blank" rel="noopener noreferrer">functions-js</a></td>
+  </tr>
+    <tr>
+    <td>Flutter</td>
+    <td><a href="https://github.com/supabase/supabase-flutter" target="_blank" rel="noopener noreferrer">supabase-flutter</a></td>
+    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/postgrest" target="_blank" rel="noopener noreferrer">postgrest</a></td>
+    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/supabase_auth" target="_blank" rel="noopener noreferrer">supabase_auth</a></td>
+    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/supabase_realtime" target="_blank" rel="noopener noreferrer">supabase_realtime</a></td>
+    <td><a href="https://github.com/supabase/supabase-flutter/tree/main/packages/supabase_storage" target="_blank" rel="noopener noreferrer">supab
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/supabase/supabase#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">fastapi /</span>
+          <a href="https://github.com/fastapi/fastapi" target="_blank" rel="noopener">fastapi</a>
+        </div>
+        <div class="repo-desc">FastAPI framework, high performance, easy to learn, fast to code, ready for production</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 103,875</span>
+      <span class="meta-item">🍴 10,093</span>
+      <span class="stars-today">⭐ 101 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <a href="https://fastapi.tiangolo.com"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
+</p>
+<p align="center">
+    <em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em>
+</p>
+<p align="center">
+<a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
+</a>
+<a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
+</a>
+<a href="https://pypi.org/project/fastapi">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+</a>
+<a href="https://pypi.org/project/fastapi">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+</a>
+</p>
+
+<hr />
+<p><strong>Documentation</strong>: <a href="https://fastapi.tiangolo.com">https://fastapi.tiangolo.com</a></p>
+<p><strong>Source Code</strong>: <a href="https://github.com/fastapi/fastapi">https://github.com/fastapi/fastapi</a></p>
+<hr />
+<p>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.</p>
+<p>The key features are:</p>
+<ul>
+<li><strong>Fast</strong>: Very high performance, on par with <strong>NodeJS</strong> and <strong>Go</strong> (thanks to Starlette and Pydantic). <a href="#performance">One of the fastest Python frameworks available</a>.</li>
+<li><strong>Fast to code</strong>: Increase the speed to develop features by about 200% to 300%. *</li>
+<li><strong>Fewer bugs</strong>: Reduce about 40% of human (developer) induced errors. *</li>
+<li><strong>Intuitive</strong>: Great editor support. <dfn title="also known as auto-complete, autocompletion, IntelliSense">Completion</dfn> everywhere. Less time debugging.</li>
+<li><strong>Easy</strong>: Designed to be easy to use and learn. Less time reading docs.</li>
+<li><strong>Short</strong>: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.</li>
+<li><strong>Robust</strong>: Get production-ready code. With automatic interactive documentation.</li>
+<li><strong>Standards-based</strong>: Based on (and fully compatible with) the open standards for APIs: <a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI</a> (previously known as Swagger) and <a href="https://json-schema.org/">JSON Schema</a>.</li>
+</ul>
+<p><small>* estimation based on tests conducted by an internal development team, building production applications.</small></p>
+<h2>Sponsors</h2>
+<!-- sponsors -->
+<h3>Keystone Sponsor</h3>
+<p><a href="https://fastapicloud.com" target="_blank" title="FastAPI Cloud. By the same team behind FastAPI. You code. We Cloud."><img src="https://fastapi.tiangolo.com/img/sponsors/fastapicloud.png"></a></p>
+<h3>Gold Sponsors</h3>
+<p><a href="https://blockbee.io?ref=fastapi" target="_blank" title="BlockBee Cryptocurrency Payment Gateway"><img src="https://fastapi.tiangolo.com/img/sponsors/blockbee.png"></a><br />
+<a href="https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=mainbadge" target="_blank" title="Auth, user management and more for your B2B product"><img src="https://fastapi.tiangolo.com/img/sponsors/propelauth.png"></a><br />
+<a href="https://www.coderabbit.ai/?utm_source=fastapi&utm_medium=badge&utm_campaign=fastapi" target="_blank" title="Cut Code Review Time & Bugs in Half with CodeRabbit"><img src="https://fastapi.tiangolo.com/img/sponsors/coderabbit.png"></a><br />
+<a href="https://subtotal.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=open-source" target="_blank" title="The Gold Standard in Retail Account Linking"><img src="https://fastapi.tiangolo.com/img/sponsors/subtotal.svg"></a><br />
+<a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" target="_blank" title="Deploy enterprise applications at startup speed"><img src="https://fastapi.tiangolo.com/img/sponsors/railway.png"></a><br />
+<a href="https://serpapi.com/?utm_source=fastapi_website" target="_blank" title="SerpApi: Web Search API"><img src="https://fastapi.tiangolo.com/img/sponsors/serpapi.png"></a><br />
+<a href="https://www.greptile.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=fastapi_sponsor_page" target="_blank" title="Greptile: The AI Code Reviewer"><img src="https://fastapi.tiangolo.com/img/sponsors/greptile.png"></a></p>
+<h3>Silver Sponsors</h3>
+<p><a href="https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display" target="_blank" title="Pay as you go for market data"><img src="https://fastapi.tiangolo.com/img/sponsors/databento.svg"></a><br />
+<a href="https://www.svix.com/" target="_blank" title="Svix - Webhooks as a service"><img src="https://fastapi.tiangolo.com/img/sponsors/svix.svg"></a><br />
+<a href="https://dribia.com/en/" target="_blank" title="Dribia - Data Science within your reach"><img src="https://fastapi.tiangolo.com/img/sponsors/dribia.png"></a><br />
+<a href="https://www.bairesdev.com/" target="_blank" title="BairesDev | Nearshore Software Development & Staff Augmentation Company"><img src="https://fastapi.tiangolo.com/img/sponsors/bairesdev.svg"></a><br />
+<a href="https://tutorcruncher.com/?utm_source=fastapi" target="_blank" title="TutorCruncher"><img src="https://fastapi.tiangolo.com/img/sponsors/tutorcruncher.png"></a></p>
+<!-- /sponsors -->
+
+<p><a href="https://fastapi.tiangolo.com/fastapi-people/#sponsors">Other sponsors</a></p>
+<h2>Opinions</h2>
+<div class="only-github" markdown="1">
+
+"_[...] I'm using **FastAPI** a ton these days. [...] I'm actually planning to use it for all of my team's **ML services at Microsoft**. Some of them are getting integrated into the core **Windows** product and some **Office** products._"
+
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
+
+---
+
+"_We adopted the **FastAPI** library to spawn a **REST** server that can be queried to obtain **predictions**. [for Ludwig]_"
+
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
+
+---
+
+"_**Netflix** is pleased to announce the open-source release of our **crisis management** orchestration framework: **Dispatch**! [built with **FastAPI**]_"
+
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(ref)</small></a></div>
+
+---
+
+"_If anyone is looking to build a production Python API, I would highly recommend **FastAPI**. It is **beautifully designed**, **simple to use** and **highly scalable**, it has become a **key component** in our API first development strategy and is driving many automations and services such as our Virtual TAC Engineer._"
+
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
+
+---
+
+</div>
+
+<h2>FastAPI mini documentary</h2>
+<p>There's a <a href="https://www.youtube.com/watch?v=mpR8ngthqiE">FastAPI mini documentary</a> released at the end of 2025, you can watch it online:</p>
+<p><a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a></p>
+<h2><strong>Typer</strong>, the FastAPI of CLIs</h2>
+<p><a href="https://typer.tiangolo.com"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a></p>
+<p>If you are building a <abbr title="Command Line Interface">CLI</abbr> app to be used in the terminal instead of a web API, check out <a href="https://typer.tiangolo.com/"><strong>Typer</strong></a>.</p>
+<p><strong>Typer</strong> is FastAPI's little sibling. And it's intended to be the <strong>FastAPI of CLIs</strong>. ⌨️ 🚀</p>
+<h2>Requirements</h2>
+<p>FastAPI stands on the shoulders of giants:</p>
+<ul>
+<li>[Starlette](htt</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/fastapi/fastapi#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">luongnv89 /</span>
+          <a href="https://github.com/luongnv89/claude-howto" target="_blank" rel="noopener">claude-howto</a>
+        </div>
+        <div class="repo-desc">A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 43,421</span>
+      <span class="meta-item">🍴 5,406</span>
+      <span class="stars-today">⭐ 177 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg"><br />
+  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg"><br />
+</picture></p>
+<p align="center">
+  <a href="https://github.com/trending">
+    <img src="https://img.shields.io/badge/GitHub-🔥%20%231%20Trending-purple?style=for-the-badge&logo=github"/>
+  </a>
+</p>
+
+<p><a href="https://github.com/luongnv89/claude-howto/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/luongnv89/claude-howto?style=flat&amp;color=gold" /></a><br />
+<a href="https://github.com/luongnv89/claude-howto/network/members"><img alt="GitHub Forks" src="https://img.shields.io/github/forks/luongnv89/claude-howto?style=flat" /></a><br />
+<a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" /></a><br />
+<a href="CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-2.1.302-brightgreen" /></a><br />
+<a href="https://code.claude.com"><img alt="Claude Code" src="https://img.shields.io/badge/Claude_Code-2.1+-purple" /></a></p>
+<p>🌐 <strong>Language / Ngôn ngữ / 语言 / Мова:</strong> <a href="README.md">English</a> | <a href="vi/README.md">Tiếng Việt</a> | <a href="zh/README.md">中文</a> | <a href="uk/README.md">Українська</a> | <a href="ja/README.md">日本語</a></p>
+<h1>Master Claude Code in a Weekend</h1>
+<p>Go from typing <code>claude</code> to orchestrating agents, hooks, skills, and MCP servers — with visual tutorials, copy-paste templates, and a guided learning path.</p>
+<p><strong><a href="#get-started-in-15-minutes">Get Started in 15 Minutes</a></strong> | <strong><a href="#not-sure-where-to-start">Find Your Level</a></strong> | <strong><a href="CATALOG.md">Browse the Feature Catalog</a></strong></p>
+<hr />
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#the-problem">The Problem</a></li>
+<li><a href="#how-claude-how-to-fixes-this">How Claude How To Fixes This</a></li>
+<li><a href="#how-it-works">How It Works</a></li>
+<li><a href="#not-sure-where-to-start">Not Sure Where to Start?</a></li>
+<li><a href="#get-started-in-15-minutes">Get Started in 15 Minutes</a></li>
+<li><a href="#what-can-you-build-with-this">What Can You Build With This?</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<hr />
+<h2>The Problem</h2>
+<p>You installed Claude Code. You ran a few prompts. Now what?</p>
+<ul>
+<li><strong>The official docs describe features — but don't show you how to combine them.</strong> You know slash commands exist, but not how to chain them with hooks, memory, and subagents into a workflow that actually saves hours.</li>
+<li><strong>There's no clear learning path.</strong> Should you learn MCP before hooks? Skills before subagents? You end up skimming everything and mastering nothing.</li>
+<li><strong>Examples are too basic.</strong> A "hello world" slash command doesn't help you build a production code review pipeline that uses memory, delegates to specialized agents, and runs security scans automatically.</li>
+</ul>
+<p>You're leaving 90% of Claude Code's power on the table — and you don't know what you don't know.</p>
+<hr />
+<h2>How Claude How To Fixes This</h2>
+<p>This isn't another feature reference. It's a <strong>structured, visual, example-driven guide</strong> that teaches you to use every Claude Code feature with real-world templates you can copy into your project today.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Official Docs</th>
+<th>This Guide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Format</strong></td>
+<td>Reference documentation</td>
+<td>Visual tutorials with Mermaid diagrams</td>
+</tr>
+<tr>
+<td><strong>Depth</strong></td>
+<td>Feature descriptions</td>
+<td>How it works under the hood</td>
+</tr>
+<tr>
+<td><strong>Examples</strong></td>
+<td>Basic snippets</td>
+<td>Production-ready templates you use immediately</td>
+</tr>
+<tr>
+<td><strong>Structure</strong></td>
+<td>Feature-organized</td>
+<td>Progressive learning path (beginner to advanced)</td>
+</tr>
+<tr>
+<td><strong>Onboarding</strong></td>
+<td>Self-directed</td>
+<td>Guided roadmap with time estimates</td>
+</tr>
+<tr>
+<td><strong>Self-Assessment</strong></td>
+<td>None</td>
+<td>Interactive quizzes to find your gaps and build a personalized path</td>
+</tr>
+</tbody>
+</table>
+<h3>What you get:</h3>
+<ul>
+<li><strong>10 tutorial modules</strong> covering every Claude Code feature — from slash commands to custom agent teams</li>
+<li><strong>Copy-paste configs</strong> — slash commands, CLAUDE.md templates, hook scripts, MCP configs, subagent definitions, and full plugin bundles</li>
+<li><strong>Mermaid diagrams</strong> showing how each feature works internally, so you understand <em>why</em>, not just <em>how</em></li>
+<li><strong>A guided learning path</strong> that takes you from beginner to power user in 11-13 hours</li>
+<li><strong>Built-in self-assessment</strong> — run <code>/self-assessment</code> or <code>/lesson-quiz hooks</code> directly in Claude Code to identify gaps</li>
+</ul>
+<p><strong><a href="LEARNING-ROADMAP.md">Start the Learning Path  -&gt;</a></strong></p>
+<hr />
+<h2>How It Works</h2>
+<h3>1. Find your level</h3>
+<p>Take the <a href="LEARNING-ROADMAP.md#-find-your-level">self-assessment quiz</a> or run <code>/self-assessment</code> in Claude Code. Get a personalized roadmap based on what you already know.</p>
+<h3>2. Follow the guided path</h3>
+<p>Work through 10 modules in order — each builds on the last. Copy templates directly into your project as you learn.</p>
+<h3>3. Combine features into workflows</h3>
+<p>The real power is in combining features. Learn to wire slash commands + memory + subagents + hooks into automated pipelines that handle code reviews, deployments, and documentation generation.</p>
+<h3>4. Test your understanding</h3>
+<p>Run <code>/lesson-quiz [topic]</code> after each module. The quiz pinpoints what you missed so you can fill gaps fast.</p>
+<p><strong><a href="#get-started-in-15-minutes">Get Started in 15 Minutes</a></strong></p>
+<hr />
+<h2>Trusted by Developers</h2>
+<ul>
+<li><strong>GitHub stars</strong> from developers who use Claude Code daily</li>
+<li><strong>Forks</strong> from teams adapting this guide for their own workflows</li>
+<li><strong>Actively maintained</strong> — synced with every Claude Code release (latest: v2.1.302, October 2026)</li>
+<li><strong>Community-driven</strong> — contributions from developers who share their real-world configurations</li>
+</ul>
+<p><a href="https://star-history.com/#luongnv89/claude-howto&amp;Date"><img alt="Star History Chart" src="https://api.star-history.com/svg?repos=luongnv89/claude-howto&amp;type=Date" /></a></p>
+<hr />
+<h2>Not Sure Where to Start?</h2>
+<p>Take the self-assessment or pick your level:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>You can...</th>
+<th>Start here</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Beginner</strong></td>
+<td>Start Claude Code and chat</td>
+<td><a href="01-slash-commands/">Slash Commands</a></td>
+<td>~2.5 hours</td>
+</tr>
+<tr>
+<td><strong>Intermediate</strong></td>
+<td>Use CLAUDE.md and custom commands</td>
+<td><a href="03-skills/">Skills</a></td>
+<td>~3.5 hours</td>
+</tr>
+<tr>
+<td><strong>Advanced</strong></td>
+<td>Configure MCP servers and hooks</td>
+<td><a href="09-advanced-features/">Advanced Features</a></td>
+<td>~5 hours</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Full learning path with all 10 modules:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Module</th>
+<th>Level</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="01-slash-commands/">Slash Commands</a></td>
+<td>Beginner</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="02-memory/">Memory</a></td>
+<td>Beginner+</td>
+<td>45 min</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="08-checkpoints/">Checkpoints</a></td>
+<td>Intermediate</td>
+<td>45 min</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="10-cli/">CLI Basics</a></td>
+<td>Beginner+</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="03-skills/">Skills</a></td>
+<td>Intermediate</td>
+<td>1 hour</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="06-hooks/">Hooks</a></td>
+<td>Intermediate</td>
+<td>1 hour</td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="05-mcp/">MCP</a></td>
+<td>Intermediate+</td>
+<td>1 hour</td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="04-subagents/">Subagents</a></td>
+<td>Intermediate+</td>
+<td>1.5 hours</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="09-advanced-features/">Advanced Features</a></td>
+<td>Advanced</td>
+<td>2-3 hours</td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="07-plugins/">Plugins</a></td>
+<td>Advanced</td>
+<td>2 hours</td>
+</tr>
+</tbody>
+</table>
+<p><strong><a href="LEARNING-ROADMAP.md">Complete Learning Roadmap -&gt;</a></strong></p>
+<hr />
+<h2>Get Started in 15 Minutes</h2>
+<blockquote>
+<p><strong>Installation note</strong>: Starting in v2.1.113, Claude Code ships as a native per-platform binary (macOS/Linux/Windows). The recommended install is the native installer (<code>curl -fsSL https://claude.ai/install.sh | bash</code>); npm installation is deprecated in the official README; prefer the native installer, Homebrew (<code>brew install --cask claude-code</code>) or WinGet (<code>winget install Anthropic.ClaudeCode</code>). For reference, <code>npm install -g @anthropic-ai/claude-code</code> pulls the same native binary through a per-platform optional dependency at install time. As of v2.1.116, downloads come from <code>https://downloads.claude.ai/claude-code-releases</code> — corporate proxies must allowlist this host.</p>
+</blockquote>
+<pre><code class="language-bash"># 1. Clone the guide
+git clone https://github.com/luongnv89/claude-howto.git
+cd claude-howto
+
+# 2. Copy your first slash command
+mkdir -p /path/to/your-project/.claude/commands
+cp 01-slash-commands/optimize.md /path/to/your-project/.claude/commands/
+
+# 3. Try it — in Claude Code, type:
+# /optimize
+
+# 4. Ready for more? Set up project memory:
+cp 02-memory/project-CLAUDE.md /path/to/your-project/CLAUDE.md
+
+# 5. Install a skill:
+cp -r 03-skills/code-review-specialist ~/.claude/skills/
+</code></pre>
+<p>Want the full setup? Here's the <strong>1-hour essential setup</strong>:</p>
+<p>```bash</p>
+<h1>Slash commands (15 min)</h1>
+<p>cp 01-slash-commands/*.md .claude/commands/</p>
+<h1>Project memory (15 min)</h1>
+<p>cp 02-memory/project-CLAUDE.md ./CLAUDE.md</p>
+<h1>Install</h1>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/luongnv89/claude-howto#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Meloong-Git /</span>
+          <a href="https://github.com/Meloong-Git/PCL" target="_blank" rel="noopener">PCL</a>
+        </div>
+        <div class="repo-desc">Minecraft 启动器 Plain Craft Launcher（PCL）。</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#8b949e"></span>Visual Basic .NET</span>
+      <span class="meta-item">⭐ 8,757</span>
+      <span class="meta-item">🍴 1,214</span>
+      <span class="stars-today">⭐ 119 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Plain Craft Launcher</h1>
+<p><a href="https://github.com/Meloong-Git/PCL/"><img alt="Stars" src="https://img.shields.io/github/stars/Meloong-Git/PCL?style=flat&amp;logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZD0iTTggLjI1YS43NS43NSAwIDAgMSAuNjczLjQxOGwxLjg4MiAzLjgxNSA0LjIxLjYxMmEuNzUuNzUgMCAwIDEgLjQxNiAxLjI3OWwtMy4wNDYgMi45Ny43MTkgNC4xOTJhLjc1MS43NTEgMCAwIDEtMS4wODguNzkxTDggMTIuMzQ3bC0zLjc2NiAxLjk4YS43NS43NSAwIDAgMS0xLjA4OC0uNzlsLjcyLTQuMTk0TC44MTggNi4zNzRhLjc1Ljc1IDAgMCAxIC40MTYtMS4yOGw0LjIxLS42MTFMNy4zMjcuNjY4QS43NS43NSAwIDAgMSA4IC4yNVoiIGZpbGw9IiNlYWM1NGYiLz48L3N2Zz4=&amp;logoSize=auto&amp;label=Stars&amp;labelColor=444444&amp;color=eac54f" /></a><br />
+<a href="https://github.com/Meloong-Git/PCL/issues"><img alt="Issues" src="https://img.shields.io/github/issues/Meloong-Git/PCL?style=flat&amp;label=Issues&amp;labelColor=444444&amp;color=1F883D" /></a><br />
+<a href="https://space.bilibili.com/11343203/dynamic"><img alt="哔哩哔哩" src="https://img.shields.io/badge/动态-BiliBili-00A4DB?style=flat&amp;labelColor=444444&amp;logoSize=auto" /></a><br />
+<a href="https://meloong.com/afd/a/LTCat"><img alt="爱发电" src="https://img.shields.io/badge/赞助-爱发电-946ce6?style=flat&amp;labelColor=444444&amp;logoSize=auto" /></a></p>
+<p>包含 PCL 的大部分源代码，包括 UI 库、动画模块、下载模块、Minecraft 启动模块等！<br/><br />
+代码并不是实时更新的，它会在每次 PCL 发布更新时同步一次。<br/><br />
+非常感谢社区的大力支持！</p>
+<p><br/></p>
+<h3>相关资源</h3>
+<ul>
+<li><a href="https://meloong.com/pcl">PCL 下载</a>：下载可免费使用的正式版 PCL！</li>
+<li><a href="https://github.com/Meloong-Git/PCL/discussions/2">PCL 功能投票</a>：来参加投票吧，开发者会优先处理票数较高的项目！</li>
+<li><a href="https://github.com/LTCatt/PCL2Help">帮助文档库</a>：PCL 内置帮助文档的存储库</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Meloong-Git/PCL#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on October 23, 2026  05:56 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
