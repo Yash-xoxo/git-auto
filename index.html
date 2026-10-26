@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GitHub Trending — October 25, 2026  09:15</title>
+  <title>GitHub Trending — October 26, 2026  10:00</title>
   <style>
     /* ── reset & tokens ───────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -245,7 +245,7 @@
     <span class="badge">Today</span>
   </a>
   <div class="subtitle">
-    Auto-generated on October 25, 2026  09:15 &nbsp;·&nbsp; 10 trending repositories
+    Auto-generated on October 26, 2026  10:00 &nbsp;·&nbsp; 11 trending repositories
   </div>
 </header>
 
@@ -256,436 +256,202 @@
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">cloudflare /</span>
-          <a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">security-audit-skill</a>
+          <span class="repo-owner">makecindy /</span>
+          <a href="https://github.com/makecindy/cindy" target="_blank" rel="noopener">cindy</a>
         </div>
-        <div class="repo-desc">A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings</div>
+        <div class="repo-desc">Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
-      <span class="meta-item">⭐ 45,483</span>
-      <span class="meta-item">🍴 2,821</span>
-      <span class="stars-today">⭐ 2,264 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 5,575</span>
+      <span class="meta-item">🍴 721</span>
+      <span class="stars-today">⭐ 675 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <h1>security-audit</h1>
-<p>A coding-agent skill that turns your agent into a security auditor. It orchestrates isolated agents through reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification, and target-neutral reporting.</p>
-<p>This is the skill that seeded Cloudflare's vulnerability discovery harness, described in <a href="https://blog.cloudflare.com/build-your-own-vulnerability-harness">Build your own vulnerability harness</a>. The harness grew into a multi-stage, fleet-wide system; this skill is the single-repo starting point it evolved from.</p>
-<h2>What it does</h2>
-<p>The skill runs a structured audit in six phases:</p>
-<ol>
-<li><strong>Reconnaissance</strong> -- map architecture, trust boundaries, input surfaces, prior evidence, and deterministic coverage in <code>architecture.md</code> and <code>coverage-ledger.json</code>.</li>
-<li><strong>Coverage-led hunting</strong> -- assign isolated hunters from ledger units, record their checks, and use coverage critics to find gaps.</li>
-<li><strong>Candidate validation</strong> -- give every unique candidate to a fresh verifier that tries to disprove it.</li>
-<li><strong>Structured output</strong> -- write <code>confirmed</code>, <code>needs_validation</code>, and <code>rejected</code> records to <code>findings.json</code> and validate them against <code>report-schema.json</code>.</li>
-<li><strong>Independent record verification</strong> -- fresh agents verify final source claims. Material replacements receive another independent verifier.</li>
-<li><strong>Target-neutral reporting</strong> -- derive <code>REPORT.md</code>, <code>FINDINGS-DETAIL.md</code>, and <code>NEEDS-VALIDATION.md</code> from the verified records and coverage ledger.</li>
-</ol>
-<p>The parent runs <code>validate-coverage-ledger.cjs</code> after creating the ledger and after each later ledger update. It runs <code>validate-findings.cjs</code> in Phase 4 and again after every Phase 5 replacement.</p>
-<p>The verdicts are distinct: <code>confirmed</code> has a complete source trace and bounded observed result, <code>needs_validation</code> has an exact unresolved fact and no severity, and <code>rejected</code> records a disproved candidate.</p>
-<p>Multiple runs against the same repo are additive. The skill uses prior ledgers and findings to target gaps, revalidate changed source, and carry forward current-source evidence without treating stale or unresolved work as covered.</p>
-<h2>Files</h2>
+    <p align="center">
+  <a href="https://cindy.app"><img src=".github/assets/hero-en.webp" width="100%" alt="CINDY — Consider it done. The open-source AI agent that works out of the box, doing real work on your own computer."></a>
+</p>
+
+<p align="center">
+  <strong>English</strong> · <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License" /></a>
+  <a href="https://github.com/makecindy/cindy/actions/workflows/ci.yml"><img src="https://github.com/makecindy/cindy/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-22.x-brightgreen.svg" alt="Node.js 22.x" /></a>
+  <a href="https://pnpm.io"><img src="https://img.shields.io/badge/pnpm-10-orange.svg" alt="pnpm" /></a>
+</p>
+
+<p align="center">
+  🌐 <a href="https://cindy.app">cindy.app</a> &nbsp;·&nbsp; ⬇️ <a href="https://cindy.app/download/">Download</a>
+</p>
+
+<p>Cindy is an open-source AI agent that works out of the box. She brings multiple<br />
+harnesses, models and tools into one agent that finishes real work in your<br />
+projects and apps. Ready from day one, yours to shape over time.</p>
+<p>Cindy runs locally on your own machine, using your real files and logged-in<br />
+apps. The first supported harnesses are <strong>Claude Code</strong> and <strong>Codex</strong> — more are<br />
+being added, and a native harness is in the works. Models and harnesses mix<br />
+freely and can switch mid-task while your workspace, memory, skills and tools<br />
+stay continuous; one task can even be planned, executed in parallel, and<br />
+reviewed by agents on different harness × model combos. She can drive your<br />
+browser, computer and phone, and take work from IM and schedules.</p>
+<p>This repository is the open-source <strong>client</strong> for Cindy — the desktop and mobile<br />
+apps plus their shared packages, organized as a pnpm monorepo.</p>
+<p>The client is free to use, and its source code is open under Apache-2.0. Bring<br />
+models your way: sign in to the official Cindy service (usage deducted<br />
+transparently), authorize the <strong>Claude Code / Codex Coding Plan</strong> you already<br />
+pay for and keep using it inside Cindy — no duplicate bill — connect your own<br />
+API keys, or use local models.<br />
+See <a href="https://cindy.app">cindy.app</a> for service details,<br />
+<a href="https://cindy.app/#pricing">pricing</a>, and <a href="https://cindy.app/download/">downloads</a>.</p>
+<p>Linux users: see the <a href="docs/linux.md">Ubuntu, Arch Linux and Omarchy installation guide</a><br />
+for installation, updates, keyring setup and migration from a manual install.</p>
+<h2>Yours to shape</h2>
+<p>Open source means more than visible — it means changeable:</p>
+<ul>
+<li><strong>Memory</strong> — correct her once and she does it right from then on, shared across harnesses.</li>
+<li><strong>Skills</strong> — teach a way of working once and reuse it everywhere; handing them to your team is in the making.</li>
+<li><strong>Automation</strong> — recurring work schedules itself, runs itself, reports back.</li>
+<li><strong>MCP</strong> — wire your internal tools and business systems into her reach.</li>
+<li><strong>Plugins</strong> — reshape features, UI and interactions, shared through an open marketplace <em>(in the making)</em>.</li>
+<li><strong>Source</strong> — audit, fork, extend, and contribute improvements back under Apache-2.0.</li>
+</ul>
+<p>Ready out of the box, never boxed in — start with<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> and build Cindy with us.</p>
+<h2>What's in this repo</h2>
 <table>
 <thead>
 <tr>
-<th>File</th>
-<th>Purpose</th>
+<th>Path</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>SKILL.md</code></td>
-<td>Setup, core principles, platform terminology, workflow overview, and audit anti-patterns</td>
+<td><code>apps/desktop</code></td>
+<td>Electron desktop client</td>
 </tr>
 <tr>
-<td><code>RECONNAISSANCE.md</code></td>
-<td>Phase 1 reconnaissance prompts and synthesis instructions</td>
+<td><code>apps/mobile</code></td>
+<td>Expo / React Native mobile client</td>
 </tr>
 <tr>
-<td><code>HUNTING.md</code></td>
-<td>Phase 2 orchestration, hunting methodology, and validation rules</td>
+<td><code>packages/*</code></td>
+<td>Shared client capabilities (auth, device-link, agent orchestration, model providers, …)</td>
 </tr>
 <tr>
-<td><code>ATTACK-CLASSES.md</code></td>
-<td>Core, wildcard, and obvious-things attack prompts</td>
-</tr>
-<tr>
-<td><code>MEMORY-SAFETY-AND-BINARY.md</code></td>
-<td>Memory-safety, binary, and kernel hunting classes for native targets</td>
-</tr>
-<tr>
-<td><code>AI-AND-LLM.md</code></td>
-<td>Prompt-injection, agent/tool, and output-handling hunting classes for LLM-backed targets</td>
-</tr>
-<tr>
-<td><code>WEB-PROTOCOL-AND-AUTH.md</code></td>
-<td>HTTP request-framing, cache, and authentication-protocol hunting classes for HTTP-protocol and auth targets</td>
-</tr>
-<tr>
-<td><code>CLIENT-SIDE.md</code></td>
-<td>DOM-injection, messaging-trust, UI-redress, and prototype-pollution hunting classes for client-side/browser targets</td>
-</tr>
-<tr>
-<td><code>SUPPLY-CHAIN-AND-RELEASE.md</code></td>
-<td>Dependency, CI, release, signing, update, plugin, and extension hunting classes</td>
-</tr>
-<tr>
-<td><code>CLOUD-AND-DEPLOYMENT.md</code></td>
-<td>IAM, infrastructure-as-code, container, serverless, ingress, and runtime-configuration hunting classes</td>
-</tr>
-<tr>
-<td><code>PROTOCOLS-RPC-AND-MESSAGING.md</code></td>
-<td>RPC, serialization, queue, broker, webhook, and streaming-protocol hunting classes</td>
-</tr>
-<tr>
-<td><code>RESOURCE-EXHAUSTION-AND-AVAILABILITY.md</code></td>
-<td>Shared resource, quota, queue, worker, and operator-spend hunting classes</td>
-</tr>
-<tr>
-<td><code>DATA-ISOLATION-AND-LIFECYCLE.md</code></td>
-<td>Tenant isolation, cache, search, export, backup, migration, deletion, and restore hunting classes</td>
-</tr>
-<tr>
-<td><code>DESKTOP-MOBILE-AND-LOCAL-IPC.md</code></td>
-<td>Native app, deep-link, webview, exported-component, helper, daemon, and local-IPC hunting classes</td>
-</tr>
-<tr>
-<td><code>VALIDATION-AND-REPORTING.md</code></td>
-<td>Phases 3–6 candidate validation, structured output, record verification, and reporting</td>
-</tr>
-<tr>
-<td><code>report-schema.json</code></td>
-<td>JSON schema for all three <code>findings.json</code> verdicts</td>
-</tr>
-<tr>
-<td><code>validate-findings.cjs</code></td>
-<td>Zero-dependency validator for <code>findings.json</code> in Phases 4 and 5</td>
-</tr>
-<tr>
-<td><code>validate-findings.test.cjs</code></td>
-<td>Findings-validator tests and producer-compatible fixture checks</td>
-</tr>
-<tr>
-<td><code>validate-coverage-ledger.cjs</code></td>
-<td>Zero-dependency validator for <code>coverage-ledger.json</code> in Phases 1–5</td>
-</tr>
-<tr>
-<td><code>validate-coverage-ledger.test.cjs</code></td>
-<td>Coverage-ledger validator tests</td>
+<td><code>apps/*-bin</code></td>
+<td>Tool binaries shipped with the desktop app; none are committed — claude-code, codex, and ripgrep are downloaded per platform by <code>pnpm install</code>, and the Android platform-tools binaries are fetched (pinned version, sha256-verified) before Windows packaging</td>
 </tr>
 </tbody>
 </table>
-<h2>Installation</h2>
-<p>Install the skill with the <a href="https://skills.sh">Skills CLI</a>:</p>
-<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
-  --skill security-audit
-</code></pre>
-<p>Use <code>--global</code> for a user-level installation:</p>
-<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
-  --skill security-audit \
-  --global
-</code></pre>
-<p>Run <code>npx skills --help</code> for agent-selection and non-interactive options.</p>
-<h2>Usage</h2>
-<p>Start your coding agent in (or pointed at) the codebase you want to audit, then ask it to do a security audit:</p>
-<pre><code>security audit this codebase
-</code></pre>
-<pre><code>find security vulnerabilities in ./src
-</code></pre>
-<pre><code>do a security review, output to ~/audits/my-project
-</code></pre>
-<p>The skill activates automatically when the request matches its trigger (security audit, find vulnerabilities, pen-test the code, etc.). A direct codebase audit or pen-test request uses full audit mode. Security questions and focused vulnerability work use guidance mode unless you request report artifacts. In full audit mode, an unspecified output directory defaults to <code>~/security-audit-skill/&lt;repo-name&gt;/run-&lt;N&gt;</code>. The workflow writes inside the target repository only when you explicitly select a directory that version control ignores.</p>
-<h2>Requirements</h2>
+<p><strong>Not in this repo:</strong> the backend service lives in a separate<br />
+repository and is not part of this monorepo.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Account requirement</th>
+<th>Availability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hosted service</td>
+<td>Cindy cloud account</td>
+<td>Use Cindy's full hosted service. See <a href="https://cindy.app/#pricing">pricing</a>.</td>
+</tr>
+<tr>
+<td>Skip Sign-In</td>
+<td>No Cindy sign-in required</td>
+<td>Choose “Skip Sign-In” on the login screen to use local agents; the app then shows the account state as “Not signed in”. Server-backed capabilities are unavailable in this state.</td>
+</tr>
+</tbody>
+</table>
+<h2>Prerequisites</h2>
 <ul>
-<li>A coding agent with a model that supports tool use and parallel sub-agents</li>
-<li>Node.js for the zero-dependency findings and coverage-ledger validators</li>
-<li>An OS-enforced sandbox for target-controlled builds, tests, processes, browsers, emulators, fuzzers, and fixtures. It must disable external networking, use a sanitized allowlisted environment, enforce resource limits, and allow writes only to assigned scratch paths. Without these controls, the workflow keeps the lead as <code>needs_validation</code> instead of executing target code.</li>
+<li><strong>Node.js</strong> 22.x</li>
+<li><strong>pnpm</strong> 10.x (v11 is not yet supported)</li>
+<li><strong>Git LFS</strong></li>
 </ul>
-<h2>Design principles</h2>
+<h2>Getting started</h2>
+<p>Contributor setup, Git LFS, dependency updates, and access requirements are maintained in<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.<br />
+Plugins are installed through SkillHub or manually.</p>
+<p>Minimal entry point:</p>
+<pre><code class="language-bash">git clone https://github.com/makecindy/cindy.git
+cd cindy
+git lfs pull
+pnpm install
+</code></pre>
+<h2>Development entry points</h2>
+<pre><code class="language-bash"># Mainland China Cindy account
+pnpm restart:desktop:remote --region=cn
+
+# Global Cindy account
+pnpm restart:desktop:remote --region=global
+</code></pre>
+<p>Remote development uses your own Cindy cloud account and existing login state, so<br />
+you can continue existing sessions and work while developing the client. Use <code>cn</code><br />
+for Mainland China accounts and <code>global</code> for everyone else; do not rely<br />
+on the internal default. Full desktop, mobile, data-isolation, and validation<br />
+workflows are in <a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.</p>
+<p>“Skip Sign-In” on the login screen runs local agents without a Cindy account<br />
+(shown in the app as “Not signed in”), not a connection to a local server.<br />
+Server-backed capabilities are unavailable in this state.</p>
+<p><strong>About the default servers:</strong> the client connects to Cindy's official cloud<br />
+services by default (endpoint manifests in<br />
+<a href="config/endpoint.json"><code>config/endpoint.json</code></a> and<br />
+<a href="config/endpoint.global.json"><code>config/endpoint.global.json</code></a>; desktop<br />
+auto-updates also come from the official CDN). This is intentional — external<br />
+developers don't need to self-host a server: sign in with your own Cindy<br />
+account in a dev build and develop / test directly against the official<br />
+servers.</p>
+<p>Skill Hub migration uses two separate manifest fields: released clients keep<br />
+using <code>skillhubApiBaseUrl</code> (the deprecated XD proxy), while current clients use<br />
+<code>cindySkillHubApiBaseUrl</code>. The current client deliberately does not fall back to<br />
+the legacy field when the new endpoint is absent.</p>
+<h2>Architecture</h2>
 <ul>
-<li><strong>Only confirm established boundary failures.</strong> Keep a source-grounded blocked lead as <code>needs_validation</code> with its exact unresolved fact.</li>
-<li><strong>Adversarial validation.</strong> The agent that checks a finding is never the agent that found it.</li>
-<li><strong>Severity requires impact.</strong> Likelihood x impact, not deviation from a checklist.</li>
-<li><strong>Defense-in-depth gaps are not vulnerabilities.</strong> If Layer A prevents the attack, the absence of Layer B is a hardening note.</li>
-<li><strong>Multiple runs improve coverage.</strong> In our test runs, a single run found roughly half of the vulnerabilities that repeated runs found in total.</li>
+<li><a href="DESIGN.md"><code>DESIGN.md</code></a> — visual design system, color tokens, and UI conventions</li>
+<li><a href="docs/README.md"><code>docs/README.md</code></a> — complete documentation and rules index</li>
+<li><a href="docs/auth-realm-routing.md"><code>docs/auth-realm-routing.md</code></a> — organization SSO region discovery and session endpoint routing</li>
+<li><a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> — contributor setup, validation, and submission workflow</li>
+<li><a href="AGENTS.md"><code>AGENTS.md</code></a> — engineering rules, launch/runtime contracts, and module boundaries</li>
+<li><a href="docs/dev-rules/"><code>docs/dev-rules/</code></a> — deep-dive architecture docs (e.g. Orca multi-agent orchestration)</li>
 </ul>
-<h2>Contact</h2>
-<p>Questions, feedback, or comparing notes on AI-driven security tooling: security-ai-research@cloudflare.com</p>
-<h2>License</h2>
-<p>MIT -- see <a href="LICENSE">LICENSE</a>.</p>
+<h2>Contributing</h2>
+<p>Contributions go through pull requests into <code>main</code>. Read<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> first, then use<br />
+<a href=".github/PULL_REQUEST_TEMPLATE.md"><code>.github/PULL_REQUEST_TEMPLATE.md</code></a>.<br />
+Every commit needs a <a href="DCO">Developer Certificate of Origin</a> sign-off<br />
+(<code>git commit -s</code>); a DCO check on each pull request enforces it, and no CLA is<br />
+required.<br />
+Please also follow <a href="CODE_OF_CONDUCT.en.md"><code>CODE_OF_CONDUCT.en.md</code></a>. For ordinary<br />
+usage questions, see <a href="SUPPORT.en.md"><code>SUPPORT.en.md</code></a>; report security issues<br />
+privately through <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a>.</p>
+<h2>Security</h2>
+<p>Never commit credentials or authorization files to the working tree. If you<br />
+discover a security issue, follow <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a> to report it<br />
+privately rather than opening a public issue.</p>
+<h2>Privacy &amp; telemetry</h2>
+<p><strong>Official distribution builds</strong> include <a href="https://www.taptap.io/tapdb">TapDB</a><br />
+usage analytics for product-level aggregate statistics (device / OS / app-version<br />
+metadata; associated with your account ID after sign-in). It does <strong>not</strong> collect<br />
+chat content, file content, </p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/cloudflare/security-audit-skill#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/makecindy/cindy#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
 </div>
 <div>
   <div class="rank-label">#2</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">NVIDIA /</span>
-          <a href="https://github.com/NVIDIA/OpenShell" target="_blank" rel="noopener">OpenShell</a>
-        </div>
-        <div class="repo-desc">OpenShell is the safe, private runtime for autonomous AI agents.</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
-      <span class="meta-item">⭐ 19,678</span>
-      <span class="meta-item">🍴 1,943</span>
-      <span class="stars-today">⭐ 896 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <!-- markdownlint-disable MD033 MD041 -->
-
-<p><picture><br />
-  <source media="(prefers-color-scheme: dark)" srcset="docs/brand/assets/openshell-banner-dark.png"><br />
-  <source media="(prefers-color-scheme: light)" srcset="docs/brand/assets/openshell-banner-light.png"><br />
-  <img alt="OpenShell" src="docs/brand/assets/openshell-banner-light.png" width="430"><br />
-</picture></p>
-<!-- markdownlint-enable MD033 MD041 -->
-
-<p><a href="https://github.com/NVIDIA/OpenShell/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache_2.0-blue" /></a><br />
-<a href="https://pypi.org/project/openshell/"><img alt="PyPI" src="https://img.shields.io/badge/PyPI-openshell-orange?logo=pypi" /></a><br />
-<a href="SECURITY.md"><img alt="Security Policy" src="https://img.shields.io/badge/Security-Report%20a%20Vulnerability-red" /></a><br />
-<a href="https://docs.nvidia.com/openshell/latest/index.html"><img alt="Documentation" src="https://img.shields.io/badge/docs-latest-brightgreen" /></a></p>
-<blockquote>
-<p>[!IMPORTANT]<br />
-<strong>New in OpenShell 0.1.x:</strong> a stable release cadence, new isolation primitives, an expanded extension surface, and new APIs. <a href="https://docs.nvidia.com/openshell/latest/upgrade/0-1-0">Read the 0.1.0 upgrade guide</a>.</p>
-</blockquote>
-<p>OpenShell is the safe, private runtime for fleets of autonomous AI agents. Agents are most useful when they can read files, install packages, call APIs, and use credentials. OpenShell gives them that capability without giving them unrestricted access to your data, secrets, or network. You declare what each agent can touch in a policy, and OpenShell enforces it.</p>
-<h2>How It Works</h2>
-<p>OpenShell governs what agents can do in two ways: it instruments the kernel to enforce policy on every file access, system call, and network connection at runtime, and it uses formal verification to check what a policy change would allow before it is applied.</p>
-<ul>
-<li><strong>Kernel-level enforcement.</strong> Each agent runs in an isolated sandbox. Kernel controls confine which files it can access and which system calls it can make, and every network connection passes through a policy check before it leaves the sandbox. Agents never see real credentials; OpenShell adds them only to requests bound for approved endpoints.</li>
-<li><strong>Formally verified policy changes.</strong> Before a policy change is approved, OpenShell uses formal verification to flag risky new access it would grant, such as reaching a new host with credentials or calling a new API method, so those changes wait for human review.</li>
-</ul>
-<p>See <a href="https://docs.nvidia.com/openshell/latest/about/architecture">Architecture</a> for how the gateway, supervisor, and sandbox fit together.</p>
-<h2>Quickstart</h2>
-<p>You need Linux, macOS on Apple Silicon, or Windows with WSL 2 (experimental), plus Docker, Podman, or host virtualization. See the <a href="https://docs.nvidia.com/openshell/latest/about/support-matrix">Support Matrix</a> for details.</p>
-<pre><code class="language-shell">curl -LsSf https://raw.githubusercontent.com/NVIDIA/OpenShell/main/install.sh | sh
-openshell sandbox create --name demo
-</code></pre>
-<p>The installer sets up the CLI and a local gateway. The default sandbox image is minimal Ubuntu with no agent installed. To run a real agent, follow <a href="https://docs.nvidia.com/openshell/latest/about/run-your-first-agent">Run Your First Agent</a>: it runs OpenCode against a free OpenRouter model and shows how to approve new access as the agent needs it.</p>
-<h2>Explore Further</h2>
-<ul>
-<li><a href="https://docs.nvidia.com/openshell/latest/how-it-works/sandboxes/overview">Sandboxes</a>: images, runtimes, GPUs, and lifecycle.</li>
-<li><a href="https://docs.nvidia.com/openshell/latest/how-it-works/policies/overview">Policies</a>: filesystem, network, and process rules, with the <a href="https://docs.nvidia.com/openshell/latest/how-it-works/policies/advisor">advisor</a> and <a href="https://docs.nvidia.com/openshell/latest/how-it-works/policies/prover">prover</a> for reviewing changes.</li>
-<li><a href="https://docs.nvidia.com/openshell/latest/how-it-works/providers/overview">Providers</a>: credentials that work only at approved endpoints, including <a href="https://docs.nvidia.com/openshell/latest/how-it-works/inference">inference</a>.</li>
-<li><a href="https://docs.nvidia.com/openshell/latest/how-it-works/gateways/overview">Gateways</a>: the control plane for sandboxes, policy, and access.</li>
-<li><a href="https://docs.nvidia.com/openshell/latest/kubernetes/setup">Kubernetes</a>: deploy the gateway with Helm. Your CNI must enforce <code>NetworkPolicy</code>.</li>
-<li><a href="https://docs.nvidia.com/openshell/latest/extensibility/overview">Extensibility</a>: middleware, interceptors, and compute drivers.</li>
-<li><a href="https://docs.nvidia.com/openshell/latest/tutorials/first-network-policy">Tutorials</a>: step-by-step policy and agent walkthroughs.</li>
-<li><a href="https://docs.nvidia.com/openshell/latest/about/installation#prerelease-and-development-builds">Prerelease and development builds</a>: try an upcoming release or the latest commit on <code>main</code>.</li>
-</ul>
-<h2>Agent Skills</h2>
-<p>Install the public OpenShell skills for your coding agent:</p>
-<pre><code class="language-shell">npx skills add NVIDIA/OpenShell
-</code></pre>
-<p>The skills teach your agent to drive the OpenShell CLI, write sandbox policies, and debug gateways and inference routing. They live in <a href="skills/"><code>skills/</code></a> and work without an OpenShell source checkout.</p>
-<h2>SDKs</h2>
-<p>SDKs connect applications to an OpenShell gateway. They do not install the CLI. Use the same OpenShell release for the SDK and the gateway when possible.</p>
-<table>
-<thead>
-<tr>
-<th>Language</th>
-<th>Install</th>
-<th>Docs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Python</td>
-<td><code>uv add openshell</code></td>
-<td><a href="python/openshell/">README</a></td>
-</tr>
-<tr>
-<td>TypeScript</td>
-<td><code>npm install @nvidia/openshell-sdk</code> (GitHub Packages)</td>
-<td><a href="sdk/typescript/README.md">README</a></td>
-</tr>
-<tr>
-<td>Go</td>
-<td><code>go get github.com/NVIDIA/OpenShell/sdk/go@latest</code></td>
-<td><a href="sdk/go/README.md">README</a></td>
-</tr>
-<tr>
-<td>Rust</td>
-<td><code>cargo add openshell-sdk --git https://github.com/NVIDIA/OpenShell --tag &lt;release-tag&gt;</code></td>
-<td><a href="docs/sdk/rust.mdx">Installation and usage</a></td>
-</tr>
-</tbody>
-</table>
-<h2>Community</h2>
-<ul>
-<li><strong>Questions and discussion:</strong> <a href="https://github.com/NVIDIA/OpenShell/discussions">GitHub Discussions</a></li>
-<li><strong>Bug reports and feature requests:</strong> <a href="https://github.com/NVIDIA/OpenShell/issues">GitHub Issues</a>, using the issue templates</li>
-<li><strong>Security vulnerabilities:</strong> follow <a href="SECURITY.md">SECURITY.md</a>. Do not open a GitHub issue.</li>
-<li><strong>Roadmap:</strong> <a href="https://github.com/orgs/NVIDIA/projects/233">OpenShell Roadmap</a> and the <a href="https://github.com/orgs/NVIDIA/projects/233/views/6">RFC board</a></li>
-<li><strong>Try it in the cloud:</strong> <a href="https://brev.nvidia.com/launchable/deploy/now?launchableID=env-3Ap3tL55zq4a8kew1AuW0FpSLsg">Brev Launchable</a></li>
-</ul>
-<p>OpenShell is built agent-first: it is developed with the same agent-driven workflows it enables. See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for development setup and the contribution workflow, and <a href="AGENTS.md">AGENTS.md</a> for repository coding conventions.</p>
-<h2>Telemetry</h2>
-<p>OpenShell collects anonymous telemetry, limited to operational categories and counts, to help improve the project. It does not collect sandbox names, hostnames, file paths, prompts, credentials, provider or model names, or user content. To disable it, set <code>OPENSHELL_TELEMETRY_ENABLED=false</code> on the gateway, or <code>server.telemetryEnabled=false</code> for Helm installs. You can also compile telemetry out entirely. See <a href="https://docs.nvidia.com/openshell/latest/observability/telemetry">Telemetry</a> for details and the <a href="telemetry/README.md">community telemetry reports</a> for published usage trends.</p>
-<h2>Notice and Disclaimer</h2>
-<p>This software automatically retrieves, accesses or interacts with external materials. Those retrieved materials are not distributed with this software and are governed solely by separate terms, conditions and licenses. You are solely responsible for finding, reviewing and complying with all applicable terms, conditions, and licenses, and for verifying the security, integrity and suitability of any retrieved materials for your specific use case. This software is provided "AS IS", without warranty of any kind. The author makes no representations or warranties regarding any retrieved materials, and assumes no liability for any losses, damages, liabilities or legal consequences from your use or inability to use this software or any retrieved materials. Use this software and the retrieved materials at your own risk.</p>
-<h2>License</h2>
-<p>This project is licensed under the [Apache License 2.0](https:</p>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/NVIDIA/OpenShell#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#3</div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-header-left">
-        <div class="repo-name">
-          <span class="repo-owner">aws /</span>
-          <a href="https://github.com/aws/agent-toolkit-for-aws" target="_blank" rel="noopener">agent-toolkit-for-aws</a>
-        </div>
-        <div class="repo-desc">Official, AWS-supported MCP servers, skills, and plugins to help AI agents build on AWS</div>
-      </div>
-    </div>
-    <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 3,241</span>
-      <span class="meta-item">🍴 403</span>
-      <span class="stars-today">⭐ 13 stars today</span>
-    </div>
-    <details>
-  <summary>📖 README</summary>
-  <div class="readme-body">
-    <h1>Agent Toolkit for AWS</h1>
-<p><a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a><br />
-<a href="https://github.com/aws/agent-toolkit-for-aws/actions/workflows/build.yml"><img alt="Build" src="https://github.com/aws/agent-toolkit-for-aws/actions/workflows/build.yml/badge.svg" /></a><br />
-<a href="https://github.com/aws/agent-toolkit-for-aws"><img alt="Status" src="https://img.shields.io/badge/status-GA-green.svg" /></a></p>
-<p>Help AI coding agents build, deploy, and manage applications on AWS.</p>
-<p>The Agent Toolkit for AWS gives AI coding agents the tools, knowledge, and guardrails they need to work with AWS services. It works with the coding agents developers already use — including Claude Code, Codex, Cursor, Devin, Kiro, and fx.</p>
-<h2>Quick start</h2>
-<h3>AWS CLI</h3>
-<p>Use the Agent Toolkit directly from your terminal with the AWS CLI:</p>
-<pre><code>aws configure agent-toolkit
-</code></pre>
-<p>See the <a href="https://docs.aws.amazon.com/agent-toolkit/latest/userguide/aws-cli.html">AWS CLI integration guide</a> for setup, configuration, and usage instructions.</p>
-<h3>Claude Code</h3>
-<p>The plugins are available on the official Anthropic marketplace (<code>claude-plugins-official</code>) which is added to your Claude Code installation by default.<br />
-Use the following commands to install supported plugins from the toolkit:</p>
-<p>For <code>aws-core</code> that covers service selection, CDK/CloudFormation, serverless, containers, storage, observability, billing, SDK usage, and deployment:</p>
-<pre><code>/plugin install aws-core@claude-plugins-official
-</code></pre>
-<blockquote>
-<p><strong>Tip:</strong> If you get <code>Plugin not found</code>, update your local marketplace index first:</p>
-<p><code>/plugin marketplace update claude-plugins-official</code></p>
-</blockquote>
-<p>For <code>aws-agents</code> that covers building AI agents on AWS with Amazon Bedrock and AgentCore:</p>
-<pre><code>/plugin install aws-agents@claude-plugins-official
-</code></pre>
-<p>For <code>aws-data-analytics</code> that covers data lake, analytics, and ETL workflows with S3 Tables, AWS Glue, and Athena:</p>
-<pre><code>/plugin install aws-data-analytics@claude-plugins-official
-</code></pre>
-<p>For <code>aws-agents-for-devsecops</code> used to investigate incidents, review code and execute UAT for release readiness, scan code for vulnerabilities, and run penetration tests with AWS DevOps Agent and AWS Security Agent.</p>
-<pre><code>/plugin marketplace add aws/agent-toolkit-for-aws
-/plugin install aws-agents-for-devsecops
-/reload-plugins
-
-# Or from Claude's official marketplace:
-/plugin install aws-agents-for-devsecops@claude-plugins-official
-/reload-plugins
-
-# Setup:
-/aws-agents-for-devsecops:setup
-</code></pre>
-<p>For <code>aws-startup-advisor</code> that covers startup-focused architecture, cost, security, and AWS Activate guidance, plus migrations to AWS from Azure, GCP, Heroku, and AI stacks such as OpenAI and Gemini, install from this repository's marketplace:</p>
-<pre><code>/plugin marketplace add aws/agent-toolkit-for-aws
-/plugin install aws-startup-advisor@agent-toolkit-for-aws
-/reload-plugins
-</code></pre>
-<h3>Codex</h3>
-<p>In your terminal:</p>
-<pre><code>codex plugin marketplace add aws/agent-toolkit-for-aws
-</code></pre>
-<p>Then launch Codex and run <code>/plugins</code> to browse and install the <strong>aws-core</strong> plugin.</p>
-<h3>Cursor</h3>
-<p>Add this repository as a team marketplace from <strong>Settings → Plugins → Team Marketplaces → Add Marketplace → Import from Repo</strong>, pointing it at <code>aws/agent-toolkit-for-aws</code>. Cursor indexes the plugins listed in <a href=".cursor-plugin/marketplace.json"><code>.cursor-plugin/marketplace.json</code></a> on import.</p>
-<p>Then open the <strong>Plugins</strong> panel and install the <strong>aws-core</strong> plugin (start here), or <strong>aws-agents</strong> and <strong>aws-data-analytics</strong> as needed. Each plugin bundles the AWS MCP Server configuration and agent skills.</p>
-<h3>Devin</h3>
-<p>In your terminal:</p>
-<pre><code>devin plugins install aws/agent-toolkit-for-aws#plugins/aws-core
-</code></pre>
-<p>This requires <code>devin auth login</code> and adds the plugin to your personal plugins, so it also loads in Devin cloud sessions and Devin Desktop. Add <code>--local</code> to install on this machine only. To install a different plugin, replace <code>aws-core</code> with its name from <a href="#plugins">Plugins</a>, such as <code>aws-agents</code> or <code>aws-data-analytics</code>.</p>
-<p>In the Devin web app, choose <strong>Customize → Plugins → Add plugin → From repository</strong>, enter <code>aws/agent-toolkit-for-aws</code>, and set the subdirectory to <code>plugins/aws-core</code> (or another plugin's directory). Personal plugins added there are also available in the Devin CLI and Devin Desktop.</p>
-<h3>Kiro</h3>
-<p>Kiro setup has two independent parts: the AWS MCP Server (for runtime AWS API access and documentation search) and local skills (for task-specific agent guidance). They complement each other but work independently — skills don't require the MCP server, and the MCP server doesn't serve locally-installed skills.</p>
-<p><strong>1. Add the AWS MCP Server</strong> to your Kiro MCP configuration (<code>.kiro/settings/mcp.json</code>):</p>
-<pre><code class="language-json">{
-  &quot;mcpServers&quot;: {
-    &quot;aws&quot;: {
-      &quot;command&quot;: &quot;uvx&quot;,
-      &quot;args&quot;: [
-        &quot;mcp-proxy-for-aws-cli@latest&quot;,
-        &quot;https://aws-mcp.us-east-1.api.aws/mcp&quot;,
-        &quot;--metadata&quot;,
-        &quot;AWS_REGION=us-west-2&quot;
-      ]
-    }
-  }
-}
-</code></pre>
-<p>The MCP server gives your agent access to AWS APIs, sandboxed script execution, and real-time documentation search.</p>
-<p><strong>2. Install skills</strong> from this repository:</p>
-<pre><code>npx skills add aws/agent-toolkit-for-aws/skills
-</code></pre>
-<p>This installs skill files to <code>~/.kiro/skills/</code> (global) or <code>.kiro/skills/</code> (project-level). Each skill is a directory containing a <code>SKILL.md</code> file and optionally a <code>references/</code> subdirectory with additional context the agent reads from the local filesystem when needed. Kiro discovers installed skills automatically and activates them on demand when a task matches.</p>
-<blockquote>
-<p><strong>Prerequisites:</strong> You need <a href="https://docs.astral.sh/uv/">uv</a> installed. An AWS account with credentials configured locally is required for API calls and script execution, but not for documentation search or skill discovery. See the <a href="https://docs.aws.amazon.com/agent-toolkit/latest/userguide/">user guide</a> for detailed setup instructions.</p>
-</blockquote>
-<h3>fx</h3>
-<p><a href="https://fx.sh">fx</a> setup has the same two independent parts as Kiro: the AWS MCP Server (for runtime AWS API access and documentation search) and local skills (for task-specific agent guidance). Skills don't require the MCP server, and the MCP server doesn't serve locally-installed skills.</p>
-<p><strong>1. Add the AWS MCP Server</strong> from your terminal. fx stores MCP servers in <code>~/.fx/mcp.json</code>, so the server is available in every project:</p>
-<pre><code>fx mcp add aws uvx mcp-proxy-for-aws-cli@latest https://aws-mcp.us-east-1.api.aws/mcp --metadata AWS_REGION=us-west-2
-</code></pre>
-<p>Or add it to <code>~/.fx/mcp.json</code> by hand. fx uses the <code>mcp</code> key rather than <code>mcpServers</code>, <code>type</code> to select the transport, and a single <code>command</code> array holding the executable and its arguments:</p>
-<pre><code class="language-json">{
-  &quot;mcp&quot;: {
-    &quot;aws&quot;: {
-      &quot;type&quot;: &quot;local&quot;,
-      &quot;command&quot;: [
-        &quot;uvx&quot;,
-        &quot;mcp-proxy-for-aws-cli@latest&quot;,
-        &quot;https://aws-mcp.us-east-1.api.aws/mcp&quot;,
-        &quot;--metadata&quot;,
-        &quot;AWS_REGION=us-west-2&quot;
-      ]
-    }
-  }
-}
-</code></pre>
-<p>If a session is already open when you edit the file, run <code>/mcp reload</code> to pick up the change. The MCP server gives your agent access to AWS APIs, sandboxed script execution, and real-time documentation search.</p>
-<p><strong>2. Install skills</strong> from this repository:</p>
-<pre><code>npx skills add aws/agent-toolkit-for-aws/skills -a fx
-</code></pre>
-<p>This installs skill files to <code>.fx/skills/</code> (project-level); add <code>-g</code> to install to <code>~/.fx/skills/</code> (global). fx also discovers skills already installed for other agents in <code>.agents/skills/</code>, <code>.claude/skills/</code>, and <code>.codex/skills/</code>, so a project set up for Codex or Claude Code needs no second copy. Each skill is a directory containing a <code>SKILL.md</code> file and optionally a <code>references/</code> subdirectory with additional context the agent reads from the local filesystem when needed. fx reads skill metadata at startup and loads a skill's instructions when you or the agent invokes it; type <code>$</code> in the composer or run <code>/skills</code> to browse what's installed.</p>
-<blockquote>
-<p><strong>Prerequisites:</strong> You need <a href="https://docs.astral.sh/uv/">uv</a> installed. An AWS account with credentials configured locally is required for API calls and script execution, but not for documentation search or skill </p>
-</blockquote>
-    <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/aws/agent-toolkit-for-aws#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
-  </div>
-</details>
-  </div>
-</div>
-<div>
-  <div class="rank-label">#4</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
@@ -698,9 +464,9 @@ Use the following commands to install supported plugins from the toolkit:</p>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#563d7c"></span>CSS</span>
-      <span class="meta-item">⭐ 32,644</span>
-      <span class="meta-item">🍴 1,683</span>
-      <span class="stars-today">⭐ 455 stars today</span>
+      <span class="meta-item">⭐ 34,856</span>
+      <span class="meta-item">🍴 1,816</span>
+      <span class="stars-today">⭐ 1,317 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -825,284 +591,228 @@ Use the following commands to install supported plugins from the toolkit:</p>
   </div>
 </div>
 <div>
-  <div class="rank-label">#5</div>
+  <div class="rank-label">#3</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">luongnv89 /</span>
-          <a href="https://github.com/luongnv89/claude-howto" target="_blank" rel="noopener">claude-howto</a>
+          <span class="repo-owner">debpalash /</span>
+          <a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">VoiceStudio</a>
         </div>
-        <div class="repo-desc">A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.</div>
+        <div class="repo-desc">VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.</div>
       </div>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 44,804</span>
-      <span class="meta-item">🍴 5,511</span>
-      <span class="stars-today">⭐ 392 stars today</span>
+      <span class="meta-item">⭐ 87,737</span>
+      <span class="meta-item">🍴 9,678</span>
+      <span class="stars-today">⭐ 1,592 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <p><picture><br />
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg"><br />
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg"><br />
-</picture></p>
-<p align="center">
-  <a href="https://github.com/trending">
-    <img src="https://img.shields.io/badge/GitHub-🔥%20%231%20Trending-purple?style=for-the-badge&logo=github"/>
-  </a>
-</p>
+    <div align="center">
+  <img src="docs/logo.png" alt="VoiceStudio" width="88" />
+  <h1>VoiceStudio</h1>
+  <p>
+    <a href="https://trendshift.io/repositories/28176?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-28176" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/28176" alt="VoiceStudio ranking on Trendshift" width="220" height="48" /></a>
+  </p>
+  <p><strong>Open-source voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.</strong></p>
+  <p>
+    <a href="https://voicestudio.sh/?utm_source=github&utm_medium=readme&utm_campaign=project">Website</a> ·
+    <a href="https://github.com/debpalash/VoiceStudio/releases/latest">Download</a> ·
+    <a href="#get-started">Get started</a> ·
+    <a href="#documentation">Docs</a> ·
+    <a href="https://discord.gg/bzQavDfVV9">Discord</a> ·
+    <a href="docs/readme/README_CN.md">简体中文</a> ·
+    <a href="docs/readme/README_JA.md">日本語</a>
+  </p>
+  <p>
+    <a href="https://github.com/debpalash/VoiceStudio/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/debpalash/VoiceStudio/ci.yml?branch=main" alt="CI" /></a>
+    <a href="https://github.com/debpalash/VoiceStudio/releases/latest"><img src="https://img.shields.io/github/v/release/debpalash/VoiceStudio" alt="Latest release" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="AGPL-3.0" /></a>
+    <a href="https://supermetry.com"><img src="https://app.supermetry.com/px/zfjiv7psp4ed.svg?c=VoiceStudio&style=stats" alt="views" /></a>
+  </p>
+</div>
 
-<p><a href="https://github.com/luongnv89/claude-howto/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/luongnv89/claude-howto?style=flat&amp;color=gold" /></a><br />
-<a href="https://github.com/luongnv89/claude-howto/network/members"><img alt="GitHub Forks" src="https://img.shields.io/github/forks/luongnv89/claude-howto?style=flat" /></a><br />
-<a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" /></a><br />
-<a href="CHANGELOG.md"><img alt="Version" src="https://img.shields.io/badge/version-2.1.302-brightgreen" /></a><br />
-<a href="https://code.claude.com"><img alt="Claude Code" src="https://img.shields.io/badge/Claude_Code-2.1+-purple" /></a></p>
-<p>🌐 <strong>Language / Ngôn ngữ / 语言 / Мова:</strong> <a href="README.md">English</a> | <a href="vi/README.md">Tiếng Việt</a> | <a href="zh/README.md">中文</a> | <a href="uk/README.md">Українська</a> | <a href="ja/README.md">日本語</a></p>
-<h1>Master Claude Code in a Weekend</h1>
-<p>Go from typing <code>claude</code> to orchestrating agents, hooks, skills, and MCP servers — with visual tutorials, copy-paste templates, and a guided learning path.</p>
-<p><strong><a href="#get-started-in-15-minutes">Get Started in 15 Minutes</a></strong> | <strong><a href="#not-sure-where-to-start">Find Your Level</a></strong> | <strong><a href="CATALOG.md">Browse the Feature Catalog</a></strong></p>
-<hr />
-<h2>Table of Contents</h2>
-<ul>
-<li><a href="#the-problem">The Problem</a></li>
-<li><a href="#how-claude-how-to-fixes-this">How Claude How To Fixes This</a></li>
-<li><a href="#how-it-works">How It Works</a></li>
-<li><a href="#not-sure-where-to-start">Not Sure Where to Start?</a></li>
-<li><a href="#get-started-in-15-minutes">Get Started in 15 Minutes</a></li>
-<li><a href="#what-can-you-build-with-this">What Can You Build With This?</a></li>
-<li><a href="#faq">FAQ</a></li>
-<li><a href="#contributing">Contributing</a></li>
-<li><a href="#license">License</a></li>
-</ul>
-<hr />
-<h2>The Problem</h2>
-<p>You installed Claude Code. You ran a few prompts. Now what?</p>
-<ul>
-<li><strong>The official docs describe features — but don't show you how to combine them.</strong> You know slash commands exist, but not how to chain them with hooks, memory, and subagents into a workflow that actually saves hours.</li>
-<li><strong>There's no clear learning path.</strong> Should you learn MCP before hooks? Skills before subagents? You end up skimming everything and mastering nothing.</li>
-<li><strong>Examples are too basic.</strong> A "hello world" slash command doesn't help you build a production code review pipeline that uses memory, delegates to specialized agents, and runs security scans automatically.</li>
-</ul>
-<p>You're leaving 90% of Claude Code's power on the table — and you don't know what you don't know.</p>
-<hr />
-<h2>How Claude How To Fixes This</h2>
-<p>This isn't another feature reference. It's a <strong>structured, visual, example-driven guide</strong> that teaches you to use every Claude Code feature with real-world templates you can copy into your project today.</p>
+<p><img alt="A tour of the Electron app: voice cloning, voice design, dubbing, and model management" src="docs/media/electron/voicestudio.gif" /></p>
+<h2>Your voice. Your workflow.</h2>
 <table>
 <thead>
 <tr>
-<th></th>
-<th>Official Docs</th>
-<th>This Guide</th>
+<th style="text-align: left;">Create</th>
+<th style="text-align: left;">Produce</th>
+<th style="text-align: left;">Connect</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Format</strong></td>
-<td>Reference documentation</td>
-<td>Visual tutorials with Mermaid diagrams</td>
+<td style="text-align: left;">Clone a voice or design your own</td>
+<td style="text-align: left;">Dub videos with timed speech</td>
+<td style="text-align: left;">Local API &amp; MCP for agents</td>
 </tr>
 <tr>
-<td><strong>Depth</strong></td>
-<td>Feature descriptions</td>
-<td>How it works under the hood</td>
-</tr>
-<tr>
-<td><strong>Examples</strong></td>
-<td>Basic snippets</td>
-<td>Production-ready templates you use immediately</td>
-</tr>
-<tr>
-<td><strong>Structure</strong></td>
-<td>Feature-organized</td>
-<td>Progressive learning path (beginner to advanced)</td>
-</tr>
-<tr>
-<td><strong>Onboarding</strong></td>
-<td>Self-directed</td>
-<td>Guided roadmap with time estimates</td>
-</tr>
-<tr>
-<td><strong>Self-Assessment</strong></td>
-<td>None</td>
-<td>Interactive quizzes to find your gaps and build a personalized path</td>
+<td style="text-align: left;">Dictate with a floating widget</td>
+<td style="text-align: left;">Stories, audiobooks &amp; batch jobs</td>
+<td style="text-align: left;">Reusable recipes &amp; watch folders</td>
 </tr>
 </tbody>
 </table>
-<h3>What you get:</h3>
-<ul>
-<li><strong>10 tutorial modules</strong> covering every Claude Code feature — from slash commands to custom agent teams</li>
-<li><strong>Copy-paste configs</strong> — slash commands, CLAUDE.md templates, hook scripts, MCP configs, subagent definitions, and full plugin bundles</li>
-<li><strong>Mermaid diagrams</strong> showing how each feature works internally, so you understand <em>why</em>, not just <em>how</em></li>
-<li><strong>A guided learning path</strong> that takes you from beginner to power user in 11-13 hours</li>
-<li><strong>Built-in self-assessment</strong> — run <code>/self-assessment</code> or <code>/lesson-quiz hooks</code> directly in Claude Code to identify gaps</li>
-</ul>
-<p><strong><a href="LEARNING-ROADMAP.md">Start the Learning Path  -&gt;</a></strong></p>
-<hr />
-<h2>How It Works</h2>
-<h3>1. Find your level</h3>
-<p>Take the <a href="LEARNING-ROADMAP.md#-find-your-level">self-assessment quiz</a> or run <code>/self-assessment</code> in Claude Code. Get a personalized roadmap based on what you already know.</p>
-<h3>2. Follow the guided path</h3>
-<p>Work through 10 modules in order — each builds on the last. Copy templates directly into your project as you learn.</p>
-<h3>3. Combine features into workflows</h3>
-<p>The real power is in combining features. Learn to wire slash commands + memory + subagents + hooks into automated pipelines that handle code reviews, deployments, and documentation generation.</p>
-<h3>4. Test your understanding</h3>
-<p>Run <code>/lesson-quiz [topic]</code> after each module. The quiz pinpoints what you missed so you can fill gaps fast.</p>
-<p><strong><a href="#get-started-in-15-minutes">Get Started in 15 Minutes</a></strong></p>
-<hr />
-<h2>Trusted by Developers</h2>
-<ul>
-<li><strong>GitHub stars</strong> from developers who use Claude Code daily</li>
-<li><strong>Forks</strong> from teams adapting this guide for their own workflows</li>
-<li><strong>Actively maintained</strong> — synced with every Claude Code release (latest: v2.1.302, October 2026)</li>
-<li><strong>Community-driven</strong> — contributions from developers who share their real-world configurations</li>
-</ul>
-<p><a href="https://star-history.com/#luongnv89/claude-howto&amp;Date"><img alt="Star History Chart" src="https://api.star-history.com/svg?repos=luongnv89/claude-howto&amp;type=Date" /></a></p>
-<hr />
-<h2>Not Sure Where to Start?</h2>
-<p>Take the self-assessment or pick your level:</p>
+<p>Start with <strong>VoiceStudio</strong> (default, powered by k2-fsa/OmniVoice), or choose another engine. <a href="docs/feature-catalog.md">Features &amp; engine catalog</a>.</p>
+<p>Local workflows run on your hardware. Remote services are optional; usage analytics requires consent.</p>
+<details>
+<summary><strong>Explore the workspaces</strong> · Clone, dub, design & models</summary>
+
 <table>
-<thead>
-<tr>
-<th>Level</th>
-<th>You can...</th>
-<th>Start here</th>
-<th>Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Beginner</strong></td>
-<td>Start Claude Code and chat</td>
-<td><a href="01-slash-commands/">Slash Commands</a></td>
-<td>~2.5 hours</td>
-</tr>
-<tr>
-<td><strong>Intermediate</strong></td>
-<td>Use CLAUDE.md and custom commands</td>
-<td><a href="03-skills/">Skills</a></td>
-<td>~3.5 hours</td>
-</tr>
-<tr>
-<td><strong>Advanced</strong></td>
-<td>Configure MCP servers and hooks</td>
-<td><a href="09-advanced-features/">Advanced Features</a></td>
-<td>~5 hours</td>
-</tr>
-</tbody>
+  <tr>
+    <td><img src="docs/media/electron/voice-cloning.png" alt="Electron voice cloning workspace with the bundled demo voice" width="100%" /></td>
+    <td><img src="docs/media/electron/dubbing.png" alt="Electron video dubbing workspace" width="100%" /></td>
+  </tr>
+  <tr><td align="center">Voice cloning</td><td align="center">Video dubbing</td></tr>
+  <tr>
+    <td><img src="docs/media/electron/voice-design.png" alt="Describe a voice in the Electron voice design workspace" width="100%" /></td>
+    <td><img src="docs/media/electron/models.png" alt="Install and manage local speech models" width="100%" /></td>
+  </tr>
+  <tr><td align="center">Voice design</td><td align="center">Local models</td></tr>
 </table>
-<p><strong>Full learning path with all 10 modules:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Order</th>
-<th>Module</th>
-<th>Level</th>
-<th>Time</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td><a href="01-slash-commands/">Slash Commands</a></td>
-<td>Beginner</td>
-<td>30 min</td>
-</tr>
-<tr>
-<td>2</td>
-<td><a href="02-memory/">Memory</a></td>
-<td>Beginner+</td>
-<td>45 min</td>
-</tr>
-<tr>
-<td>3</td>
-<td><a href="08-checkpoints/">Checkpoints</a></td>
-<td>Intermediate</td>
-<td>45 min</td>
-</tr>
-<tr>
-<td>4</td>
-<td><a href="10-cli/">CLI Basics</a></td>
-<td>Beginner+</td>
-<td>30 min</td>
-</tr>
-<tr>
-<td>5</td>
-<td><a href="03-skills/">Skills</a></td>
-<td>Intermediate</td>
-<td>1 hour</td>
-</tr>
-<tr>
-<td>6</td>
-<td><a href="06-hooks/">Hooks</a></td>
-<td>Intermediate</td>
-<td>1 hour</td>
-</tr>
-<tr>
-<td>7</td>
-<td><a href="05-mcp/">MCP</a></td>
-<td>Intermediate+</td>
-<td>1 hour</td>
-</tr>
-<tr>
-<td>8</td>
-<td><a href="04-subagents/">Subagents</a></td>
-<td>Intermediate+</td>
-<td>1.5 hours</td>
-</tr>
-<tr>
-<td>9</td>
-<td><a href="09-advanced-features/">Advanced Features</a></td>
-<td>Advanced</td>
-<td>2-3 hours</td>
-</tr>
-<tr>
-<td>10</td>
-<td><a href="07-plugins/">Plugins</a></td>
-<td>Advanced</td>
-<td>2 hours</td>
-</tr>
-</tbody>
-</table>
-<p><strong><a href="LEARNING-ROADMAP.md">Complete Learning Roadmap -&gt;</a></strong></p>
-<hr />
-<h2>Get Started in 15 Minutes</h2>
-<blockquote>
-<p><strong>Installation note</strong>: Starting in v2.1.113, Claude Code ships as a native per-platform binary (macOS/Linux/Windows). The recommended install is the native installer (<code>curl -fsSL https://claude.ai/install.sh | bash</code>); npm installation is deprecated in the official README; prefer the native installer, Homebrew (<code>brew install --cask claude-code</code>) or WinGet (<code>winget install Anthropic.ClaudeCode</code>). For reference, <code>npm install -g @anthropic-ai/claude-code</code> pulls the same native binary through a per-platform optional dependency at install time. As of v2.1.116, downloads come from <code>https://downloads.claude.ai/claude-code-releases</code> — corporate proxies must allowlist this host.</p>
-</blockquote>
-<pre><code class="language-bash"># 1. Clone the guide
-git clone https://github.com/luongnv89/claude-howto.git
-cd claude-howto
 
-# 2. Copy your first slash command
-mkdir -p /path/to/your-project/.claude/commands
-cp 01-slash-commands/optimize.md /path/to/your-project/.claude/commands/
+<img width="2628" height="1950" alt="VoiceStudio desktop workspace" src="https://github.com/user-attachments/assets/b474497d-a453-49a3-a2dd-f023ec6b7659" />
 
-# 3. Try it — in Claude Code, type:
-# /optimize
+</details>
 
-# 4. Ready for more? Set up project memory:
-cp 02-memory/project-CLAUDE.md /path/to/your-project/CLAUDE.md
+<p>OmniVoice GGUF source builds can optionally use Vulkan on Windows and Linux;<br />
+see the <a href="docs/engines/omnivoice-gguf.md#optional-vulkan-acceleration">native engine guide</a><br />
+for build requirements, CPU fallback, and device overrides.</p>
+<h2>Get started</h2>
+<h3>One-command install (macOS / Linux)</h3>
+<pre><code class="language-sh"># Latest Electron release
+curl -fsSL https://voicestudio.sh/install | sh
 
-# 5. Install a skill:
-cp -r 03-skills/code-review-specialist ~/.claude/skills/
+# A specific published Electron release (replace X.Y.Z)
+curl -fsSL https://voicestudio.sh/install | sh -s -- --version X.Y.Z
+
+# Build current main and install the desktop app
+curl -fsSL https://voicestudio.sh/install | sh -s -- --main
+
+# Uninstall the app, keeping your data
+curl -fsSL https://voicestudio.sh/install | sh -s -- --uninstall
 </code></pre>
-<p>Want the full setup? Here's the <strong>1-hour essential setup</strong>:</p>
-<p>```bash</p>
-<h1>Slash commands (15 min)</h1>
-<p>cp 01-slash-commands/*.md .claude/commands/</p>
-<h1>Project memory (15 min)</h1>
-<p>cp 02-memory/project-CLAUDE.md ./CLAUDE.md</p>
-<h1>Install</h1>
+<p>On Windows, run <code>irm https://voicestudio.sh/install | iex</code> in PowerShell.</p>
+<p>If <code>voicestudio.sh/install</code> is unreachable or returns 404, run the same script<br />
+straight from the repository, or clone it and run <code>scripts/install.sh</code>:</p>
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/debpalash/VoiceStudio/main/scripts/install.sh | sh
+</code></pre>
+<p>Release downloads require curl and a SHA-256 tool. <code>--main</code> requires Git,<br />
+Node.js 22+, Bun, Rust/Cargo, and platform build tools; see<br />
+<a href="docs/install/script.md">installer prerequisites and behavior</a>.<br />
+The installer preserves your settings, projects, and models. Older versions<br />
+must contain Electron packages; it never falls back to archived Tauri builds.</p>
+<p>Or download from <a href="https://github.com/debpalash/VoiceStudio/releases/latest">Releases</a> (macOS <code>.dmg</code>, Windows <code>.exe</code>, Linux <code>.AppImage</code> or <code>.deb</code>) and follow your platform guide:</p>
+<p><strong><a href="docs/install/macos.md">macOS</a> · <a href="docs/install/windows.md">Windows</a> · <a href="docs/install/linux.md">Linux</a> · <a href="docs/install/docker.md">Docker</a></strong></p>
+<table>
+<thead>
+<tr>
+<th>Hardware</th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVIDIA GPU (Windows / Linux)</td>
+<td>CUDA acceleration</td>
+</tr>
+<tr>
+<td>AMD Radeon / supported Ryzen AI (Windows)</td>
+<td>CPU by default; <a href="docs/install/windows-rocm.md">opt-in Windows ROCm setup</a> for AMD's Windows 11 hardware matrix. Setup distinguishes package repair from host failures; install the VC++ runtime manually first. Optional engines have separate limits; Vulkan engines retain their own runtime.</td>
+</tr>
+<tr>
+<td>Apple Silicon</td>
+<td>Metal (MPS) acceleration</td>
+</tr>
+<tr>
+<td>AMD GPU</td>
+<td>Opt-in native CosyVoice GGUF can use Vulkan when the community runtime is built with Vulkan; verified on RX 6700 XT (<a href="docs/engines/cosyvoice-gguf.md">setup</a>)</td>
+</tr>
+<tr>
+<td>No dedicated GPU (Intel/AMD integrated graphics, older PCs)</td>
+<td>Fully usable on the CPU, slower; setup installs the small CPU build of PyTorch (about 5 GB free disk)</td>
+</tr>
+<tr>
+<td>Windows on ARM (Snapdragon X etc.)</td>
+<td><strong>Experimental</strong>, validation pending: native ARM64 app, x64 Python backend under emulation, CPU only</td>
+</tr>
+<tr>
+<td>Intel Mac</td>
+<td>App UI only; connect to a remote backend (<a href="docs/install/macos.md">why</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Open <strong>Voice cloning</strong>, choose a voice or add a clean reference recording, enter your text, and generate. Install the required model when prompted. Hardware needs vary by engine; see <a href="docs/performance.md">performance</a>.</p>
+<h3>Install with prompt</h3>
+<p>Paste into your coding agent (Claude Code, Codex, Cursor, …):</p>
+<pre><code class="language-text">Install the VoiceStudio Electron app on this device and verify it works, following
+https://github.com/debpalash/VoiceStudio/blob/main/docs/install/agent.md
+</code></pre>
+<p>The <a href="docs/install/agent.md">agent guide</a> covers hardware detection, reusing existing<br />
+data, asking before model downloads, and a test generation. Agents that support skills<br />
+can also run <code>npx skills add debpalash/VoiceStudio</code>.</p>
+<details>
+<summary><strong>Run the Electron preview from source</strong></summary>
+
+
+<pre><code class="language-bash">git clone https://github.com/debpalash/VoiceStudio.git
+cd VoiceStudio
+bun install
+bun run setup:api  # prepare Python dependencies before starting Electron
+bun run dev
+</code></pre>
+
+
+See [Electron setup](electron/README.md) for prerequisites and backend configuration.
+
+Use `bun run smoke-test` to build and launch an isolated packaged Electron app.
+Add `-- --install` for the networked managed-runtime installation check.
+
+</details>
+
+<blockquote>
+<p><strong>Electron is the only desktop app and web UI.</strong> Version 0.5.3 was the final Tauri release. Existing Tauri users must <a href="docs/electron-migration.md">install Electron separately</a>. The retired Tauri shell and legacy UI entry points have been removed.</p>
+</blockquote>
+<h2>Documentation</h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Start here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup help</td>
+<td><a href="docs/install/troubleshooting.md">Troubleshooting</a> · <a href="docs/downloading-models.md">Model downloads</a></td>
+</tr>
+<tr>
+<td>Models &amp; audio quality</td>
+<td><a href="docs/engines/README.md">Engine guides</a> · <a href="docs/engines/whisper-cpp.md">whisper.cpp ASR</a> · <a href="docs/benchmarks.md">Benchmarks</a></td>
+</tr>
+<tr>
+<td>Integrations</td>
+<td><a href="docs/speech-platform.md">Local API</a> · <a href="docs/mcp.md">MCP</a> · <a href="examples/README.md">Examples</a></td>
+</tr>
+<tr>
+<td>Pho</td>
+<td></td>
+</tr>
+</tbody>
+</table>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/luongnv89/claude-howto#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/debpalash/VoiceStudio#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
 </div>
 <div>
-  <div class="rank-label">#6</div>
+  <div class="rank-label">#4</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
@@ -1115,9 +825,9 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
-      <span class="meta-item">⭐ 86,774</span>
-      <span class="meta-item">🍴 5,180</span>
-      <span class="stars-today">⭐ 619 stars today</span>
+      <span class="meta-item">⭐ 88,324</span>
+      <span class="meta-item">🍴 5,273</span>
+      <span class="stars-today">⭐ 1,092 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1309,7 +1019,7 @@ npx impeccable link --source=.impeccable --providers=claude,cursor
   </div>
 </div>
 <div>
-  <div class="rank-label">#7</div>
+  <div class="rank-label">#5</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
@@ -1322,9 +1032,9 @@ npx impeccable link --source=.impeccable --providers=claude,cursor
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
-      <span class="meta-item">⭐ 11,213</span>
-      <span class="meta-item">🍴 1,434</span>
-      <span class="stars-today">⭐ 319 stars today</span>
+      <span class="meta-item">⭐ 12,048</span>
+      <span class="meta-item">🍴 1,517</span>
+      <span class="stars-today">⭐ 647 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1479,221 +1189,620 @@ way they are, and <a href="docs/project/"><code>docs/project/</code></a> is what
   </div>
 </div>
 <div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">TauricResearch /</span>
+          <a href="https://github.com/TauricResearch/TradingAgents" target="_blank" rel="noopener">TradingAgents</a>
+        </div>
+        <div class="repo-desc">TradingAgents: Multi-Agents LLM Financial Trading Framework</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 115,157</span>
+      <span class="meta-item">🍴 22,176</span>
+      <span class="stars-today">⭐ 381 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="tradingagents/assets/tauric-logo.svg" width="60%" alt="Tauric Research">
+</p>
+
+<div align="center" style="line-height: 1;">
+  <a href="https://arxiv.org/abs/2412.20138" target="_blank"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2412.20138-B31B1B?logo=arxiv"/></a>
+  <a href="https://discord.com/invite/hk9PGKShPK" target="_blank"><img alt="Discord" src="https://img.shields.io/badge/Discord-TradingResearch-7289da?logo=discord&logoColor=white&color=7289da"/></a>
+  <a href="https://x.com/TauricResearch" target="_blank"><img alt="X Follow" src="https://img.shields.io/badge/X-TauricResearch-white?logo=x&logoColor=white"/></a>
+  <a href="https://github.com/TauricResearch/" target="_blank"><img alt="Community" src="https://img.shields.io/badge/GitHub_Community-TauricResearch-14C290?logo=discourse"/></a>
+</div>
+<p><br></p>
+<div align="center">
+  <a href="https://github.com/TauricResearch" target="_blank"><img alt="TradingAgents #1 Repository of the Day" src="https://trendshift.io/api/badge/repositories/16192" width="250" height="55"/></a>
+</div>
+<p><br></p>
+<div align="center">
+  <!-- Keep these links. Translations will automatically update with the README. -->
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=de">Deutsch</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=es">Español</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=fr">français</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ja">日本語</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ko">한국어</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=pt">Português</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ru">Русский</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=zh">中文</a>
+</div>
+
+<hr />
+<h1>TradingAgents: Multi-Agents LLM Financial Trading Framework</h1>
+<h2>News</h2>
+<!-- news:start -->
+<ul>
+<li>[2026-10] <strong>TradingAgents v0.7.0</strong> released with runs on your own ChatGPT Plus or Pro plan, backtests scored from the first close after each decision, a note at start-up when a newer release is out, and a wheel attached to each GitHub release.</li>
+<li>[2026-10] <strong>TradingAgents v0.6.0</strong> released with reports saved as one HTML page, a provider per model tier so the managers and analysts can run on different models, past decisions settled for every ticker while the analysts work, and company news read from Yahoo search while Yahoo's news feed is down.</li>
+<li>[2026-09] <strong>TradingAgents v0.5.2</strong> released with parallel analysts for a faster analysis, a CLI that runs without prompts from flags such as <code>--ticker</code> and <code>--date</code>, the run's settings recorded in every report, and backtests that see only data published by each analysis date.</li>
+</ul>
+<p>Full release notes are in <a href="CHANGELOG.md">CHANGELOG.md</a>.</p>
+<details>
+<summary>Earlier news</summary>
+
+- [2026-09] **TradingAgents v0.5.1** released with a package layout organised by what each module holds (import paths moved), optional Jev screening of social posts, GPT-6 Sol and Luna as the default models, and fixes to run isolation and SEC EDGAR statements.
+- [2026-09] **TradingAgents v0.5.0** released with point-in-time integrity across every dated path, SEC EDGAR fundamentals served as filed, backtesting over a ticker and date grid, portfolio-aware runs, and current model lineups across every provider.
+- [2026-08] **TradingAgents v0.4.0** released with look-ahead / point-in-time fixes across FRED macro, social sentiment, and the decision-log memory; clearer decision signals; working CLI checkpoint resume; Trader price grounding; and the GPT-5.6 and GLM-5.3 models.
+- [2026-07] **TradingAgents v0.3.1** released with correctness and stability fixes: Alpha Vantage look-ahead filtering, graph-router crash-safety, graph-shape-aware checkpoint resume, working crypto sentiment sources, a configurable LLM retry budget, Bedrock API-key auth, and Claude Sonnet 5 / Fable 5 support.
+- [2026-06] **TradingAgents v0.3.0** released with a verified data-access contract, an expanded provider registry (NVIDIA, Kimi, Groq, Mistral, Bedrock, and any OpenAI-compatible endpoint), FRED and Polymarket data vendors, a current-generation model catalog, and a CI gate.
+- [2026-05] **TradingAgents v0.2.5** released with the grounded Sentiment Analyst, GPT-5.5 etc. model coverage, Qwen/GLM/MiniMax dual-region support, `TRADINGAGENTS_*` env-var configurability with API-key auto-detection, remote Ollama support, non-US alpha benchmarks, and ticker path-traversal hardening.
+- [2026-04] **TradingAgents v0.2.4** released with structured-output agents (Research Manager, Trader, Portfolio Manager), LangGraph checkpoint resume, persistent decision log, DeepSeek/Qwen/GLM/Azure provider support, Docker, and a Windows UTF-8 encoding fix.
+- [2026-03] **TradingAgents v0.2.3** released with multi-language support, GPT-5.4 family models, unified model catalog, backtesting date fidelity, and proxy support.
+- [2026-03] **TradingAgents v0.2.2** released with GPT-5.4/Gemini 3.1/Claude 4.6 model coverage, five-tier rating scale, OpenAI Responses API, Anthropic effort control, and cross-platform stability.
+- [2026-02] **TradingAgents v0.2.0** released with multi-provider LLM support (GPT-5.x, Gemini 3.x, Claude 4.x, Grok 4.x) and improved system architecture.
+- [2026-01] **Trading-R1** [Technical Report](https://arxiv.org/abs/2509.11420) released, with [Terminal](https://github.com/TauricResearch/Trading-R1) expected to land soon.
+
+</details>
+<!-- news:end -->
+
+<div align="center">
+
+🚀 [TradingAgents](#tradingagents-framework) | ⚡ [Installation & CLI](#installation-and-cli) | 🎬 [Demo](https://www.youtube.com/watch?v=90gr5lwjIho) | 📦 [Package Usage](#tradingagents-package) | 🤝 [Contributing](#contributing) | 📄 [Citation](#citation)
+
+</div>
+
+<blockquote>
+<p>🎉 <strong>TradingAgents</strong> officially released! We have received numerous inquiries about the work, and we would like to express our thanks for the enthusiasm in our community.</p>
+<p>So we decided to fully open-source the framework. Looking forward to building impactful projects with you!</p>
+</blockquote>
+<h2>TradingAgents Framework</h2>
+<p>TradingAgents is a multi-agent trading framework that mirrors the dynamics of real-world trading firms. By deploying specialized LLM-powered agents: from fundamental analysts, sentiment experts, and technical analysts, to trader, risk management team, the platform collaboratively evaluates market conditions and informs trading decisions. Moreover, these agents engage in dynamic discussions to pinpoint the optimal strategy.</p>
+<p align="center">
+  <img src="assets/schema.png" style="width: 100%; height: auto;">
+</p>
+
+<blockquote>
+<p>TradingAgents framework is designed for research purposes. Trading performance may vary based on many factors, including the chosen backbone language models, model temperature, trading periods, the quality of data, and other non-deterministic factors. <a href="https://tauric.ai/disclaimer/">It is not intended as financial, investment, or trading advice.</a></p>
+</blockquote>
+<p>Our framework decomposes complex trading tasks into specialized roles.</p>
+<h3>Analyst Team</h3>
+<ul>
+<li>Fundamentals Analyst: Evaluates company financials and performance metrics, identifying intrinsic values and potential red flags.</li>
+<li>Sentiment Analyst: Aggregates news headlines, StockTwits, and Reddit chatter into a single sentiment read to gauge short-term market mood.</li>
+<li>News Analyst: Monitors global news and macroeconomic indicators, interpreting the impact of events on market conditions.</li>
+<li>Technical Analyst: Utilizes technical indicators (like MACD and RSI) to detect trading patterns and forecast price movements.</li>
+</ul>
+<p>The selected analysts work at the same time, each on its own tools, and the research debate starts once all of their reports are in.</p>
+<p align="center">
+  <img src="assets/analyst.png" width="100%" style="display: inline-block; margin: 0 2%;">
+</p>
+
+<h3>Researcher Team</h3>
+<ul>
+<li>Comprises both bullish an</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/TauricResearch/TradingAgents#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Renhuai123 /</span>
+          <a href="https://github.com/Renhuai123/ziwei-doushu" target="_blank" rel="noopener">ziwei-doushu</a>
+        </div>
+        <div class="repo-desc">紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 8,134</span>
+      <span class="meta-item">🍴 1,629</span>
+      <span class="stars-today">⭐ 199 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+# 紫微斗数 · 开源排盘引擎
+
+### 算法是公开的传统智慧，不应该被锁在围墙里
+
+[![CI](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml/badge.svg)](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](./LICENSE)
+[![Dataset: CC BY 4.0](https://img.shields.io/badge/dataset-CC%20BY%204.0-green.svg)](./DATASET-LICENSE)
+
+**中文** · [English](./README.en.md)
+
+</div>
+
+<p><strong>一、项目理念</strong>：紫微斗数是中国传统命理学的瑰宝，倪海厦老师在《天纪》中系统梳理了正宗的紫微斗数体系。我们希望通过技术手段让更多人接触和学习这门学问。</p>
+<p>开源排盘算法和知识库，是因为我们相信：<strong>算法是公开的传统智慧，不应该被锁在围墙里</strong>。真正的价值在于解读的深度、用户体验的打磨、以及持续运营的积累。</p>
+<p><strong>二、项目信息</strong>：基于<strong>倪海厦《天纪》</strong>教学体系的紫微斗数排盘系统，包含完整排盘算法、四化系统、格局知识库、古籍原文数据，以及一套完整开源的紫微斗数解读数据：<strong>v4.0 解读数据集——67.5 万张命盘 × 13 维 = 877 万段解读，正文约 204 亿字，解压后 56.6 GB</strong>（2026-10-15 发布）。</p>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>命盘</th>
+<th>解读段数</th>
+<th>解压后</th>
+<th>覆盖年份</th>
+<th>每张盘解读字数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v4.0 解读数据集</strong>（2026-10-15）</td>
+<td><strong>674,976</strong></td>
+<td><strong>8,774,688</strong></td>
+<td><strong>56.6 GB</strong></td>
+<td><strong>1950–2026</strong>（只含真实日期）</td>
+<td><strong>约 3.0 万字</strong></td>
+</tr>
+<tr>
+<td>v3.0 样本数据集</td>
+<td>518,400</td>
+<td>6,739,200</td>
+<td>33.1 GB</td>
+<td>1924–1983</td>
+<td>约 2.1 万字</td>
+</tr>
+<tr>
+<td>变化</td>
+<td>+30%</td>
+<td>+30%</td>
+<td><strong>+71%</strong></td>
+<td>+17 年</td>
+<td>+44%</td>
+</tr>
+</tbody>
+</table>
+<p><sub>v3.0 每张盘解读字数按 2,160 张盘抽样估算，其余数字为全量统计；两版每张盘都是 13 维。</sub></p>
+<p>在线体验：<a href="https://metisziwei.com/?from=gh-readme">metisziwei.com</a>，排盘、AI 解读、命盘历史全部开放。</p>
+<blockquote>
+<p><strong>注：关于六亲判断</strong></p>
+<p>紫微斗数在六亲（父母、兄弟、子女等）判断上存在一定局限。倪师在《天纪》中指出：“斗数批六亲本来就比较差一点。”（<a href="https://www.bilibili.com/video/BV1KJsLekEfA?p=3&amp;t=1527">2上 · 00:25:27</a>）在传统术数中，铁板神数在核对六亲方面有其独特优势（<a href="https://www.bilibili.com/video/BV1KJsLekEfA?p=3&amp;t=195">2上 · 00:03:15</a>）；倪师仍以紫微斗数为核心，是因为它能结合地理、环境与人事进行综合判断，形成“上知天文、下知地理、中知人事”的完整体系（<a href="https://www.bilibili.com/video/BV1KJsLekEfA?p=3&amp;t=1543">2上 · 00:25:43</a>）。因此，与六亲相关的分析仅供参考；<a href="https://metisziwei.com/?from=gh-readme">metisziwei.com</a> 上父母、兄弟、子女三个维度也附有同样的说明。</p>
+</blockquote>
+<hr />
+<h2>目录</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>章节</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一</td>
+<td><a href="#一本轮更新2026-10-15">本轮更新</a></td>
+<td>13 维断语按倪师原话与《全书》逐句校正，发布 67.5 万命盘 × 13 维解读数据集 v4.0</td>
+</tr>
+<tr>
+<td>二·新</td>
+<td><a href="#二新13-维解读数据集-v402026-10-15">13 维解读数据集 v4.0</a></td>
+<td>2026-10-15 新版断语，67.5 万命盘，按年份下载</td>
+</tr>
+<tr>
+<td>二</td>
+<td><a href="#二518-万命盘样本数据集">51.8 万命盘样本数据集</a></td>
+<td>规格、下载、用途、许可</td>
+</tr>
+<tr>
+<td>三</td>
+<td><a href="#三快速开始">快速开始</a></td>
+<td>克隆到跑起来</td>
+</tr>
+<tr>
+<td>四</td>
+<td><a href="#四排盘引擎">排盘引擎</a></td>
+<td>能做到什么、文件怎么分、古籍数据</td>
+</tr>
+<tr>
+<td>五</td>
+<td><a href="#五倪师天纪紫微斗数原话">倪师《天纪·紫微斗数》原话</a></td>
+<td>14 讲 + 2 段补充、1848 条，一图看全，每条可回放</td>
+</tr>
+<tr>
+<td>六</td>
+<td><a href="#六界面是一份-demo">界面是一份 Demo</a></td>
+<td>不是线上那套，差距写明</td>
+</tr>
+<tr>
+<td>七</td>
+<td><a href="#七开源边界什么不在里面">开源边界</a></td>
+<td>什么开源、什么不开源</td>
+</tr>
+<tr>
+<td>八</td>
+<td><a href="#八维护节奏与贡献">维护节奏与贡献</a></td>
+<td>同步节奏、issue / PR 口径</td>
+</tr>
+<tr>
+<td>九</td>
+<td><a href="#九协议">协议</a></td>
+<td>代码 MIT / 数据 CC BY 4.0 / 古籍公版 / 倪师原话非商用</td>
+</tr>
+<tr>
+<td>十</td>
+<td><a href="#十关于与联系">关于与联系</a></td>
+<td>项目理念、技术栈、联系方式</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>一、本轮更新（2026-10-15）</h2>
+<p>本轮跟随网站 2026-10-15 发版（网站内容版本 <code>ca268829f7a9</code>）：</p>
+<p><img alt="本轮更新总览" src="./docs/update-20261015.png" /></p>
+<p><strong>1. 发布 13 维解读数据集 v4.0</strong> —— 674,976 张命盘（公历 1950–2026 年每一个真实日期 × 12 时辰 × 男女）× 13 维 = <strong>8,774,688 段解读</strong>，正文约 204 亿字。解压后 56.6 GB（v3.0 为 33.1 GB，增加 71%），压缩后只有 161 MB，按年份分 77 个文件，可以只下需要的年份，也可以一次下全年份总包。下载见 <a href="https://github.com/Renhuai123/ziwei-doushu/releases/tag/v4.0-13d">Release v4.0-13d</a>，规格和字段见<a href="#二新13-维解读数据集-v402026-10-15">第二·新章</a>。发布前 77 个文件逐个解压，与原始数据逐字节比对一致。</p>
+<p><strong>2. 13 维断语按倪师原话与《全书》原文逐句校正</strong>（断语库仍不开源，校正结果体现在 v4.0 数据集里）：</p>
+<ul>
+<li>标着倪师或《全书》却查不到出处的引文，删掉或换成逐字可查的原话；倪师原话注明《天纪》第几集、几分几秒</li>
+<li>不会发生的四化（如七杀化权、紫微化忌）相关的句子删去；只在某种条件下才成立的断语补上条件</li>
+<li>「力量强时……落陷时……」这类两头说的句子，改为按命盘只显示成立的那一种</li>
+<li>健康：哪个脏腑要留意，改按倪师的看法——全盘杀星最集中的那一宫，按它的地支对应脏腑；不再按星的五行推脏器</li>
+<li>网站知识库「古籍引证」由 244 处增至 405 处，每一处都能在《紫微斗数全书》原文里逐字找到</li>
+</ul>
+<p><strong>3. 排盘引擎同步</strong>（<a href="https://github.com/Renhuai123/ziwei-doushu/pull/39">PR #39</a>）—— <code>dst-cn.ts</code> 新增 <code>chinaDSTSpan(year)</code>，查某年中国夏令时起止；<code>cities.ts</code> 补全省直辖县级单位与新疆兵团各市的经度（神农架、海南各市县、阿拉尔等），出生地选这些城市时真太阳时校正可用。</p>
+<p><strong>4. 许可</strong> —— <a href="./DATASET-LICENSE"><code>DATASET-LICENSE</code></a> 适用范围加上 v4.0；写明解读里引用的倪师原话不在数据授权范围内，与第五章倪师原话的 CC BY-NC-SA 4.0 一致。v3.0 样本数据集及其条款不变。</p>
+<blockquote>
+<p><strong>2026-10-24 补充</strong>：项目理念移到页首——标题下居中一句「算法是公开的传统智慧，不应该被锁在围墙里」，紧接两段理念原文（前标「项目理念」），原有介绍段前标「项目信息」；第十章「项目理念」改为指向页首。</p>
+<p><strong>2026-10-20 补充</strong>：星曜亮度默认改为《斗数全书》，与主流排盘软件默认一致，此前默认的「现代修正 v2」仍可在流派设置里选；补齐天姚、天刑、天喜、大耗、解神、截空、副截、旬空的亮度，月德不再标亮度。用 5 张金标准盘逐宫核对，星曜落宫与亮度全部吻合。注意：v4.0 数据集（10-15）是按旧默认「现代修正 v2」生成的，其中亮度字和少量随亮度变化的解读句会与新默认不同。</p>
+<p><strong>2026-10-06 ~ 10-07 补充</strong>：README 加「注：关于六亲判断」（倪师原话 + 出处链接，中英两份）；网站链接加渠道码 <code>?from=</code>；同步倪师原话语料勘误（主星南斗、北斗归属）。</p>
+</blockquote>
+<h3>上一轮更新（2026-09-21）</h3>
+<blockquote>
+<p><strong>2026-10-03 补充</strong>：倪师《天纪·紫微斗数》原话 1848 条单独成章（第五章）；合并外部贡献 #29（时辰序号校验）；引擎拒绝不存在的公历日期，数据集补字段口径与已知问题；提交 package-lock.json；站点地址改为可配置；合盘演示改用本地引擎起盘、AI 接口缺失时明确提示；补齐贡献指南、行为准则、问题与 PR 模板；新增英文简介 <a href="./README.en.md">README.en.md</a>；去掉两个用不上的部署工具包（vercel CLI、@cloudflare/next-on-pages），依赖从 483 个减到 185 个；随后升级到 Next.js 16 修掉 postcss 漏洞，GitHub 安全提醒从 51 条清零。</p>
+</blockquote>
+<p><img alt="本轮更新总览" src="./docs/update-20260921.png" /></p>
+<p>时隔三个月，本仓库完成一次完整更新（<a href="https://github.com/Renhuai123/ziwei-doushu/pull/28">PR #28</a>，26 个文件、+2736 / −108 行）：</p>
+<p><strong>1. 排盘引擎同步到线上口径</strong> —— <code>algorithm.ts</code> 从 181 行到 641 行，另更新 sihua / types / constants / patterns / cities / famous；新增 8 个模块（1367 行）：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>true-solar-time.ts</code></td>
+<td>真太阳时校正（经度差 + 均时差）</td>
+</tr>
+<tr>
+<td><code>dst-cn.ts</code></td>
+<td>中国 1986–1991 夏令时</td>
+</tr>
+<tr>
+<td><code>lunar-solar.ts</code></td>
+<td>农历 / 公历互转与闰月边界 clamp</td>
+</tr>
+<tr>
+<td><code>school-data.ts</code> / <code>school-tables.generated.ts</code> / <code>school-config.ts</code></td>
+<td>星曜亮度流派数据与对照表、闰月与晚子时口径配置</td>
+</tr>
+<tr>
+<td><code>shier-shen.ts</code></td>
+<td>十二神煞</td>
+</tr>
+<tr>
+<td><code>yunxian-context.ts</code></td>
+<td>运限上下文（含童限）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. 补上回归测试与 CI</strong> —— 此前本仓库没有任何测试。现在 5 条排盘回归，<code>npm test</code> 一条命令跑完，每次 push 与 PR 在 GitHub Actions 上自动跑。</p>
+<p><strong>3. 修掉样本时辰注释错位</strong>（<a href="https://github.com/Renhuai123/ziwei-doushu/issues/26">#26</a>）—— <code>famous.ts</code> 里 11 条名人样本有 7 条的时辰注释与 <code>hour</code> 索引不符（<code>hour</code> 一直是<strong>时辰地支索引 0–11</strong>，不是 0–23 的小时数）。已改正并加回归钉住。</p>
+<p><strong>4. 积压 issue 从 18 条清到 4 条</strong>，留下的都是还在走的。</p>
+<p><strong>5. 文档与许可</strong> —— 新增 <a href="./DATASET-LICENSE"><code>DATASET-LICENSE</code></a>；README 补齐引擎能力清单、维护节奏、开源边界；修正两处不实描述（数据集「口径与线上完全一致」、界面「完整的 Next.js 15 前端」）。</p>
+<hr />
+<h2>二·新、13 维解读数据集 v4.0（2026-10-15）</h2>
+<blockquote>
+<p><strong>下载位置：本仓库右侧 <a href="https://github.com/Renhuai123/ziwei-doushu/releases/tag/v4.0-13d">Releases → v4.0-13d</a></strong></p>
+</blockquote>
+<p>v4.0 用 2026-10-15 版网站断语库重新生成：13 个分析维度的断语已按倪海厦《天纪》逐字稿与《紫微斗数全书》原文逐句校正——查不到出处的引文删去或换成逐字可查的原话（倪师原话注明《天纪》集数与时间码），不会发生的四化相关句子删去，有条件的断语写明条件。</p>
+<h3>规格</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命盘数</td>
+<td><strong>674,976 张</strong>（公历 1950–2026 年 × 真实每月天数 × 12 时辰 × 男女）</td>
+</tr>
+<tr>
+<td>解读段数</td>
+<td><strong>8,774,688 段</strong>（每张盘 13 维）</td>
+</tr>
+<tr>
+<td>维度</td>
+<td>命格总览、性格、感情、事业、财运、健康、兄弟、子女、迁移、人际、田宅、福德、父母</td>
+</tr>
+<tr>
+<td>大小</td>
+<td>解压后 56.6 GB；压缩后 161 MB（77 个年份文件，zstd；另有一个全年份总包 <code>ziwei-interp-v4-all.tar</code>）</td>
+</tr>
+<tr>
+<td>正文</td>
+<td>约 204 亿字，每张盘约 3.0 万字</td>
+</tr>
+<tr>
+<td>生成方式</td>
+<td>排盘引擎 + 断语库确定性生成，不经 AI，同一输入恒得同一输出</td>
+</tr>
+<tr>
+<td>内容版本</td>
+<td><code>ca268829f7a9</code>（与网站同期的 ANALYSIS_CONTENT_VERSION）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>每行一张盘</strong>（JSON Lines），字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>k</code></td>
+<td>键：<code>YYYY-MM-DD-时辰序号-性别</code>，如 <code>1990-01-01-0-male</code></td>
+</tr>
+<tr>
+<td><code>y</code> / <code>m</code> / <code>d</code></td>
+<td><strong>公历</strong>出生日期；只含真实存在的日期（不再有 2 月 30 日之类）</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td><strong>时辰序号 0–11</strong>（子 = 0 …… 亥 = 11），不是钟点；对照表见上一节</td>
+</tr>
+<tr>
+<td><code>g</code></td>
+<td><code>male</code> / <code>female</code></td>
+</tr>
+<tr>
+<td><code>ms</code></td>
+<td>命宫第一颗主星；命宫无主星时为 <code>null</code></td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>各维字数</td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>13 维解读全文（Markdown），键为 <code>overview</code> / <code>personality</code> / <code>love</code> / <code>career</code> / <code>wealth</code> / <code>health</code> / <code>family</code> / <code>children</code> / <code>move</code> / <code>friends</code> / <code>home</code> / <code>spirit</code> / <code>parents</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>口径说明</strong><br />
+- 是本命盘视图的解读；网站上按读者当前年龄改写的句子、各维末尾附加的倪师法则段、AI 解读都不在数据集里。<br />
+- 按时辰序号直接排盘，未按出生地做真太阳时校正。</p>
+<h3>下载与解压</h3>
+<pre><code class="language-bash"># 一次下全部：gh release download v4.0-13d --repo Renhuai123/ziwei-doushu -p &quot;ziwei-interp-v4-all.tar&quot;
+# 只要某几年就只下那几年，例如 1990 年
+zstd -d --long=27 year-1990.jsonl.zst          # 得到 year-1990.jsonl
+shasum -a 256 -c SHA256SUMS.txt --ignore-missing # 校验
+</code></pre>
+<p><code>--long=27</code> 必须带上（压缩时用了长窗口）。Windows 可用 <a href="https://github.com/facebook/zstd/releases">zstd 官方发布包</a> 里的 zstd.exe，参数相同。</p>
+<h3>引文说明</h3>
+<p>解读里引用的倪海厦《天纪》原话<strong>不属于本数据集的授权范围</strong>：它们是为说明断语出处而注明集数与时间码的简短引用，著作权归原权利人；要把这些原话单独成批使用，按第五章倪师原话的 <a href="./docs/tianji-ziwei/LICENSE.md">CC BY-NC-SA 4.0</a> 处理。《紫微斗数全书》原文属公有领域。</p>
+<h3>许可</h3>
+<p>与 v3.0 相同：<strong>CC BY 4.0，可自由商用，唯一要求是保留来源标注</strong>（上面「引文说明」里的倪师原话除外），完整条款见 <a href="./DATASET-LICENSE">DATASET-LICENSE</a>。引用时请写：</p>
+<blockquote>
+<p>本项目使用了 <strong>紫微斗数开源解读数据集 v4.0</strong>（674,976 张命盘 × 13 维）<br />
+来源：https://github.com/Renhuai123/ziwei-doushu<br />
+作者：王多鱼AI</p>
+</blockquote>
+<hr />
+<h2>二、51.8 万命盘样本数据集</h2>
+<blockquote>
+<p><strong>下载位置：本仓库右侧 <a href="https://github.com/Renhuai123/ziwei-doushu/releases/tag/v3.0-samples">Releases</a> 页面</strong></p>
+</blockquote>
+<p>我们开源了一套完整的紫微斗数命盘样本数据集，覆盖 <strong>51.8 万种排盘组合</strong>（年 60 × 月 12 × 日 30 × 时 12 × 性别 2），每条样本包含完整的命盘结构和基于倪海厦体系的解读文本。</p>
+<h3>2.1 数据规格</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>样本数量</td>
+<td><strong>518,400 条</strong></td>
+</tr>
+<tr>
+<td>总大小</td>
+<td>压缩后 5.5 GB（分 3 卷），解压后 33.1 GB</td>
+</tr>
+<tr>
+<td>体系</td>
+<td>倪海厦《天纪》正统（纯飞星派已下线）</td>
+</tr>
+<tr>
+<td>内容</td>
+<td>命盘 JSON + 13 主题解读文本（命格总览、财运、事业、感情、健康等）</td>
+</tr>
+<tr>
+<td>验证</td>
+<td>男女命差异化 100%、健康含子午流注 100%、女命含妇科保养 100%</td>
+</tr>
+<tr>
+<td>口径</td>
+<td>由 <strong>v3 版排盘引擎 + 当期断语库</strong>生成；线上引擎在持续更新，新版输出与本数据集可能有差异</td>
+</tr>
+</tbody>
+</table>
+<p><strong>字段口径</strong>（每条样本由 <code>birthInfo</code> 生成，常被看错的是 <code>hour</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>birthInfo.year</code> / <code>month</code> / <code>day</code></td>
+<td><strong>公历</strong>出生日期：1924–1983 年（一个完整甲子），每月取 1–30 日</td>
+</tr>
+<tr>
+<td>`bi</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Renhuai123/ziwei-doushu#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
   <div class="rank-label">#8</div>
   <div class="card">
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">google-gemini /</span>
-          <a href="https://github.com/google-gemini/gemini-cli" target="_blank" rel="noopener">gemini-cli</a>
+          <span class="repo-owner">JetBrains /</span>
+          <a href="https://github.com/JetBrains/thinkrail" target="_blank" rel="noopener">thinkrail</a>
         </div>
-        <div class="repo-desc">An open-source AI agent that brings the power of Gemini directly into your terminal.</div>
+        <div class="repo-desc">Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need</div>
       </div>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 108,313</span>
-      <span class="meta-item">🍴 14,826</span>
-      <span class="stars-today">⭐ 44 stars today</span>
+      <span class="meta-item">⭐ 2,220</span>
+      <span class="meta-item">🍴 127</span>
+      <span class="stars-today">⭐ 51 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <blockquote>
-<p>[!NOTE]</p>
-<p><strong>Unpaid tier and Google One users:</strong> Gemini CLI was replaced by Antigravity<br />
-CLI on June 18th, 2026. To learn more, see our<br />
-<a href="https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli">blog post</a>.</p>
-<p><strong>Gemini CLI has not been optimized for Gemini 4 Argon.</strong> To use Gemini 4<br />
-Argon, please use Antigravity.</p>
-</blockquote>
-<h1>Gemini CLI</h1>
-<p><a href="https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml"><img alt="Gemini CLI CI" src="https://github.com/google-gemini/gemini-cli/actions/workflows/ci.yml/badge.svg" /></a><br />
-<a href="https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml"><img alt="Gemini CLI E2E (Chained)" src="https://github.com/google-gemini/gemini-cli/actions/workflows/chained_e2e.yml/badge.svg" /></a><br />
-<a href="https://www.npmjs.com/package/@google/gemini-cli"><img alt="Version" src="https://img.shields.io/npm/v/@google/gemini-cli" /></a><br />
-<a href="https://github.com/google-gemini/gemini-cli/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/google-gemini/gemini-cli" /></a><br />
-<a href="https://codewiki.google/github.com/google-gemini/gemini-cli?utm_source=badge&amp;utm_medium=github&amp;utm_campaign=github.com/google-gemini/gemini-cli"><img alt="View Code Wiki" src="https://assets.codewiki.google/readme-badge/static.svg" /></a></p>
-<blockquote>
-<p>[!NOTE]</p>
-<p>Gemini CLI is not optimized for the latest Gemini models. For the best coding<br />
-experience with Gemini models use<br />
-<a href="https://antigravity.google/product/antigravity-cli">Antigravity CLI</a></p>
-</blockquote>
-<p>Gemini CLI is an open-source AI agent that brings the power of Gemini directly<br />
-into your terminal. It provides lightweight access to Gemini, giving you the<br />
-most direct path from your prompt to our model.</p>
-<p>Learn all about Gemini CLI in our <a href="https://geminicli.com/docs/">documentation</a>.</p>
-<h2>📦 Installation</h2>
-<p>See<br />
-<a href="https://www.geminicli.com/docs/get-started/installation">Gemini CLI installation, execution, and releases</a><br />
-for recommended system specifications and a detailed installation guide.</p>
-<h3>Quick Install</h3>
-<h4>Run instantly with npx</h4>
-<pre><code class="language-bash"># Using npx (no installation required)
-npx @google/gemini-cli
-</code></pre>
-<h4>Install globally with npm</h4>
-<pre><code class="language-bash">npm install -g @google/gemini-cli
-</code></pre>
-<h4>Install globally with Homebrew (macOS/Linux)</h4>
-<pre><code class="language-bash">brew install gemini-cli
-</code></pre>
-<h4>Install globally with MacPorts (macOS)</h4>
-<pre><code class="language-bash">sudo port install gemini-cli
-</code></pre>
-<h4>Install with Anaconda (for restricted environments)</h4>
-<pre><code class="language-bash"># Create and activate a new environment
-conda create -y -n gemini_env -c conda-forge nodejs
-conda activate gemini_env
+    <h1>ThinkRail</h1>
+<p><a href="https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub"><img alt="JetBrains incubator project" src="https://jb.gg/badges/incubator-plastic.svg" /></a><br />
+<a href="https://star-history.com/#JetBrains/thinkrail&amp;Date"><img alt="GitHub stars" src="https://img.shields.io/github/stars/JetBrains/thinkrail?style=social" /></a></p>
+<p>ThinkRail is the agentic IDE that gets better every time you use it — learning your project through<br />
+living specs today, and building its own capabilities tomorrow.</p>
+<p>We built a rich interface around the <a href="https://www.npmjs.com/package/@earendil-works/pi-coding-agent"><code>pi</code></a><br />
+coding agent, isolated work into separate workspaces, and gave the agent durable project knowledge<br />
+through living specs and reusable skills. Next, we're adding full extension support, so ThinkRail can<br />
+create the tools it needs based on how you actually work.</p>
+<p><strong>Website:</strong> <a href="https://thinkrail.ai/">thinkrail.ai</a> · <strong>Blog:</strong> <a href="https://thinkrail.ai/blog/">thinkrail.ai/blog</a></p>
+<p>⭐ If you find ThinkRail useful, give it a star — it helps others discover it.</p>
+<p align="center">
+ <a href="https://www.star-history.com/jetbrains/thinkrail">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=rank&theme=dark" /><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=rank" /><img alt="Star History Rank" src="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=rank" /></picture> <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=trending&theme=dark" /><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=trending" /><img alt="GitHub Trending Repository of the Day" src="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=trending" /></picture>
+ </a>
+</p>
 
-# Install Gemini CLI globally via npm (inside the environment)
-npm install -g @google/gemini-cli
-</code></pre>
-<h2>Release Channels</h2>
-<p>See <a href="https://www.geminicli.com/docs/changelogs">Releases</a> for more details.</p>
-<h3>Preview</h3>
-<p>New preview releases will be published each week at UTC 23:59 on Tuesdays. These<br />
-releases will not have been fully vetted and may contain regressions or other<br />
-outstanding issues. Please help us test and install with <code>preview</code> tag.</p>
-<pre><code class="language-bash">npm install -g @google/gemini-cli@preview
-</code></pre>
-<h3>Stable</h3>
+<p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-assets/workbench-dark.png"><br />
+  <img src=".github/readme-assets/workbench-light.png" alt="ThinkRail workbench: the Projects pane beside the left tool rail listing worktree workspaces and their Settled shelf, a finished pi conversation with its tool steps in the center, the resulting diff beside it, and the Specs tree above the Changes list on the right with their tools on the edge rail" width="900"><br />
+</picture></p>
+<p><em>A <code>pi</code> session and the change it made, scoped to an isolated git-worktree workspace.</em></p>
+<h2>What you get</h2>
 <ul>
-<li>New stable releases will be published each week at UTC 20:00 on Tuesdays, this<br />
-  will be the full promotion of last week's <code>preview</code> release + any bug fixes<br />
-  and validations. Use <code>latest</code> tag.</li>
+<li><strong>Isolated workspaces.</strong> Open any git repo as a project and cut workspaces from it as <code>git worktree</code>s,<br />
+  each with its own branch and working directory. Agents work in parallel without touching your<br />
+  checkout; merge the good branch, delete the rest. You can also attach existing worktrees or explicitly<br />
+  work in the project folder itself. Finished and dormant workspaces settle onto a per-project shelf on<br />
+  their own — when their pull request merges or closes, or after a quiet week — and come back the moment<br />
+  you work in them. The topbar shows where the active branch stands against <code>origin</code> and its pull request,<br />
+  with the next step one click away: publish, push, or open a PR described from the plan, the commits,<br />
+  your PR template, or an agent-written draft. Once a GitHub PR is open it shows the CI checks and review<br />
+  decision, and lets you mark it ready, hand failing checks or a diverged branch to the agent, merge it<br />
+  with the repository's last-used method, reopen it, or delete the remote branch.</li>
+<li><strong>A real IDE around the agent.</strong> A splittable workbench of Monaco editor tabs, a Files tree with live git<br />
+  change marks and a Changed view, terminals, and documents — all scoped to the active workspace. Leave<br />
+  anchored review comments on files and diffs and send them to a chat as structured context, or open the<br />
+  worktree in your installed IDE.</li>
+<li><strong>Chats that stream like the engine thinks.</strong> Several concurrent <code>pi</code> sessions per workspace, each with<br />
+  its own model and live token and cost readout. Steer a running turn or queue a follow-up, delegate to<br />
+  subagents, and work a shared plan the agent updates and you edit — each completed step can be committed<br />
+  and reviewed on its own.</li>
+<li><strong>Specs as ground truth.</strong> A connected graph of <code>SPEC.md</code> files lives beside the code; the agent reads,<br />
+  searches, and maintains it through dedicated <code>spec_*</code> tools, so intent survives the session. The<br />
+  read-only Specs tool renders the graph as a tree in the workbench.</li>
+<li><strong>Skills and workflows.</strong> Portable Agent Skills you already keep for other coding agents are read in<br />
+  place, and bundled workflows guide project setup, design brainstorming, and shipping a pull request —<br />
+  pushing the workspace branch and opening or updating its GitHub PR through your own <code>gh</code>.</li>
+<li><strong>Agent tools beyond the shell.</strong> Web research, and inline diagrams, option comparisons and file previews<br />
+  rendered right in the chat — when the agent proposes a UI change it shows a before/after mockup you can<br />
+  comment on like a diff. Settings → Extensions lists the ThinkRail extensions the agent gets and lets you switch<br />
+  each one off.</li>
+<li><strong>MCP servers.</strong> Connect the MCP servers in your <code>pi</code> <code>mcp.json</code> (or add them, and a few presets, from<br />
+  Settings): ThinkRail asks in the chat before calls the server does not mark read-only (or always allows<br />
+  the tools you trust in a project), keeps servers a repository<br />
+  defines off until you approve them, signs you in to OAuth servers from Settings, and shows each chat's<br />
+  servers next to its background commands and subagents.</li>
+<li><strong>Your providers, your credentials.</strong> Sign in with <a href="https://www.jetbrains.com/ai/">JetBrains AI</a> or<br />
+  connect any provider through <code>pi</code>'s own auth. ThinkRail has no accounts of its own.</li>
+<li><strong>Desktop app or browser.</strong> A native desktop app, or the <code>thinkrail</code> CLI that opens the same app in your<br />
+  browser. Both embed the same engine host; app state lives under <code>~/.thinkrail</code>.</li>
+<li><strong>Your language.</strong> Settings → Language follows your system language or a language you pick; English and<br />
+  Simplified Chinese are built in. Add a language ThinkRail doesn't ship yet by dropping a translated<br />
+<code>en.json</code> into <code>~/.thinkrail/locales</code> — it applies as you save. Agent replies and tool output stay as<br />
+  the agent wrote them.</li>
 </ul>
-<pre><code class="language-bash">npm install -g @google/gemini-cli@latest
-</code></pre>
-<h3>Nightly</h3>
+<p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-assets/specs-dark.png"><br />
+  <img src=".github/readme-assets/specs-light.png" alt="The Specs tool, opened from the right edge rail, listing the project's spec tree while the product goal spec is rendered in the editor" width="900"><br />
+</picture></p>
+<p><em>The project's spec graph as a tree, with the spec itself rendered alongside.</em></p>
+<h2>Install</h2>
+<p>ThinkRail ships in two additive forms: a native desktop installer and the self-contained <code>thinkrail</code> CLI.<br />
+Both are published with <code>SHA256SUMS</code> on the <a href="https://github.com/JetBrains/thinkrail/releases">releases page</a>.</p>
+<h3>Desktop</h3>
+<p>Download the <code>thinkrail-desktop-*</code> asset for your platform:</p>
 <ul>
-<li>New releases will be published each day at UTC 00:00. This will be all changes<br />
-  from the main branch as represented at time of release. It should be assumed<br />
-  there are pending validations and issues. Use <code>nightly</code> tag.</li>
+<li><strong>macOS (Apple Silicon)</strong> — open the DMG. There is no Intel desktop build.</li>
+<li><strong>Windows x64</strong> — extract the complete setup ZIP, then run its setup executable in place, next to its<br />
+  payload.</li>
+<li><strong>Linux x64 / ARM64</strong> — extract the setup tarball and run <code>installer</code>. Desktop builds need glibc 2.38+<br />
+  with GTK 3, WebKitGTK 4.1, Ayatana AppIndicator 3, and librsvg 2 — Ubuntu 24.04 or newer:</li>
 </ul>
-<pre><code class="language-bash">npm install -g @google/gemini-cli@nightly
-</code></pre>
-<h2>📋 Key Features</h2>
-<h3>Code Understanding &amp; Generation</h3>
-<ul>
-<li>Query and edit large codebases</li>
-<li>Generate new apps from PDFs, images, or sketches using multimodal capabilities</li>
-<li>Debug issues and troubleshoot with natural language</li>
-</ul>
-<h3>Automation &amp; Integration</h3>
-<ul>
-<li>Automate operational tasks like querying pull requests or handling complex<br />
-  rebases</li>
-<li>Use MCP servers to connect new capabilities, including<br />
-<a href="https://github.com/GoogleCloudPlatform/vertex-ai-creative-studio/tree/main/experiments/mcp-genmedia">media generation with Imagen, Veo or Lyria</a></li>
-<li>Run non-interactively in scripts for workflow automation</li>
-</ul>
-<h2>🔐 Authentication Options</h2>
-<p>Choose the authentication method that best fits your needs:</p>
-<h3>Option 1: Sign in with Google (OAuth login using your Google Account)</h3>
-<h4>When using a paid Code Assist License from your organization, remember to set the Google Cloud Project</h4>
-<pre><code class="language-bash"># Set your Google Cloud Project
-export GOOGLE_CLOUD_PROJECT=&quot;YOUR_PROJECT_ID&quot;
-gemini
-</code></pre>
-<h3>Option 2: Gemini API Key</h3>
-<p><strong>✨ Best for:</strong> Developers who need specific model control or paid tier access</p>
-<p><strong>Benefits:</strong></p>
-<ul>
-<li><strong>Model selection</strong>: Choose specific Gemini models</li>
-<li><strong>Usage-based billing</strong>: Upgrade for higher limits when needed</li>
-</ul>
-<pre><code class="language-bash"># Get your key from https://aistudio.google.com/apikey
-export GEMINI_API_KEY=&quot;YOUR_API_KEY&quot;
-gemini
-</code></pre>
-<h3>Option 3: Vertex AI</h3>
-<p><strong>✨ Best for:</strong> Enterprise teams and production workloads</p>
-<p><strong>Benefits:</strong></p>
-<ul>
-<li><strong>Enterprise features</strong>: Advanced security and compliance</li>
-<li><strong>Scalable</strong>: Higher rate limits with billing account</li>
-<li><strong>Integration</strong>: Works with existing Google Cloud infrastructure</li>
-</ul>
-<pre><code class="language-bash"># Get your key from Google Cloud Console
-export GOOGLE_API_KEY=&quot;YOUR_API_KEY&quot;
-export GOOGLE_GENAI_USE_VERTEXAI=true
-gemini
-</code></pre>
-<p>For Google Workspace accounts and other authentication methods, see the<br />
-<a href="https://www.geminicli.com/docs/get-started/authentication">authentication guide</a>.</p>
-<h2>🚀 Getting Started</h2>
-<blockquote>
-<p>[!NOTE]</p>
-<p>Gemini CLI is not optimized for the latest Gemini models. For the best coding<br />
-experience with Gemini models use<br />
-<a href="https://antigravity.google/product/antigravity-cli">Antigravity CLI</a></p>
-</blockquote>
-<h3>Basic Usage</h3>
-<h4>Start in current directory</h4>
-<pre><code class="language-bash">gemini
-</code></pre>
-<h4>Include multiple directories</h4>
-<pre><code class="language-bash">gemini --include-directories ../lib,../docs
-</code></pre>
-<h4>Use specific model</h4>
-<pre><code class="language-bash">gemini -m gemini-2.5-flash
-</code></pre>
-<h4>Non-interactive mode for scripts</h4>
-<p>Get a simple text response:</p>
-<pre><code class="language-bash">gemini -p &quot;Explain the architecture of this codebase&quot;
-</code></pre>
-<p>For more advanced scripting, including how to parse JSON and handle errors, use<br />
-the <code>--output-format json</code> flag to get structured output:</p>
-<pre><code class="language-bash">gemini -p &quot;Explain the architecture of this codebase&quot; --output-format json
-</code></pre>
-<p>For real-time event streaming (useful for monitoring long-running operations),<br />
-use <code>--output-format stream-json</code> to get newline-delimited JSON events:</p>
-<pre><code class="language-bash">gemini -p &quot;Run tests and deploy&quot; --output-format stream-json
-</code></pre>
-<h3>Quick Examples</h3>
-<h4>Start a new project</h4>
-<pre><code class="language-bash">cd new-project/
-gemini
-&gt; Write me a Discord bot that answers questions using a FAQ.md file I will provide
-</code></pre>
-<h4>Analyze existing code</h4>
-<pre><code class="language-bash">git clone https://github.com/google-gemini/gemini-cli
-cd gemini-cli
-gemini
-&gt; Give me a summary of all of the changes that went in yesterday
-</code></pre>
-<h2>📚 Documentation</h2>
-<h3>Getting Started</h3>
-<ul>
-<li><a href="https://www.geminicli.com/docs/get-started"><strong>Quickstart Guide</strong></a> - Get up<br />
-  and running quickly.</li>
-<li><a href="https://www.geminicli.com/docs/get-started/authentication"><strong>Authentication Setup</strong></a> -<br />
-  Detailed auth configuration.</li>
-<li><a href="https://www.geminicli.com/docs/reference/configuration"><strong>Configuration Guide</strong></a> -<br />
-  Settings and customization.</li>
-<li><a href="https://www.geminicli.com/docs/reference/keyboard-shortcuts"><strong>Keyboard Shortcuts</strong></a> -<br />
-  Productivity tips.</li>
-</ul>
-<h3>Core Features</h3>
-<ul>
-<li><a href="https://www.geminicli.com/docs/reference/commands"><strong>Commands Reference</strong></a> -<br />
-  All slash commands (<code>/help</code>, <code>/chat</code>, etc).</li>
-<li><a href="https://www.geminicli.com/docs/cli/custom-commands"><strong>Custom Commands</strong></a> -<br />
-  Create your own reusable commands.</li>
-<li><a href="https://www.geminicli.com/docs/cli/gemini-md"><strong>Context Files (GEMINI.md)</strong></a> -<br />
-  Provide persistent context to Gemini CLI.</li>
-<li><a href="https://www.geminicli.com/docs/cli/checkpointing"><strong>Checkpointing</strong></a> - Save<br />
-  and resume conversations.</li>
-<li><a href="https://www.geminicli.com/docs/cli/token-caching"><strong>Token Caching</strong></a> -<br />
-  Optimize token usage.</li>
-</ul>
-<h3>Tools &amp; Extensions</h3>
-<ul>
-<li>[<strong>Built-in Tools Overview</strong>](https://www.geminicli.com/docs/refere</li>
-</ul>
+<p><code>bash
+  sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0 libayatana-appindicator3-1 librsvg2-2</code></p>
+<p>Packaged stable and nightly desktop builds check for updates in the background and offer them in<br />
+<strong>Settings → Updates</strong>: <strong>Download</strong> → <strong>Preparing update</strong> → <strong>Install &amp; Restart</strong>. Nothing is applied until<br />
+you choose <strong>Install &amp; Restart</strong>. ThinkRail then shows the installation's progress and log, closes, and<br />
+reopens on the new version. After the restart it tells you whether the update installed. If it didn't, it<br />
+explains why and offers to retry. The updater appears only when the package car</p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/google-gemini/gemini-cli#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/JetBrains/thinkrail#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1704,109 +1813,144 @@ gemini
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">jbiaojerry /</span>
-          <a href="https://github.com/jbiaojerry/ebook-treasure-chest" target="_blank" rel="noopener">ebook-treasure-chest</a>
+          <span class="repo-owner">coollabsio /</span>
+          <a href="https://github.com/coollabsio/coolify" target="_blank" rel="noopener">coolify</a>
         </div>
-        <div class="repo-desc">欢迎来到电子书下载宝库，一个汇聚了各类电子书下载链接的地方。无论你是喜欢阅读经典文学、经管励志、终身学习、职场创业、技术手册还是其他类型的书籍，这里都能满足你的需求。 该库涵盖了帆书app(原樊登读书)、微信读书、京东读书、喜马拉雅等读书app的大部分电子书。</div>
+        <div class="repo-desc">An open-source, self-hostable PaaS alternative to Vercel, Heroku &amp; Netlify that lets you easily deploy static sites, databases, full-stack applications and 360+ one-click services on your own servers.</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 22,955</span>
-      <span class="meta-item">🍴 3,214</span>
-      <span class="stars-today">⭐ 227 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#4F5D95"></span>PHP</span>
+      <span class="meta-item">⭐ 64,806</span>
+      <span class="meta-item">🍴 5,817</span>
+      <span class="stars-today">⭐ 152 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <p align="center">
-<img src=".github/logo.png" alt="Project Logo">
-</p>
+    <div align="center">
 
-<h1>电子书下载宝库</h1>
-<p><img alt="GitHub" src="https://img.shields.io/github/license/jbiaojerry/ebook-treasure-chest" /><br />
-<img alt="GitHub stars" src="https://img.shields.io/github/stars/jbiaojerry/ebook-treasure-chest?style=social" /><br />
-<img alt="GitHub forks" src="https://img.shields.io/github/forks/jbiaojerry/ebook-treasure-chest?style=social" /></p>
-<blockquote>
-<p><strong>🌐 <a href="https://jbiaojerry.github.io/ebook-treasure-chest/">在线访问 GitHub Pages</a></strong> - 体验强大的实时搜索功能和多关键字搜索，快速找到你想要的电子书！</p>
-</blockquote>
-<p>欢迎来到电子书下载宝库，一个汇聚了各类电子书下载链接的地方。无论你是喜欢阅读经典文学、经管励志、终身学习、职场创业、技术手册还是其他类型的书籍，这里都能满足你的需求。<br />
-该库涵盖了帆书app(原樊登读书)、微信读书、京东读书、喜马拉雅等读书app的大部分电子书。</p>
-<h2>简介</h2>
-<p>我们从各个电子书网站上精心收集了各种电子书下载链接，并根据常用的标签对它们进行了简单分类。每本书都包括了三种常见格式文件：epub、mobi 和 azw3，以满足不同阅读设备和喜好的需求。</p>
-<h2>🔍 如何使用</h2>
-<p>浏览我们的下载宝库非常简单：</p>
-<h3>🌐 实时快速搜索（推荐）</h3>
-<p><strong>访问 <a href="https://jbiaojerry.github.io/ebook-treasure-chest/">GitHub Pages 实时在线搜索页面</a></strong>，体验强大的实时快速搜索和多关键词搜索功能：</p>
-<ul>
-<li><strong>🔎 实时搜索</strong>：输入书名、作者或分类关键词，即时显示匹配结果</li>
-<li><strong>💡 多关键词搜索</strong>：支持同时搜索多个关键词（用空格分隔）</li>
-</ul>
-<p><img alt="搜索功能演示" src=".github/search-demo.gif?v=2" /></p>
-<h3>💡 搜索技巧</h3>
-<ul>
-<li><strong>在线搜索</strong>：访问 GitHub Pages 页面，使用实时搜索功能（推荐）</li>
-<li><strong>Ctrl+F</strong>：在 GitHub 页面使用浏览器搜索功能</li>
-<li><strong>热门分类</strong>：文学、历史、科普、管理、社会、推理等</li>
-<li><strong>按需查找</strong>：职场、创业、技术、投资、心理学等专业领域</li>
-</ul>
-<h2>☕ 请我们喝咖啡</h2>
-<blockquote>
-<p><strong>🌟 如果这个项目对你有帮助，欢迎请我们喝杯咖啡！你的支持是我们持续维护和更新这个项目的动力。</strong></p>
-</blockquote>
-<div align="center">
+<img src="./public/coolify-logo.svg" alt="Coolify logo" width="120" />
 
-<img src=".github/赞赏码.jpg" alt="赞赏码" width="200">
+# Coolify
 
-**感谢所有支持我们的赞助人！**  
-查看 [📋 赞助人名单](sponsors.md) 了解已赞赏的赞助人信息。
+**An open-source platform to deploy applications, databases, and services on your own servers.**
+
+Open source & free forever, backed by our [philosophy](https://coolify.io/philosophy).
+
+![Latest Release Version](https://img.shields.io/badge/dynamic/json?labelColor=grey&color=6366f1&label=Latest%20released%20version&url=https%3A%2F%2Fcdn.coollabs.io%2Fcoolify%2Fversions.json&query=coolify.v4.version&style=for-the-badge
+)
+
+[Website](https://coolify.io) · [Documentation](https://coolify.io/docs) · [Cloud](https://app.coolify.io) · [Discord](https://coollabs.io/discord) · [Community](https://github.com/coollabsio/coolify/discussions)
 
 </div>
 
-<h1>📚 索引目录</h1>
-<blockquote>
-<p><strong>💡 使用 Ctrl+F 快速搜索关键词，或点击下方标签直接进入分类页面</strong></p>
-</blockquote>
-<h2>🔥 热门分类</h2>
+<h2>What is Coolify?</h2>
+<p>Coolify is an open-source and self-hostable alternative to Heroku, Netlify, and Vercel. It helps you manage servers, applications, and databases on your own hardware. You only need an SSH connection.</p>
+<p>You can use a VPS, a bare-metal server, a Raspberry Pi, or any other server that accepts SSH connections. Coolify gives you the convenience of a cloud platform while you keep control of your infrastructure.</p>
+<p>Your configurations stay on your servers. If you stop using Coolify, your running resources continue to work and remain manageable.</p>
+<h2>What can Coolify do?</h2>
 <ul>
-<li><a href="md/文学.md">文学(2711)</a>  | - <a href="md/历史.md">历史(1748)</a>  | - <a href="md/科普.md">科普(743)</a>  | - <a href="md/管理.md">管理(613)</a>  | - <a href="md/社会.md">社会(558)</a>  | - <a href="md/推理.md">推理(531)</a>  | - <a href="md/经典.md">经典(494)</a>  | - <a href="md/经济.md">经济(487)</a> </li>
-<li><a href="md/哲学.md">哲学(431)</a>  | - <a href="md/传记.md">传记(413)</a>  | - <a href="md/美国.md">美国(399)</a>  | - <a href="md/心理.md">心理(396)</a>  | - <a href="md/悬疑.md">悬疑(393)</a>  | - <a href="md/商业.md">商业(387)</a>  | - <a href="md/励志.md">励志(373)</a>  | - <a href="md/金融.md">金融(370)</a> </li>
-<li><a href="md/随笔.md">随笔(368)</a>  | - <a href="md/投资.md">投资(365)</a>  | - <a href="md/思维.md">思维(353)</a>  | - <a href="md/文化.md">文化(344)</a>  | - <a href="md/科幻.md">科幻(286)</a>  | - <a href="md/中国.md">中国(281)</a>  | - <a href="md/成长.md">成长(248)</a>  | - <a href="md/漫画.md">漫画(227)</a> </li>
-<li><a href="md/英国.md">英国(223)</a>  | - <a href="md/政治.md">政治(202)</a>  | - <a href="md/纪实.md">纪实(199)</a>  | - <a href="md/艺术.md">艺术(191)</a>  | - <a href="md/科学.md">科学(177)</a>  | - <a href="md/散文.md">散文(168)</a>  | - <a href="md/职场.md">职场(155)</a>  | - <a href="md/法国.md">法国(147)</a> </li>
-<li><a href="md/生活.md">生活(145)</a>  | - <a href="md/互联网.md">互联网(138)</a>  | - <a href="md/营销.md">营销(128)</a>  | - <a href="md/女性.md">女性(125)</a>  | - <a href="md/二战.md">二战(118)</a>  | - <a href="md/奇幻.md">奇幻(116)</a>  | - <a href="md/股票.md">股票(115)</a>  | - <a href="md/德国.md">德国(101)</a> </li>
-<li><a href="md/战争.md">战争(101)</a>  | - <a href="md/学习.md">学习(101)</a>  | - <a href="md/绘本.md">绘本(100)</a>  | - <a href="md/理财.md">理财(96)</a>  | - <a href="md/世界.md">世界(92)</a>  | - <a href="md/教育.md">教育(88)</a>  | - <a href="md/创业.md">创业(86)</a>  | - <a href="md/欧洲.md">欧洲(85)</a> </li>
-<li><a href="md/治愈.md">治愈(84)</a>  | - <a href="md/沟通.md">沟通(84)</a>  | - <a href="md/名著.md">名著(81)</a>  | - <a href="md/军事.md">军事(80)</a>  | - <a href="md/爱情.md">爱情(78)</a>  | - <a href="md/人物.md">人物(77)</a>  | - <a href="md/医学.md">医学(74)</a>  | - <a href="md/物理.md">物理(70)</a> </li>
-<li><a href="md/诗歌.md">诗歌(67)</a>  | - <a href="md/国学.md">国学(66)</a>  | - <a href="md/健康.md">健康(65)</a>  | - <a href="md/科技.md">科技(60)</a>  | - <a href="md/写作.md">写作(58)</a>  | - <a href="md/人文.md">人文(57)</a>  | - <a href="md/旅行.md">旅行(55)</a>  | - <a href="md/个人.md">个人(55)</a> </li>
-<li><a href="md/民国.md">民国(53)</a>  | - <a href="md/心理学.md">心理学(53)</a>  | - <a href="md/自然.md">自然(52)</a>  | - <a href="md/当代.md">当代(52)</a>  | - <a href="md/杂文.md">杂文(51)</a>  | - <a href="md/外国.md">外国(48)</a>  | - <a href="md/思想.md">思想(47)</a>  | - <a href="md/育儿.md">育儿(47)</a> </li>
-<li><a href="md/人类.md">人类(47)</a>  | - <a href="md/计算机.md">计算机(47)</a>  | - <a href="md/宗教.md">宗教(46)</a>  | - <a href="md/犯罪.md">犯罪(44)</a>  | - <a href="md/人生.md">人生(44)</a>  | - <a href="md/美食.md">美食(43)</a>  | - <a href="md/古典.md">古典(43)</a>  | - <a href="md/编程.md">编程(43)</a> </li>
-<li><a href="md/逻辑.md">逻辑(42)</a>  | - <a href="md/诗词.md">诗词(42)</a>  | - <a href="md/交易.md">交易(42)</a>  | - <a href="md/言情.md">言情(40)</a>  | - <a href="md/未来.md">未来(40)</a>  | - <a href="md/回忆录.md">回忆录(39)</a>  | - <a href="md/神话.md">神话(39)</a>  | - <a href="md/数学.md">数学(39)</a> </li>
-<li><a href="md/晚清.md">晚清(38)</a>  | - <a href="md/侦探.md">侦探(38)</a>  | - <a href="md/人工智能.md">人工智能(38)</a>  | - <a href="md/青春.md">青春(38)</a>  | - <a href="md/近代史.md">近代史(38)</a>  | - <a href="md/方法.md">方法(37)</a>  | - <a href="md/儿童.md">儿童(37)</a>  | - <a href="md/社交.md">社交(36)</a> </li>
-<li><a href="md/创新.md">创新(36)</a>  | - <a href="md/生物.md">生物(35)</a>  | - <a href="md/宇宙.md">宇宙(35)</a>  | - <a href="md/电影.md">电影(34)</a>  | - <a href="md/意大利.md">意大利(34)</a>  | - <a href="md/运营.md">运营(34)</a>  | - <a href="md/游记.md">游记(33)</a>  | - <a href="md/饮食.md">饮食(32)</a> </li>
-<li><a href="md/情绪.md">情绪(31)</a>  | - <a href="md/企业.md">企业(31)</a>  | - <a href="md/罗马.md">罗马(31)</a>  | - <a href="md/博物馆.md">博物馆(29)</a>  | - <a href="md/心灵.md">心灵(29)</a>  | - <a href="md/武侠.md">武侠(29)</a>  | - <a href="md/Python.md">Python(28)</a>  | - <a href="md/台湾.md">台湾(28)</a> </li>
-<li><a href="md/音乐.md">音乐(27)</a>  | - <a href="md/思考.md">思考(27)</a>  | - <a href="md/明朝.md">明朝(26)</a>  | - <a href="md/销售.md">销售(26)</a>  | - <a href="md/三国.md">三国(26)</a>  | - <a href="md/运动.md">运动(26)</a>  | - <a href="md/玄幻.md">玄幻(26)</a>  | - <a href="md/阅读.md">阅读(26)</a> </li>
-<li><a href="md/英语.md">英语(26)</a>  | - <a href="md/工作.md">工作(26)</a>  | - <a href="md/健身.md">健身(25)</a>  | - <a href="md/俄罗斯.md">俄罗斯(25)</a>  | - <a href="md/人性.md">人性(25)</a>  | - <a href="md/戏剧.md">戏剧(23)</a>  | - <a href="md/天文.md">天文(23)</a>  | - <a href="md/经济学.md">经济学(23)</a> </li>
-<li><a href="md/动物.md">动物(23)</a>  | - <a href="md/法律.md">法律(23)</a>  | - <a href="md/绘画.md">绘画(22)</a>  | - <a href="md/情感.md">情感(21)</a>  | - <a href="md/恐怖.md">恐怖(21)</a>  | - <a href="md/情商.md">情商(21)</a>  | - <a href="md/建筑.md">建筑(20)</a>  | - <a href="md/清史.md">清史(20)</a> </li>
-<li><a href="md/西方.md">西方(20)</a>  | - <a href="md/苏联.md">苏联(20)</a>  | - <a href="md/进化.md">进化(20)</a>  | - <a href="md/城市.md">城市(20)</a>  | - <a href="md/货币.md">货币(20)</a>  | - <a href="md/现代.md">现代(20)</a>  | - <a href="md/时间.md">时间(19)</a>  | - <a href="md/魔幻.md">魔幻(19)</a> </li>
-<li><a href="md/演讲.md">演讲(19)</a>  | - <a href="md/惊悚.md">惊悚(19)</a>  | - <a href="md/英文.md">英文(19)</a>  | - <a href="md/摄影.md">摄影(19)</a>  | - <a href="md/读书.md">读书(19)</a>  | - <a href="md/古籍.md">古籍(19)</a>  | - <a href="md/决策.md">决策(18)</a>  | - <a href="md/考古.md">考古(18)</a> </li>
-<li><a href="md/古代.md">古代(18)</a>  | - <a href="md/成功.md">成功(18)</a>  | - <a href="md/设计.md">设计(18)</a>  | - <a href="md/社科.md">社科(18)</a>  | - <a href="md/印度.md">印度(18)</a>  | - <a href="md/经管.md">经管(18)</a>  | - <a href="md/地理.md">地理(18)</a>  | - <a href="md/社会学.md">社会学(17)</a> </li>
-<li><a href="md/文案.md">文案(17)</a>  | - <a href="md/世界史.md">世界史(17)</a>  | - <a href="md/童话.md">童话(17)</a>  | - <a href="md/人类学.md">人类学(17)</a>  | - <a href="md/社会学人类学.md">社会学人类学(17)</a>  | - <a href="md/鸡汤.md">鸡汤(17)</a>  | - <a href="md/广告.md">广告(16)</a>  | - <a href="md/生命.md">生命(16)</a> </li>
-<li><a href="md/唐朝.md">唐朝(16)</a>  | - <a href="md/自传.md">自传(16)</a>  | - <a href="md/财富.md">财富(16)</a>  | - <a href="md/口才.md">口才(16)</a>  | - <a href="md/语言.md">语言(16)</a>  | - <a href="md/市场.md">市场(15)</a>  | - <a href="md/古希腊.md">古希腊(15)</a>  | - <a href="md/巴菲特.md">巴菲特(15)</a> </li>
-<li><a href="md/欧洲史.md">欧洲史(15)</a>  | - <a href="md/法医.md">法医(15)</a>  | - <a href="md/文明.md">文明(15)</a>  | - <a href="md/养生.md">养生(15)</a>  | - <a href="md/明史.md">明史(15)</a>  | - <a href="md/佛学.md">佛学(15)</a>  | - <a href="md/战略.md">战略(15)</a>  | - <a href="md/拉美.md">拉美(15)</a> </li>
-<li><a href="md/以色列.md">以色列(15)</a>  | - <a href="md/文革.md">文革(15)</a>  | - <a href="md/食帖.md">食帖(14)</a>  | - <a href="md/认知.md">认知(14)</a>  | - <a href="md/效率.md">效率(14)</a>  | - <a href="md/间谍.md">间谍(14)</a>  | - <a href="md/挪威.md">挪威(13)</a>  | - <a href="md/大数据.md">大数据(13)</a> </li>
-<li><a href="md/中世纪.md">中世纪(13)</a>  | - <a href="md/非洲.md">非洲(13)</a>  | - <a href="md/谈判.md">谈判(13)</a>  | - <a href="md/一战.md">一战(12)</a>  | - <a href="md/数据.md">数据(12)</a>  | - <a href="md/财务.md">财务(12)</a>  | - <a href="md/零售.md">零售(12)</a>  | - <a href="md/新经济.md">新经济(12)</a> </li>
-<li><a href="md/记忆.md">记忆(12)</a>  | - <a href="md/基因.md">基因(12)</a>  | - <a href="md/创意.md">创意(12)</a>  | - <a href="md/领导力.md">领导力(12)</a>  | - <a href="md/技术.md">技术(12)</a>  | - <a href="md/区块链.md">区块链(11)</a>  | - <a href="md/跑步.md">跑步(11)</a>  | - <a href="md/西班牙.md">西班牙(11)</a> </li>
-<li><a href="md/家庭.md">家庭(11)</a>  | - <a href="md/焦虑.md">焦虑(11)</a>  | - <a href="md/灵异.md">灵异(11)</a>  | - <a href="md/人格.md">人格(11)</a>  | - <a href="md/猫.md">猫(11)</a>  | - <a href="md/俄国.md">俄国(11)</a>  | - <a href="md/思想史.md">思想史(11)</a>  | - <a href="md/西藏.md">西藏(11)</a> </li>
-<li><a href="md/趋势.md">趋势(11)</a>  | - <a href="md/博弈.md">博弈(11)</a>  | - <a href="md/蒙古.md">蒙古(11)</a>  | - <a href="md/温暖.md">温暖(11)</a>  | - <a href="md/植物.md">植物(11)</a>  | - <a href="md/两性.md">两性(11)</a>  | - <a href="md/中东.md">中东(11)</a>  | - <a href="md/抗战.md">抗战(11)</a> </li>
-<li><a href="md/谍战.md">谍战(11)</a>  | - <a href="md/探险.md">探险(10)</a>  | - <a href="md/通识.md">通识(10)</a>  | - <a href="md/量子.md">量子(10)</a>  | - <a href="md/近代.md">近代(10)</a>  | - <a href="md/海洋.md">海洋(10)</a>  | - <a href="md/美学.md">美学(10)</a>  | - <a href="md/诗集.md">诗集(10)</a> </li>
-<li><a href="md/汉朝.md">汉朝(10)</a>  | - <a href="md/保健.md">保健(10)</a>  | - <a href="md/华尔街.md">华尔街(10)</a>  | - <a href="md/经营.md">经营(10)</a>  | - <a href="md/医疗.md">医疗(10)</a>  | - <a href="md/期货.md">期货(10)</a>  | - <a href="md/新媒体.md">新媒体(10)</a>  | - <a href="md/工具.md">工具(10)</a> </li>
-<li><a href="md/茶.md">茶(10)</a>  | - <a href="md/算法.md">算法(10)</a>  | - <a href="md/希腊.md">希腊(10)</a>  | - <a href="md/探险，艺术.md">探险，艺术(10)</a>  | - <a href="md/百科.md">百科(10)</a>  | - <a href="md/清朝.md">清朝(10)</a>  | - <a href="md/文艺.md">文艺(10)</a>  | - <a href="md/睡眠.md">睡眠(10)</a> </li>
-<li><a href="md/基金.md">基金(10)</a>  | - <a href="md/莎士比亚.md">莎士比亚(10)</a>  | - <a href="md/商战.md">商战(9)</a>  | - <a href="md/网络.md">网络(9)</a>  | - <a href="md/通俗.md">通俗(9)</a>  | - <a href="md/幽默.md">幽默(9)</a>  | - <a href="md/中医.md">中医(9)</a>  | - <a href="md/春秋.md">春秋(9)</a> </li>
-<li><a href="md/投机.md">投机(9)</a>  | - <a href="md/官场.md">官场(9)</a>  | - <a href="md/战国.md">战国(9)</a>  | - <a href="md/北京.md">北京(9)</a>  | - <a href="md/瑞典.md">瑞典(9)</a>  | - <a href="md/技巧.md">技巧(9)</a>  | - <a href="md/规划.md">规划(9)</a>  | - <a href="md/证券.md">证券(9)</a> </li>
-<li><a href="md/红楼梦.md">红楼梦(9)</a>  | - <a href="md/习惯.md">习惯(9)</a>  | - <a href="md/故事.md">故事(9)</a>  | - <a href="md/华为.md">华为(9)</a>  | - <a href="md/减肥.md">减肥(9)</a>  | - <a href="md/资本.md">资本(8)</a>  | - <a href="md/古罗马.md">古罗马(8)</a>  | - <a href="md/埃及.md">埃及(8)</a> </li>
-<li><a href="md/硅谷.md">硅谷(8)</a>  | - [冷战(8)](md/冷战</li>
+<li><strong>Deploy any application:</strong> Build from GitHub, GitLab, Bitbucket, or Gitea with Nixpacks, Railpack, Dockerfile, Docker Compose, or a prebuilt Docker image.</li>
+<li><strong>Run databases and services:</strong> Deploy managed databases and more than 360 one-click services with persistent storage and generated credentials.</li>
+<li><strong>Automate deployments:</strong> Deploy on every Git push, create pull-request previews, call deployment webhooks, and roll back to retained application images.</li>
+<li><strong>Manage networking:</strong> Configure custom domains, automatic HTTPS certificates, reverse proxies, health checks, and container networks.</li>
+<li><strong>Operate your infrastructure:</strong> Manage multiple servers, inspect deployment and runtime logs, open container terminals, and monitor resource status.</li>
+<li><strong>Protect your workloads:</strong> Configure database and storage backups, scheduled tasks, environment variables, secrets, and notifications.</li>
+<li><strong>Integrate with your workflow:</strong> Manage resources through the dashboard, API, CLI, MCP, and team-based access controls.</li>
+</ul>
+<h2>Quick start</h2>
+<p>Install Coolify on a supported server with one command:</p>
+<pre><code class="language-bash">curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
+</code></pre>
+<p>Read the <a href="https://coolify.io/docs/installation">installation guide</a> for requirements and detailed instructions. You can also review the <a href="./scripts/install.sh">installation script</a> before you run it.</p>
+<h2>Self-hosted or Cloud</h2>
+<table>
+<thead>
+<tr>
+<th>Self-hosted</th>
+<th>Coolify Cloud</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Install Coolify on your own server.</td>
+<td>Use a Coolify instance that we maintain.</td>
+</tr>
+<tr>
+<td>Control and maintain the complete platform.</td>
+<td>Get high availability and less maintenance.</td>
+</tr>
+<tr>
+<td>Free and open source.</td>
+<td>Paid service with email notifications and additional support.</td>
+</tr>
+</tbody>
+</table>
+<p>The recommended self-hosted setup uses one server for Coolify and one or more servers for deployed resources. If you do not want to maintain the Coolify server, use <a href="https://app.coolify.io">Coolify Cloud</a>. See <a href="https://coolify.io">coolify.io</a> for current pricing.</p>
+<h2>Community and support</h2>
+<ul>
+<li>Read the <a href="https://coolify.io/docs">documentation</a>.</li>
+<li>Join the community on <a href="https://coollabs.io/discord">Discord</a>.</li>
+<li>Ask questions in <a href="https://github.com/coollabsio/coolify/discussions">GitHub Discussions</a>.</li>
+<li>Read the <a href="./CONTRIBUTING.md">contribution guide</a> before you submit a change.</li>
+<li>Review the <a href="./CODE_OF_CONDUCT.md">code of conduct</a>.</li>
+<li>Contact the team through the <a href="https://coolify.io/docs/contact">support page</a>.</li>
+</ul>
+<h2>Donations</h2>
+<p>To stay completely free and open-source, with no feature behind the paywall and evolve the project, we need your help. If you like Coolify, please consider donating to help us fund the project's future development.</p>
+<p><a href="https://coolify.io/sponsorships">coolify.io/sponsorships</a></p>
+<p>Thank you so much!</p>
+<h3>Huge Sponsors</h3>
+<ul>
+<li><a href="https://www.context.dev/">Context.dev</a> - Web scraping API for AI agents</li>
+<li><a href="https://ginernet.com/">Ginernet</a> - Hosting powerful servers in Spain</li>
+<li><a href="https://serpapi.com">SerpAPI</a> - Google Search API — Scrape Google and other search engines from our fast, easy, and complete API.</li>
+<li><a href="https://www.mvps.net">MVPS</a> - Cheap VPS servers at the highest possible quality</li>
+<li><a href="https://screenshotone.com">ScreenshotOne</a> - Screenshot API for devs</li>
+<li><a href="https://privatealps.net">PrivateAlps</a> - Cloud Services Provider, VPS, servers infrastructure for people who care about privacy and control</li>
+<li><a href="https://seibert.link/coolifysoftware">Seibert Group</a> - Boost productivity company-wide with AI agents like Claude Code</li>
+<li><a href="https://contabo.com/en/coolify-vps/">Contabo</a> - Cloud VPS &amp; dedicated servers at unbeatable prices</li>
+</ul>
+<h3>Big Sponsors</h3>
+<ul>
+<li><a href="https://www.vanaways.co.uk">Vanaways</a> - New vans for sale and lease across the UK</li>
+<li><a href="https://www.cloudways.com/en/?id=2125302">Cloudways</a> - Managed cloud hosting platform by DigitalOcean</li>
+<li><a href="https://www.bytebase.com">ByteBase</a> - Database CI/CD and Security at Scale</li>
+<li><a href="https://ramnode.com/">Ramnode</a> - High Performance Cloud VPS Hosting</li>
+<li><a href="https://23m.com">23M</a> - Your experts for high-availability hosting solutions!</li>
+<li><a href="https://macarne.com">Macarne</a> - Best IP Transit &amp; Carrier Ethernet Solutions for Simplified Network Connectivity</li>
+<li><a href="http://htznr.li/CoolifyXHetzner">Hetzner</a> - Server, cloud, hosting, and data center solutions</li>
+<li><a href="https://logto.io">Logto</a> - The better identity infrastructure for developers</li>
+<li><a href="https://supadata.ai/">Supadata</a> - Scrape YouTube, web, and files. Get AI-ready, clean data for your next project. </li>
+<li><a href="https://tolgee.io">Tolgee</a> - The open source localization platform</li>
+<li><a href="https://bc.direct">Best Consultant</a> - Your trusted technology consulting partner</li>
+<li><a href="https://arcjet.com">ArcJet</a> - Advanced web security and performance solutions</li>
+<li><a href="https://supa.guide">SupaGuide</a> - Your comprehensive guide to Supabase</li>
+<li><a href="https://coderabbit.ai">CodeRabbit</a> - Cut Code Review Time &amp; Bugs in Half</li>
+<li><a href="https://convex.link/coolify.io">Convex</a> - Convex is the open-source reactive database for web app developers.</li>
+<li><a href="https://billing.goldenvm.com">GoldenVM</a> - Premium virtual machine hosting solutions</li>
+<li><a href="https://comit.international">Comit International</a> - New York Times award–winning contractor!</li>
+<li><a href="https://www.trycomp.ai">Compai</a> - The open source compliance automation platform that does everything you need to get compliant, fast. Open source alternative to Drata &amp; Vanta.</li>
+<li><a href="https://www.tigrisdata.com">Tigris</a> - Modern S3 Alternative</li>
+<li><a href="https://blacksmith.sh">Blacksmith</a> - Infrastructure automation platform</li>
+<li><a href="https://jobscollider.com/remote-jobs">JobsCollider</a> - 30,000+ remote jobs for developers</li>
+<li><a href="https://darweb.nl/?ref=coolify.io&amp;utm_source=coolify.io">Darweb</a> - Design. Develop. Deliver. Specialized in 3D CPQ Solutions for eCommerce.</li>
+<li><a href="https://www.hostinger.com/vps/coolify-hosting">Hostinger</a> - Web hosting and VPS solutions</li>
+<li><a href="https://vibe.mobb.ai/">Mobb</a> - Secure Your AI-Generated Code to Unlock Dev Productivity</li>
+<li><a href="https://www.ubicloud.com">Ubicloud</a> - Open source cloud infrastructure platform</li>
+<li><a href="https://pfglabs.com">PFGLabs</a> - Build Real Projects with Golang</li>
+<li><a href="https://juxtdigital.com">JuxtDigital</a> - Digital PR &amp; AI Authority Building Agency</li>
+<li><a href="https://saasykit.com">SaasyKit</a> - Complete SaaS starter kit for developers</li>
+<li><a href="https://americancloud.com">American Cloud</a> - US-based cloud infrastructure services</li>
+<li><a href="https://www.greptile.com">Greptile</a> - The AI Code Reviewer</li>
+<li><a href="https://vpsdime.com/">VPSDime</a> - Cheap VPS Hosting - 4GB for $5/month</li>
+<li><a href="https://cloud.dataforest.net/en">dataforest Cloud</a> - Deploy cloud servers as seeds independently in seconds. Enterprise hardware, premium network, 100% made in Germany.</li>
+<li><a href="https://ishosting.com/">ISHosting</a> - Hosting and VPS solutions</li>
+<li><a href="https://nodeplus.ai/">NodePlus.ai</a> - AI that reads every system your business</li>
 </ul>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/jbiaojerry/ebook-treasure-chest#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/coollabsio/coolify#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -1817,196 +1961,298 @@ gemini
     <div class="card-header">
       <div class="card-header-left">
         <div class="repo-name">
-          <span class="repo-owner">makecindy /</span>
-          <a href="https://github.com/makecindy/cindy" target="_blank" rel="noopener">cindy</a>
+          <span class="repo-owner">cloudflare /</span>
+          <a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">security-audit-skill</a>
         </div>
-        <div class="repo-desc">Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。</div>
+        <div class="repo-desc">A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings</div>
       </div>
     </div>
     <div class="meta">
-      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 4,341</span>
-      <span class="meta-item">🍴 619</span>
-      <span class="stars-today">⭐ 477 stars today</span>
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 47,669</span>
+      <span class="meta-item">🍴 2,963</span>
+      <span class="stars-today">⭐ 2,878 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
   <div class="readme-body">
-    <p align="center">
-  <a href="https://cindy.app"><img src=".github/assets/hero-en.webp" width="100%" alt="CINDY — Consider it done. The open-source AI agent that works out of the box, doing real work on your own computer."></a>
-</p>
-
-<p align="center">
-  <strong>English</strong> · <a href="README.zh-CN.md">简体中文</a>
-</p>
-
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License" /></a>
-  <a href="https://github.com/makecindy/cindy/actions/workflows/ci.yml"><img src="https://github.com/makecindy/cindy/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-22.x-brightgreen.svg" alt="Node.js 22.x" /></a>
-  <a href="https://pnpm.io"><img src="https://img.shields.io/badge/pnpm-10-orange.svg" alt="pnpm" /></a>
-</p>
-
-<p align="center">
-  🌐 <a href="https://cindy.app">cindy.app</a> &nbsp;·&nbsp; ⬇️ <a href="https://cindy.app/download/">Download</a>
-</p>
-
-<p>Cindy is an open-source AI agent that works out of the box. She brings multiple<br />
-harnesses, models and tools into one agent that finishes real work in your<br />
-projects and apps. Ready from day one, yours to shape over time.</p>
-<p>Cindy runs locally on your own machine, using your real files and logged-in<br />
-apps. The first supported harnesses are <strong>Claude Code</strong> and <strong>Codex</strong> — more are<br />
-being added, and a native harness is in the works. Models and harnesses mix<br />
-freely and can switch mid-task while your workspace, memory, skills and tools<br />
-stay continuous; one task can even be planned, executed in parallel, and<br />
-reviewed by agents on different harness × model combos. She can drive your<br />
-browser, computer and phone, and take work from IM and schedules.</p>
-<p>This repository is the open-source <strong>client</strong> for Cindy — the desktop and mobile<br />
-apps plus their shared packages, organized as a pnpm monorepo.</p>
-<p>The client is free to use, and its source code is open under Apache-2.0. Bring<br />
-models your way: sign in to the official Cindy service (usage deducted<br />
-transparently), authorize the <strong>Claude Code / Codex Coding Plan</strong> you already<br />
-pay for and keep using it inside Cindy — no duplicate bill — connect your own<br />
-API keys, or use local models.<br />
-See <a href="https://cindy.app">cindy.app</a> for service details,<br />
-<a href="https://cindy.app/#pricing">pricing</a>, and <a href="https://cindy.app/download/">downloads</a>.</p>
-<p>Linux users: see the <a href="docs/linux.md">Ubuntu, Arch Linux and Omarchy installation guide</a><br />
-for installation, updates, keyring setup and migration from a manual install.</p>
-<h2>Yours to shape</h2>
-<p>Open source means more than visible — it means changeable:</p>
-<ul>
-<li><strong>Memory</strong> — correct her once and she does it right from then on, shared across harnesses.</li>
-<li><strong>Skills</strong> — teach a way of working once and reuse it everywhere; handing them to your team is in the making.</li>
-<li><strong>Automation</strong> — recurring work schedules itself, runs itself, reports back.</li>
-<li><strong>MCP</strong> — wire your internal tools and business systems into her reach.</li>
-<li><strong>Plugins</strong> — reshape features, UI and interactions, shared through an open marketplace <em>(in the making)</em>.</li>
-<li><strong>Source</strong> — audit, fork, extend, and contribute improvements back under Apache-2.0.</li>
-</ul>
-<p>Ready out of the box, never boxed in — start with<br />
-<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> and build Cindy with us.</p>
-<h2>What's in this repo</h2>
+    <h1>security-audit</h1>
+<p>A coding-agent skill that turns your agent into a security auditor. It orchestrates isolated agents through reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification, and target-neutral reporting.</p>
+<p>This is the skill that seeded Cloudflare's vulnerability discovery harness, described in <a href="https://blog.cloudflare.com/build-your-own-vulnerability-harness">Build your own vulnerability harness</a>. The harness grew into a multi-stage, fleet-wide system; this skill is the single-repo starting point it evolved from.</p>
+<h2>What it does</h2>
+<p>The skill runs a structured audit in six phases:</p>
+<ol>
+<li><strong>Reconnaissance</strong> -- map architecture, trust boundaries, input surfaces, prior evidence, and deterministic coverage in <code>architecture.md</code> and <code>coverage-ledger.json</code>.</li>
+<li><strong>Coverage-led hunting</strong> -- assign isolated hunters from ledger units, record their checks, and use coverage critics to find gaps.</li>
+<li><strong>Candidate validation</strong> -- give every unique candidate to a fresh verifier that tries to disprove it.</li>
+<li><strong>Structured output</strong> -- write <code>confirmed</code>, <code>needs_validation</code>, and <code>rejected</code> records to <code>findings.json</code> and validate them against <code>report-schema.json</code>.</li>
+<li><strong>Independent record verification</strong> -- fresh agents verify final source claims. Material replacements receive another independent verifier.</li>
+<li><strong>Target-neutral reporting</strong> -- derive <code>REPORT.md</code>, <code>FINDINGS-DETAIL.md</code>, and <code>NEEDS-VALIDATION.md</code> from the verified records and coverage ledger.</li>
+</ol>
+<p>The parent runs <code>validate-coverage-ledger.cjs</code> after creating the ledger and after each later ledger update. It runs <code>validate-findings.cjs</code> in Phase 4 and again after every Phase 5 replacement.</p>
+<p>The verdicts are distinct: <code>confirmed</code> has a complete source trace and bounded observed result, <code>needs_validation</code> has an exact unresolved fact and no severity, and <code>rejected</code> records a disproved candidate.</p>
+<p>Multiple runs against the same repo are additive. The skill uses prior ledgers and findings to target gaps, revalidate changed source, and carry forward current-source evidence without treating stale or unresolved work as covered.</p>
+<h2>Files</h2>
 <table>
 <thead>
 <tr>
-<th>Path</th>
-<th>Description</th>
+<th>File</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>apps/desktop</code></td>
-<td>Electron desktop client</td>
+<td><code>SKILL.md</code></td>
+<td>Setup, core principles, platform terminology, workflow overview, and audit anti-patterns</td>
 </tr>
 <tr>
-<td><code>apps/mobile</code></td>
-<td>Expo / React Native mobile client</td>
+<td><code>RECONNAISSANCE.md</code></td>
+<td>Phase 1 reconnaissance prompts and synthesis instructions</td>
 </tr>
 <tr>
-<td><code>packages/*</code></td>
-<td>Shared client capabilities (auth, device-link, agent orchestration, model providers, …)</td>
+<td><code>HUNTING.md</code></td>
+<td>Phase 2 orchestration, hunting methodology, and validation rules</td>
 </tr>
 <tr>
-<td><code>apps/*-bin</code></td>
-<td>Tool binaries shipped with the desktop app; none are committed — claude-code, codex, and ripgrep are downloaded per platform by <code>pnpm install</code>, and the Android platform-tools binaries are fetched (pinned version, sha256-verified) before Windows packaging</td>
+<td><code>ATTACK-CLASSES.md</code></td>
+<td>Core, wildcard, and obvious-things attack prompts</td>
+</tr>
+<tr>
+<td><code>MEMORY-SAFETY-AND-BINARY.md</code></td>
+<td>Memory-safety, binary, and kernel hunting classes for native targets</td>
+</tr>
+<tr>
+<td><code>AI-AND-LLM.md</code></td>
+<td>Prompt-injection, agent/tool, and output-handling hunting classes for LLM-backed targets</td>
+</tr>
+<tr>
+<td><code>WEB-PROTOCOL-AND-AUTH.md</code></td>
+<td>HTTP request-framing, cache, and authentication-protocol hunting classes for HTTP-protocol and auth targets</td>
+</tr>
+<tr>
+<td><code>CLIENT-SIDE.md</code></td>
+<td>DOM-injection, messaging-trust, UI-redress, and prototype-pollution hunting classes for client-side/browser targets</td>
+</tr>
+<tr>
+<td><code>SUPPLY-CHAIN-AND-RELEASE.md</code></td>
+<td>Dependency, CI, release, signing, update, plugin, and extension hunting classes</td>
+</tr>
+<tr>
+<td><code>CLOUD-AND-DEPLOYMENT.md</code></td>
+<td>IAM, infrastructure-as-code, container, serverless, ingress, and runtime-configuration hunting classes</td>
+</tr>
+<tr>
+<td><code>PROTOCOLS-RPC-AND-MESSAGING.md</code></td>
+<td>RPC, serialization, queue, broker, webhook, and streaming-protocol hunting classes</td>
+</tr>
+<tr>
+<td><code>RESOURCE-EXHAUSTION-AND-AVAILABILITY.md</code></td>
+<td>Shared resource, quota, queue, worker, and operator-spend hunting classes</td>
+</tr>
+<tr>
+<td><code>DATA-ISOLATION-AND-LIFECYCLE.md</code></td>
+<td>Tenant isolation, cache, search, export, backup, migration, deletion, and restore hunting classes</td>
+</tr>
+<tr>
+<td><code>DESKTOP-MOBILE-AND-LOCAL-IPC.md</code></td>
+<td>Native app, deep-link, webview, exported-component, helper, daemon, and local-IPC hunting classes</td>
+</tr>
+<tr>
+<td><code>VALIDATION-AND-REPORTING.md</code></td>
+<td>Phases 3–6 candidate validation, structured output, record verification, and reporting</td>
+</tr>
+<tr>
+<td><code>report-schema.json</code></td>
+<td>JSON schema for all three <code>findings.json</code> verdicts</td>
+</tr>
+<tr>
+<td><code>validate-findings.cjs</code></td>
+<td>Zero-dependency validator for <code>findings.json</code> in Phases 4 and 5</td>
+</tr>
+<tr>
+<td><code>validate-findings.test.cjs</code></td>
+<td>Findings-validator tests and producer-compatible fixture checks</td>
+</tr>
+<tr>
+<td><code>validate-coverage-ledger.cjs</code></td>
+<td>Zero-dependency validator for <code>coverage-ledger.json</code> in Phases 1–5</td>
+</tr>
+<tr>
+<td><code>validate-coverage-ledger.test.cjs</code></td>
+<td>Coverage-ledger validator tests</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Not in this repo:</strong> the backend service lives in a separate<br />
-repository and is not part of this monorepo.</p>
-<table>
-<thead>
-<tr>
-<th>Mode</th>
-<th>Account requirement</th>
-<th>Availability</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hosted service</td>
-<td>Cindy cloud account</td>
-<td>Use Cindy's full hosted service. See <a href="https://cindy.app/#pricing">pricing</a>.</td>
-</tr>
-<tr>
-<td>Skip Sign-In</td>
-<td>No Cindy sign-in required</td>
-<td>Choose “Skip Sign-In” on the login screen to use local agents; the app then shows the account state as “Not signed in”. Server-backed capabilities are unavailable in this state.</td>
-</tr>
-</tbody>
-</table>
-<h2>Prerequisites</h2>
-<ul>
-<li><strong>Node.js</strong> 22.x</li>
-<li><strong>pnpm</strong> 10.x (v11 is not yet supported)</li>
-<li><strong>Git LFS</strong></li>
-</ul>
-<h2>Getting started</h2>
-<p>Contributor setup, Git LFS, dependency updates, and access requirements are maintained in<br />
-<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.<br />
-Plugins are installed through SkillHub or manually.</p>
-<p>Minimal entry point:</p>
-<pre><code class="language-bash">git clone https://github.com/makecindy/cindy.git
-cd cindy
-git lfs pull
-pnpm install
+<h2>Installation</h2>
+<p>Install the skill with the <a href="https://skills.sh">Skills CLI</a>:</p>
+<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
+  --skill security-audit
 </code></pre>
-<h2>Development entry points</h2>
-<pre><code class="language-bash"># Mainland China Cindy account
-pnpm restart:desktop:remote --region=cn
-
-# Global Cindy account
-pnpm restart:desktop:remote --region=global
+<p>Use <code>--global</code> for a user-level installation:</p>
+<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
+  --skill security-audit \
+  --global
 </code></pre>
-<p>Remote development uses your own Cindy cloud account and existing login state, so<br />
-you can continue existing sessions and work while developing the client. Use <code>cn</code><br />
-for Mainland China accounts and <code>global</code> for everyone else; do not rely<br />
-on the internal default. Full desktop, mobile, data-isolation, and validation<br />
-workflows are in <a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.</p>
-<p>“Skip Sign-In” on the login screen runs local agents without a Cindy account<br />
-(shown in the app as “Not signed in”), not a connection to a local server.<br />
-Server-backed capabilities are unavailable in this state.</p>
-<p><strong>About the default servers:</strong> the client connects to Cindy's official cloud<br />
-services by default (endpoint manifests in<br />
-<a href="config/endpoint.json"><code>config/endpoint.json</code></a> and<br />
-<a href="config/endpoint.global.json"><code>config/endpoint.global.json</code></a>; desktop<br />
-auto-updates also come from the official CDN). This is intentional — external<br />
-developers don't need to self-host a server: sign in with your own Cindy<br />
-account in a dev build and develop / test directly against the official<br />
-servers.</p>
-<p>Skill Hub migration uses two separate manifest fields: released clients keep<br />
-using <code>skillhubApiBaseUrl</code> (the deprecated XD proxy), while current clients use<br />
-<code>cindySkillHubApiBaseUrl</code>. The current client deliberately does not fall back to<br />
-the legacy field when the new endpoint is absent.</p>
-<h2>Architecture</h2>
+<p>Run <code>npx skills --help</code> for agent-selection and non-interactive options.</p>
+<h2>Usage</h2>
+<p>Start your coding agent in (or pointed at) the codebase you want to audit, then ask it to do a security audit:</p>
+<pre><code>security audit this codebase
+</code></pre>
+<pre><code>find security vulnerabilities in ./src
+</code></pre>
+<pre><code>do a security review, output to ~/audits/my-project
+</code></pre>
+<p>The skill activates automatically when the request matches its trigger (security audit, find vulnerabilities, pen-test the code, etc.). A direct codebase audit or pen-test request uses full audit mode. Security questions and focused vulnerability work use guidance mode unless you request report artifacts. In full audit mode, an unspecified output directory defaults to <code>~/security-audit-skill/&lt;repo-name&gt;/run-&lt;N&gt;</code>. The workflow writes inside the target repository only when you explicitly select a directory that version control ignores.</p>
+<h2>Requirements</h2>
 <ul>
-<li><a href="DESIGN.md"><code>DESIGN.md</code></a> — visual design system, color tokens, and UI conventions</li>
-<li><a href="docs/README.md"><code>docs/README.md</code></a> — complete documentation and rules index</li>
-<li><a href="docs/auth-realm-routing.md"><code>docs/auth-realm-routing.md</code></a> — organization SSO region discovery and session endpoint routing</li>
-<li><a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> — contributor setup, validation, and submission workflow</li>
-<li><a href="AGENTS.md"><code>AGENTS.md</code></a> — engineering rules, launch/runtime contracts, and module boundaries</li>
-<li><a href="docs/dev-rules/"><code>docs/dev-rules/</code></a> — deep-dive architecture docs (e.g. Orca multi-agent orchestration)</li>
+<li>A coding agent with a model that supports tool use and parallel sub-agents</li>
+<li>Node.js for the zero-dependency findings and coverage-ledger validators</li>
+<li>An OS-enforced sandbox for target-controlled builds, tests, processes, browsers, emulators, fuzzers, and fixtures. It must disable external networking, use a sanitized allowlisted environment, enforce resource limits, and allow writes only to assigned scratch paths. Without these controls, the workflow keeps the lead as <code>needs_validation</code> instead of executing target code.</li>
 </ul>
-<h2>Contributing</h2>
-<p>Contributions go through pull requests into <code>main</code>. Read<br />
-<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> first, then use<br />
-<a href=".github/PULL_REQUEST_TEMPLATE.md"><code>.github/PULL_REQUEST_TEMPLATE.md</code></a>.<br />
-Every commit needs a <a href="DCO">Developer Certificate of Origin</a> sign-off<br />
-(<code>git commit -s</code>); a DCO check on each pull request enforces it, and no CLA is<br />
-required.<br />
-Please also follow <a href="CODE_OF_CONDUCT.en.md"><code>CODE_OF_CONDUCT.en.md</code></a>. For ordinary<br />
-usage questions, see <a href="SUPPORT.en.md"><code>SUPPORT.en.md</code></a>; report security issues<br />
-privately through <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a>.</p>
-<h2>Security</h2>
-<p>Never commit credentials or authorization files to the working tree. If you<br />
-discover a security issue, follow <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a> to report it<br />
-privately rather than opening a public issue.</p>
-<h2>Privacy &amp; telemetry</h2>
-<p><strong>Official distribution builds</strong> include <a href="https://www.taptap.io/tapdb">TapDB</a><br />
-usage analytics for product-level aggregate statistics (device / OS / app-version<br />
-metadata; associated with your account ID after sign-in). It does <strong>not</strong> collect<br />
-chat content, file content, </p>
+<h2>Design principles</h2>
+<ul>
+<li><strong>Only confirm established boundary failures.</strong> Keep a source-grounded blocked lead as <code>needs_validation</code> with its exact unresolved fact.</li>
+<li><strong>Adversarial validation.</strong> The agent that checks a finding is never the agent that found it.</li>
+<li><strong>Severity requires impact.</strong> Likelihood x impact, not deviation from a checklist.</li>
+<li><strong>Defense-in-depth gaps are not vulnerabilities.</strong> If Layer A prevents the attack, the absence of Layer B is a hardening note.</li>
+<li><strong>Multiple runs improve coverage.</strong> In our test runs, a single run found roughly half of the vulnerabilities that repeated runs found in total.</li>
+</ul>
+<h2>Contact</h2>
+<p>Questions, feedback, or comparing notes on AI-driven security tooling: security-ai-research@cloudflare.com</p>
+<h2>License</h2>
+<p>MIT -- see <a href="LICENSE">LICENSE</a>.</p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
-     <a href="https://github.com/makecindy/cindy#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+     <a href="https://github.com/cloudflare/security-audit-skill#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">AgriciDaniel /</span>
+          <a href="https://github.com/AgriciDaniel/claude-seo" target="_blank" rel="noopener">claude-seo</a>
+        </div>
+        <div class="repo-desc">Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions for live SEO data.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 21,608</span>
+      <span class="meta-item">🍴 2,990</span>
+      <span class="stars-today">⭐ 197 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!--
+  Claude SEO (claude-seo): free, open-source SEO audit plugin for Claude Code by Agrici Daniel.
+  Technical SEO, Core Web Vitals, E-E-A-T, Schema.org, AI search (GEO), local SEO, e-commerce and international SEO.
+  26 sub-skills and 19 specialist agents. MIT licensed.
+-->
+
+<p><img src="assets/readme/v3/hero.svg" width="1200" height="420" alt="Claude SEO: rank in Google, get cited by AI. Three bots climb from #48 to #1 by fixing crawl, speed, schema, AI access and authority, then Google, ChatGPT, Perplexity, Gemini and Claude cite the site." /></p>
+<h1 align="center">Claude SEO</h1>
+
+<p align="center">
+  <b>Free, open-source SEO audits inside <a href="https://claude.com/product/claude-code">Claude Code</a>.</b><br />
+  Rank higher in Google and get cited by AI search.
+</p>
+
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#see-it-in-action">Demo</a> ·
+  <a href="#real-results">Results</a> ·
+  <a href="#meet-the-team">Team</a> ·
+  <a href="#commands">Commands</a> ·
+  <a href="#pricing">Pricing</a> ·
+  <a href="#faq">FAQ</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/AgriciDaniel/claude-seo/actions/workflows/ci.yml"><img src="https://github.com/AgriciDaniel/claude-seo/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://claude.com/product/claude-code"><img src="https://img.shields.io/badge/Claude%20Code-Plugin-blue" alt="Claude Code plugin" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
+  <a href="https://github.com/AgriciDaniel/claude-seo/releases"><img src="https://img.shields.io/github/v/release/AgriciDaniel/claude-seo" alt="Version" /></a>
+  <a href="tests/"><img src="https://img.shields.io/badge/tests-1077%20passing-brightgreen" alt="Tests" /></a>
+  <a href="https://github.com/AgriciDaniel/claude-seo"><img src="https://img.shields.io/github/stars/AgriciDaniel/claude-seo?style=flat" alt="GitHub stars" /></a>
+  <a href="https://www.skool.com/ai-marketing-hub-pro"><img src="https://img.shields.io/badge/AI%20Marketing%20Hub-Pro%20community-purple" alt="AI Marketing Hub Pro community" /></a>
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/21053"><img src="https://trendshift.io/api/badge/repositories/21053" alt="AgriciDaniel/claude-seo on Trendshift: GitHub Trending #12 Repository Of The Day" width="250" height="55" /></a>
+</p>
+
+<p><strong>Claude SEO is a free SEO plugin for Claude Code.</strong> Give it any website and it runs a full SEO audit in 10 to 15 minutes, then hands you a clear action plan, sorted by what matters most.</p>
+<p>It checks everything a good SEO consultant would:</p>
+<ul>
+<li><strong>Technical SEO.</strong> Crawlability, indexing, sitemaps, robots.txt, redirects, page speed and Core Web Vitals.</li>
+<li><strong>Content quality.</strong> E-E-A-T (experience, expertise, authority and trust), thin pages and topic coverage.</li>
+<li><strong>Structured data.</strong> Finds, validates and writes Schema.org markup for rich results.</li>
+<li><strong>AI search (GEO).</strong> How likely Google AI Overviews, AI Mode, ChatGPT, Perplexity and Gemini are to cite your pages.</li>
+<li><strong>Local and e-commerce SEO.</strong> Google Business Profile, reviews, map pack, product pages and international sites.</li>
+</ul>
+<p>Claude SEO is built from 26 sub-skills and 19 specialist agents, and up to 17 agents work on your site at the same time. Every recommendation explains why it matters and how you will know it worked.</p>
+<h2>See it in action</h2>
+<p>Type <code>/seo</code> in Claude Code to see every command:</p>
+<p><img alt="Claude SEO /seo command demo in the Claude Code terminal" src="screenshots/seo-command-demo.gif" /></p>
+<p>Run a full audit and watch the agents fan out across the site:</p>
+<p><img alt="Claude SEO /seo audit demo: parallel agents producing a prioritized action plan" src="screenshots/seo-audit-demo.gif" /></p>
+<p><a href="https://www.youtube.com/watch?v=COMnNlUakQk">Watch the full demo on YouTube</a></p>
+<h2>Real results</h2>
+<p>The project's own site, <a href="https://claude-seo.md">claude-seo.md</a>, audited with Claude SEO from day one: 10.8K Search Console clicks in its first 12 weeks and a 99 mobile PageSpeed score.</p>
+<p><img src="assets/readme/screen.svg" width="1200" height="751" alt="Real results: Google Search Console showing 10.8K clicks and 324K impressions for a new site between 23 March and 12 June 2026, next to a PageSpeed Insights report scoring 99 for performance and 100 for SEO." /></p>
+<h2>Meet the team</h2>
+<p><img src="assets/readme/v3/team.svg" width="1200" height="420" alt="The Claude SEO team: 19 specialist agents on a website, each standing on the part it checks, shown one at a time with its role, model, ability and command." /></p>
+<details>
+<summary><b>All 19 agents</b></summary>
+<br />
+
+| Agent | Role | Model | Command |
+|---|---|---|---|
+| `seo-technical` | Technical SEO Lead | Sonnet | `/seo technical` |
+| `seo-content` | Content Editor | Opus | `/seo content` |
+| `seo-schema` | Structured Data Engineer | Sonnet | `/seo schema` |
+| `seo-sitemap` | Sitemap Architect | Sonnet | `/seo sitemap` |
+| `seo-performance` | Performance Engineer | Sonnet | `/seo audit` |
+| `seo-visual` | Visual QA | Sonnet | `/seo audit` |
+| `seo-geo` | AI Search Analyst | Opus | `/seo geo` |
+| `seo-agentic` | Agent Readiness Analyst | Sonnet | `/seo agentic` |
+| `seo-local` | Local SEO Specialist | Sonnet | `/seo local` |
+| `seo-maps` | Maps Analyst | Sonnet | `/seo maps` |
+| `seo-google` | Google Data Analyst | Sonnet | `/seo google` |
+| `seo-backlinks` | Link Analyst | Sonnet | `/seo backlinks` |
+| Live data (extension) | Live Data Analyst | Sonnet | `/seo audit` |
+| `seo-image-gen` | Image Producer (extension) | Sonnet | `/seo image-gen` |
+| `seo-cluster` | Topic Strategist | Opus | `/seo cluster` |
+| `seo-sxo` | Search Experience Designer | Opus | `/seo sxo` |
+| `seo-drift` | Change Monitor | Opus | `/seo drift` |
+| `seo-ecommerce` | E-commerce Specialist | Sonnet | `/seo ecommerce` |
+| `seo-flow` | FLOW Strategist | Sonnet | `/seo flow` |
+
+</details>
+
+<p><strong>Built for:</strong></p>
+<ul>
+<li><strong>SEO agencies</strong> that want weekly audits for every client instead of quarterly ones, with change monitoring to catch problems in between.</li>
+<li><strong>In-house SEO teams</strong> at SaaS, publishing and e-commerce companies that want a second pair of eyes before every review, AI search included.</li>
+<li><strong>Freelance SEO consultants</strong> who want to run an audit on the first call and show a real score and the top fixes before writing a proposal.</li>
+</ul>
+<h2>Commands</h2>
+<p><img src="assets/readme/v3/map.svg" width="1200" height="420" alt="The six groups of SEO commands on a map: audits, technical SEO, content, schema and AI search, local and commerce, and extensions. The crew walks the path and each of the 30 commands is ticked off." /></p>
+<p>30 core and extension commands in six groups. Open one to see what is inside; a few more extension commands are in the <a href="docs/COMMANDS.md">full command reference</a>.</p>
+<details>
+<summary><b>Audits and Planning</b> (5 commands)</summary>
+<ul><li><code>/seo setup</code>: Create or refresh the isolated Python runtime and Chromium</li><li><code>/seo doctor</code>: Check runtime readiness without changing the system</li><li><code>/seo audit &lt;url&gt;</code>: Full website audit with parallel agents</li><li><code>/seo page &lt;url&gt;</code>: Deep single-page analysis</li><li><code>/seo plan &lt;type&gt;</code>: Strategic SEO planning (saas, local, ecommerce, publisher, agency)</li></ul>
+</details>
+<details>
+<summary><b>Technical SEO</b> (7 commands)</summary>
+<ul><li><code>/seo technical &lt;url&gt;</code>: Technical SEO audit across 9 categories</li><li><code>/seo sitemap &lt;url | generate&gt;</code>: Analyze or generate XML sitemaps</li><li><code>/seo images &lt;url&gt;</code>: Image optimization analysis</li><li><code>/seo hreflang &lt;url&gt;</code>: Hreflang and i18n SEO audit and generation</li><li><code>/seo programmatic &lt;url&gt;</code>: Programmatic SEO analysis and planning</li><li><code>/seo google [command]</code>: Google SEO APIs: GSC, PageSpeed, CrUX, Indexing, GA4, PDF reports</li><li><code>/seo drift baseline | compare | history &lt;url&gt;</code>: SEO drift monitoring with SQ
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/AgriciDaniel/claude-seo#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
 </details>
   </div>
@@ -2014,7 +2260,7 @@ chat content, file content, </p>
 </main>
 
 <footer>
-  Generated by <strong>scrape_github_trending.py</strong> on October 25, 2026  09:15 &nbsp;·&nbsp;
+  Generated by <strong>scrape_github_trending.py</strong> on October 26, 2026  10:00 &nbsp;·&nbsp;
   Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
 </footer>
 
