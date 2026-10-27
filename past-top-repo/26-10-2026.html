@@ -1,0 +1,2268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — October 26, 2026  10:00</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on October 26, 2026  10:00 &nbsp;·&nbsp; 11 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">makecindy /</span>
+          <a href="https://github.com/makecindy/cindy" target="_blank" rel="noopener">cindy</a>
+        </div>
+        <div class="repo-desc">Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 5,575</span>
+      <span class="meta-item">🍴 721</span>
+      <span class="stars-today">⭐ 675 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <a href="https://cindy.app"><img src=".github/assets/hero-en.webp" width="100%" alt="CINDY — Consider it done. The open-source AI agent that works out of the box, doing real work on your own computer."></a>
+</p>
+
+<p align="center">
+  <strong>English</strong> · <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License" /></a>
+  <a href="https://github.com/makecindy/cindy/actions/workflows/ci.yml"><img src="https://github.com/makecindy/cindy/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-22.x-brightgreen.svg" alt="Node.js 22.x" /></a>
+  <a href="https://pnpm.io"><img src="https://img.shields.io/badge/pnpm-10-orange.svg" alt="pnpm" /></a>
+</p>
+
+<p align="center">
+  🌐 <a href="https://cindy.app">cindy.app</a> &nbsp;·&nbsp; ⬇️ <a href="https://cindy.app/download/">Download</a>
+</p>
+
+<p>Cindy is an open-source AI agent that works out of the box. She brings multiple<br />
+harnesses, models and tools into one agent that finishes real work in your<br />
+projects and apps. Ready from day one, yours to shape over time.</p>
+<p>Cindy runs locally on your own machine, using your real files and logged-in<br />
+apps. The first supported harnesses are <strong>Claude Code</strong> and <strong>Codex</strong> — more are<br />
+being added, and a native harness is in the works. Models and harnesses mix<br />
+freely and can switch mid-task while your workspace, memory, skills and tools<br />
+stay continuous; one task can even be planned, executed in parallel, and<br />
+reviewed by agents on different harness × model combos. She can drive your<br />
+browser, computer and phone, and take work from IM and schedules.</p>
+<p>This repository is the open-source <strong>client</strong> for Cindy — the desktop and mobile<br />
+apps plus their shared packages, organized as a pnpm monorepo.</p>
+<p>The client is free to use, and its source code is open under Apache-2.0. Bring<br />
+models your way: sign in to the official Cindy service (usage deducted<br />
+transparently), authorize the <strong>Claude Code / Codex Coding Plan</strong> you already<br />
+pay for and keep using it inside Cindy — no duplicate bill — connect your own<br />
+API keys, or use local models.<br />
+See <a href="https://cindy.app">cindy.app</a> for service details,<br />
+<a href="https://cindy.app/#pricing">pricing</a>, and <a href="https://cindy.app/download/">downloads</a>.</p>
+<p>Linux users: see the <a href="docs/linux.md">Ubuntu, Arch Linux and Omarchy installation guide</a><br />
+for installation, updates, keyring setup and migration from a manual install.</p>
+<h2>Yours to shape</h2>
+<p>Open source means more than visible — it means changeable:</p>
+<ul>
+<li><strong>Memory</strong> — correct her once and she does it right from then on, shared across harnesses.</li>
+<li><strong>Skills</strong> — teach a way of working once and reuse it everywhere; handing them to your team is in the making.</li>
+<li><strong>Automation</strong> — recurring work schedules itself, runs itself, reports back.</li>
+<li><strong>MCP</strong> — wire your internal tools and business systems into her reach.</li>
+<li><strong>Plugins</strong> — reshape features, UI and interactions, shared through an open marketplace <em>(in the making)</em>.</li>
+<li><strong>Source</strong> — audit, fork, extend, and contribute improvements back under Apache-2.0.</li>
+</ul>
+<p>Ready out of the box, never boxed in — start with<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> and build Cindy with us.</p>
+<h2>What's in this repo</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apps/desktop</code></td>
+<td>Electron desktop client</td>
+</tr>
+<tr>
+<td><code>apps/mobile</code></td>
+<td>Expo / React Native mobile client</td>
+</tr>
+<tr>
+<td><code>packages/*</code></td>
+<td>Shared client capabilities (auth, device-link, agent orchestration, model providers, …)</td>
+</tr>
+<tr>
+<td><code>apps/*-bin</code></td>
+<td>Tool binaries shipped with the desktop app; none are committed — claude-code, codex, and ripgrep are downloaded per platform by <code>pnpm install</code>, and the Android platform-tools binaries are fetched (pinned version, sha256-verified) before Windows packaging</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Not in this repo:</strong> the backend service lives in a separate<br />
+repository and is not part of this monorepo.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Account requirement</th>
+<th>Availability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hosted service</td>
+<td>Cindy cloud account</td>
+<td>Use Cindy's full hosted service. See <a href="https://cindy.app/#pricing">pricing</a>.</td>
+</tr>
+<tr>
+<td>Skip Sign-In</td>
+<td>No Cindy sign-in required</td>
+<td>Choose “Skip Sign-In” on the login screen to use local agents; the app then shows the account state as “Not signed in”. Server-backed capabilities are unavailable in this state.</td>
+</tr>
+</tbody>
+</table>
+<h2>Prerequisites</h2>
+<ul>
+<li><strong>Node.js</strong> 22.x</li>
+<li><strong>pnpm</strong> 10.x (v11 is not yet supported)</li>
+<li><strong>Git LFS</strong></li>
+</ul>
+<h2>Getting started</h2>
+<p>Contributor setup, Git LFS, dependency updates, and access requirements are maintained in<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.<br />
+Plugins are installed through SkillHub or manually.</p>
+<p>Minimal entry point:</p>
+<pre><code class="language-bash">git clone https://github.com/makecindy/cindy.git
+cd cindy
+git lfs pull
+pnpm install
+</code></pre>
+<h2>Development entry points</h2>
+<pre><code class="language-bash"># Mainland China Cindy account
+pnpm restart:desktop:remote --region=cn
+
+# Global Cindy account
+pnpm restart:desktop:remote --region=global
+</code></pre>
+<p>Remote development uses your own Cindy cloud account and existing login state, so<br />
+you can continue existing sessions and work while developing the client. Use <code>cn</code><br />
+for Mainland China accounts and <code>global</code> for everyone else; do not rely<br />
+on the internal default. Full desktop, mobile, data-isolation, and validation<br />
+workflows are in <a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.</p>
+<p>“Skip Sign-In” on the login screen runs local agents without a Cindy account<br />
+(shown in the app as “Not signed in”), not a connection to a local server.<br />
+Server-backed capabilities are unavailable in this state.</p>
+<p><strong>About the default servers:</strong> the client connects to Cindy's official cloud<br />
+services by default (endpoint manifests in<br />
+<a href="config/endpoint.json"><code>config/endpoint.json</code></a> and<br />
+<a href="config/endpoint.global.json"><code>config/endpoint.global.json</code></a>; desktop<br />
+auto-updates also come from the official CDN). This is intentional — external<br />
+developers don't need to self-host a server: sign in with your own Cindy<br />
+account in a dev build and develop / test directly against the official<br />
+servers.</p>
+<p>Skill Hub migration uses two separate manifest fields: released clients keep<br />
+using <code>skillhubApiBaseUrl</code> (the deprecated XD proxy), while current clients use<br />
+<code>cindySkillHubApiBaseUrl</code>. The current client deliberately does not fall back to<br />
+the legacy field when the new endpoint is absent.</p>
+<h2>Architecture</h2>
+<ul>
+<li><a href="DESIGN.md"><code>DESIGN.md</code></a> — visual design system, color tokens, and UI conventions</li>
+<li><a href="docs/README.md"><code>docs/README.md</code></a> — complete documentation and rules index</li>
+<li><a href="docs/auth-realm-routing.md"><code>docs/auth-realm-routing.md</code></a> — organization SSO region discovery and session endpoint routing</li>
+<li><a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> — contributor setup, validation, and submission workflow</li>
+<li><a href="AGENTS.md"><code>AGENTS.md</code></a> — engineering rules, launch/runtime contracts, and module boundaries</li>
+<li><a href="docs/dev-rules/"><code>docs/dev-rules/</code></a> — deep-dive architecture docs (e.g. Orca multi-agent orchestration)</li>
+</ul>
+<h2>Contributing</h2>
+<p>Contributions go through pull requests into <code>main</code>. Read<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> first, then use<br />
+<a href=".github/PULL_REQUEST_TEMPLATE.md"><code>.github/PULL_REQUEST_TEMPLATE.md</code></a>.<br />
+Every commit needs a <a href="DCO">Developer Certificate of Origin</a> sign-off<br />
+(<code>git commit -s</code>); a DCO check on each pull request enforces it, and no CLA is<br />
+required.<br />
+Please also follow <a href="CODE_OF_CONDUCT.en.md"><code>CODE_OF_CONDUCT.en.md</code></a>. For ordinary<br />
+usage questions, see <a href="SUPPORT.en.md"><code>SUPPORT.en.md</code></a>; report security issues<br />
+privately through <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a>.</p>
+<h2>Security</h2>
+<p>Never commit credentials or authorization files to the working tree. If you<br />
+discover a security issue, follow <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a> to report it<br />
+privately rather than opening a public issue.</p>
+<h2>Privacy &amp; telemetry</h2>
+<p><strong>Official distribution builds</strong> include <a href="https://www.taptap.io/tapdb">TapDB</a><br />
+usage analytics for product-level aggregate statistics (device / OS / app-version<br />
+metadata; associated with your account ID after sign-in). It does <strong>not</strong> collect<br />
+chat content, file content, </p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/makecindy/cindy#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Nutlope /</span>
+          <a href="https://github.com/Nutlope/hallmark" target="_blank" rel="noopener">hallmark</a>
+        </div>
+        <div class="repo-desc">Anti-AI-slop design skill for Claude Code, Cursor, and Codex.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#563d7c"></span>CSS</span>
+      <span class="meta-item">⭐ 34,856</span>
+      <span class="meta-item">🍴 1,816</span>
+      <span class="stars-today">⭐ 1,317 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Hallmark</h1>
+<p><strong>A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated.</strong></p>
+<p><a href="https://www.usehallmark.com">usehallmark.com</a> &nbsp;·&nbsp; forty-eight themes &nbsp;·&nbsp; custom on request &nbsp;·&nbsp; redesign and audit by name</p>
+<p>Made by Together AI.</p>
+<p align="center">
+  <img src="site/OG-hallmark.png" alt="Hallmark, the design skill that ends AI slop" />
+</p>
+
+<p>Hallmark holds a hard floor and then gets out of the way. It deals three themes from a catalog of forty-eight materials, builds the page around what the visitor came to do, and lints the result in a real browser against the tells that read as machine-made: the eyebrow above every heading, tracked-capital labels, one coloured word in a headline, a page of empty frames or nothing but photographs, a hero that misses its screen, an email sign-up at the end of every page, a form that says thanks without sending anything. A fresh-context reviewer gets the last word.</p>
+<p>The gates come in tiers. The <strong>Floor</strong> never ships (contrast, focus, reduced motion, invented facts, a broken phone layout). <strong>Reflex</strong> gates are the defaults a model falls into; a build with a reason may overrule one on the record. <strong>Finish</strong> checks are craft detail that never blocks a ship.</p>
+<h2>New in v2</h2>
+<ul>
+<li><strong>Forty-eight themes.</strong> Each is a material (paper, type, colour, surfaces, its own components and texture) with a picture of a finished page, and the build lays out its own page in it.</li>
+<li><strong>Built from the job.</strong> A booking page books, a shop sells, a newsletter subscribes: the action sits where the category puts it, and the page ends on it.</li>
+<li><strong>Custom.</strong> Ask for a custom page and Hallmark designs from your prompt alone, under the same rules and checks.</li>
+<li><strong>Your real product.</strong> Point it at a URL, a dev server or an app and it captures the screenshots itself.</li>
+<li><strong>Real photographs.</strong> 755 openly licensed photos, picked per subject and credited on the page.</li>
+<li><strong>Redesign and audit.</strong> <code>/hallmark redesign &lt;path&gt;</code> rebuilds a page and keeps its content and wiring; <code>/hallmark audit &lt;path&gt;</code> only reports.</li>
+</ul>
+<h2>Themes</h2>
+<table>
+  <tr>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/dusk/"><img src="docs/screenshots/dusk.jpg" alt="Dusk theme: Closewise, bank reconciliation" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/cobalt/"><img src="docs/screenshots/cobalt.jpg" alt="Cobalt theme: Relay, a webhook API" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/studio/"><img src="docs/screenshots/studio.jpg" alt="Studio theme: Field Office, an identity studio" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/atelier/"><img src="docs/screenshots/atelier.jpg" alt="Atelier theme: Maison Orla, a fragrance atelier" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/ribbon/"><img src="docs/screenshots/ribbon.jpg" alt="Ribbon theme: Lull, a sleep sounds app" /></a></td>
+  </tr>
+  <tr>
+    <td><b>Dusk</b><br/><sub>Closewise, bank reconciliation</sub></td>
+    <td><b>Cobalt</b><br/><sub>Relay, a webhook API</sub></td>
+    <td><b>Studio</b><br/><sub>Field Office, an identity studio</sub></td>
+    <td><b>Atelier</b><br/><sub>Maison Orla, a fragrance atelier</sub></td>
+    <td><b>Ribbon</b><br/><sub>Lull, a sleep sounds app</sub></td>
+  </tr>
+  <tr>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/furrow/"><img src="docs/screenshots/furrow.jpg" alt="Furrow theme: Fieldbook, farm records" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/dose/"><img src="docs/screenshots/dose.jpg" alt="Dose theme: Tandem, a family medication app" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/hum/"><img src="docs/screenshots/hum.jpg" alt="Hum theme: Sprout, a reading game for kids" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/terminal/"><img src="docs/screenshots/terminal.jpg" alt="Terminal theme: burrow, a dotfiles CLI" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/hedgerow/"><img src="docs/screenshots/hedgerow.jpg" alt="Hedgerow theme: Five Mile Gin, a distillery" /></a></td>
+  </tr>
+  <tr>
+    <td><b>Furrow</b><br/><sub>Fieldbook, farm records</sub></td>
+    <td><b>Dose</b><br/><sub>Tandem, a family medication app</sub></td>
+    <td><b>Hum</b><br/><sub>Sprout, a reading game for kids</sub></td>
+    <td><b>Terminal</b><br/><sub>burrow, a dotfiles CLI</sub></td>
+    <td><b>Hedgerow</b><br/><sub>Five Mile Gin, a distillery</sub></td>
+  </tr>
+</table>
+
+<p>Ten of the forty-eight. A theme is a material, not a plan: it never says what a page contains or in what order, so two prompts in one theme make two different pages. Each is one file of at most 8 KB in <a href="skills/hallmark/references/themes/"><code>references/themes/</code></a> with a picture beside it; a build reads exactly one. See them all at <a href="https://www.usehallmark.com">usehallmark.com</a>.</p>
+<h2>Custom</h2>
+<p>Say <strong>custom</strong> and Hallmark drops the themes: no plan, no components, no palette recipe, only the floor, the gates and a short direction in <a href="skills/hallmark/references/direction.md"><code>direction.md</code></a> to find one idea that only this client has and let it run the page.</p>
+<h2>How a build runs</h2>
+<ol>
+<li>Pre-flight reads the project (fonts, palette, framework, a locked <code>design.md</code>) and asks once for the material: photos, screenshots, real numbers. Nothing is invented.</li>
+<li><code>scripts/theme.mjs deal</code> offers three themes that fit the prompt and clear the log; <code>draw</code> deals the page's anatomy from its job.</li>
+<li>The hero is built alone, rendered and reviewed cold before the rest of the page exists.</li>
+<li><code>scripts/sloplint.mjs --render</code> checks the page at eight widths, then a subagent reviews it with fresh eyes.</li>
+</ol>
+<p>Each page is self-contained HTML and CSS, stamped in its first CSS comment with the decisions it took.</p>
+<h2>Redesign</h2>
+<p>Hallmark never starts on a design that already exists unless you name it:</p>
+<pre><code>/hallmark redesign ./src/app
+/hallmark audit ./index.html
+</code></pre>
+<p>A full redesign keeps the content and the wiring and changes the system and the layout; say <em>keep the layout</em> for a restyle or <em>polish</em> for only the tells. <code>sloplint --before</code> records every link, field, handler and heading first, <code>sloplint --kept</code> fails the redesign if one went missing, and the handoff is a side-by-side before and after.</p>
+<h2>Install</h2>
+<pre><code>npx skills add nutlope/hallmark -g
+</code></pre>
+<p><code>-g</code> installs for every project; leave it off to install into the current one. Needs Node 18 or later. The browser checks (<code>sloplint --render</code>, screenshots) also need <code>npm i -g puppeteer-core</code> and Chrome; without them the static checks still run.</p>
+<table>
+<thead>
+<tr>
+<th>Harness</th>
+<th>Lands in</th>
+<th>Invoke</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><code>~/.claude/skills/hallmark</code></td>
+<td><code>/hallmark &lt;prompt&gt;</code> or describe a new build</td>
+</tr>
+<tr>
+<td>Codex CLI</td>
+<td><code>~/.agents/skills/hallmark</code></td>
+<td><code>$hallmark &lt;prompt&gt;</code> or describe a new build</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>finds the copies above</td>
+<td><code>/hallmark &lt;prompt&gt;</code> or describe a new build</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td>finds the copies above</td>
+<td><code>/hallmark &lt;prompt&gt;</code> or describe a new build</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>One harness only:</strong> <code>npx skills add nutlope/hallmark -g --agent claude-code</code> (or <code>codex</code>, <code>opencode</code>, <code>cursor</code>, <code>github-copilot</code>).</li>
+<li><strong>As a Claude Code plugin:</strong> <code>/plugin marketplace add nutlope/hallmark</code>, then <code>/plugin install hallmark@hallmark</code> (invoked as <code>/hallmark:hallmark</code>).</li>
+<li><strong>From a clone:</strong> <code>node skills/hallmark/scripts/install.mjs</code> validates every theme and reference before it copies; <code>install-hook.mjs</code> adds an edit-time Floor check to Claude Code.</li>
+<li><strong>Lint any page:</strong> <code>node skills/hallmark/scripts/sloplint.mjs &lt;file-or-dir&gt; --render</code>.</li>
+<li><strong>If it does not fire on its own,</strong> name it: <em>use hallmark to build ...</em>.</li>
+</ul>
+<h2>Licence</h2>
+<p>MIT. Use it, fork it, ship it.</p>
+<p>The photo library (<code>skills/hallmark/scripts/photos.json</code>) lists photographs hosted on Wikimedia Commons and holds no image files. Each keeps its own licence (CC0, public domain, CC BY or CC BY-SA), and Hallmark credits every one it uses on t</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Nutlope/hallmark#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">debpalash /</span>
+          <a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">VoiceStudio</a>
+        </div>
+        <div class="repo-desc">VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 87,737</span>
+      <span class="meta-item">🍴 9,678</span>
+      <span class="stars-today">⭐ 1,592 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+  <img src="docs/logo.png" alt="VoiceStudio" width="88" />
+  <h1>VoiceStudio</h1>
+  <p>
+    <a href="https://trendshift.io/repositories/28176?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-28176" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/28176" alt="VoiceStudio ranking on Trendshift" width="220" height="48" /></a>
+  </p>
+  <p><strong>Open-source voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.</strong></p>
+  <p>
+    <a href="https://voicestudio.sh/?utm_source=github&utm_medium=readme&utm_campaign=project">Website</a> ·
+    <a href="https://github.com/debpalash/VoiceStudio/releases/latest">Download</a> ·
+    <a href="#get-started">Get started</a> ·
+    <a href="#documentation">Docs</a> ·
+    <a href="https://discord.gg/bzQavDfVV9">Discord</a> ·
+    <a href="docs/readme/README_CN.md">简体中文</a> ·
+    <a href="docs/readme/README_JA.md">日本語</a>
+  </p>
+  <p>
+    <a href="https://github.com/debpalash/VoiceStudio/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/debpalash/VoiceStudio/ci.yml?branch=main" alt="CI" /></a>
+    <a href="https://github.com/debpalash/VoiceStudio/releases/latest"><img src="https://img.shields.io/github/v/release/debpalash/VoiceStudio" alt="Latest release" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="AGPL-3.0" /></a>
+    <a href="https://supermetry.com"><img src="https://app.supermetry.com/px/zfjiv7psp4ed.svg?c=VoiceStudio&style=stats" alt="views" /></a>
+  </p>
+</div>
+
+<p><img alt="A tour of the Electron app: voice cloning, voice design, dubbing, and model management" src="docs/media/electron/voicestudio.gif" /></p>
+<h2>Your voice. Your workflow.</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Create</th>
+<th style="text-align: left;">Produce</th>
+<th style="text-align: left;">Connect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Clone a voice or design your own</td>
+<td style="text-align: left;">Dub videos with timed speech</td>
+<td style="text-align: left;">Local API &amp; MCP for agents</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dictate with a floating widget</td>
+<td style="text-align: left;">Stories, audiobooks &amp; batch jobs</td>
+<td style="text-align: left;">Reusable recipes &amp; watch folders</td>
+</tr>
+</tbody>
+</table>
+<p>Start with <strong>VoiceStudio</strong> (default, powered by k2-fsa/OmniVoice), or choose another engine. <a href="docs/feature-catalog.md">Features &amp; engine catalog</a>.</p>
+<p>Local workflows run on your hardware. Remote services are optional; usage analytics requires consent.</p>
+<details>
+<summary><strong>Explore the workspaces</strong> · Clone, dub, design & models</summary>
+
+<table>
+  <tr>
+    <td><img src="docs/media/electron/voice-cloning.png" alt="Electron voice cloning workspace with the bundled demo voice" width="100%" /></td>
+    <td><img src="docs/media/electron/dubbing.png" alt="Electron video dubbing workspace" width="100%" /></td>
+  </tr>
+  <tr><td align="center">Voice cloning</td><td align="center">Video dubbing</td></tr>
+  <tr>
+    <td><img src="docs/media/electron/voice-design.png" alt="Describe a voice in the Electron voice design workspace" width="100%" /></td>
+    <td><img src="docs/media/electron/models.png" alt="Install and manage local speech models" width="100%" /></td>
+  </tr>
+  <tr><td align="center">Voice design</td><td align="center">Local models</td></tr>
+</table>
+
+<img width="2628" height="1950" alt="VoiceStudio desktop workspace" src="https://github.com/user-attachments/assets/b474497d-a453-49a3-a2dd-f023ec6b7659" />
+
+</details>
+
+<p>OmniVoice GGUF source builds can optionally use Vulkan on Windows and Linux;<br />
+see the <a href="docs/engines/omnivoice-gguf.md#optional-vulkan-acceleration">native engine guide</a><br />
+for build requirements, CPU fallback, and device overrides.</p>
+<h2>Get started</h2>
+<h3>One-command install (macOS / Linux)</h3>
+<pre><code class="language-sh"># Latest Electron release
+curl -fsSL https://voicestudio.sh/install | sh
+
+# A specific published Electron release (replace X.Y.Z)
+curl -fsSL https://voicestudio.sh/install | sh -s -- --version X.Y.Z
+
+# Build current main and install the desktop app
+curl -fsSL https://voicestudio.sh/install | sh -s -- --main
+
+# Uninstall the app, keeping your data
+curl -fsSL https://voicestudio.sh/install | sh -s -- --uninstall
+</code></pre>
+<p>On Windows, run <code>irm https://voicestudio.sh/install | iex</code> in PowerShell.</p>
+<p>If <code>voicestudio.sh/install</code> is unreachable or returns 404, run the same script<br />
+straight from the repository, or clone it and run <code>scripts/install.sh</code>:</p>
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/debpalash/VoiceStudio/main/scripts/install.sh | sh
+</code></pre>
+<p>Release downloads require curl and a SHA-256 tool. <code>--main</code> requires Git,<br />
+Node.js 22+, Bun, Rust/Cargo, and platform build tools; see<br />
+<a href="docs/install/script.md">installer prerequisites and behavior</a>.<br />
+The installer preserves your settings, projects, and models. Older versions<br />
+must contain Electron packages; it never falls back to archived Tauri builds.</p>
+<p>Or download from <a href="https://github.com/debpalash/VoiceStudio/releases/latest">Releases</a> (macOS <code>.dmg</code>, Windows <code>.exe</code>, Linux <code>.AppImage</code> or <code>.deb</code>) and follow your platform guide:</p>
+<p><strong><a href="docs/install/macos.md">macOS</a> · <a href="docs/install/windows.md">Windows</a> · <a href="docs/install/linux.md">Linux</a> · <a href="docs/install/docker.md">Docker</a></strong></p>
+<table>
+<thead>
+<tr>
+<th>Hardware</th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVIDIA GPU (Windows / Linux)</td>
+<td>CUDA acceleration</td>
+</tr>
+<tr>
+<td>AMD Radeon / supported Ryzen AI (Windows)</td>
+<td>CPU by default; <a href="docs/install/windows-rocm.md">opt-in Windows ROCm setup</a> for AMD's Windows 11 hardware matrix. Setup distinguishes package repair from host failures; install the VC++ runtime manually first. Optional engines have separate limits; Vulkan engines retain their own runtime.</td>
+</tr>
+<tr>
+<td>Apple Silicon</td>
+<td>Metal (MPS) acceleration</td>
+</tr>
+<tr>
+<td>AMD GPU</td>
+<td>Opt-in native CosyVoice GGUF can use Vulkan when the community runtime is built with Vulkan; verified on RX 6700 XT (<a href="docs/engines/cosyvoice-gguf.md">setup</a>)</td>
+</tr>
+<tr>
+<td>No dedicated GPU (Intel/AMD integrated graphics, older PCs)</td>
+<td>Fully usable on the CPU, slower; setup installs the small CPU build of PyTorch (about 5 GB free disk)</td>
+</tr>
+<tr>
+<td>Windows on ARM (Snapdragon X etc.)</td>
+<td><strong>Experimental</strong>, validation pending: native ARM64 app, x64 Python backend under emulation, CPU only</td>
+</tr>
+<tr>
+<td>Intel Mac</td>
+<td>App UI only; connect to a remote backend (<a href="docs/install/macos.md">why</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Open <strong>Voice cloning</strong>, choose a voice or add a clean reference recording, enter your text, and generate. Install the required model when prompted. Hardware needs vary by engine; see <a href="docs/performance.md">performance</a>.</p>
+<h3>Install with prompt</h3>
+<p>Paste into your coding agent (Claude Code, Codex, Cursor, …):</p>
+<pre><code class="language-text">Install the VoiceStudio Electron app on this device and verify it works, following
+https://github.com/debpalash/VoiceStudio/blob/main/docs/install/agent.md
+</code></pre>
+<p>The <a href="docs/install/agent.md">agent guide</a> covers hardware detection, reusing existing<br />
+data, asking before model downloads, and a test generation. Agents that support skills<br />
+can also run <code>npx skills add debpalash/VoiceStudio</code>.</p>
+<details>
+<summary><strong>Run the Electron preview from source</strong></summary>
+
+
+<pre><code class="language-bash">git clone https://github.com/debpalash/VoiceStudio.git
+cd VoiceStudio
+bun install
+bun run setup:api  # prepare Python dependencies before starting Electron
+bun run dev
+</code></pre>
+
+
+See [Electron setup](electron/README.md) for prerequisites and backend configuration.
+
+Use `bun run smoke-test` to build and launch an isolated packaged Electron app.
+Add `-- --install` for the networked managed-runtime installation check.
+
+</details>
+
+<blockquote>
+<p><strong>Electron is the only desktop app and web UI.</strong> Version 0.5.3 was the final Tauri release. Existing Tauri users must <a href="docs/electron-migration.md">install Electron separately</a>. The retired Tauri shell and legacy UI entry points have been removed.</p>
+</blockquote>
+<h2>Documentation</h2>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Start here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup help</td>
+<td><a href="docs/install/troubleshooting.md">Troubleshooting</a> · <a href="docs/downloading-models.md">Model downloads</a></td>
+</tr>
+<tr>
+<td>Models &amp; audio quality</td>
+<td><a href="docs/engines/README.md">Engine guides</a> · <a href="docs/engines/whisper-cpp.md">whisper.cpp ASR</a> · <a href="docs/benchmarks.md">Benchmarks</a></td>
+</tr>
+<tr>
+<td>Integrations</td>
+<td><a href="docs/speech-platform.md">Local API</a> · <a href="docs/mcp.md">MCP</a> · <a href="examples/README.md">Examples</a></td>
+</tr>
+<tr>
+<td>Pho</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/debpalash/VoiceStudio#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">pbakaus /</span>
+          <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">impeccable</a>
+        </div>
+        <div class="repo-desc">The design language that makes your AI harness better at design.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 88,324</span>
+      <span class="meta-item">🍴 5,273</span>
+      <span class="stars-today">⭐ 1,092 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Impeccable</h1>
+<p>Design guidance for AI coding agents. 1 skill, 24 commands, live browser iteration, and 62 deterministic detector rules for AI-generated frontend design.</p>
+<blockquote>
+<p><strong>Quick start:</strong> From your project root, run <code>npx impeccable install</code>, then run <code>/impeccable init</code> inside your AI coding tool. Full docs: <a href="https://impeccable.style">impeccable.style</a>.</p>
+</blockquote>
+<h2>Why Impeccable?</h2>
+<p>Anthropic's <a href="https://github.com/anthropics/skills/tree/main/skills/frontend-design">frontend-design</a> was the first widely-used design skill for Claude. Impeccable started from there.</p>
+<p>Every model trained on the same SaaS templates. Skip the guidance and you get the same handful of tells on every project: Inter for everything, purple-to-blue gradients, cards nested in cards, gray text on colored backgrounds, the rounded-square icon tile above every heading.</p>
+<p>Impeccable adds:<br />
+- <strong>One setup flow.</strong> <code>/impeccable init</code> records durable product truth in <code>PRODUCT.md</code>, so later commands know the audience, purpose, operating context, constraints, voice, and evidence without confusing those facts with surface-level visual direction.<br />
+- <strong>24 commands.</strong> A shared design vocabulary with your AI: <code>polish</code>, <code>audit</code>, <code>critique</code>, <code>distill</code>, <code>animate</code>, <code>bolder</code>, <code>quieter</code>, and more.<br />
+- <strong>62 deterministic detector rules</strong> plus LLM-only critique checks. The CLI and browser extension run the deterministic rules with no LLM and no API key.</p>
+<h2>What's Included</h2>
+<h3>The Skill: impeccable</h3>
+<p>The skill installs as one command:</p>
+<pre><code class="language-bash">/impeccable &lt;command&gt; &lt;target&gt;
+</code></pre>
+<p>Start every new project with:</p>
+<pre><code class="language-bash">/impeccable init
+</code></pre>
+<p><code>init</code> inspects the project, asks only for material gaps in durable product truth, and writes <code>PRODUCT.md</code>. Visitor mode and visual direction are chosen later for each surface; incumbent or newly built visual systems are recorded separately in <code>DESIGN.md</code>.</p>
+<h3>24 Commands</h3>
+<p>All commands are accessed through <code>/impeccable</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/impeccable craft</code></td>
+<td>Full shape-then-build flow with visual iteration</td>
+</tr>
+<tr>
+<td><code>/impeccable init</code></td>
+<td>One-time setup: gather durable product context, write PRODUCT.md, configure live mode when applicable, recommend next steps</td>
+</tr>
+<tr>
+<td><code>/impeccable document</code></td>
+<td>Generate root DESIGN.md from existing project code</td>
+</tr>
+<tr>
+<td><code>/impeccable extract</code></td>
+<td>Pull reusable components and tokens into the design system</td>
+</tr>
+<tr>
+<td><code>/impeccable shape</code></td>
+<td>Plan UX/UI before writing code</td>
+</tr>
+<tr>
+<td><code>/impeccable critique</code></td>
+<td>UX design review: hierarchy, clarity, emotional resonance</td>
+</tr>
+<tr>
+<td><code>/impeccable audit</code></td>
+<td>Run technical quality checks (a11y, performance, responsive)</td>
+</tr>
+<tr>
+<td><code>/impeccable polish</code></td>
+<td>Final pass, design system alignment, and shipping readiness</td>
+</tr>
+<tr>
+<td><code>/impeccable bolder</code></td>
+<td>Amplify boring designs</td>
+</tr>
+<tr>
+<td><code>/impeccable quieter</code></td>
+<td>Tone down overly bold designs</td>
+</tr>
+<tr>
+<td><code>/impeccable distill</code></td>
+<td>Strip to essence</td>
+</tr>
+<tr>
+<td><code>/impeccable harden</code></td>
+<td>Error handling, i18n, text overflow, edge cases</td>
+</tr>
+<tr>
+<td><code>/impeccable onboard</code></td>
+<td>First-run flows, empty states, activation paths</td>
+</tr>
+<tr>
+<td><code>/impeccable animate</code></td>
+<td>Add purposeful motion</td>
+</tr>
+<tr>
+<td><code>/impeccable colorize</code></td>
+<td>Introduce strategic color</td>
+</tr>
+<tr>
+<td><code>/impeccable typeset</code></td>
+<td>Fix font choices, hierarchy, sizing</td>
+</tr>
+<tr>
+<td><code>/impeccable layout</code></td>
+<td>Fix layout, spacing, visual rhythm</td>
+</tr>
+<tr>
+<td><code>/impeccable delight</code></td>
+<td>Add moments of joy</td>
+</tr>
+<tr>
+<td><code>/impeccable overdrive</code></td>
+<td>Add technically extraordinary effects</td>
+</tr>
+<tr>
+<td><code>/impeccable clarify</code></td>
+<td>Improve unclear UX copy</td>
+</tr>
+<tr>
+<td><code>/impeccable adapt</code></td>
+<td>Adapt for different devices</td>
+</tr>
+<tr>
+<td><code>/impeccable optimize</code></td>
+<td>Performance improvements</td>
+</tr>
+<tr>
+<td><code>/impeccable live</code></td>
+<td>Visual variant mode: iterate on elements in the browser</td>
+</tr>
+<tr>
+<td><code>/impeccable generate</code></td>
+<td>Generate variants of a named element in the live browser, no manual picking</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>/impeccable pin &lt;command&gt;</code> to create standalone shortcuts (e.g., <code>pin audit</code> creates <code>/audit</code>).</p>
+<h4>Usage Examples</h4>
+<pre><code>/impeccable audit blog           # Audit blog hub + post pages
+/impeccable critique landing     # UX design review
+/impeccable polish settings      # Final pass before shipping
+/impeccable harden checkout      # Add error handling + edge cases
+</code></pre>
+<p>Or use <code>/impeccable</code> directly with a description:</p>
+<pre><code>/impeccable redo this hero section
+</code></pre>
+<h3>Anti-Patterns</h3>
+<p>The skill includes explicit guidance on what to avoid:</p>
+<ul>
+<li>Don't use overused fonts (Arial, Inter, system defaults)</li>
+<li>Don't use gray text on colored backgrounds</li>
+<li>Don't use pure black/gray (always tint)</li>
+<li>Don't wrap everything in cards or nest cards inside cards</li>
+<li>Don't use bounce/elastic easing (feels dated)</li>
+</ul>
+<h2>See It In Action</h2>
+<p>Visit <a href="https://impeccable.style/cases/neo-mirai">the Neo Mirai case study</a> to see a before/after case study of a real project transformed with Impeccable commands.</p>
+<h2>Installation</h2>
+<p>The skill needs no runtime of its own. Every skill copy ships a small launcher (<code>scripts/impeccable</code>, plus <code>impeccable.cmd</code> for Windows) that runs the Impeccable engine, a self-contained binary that either sits next to the launcher or is downloaded once on first run into <code>~/.impeccable/bin/</code>. Node is only involved if you use the <code>npx impeccable</code> installer, which is a shim around the same binary; the manual and Git options below work without it.</p>
+<h3>Option 1: CLI installer (Recommended)</h3>
+<p>From the root of your project, run:</p>
+<pre><code class="language-bash">npx impeccable install
+</code></pre>
+<p>This shows the harness folders or installed CLIs it detected (for example <code>~/.claude</code>, <code>~/.codex</code>, <code>~/.grok</code>, <code>~/.hermes</code>, <code>~/.veto</code>, or project-local <code>.cursor</code>), lets you keep the detected set or customize providers, then asks whether to install into the current project or globally. Use <code>--providers=claude,codex,cursor,grok,hermes,veto</code> and <code>--scope=project|global</code> to skip those choices in scripts. On Claude Code, Cursor, Codex, GitHub Copilot, and Grok Build, it also installs the provider-native hook manifest for the current project. Veto receives the packaged skill under <code>~/.veto/skills/</code> and does not run native Impeccable edit hooks. Works with Cursor, Claude Code, Gemini CLI, Codex CLI, Grok Build, Hermes Agent, Veto, and every other supported tool. Reload your harness afterward.</p>
+<p>To refresh an existing install, run:</p>
+<pre><code class="language-bash">npx impeccable update
+</code></pre>
+<p>Codex users should open <code>/hooks</code> after install or update and approve the project hook when prompted. Codex tracks trust by hook definition, so updates that change <code>.codex/hooks.json</code> can require approval again. Grok Build users need project folder trust (<code>/hooks-trust</code> or launch with <code>--trust</code>) before <code>.grok/hooks/</code> scripts run.</p>
+<p>See <a href="https://impeccable.style/docs/hooks#allow-the-hook-in-your-harness">Allow the hook in your harness</a> for harness-specific trust and verification steps.</p>
+<h3>Option 2: Git Submodule</h3>
+<p>For teams that want to keep Impeccable vendored and updated through Git, add this repo as a submodule and link the compiled provider build into your harness folders:</p>
+<pre><code class="language-bash">git submodule add https://github.com/pbakaus/impeccable .impeccable
+npx impeccable link --source=.impeccable --providers=claude,cursor
+git add .gitmodules .impeccable .claude .cursor
+git commit -m &quot;Add Impeccable skills&quot;
+</code></pre>
+<p>Use the providers your project needs, for example <code>claude</code>, <code>cursor</code>, <code>gemini</code>, <code>codex</code>, <code>github</code>, <code>grok</code>, <code>hermes</code>, <code>opencode</code>, <code>pi</code>, <code>qoder</code>, <code>trae</code>, <code>trae-cn</code>, <code>rovo-dev</code>, <code>vibe</code>, or <code>veto</code>. The command links individual skill folders from <code>.impeccable/dist/universal/</code> and leaves existing real skill directories untouched unless you pass <code>--force</code>.</p>
+<p>To update later:</p>
+<pre><code class="language-bash">git submodule update --remote .impeccable
+npx impeccable link --source=.impeccable --providers=claude,cursor
+</code></pre>
+<h3>Option 3: Plugin install</h3>
+<p><strong>GitHub Copilot in VS Code:</strong></p>
+<p>Install <a href="https://marketplace.visualstudio.com/items?itemName=renaissance-geek.impeccable">Impeccable from the Visual Studio Marketplace</a>, or run:</p>
+<pre><code class="language-bash">code --install-extension renaissance-geek.impeccable
+</code></pre>
+<p>Requires VS Code 1.109.3+, Copilot Chat access, and a trusted local workspace. Open Chat in Agent mode and try <code>/impeccable polish</code>. This skill-only extension does not install automatic hooks; </p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/pbakaus/impeccable#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">pollen-robotics /</span>
+          <a href="https://github.com/pollen-robotics/microduck" target="_blank" rel="noopener">microduck</a>
+        </div>
+        <div class="repo-desc">A Tiny biped duck robot 🦆</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 12,048</span>
+      <span class="meta-item">🍴 1,517</span>
+      <span class="stars-today">⭐ 647 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="https://github.com/user-attachments/assets/c2f7c245-8217-46a1-8d1e-e0ba967cd969" alt="microduck" width="820">
+</p>
+
+<h1 align="center">Microduck</h1>
+
+<p align="center">
+  <em>A tiny biped robot that moves using reinforcement learning policies.</em>
+</p>
+
+<p align="center">
+  <a href="https://pollen-robotics.com/microduck"><b>Get yours here</b></a> ·
+  <a href="docs/robot/cheatsheet.md">Cheat sheet</a> ·
+  <a href="https://github.com/pollen-robotics/microduck_rl">Training the policies</a> ·
+  <a href="docs/design/architecture.md">How it works</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml"><img src="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+</p>
+
+<hr />
+<p><strong>This repo is the duck's brain.</strong> About 25 cm and 800 g of robot, run by a handful of daemons on a<br />
+Rockchip RK3566: a 50 Hz control loop driving fifteen servos from neural policies, the radios and<br />
+the camera, and the update machinery that gets new software onto a robot without bricking it.</p>
+<p>Everything you need to run a Microduck is here. <strong>If you want one,<br />
+<a href="https://pollen-robotics.com/microduck">get yours here</a>.</strong></p>
+<p>The policies it runs are trained next door, in<br />
+<strong><a href="https://github.com/pollen-robotics/microduck_rl">microduck_rl</a></strong> — MuJoCo and PPO, the sim2real<br />
+recipe, and the export to ONNX that this repo loads.</p>
+<h2>It does things</h2>
+<table>
+<tr>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/356a6011-8e0d-4b28-bda9-da78646583a3" controls width="100%"></video>
+</td>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/abfbf250-1b1c-42cb-8430-00267e2b148a" controls width="100%"></video>
+
+</td>
+</tr>
+<tr>
+<td><b>It walks.</b> Pick up a gamepad and drive.</td>
+<td><b>It rolls.</b> Put wheels on, ask for roller mode, and it loads the other brain.</td>
+</tr>
+<tr>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/7e70c1da-e120-428f-ae0b-f4de62f25984" controls width="100%"></video>
+</td>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/3eef63a5-6f84-47cf-90de-e717e6d7f8f0" controls width="100%"></video>
+</td>
+</tr>
+<tr>
+<td><b>It picks things up.</b> Beak to the floor, one button.</td>
+<td><b>It gets back up.</b> Knock it over and it stands itself up.</td>
+</tr>
+</table>
+
+<p>It also sits, kicks a ball, rolls forward on command, and quacks in a voice that is its own.</p>
+<h2>Where to find things</h2>
+<h3>You have a duck</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="docs/robot/cheatsheet.md">Cheat sheet</a></td>
+<td>Every <code>robotctl</code> command: drive, configure, voice, chorale, theremin, wifi, updates, logs. Start here.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/cheatsheet.md#gamepad-configd">Gamepad</a></td>
+<td>The full button mapping, and pairing a pad — <a href="docs/robot/pair-a-gamepad.md">once per pad</a>, plus what to do when it will not bond.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/duckctl.md"><code>duckctl</code></a></td>
+<td>The robot from a laptop over Bluetooth, with no network and no ssh.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/cheatsheet.md#updates-updaterd">Updates</a></td>
+<td>Install, roll back, pin. Every update is verified, health-gated and reversible.</td>
+</tr>
+</tbody>
+</table>
+<h3>You are building on it</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/pollen-robotics/microduck_rl">microduck_rl</a></td>
+<td>Where the policies come from: MuJoCo, PPO, domain randomisation, and the ONNX export this repo loads.</td>
+</tr>
+<tr>
+<td><a href="docs/design/architecture.md">How it works</a></td>
+<td>The whole system on one page — the daemons, the bus, how an update reaches a robot — then a page per part.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/install-dev.md">Set up a dev board</a></td>
+<td>From a blank board to a robot that takes branch builds.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/cheatsheet-dev.md">Dev cheat sheet</a></td>
+<td>Branch builds, release candidates, driving from a laptop, and the restart traps after an update.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/dev-push.md">Push your branch</a></td>
+<td>Build on your machine, install over ssh, about a minute.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/simulation.md">The simulated duck</a></td>
+<td>No robot on the desk? <code>scripts/duck-sim</code> runs the real daemons against a body in MuJoCo — one duck in a window, or four as machines you log into.</td>
+</tr>
+<tr>
+<td><a href="CONTRIBUTING.md">CONTRIBUTING.md</a></td>
+<td>Building, testing, layout, conventions, releasing.</td>
+</tr>
+<tr>
+<td><a href="docs/README.md">Docs index</a></td>
+<td>Everything, including the design pages and the open problems.</td>
+</tr>
+</tbody>
+</table>
+<h2>Under the hood</h2>
+<p>Rust, no framework, one workspace. <code>robotd</code> owns the control loop and the motor bus; <code>updaterd</code><br />
+installs signed releases and rolls them back when a robot comes up unhealthy; <code>configd</code> owns wifi<br />
+and identity; <code>btd</code> is the Bluetooth path a phone uses; <code>padd</code> reads the gamepad; <code>mediad</code> streams<br />
+the camera over WebRTC; <code>tofd</code> serves the depth sensor. They talk over one JSON-RPC contract on<br />
+Unix sockets, and every client — the app, the console, the gamepad, your script — sends exactly the<br />
+same calls.</p>
+<p>The interesting decisions are written down: <a href="docs/design/"><code>docs/design/</code></a> is why things are the<br />
+way they are, and <a href="docs/project/"><code>docs/project/</code></a> is what has gone wrong and what would close it.</p>
+<h2>A note on ducks</h2>
+<p>No duck was harmed in the making of this robot. Several were consulted.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/pollen-robotics/microduck#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">TauricResearch /</span>
+          <a href="https://github.com/TauricResearch/TradingAgents" target="_blank" rel="noopener">TradingAgents</a>
+        </div>
+        <div class="repo-desc">TradingAgents: Multi-Agents LLM Financial Trading Framework</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 115,157</span>
+      <span class="meta-item">🍴 22,176</span>
+      <span class="stars-today">⭐ 381 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="tradingagents/assets/tauric-logo.svg" width="60%" alt="Tauric Research">
+</p>
+
+<div align="center" style="line-height: 1;">
+  <a href="https://arxiv.org/abs/2412.20138" target="_blank"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2412.20138-B31B1B?logo=arxiv"/></a>
+  <a href="https://discord.com/invite/hk9PGKShPK" target="_blank"><img alt="Discord" src="https://img.shields.io/badge/Discord-TradingResearch-7289da?logo=discord&logoColor=white&color=7289da"/></a>
+  <a href="https://x.com/TauricResearch" target="_blank"><img alt="X Follow" src="https://img.shields.io/badge/X-TauricResearch-white?logo=x&logoColor=white"/></a>
+  <a href="https://github.com/TauricResearch/" target="_blank"><img alt="Community" src="https://img.shields.io/badge/GitHub_Community-TauricResearch-14C290?logo=discourse"/></a>
+</div>
+<p><br></p>
+<div align="center">
+  <a href="https://github.com/TauricResearch" target="_blank"><img alt="TradingAgents #1 Repository of the Day" src="https://trendshift.io/api/badge/repositories/16192" width="250" height="55"/></a>
+</div>
+<p><br></p>
+<div align="center">
+  <!-- Keep these links. Translations will automatically update with the README. -->
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=de">Deutsch</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=es">Español</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=fr">français</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ja">日本語</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ko">한국어</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=pt">Português</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ru">Русский</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=zh">中文</a>
+</div>
+
+<hr />
+<h1>TradingAgents: Multi-Agents LLM Financial Trading Framework</h1>
+<h2>News</h2>
+<!-- news:start -->
+<ul>
+<li>[2026-10] <strong>TradingAgents v0.7.0</strong> released with runs on your own ChatGPT Plus or Pro plan, backtests scored from the first close after each decision, a note at start-up when a newer release is out, and a wheel attached to each GitHub release.</li>
+<li>[2026-10] <strong>TradingAgents v0.6.0</strong> released with reports saved as one HTML page, a provider per model tier so the managers and analysts can run on different models, past decisions settled for every ticker while the analysts work, and company news read from Yahoo search while Yahoo's news feed is down.</li>
+<li>[2026-09] <strong>TradingAgents v0.5.2</strong> released with parallel analysts for a faster analysis, a CLI that runs without prompts from flags such as <code>--ticker</code> and <code>--date</code>, the run's settings recorded in every report, and backtests that see only data published by each analysis date.</li>
+</ul>
+<p>Full release notes are in <a href="CHANGELOG.md">CHANGELOG.md</a>.</p>
+<details>
+<summary>Earlier news</summary>
+
+- [2026-09] **TradingAgents v0.5.1** released with a package layout organised by what each module holds (import paths moved), optional Jev screening of social posts, GPT-6 Sol and Luna as the default models, and fixes to run isolation and SEC EDGAR statements.
+- [2026-09] **TradingAgents v0.5.0** released with point-in-time integrity across every dated path, SEC EDGAR fundamentals served as filed, backtesting over a ticker and date grid, portfolio-aware runs, and current model lineups across every provider.
+- [2026-08] **TradingAgents v0.4.0** released with look-ahead / point-in-time fixes across FRED macro, social sentiment, and the decision-log memory; clearer decision signals; working CLI checkpoint resume; Trader price grounding; and the GPT-5.6 and GLM-5.3 models.
+- [2026-07] **TradingAgents v0.3.1** released with correctness and stability fixes: Alpha Vantage look-ahead filtering, graph-router crash-safety, graph-shape-aware checkpoint resume, working crypto sentiment sources, a configurable LLM retry budget, Bedrock API-key auth, and Claude Sonnet 5 / Fable 5 support.
+- [2026-06] **TradingAgents v0.3.0** released with a verified data-access contract, an expanded provider registry (NVIDIA, Kimi, Groq, Mistral, Bedrock, and any OpenAI-compatible endpoint), FRED and Polymarket data vendors, a current-generation model catalog, and a CI gate.
+- [2026-05] **TradingAgents v0.2.5** released with the grounded Sentiment Analyst, GPT-5.5 etc. model coverage, Qwen/GLM/MiniMax dual-region support, `TRADINGAGENTS_*` env-var configurability with API-key auto-detection, remote Ollama support, non-US alpha benchmarks, and ticker path-traversal hardening.
+- [2026-04] **TradingAgents v0.2.4** released with structured-output agents (Research Manager, Trader, Portfolio Manager), LangGraph checkpoint resume, persistent decision log, DeepSeek/Qwen/GLM/Azure provider support, Docker, and a Windows UTF-8 encoding fix.
+- [2026-03] **TradingAgents v0.2.3** released with multi-language support, GPT-5.4 family models, unified model catalog, backtesting date fidelity, and proxy support.
+- [2026-03] **TradingAgents v0.2.2** released with GPT-5.4/Gemini 3.1/Claude 4.6 model coverage, five-tier rating scale, OpenAI Responses API, Anthropic effort control, and cross-platform stability.
+- [2026-02] **TradingAgents v0.2.0** released with multi-provider LLM support (GPT-5.x, Gemini 3.x, Claude 4.x, Grok 4.x) and improved system architecture.
+- [2026-01] **Trading-R1** [Technical Report](https://arxiv.org/abs/2509.11420) released, with [Terminal](https://github.com/TauricResearch/Trading-R1) expected to land soon.
+
+</details>
+<!-- news:end -->
+
+<div align="center">
+
+🚀 [TradingAgents](#tradingagents-framework) | ⚡ [Installation & CLI](#installation-and-cli) | 🎬 [Demo](https://www.youtube.com/watch?v=90gr5lwjIho) | 📦 [Package Usage](#tradingagents-package) | 🤝 [Contributing](#contributing) | 📄 [Citation](#citation)
+
+</div>
+
+<blockquote>
+<p>🎉 <strong>TradingAgents</strong> officially released! We have received numerous inquiries about the work, and we would like to express our thanks for the enthusiasm in our community.</p>
+<p>So we decided to fully open-source the framework. Looking forward to building impactful projects with you!</p>
+</blockquote>
+<h2>TradingAgents Framework</h2>
+<p>TradingAgents is a multi-agent trading framework that mirrors the dynamics of real-world trading firms. By deploying specialized LLM-powered agents: from fundamental analysts, sentiment experts, and technical analysts, to trader, risk management team, the platform collaboratively evaluates market conditions and informs trading decisions. Moreover, these agents engage in dynamic discussions to pinpoint the optimal strategy.</p>
+<p align="center">
+  <img src="assets/schema.png" style="width: 100%; height: auto;">
+</p>
+
+<blockquote>
+<p>TradingAgents framework is designed for research purposes. Trading performance may vary based on many factors, including the chosen backbone language models, model temperature, trading periods, the quality of data, and other non-deterministic factors. <a href="https://tauric.ai/disclaimer/">It is not intended as financial, investment, or trading advice.</a></p>
+</blockquote>
+<p>Our framework decomposes complex trading tasks into specialized roles.</p>
+<h3>Analyst Team</h3>
+<ul>
+<li>Fundamentals Analyst: Evaluates company financials and performance metrics, identifying intrinsic values and potential red flags.</li>
+<li>Sentiment Analyst: Aggregates news headlines, StockTwits, and Reddit chatter into a single sentiment read to gauge short-term market mood.</li>
+<li>News Analyst: Monitors global news and macroeconomic indicators, interpreting the impact of events on market conditions.</li>
+<li>Technical Analyst: Utilizes technical indicators (like MACD and RSI) to detect trading patterns and forecast price movements.</li>
+</ul>
+<p>The selected analysts work at the same time, each on its own tools, and the research debate starts once all of their reports are in.</p>
+<p align="center">
+  <img src="assets/analyst.png" width="100%" style="display: inline-block; margin: 0 2%;">
+</p>
+
+<h3>Researcher Team</h3>
+<ul>
+<li>Comprises both bullish an</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/TauricResearch/TradingAgents#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Renhuai123 /</span>
+          <a href="https://github.com/Renhuai123/ziwei-doushu" target="_blank" rel="noopener">ziwei-doushu</a>
+        </div>
+        <div class="repo-desc">紫微斗数开源排盘引擎 — 基于倪海厦《天纪》体系，含完整排盘算法、四化系统、格局知识库、古籍原文数据</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 8,134</span>
+      <span class="meta-item">🍴 1,629</span>
+      <span class="stars-today">⭐ 199 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+# 紫微斗数 · 开源排盘引擎
+
+### 算法是公开的传统智慧，不应该被锁在围墙里
+
+[![CI](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml/badge.svg)](https://github.com/Renhuai123/ziwei-doushu/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](./LICENSE)
+[![Dataset: CC BY 4.0](https://img.shields.io/badge/dataset-CC%20BY%204.0-green.svg)](./DATASET-LICENSE)
+
+**中文** · [English](./README.en.md)
+
+</div>
+
+<p><strong>一、项目理念</strong>：紫微斗数是中国传统命理学的瑰宝，倪海厦老师在《天纪》中系统梳理了正宗的紫微斗数体系。我们希望通过技术手段让更多人接触和学习这门学问。</p>
+<p>开源排盘算法和知识库，是因为我们相信：<strong>算法是公开的传统智慧，不应该被锁在围墙里</strong>。真正的价值在于解读的深度、用户体验的打磨、以及持续运营的积累。</p>
+<p><strong>二、项目信息</strong>：基于<strong>倪海厦《天纪》</strong>教学体系的紫微斗数排盘系统，包含完整排盘算法、四化系统、格局知识库、古籍原文数据，以及一套完整开源的紫微斗数解读数据：<strong>v4.0 解读数据集——67.5 万张命盘 × 13 维 = 877 万段解读，正文约 204 亿字，解压后 56.6 GB</strong>（2026-10-15 发布）。</p>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>命盘</th>
+<th>解读段数</th>
+<th>解压后</th>
+<th>覆盖年份</th>
+<th>每张盘解读字数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v4.0 解读数据集</strong>（2026-10-15）</td>
+<td><strong>674,976</strong></td>
+<td><strong>8,774,688</strong></td>
+<td><strong>56.6 GB</strong></td>
+<td><strong>1950–2026</strong>（只含真实日期）</td>
+<td><strong>约 3.0 万字</strong></td>
+</tr>
+<tr>
+<td>v3.0 样本数据集</td>
+<td>518,400</td>
+<td>6,739,200</td>
+<td>33.1 GB</td>
+<td>1924–1983</td>
+<td>约 2.1 万字</td>
+</tr>
+<tr>
+<td>变化</td>
+<td>+30%</td>
+<td>+30%</td>
+<td><strong>+71%</strong></td>
+<td>+17 年</td>
+<td>+44%</td>
+</tr>
+</tbody>
+</table>
+<p><sub>v3.0 每张盘解读字数按 2,160 张盘抽样估算，其余数字为全量统计；两版每张盘都是 13 维。</sub></p>
+<p>在线体验：<a href="https://metisziwei.com/?from=gh-readme">metisziwei.com</a>，排盘、AI 解读、命盘历史全部开放。</p>
+<blockquote>
+<p><strong>注：关于六亲判断</strong></p>
+<p>紫微斗数在六亲（父母、兄弟、子女等）判断上存在一定局限。倪师在《天纪》中指出：“斗数批六亲本来就比较差一点。”（<a href="https://www.bilibili.com/video/BV1KJsLekEfA?p=3&amp;t=1527">2上 · 00:25:27</a>）在传统术数中，铁板神数在核对六亲方面有其独特优势（<a href="https://www.bilibili.com/video/BV1KJsLekEfA?p=3&amp;t=195">2上 · 00:03:15</a>）；倪师仍以紫微斗数为核心，是因为它能结合地理、环境与人事进行综合判断，形成“上知天文、下知地理、中知人事”的完整体系（<a href="https://www.bilibili.com/video/BV1KJsLekEfA?p=3&amp;t=1543">2上 · 00:25:43</a>）。因此，与六亲相关的分析仅供参考；<a href="https://metisziwei.com/?from=gh-readme">metisziwei.com</a> 上父母、兄弟、子女三个维度也附有同样的说明。</p>
+</blockquote>
+<hr />
+<h2>目录</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>章节</th>
+<th>一句话</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一</td>
+<td><a href="#一本轮更新2026-10-15">本轮更新</a></td>
+<td>13 维断语按倪师原话与《全书》逐句校正，发布 67.5 万命盘 × 13 维解读数据集 v4.0</td>
+</tr>
+<tr>
+<td>二·新</td>
+<td><a href="#二新13-维解读数据集-v402026-10-15">13 维解读数据集 v4.0</a></td>
+<td>2026-10-15 新版断语，67.5 万命盘，按年份下载</td>
+</tr>
+<tr>
+<td>二</td>
+<td><a href="#二518-万命盘样本数据集">51.8 万命盘样本数据集</a></td>
+<td>规格、下载、用途、许可</td>
+</tr>
+<tr>
+<td>三</td>
+<td><a href="#三快速开始">快速开始</a></td>
+<td>克隆到跑起来</td>
+</tr>
+<tr>
+<td>四</td>
+<td><a href="#四排盘引擎">排盘引擎</a></td>
+<td>能做到什么、文件怎么分、古籍数据</td>
+</tr>
+<tr>
+<td>五</td>
+<td><a href="#五倪师天纪紫微斗数原话">倪师《天纪·紫微斗数》原话</a></td>
+<td>14 讲 + 2 段补充、1848 条，一图看全，每条可回放</td>
+</tr>
+<tr>
+<td>六</td>
+<td><a href="#六界面是一份-demo">界面是一份 Demo</a></td>
+<td>不是线上那套，差距写明</td>
+</tr>
+<tr>
+<td>七</td>
+<td><a href="#七开源边界什么不在里面">开源边界</a></td>
+<td>什么开源、什么不开源</td>
+</tr>
+<tr>
+<td>八</td>
+<td><a href="#八维护节奏与贡献">维护节奏与贡献</a></td>
+<td>同步节奏、issue / PR 口径</td>
+</tr>
+<tr>
+<td>九</td>
+<td><a href="#九协议">协议</a></td>
+<td>代码 MIT / 数据 CC BY 4.0 / 古籍公版 / 倪师原话非商用</td>
+</tr>
+<tr>
+<td>十</td>
+<td><a href="#十关于与联系">关于与联系</a></td>
+<td>项目理念、技术栈、联系方式</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>一、本轮更新（2026-10-15）</h2>
+<p>本轮跟随网站 2026-10-15 发版（网站内容版本 <code>ca268829f7a9</code>）：</p>
+<p><img alt="本轮更新总览" src="./docs/update-20261015.png" /></p>
+<p><strong>1. 发布 13 维解读数据集 v4.0</strong> —— 674,976 张命盘（公历 1950–2026 年每一个真实日期 × 12 时辰 × 男女）× 13 维 = <strong>8,774,688 段解读</strong>，正文约 204 亿字。解压后 56.6 GB（v3.0 为 33.1 GB，增加 71%），压缩后只有 161 MB，按年份分 77 个文件，可以只下需要的年份，也可以一次下全年份总包。下载见 <a href="https://github.com/Renhuai123/ziwei-doushu/releases/tag/v4.0-13d">Release v4.0-13d</a>，规格和字段见<a href="#二新13-维解读数据集-v402026-10-15">第二·新章</a>。发布前 77 个文件逐个解压，与原始数据逐字节比对一致。</p>
+<p><strong>2. 13 维断语按倪师原话与《全书》原文逐句校正</strong>（断语库仍不开源，校正结果体现在 v4.0 数据集里）：</p>
+<ul>
+<li>标着倪师或《全书》却查不到出处的引文，删掉或换成逐字可查的原话；倪师原话注明《天纪》第几集、几分几秒</li>
+<li>不会发生的四化（如七杀化权、紫微化忌）相关的句子删去；只在某种条件下才成立的断语补上条件</li>
+<li>「力量强时……落陷时……」这类两头说的句子，改为按命盘只显示成立的那一种</li>
+<li>健康：哪个脏腑要留意，改按倪师的看法——全盘杀星最集中的那一宫，按它的地支对应脏腑；不再按星的五行推脏器</li>
+<li>网站知识库「古籍引证」由 244 处增至 405 处，每一处都能在《紫微斗数全书》原文里逐字找到</li>
+</ul>
+<p><strong>3. 排盘引擎同步</strong>（<a href="https://github.com/Renhuai123/ziwei-doushu/pull/39">PR #39</a>）—— <code>dst-cn.ts</code> 新增 <code>chinaDSTSpan(year)</code>，查某年中国夏令时起止；<code>cities.ts</code> 补全省直辖县级单位与新疆兵团各市的经度（神农架、海南各市县、阿拉尔等），出生地选这些城市时真太阳时校正可用。</p>
+<p><strong>4. 许可</strong> —— <a href="./DATASET-LICENSE"><code>DATASET-LICENSE</code></a> 适用范围加上 v4.0；写明解读里引用的倪师原话不在数据授权范围内，与第五章倪师原话的 CC BY-NC-SA 4.0 一致。v3.0 样本数据集及其条款不变。</p>
+<blockquote>
+<p><strong>2026-10-24 补充</strong>：项目理念移到页首——标题下居中一句「算法是公开的传统智慧，不应该被锁在围墙里」，紧接两段理念原文（前标「项目理念」），原有介绍段前标「项目信息」；第十章「项目理念」改为指向页首。</p>
+<p><strong>2026-10-20 补充</strong>：星曜亮度默认改为《斗数全书》，与主流排盘软件默认一致，此前默认的「现代修正 v2」仍可在流派设置里选；补齐天姚、天刑、天喜、大耗、解神、截空、副截、旬空的亮度，月德不再标亮度。用 5 张金标准盘逐宫核对，星曜落宫与亮度全部吻合。注意：v4.0 数据集（10-15）是按旧默认「现代修正 v2」生成的，其中亮度字和少量随亮度变化的解读句会与新默认不同。</p>
+<p><strong>2026-10-06 ~ 10-07 补充</strong>：README 加「注：关于六亲判断」（倪师原话 + 出处链接，中英两份）；网站链接加渠道码 <code>?from=</code>；同步倪师原话语料勘误（主星南斗、北斗归属）。</p>
+</blockquote>
+<h3>上一轮更新（2026-09-21）</h3>
+<blockquote>
+<p><strong>2026-10-03 补充</strong>：倪师《天纪·紫微斗数》原话 1848 条单独成章（第五章）；合并外部贡献 #29（时辰序号校验）；引擎拒绝不存在的公历日期，数据集补字段口径与已知问题；提交 package-lock.json；站点地址改为可配置；合盘演示改用本地引擎起盘、AI 接口缺失时明确提示；补齐贡献指南、行为准则、问题与 PR 模板；新增英文简介 <a href="./README.en.md">README.en.md</a>；去掉两个用不上的部署工具包（vercel CLI、@cloudflare/next-on-pages），依赖从 483 个减到 185 个；随后升级到 Next.js 16 修掉 postcss 漏洞，GitHub 安全提醒从 51 条清零。</p>
+</blockquote>
+<p><img alt="本轮更新总览" src="./docs/update-20260921.png" /></p>
+<p>时隔三个月，本仓库完成一次完整更新（<a href="https://github.com/Renhuai123/ziwei-doushu/pull/28">PR #28</a>，26 个文件、+2736 / −108 行）：</p>
+<p><strong>1. 排盘引擎同步到线上口径</strong> —— <code>algorithm.ts</code> 从 181 行到 641 行，另更新 sihua / types / constants / patterns / cities / famous；新增 8 个模块（1367 行）：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>true-solar-time.ts</code></td>
+<td>真太阳时校正（经度差 + 均时差）</td>
+</tr>
+<tr>
+<td><code>dst-cn.ts</code></td>
+<td>中国 1986–1991 夏令时</td>
+</tr>
+<tr>
+<td><code>lunar-solar.ts</code></td>
+<td>农历 / 公历互转与闰月边界 clamp</td>
+</tr>
+<tr>
+<td><code>school-data.ts</code> / <code>school-tables.generated.ts</code> / <code>school-config.ts</code></td>
+<td>星曜亮度流派数据与对照表、闰月与晚子时口径配置</td>
+</tr>
+<tr>
+<td><code>shier-shen.ts</code></td>
+<td>十二神煞</td>
+</tr>
+<tr>
+<td><code>yunxian-context.ts</code></td>
+<td>运限上下文（含童限）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. 补上回归测试与 CI</strong> —— 此前本仓库没有任何测试。现在 5 条排盘回归，<code>npm test</code> 一条命令跑完，每次 push 与 PR 在 GitHub Actions 上自动跑。</p>
+<p><strong>3. 修掉样本时辰注释错位</strong>（<a href="https://github.com/Renhuai123/ziwei-doushu/issues/26">#26</a>）—— <code>famous.ts</code> 里 11 条名人样本有 7 条的时辰注释与 <code>hour</code> 索引不符（<code>hour</code> 一直是<strong>时辰地支索引 0–11</strong>，不是 0–23 的小时数）。已改正并加回归钉住。</p>
+<p><strong>4. 积压 issue 从 18 条清到 4 条</strong>，留下的都是还在走的。</p>
+<p><strong>5. 文档与许可</strong> —— 新增 <a href="./DATASET-LICENSE"><code>DATASET-LICENSE</code></a>；README 补齐引擎能力清单、维护节奏、开源边界；修正两处不实描述（数据集「口径与线上完全一致」、界面「完整的 Next.js 15 前端」）。</p>
+<hr />
+<h2>二·新、13 维解读数据集 v4.0（2026-10-15）</h2>
+<blockquote>
+<p><strong>下载位置：本仓库右侧 <a href="https://github.com/Renhuai123/ziwei-doushu/releases/tag/v4.0-13d">Releases → v4.0-13d</a></strong></p>
+</blockquote>
+<p>v4.0 用 2026-10-15 版网站断语库重新生成：13 个分析维度的断语已按倪海厦《天纪》逐字稿与《紫微斗数全书》原文逐句校正——查不到出处的引文删去或换成逐字可查的原话（倪师原话注明《天纪》集数与时间码），不会发生的四化相关句子删去，有条件的断语写明条件。</p>
+<h3>规格</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命盘数</td>
+<td><strong>674,976 张</strong>（公历 1950–2026 年 × 真实每月天数 × 12 时辰 × 男女）</td>
+</tr>
+<tr>
+<td>解读段数</td>
+<td><strong>8,774,688 段</strong>（每张盘 13 维）</td>
+</tr>
+<tr>
+<td>维度</td>
+<td>命格总览、性格、感情、事业、财运、健康、兄弟、子女、迁移、人际、田宅、福德、父母</td>
+</tr>
+<tr>
+<td>大小</td>
+<td>解压后 56.6 GB；压缩后 161 MB（77 个年份文件，zstd；另有一个全年份总包 <code>ziwei-interp-v4-all.tar</code>）</td>
+</tr>
+<tr>
+<td>正文</td>
+<td>约 204 亿字，每张盘约 3.0 万字</td>
+</tr>
+<tr>
+<td>生成方式</td>
+<td>排盘引擎 + 断语库确定性生成，不经 AI，同一输入恒得同一输出</td>
+</tr>
+<tr>
+<td>内容版本</td>
+<td><code>ca268829f7a9</code>（与网站同期的 ANALYSIS_CONTENT_VERSION）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>每行一张盘</strong>（JSON Lines），字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>k</code></td>
+<td>键：<code>YYYY-MM-DD-时辰序号-性别</code>，如 <code>1990-01-01-0-male</code></td>
+</tr>
+<tr>
+<td><code>y</code> / <code>m</code> / <code>d</code></td>
+<td><strong>公历</strong>出生日期；只含真实存在的日期（不再有 2 月 30 日之类）</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td><strong>时辰序号 0–11</strong>（子 = 0 …… 亥 = 11），不是钟点；对照表见上一节</td>
+</tr>
+<tr>
+<td><code>g</code></td>
+<td><code>male</code> / <code>female</code></td>
+</tr>
+<tr>
+<td><code>ms</code></td>
+<td>命宫第一颗主星；命宫无主星时为 <code>null</code></td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>各维字数</td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>13 维解读全文（Markdown），键为 <code>overview</code> / <code>personality</code> / <code>love</code> / <code>career</code> / <code>wealth</code> / <code>health</code> / <code>family</code> / <code>children</code> / <code>move</code> / <code>friends</code> / <code>home</code> / <code>spirit</code> / <code>parents</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>口径说明</strong><br />
+- 是本命盘视图的解读；网站上按读者当前年龄改写的句子、各维末尾附加的倪师法则段、AI 解读都不在数据集里。<br />
+- 按时辰序号直接排盘，未按出生地做真太阳时校正。</p>
+<h3>下载与解压</h3>
+<pre><code class="language-bash"># 一次下全部：gh release download v4.0-13d --repo Renhuai123/ziwei-doushu -p &quot;ziwei-interp-v4-all.tar&quot;
+# 只要某几年就只下那几年，例如 1990 年
+zstd -d --long=27 year-1990.jsonl.zst          # 得到 year-1990.jsonl
+shasum -a 256 -c SHA256SUMS.txt --ignore-missing # 校验
+</code></pre>
+<p><code>--long=27</code> 必须带上（压缩时用了长窗口）。Windows 可用 <a href="https://github.com/facebook/zstd/releases">zstd 官方发布包</a> 里的 zstd.exe，参数相同。</p>
+<h3>引文说明</h3>
+<p>解读里引用的倪海厦《天纪》原话<strong>不属于本数据集的授权范围</strong>：它们是为说明断语出处而注明集数与时间码的简短引用，著作权归原权利人；要把这些原话单独成批使用，按第五章倪师原话的 <a href="./docs/tianji-ziwei/LICENSE.md">CC BY-NC-SA 4.0</a> 处理。《紫微斗数全书》原文属公有领域。</p>
+<h3>许可</h3>
+<p>与 v3.0 相同：<strong>CC BY 4.0，可自由商用，唯一要求是保留来源标注</strong>（上面「引文说明」里的倪师原话除外），完整条款见 <a href="./DATASET-LICENSE">DATASET-LICENSE</a>。引用时请写：</p>
+<blockquote>
+<p>本项目使用了 <strong>紫微斗数开源解读数据集 v4.0</strong>（674,976 张命盘 × 13 维）<br />
+来源：https://github.com/Renhuai123/ziwei-doushu<br />
+作者：王多鱼AI</p>
+</blockquote>
+<hr />
+<h2>二、51.8 万命盘样本数据集</h2>
+<blockquote>
+<p><strong>下载位置：本仓库右侧 <a href="https://github.com/Renhuai123/ziwei-doushu/releases/tag/v3.0-samples">Releases</a> 页面</strong></p>
+</blockquote>
+<p>我们开源了一套完整的紫微斗数命盘样本数据集，覆盖 <strong>51.8 万种排盘组合</strong>（年 60 × 月 12 × 日 30 × 时 12 × 性别 2），每条样本包含完整的命盘结构和基于倪海厦体系的解读文本。</p>
+<h3>2.1 数据规格</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>样本数量</td>
+<td><strong>518,400 条</strong></td>
+</tr>
+<tr>
+<td>总大小</td>
+<td>压缩后 5.5 GB（分 3 卷），解压后 33.1 GB</td>
+</tr>
+<tr>
+<td>体系</td>
+<td>倪海厦《天纪》正统（纯飞星派已下线）</td>
+</tr>
+<tr>
+<td>内容</td>
+<td>命盘 JSON + 13 主题解读文本（命格总览、财运、事业、感情、健康等）</td>
+</tr>
+<tr>
+<td>验证</td>
+<td>男女命差异化 100%、健康含子午流注 100%、女命含妇科保养 100%</td>
+</tr>
+<tr>
+<td>口径</td>
+<td>由 <strong>v3 版排盘引擎 + 当期断语库</strong>生成；线上引擎在持续更新，新版输出与本数据集可能有差异</td>
+</tr>
+</tbody>
+</table>
+<p><strong>字段口径</strong>（每条样本由 <code>birthInfo</code> 生成，常被看错的是 <code>hour</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>birthInfo.year</code> / <code>month</code> / <code>day</code></td>
+<td><strong>公历</strong>出生日期：1924–1983 年（一个完整甲子），每月取 1–30 日</td>
+</tr>
+<tr>
+<td>`bi</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Renhuai123/ziwei-doushu#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">JetBrains /</span>
+          <a href="https://github.com/JetBrains/thinkrail" target="_blank" rel="noopener">thinkrail</a>
+        </div>
+        <div class="repo-desc">Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 2,220</span>
+      <span class="meta-item">🍴 127</span>
+      <span class="stars-today">⭐ 51 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>ThinkRail</h1>
+<p><a href="https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub"><img alt="JetBrains incubator project" src="https://jb.gg/badges/incubator-plastic.svg" /></a><br />
+<a href="https://star-history.com/#JetBrains/thinkrail&amp;Date"><img alt="GitHub stars" src="https://img.shields.io/github/stars/JetBrains/thinkrail?style=social" /></a></p>
+<p>ThinkRail is the agentic IDE that gets better every time you use it — learning your project through<br />
+living specs today, and building its own capabilities tomorrow.</p>
+<p>We built a rich interface around the <a href="https://www.npmjs.com/package/@earendil-works/pi-coding-agent"><code>pi</code></a><br />
+coding agent, isolated work into separate workspaces, and gave the agent durable project knowledge<br />
+through living specs and reusable skills. Next, we're adding full extension support, so ThinkRail can<br />
+create the tools it needs based on how you actually work.</p>
+<p><strong>Website:</strong> <a href="https://thinkrail.ai/">thinkrail.ai</a> · <strong>Blog:</strong> <a href="https://thinkrail.ai/blog/">thinkrail.ai/blog</a></p>
+<p>⭐ If you find ThinkRail useful, give it a star — it helps others discover it.</p>
+<p align="center">
+ <a href="https://www.star-history.com/jetbrains/thinkrail">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=rank&theme=dark" /><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=rank" /><img alt="Star History Rank" src="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=rank" /></picture> <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=trending&theme=dark" /><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=trending" /><img alt="GitHub Trending Repository of the Day" src="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=trending" /></picture>
+ </a>
+</p>
+
+<p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-assets/workbench-dark.png"><br />
+  <img src=".github/readme-assets/workbench-light.png" alt="ThinkRail workbench: the Projects pane beside the left tool rail listing worktree workspaces and their Settled shelf, a finished pi conversation with its tool steps in the center, the resulting diff beside it, and the Specs tree above the Changes list on the right with their tools on the edge rail" width="900"><br />
+</picture></p>
+<p><em>A <code>pi</code> session and the change it made, scoped to an isolated git-worktree workspace.</em></p>
+<h2>What you get</h2>
+<ul>
+<li><strong>Isolated workspaces.</strong> Open any git repo as a project and cut workspaces from it as <code>git worktree</code>s,<br />
+  each with its own branch and working directory. Agents work in parallel without touching your<br />
+  checkout; merge the good branch, delete the rest. You can also attach existing worktrees or explicitly<br />
+  work in the project folder itself. Finished and dormant workspaces settle onto a per-project shelf on<br />
+  their own — when their pull request merges or closes, or after a quiet week — and come back the moment<br />
+  you work in them. The topbar shows where the active branch stands against <code>origin</code> and its pull request,<br />
+  with the next step one click away: publish, push, or open a PR described from the plan, the commits,<br />
+  your PR template, or an agent-written draft. Once a GitHub PR is open it shows the CI checks and review<br />
+  decision, and lets you mark it ready, hand failing checks or a diverged branch to the agent, merge it<br />
+  with the repository's last-used method, reopen it, or delete the remote branch.</li>
+<li><strong>A real IDE around the agent.</strong> A splittable workbench of Monaco editor tabs, a Files tree with live git<br />
+  change marks and a Changed view, terminals, and documents — all scoped to the active workspace. Leave<br />
+  anchored review comments on files and diffs and send them to a chat as structured context, or open the<br />
+  worktree in your installed IDE.</li>
+<li><strong>Chats that stream like the engine thinks.</strong> Several concurrent <code>pi</code> sessions per workspace, each with<br />
+  its own model and live token and cost readout. Steer a running turn or queue a follow-up, delegate to<br />
+  subagents, and work a shared plan the agent updates and you edit — each completed step can be committed<br />
+  and reviewed on its own.</li>
+<li><strong>Specs as ground truth.</strong> A connected graph of <code>SPEC.md</code> files lives beside the code; the agent reads,<br />
+  searches, and maintains it through dedicated <code>spec_*</code> tools, so intent survives the session. The<br />
+  read-only Specs tool renders the graph as a tree in the workbench.</li>
+<li><strong>Skills and workflows.</strong> Portable Agent Skills you already keep for other coding agents are read in<br />
+  place, and bundled workflows guide project setup, design brainstorming, and shipping a pull request —<br />
+  pushing the workspace branch and opening or updating its GitHub PR through your own <code>gh</code>.</li>
+<li><strong>Agent tools beyond the shell.</strong> Web research, and inline diagrams, option comparisons and file previews<br />
+  rendered right in the chat — when the agent proposes a UI change it shows a before/after mockup you can<br />
+  comment on like a diff. Settings → Extensions lists the ThinkRail extensions the agent gets and lets you switch<br />
+  each one off.</li>
+<li><strong>MCP servers.</strong> Connect the MCP servers in your <code>pi</code> <code>mcp.json</code> (or add them, and a few presets, from<br />
+  Settings): ThinkRail asks in the chat before calls the server does not mark read-only (or always allows<br />
+  the tools you trust in a project), keeps servers a repository<br />
+  defines off until you approve them, signs you in to OAuth servers from Settings, and shows each chat's<br />
+  servers next to its background commands and subagents.</li>
+<li><strong>Your providers, your credentials.</strong> Sign in with <a href="https://www.jetbrains.com/ai/">JetBrains AI</a> or<br />
+  connect any provider through <code>pi</code>'s own auth. ThinkRail has no accounts of its own.</li>
+<li><strong>Desktop app or browser.</strong> A native desktop app, or the <code>thinkrail</code> CLI that opens the same app in your<br />
+  browser. Both embed the same engine host; app state lives under <code>~/.thinkrail</code>.</li>
+<li><strong>Your language.</strong> Settings → Language follows your system language or a language you pick; English and<br />
+  Simplified Chinese are built in. Add a language ThinkRail doesn't ship yet by dropping a translated<br />
+<code>en.json</code> into <code>~/.thinkrail/locales</code> — it applies as you save. Agent replies and tool output stay as<br />
+  the agent wrote them.</li>
+</ul>
+<p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-assets/specs-dark.png"><br />
+  <img src=".github/readme-assets/specs-light.png" alt="The Specs tool, opened from the right edge rail, listing the project's spec tree while the product goal spec is rendered in the editor" width="900"><br />
+</picture></p>
+<p><em>The project's spec graph as a tree, with the spec itself rendered alongside.</em></p>
+<h2>Install</h2>
+<p>ThinkRail ships in two additive forms: a native desktop installer and the self-contained <code>thinkrail</code> CLI.<br />
+Both are published with <code>SHA256SUMS</code> on the <a href="https://github.com/JetBrains/thinkrail/releases">releases page</a>.</p>
+<h3>Desktop</h3>
+<p>Download the <code>thinkrail-desktop-*</code> asset for your platform:</p>
+<ul>
+<li><strong>macOS (Apple Silicon)</strong> — open the DMG. There is no Intel desktop build.</li>
+<li><strong>Windows x64</strong> — extract the complete setup ZIP, then run its setup executable in place, next to its<br />
+  payload.</li>
+<li><strong>Linux x64 / ARM64</strong> — extract the setup tarball and run <code>installer</code>. Desktop builds need glibc 2.38+<br />
+  with GTK 3, WebKitGTK 4.1, Ayatana AppIndicator 3, and librsvg 2 — Ubuntu 24.04 or newer:</li>
+</ul>
+<p><code>bash
+  sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0 libayatana-appindicator3-1 librsvg2-2</code></p>
+<p>Packaged stable and nightly desktop builds check for updates in the background and offer them in<br />
+<strong>Settings → Updates</strong>: <strong>Download</strong> → <strong>Preparing update</strong> → <strong>Install &amp; Restart</strong>. Nothing is applied until<br />
+you choose <strong>Install &amp; Restart</strong>. ThinkRail then shows the installation's progress and log, closes, and<br />
+reopens on the new version. After the restart it tells you whether the update installed. If it didn't, it<br />
+explains why and offers to retry. The updater appears only when the package car</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/JetBrains/thinkrail#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">coollabsio /</span>
+          <a href="https://github.com/coollabsio/coolify" target="_blank" rel="noopener">coolify</a>
+        </div>
+        <div class="repo-desc">An open-source, self-hostable PaaS alternative to Vercel, Heroku &amp; Netlify that lets you easily deploy static sites, databases, full-stack applications and 360+ one-click services on your own servers.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#4F5D95"></span>PHP</span>
+      <span class="meta-item">⭐ 64,806</span>
+      <span class="meta-item">🍴 5,817</span>
+      <span class="stars-today">⭐ 152 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<img src="./public/coolify-logo.svg" alt="Coolify logo" width="120" />
+
+# Coolify
+
+**An open-source platform to deploy applications, databases, and services on your own servers.**
+
+Open source & free forever, backed by our [philosophy](https://coolify.io/philosophy).
+
+![Latest Release Version](https://img.shields.io/badge/dynamic/json?labelColor=grey&color=6366f1&label=Latest%20released%20version&url=https%3A%2F%2Fcdn.coollabs.io%2Fcoolify%2Fversions.json&query=coolify.v4.version&style=for-the-badge
+)
+
+[Website](https://coolify.io) · [Documentation](https://coolify.io/docs) · [Cloud](https://app.coolify.io) · [Discord](https://coollabs.io/discord) · [Community](https://github.com/coollabsio/coolify/discussions)
+
+</div>
+
+<h2>What is Coolify?</h2>
+<p>Coolify is an open-source and self-hostable alternative to Heroku, Netlify, and Vercel. It helps you manage servers, applications, and databases on your own hardware. You only need an SSH connection.</p>
+<p>You can use a VPS, a bare-metal server, a Raspberry Pi, or any other server that accepts SSH connections. Coolify gives you the convenience of a cloud platform while you keep control of your infrastructure.</p>
+<p>Your configurations stay on your servers. If you stop using Coolify, your running resources continue to work and remain manageable.</p>
+<h2>What can Coolify do?</h2>
+<ul>
+<li><strong>Deploy any application:</strong> Build from GitHub, GitLab, Bitbucket, or Gitea with Nixpacks, Railpack, Dockerfile, Docker Compose, or a prebuilt Docker image.</li>
+<li><strong>Run databases and services:</strong> Deploy managed databases and more than 360 one-click services with persistent storage and generated credentials.</li>
+<li><strong>Automate deployments:</strong> Deploy on every Git push, create pull-request previews, call deployment webhooks, and roll back to retained application images.</li>
+<li><strong>Manage networking:</strong> Configure custom domains, automatic HTTPS certificates, reverse proxies, health checks, and container networks.</li>
+<li><strong>Operate your infrastructure:</strong> Manage multiple servers, inspect deployment and runtime logs, open container terminals, and monitor resource status.</li>
+<li><strong>Protect your workloads:</strong> Configure database and storage backups, scheduled tasks, environment variables, secrets, and notifications.</li>
+<li><strong>Integrate with your workflow:</strong> Manage resources through the dashboard, API, CLI, MCP, and team-based access controls.</li>
+</ul>
+<h2>Quick start</h2>
+<p>Install Coolify on a supported server with one command:</p>
+<pre><code class="language-bash">curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
+</code></pre>
+<p>Read the <a href="https://coolify.io/docs/installation">installation guide</a> for requirements and detailed instructions. You can also review the <a href="./scripts/install.sh">installation script</a> before you run it.</p>
+<h2>Self-hosted or Cloud</h2>
+<table>
+<thead>
+<tr>
+<th>Self-hosted</th>
+<th>Coolify Cloud</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Install Coolify on your own server.</td>
+<td>Use a Coolify instance that we maintain.</td>
+</tr>
+<tr>
+<td>Control and maintain the complete platform.</td>
+<td>Get high availability and less maintenance.</td>
+</tr>
+<tr>
+<td>Free and open source.</td>
+<td>Paid service with email notifications and additional support.</td>
+</tr>
+</tbody>
+</table>
+<p>The recommended self-hosted setup uses one server for Coolify and one or more servers for deployed resources. If you do not want to maintain the Coolify server, use <a href="https://app.coolify.io">Coolify Cloud</a>. See <a href="https://coolify.io">coolify.io</a> for current pricing.</p>
+<h2>Community and support</h2>
+<ul>
+<li>Read the <a href="https://coolify.io/docs">documentation</a>.</li>
+<li>Join the community on <a href="https://coollabs.io/discord">Discord</a>.</li>
+<li>Ask questions in <a href="https://github.com/coollabsio/coolify/discussions">GitHub Discussions</a>.</li>
+<li>Read the <a href="./CONTRIBUTING.md">contribution guide</a> before you submit a change.</li>
+<li>Review the <a href="./CODE_OF_CONDUCT.md">code of conduct</a>.</li>
+<li>Contact the team through the <a href="https://coolify.io/docs/contact">support page</a>.</li>
+</ul>
+<h2>Donations</h2>
+<p>To stay completely free and open-source, with no feature behind the paywall and evolve the project, we need your help. If you like Coolify, please consider donating to help us fund the project's future development.</p>
+<p><a href="https://coolify.io/sponsorships">coolify.io/sponsorships</a></p>
+<p>Thank you so much!</p>
+<h3>Huge Sponsors</h3>
+<ul>
+<li><a href="https://www.context.dev/">Context.dev</a> - Web scraping API for AI agents</li>
+<li><a href="https://ginernet.com/">Ginernet</a> - Hosting powerful servers in Spain</li>
+<li><a href="https://serpapi.com">SerpAPI</a> - Google Search API — Scrape Google and other search engines from our fast, easy, and complete API.</li>
+<li><a href="https://www.mvps.net">MVPS</a> - Cheap VPS servers at the highest possible quality</li>
+<li><a href="https://screenshotone.com">ScreenshotOne</a> - Screenshot API for devs</li>
+<li><a href="https://privatealps.net">PrivateAlps</a> - Cloud Services Provider, VPS, servers infrastructure for people who care about privacy and control</li>
+<li><a href="https://seibert.link/coolifysoftware">Seibert Group</a> - Boost productivity company-wide with AI agents like Claude Code</li>
+<li><a href="https://contabo.com/en/coolify-vps/">Contabo</a> - Cloud VPS &amp; dedicated servers at unbeatable prices</li>
+</ul>
+<h3>Big Sponsors</h3>
+<ul>
+<li><a href="https://www.vanaways.co.uk">Vanaways</a> - New vans for sale and lease across the UK</li>
+<li><a href="https://www.cloudways.com/en/?id=2125302">Cloudways</a> - Managed cloud hosting platform by DigitalOcean</li>
+<li><a href="https://www.bytebase.com">ByteBase</a> - Database CI/CD and Security at Scale</li>
+<li><a href="https://ramnode.com/">Ramnode</a> - High Performance Cloud VPS Hosting</li>
+<li><a href="https://23m.com">23M</a> - Your experts for high-availability hosting solutions!</li>
+<li><a href="https://macarne.com">Macarne</a> - Best IP Transit &amp; Carrier Ethernet Solutions for Simplified Network Connectivity</li>
+<li><a href="http://htznr.li/CoolifyXHetzner">Hetzner</a> - Server, cloud, hosting, and data center solutions</li>
+<li><a href="https://logto.io">Logto</a> - The better identity infrastructure for developers</li>
+<li><a href="https://supadata.ai/">Supadata</a> - Scrape YouTube, web, and files. Get AI-ready, clean data for your next project. </li>
+<li><a href="https://tolgee.io">Tolgee</a> - The open source localization platform</li>
+<li><a href="https://bc.direct">Best Consultant</a> - Your trusted technology consulting partner</li>
+<li><a href="https://arcjet.com">ArcJet</a> - Advanced web security and performance solutions</li>
+<li><a href="https://supa.guide">SupaGuide</a> - Your comprehensive guide to Supabase</li>
+<li><a href="https://coderabbit.ai">CodeRabbit</a> - Cut Code Review Time &amp; Bugs in Half</li>
+<li><a href="https://convex.link/coolify.io">Convex</a> - Convex is the open-source reactive database for web app developers.</li>
+<li><a href="https://billing.goldenvm.com">GoldenVM</a> - Premium virtual machine hosting solutions</li>
+<li><a href="https://comit.international">Comit International</a> - New York Times award–winning contractor!</li>
+<li><a href="https://www.trycomp.ai">Compai</a> - The open source compliance automation platform that does everything you need to get compliant, fast. Open source alternative to Drata &amp; Vanta.</li>
+<li><a href="https://www.tigrisdata.com">Tigris</a> - Modern S3 Alternative</li>
+<li><a href="https://blacksmith.sh">Blacksmith</a> - Infrastructure automation platform</li>
+<li><a href="https://jobscollider.com/remote-jobs">JobsCollider</a> - 30,000+ remote jobs for developers</li>
+<li><a href="https://darweb.nl/?ref=coolify.io&amp;utm_source=coolify.io">Darweb</a> - Design. Develop. Deliver. Specialized in 3D CPQ Solutions for eCommerce.</li>
+<li><a href="https://www.hostinger.com/vps/coolify-hosting">Hostinger</a> - Web hosting and VPS solutions</li>
+<li><a href="https://vibe.mobb.ai/">Mobb</a> - Secure Your AI-Generated Code to Unlock Dev Productivity</li>
+<li><a href="https://www.ubicloud.com">Ubicloud</a> - Open source cloud infrastructure platform</li>
+<li><a href="https://pfglabs.com">PFGLabs</a> - Build Real Projects with Golang</li>
+<li><a href="https://juxtdigital.com">JuxtDigital</a> - Digital PR &amp; AI Authority Building Agency</li>
+<li><a href="https://saasykit.com">SaasyKit</a> - Complete SaaS starter kit for developers</li>
+<li><a href="https://americancloud.com">American Cloud</a> - US-based cloud infrastructure services</li>
+<li><a href="https://www.greptile.com">Greptile</a> - The AI Code Reviewer</li>
+<li><a href="https://vpsdime.com/">VPSDime</a> - Cheap VPS Hosting - 4GB for $5/month</li>
+<li><a href="https://cloud.dataforest.net/en">dataforest Cloud</a> - Deploy cloud servers as seeds independently in seconds. Enterprise hardware, premium network, 100% made in Germany.</li>
+<li><a href="https://ishosting.com/">ISHosting</a> - Hosting and VPS solutions</li>
+<li><a href="https://nodeplus.ai/">NodePlus.ai</a> - AI that reads every system your business</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/coollabsio/coolify#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">cloudflare /</span>
+          <a href="https://github.com/cloudflare/security-audit-skill" target="_blank" rel="noopener">security-audit-skill</a>
+        </div>
+        <div class="repo-desc">A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 47,669</span>
+      <span class="meta-item">🍴 2,963</span>
+      <span class="stars-today">⭐ 2,878 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>security-audit</h1>
+<p>A coding-agent skill that turns your agent into a security auditor. It orchestrates isolated agents through reconnaissance, coverage-led hunting, candidate validation, structured output, independent record verification, and target-neutral reporting.</p>
+<p>This is the skill that seeded Cloudflare's vulnerability discovery harness, described in <a href="https://blog.cloudflare.com/build-your-own-vulnerability-harness">Build your own vulnerability harness</a>. The harness grew into a multi-stage, fleet-wide system; this skill is the single-repo starting point it evolved from.</p>
+<h2>What it does</h2>
+<p>The skill runs a structured audit in six phases:</p>
+<ol>
+<li><strong>Reconnaissance</strong> -- map architecture, trust boundaries, input surfaces, prior evidence, and deterministic coverage in <code>architecture.md</code> and <code>coverage-ledger.json</code>.</li>
+<li><strong>Coverage-led hunting</strong> -- assign isolated hunters from ledger units, record their checks, and use coverage critics to find gaps.</li>
+<li><strong>Candidate validation</strong> -- give every unique candidate to a fresh verifier that tries to disprove it.</li>
+<li><strong>Structured output</strong> -- write <code>confirmed</code>, <code>needs_validation</code>, and <code>rejected</code> records to <code>findings.json</code> and validate them against <code>report-schema.json</code>.</li>
+<li><strong>Independent record verification</strong> -- fresh agents verify final source claims. Material replacements receive another independent verifier.</li>
+<li><strong>Target-neutral reporting</strong> -- derive <code>REPORT.md</code>, <code>FINDINGS-DETAIL.md</code>, and <code>NEEDS-VALIDATION.md</code> from the verified records and coverage ledger.</li>
+</ol>
+<p>The parent runs <code>validate-coverage-ledger.cjs</code> after creating the ledger and after each later ledger update. It runs <code>validate-findings.cjs</code> in Phase 4 and again after every Phase 5 replacement.</p>
+<p>The verdicts are distinct: <code>confirmed</code> has a complete source trace and bounded observed result, <code>needs_validation</code> has an exact unresolved fact and no severity, and <code>rejected</code> records a disproved candidate.</p>
+<p>Multiple runs against the same repo are additive. The skill uses prior ledgers and findings to target gaps, revalidate changed source, and carry forward current-source evidence without treating stale or unresolved work as covered.</p>
+<h2>Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SKILL.md</code></td>
+<td>Setup, core principles, platform terminology, workflow overview, and audit anti-patterns</td>
+</tr>
+<tr>
+<td><code>RECONNAISSANCE.md</code></td>
+<td>Phase 1 reconnaissance prompts and synthesis instructions</td>
+</tr>
+<tr>
+<td><code>HUNTING.md</code></td>
+<td>Phase 2 orchestration, hunting methodology, and validation rules</td>
+</tr>
+<tr>
+<td><code>ATTACK-CLASSES.md</code></td>
+<td>Core, wildcard, and obvious-things attack prompts</td>
+</tr>
+<tr>
+<td><code>MEMORY-SAFETY-AND-BINARY.md</code></td>
+<td>Memory-safety, binary, and kernel hunting classes for native targets</td>
+</tr>
+<tr>
+<td><code>AI-AND-LLM.md</code></td>
+<td>Prompt-injection, agent/tool, and output-handling hunting classes for LLM-backed targets</td>
+</tr>
+<tr>
+<td><code>WEB-PROTOCOL-AND-AUTH.md</code></td>
+<td>HTTP request-framing, cache, and authentication-protocol hunting classes for HTTP-protocol and auth targets</td>
+</tr>
+<tr>
+<td><code>CLIENT-SIDE.md</code></td>
+<td>DOM-injection, messaging-trust, UI-redress, and prototype-pollution hunting classes for client-side/browser targets</td>
+</tr>
+<tr>
+<td><code>SUPPLY-CHAIN-AND-RELEASE.md</code></td>
+<td>Dependency, CI, release, signing, update, plugin, and extension hunting classes</td>
+</tr>
+<tr>
+<td><code>CLOUD-AND-DEPLOYMENT.md</code></td>
+<td>IAM, infrastructure-as-code, container, serverless, ingress, and runtime-configuration hunting classes</td>
+</tr>
+<tr>
+<td><code>PROTOCOLS-RPC-AND-MESSAGING.md</code></td>
+<td>RPC, serialization, queue, broker, webhook, and streaming-protocol hunting classes</td>
+</tr>
+<tr>
+<td><code>RESOURCE-EXHAUSTION-AND-AVAILABILITY.md</code></td>
+<td>Shared resource, quota, queue, worker, and operator-spend hunting classes</td>
+</tr>
+<tr>
+<td><code>DATA-ISOLATION-AND-LIFECYCLE.md</code></td>
+<td>Tenant isolation, cache, search, export, backup, migration, deletion, and restore hunting classes</td>
+</tr>
+<tr>
+<td><code>DESKTOP-MOBILE-AND-LOCAL-IPC.md</code></td>
+<td>Native app, deep-link, webview, exported-component, helper, daemon, and local-IPC hunting classes</td>
+</tr>
+<tr>
+<td><code>VALIDATION-AND-REPORTING.md</code></td>
+<td>Phases 3–6 candidate validation, structured output, record verification, and reporting</td>
+</tr>
+<tr>
+<td><code>report-schema.json</code></td>
+<td>JSON schema for all three <code>findings.json</code> verdicts</td>
+</tr>
+<tr>
+<td><code>validate-findings.cjs</code></td>
+<td>Zero-dependency validator for <code>findings.json</code> in Phases 4 and 5</td>
+</tr>
+<tr>
+<td><code>validate-findings.test.cjs</code></td>
+<td>Findings-validator tests and producer-compatible fixture checks</td>
+</tr>
+<tr>
+<td><code>validate-coverage-ledger.cjs</code></td>
+<td>Zero-dependency validator for <code>coverage-ledger.json</code> in Phases 1–5</td>
+</tr>
+<tr>
+<td><code>validate-coverage-ledger.test.cjs</code></td>
+<td>Coverage-ledger validator tests</td>
+</tr>
+</tbody>
+</table>
+<h2>Installation</h2>
+<p>Install the skill with the <a href="https://skills.sh">Skills CLI</a>:</p>
+<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
+  --skill security-audit
+</code></pre>
+<p>Use <code>--global</code> for a user-level installation:</p>
+<pre><code class="language-bash">npx skills add https://github.com/cloudflare/security-audit-skill \
+  --skill security-audit \
+  --global
+</code></pre>
+<p>Run <code>npx skills --help</code> for agent-selection and non-interactive options.</p>
+<h2>Usage</h2>
+<p>Start your coding agent in (or pointed at) the codebase you want to audit, then ask it to do a security audit:</p>
+<pre><code>security audit this codebase
+</code></pre>
+<pre><code>find security vulnerabilities in ./src
+</code></pre>
+<pre><code>do a security review, output to ~/audits/my-project
+</code></pre>
+<p>The skill activates automatically when the request matches its trigger (security audit, find vulnerabilities, pen-test the code, etc.). A direct codebase audit or pen-test request uses full audit mode. Security questions and focused vulnerability work use guidance mode unless you request report artifacts. In full audit mode, an unspecified output directory defaults to <code>~/security-audit-skill/&lt;repo-name&gt;/run-&lt;N&gt;</code>. The workflow writes inside the target repository only when you explicitly select a directory that version control ignores.</p>
+<h2>Requirements</h2>
+<ul>
+<li>A coding agent with a model that supports tool use and parallel sub-agents</li>
+<li>Node.js for the zero-dependency findings and coverage-ledger validators</li>
+<li>An OS-enforced sandbox for target-controlled builds, tests, processes, browsers, emulators, fuzzers, and fixtures. It must disable external networking, use a sanitized allowlisted environment, enforce resource limits, and allow writes only to assigned scratch paths. Without these controls, the workflow keeps the lead as <code>needs_validation</code> instead of executing target code.</li>
+</ul>
+<h2>Design principles</h2>
+<ul>
+<li><strong>Only confirm established boundary failures.</strong> Keep a source-grounded blocked lead as <code>needs_validation</code> with its exact unresolved fact.</li>
+<li><strong>Adversarial validation.</strong> The agent that checks a finding is never the agent that found it.</li>
+<li><strong>Severity requires impact.</strong> Likelihood x impact, not deviation from a checklist.</li>
+<li><strong>Defense-in-depth gaps are not vulnerabilities.</strong> If Layer A prevents the attack, the absence of Layer B is a hardening note.</li>
+<li><strong>Multiple runs improve coverage.</strong> In our test runs, a single run found roughly half of the vulnerabilities that repeated runs found in total.</li>
+</ul>
+<h2>Contact</h2>
+<p>Questions, feedback, or comparing notes on AI-driven security tooling: security-ai-research@cloudflare.com</p>
+<h2>License</h2>
+<p>MIT -- see <a href="LICENSE">LICENSE</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/cloudflare/security-audit-skill#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">AgriciDaniel /</span>
+          <a href="https://github.com/AgriciDaniel/claude-seo" target="_blank" rel="noopener">claude-seo</a>
+        </div>
+        <div class="repo-desc">Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T, schema, GEO/AEO, agent readiness (Lighthouse Agentic Browsing, WebMCP, llms.txt), backlinks, local SEO, e-commerce, international SEO, Google APIs, and PDF/Excel reporting. 9 optional extensions for live SEO data.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 21,608</span>
+      <span class="meta-item">🍴 2,990</span>
+      <span class="stars-today">⭐ 197 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!--
+  Claude SEO (claude-seo): free, open-source SEO audit plugin for Claude Code by Agrici Daniel.
+  Technical SEO, Core Web Vitals, E-E-A-T, Schema.org, AI search (GEO), local SEO, e-commerce and international SEO.
+  26 sub-skills and 19 specialist agents. MIT licensed.
+-->
+
+<p><img src="assets/readme/v3/hero.svg" width="1200" height="420" alt="Claude SEO: rank in Google, get cited by AI. Three bots climb from #48 to #1 by fixing crawl, speed, schema, AI access and authority, then Google, ChatGPT, Perplexity, Gemini and Claude cite the site." /></p>
+<h1 align="center">Claude SEO</h1>
+
+<p align="center">
+  <b>Free, open-source SEO audits inside <a href="https://claude.com/product/claude-code">Claude Code</a>.</b><br />
+  Rank higher in Google and get cited by AI search.
+</p>
+
+<p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#see-it-in-action">Demo</a> ·
+  <a href="#real-results">Results</a> ·
+  <a href="#meet-the-team">Team</a> ·
+  <a href="#commands">Commands</a> ·
+  <a href="#pricing">Pricing</a> ·
+  <a href="#faq">FAQ</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/AgriciDaniel/claude-seo/actions/workflows/ci.yml"><img src="https://github.com/AgriciDaniel/claude-seo/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://claude.com/product/claude-code"><img src="https://img.shields.io/badge/Claude%20Code-Plugin-blue" alt="Claude Code plugin" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
+  <a href="https://github.com/AgriciDaniel/claude-seo/releases"><img src="https://img.shields.io/github/v/release/AgriciDaniel/claude-seo" alt="Version" /></a>
+  <a href="tests/"><img src="https://img.shields.io/badge/tests-1077%20passing-brightgreen" alt="Tests" /></a>
+  <a href="https://github.com/AgriciDaniel/claude-seo"><img src="https://img.shields.io/github/stars/AgriciDaniel/claude-seo?style=flat" alt="GitHub stars" /></a>
+  <a href="https://www.skool.com/ai-marketing-hub-pro"><img src="https://img.shields.io/badge/AI%20Marketing%20Hub-Pro%20community-purple" alt="AI Marketing Hub Pro community" /></a>
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/21053"><img src="https://trendshift.io/api/badge/repositories/21053" alt="AgriciDaniel/claude-seo on Trendshift: GitHub Trending #12 Repository Of The Day" width="250" height="55" /></a>
+</p>
+
+<p><strong>Claude SEO is a free SEO plugin for Claude Code.</strong> Give it any website and it runs a full SEO audit in 10 to 15 minutes, then hands you a clear action plan, sorted by what matters most.</p>
+<p>It checks everything a good SEO consultant would:</p>
+<ul>
+<li><strong>Technical SEO.</strong> Crawlability, indexing, sitemaps, robots.txt, redirects, page speed and Core Web Vitals.</li>
+<li><strong>Content quality.</strong> E-E-A-T (experience, expertise, authority and trust), thin pages and topic coverage.</li>
+<li><strong>Structured data.</strong> Finds, validates and writes Schema.org markup for rich results.</li>
+<li><strong>AI search (GEO).</strong> How likely Google AI Overviews, AI Mode, ChatGPT, Perplexity and Gemini are to cite your pages.</li>
+<li><strong>Local and e-commerce SEO.</strong> Google Business Profile, reviews, map pack, product pages and international sites.</li>
+</ul>
+<p>Claude SEO is built from 26 sub-skills and 19 specialist agents, and up to 17 agents work on your site at the same time. Every recommendation explains why it matters and how you will know it worked.</p>
+<h2>See it in action</h2>
+<p>Type <code>/seo</code> in Claude Code to see every command:</p>
+<p><img alt="Claude SEO /seo command demo in the Claude Code terminal" src="screenshots/seo-command-demo.gif" /></p>
+<p>Run a full audit and watch the agents fan out across the site:</p>
+<p><img alt="Claude SEO /seo audit demo: parallel agents producing a prioritized action plan" src="screenshots/seo-audit-demo.gif" /></p>
+<p><a href="https://www.youtube.com/watch?v=COMnNlUakQk">Watch the full demo on YouTube</a></p>
+<h2>Real results</h2>
+<p>The project's own site, <a href="https://claude-seo.md">claude-seo.md</a>, audited with Claude SEO from day one: 10.8K Search Console clicks in its first 12 weeks and a 99 mobile PageSpeed score.</p>
+<p><img src="assets/readme/screen.svg" width="1200" height="751" alt="Real results: Google Search Console showing 10.8K clicks and 324K impressions for a new site between 23 March and 12 June 2026, next to a PageSpeed Insights report scoring 99 for performance and 100 for SEO." /></p>
+<h2>Meet the team</h2>
+<p><img src="assets/readme/v3/team.svg" width="1200" height="420" alt="The Claude SEO team: 19 specialist agents on a website, each standing on the part it checks, shown one at a time with its role, model, ability and command." /></p>
+<details>
+<summary><b>All 19 agents</b></summary>
+<br />
+
+| Agent | Role | Model | Command |
+|---|---|---|---|
+| `seo-technical` | Technical SEO Lead | Sonnet | `/seo technical` |
+| `seo-content` | Content Editor | Opus | `/seo content` |
+| `seo-schema` | Structured Data Engineer | Sonnet | `/seo schema` |
+| `seo-sitemap` | Sitemap Architect | Sonnet | `/seo sitemap` |
+| `seo-performance` | Performance Engineer | Sonnet | `/seo audit` |
+| `seo-visual` | Visual QA | Sonnet | `/seo audit` |
+| `seo-geo` | AI Search Analyst | Opus | `/seo geo` |
+| `seo-agentic` | Agent Readiness Analyst | Sonnet | `/seo agentic` |
+| `seo-local` | Local SEO Specialist | Sonnet | `/seo local` |
+| `seo-maps` | Maps Analyst | Sonnet | `/seo maps` |
+| `seo-google` | Google Data Analyst | Sonnet | `/seo google` |
+| `seo-backlinks` | Link Analyst | Sonnet | `/seo backlinks` |
+| Live data (extension) | Live Data Analyst | Sonnet | `/seo audit` |
+| `seo-image-gen` | Image Producer (extension) | Sonnet | `/seo image-gen` |
+| `seo-cluster` | Topic Strategist | Opus | `/seo cluster` |
+| `seo-sxo` | Search Experience Designer | Opus | `/seo sxo` |
+| `seo-drift` | Change Monitor | Opus | `/seo drift` |
+| `seo-ecommerce` | E-commerce Specialist | Sonnet | `/seo ecommerce` |
+| `seo-flow` | FLOW Strategist | Sonnet | `/seo flow` |
+
+</details>
+
+<p><strong>Built for:</strong></p>
+<ul>
+<li><strong>SEO agencies</strong> that want weekly audits for every client instead of quarterly ones, with change monitoring to catch problems in between.</li>
+<li><strong>In-house SEO teams</strong> at SaaS, publishing and e-commerce companies that want a second pair of eyes before every review, AI search included.</li>
+<li><strong>Freelance SEO consultants</strong> who want to run an audit on the first call and show a real score and the top fixes before writing a proposal.</li>
+</ul>
+<h2>Commands</h2>
+<p><img src="assets/readme/v3/map.svg" width="1200" height="420" alt="The six groups of SEO commands on a map: audits, technical SEO, content, schema and AI search, local and commerce, and extensions. The crew walks the path and each of the 30 commands is ticked off." /></p>
+<p>30 core and extension commands in six groups. Open one to see what is inside; a few more extension commands are in the <a href="docs/COMMANDS.md">full command reference</a>.</p>
+<details>
+<summary><b>Audits and Planning</b> (5 commands)</summary>
+<ul><li><code>/seo setup</code>: Create or refresh the isolated Python runtime and Chromium</li><li><code>/seo doctor</code>: Check runtime readiness without changing the system</li><li><code>/seo audit &lt;url&gt;</code>: Full website audit with parallel agents</li><li><code>/seo page &lt;url&gt;</code>: Deep single-page analysis</li><li><code>/seo plan &lt;type&gt;</code>: Strategic SEO planning (saas, local, ecommerce, publisher, agency)</li></ul>
+</details>
+<details>
+<summary><b>Technical SEO</b> (7 commands)</summary>
+<ul><li><code>/seo technical &lt;url&gt;</code>: Technical SEO audit across 9 categories</li><li><code>/seo sitemap &lt;url | generate&gt;</code>: Analyze or generate XML sitemaps</li><li><code>/seo images &lt;url&gt;</code>: Image optimization analysis</li><li><code>/seo hreflang &lt;url&gt;</code>: Hreflang and i18n SEO audit and generation</li><li><code>/seo programmatic &lt;url&gt;</code>: Programmatic SEO analysis and planning</li><li><code>/seo google [command]</code>: Google SEO APIs: GSC, PageSpeed, CrUX, Indexing, GA4, PDF reports</li><li><code>/seo drift baseline | compare | history &lt;url&gt;</code>: SEO drift monitoring with SQ
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/AgriciDaniel/claude-seo#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on October 26, 2026  10:00 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
