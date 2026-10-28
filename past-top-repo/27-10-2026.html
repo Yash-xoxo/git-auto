@@ -1,0 +1,2784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — October 27, 2026  05:42</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on October 27, 2026  05:42 &nbsp;·&nbsp; 14 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Nutlope /</span>
+          <a href="https://github.com/Nutlope/hallmark" target="_blank" rel="noopener">hallmark</a>
+        </div>
+        <div class="repo-desc">Anti-AI-slop design skill for Claude Code, Cursor, and Codex.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#563d7c"></span>CSS</span>
+      <span class="meta-item">⭐ 36,966</span>
+      <span class="meta-item">🍴 1,926</span>
+      <span class="stars-today">⭐ 2,244 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Hallmark</h1>
+<p><strong>A design skill for Claude Code, Codex, Cursor and OpenCode that refuses to look AI-generated.</strong></p>
+<p><a href="https://www.usehallmark.com">usehallmark.com</a> &nbsp;·&nbsp; forty-eight themes &nbsp;·&nbsp; custom on request &nbsp;·&nbsp; redesign and audit by name</p>
+<p>Made by Together AI.</p>
+<p align="center">
+  <img src="site/OG-hallmark.png" alt="Hallmark, the design skill that ends AI slop" />
+</p>
+
+<p>Hallmark holds a hard floor and then gets out of the way. It deals three themes from a catalog of forty-eight materials, builds the page around what the visitor came to do, and lints the result in a real browser against the tells that read as machine-made: the eyebrow above every heading, tracked-capital labels, one coloured word in a headline, a page of empty frames or nothing but photographs, a hero that misses its screen, an email sign-up at the end of every page, a form that says thanks without sending anything. A fresh-context reviewer gets the last word.</p>
+<p>The gates come in tiers. The <strong>Floor</strong> never ships (contrast, focus, reduced motion, invented facts, a broken phone layout). <strong>Reflex</strong> gates are the defaults a model falls into; a build with a reason may overrule one on the record. <strong>Finish</strong> checks are craft detail that never blocks a ship.</p>
+<h2>New in v2</h2>
+<ul>
+<li><strong>Forty-eight themes.</strong> Each is a material (paper, type, colour, surfaces, its own components and texture) with a picture of a finished page, and the build lays out its own page in it.</li>
+<li><strong>Built from the job.</strong> A booking page books, a shop sells, a newsletter subscribes: the action sits where the category puts it, and the page ends on it.</li>
+<li><strong>Custom.</strong> Ask for a custom page and Hallmark designs from your prompt alone, under the same rules and checks.</li>
+<li><strong>Your real product.</strong> Point it at a URL, a dev server or an app and it captures the screenshots itself.</li>
+<li><strong>Real photographs.</strong> 755 openly licensed photos, picked per subject and credited on the page.</li>
+<li><strong>Redesign and audit.</strong> <code>/hallmark redesign &lt;path&gt;</code> rebuilds a page and keeps its content and wiring; <code>/hallmark audit &lt;path&gt;</code> only reports.</li>
+</ul>
+<h2>Themes</h2>
+<table>
+  <tr>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/dusk/"><img src="docs/screenshots/dusk.jpg" alt="Dusk theme: Closewise, bank reconciliation" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/cobalt/"><img src="docs/screenshots/cobalt.jpg" alt="Cobalt theme: Relay, a webhook API" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/studio/"><img src="docs/screenshots/studio.jpg" alt="Studio theme: Field Office, an identity studio" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/atelier/"><img src="docs/screenshots/atelier.jpg" alt="Atelier theme: Maison Orla, a fragrance atelier" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/ribbon/"><img src="docs/screenshots/ribbon.jpg" alt="Ribbon theme: Lull, a sleep sounds app" /></a></td>
+  </tr>
+  <tr>
+    <td><b>Dusk</b><br/><sub>Closewise, bank reconciliation</sub></td>
+    <td><b>Cobalt</b><br/><sub>Relay, a webhook API</sub></td>
+    <td><b>Studio</b><br/><sub>Field Office, an identity studio</sub></td>
+    <td><b>Atelier</b><br/><sub>Maison Orla, a fragrance atelier</sub></td>
+    <td><b>Ribbon</b><br/><sub>Lull, a sleep sounds app</sub></td>
+  </tr>
+  <tr>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/furrow/"><img src="docs/screenshots/furrow.jpg" alt="Furrow theme: Fieldbook, farm records" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/dose/"><img src="docs/screenshots/dose.jpg" alt="Dose theme: Tandem, a family medication app" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/hum/"><img src="docs/screenshots/hum.jpg" alt="Hum theme: Sprout, a reading game for kids" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/terminal/"><img src="docs/screenshots/terminal.jpg" alt="Terminal theme: burrow, a dotfiles CLI" /></a></td>
+    <td width="20%"><a href="https://www.usehallmark.com/themes/hedgerow/"><img src="docs/screenshots/hedgerow.jpg" alt="Hedgerow theme: Five Mile Gin, a distillery" /></a></td>
+  </tr>
+  <tr>
+    <td><b>Furrow</b><br/><sub>Fieldbook, farm records</sub></td>
+    <td><b>Dose</b><br/><sub>Tandem, a family medication app</sub></td>
+    <td><b>Hum</b><br/><sub>Sprout, a reading game for kids</sub></td>
+    <td><b>Terminal</b><br/><sub>burrow, a dotfiles CLI</sub></td>
+    <td><b>Hedgerow</b><br/><sub>Five Mile Gin, a distillery</sub></td>
+  </tr>
+</table>
+
+<p>Ten of the forty-eight. A theme is a material, not a plan: it never says what a page contains or in what order, so two prompts in one theme make two different pages. Each is one file of at most 8 KB in <a href="skills/hallmark/references/themes/"><code>references/themes/</code></a> with a picture beside it; a build reads exactly one. See them all at <a href="https://www.usehallmark.com">usehallmark.com</a>.</p>
+<h2>Custom</h2>
+<p>Say <strong>custom</strong> and Hallmark drops the themes: no plan, no components, no palette recipe, only the floor, the gates and a short direction in <a href="skills/hallmark/references/direction.md"><code>direction.md</code></a> to find one idea that only this client has and let it run the page.</p>
+<h2>How a build runs</h2>
+<ol>
+<li>Pre-flight reads the project (fonts, palette, framework, a locked <code>design.md</code>) and asks once for the material: photos, screenshots, real numbers. Nothing is invented.</li>
+<li><code>scripts/theme.mjs deal</code> offers three themes that fit the prompt and clear the log; <code>draw</code> deals the page's anatomy from its job.</li>
+<li>The hero is built alone, rendered and reviewed cold before the rest of the page exists.</li>
+<li><code>scripts/sloplint.mjs --render</code> checks the page at eight widths, then a subagent reviews it with fresh eyes.</li>
+</ol>
+<p>Each page is self-contained HTML and CSS, stamped in its first CSS comment with the decisions it took.</p>
+<h2>Redesign</h2>
+<p>Hallmark never starts on a design that already exists unless you name it:</p>
+<pre><code>/hallmark redesign ./src/app
+/hallmark audit ./index.html
+</code></pre>
+<p>A full redesign keeps the content and the wiring and changes the system and the layout; say <em>keep the layout</em> for a restyle or <em>polish</em> for only the tells. <code>sloplint --before</code> records every link, field, handler and heading first, <code>sloplint --kept</code> fails the redesign if one went missing, and the handoff is a side-by-side before and after.</p>
+<h2>Install</h2>
+<pre><code>npx skills add nutlope/hallmark -g
+</code></pre>
+<p><code>-g</code> installs for every project; leave it off to install into the current one. Needs Node 18 or later. The browser checks (<code>sloplint --render</code>, screenshots) also need <code>npm i -g puppeteer-core</code> and Chrome; without them the static checks still run.</p>
+<table>
+<thead>
+<tr>
+<th>Harness</th>
+<th>Lands in</th>
+<th>Invoke</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><code>~/.claude/skills/hallmark</code></td>
+<td><code>/hallmark &lt;prompt&gt;</code> or describe a new build</td>
+</tr>
+<tr>
+<td>Codex CLI</td>
+<td><code>~/.agents/skills/hallmark</code></td>
+<td><code>$hallmark &lt;prompt&gt;</code> or describe a new build</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>finds the copies above</td>
+<td><code>/hallmark &lt;prompt&gt;</code> or describe a new build</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td>finds the copies above</td>
+<td><code>/hallmark &lt;prompt&gt;</code> or describe a new build</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>One harness only:</strong> <code>npx skills add nutlope/hallmark -g --agent claude-code</code> (or <code>codex</code>, <code>opencode</code>, <code>cursor</code>, <code>github-copilot</code>).</li>
+<li><strong>As a Claude Code plugin:</strong> <code>/plugin marketplace add nutlope/hallmark</code>, then <code>/plugin install hallmark@hallmark</code> (invoked as <code>/hallmark:hallmark</code>).</li>
+<li><strong>From a clone:</strong> <code>node skills/hallmark/scripts/install.mjs</code> validates every theme and reference before it copies; <code>install-hook.mjs</code> adds an edit-time Floor check to Claude Code.</li>
+<li><strong>Lint any page:</strong> <code>node skills/hallmark/scripts/sloplint.mjs &lt;file-or-dir&gt; --render</code>.</li>
+<li><strong>If it does not fire on its own,</strong> name it: <em>use hallmark to build ...</em>.</li>
+</ul>
+<h2>Licence</h2>
+<p>MIT. Use it, fork it, ship it.</p>
+<p>The photo library (<code>skills/hallmark/scripts/photos.json</code>) lists photographs hosted on Wikimedia Commons and holds no image files. Each keeps its own licence (CC0, public domain, CC BY or CC BY-SA), and Hallmark credits every one it uses on t</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Nutlope/hallmark#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">TauricResearch /</span>
+          <a href="https://github.com/TauricResearch/TradingAgents" target="_blank" rel="noopener">TradingAgents</a>
+        </div>
+        <div class="repo-desc">TradingAgents: Multi-Agents LLM Financial Trading Framework</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 116,461</span>
+      <span class="meta-item">🍴 22,325</span>
+      <span class="stars-today">⭐ 1,395 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="tradingagents/assets/tauric-logo.svg" width="60%" alt="Tauric Research">
+</p>
+
+<div align="center" style="line-height: 1;">
+  <a href="https://arxiv.org/abs/2412.20138" target="_blank"><img alt="arXiv" src="https://img.shields.io/badge/arXiv-2412.20138-B31B1B?logo=arxiv"/></a>
+  <a href="https://discord.com/invite/hk9PGKShPK" target="_blank"><img alt="Discord" src="https://img.shields.io/badge/Discord-TradingResearch-7289da?logo=discord&logoColor=white&color=7289da"/></a>
+  <a href="https://x.com/TauricResearch" target="_blank"><img alt="X Follow" src="https://img.shields.io/badge/X-TauricResearch-white?logo=x&logoColor=white"/></a>
+  <a href="https://github.com/TauricResearch/" target="_blank"><img alt="Community" src="https://img.shields.io/badge/GitHub_Community-TauricResearch-14C290?logo=discourse"/></a>
+</div>
+<p><br></p>
+<div align="center">
+  <a href="https://github.com/TauricResearch" target="_blank"><img alt="TradingAgents #1 Repository of the Day" src="https://trendshift.io/api/badge/repositories/16192" width="250" height="55"/></a>
+</div>
+<p><br></p>
+<div align="center">
+  <!-- Keep these links. Translations will automatically update with the README. -->
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=de">Deutsch</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=es">Español</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=fr">français</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ja">日本語</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ko">한국어</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=pt">Português</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=ru">Русский</a> | 
+  <a href="https://www.readme-i18n.com/TauricResearch/TradingAgents?lang=zh">中文</a>
+</div>
+
+<hr />
+<h1>TradingAgents: Multi-Agents LLM Financial Trading Framework</h1>
+<h2>News</h2>
+<!-- news:start -->
+<ul>
+<li>[2026-10] <strong>TradingAgents v0.7.0</strong> released with runs on your own ChatGPT Plus or Pro plan, backtests scored from the first close after each decision, a note at start-up when a newer release is out, and a wheel attached to each GitHub release.</li>
+<li>[2026-10] <strong>TradingAgents v0.6.0</strong> released with reports saved as one HTML page, a provider per model tier so the managers and analysts can run on different models, past decisions settled for every ticker while the analysts work, and company news read from Yahoo search while Yahoo's news feed is down.</li>
+<li>[2026-09] <strong>TradingAgents v0.5.2</strong> released with parallel analysts for a faster analysis, a CLI that runs without prompts from flags such as <code>--ticker</code> and <code>--date</code>, the run's settings recorded in every report, and backtests that see only data published by each analysis date.</li>
+</ul>
+<p>Full release notes are in <a href="CHANGELOG.md">CHANGELOG.md</a>.</p>
+<details>
+<summary>Earlier news</summary>
+
+- [2026-09] **TradingAgents v0.5.1** released with a package layout organised by what each module holds (import paths moved), optional Jev screening of social posts, GPT-6 Sol and Luna as the default models, and fixes to run isolation and SEC EDGAR statements.
+- [2026-09] **TradingAgents v0.5.0** released with point-in-time integrity across every dated path, SEC EDGAR fundamentals served as filed, backtesting over a ticker and date grid, portfolio-aware runs, and current model lineups across every provider.
+- [2026-08] **TradingAgents v0.4.0** released with look-ahead / point-in-time fixes across FRED macro, social sentiment, and the decision-log memory; clearer decision signals; working CLI checkpoint resume; Trader price grounding; and the GPT-5.6 and GLM-5.3 models.
+- [2026-07] **TradingAgents v0.3.1** released with correctness and stability fixes: Alpha Vantage look-ahead filtering, graph-router crash-safety, graph-shape-aware checkpoint resume, working crypto sentiment sources, a configurable LLM retry budget, Bedrock API-key auth, and Claude Sonnet 5 / Fable 5 support.
+- [2026-06] **TradingAgents v0.3.0** released with a verified data-access contract, an expanded provider registry (NVIDIA, Kimi, Groq, Mistral, Bedrock, and any OpenAI-compatible endpoint), FRED and Polymarket data vendors, a current-generation model catalog, and a CI gate.
+- [2026-05] **TradingAgents v0.2.5** released with the grounded Sentiment Analyst, GPT-5.5 etc. model coverage, Qwen/GLM/MiniMax dual-region support, `TRADINGAGENTS_*` env-var configurability with API-key auto-detection, remote Ollama support, non-US alpha benchmarks, and ticker path-traversal hardening.
+- [2026-04] **TradingAgents v0.2.4** released with structured-output agents (Research Manager, Trader, Portfolio Manager), LangGraph checkpoint resume, persistent decision log, DeepSeek/Qwen/GLM/Azure provider support, Docker, and a Windows UTF-8 encoding fix.
+- [2026-03] **TradingAgents v0.2.3** released with multi-language support, GPT-5.4 family models, unified model catalog, backtesting date fidelity, and proxy support.
+- [2026-03] **TradingAgents v0.2.2** released with GPT-5.4/Gemini 3.1/Claude 4.6 model coverage, five-tier rating scale, OpenAI Responses API, Anthropic effort control, and cross-platform stability.
+- [2026-02] **TradingAgents v0.2.0** released with multi-provider LLM support (GPT-5.x, Gemini 3.x, Claude 4.x, Grok 4.x) and improved system architecture.
+- [2026-01] **Trading-R1** [Technical Report](https://arxiv.org/abs/2509.11420) released, with [Terminal](https://github.com/TauricResearch/Trading-R1) expected to land soon.
+
+</details>
+<!-- news:end -->
+
+<div align="center">
+
+🚀 [TradingAgents](#tradingagents-framework) | ⚡ [Installation & CLI](#installation-and-cli) | 🎬 [Demo](https://www.youtube.com/watch?v=90gr5lwjIho) | 📦 [Package Usage](#tradingagents-package) | 🤝 [Contributing](#contributing) | 📄 [Citation](#citation)
+
+</div>
+
+<blockquote>
+<p>🎉 <strong>TradingAgents</strong> officially released! We have received numerous inquiries about the work, and we would like to express our thanks for the enthusiasm in our community.</p>
+<p>So we decided to fully open-source the framework. Looking forward to building impactful projects with you!</p>
+</blockquote>
+<h2>TradingAgents Framework</h2>
+<p>TradingAgents is a multi-agent trading framework that mirrors the dynamics of real-world trading firms. By deploying specialized LLM-powered agents: from fundamental analysts, sentiment experts, and technical analysts, to trader, risk management team, the platform collaboratively evaluates market conditions and informs trading decisions. Moreover, these agents engage in dynamic discussions to pinpoint the optimal strategy.</p>
+<p align="center">
+  <img src="assets/schema.png" style="width: 100%; height: auto;">
+</p>
+
+<blockquote>
+<p>TradingAgents framework is designed for research purposes. Trading performance may vary based on many factors, including the chosen backbone language models, model temperature, trading periods, the quality of data, and other non-deterministic factors. <a href="https://tauric.ai/disclaimer/">It is not intended as financial, investment, or trading advice.</a></p>
+</blockquote>
+<p>Our framework decomposes complex trading tasks into specialized roles.</p>
+<h3>Analyst Team</h3>
+<ul>
+<li>Fundamentals Analyst: Evaluates company financials and performance metrics, identifying intrinsic values and potential red flags.</li>
+<li>Sentiment Analyst: Aggregates news headlines, StockTwits, and Reddit chatter into a single sentiment read to gauge short-term market mood.</li>
+<li>News Analyst: Monitors global news and macroeconomic indicators, interpreting the impact of events on market conditions.</li>
+<li>Technical Analyst: Utilizes technical indicators (like MACD and RSI) to detect trading patterns and forecast price movements.</li>
+</ul>
+<p>The selected analysts work at the same time, each on its own tools, and the research debate starts once all of their reports are in.</p>
+<p align="center">
+  <img src="assets/analyst.png" width="100%" style="display: inline-block; margin: 0 2%;">
+</p>
+
+<h3>Researcher Team</h3>
+<ul>
+<li>Comprises both bullish an</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/TauricResearch/TradingAgents#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">JetBrains /</span>
+          <a href="https://github.com/JetBrains/thinkrail" target="_blank" rel="noopener">thinkrail</a>
+        </div>
+        <div class="repo-desc">Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 3,171</span>
+      <span class="meta-item">🍴 175</span>
+      <span class="stars-today">⭐ 1,173 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>ThinkRail</h1>
+<p><a href="https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub"><img alt="JetBrains incubator project" src="https://jb.gg/badges/incubator-plastic.svg" /></a><br />
+<a href="https://star-history.com/#JetBrains/thinkrail&amp;Date"><img alt="GitHub stars" src="https://img.shields.io/github/stars/JetBrains/thinkrail?style=social" /></a></p>
+<p><a href="https://www.producthunt.com/products/thinkrail?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-thinkrail" target="_blank" rel="noopener noreferrer"><br />
+  <img alt="ThinkRail - the agentic IDE that gets better every time you use it | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1293188&amp;theme=light&amp;t=1793013338496"><br />
+</a></p>
+<p>ThinkRail is the agentic IDE that gets better every time you use it — learning your project through<br />
+living specs today, and building its own capabilities tomorrow.</p>
+<p>We built a rich interface around the <a href="https://www.npmjs.com/package/@earendil-works/pi-coding-agent"><code>pi</code></a><br />
+coding agent, isolated work into separate workspaces, and gave the agent durable project knowledge<br />
+through living specs and reusable skills. Next, we're adding full extension support, so ThinkRail can<br />
+create the tools it needs based on how you actually work.</p>
+<p><strong>Website:</strong> <a href="https://thinkrail.ai/">thinkrail.ai</a> · <strong>Blog:</strong> <a href="https://thinkrail.ai/blog/">thinkrail.ai/blog</a></p>
+<p>⭐ If you find ThinkRail useful, give it a star — it helps others discover it.</p>
+<p align="center">
+ <a href="https://www.star-history.com/jetbrains/thinkrail">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=rank&theme=dark" /><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=rank" /><img alt="Star History Rank" src="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=rank" /></picture> <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=trending&theme=dark" /><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=trending" /><img alt="GitHub Trending Repository of the Day" src="https://api.star-history.com/badge?repo=JetBrains/thinkrail&type=trending" /></picture>
+ </a>
+</p>
+
+<p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-assets/workbench-dark.png"><br />
+  <img src=".github/readme-assets/workbench-light.png" alt="ThinkRail workbench: the Projects pane beside the left tool rail listing worktree workspaces and their Settled shelf, a finished pi conversation with its tool steps in the center, the resulting diff beside it, and the Specs tree above the Changes list on the right with their tools on the edge rail" width="900"><br />
+</picture></p>
+<p><em>A <code>pi</code> session and the change it made, scoped to an isolated git-worktree workspace.</em></p>
+<h2>What you get</h2>
+<ul>
+<li><strong>Isolated workspaces.</strong> Open any git repo as a project and cut workspaces from it as <code>git worktree</code>s,<br />
+  each with its own branch and working directory. Agents work in parallel without touching your<br />
+  checkout; merge the good branch, delete the rest. You can also attach existing worktrees or explicitly<br />
+  work in the project folder itself. Finished and dormant workspaces settle onto a per-project shelf on<br />
+  their own — when their pull request merges or closes, or after a quiet week — and come back the moment<br />
+  you work in them. The topbar shows where the active branch stands against <code>origin</code> and its pull request,<br />
+  with the next step one click away: publish, push, or open a PR described from the plan, the commits,<br />
+  your PR template, or an agent-written draft. Once a GitHub PR is open it shows the CI checks and review<br />
+  decision, and lets you mark it ready, hand failing checks or a diverged branch to the agent, merge it<br />
+  with the repository's last-used method, reopen it, or delete the remote branch.</li>
+<li><strong>A real IDE around the agent.</strong> A splittable workbench of Monaco editor tabs, a Files tree with live git<br />
+  change marks and a Changed view, terminals, and documents — all scoped to the active workspace. Leave<br />
+  anchored review comments on files and diffs and send them to a chat as structured context, or open the<br />
+  worktree in your installed IDE.</li>
+<li><strong>Chats that stream like the engine thinks.</strong> Several concurrent <code>pi</code> sessions per workspace, each with<br />
+  its own model and live token and cost readout. Steer a running turn or queue a follow-up, delegate to<br />
+  subagents, and work a shared plan the agent updates and you edit — each completed step can be committed<br />
+  and reviewed on its own.</li>
+<li><strong>Specs as ground truth.</strong> A connected graph of <code>SPEC.md</code> files lives beside the code; the agent reads,<br />
+  searches, and maintains it through dedicated <code>spec_*</code> tools, so intent survives the session. The<br />
+  read-only Specs tool renders the graph as a tree in the workbench.</li>
+<li><strong>Skills and workflows.</strong> Portable Agent Skills you already keep for other coding agents are read in<br />
+  place, and bundled workflows guide project setup, design brainstorming, and shipping a pull request —<br />
+  pushing the workspace branch and opening or updating its GitHub PR through your own <code>gh</code>.</li>
+<li><strong>Agent tools beyond the shell.</strong> Web research, and inline diagrams, option comparisons and file previews<br />
+  rendered right in the chat — when the agent proposes a UI change it shows a before/after mockup you can<br />
+  comment on like a diff. Settings → Extensions lists the ThinkRail extensions the agent gets and lets you switch<br />
+  each one off.</li>
+<li><strong>MCP servers.</strong> Connect the MCP servers in your <code>pi</code> <code>mcp.json</code> (or add them, and a few presets, from<br />
+  Settings): ThinkRail asks in the chat before calls the server does not mark read-only (or always allows<br />
+  the tools you trust in a project), keeps servers a repository<br />
+  defines off until you approve them, signs you in to OAuth servers from Settings, and shows each chat's<br />
+  servers next to its background commands and subagents.</li>
+<li><strong>Your providers, your credentials.</strong> Sign in with <a href="https://www.jetbrains.com/ai/">JetBrains AI</a> or<br />
+  connect any provider through <code>pi</code>'s own auth. ThinkRail has no accounts of its own.</li>
+<li><strong>Your pi setup.</strong> ThinkRail reads your existing <code>pi</code> configuration (<code>~/.pi/agent</code>). To use another one<br />
+  — say a personal <code>~/.pi/agent-personal</code> — or to pass extra environment variables to the agent, terminals<br />
+  and MCP servers, set them in Settings → Environment; they apply on the next start. A variable you set<br />
+  when launching (<code>PI_CODING_AGENT_DIR=… thinkrail</code>) still wins.</li>
+<li><strong>Desktop app or browser.</strong> A native desktop app, or the <code>thinkrail</code> CLI that opens the same app in your<br />
+  browser. Both embed the same engine host; app state lives under <code>~/.thinkrail</code>.</li>
+<li><strong>Your language.</strong> Settings → Language follows your system language or a language you pick; English and<br />
+  Simplified Chinese are built in. Add a language ThinkRail doesn't ship yet by dropping a translated<br />
+<code>en.json</code> into <code>~/.thinkrail/locales</code> — it applies as you save. Agent replies and tool output stay as<br />
+  the agent wrote them.</li>
+</ul>
+<p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset=".github/readme-assets/specs-dark.png"><br />
+  <img src=".github/readme-assets/specs-light.png" alt="The Specs tool, opened from the right edge rail, listing the project's spec tree while the product goal spec is rendered in the editor" width="900"><br />
+</picture></p>
+<p><em>The project's spec graph as a tree, with the spec itself rendered alongside.</em></p>
+<h2>Install</h2>
+<p>ThinkRail ships in two additive forms: a native desktop installer and the self-contained <code>thinkrail</code> CLI.<br />
+Both are published with <code>SHA256SUMS</code> on the <a href="https://github.com/JetBrains/thinkrail/releases">releases page</a>.</p>
+<h3>Desktop</h3>
+<p>Download the <code>thinkrail-desktop-*</code> asset for your platform:</p>
+<ul>
+<li><strong>macOS 14+ (Apple Silicon or Intel)</strong> — open the DMG for your architecture:<br />
+<code>thinkrail-desktop-darwin-arm64.dmg</code> or <code>thinkrail-desktop-darwin-x64.dmg</code>.</li>
+<li>**W</li>
+</ul>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/JetBrains/thinkrail#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">makecindy /</span>
+          <a href="https://github.com/makecindy/cindy" target="_blank" rel="noopener">cindy</a>
+        </div>
+        <div class="repo-desc">Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 6,778</span>
+      <span class="meta-item">🍴 817</span>
+      <span class="stars-today">⭐ 1,296 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <a href="https://cindy.app"><img src=".github/assets/hero-en.webp" width="100%" alt="CINDY — Consider it done. The open-source AI agent that works out of the box, doing real work on your own computer."></a>
+</p>
+
+<p align="center">
+  <strong>English</strong> · <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License" /></a>
+  <a href="https://github.com/makecindy/cindy/actions/workflows/ci.yml"><img src="https://github.com/makecindy/cindy/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://nodejs.org"><img src="https://img.shields.io/badge/node-22.x-brightgreen.svg" alt="Node.js 22.x" /></a>
+  <a href="https://pnpm.io"><img src="https://img.shields.io/badge/pnpm-10-orange.svg" alt="pnpm" /></a>
+</p>
+
+<p align="center">
+  🌐 <a href="https://cindy.app">cindy.app</a> &nbsp;·&nbsp; ⬇️ <a href="https://cindy.app/download/">Download</a>
+</p>
+
+<p>Cindy is an open-source AI agent that works out of the box. She brings multiple<br />
+harnesses, models and tools into one agent that finishes real work in your<br />
+projects and apps. Ready from day one, yours to shape over time.</p>
+<p>Cindy runs locally on your own machine, using your real files and logged-in<br />
+apps. The first supported harnesses are <strong>Claude Code</strong> and <strong>Codex</strong> — more are<br />
+being added, and a native harness is in the works. Models and harnesses mix<br />
+freely and can switch mid-task while your workspace, memory, skills and tools<br />
+stay continuous; one task can even be planned, executed in parallel, and<br />
+reviewed by agents on different harness × model combos. She can drive your<br />
+browser, computer and phone, and take work from IM and schedules.</p>
+<p>This repository is the open-source <strong>client</strong> for Cindy — the desktop and mobile<br />
+apps plus their shared packages, organized as a pnpm monorepo.</p>
+<p>The client is free to use, and its source code is open under Apache-2.0. Bring<br />
+models your way: sign in to the official Cindy service (usage deducted<br />
+transparently), authorize the <strong>Claude Code / Codex Coding Plan</strong> you already<br />
+pay for and keep using it inside Cindy — no duplicate bill — connect your own<br />
+API keys, or use local models.<br />
+See <a href="https://cindy.app">cindy.app</a> for service details,<br />
+<a href="https://cindy.app/#pricing">pricing</a>, and <a href="https://cindy.app/download/">downloads</a>.</p>
+<p>Linux users: see the <a href="docs/linux.md">Ubuntu, Arch Linux and Omarchy installation guide</a><br />
+for installation, updates, keyring setup and migration from a manual install.</p>
+<h2>Yours to shape</h2>
+<p>Open source means more than visible — it means changeable:</p>
+<ul>
+<li><strong>Memory</strong> — correct her once and she does it right from then on, shared across harnesses.</li>
+<li><strong>Skills</strong> — teach a way of working once and reuse it everywhere; handing them to your team is in the making.</li>
+<li><strong>Automation</strong> — recurring work schedules itself, runs itself, reports back.</li>
+<li><strong>MCP</strong> — wire your internal tools and business systems into her reach.</li>
+<li><strong>Plugins</strong> — reshape features, UI and interactions, shared through an open marketplace <em>(in the making)</em>.</li>
+<li><strong>Source</strong> — audit, fork, extend, and contribute improvements back under Apache-2.0.</li>
+</ul>
+<p>Ready out of the box, never boxed in — start with<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> and build Cindy with us.</p>
+<h2>What's in this repo</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apps/desktop</code></td>
+<td>Electron desktop client</td>
+</tr>
+<tr>
+<td><code>apps/mobile</code></td>
+<td>Expo / React Native mobile client</td>
+</tr>
+<tr>
+<td><code>packages/*</code></td>
+<td>Shared client capabilities (auth, device-link, agent orchestration, model providers, …)</td>
+</tr>
+<tr>
+<td><code>apps/*-bin</code></td>
+<td>Tool binaries shipped with the desktop app; none are committed — claude-code, codex, and ripgrep are downloaded per platform by <code>pnpm install</code>, and the Android platform-tools binaries are fetched (pinned version, sha256-verified) before Windows packaging</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Not in this repo:</strong> the backend service lives in a separate<br />
+repository and is not part of this monorepo.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Account requirement</th>
+<th>Availability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hosted service</td>
+<td>Cindy cloud account</td>
+<td>Use Cindy's full hosted service. See <a href="https://cindy.app/#pricing">pricing</a>.</td>
+</tr>
+<tr>
+<td>Skip Sign-In</td>
+<td>No Cindy sign-in required</td>
+<td>Choose “Skip Sign-In” on the login screen to use local agents; the app then shows the account state as “Not signed in”. Server-backed capabilities are unavailable in this state.</td>
+</tr>
+</tbody>
+</table>
+<h2>Prerequisites</h2>
+<ul>
+<li><strong>Node.js</strong> 22.x</li>
+<li><strong>pnpm</strong> 10.x (v11 is not yet supported)</li>
+<li><strong>Git LFS</strong></li>
+</ul>
+<h2>Getting started</h2>
+<p>Contributor setup, Git LFS, dependency updates, and access requirements are maintained in<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.<br />
+Plugins are installed through SkillHub or manually.</p>
+<p>Minimal entry point:</p>
+<pre><code class="language-bash">git clone https://github.com/makecindy/cindy.git
+cd cindy
+git lfs pull
+pnpm install
+</code></pre>
+<h2>Development entry points</h2>
+<pre><code class="language-bash"># Mainland China Cindy account
+pnpm restart:desktop:remote --region=cn
+
+# Global Cindy account
+pnpm restart:desktop:remote --region=global
+</code></pre>
+<p>Remote development uses your own Cindy cloud account and existing login state, so<br />
+you can continue existing sessions and work while developing the client. Use <code>cn</code><br />
+for Mainland China accounts and <code>global</code> for everyone else; do not rely<br />
+on the internal default. Full desktop, mobile, data-isolation, and validation<br />
+workflows are in <a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a>.</p>
+<p>“Skip Sign-In” on the login screen runs local agents without a Cindy account<br />
+(shown in the app as “Not signed in”), not a connection to a local server.<br />
+Server-backed capabilities are unavailable in this state.</p>
+<p><strong>About the default servers:</strong> the client connects to Cindy's official cloud<br />
+services by default (endpoint manifests in<br />
+<a href="config/endpoint.json"><code>config/endpoint.json</code></a> and<br />
+<a href="config/endpoint.global.json"><code>config/endpoint.global.json</code></a>; desktop<br />
+auto-updates also come from the official CDN). This is intentional — external<br />
+developers don't need to self-host a server: sign in with your own Cindy<br />
+account in a dev build and develop / test directly against the official<br />
+servers.</p>
+<p>Skill Hub migration uses two separate manifest fields: released clients keep<br />
+using <code>skillhubApiBaseUrl</code> (the deprecated XD proxy), while current clients use<br />
+<code>cindySkillHubApiBaseUrl</code>. The current client deliberately does not fall back to<br />
+the legacy field when the new endpoint is absent.</p>
+<h2>Architecture</h2>
+<ul>
+<li><a href="DESIGN.md"><code>DESIGN.md</code></a> — visual design system, color tokens, and UI conventions</li>
+<li><a href="docs/README.md"><code>docs/README.md</code></a> — complete documentation and rules index</li>
+<li><a href="docs/auth-realm-routing.md"><code>docs/auth-realm-routing.md</code></a> — organization SSO region discovery and session endpoint routing</li>
+<li><a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> — contributor setup, validation, and submission workflow</li>
+<li><a href="AGENTS.md"><code>AGENTS.md</code></a> — engineering rules, launch/runtime contracts, and module boundaries</li>
+<li><a href="docs/dev-rules/"><code>docs/dev-rules/</code></a> — deep-dive architecture docs (e.g. Orca multi-agent orchestration)</li>
+</ul>
+<h2>Contributing</h2>
+<p>Contributions go through pull requests into <code>main</code>. Read<br />
+<a href="CONTRIBUTING.en.md"><code>CONTRIBUTING.en.md</code></a> first, then use<br />
+<a href=".github/PULL_REQUEST_TEMPLATE.md"><code>.github/PULL_REQUEST_TEMPLATE.md</code></a>.<br />
+Every commit needs a <a href="DCO">Developer Certificate of Origin</a> sign-off<br />
+(<code>git commit -s</code>); a DCO check on each pull request enforces it, and no CLA is<br />
+required.<br />
+Please also follow <a href="CODE_OF_CONDUCT.en.md"><code>CODE_OF_CONDUCT.en.md</code></a>. For ordinary<br />
+usage questions, see <a href="SUPPORT.en.md"><code>SUPPORT.en.md</code></a>; report security issues<br />
+privately through <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a>.</p>
+<h2>Security</h2>
+<p>Never commit credentials or authorization files to the working tree. If you<br />
+discover a security issue, follow <a href="SECURITY.en.md"><code>SECURITY.en.md</code></a> to report it<br />
+privately rather than opening a public issue.</p>
+<h2>Privacy &amp; telemetry</h2>
+<p><strong>Official distribution builds</strong> include <a href="https://www.taptap.io/tapdb">TapDB</a><br />
+usage analytics for product-level aggregate statistics, including device identifiers,<br />
+OS / app version, startup and activity events. Events are associated with your account<br />
+ID after sign-in, s</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/makecindy/cindy#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">affaan-m /</span>
+          <a href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener">ECC</a>
+        </div>
+        <div class="repo-desc">The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f1e05a"></span>JavaScript</span>
+      <span class="meta-item">⭐ 290,032</span>
+      <span class="meta-item">🍴 42,985</span>
+      <span class="stars-today">⭐ 896 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="assets/hero.png" alt="ECC - the agent harness operating system" width="100%" />
+</p>
+
+<p align="center">
+  <a href="https://www.star-history.com/affaan-m/ecc">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=affaan-m/ECC&type=trending&theme=dark" />
+      <img src="https://api.star-history.com/badge?repo=affaan-m/ECC&type=trending" alt="GitHub Trending Repository of the Day" height="46" />
+    </picture>
+  </a>
+  <a href="https://www.star-history.com/affaan-m/ecc">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=affaan-m/ECC&type=rank&theme=dark" />
+      <img src="https://api.star-history.com/badge?repo=affaan-m/ECC&type=rank" alt="Star History Global Rank" height="46" />
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <strong>Language:</strong>
+  <a href="README.md">English</a> |
+  <a href="docs/ar/README.md">العربية</a> |
+  <a href="docs/pt-BR/README.md">Português (Brasil)</a> |
+  <a href="README.zh-CN.md">简体中文</a> |
+  <a href="docs/zh-TW/README.md">繁體中文</a> |
+  <a href="docs/ja-JP/README.md">日本語</a> |
+  <a href="docs/ko-KR/README.md">한국어</a> |
+  <a href="docs/tr/README.md">Türkçe</a> |
+  <a href="docs/ru/README.md">Русский</a> |
+  <a href="docs/vi-VN/README.md">Tiếng Việt</a> |
+  <a href="docs/th/README.md">ไทย</a> |
+  <a href="docs/de-DE/README.md">Deutsch</a> |
+  <a href="docs/es/README.md">Español</a> |
+  <a href="docs/uk-UA/README.md">Українська</a> |
+  <a href="docs/pl/README.md">Polski</a> |
+  <a href="docs/bn/README.md">বাংলা</a>
+</p>
+
+<p align="center">
+  <a href="https://discord.gg/36yGMHGFbR"><img src="https://img.shields.io/discord/1496644400590094540?logo=discord&logoColor=white&label=Discord&color=5865F2" alt="Discord" /></a>
+  <a href="https://ecc.tools"><img src="https://img.shields.io/badge/Website-ecc.tools-E07856?logo=googlechrome&logoColor=white" alt="Website" /></a>
+  <a href="https://github.com/apps/ecc-tools"><img src="https://img.shields.io/badge/GitHub%20App-ECC%20Tools-181717?logo=github&logoColor=white" alt="GitHub App" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license" /></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/affaan-m/ECC"><img src="https://img.shields.io/github/stars/affaan-m/ECC?style=flat" alt="GitHub stars" /></a>
+  <a href="https://github.com/affaan-m/ECC/forks"><img src="https://img.shields.io/github/forks/affaan-m/ECC?style=flat" alt="GitHub forks" /></a>
+  <a href="https://github.com/affaan-m/ECC/graphs/contributors"><img src="https://img.shields.io/github/contributors/affaan-m/ECC?style=flat" alt="Contributors" /></a>
+  <a href="https://github.com/marketplace/ecc-tools"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Finstalls&logo=github" alt="GitHub App installs" /></a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/ecc-universal"><img src="https://img.shields.io/npm/dw/ecc-universal?label=ecc-universal&logo=npm" alt="ecc-universal npm downloads" /></a>
+  <a href="https://www.npmjs.com/package/ecc-agentshield"><img src="https://img.shields.io/npm/dw/ecc-agentshield?label=ecc-agentshield&logo=npm" alt="ecc-agentshield npm downloads" /></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/-Shell-4EAA25?logo=gnu-bash&logoColor=white" alt="Shell" />
+  <img src="https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/-Go-00ADD8?logo=go&logoColor=white" alt="Go" />
+  <img src="https://img.shields.io/badge/-Java-ED8B00?logo=openjdk&logoColor=white" alt="Java" />
+  <img src="https://img.shields.io/badge/-Perl-39457E?logo=perl&logoColor=white" alt="Perl" />
+  <img src="https://img.shields.io/badge/-Markdown-000000?logo=markdown&logoColor=white" alt="Markdown" />
+</p>
+
+<blockquote>
+<p>[!WARNING]<br />
+<strong>Official sources only.</strong> Install ECC only from verified channels: the GitHub repository <a href="https://github.com/affaan-m/ECC">github.com/affaan-m/ECC</a>, the npm packages <a href="https://www.npmjs.com/package/ecc-universal"><code>ecc-universal</code></a> and <a href="https://www.npmjs.com/package/ecc-agentshield"><code>ecc-agentshield</code></a>, the <a href="https://github.com/apps/ecc-tools">GitHub App</a>, the plugin slug <code>ecc@ecc</code>, and the project website <a href="https://ecc.tools">ecc.tools</a>. Third-party re-uploads and unofficial mirrors are not maintained or reviewed by the project and may contain malware.</p>
+</blockquote>
+<h2>Install with Claude Code</h2>
+<p>Use the <a href="#install-ecc">guided setup</a> or <a href="#claude-code-details">native plugin commands</a>. Both install the same <code>ecc@ecc</code> plugin. Choose one and do not stack a full manual Claude install on top.</p>
+<div align="center">
+
+<table aria-label="ECC primary links">
+<tr>
+<td width="33%" align="center">
+  <a href="https://ecc.tools/pricing">
+    <img src="assets/images/community/ecc-tools-mark.svg" height="42" alt="ECC Tools" /><br />
+    <strong>ECC Pro + GitHub App</strong>
+  </a><br />
+  <sub><a href="https://github.com/apps/ecc-tools">Install free</a> · <a href="https://ecc.tools/pricing">Private repos from $19/seat/mo</a></sub>
+</td>
+<td width="33%" align="center">
+  <a href="https://github.com/sponsors/affaan-m">
+    <img src="assets/images/community/heart.svg" height="42" alt="" /><br />
+    <strong>Sponsor ECC</strong>
+  </a><br />
+  <sub>Fund the open-source project</sub>
+</td>
+<td width="33%" align="center">
+  <a href="https://discord.gg/36yGMHGFbR">
+    <img src="assets/images/community/discord.svg" height="42" alt="Discord" /><br />
+    <strong>Community</strong>
+  </a><br />
+  <sub>Discord · Q&amp;A · Show and Tell</sub>
+</td>
+</tr>
+</table>
+
+</div>
+
+<p><sub><strong>OSS stays free.</strong> This repo is MIT-licensed forever. ECC Pro is the hosted GitHub App for private repos. <a href="https://github.com/sponsors/affaan-m">Sponsors</a> and <a href="https://ecc.tools/pricing">Pro subscribers</a> fund the work. That's why a single maintainer ships weekly across 7 harnesses.</sub></p>
+<div align="center">
+
+<sub><strong>Partners &amp; sponsors</strong></sub>
+
+<p align="center" aria-label="Partners and sponsors">
+  <a href="https://www.coderabbit.ai" title="CodeRabbit"><img src="assets/images/sponsors/coderabbit.png" height="54" alt="CodeRabbit" /></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://www.greptile.com/go/ecc" title="Greptile"><img src="assets/images/sponsors/greptile.png" height="54" alt="Greptile" /></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://platform.kimi.ai?aff=ecc" title="Moonshot AI - Kimi"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/images/sponsors/moonshot-dark.png" /><img src="assets/images/sponsors/moonshot.png" width="132" alt="Moonshot AI - Kimi" /></picture></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://compute.itomarkets.com" title="Itô Markets"><picture><source media="(prefers-color-scheme: light)" srcset="assets/images/sponsors/ito-transparent-light.png" /><img src="assets/images/sponsors/ito-transparent.png" width="96" alt="Itô Markets" /></picture></a>&nbsp;&nbsp;&nbsp;
+  <a href="https://serpapi.com/github-ecc" title="SerpApi: Web Search API"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/images/sponsors/serpapi-logo-dark-mode.svg" /><img src="assets/images/sponsors/serpapi-logo-light-mode.svg" width="200" alt="SerpApi: Web Search API" /></picture></a>
+</p>
+
+<sub><strong>Past sponsors:</strong> <a href="https://www.atlascloud.ai/?utm_source=github&amp;utm_medium=link&amp;utm_campaign=ECC">Atlas Cloud</a> · <a href="https://github.com/mikejmorgan-ai">Mike Morgan (inactive)</a></sub>
+
+<sub><strong>Community sponsors:</strong> <a href="https://github.com/jasonwu513">@jasonwu513</a> · <a href="https://github.com/1anter">@1anter</a> · <a href="https://github.com/massimotodaro">@massimotodaro</a> · <a href="https://github.com/meadmccabe">@meadmcca
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/affaan-m/ECC#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">pbakaus /</span>
+          <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">impeccable</a>
+        </div>
+        <div class="repo-desc">The design language that makes your AI harness better at design.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 89,464</span>
+      <span class="meta-item">🍴 5,324</span>
+      <span class="stars-today">⭐ 1,506 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Impeccable</h1>
+<p>Design guidance for AI coding agents. 1 skill, 24 commands, live browser iteration, and 62 deterministic detector rules for AI-generated frontend design.</p>
+<blockquote>
+<p><strong>Quick start:</strong> From your project root, run <code>npx impeccable install</code>, then run <code>/impeccable init</code> inside your AI coding tool. Full docs: <a href="https://impeccable.style">impeccable.style</a>.</p>
+</blockquote>
+<h2>Why Impeccable?</h2>
+<p>Anthropic's <a href="https://github.com/anthropics/skills/tree/main/skills/frontend-design">frontend-design</a> was the first widely-used design skill for Claude. Impeccable started from there.</p>
+<p>Every model trained on the same SaaS templates. Skip the guidance and you get the same handful of tells on every project: Inter for everything, purple-to-blue gradients, cards nested in cards, gray text on colored backgrounds, the rounded-square icon tile above every heading.</p>
+<p>Impeccable adds:<br />
+- <strong>One setup flow.</strong> <code>/impeccable init</code> records durable product truth in <code>PRODUCT.md</code>, so later commands know the audience, purpose, operating context, constraints, voice, and evidence without confusing those facts with surface-level visual direction.<br />
+- <strong>24 commands.</strong> A shared design vocabulary with your AI: <code>polish</code>, <code>audit</code>, <code>critique</code>, <code>distill</code>, <code>animate</code>, <code>bolder</code>, <code>quieter</code>, and more.<br />
+- <strong>62 deterministic detector rules</strong> plus LLM-only critique checks. The CLI and browser extension run the deterministic rules with no LLM and no API key.</p>
+<h2>What's Included</h2>
+<h3>The Skill: impeccable</h3>
+<p>The skill installs as one command:</p>
+<pre><code class="language-bash">/impeccable &lt;command&gt; &lt;target&gt;
+</code></pre>
+<p>Start every new project with:</p>
+<pre><code class="language-bash">/impeccable init
+</code></pre>
+<p><code>init</code> inspects the project, asks only for material gaps in durable product truth, and writes <code>PRODUCT.md</code>. Visitor mode and visual direction are chosen later for each surface; incumbent or newly built visual systems are recorded separately in <code>DESIGN.md</code>.</p>
+<h3>24 Commands</h3>
+<p>All commands are accessed through <code>/impeccable</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/impeccable craft</code></td>
+<td>Full shape-then-build flow with visual iteration</td>
+</tr>
+<tr>
+<td><code>/impeccable init</code></td>
+<td>One-time setup: gather durable product context, write PRODUCT.md, configure live mode when applicable, recommend next steps</td>
+</tr>
+<tr>
+<td><code>/impeccable document</code></td>
+<td>Generate root DESIGN.md from existing project code</td>
+</tr>
+<tr>
+<td><code>/impeccable extract</code></td>
+<td>Pull reusable components and tokens into the design system</td>
+</tr>
+<tr>
+<td><code>/impeccable shape</code></td>
+<td>Plan UX/UI before writing code</td>
+</tr>
+<tr>
+<td><code>/impeccable critique</code></td>
+<td>UX design review: hierarchy, clarity, emotional resonance</td>
+</tr>
+<tr>
+<td><code>/impeccable audit</code></td>
+<td>Run technical quality checks (a11y, performance, responsive)</td>
+</tr>
+<tr>
+<td><code>/impeccable polish</code></td>
+<td>Final pass, design system alignment, and shipping readiness</td>
+</tr>
+<tr>
+<td><code>/impeccable bolder</code></td>
+<td>Amplify boring designs</td>
+</tr>
+<tr>
+<td><code>/impeccable quieter</code></td>
+<td>Tone down overly bold designs</td>
+</tr>
+<tr>
+<td><code>/impeccable distill</code></td>
+<td>Strip to essence</td>
+</tr>
+<tr>
+<td><code>/impeccable harden</code></td>
+<td>Error handling, i18n, text overflow, edge cases</td>
+</tr>
+<tr>
+<td><code>/impeccable onboard</code></td>
+<td>First-run flows, empty states, activation paths</td>
+</tr>
+<tr>
+<td><code>/impeccable animate</code></td>
+<td>Add purposeful motion</td>
+</tr>
+<tr>
+<td><code>/impeccable colorize</code></td>
+<td>Introduce strategic color</td>
+</tr>
+<tr>
+<td><code>/impeccable typeset</code></td>
+<td>Fix font choices, hierarchy, sizing</td>
+</tr>
+<tr>
+<td><code>/impeccable layout</code></td>
+<td>Fix layout, spacing, visual rhythm</td>
+</tr>
+<tr>
+<td><code>/impeccable delight</code></td>
+<td>Add moments of joy</td>
+</tr>
+<tr>
+<td><code>/impeccable overdrive</code></td>
+<td>Add technically extraordinary effects</td>
+</tr>
+<tr>
+<td><code>/impeccable clarify</code></td>
+<td>Improve unclear UX copy</td>
+</tr>
+<tr>
+<td><code>/impeccable adapt</code></td>
+<td>Adapt for different devices</td>
+</tr>
+<tr>
+<td><code>/impeccable optimize</code></td>
+<td>Performance improvements</td>
+</tr>
+<tr>
+<td><code>/impeccable live</code></td>
+<td>Visual variant mode: iterate on elements in the browser</td>
+</tr>
+<tr>
+<td><code>/impeccable generate</code></td>
+<td>Generate variants of a named element in the live browser, no manual picking</td>
+</tr>
+</tbody>
+</table>
+<p>Use <code>/impeccable pin &lt;command&gt;</code> to create standalone shortcuts (e.g., <code>pin audit</code> creates <code>/audit</code>).</p>
+<h4>Usage Examples</h4>
+<pre><code>/impeccable audit blog           # Audit blog hub + post pages
+/impeccable critique landing     # UX design review
+/impeccable polish settings      # Final pass before shipping
+/impeccable harden checkout      # Add error handling + edge cases
+</code></pre>
+<p>Or use <code>/impeccable</code> directly with a description:</p>
+<pre><code>/impeccable redo this hero section
+</code></pre>
+<h3>Anti-Patterns</h3>
+<p>The skill includes explicit guidance on what to avoid:</p>
+<ul>
+<li>Don't use overused fonts (Arial, Inter, system defaults)</li>
+<li>Don't use gray text on colored backgrounds</li>
+<li>Don't use pure black/gray (always tint)</li>
+<li>Don't wrap everything in cards or nest cards inside cards</li>
+<li>Don't use bounce/elastic easing (feels dated)</li>
+</ul>
+<h2>See It In Action</h2>
+<p>Visit <a href="https://impeccable.style/cases/neo-mirai">the Neo Mirai case study</a> to see a before/after case study of a real project transformed with Impeccable commands.</p>
+<h2>Installation</h2>
+<p>The skill needs no runtime of its own. Every skill copy ships a small launcher (<code>scripts/impeccable</code>, plus <code>impeccable.cmd</code> for Windows) that runs the Impeccable engine, a self-contained binary that either sits next to the launcher or is downloaded once on first run into <code>~/.impeccable/bin/</code>. Node is only involved if you use the <code>npx impeccable</code> installer, which is a shim around the same binary; the manual and Git options below work without it.</p>
+<h3>Option 1: CLI installer (Recommended)</h3>
+<p>From the root of your project, run:</p>
+<pre><code class="language-bash">npx impeccable install
+</code></pre>
+<p>This shows the harness folders or installed CLIs it detected (for example <code>~/.claude</code>, <code>~/.codex</code>, <code>~/.grok</code>, <code>~/.hermes</code>, <code>~/.veto</code>, or project-local <code>.cursor</code>), lets you keep the detected set or customize providers, then asks whether to install into the current project or globally. Use <code>--providers=claude,codex,replit,cursor,grok,hermes,veto</code> and <code>--scope=project|global</code> to skip those choices in scripts. On Claude Code, Cursor, Codex, GitHub Copilot, and Grok Build, it also installs the provider-native hook manifest for the current project. Veto receives the packaged skill under <code>~/.veto/skills/</code> and does not run native Impeccable edit hooks. Works with Cursor, Claude Code, Gemini CLI, Codex CLI, Replit Agent, Grok Build, Hermes Agent, Veto, and every other supported tool. Reload your harness afterward.</p>
+<p>To refresh an existing install, run:</p>
+<pre><code class="language-bash">npx impeccable update
+</code></pre>
+<p>Codex users should open <code>/hooks</code> after install or update and approve the project hook when prompted. Codex tracks trust by hook definition, so updates that change <code>.codex/hooks.json</code> can require approval again. Grok Build users need project folder trust (<code>/hooks-trust</code> or launch with <code>--trust</code>) before <code>.grok/hooks/</code> scripts run.</p>
+<p>See <a href="https://impeccable.style/docs/hooks#allow-the-hook-in-your-harness">Allow the hook in your harness</a> for harness-specific trust and verification steps.</p>
+<h3>Option 2: Git Submodule</h3>
+<p>For teams that want to keep Impeccable vendored and updated through Git, add this repo as a submodule and link the compiled provider build into your harness folders:</p>
+<pre><code class="language-bash">git submodule add https://github.com/pbakaus/impeccable .impeccable
+npx impeccable link --source=.impeccable --providers=claude,cursor
+git add .gitmodules .impeccable .claude .cursor
+git commit -m &quot;Add Impeccable skills&quot;
+</code></pre>
+<p>Use the providers your project needs, for example <code>claude</code>, <code>cursor</code>, <code>gemini</code>, <code>codex</code>, <code>github</code>, <code>grok</code>, <code>devin</code>, <code>hermes</code>, <code>opencode</code>, <code>pi</code>, <code>qoder</code>, <code>trae</code>, <code>trae-cn</code>, <code>rovo-dev</code>, <code>vibe</code>, or <code>veto</code>. The command links individual skill folders from <code>.impeccable/dist/universal/</code> and leaves existing real skill directories untouched unless you pass <code>--force</code>.</p>
+<p>To update later:</p>
+<pre><code class="language-bash">git submodule update --remote .impeccable
+npx impeccable link --source=.impeccable --providers=claude,cursor
+</code></pre>
+<h3>Option 3: Plugin install</h3>
+<p><strong>GitHub Copilot in VS Code:</strong></p>
+<p>Install <a href="https://marketplace.visualstudio.com/items?itemName=renaissance-geek.impeccable">Impeccable from the Visual Studio Marketplace</a>, or run:</p>
+<pre><code class="language-bash">code --install-extension renaissance-geek.impeccable
+</code></pre>
+<p>Requires VS Code 1.109.3+, Copilot Chat access, and a trusted local workspace. Open Chat in Agent mode and try <code>/impeccable polish</code>. This skill-only extension does</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/pbakaus/impeccable#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">NVIDIA /</span>
+          <a href="https://github.com/NVIDIA/SkillSpector" target="_blank" rel="noopener">SkillSpector</a>
+        </div>
+        <div class="repo-desc">Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, security risks, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 22,402</span>
+      <span class="meta-item">🍴 1,952</span>
+      <span class="stars-today">⭐ 214 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>SkillSpector</h1>
+<p><strong>Security scanner for AI agent skills.</strong> Detect vulnerabilities, malicious patterns, and security risks before installing agent skills.</p>
+<p><a href="https://www.python.org/downloads/"><img alt="Python 3.12+" src="https://img.shields.io/badge/python-3.12+-blue.svg" /></a><br />
+<a href="https://www.apache.org/licenses/LICENSE-2.0"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
+<h2>Overview</h2>
+<p>AI agent skills (used by Claude Code, Codex CLI, Gemini CLI, etc.) execute with implicit trust and minimal vetting. In the 31,132-skill analyzed subset of the research dataset, <strong>26.1% of skills contain vulnerabilities</strong> and <strong>5.2% show likely malicious intent</strong>.</p>
+<p>SkillSpector helps you answer: <strong>"Is this skill safe to install?"</strong></p>
+<p>SkillSpector is part of the <a href="https://docs.nvidia.com/skills/">NVIDIA Verified Skills pipeline</a>, which scans, evaluates, and signs agent skills before publication. Skills that pass are published to the <a href="https://github.com/NVIDIA/skills">NVIDIA skills catalog</a>.</p>
+<h2>Documentation</h2>
+<ul>
+<li><strong><a href="https://docs.nvidia.com/skills/scanning-agent-skills">Scan agent skills before installation</a></strong> — Hosted guide: when to scan, how to read a report, and how to gate installs.</li>
+<li><strong><a href="docs/DEVELOPMENT.md">Development guide</a></strong> — Architecture, package layout, and how to extend the analyzer pipeline.</li>
+<li><strong><a href="docs/ANALYSIS_RESOURCE_BOUNDS.md">Analysis resource bounds</a></strong> — Fail-closed bundle, parser, nested-artifact, ledger, and finding ceilings.</li>
+<li><strong><a href="docs/PI_EXTENSION.md">Pi extension</a></strong> — Install SkillSpector as a Pi tool for scanning skills from inside agent sessions.</li>
+<li><strong><a href="docs/OPENCODE_EXTENSION.md">OpenCode extension</a></strong> — Install SkillSpector as an OpenCode tool and <code>/skillspector</code> command for scanning skills from inside agent sessions.</li>
+</ul>
+<h2>Features</h2>
+<ul>
+<li><strong>Multi-format input</strong>: Scan Git repos, URLs, zip files, directories, or single files</li>
+<li><strong>71 vulnerability patterns</strong> across 17 categories: prompt injection, data exfiltration, privilege escalation, supply chain, excessive agency, output handling, system prompt leakage, memory poisoning, tool misuse, rogue agent, anti-refusal, trigger abuse, dangerous code (AST), taint tracking, YARA signatures, MCP least privilege, and MCP tool poisoning</li>
+<li><strong>Two-stage analysis</strong>: Fast static analysis + optional LLM semantic evaluation</li>
+<li><strong>Live vulnerability lookups</strong>: SC4 queries <a href="https://osv.dev">OSV.dev</a> for real-time CVE data with automatic offline fallback</li>
+<li><strong>Multiple output formats</strong>: Terminal, JSON, Markdown, and SARIF reports</li>
+<li><strong>Risk scoring</strong>: 0-100 score with severity labels and clear recommendations</li>
+<li><strong>Baseline / false-positive suppression</strong>: Accept known findings via a glob-rule or fingerprint baseline so re-scans surface only <em>new</em> issues (<a href="docs/SUPPRESSION.md">docs</a>)</li>
+</ul>
+<h2>Quick Start</h2>
+<h3>Installation</h3>
+<blockquote>
+<p><strong>Open-source software notice:</strong> This project will download and install additional third-party open source software projects. Review the license terms of these open source projects before use.</p>
+</blockquote>
+<p>Create and activate a virtual environment first (all <code>make</code> targets assume the venv is active). Use <strong>uv</strong> or <strong>pip</strong>; the Makefile uses <code>uv</code> if available, otherwise <code>pip</code>.</p>
+<p><strong>Quick install with uv (CLI-only):</strong></p>
+<pre><code class="language-bash">uv tool install git+https://github.com/NVIDIA/skillspector.git
+# Update later: uv tool update skillspector
+</code></pre>
+<p>If you plan to run <code>skillspector mcp</code>, install the MCP extra at install time:</p>
+<pre><code class="language-bash">uv tool install 'skillspector[mcp] @ git+https://github.com/NVIDIA/skillspector.git'
+</code></pre>
+<p><strong>From source:</strong></p>
+<pre><code class="language-bash"># Clone the repository
+git clone https://github.com/NVIDIA/skillspector.git
+cd skillspector
+
+# Create and activate virtual environment
+uv venv .venv &amp;&amp; source .venv/bin/activate
+# or: python3 -m venv .venv &amp;&amp; source .venv/bin/activate
+
+# Install for production use
+make install
+
+# Or install with development dependencies
+make install-dev
+</code></pre>
+<h3>Docker (no Python required)</h3>
+<p>Run SkillSpector without installing Python by building it locally from the included <a href="Dockerfile">Dockerfile</a>. The image is based on the Docker Official Python <code>3.12-slim-bookworm</code> image.</p>
+<p><strong>Build the image:</strong></p>
+<pre><code class="language-bash">make docker-build
+# or: docker build -t skillspector .
+</code></pre>
+<p><strong>Scan a local directory</strong> by mounting your current directory into <code>/scan</code>, the container's working directory:</p>
+<pre><code class="language-bash">docker run --rm -v &quot;$PWD:/scan&quot; skillspector scan ./my-skill/ --no-llm
+</code></pre>
+<p><strong>Scan with LLM analysis</strong> by passing credentials with a local <code>.env</code> file:</p>
+<pre><code class="language-bash">cat &gt; .env &lt;&lt;'EOF'
+SKILLSPECTOR_PROVIDER=anthropic
+ANTHROPIC_API_KEY=sk-ant-...
+EOF
+</code></pre>
+<pre><code class="language-bash">docker run --rm \
+  -v &quot;$PWD:/scan&quot; \
+  --env-file .env \
+  skillspector scan ./my-skill/
+</code></pre>
+<p>Or pass credentials directly from your shell environment:</p>
+<pre><code class="language-bash">docker run --rm \
+  -v &quot;$PWD:/scan&quot; \
+  -e SKILLSPECTOR_PROVIDER=anthropic \
+  -e ANTHROPIC_API_KEY=&quot;$ANTHROPIC_API_KEY&quot; \
+  skillspector scan ./my-skill/
+</code></pre>
+<p><strong>Write a report to the host filesystem</strong> by writing to the mounted directory:</p>
+<pre><code class="language-bash">docker run --rm --user &quot;$(id -u):$(id -g)&quot; \
+  -v &quot;$PWD:/scan&quot; \
+  skillspector scan ./my-skill/ --no-llm --format json --output report.json
+</code></pre>
+<p><strong>Optional alias</strong> for repeated static scans:</p>
+<pre><code class="language-bash">alias skillspector-docker='docker run --rm -v &quot;$PWD:/scan&quot; skillspector'
+skillspector-docker scan ./my-skill/ --no-llm
+</code></pre>
+<h3>Basic Usage</h3>
+<pre><code class="language-bash"># Scan a local skill directory
+skillspector scan ./my-skill/
+
+# Scan a single SKILL.md file
+skillspector scan ./SKILL.md
+
+# Scan a Git repository
+skillspector scan https://github.com/user/my-skill
+
+# Scan a zip file
+skillspector scan ./my-skill.zip
+</code></pre>
+<h4>Size limits</h4>
+<p>SkillSpector enforces two independent caps on remote and archive inputs to bound the impact of oversized downloads and zip bombs:</p>
+<ul>
+<li><strong>Per-ingest cap</strong>: <code>INGEST_MAX_BYTES</code> (100 MiB) — applied to streamed URL downloads, total uncompressed size of zip archives, and post-clone disk usage of Git repos.</li>
+<li><strong>Zip member cap</strong>: <code>INGEST_MAX_ZIP_MEMBERS</code> (10,000) — caps the number of entries in a single zip.</li>
+</ul>
+<p>Note that the per-file 1 MB analysis cap (<code>MAX_FILE_BYTES</code>) is a separate, downstream limit: it bounds what individual analyzers will read out of an already-ingested directory. The ingest caps above bound how much content can land on disk in the first place. A breach of either ingest cap fails closed with an <code>IngestLimitExceededError</code>.</p>
+<h3>Output Formats</h3>
+<pre><code class="language-bash"># Terminal output (default) - pretty formatted
+skillspector scan ./my-skill/
+
+# JSON output - machine readable
+skillspector scan ./my-skill/ --format json --output report.json
+
+# Markdown output - for documentation
+skillspector scan ./my-skill/ --format markdown --output report.md
+
+# SARIF output - for CI/CD integration and IDE tooling
+skillspector scan ./my-skill/ --format sarif --output report.sarif
+</code></pre>
+<h3>Batch Scanning</h3>
+<p>Scan entire directories of skills in parallel from <code>contrib/batch_scan/</code>:</p>
+<pre><code class="language-bash">python -m contrib.batch_scan.batch_scan ./my-skills/ --no-llm
+python -m contrib.batch_scan.batch_scan ./my-skills/ --workers 20 -f json -o report.json
+python -m contrib.batch_scan.batch_scan ./tests/fixtures/ -f terminal --workers 20
+</code></pre>
+<p>Supports multilingual detection (zh/ja/ko) and terminal/JSON/Markdown output.</p>
+<p>For LLM scans with higher concurrency, configure multiple API keys following<br />
+<a href="contrib/batch_scan/.env.example"><code>.env.example</code></a> — the pool improves throughput<br />
+and resilience, provided the keys don't share an account-level rate limit.</p>
+<p>See the <a href="contrib/batch_scan/docs/">contrib guide</a> for details.</p>
+<blockquote>
+<p><strong>Note on LLM support:</strong> The default configuration targets DeepSeek as the<br />
+cheapest public option. DeepSeek-Chat is<br />
+<a href="https://api-docs.deepseek.com/">expected to sunset</a>, and the contributor<br />
+does not have hardware to test against local models. The batch scanner was<br />
+originally tested with OpenAI-compatible endpoints — DeepSeek's lack of<br />
+structured-output support required manual JSON-parsing patches. If you can<br />
+contribute a more universal backend (Ollama, vLLM, or a different provider),<br />
+PRs are</p>
+</blockquote>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/NVIDIA/SkillSpector#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">pollen-robotics /</span>
+          <a href="https://github.com/pollen-robotics/microduck" target="_blank" rel="noopener">microduck</a>
+        </div>
+        <div class="repo-desc">A Tiny biped duck robot 🦆</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 12,523</span>
+      <span class="meta-item">🍴 1,556</span>
+      <span class="stars-today">⭐ 843 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="https://github.com/user-attachments/assets/c2f7c245-8217-46a1-8d1e-e0ba967cd969" alt="microduck" width="820">
+</p>
+
+<h1 align="center">Microduck</h1>
+
+<p align="center">
+  <em>A tiny biped robot that moves using reinforcement learning policies.</em>
+</p>
+
+<p align="center">
+  <a href="https://pollen-robotics.com/microduck"><b>Get yours here</b></a> ·
+  <a href="docs/robot/cheatsheet.md">Cheat sheet</a> ·
+  <a href="https://github.com/pollen-robotics/microduck_rl">Training the policies</a> ·
+  <a href="docs/design/architecture.md">How it works</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml"><img src="https://github.com/pollen-robotics/microduck/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+</p>
+
+<hr />
+<p><strong>This repo is the duck's brain.</strong> About 25 cm and 800 g of robot, run by a handful of daemons on a<br />
+Rockchip RK3566: a 50 Hz control loop driving fifteen servos from neural policies, the radios and<br />
+the camera, and the update machinery that gets new software onto a robot without bricking it.</p>
+<p>Everything you need to run a Microduck is here. <strong>If you want one,<br />
+<a href="https://pollen-robotics.com/microduck">get yours here</a>.</strong></p>
+<p>The policies it runs are trained next door, in<br />
+<strong><a href="https://github.com/pollen-robotics/microduck_rl">microduck_rl</a></strong> — MuJoCo and PPO, the sim2real<br />
+recipe, and the export to ONNX that this repo loads.</p>
+<h2>It does things</h2>
+<table>
+<tr>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/356a6011-8e0d-4b28-bda9-da78646583a3" controls width="100%"></video>
+</td>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/abfbf250-1b1c-42cb-8430-00267e2b148a" controls width="100%"></video>
+
+</td>
+</tr>
+<tr>
+<td><b>It walks.</b> Pick up a gamepad and drive.</td>
+<td><b>It rolls.</b> Put wheels on, ask for roller mode, and it loads the other brain.</td>
+</tr>
+<tr>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/7e70c1da-e120-428f-ae0b-f4de62f25984" controls width="100%"></video>
+</td>
+<td width="50%">
+  <video src="https://github.com/user-attachments/assets/3eef63a5-6f84-47cf-90de-e717e6d7f8f0" controls width="100%"></video>
+</td>
+</tr>
+<tr>
+<td><b>It picks things up.</b> Beak to the floor, one button.</td>
+<td><b>It gets back up.</b> Knock it over and it stands itself up.</td>
+</tr>
+</table>
+
+<p>It also sits, kicks a ball, rolls forward on command, and quacks in a voice that is its own.</p>
+<h2>Where to find things</h2>
+<h3>You have a duck</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="docs/robot/cheatsheet.md">Cheat sheet</a></td>
+<td>Every <code>robotctl</code> command: drive, configure, voice, chorale, theremin, wifi, updates, logs. Start here.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/cheatsheet.md#gamepad-configd">Gamepad</a></td>
+<td>The full button mapping, and pairing a pad — <a href="docs/robot/pair-a-gamepad.md">once per pad</a>, plus what to do when it will not bond.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/duckctl.md"><code>duckctl</code></a></td>
+<td>The robot from a laptop over Bluetooth, with no network and no ssh.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/cheatsheet.md#updates-updaterd">Updates</a></td>
+<td>Install, roll back, pin. Every update is verified, health-gated and reversible.</td>
+</tr>
+</tbody>
+</table>
+<h3>You are building on it</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/pollen-robotics/microduck_rl">microduck_rl</a></td>
+<td>Where the policies come from: MuJoCo, PPO, domain randomisation, and the ONNX export this repo loads.</td>
+</tr>
+<tr>
+<td><a href="docs/design/architecture.md">How it works</a></td>
+<td>The whole system on one page — the daemons, the bus, how an update reaches a robot — then a page per part.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/install-dev.md">Set up a dev board</a></td>
+<td>From a blank board to a robot that takes branch builds.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/cheatsheet-dev.md">Dev cheat sheet</a></td>
+<td>Branch builds, release candidates, driving from a laptop, and the restart traps after an update.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/dev-push.md">Push your branch</a></td>
+<td>Build on your machine, install over ssh, about a minute.</td>
+</tr>
+<tr>
+<td><a href="docs/robot/simulation.md">The simulated duck</a></td>
+<td>No robot on the desk? <code>scripts/duck-sim</code> runs the real daemons against a body in MuJoCo — one duck in a window, or four as machines you log into.</td>
+</tr>
+<tr>
+<td><a href="CONTRIBUTING.md">CONTRIBUTING.md</a></td>
+<td>Building, testing, layout, conventions, releasing.</td>
+</tr>
+<tr>
+<td><a href="docs/README.md">Docs index</a></td>
+<td>Everything, including the design pages and the open problems.</td>
+</tr>
+</tbody>
+</table>
+<h2>Under the hood</h2>
+<p>Rust, no framework, one workspace. <code>robotd</code> owns the control loop and the motor bus; <code>updaterd</code><br />
+installs signed releases and rolls them back when a robot comes up unhealthy; <code>configd</code> owns wifi<br />
+and identity; <code>btd</code> is the Bluetooth path a phone uses; <code>padd</code> reads the gamepad; <code>mediad</code> streams<br />
+the camera over WebRTC; <code>tofd</code> serves the depth sensor. They talk over one JSON-RPC contract on<br />
+Unix sockets, and every client — the app, the console, the gamepad, your script — sends exactly the<br />
+same calls.</p>
+<p>The interesting decisions are written down: <a href="docs/design/"><code>docs/design/</code></a> is why things are the<br />
+way they are, and <a href="docs/project/"><code>docs/project/</code></a> is what has gone wrong and what would close it.</p>
+<h2>A note on ducks</h2>
+<p>No duck was harmed in the making of this robot. Several were consulted.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/pollen-robotics/microduck#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">nightly-labs /</span>
+          <a href="https://github.com/nightly-labs/openbot" target="_blank" rel="noopener">openbot</a>
+        </div>
+        <div class="repo-desc">A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 1,646</span>
+      <span class="meta-item">🍴 201</span>
+      <span class="stars-today">⭐ 176 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>OpenBot</h1>
+<p><a href="https://github.com/nightly-labs/openbot/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/nightly-labs/openbot/actions/workflows/ci.yml/badge.svg" /></a><br />
+<a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-PolyForm_Noncommercial_1.0.0-blue.svg" /></a></p>
+<p>OpenBot is a local-first desktop workspace for persistent AI teammates. It supports the local<br />
+<a href="https://learn.chatgpt.com/docs/app-server">Codex App Server</a> and<br />
+<a href="https://code.claude.com/docs/en/overview">Claude Code</a>, plus <a href="https://docs.x.ai/build/overview">Grok CLI</a>,<br />
+OpenCode, Gemini, <a href="https://cursor.com/cli">Cursor CLI</a>, and <a href="https://cline.bot/cli">Cline CLI</a> through ACP. It gives every agent its own workspace and<br />
+conversation, and provides local queues, file transfers, an embedded browser, and agent-to-agent<br />
+messaging in one desktop app.</p>
+<blockquote>
+<p>[!WARNING]<br />
+OpenBot is a development preview. Agents currently run with <code>danger-full-access</code> and<br />
+<code>approvalPolicy: never</code>. They can read and modify files, run commands, use the network, and control<br />
+the embedded browser without per-action confirmations after the explicit first-launch consent.<br />
+Run only agents and tasks you trust, keep backups, and review <a href="#security">Security</a> before use.</p>
+</blockquote>
+<h2>What works</h2>
+<ul>
+<li>Prompt-driven agent creation and editing on desktop and mobile, with editable instructions, avatar, and section review before saving.</li>
+<li>Persistent agents backed by independent Codex, Claude, Grok, OpenCode, Gemini, Cursor, or Cline sessions and local workspaces.</li>
+<li>Custom OpenAI-compatible endpoints and custom ACP agents, with detection of local model servers (Ollama, LM Studio) and installed agents.</li>
+<li>Per-agent context monitoring with automatic compaction before long threads exhaust the model window.</li>
+<li>FIFO message queues with pause, resume, cancellation, and crash-safe persistence.</li>
+<li>Agent-to-agent messages, replies, reactions, images, and managed file transfers.</li>
+<li>Shared desktop channel chats with one task owner, explicit delegation, shared history, and Stop, Resume, Reassign, Archive, and Restore controls.</li>
+<li>A persistent embedded browser that agents can open, inspect, and control.</li>
+<li>Optional Computer Use on macOS, Windows and Linux through the <code>cua-driver</code> binary in the release, which OpenBot starts as its own child process and gives to every provider.</li>
+<li>Per-agent model, reasoning, profile, notification, browser, and panel state.</li>
+<li>Local data and privacy-safe diagnostics exports from the account menu.</li>
+<li>Optional OpenBot accounts through one-time email codes. The account API runs on Cloudflare Workers and D1.</li>
+</ul>
+<p>OpenBot is local-first, not offline-only. Codex connects to OpenAI, Claude connects to Anthropic,<br />
+Grok connects to xAI, Gemini connects to Google, Cursor connects to Cursor, Cline connects to Cline,<br />
+visited pages use the network, and installed plugins may connect to their own services.</p>
+<h2>Install</h2>
+<p>OpenBot supports macOS 13 or newer on Apple silicon or Intel, Windows 10 or newer on x64 systems, and x64<br />
+or arm64 Linux as an AppImage.</p>
+<h3>macOS</h3>
+<ol>
+<li>Download the latest <code>OpenBot-*-arm64.dmg</code> (or <code>OpenBot-*-x64.dmg</code> on an Intel Mac) from <a href="https://github.com/nightly-labs/openbot/releases">GitHub Releases</a>.</li>
+<li>Drag OpenBot to Applications and open it.</li>
+</ol>
+<h3>Windows</h3>
+<ol>
+<li>Download the latest <code>OpenBot-*-x64.exe</code> from <a href="https://github.com/nightly-labs/openbot/releases">GitHub Releases</a>.</li>
+<li>Run the installer and open OpenBot.</li>
+</ol>
+<h3>Linux</h3>
+<ol>
+<li>Download the latest <code>OpenBot-*-x86_64.AppImage</code> (or <code>OpenBot-*-arm64.AppImage</code> on arm64) from <a href="https://github.com/nightly-labs/openbot/releases">GitHub Releases</a>.</li>
+<li>Make it executable with <code>chmod +x OpenBot-*.AppImage</code>, then run it.</li>
+</ol>
+<p>The AppImage does not need libfuse2, so it also runs on Arch Linux and Omarchy. It mounts itself<br />
+with <code>fusermount3</code> from the <code>fuse3</code> package.</p>
+<p>On Ubuntu 23.10 or newer and on Debian 13, unprivileged user namespaces are restricted by AppArmor<br />
+and OpenBot exits during launch until you install an AppArmor profile:</p>
+<pre><code class="language-bash">sudo install -m 0644 build/linux/openbot.apparmor /etc/apparmor.d/openbot
+sudo systemctl reload apparmor
+</code></pre>
+<p>The same file ships inside the AppImage at <code>resources/linux/openbot.apparmor</code>. Edit the attachment<br />
+path in the profile if you keep the AppImage outside the usual locations. Do not start OpenBot with<br />
+<code>--no-sandbox</code>: that removes the boundary between a renderer and the rest of the computer.</p>
+<p>On the first start from an AppImage, OpenBot writes <code>~/.local/share/applications/openbot.desktop</code><br />
+and <code>~/.local/share/icons/openbot.png</code>, which is what lets an <code>openbot://</code> link - an invitation, or<br />
+a plugin listing - open the app and gives the launcher an icon that stays after the app exits. Delete the two files to undo it.</p>
+<p>Remote desktop works on Linux x64 in an X11 session,<br />
+such as Xorg or Xvfb. It does not work under Wayland, and the arm64 AppImage does not include it.</p>
+<p>For Gemini sign-in, install a desktop browser and <code>xdg-utils</code>. Open the sign-in page in a<br />
+desktop session on the same host or VM. Google sends the callback to that host through<br />
+<code>127.0.0.1</code>; a server with no desktop cannot complete this sign-in. See<br />
+<a href="docs/architecture/providers.md#gemini">Gemini setup</a>.</p>
+<h4>Linux server with no screen</h4>
+<p>To run OpenBot as an always-on server of your account on a VPS or home server (Ubuntu 24.04 or<br />
+26.04 with systemd), install it from a terminal and sign in with an email code:</p>
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/nightly-labs/openbot/main/scripts/install-server.sh | sudo bash
+sudo openbot login
+</code></pre>
+<p>Then use it from the desktop app, the iPhone app or <code>openbot.run/app</code>. See<br />
+<a href="docs/self-hosted-server.md">self-hosted servers</a> for the options and the <code>openbot</code> commands.</p>
+<h4>Docker</h4>
+<p>The same server runs as a container (<code>linux/amd64</code> and <code>linux/arm64</code>). The seccomp profile lets the<br />
+Electron sandbox stay on:</p>
+<pre><code class="language-bash">curl -fsSLO https://raw.githubusercontent.com/nightly-labs/openbot/main/docker/seccomp.json
+docker run -d --name openbot --restart unless-stopped \
+  --security-opt seccomp=seccomp.json --security-opt no-new-privileges:true \
+  --shm-size 1g --stop-timeout 60 -v openbot-data:/data \
+  ghcr.io/nightly-labs/openbot:latest
+docker exec -it openbot openbot login
+</code></pre>
+<p>See <a href="docs/docker.md">Docker</a> for Compose, the data volume, upgrades and the security limits. For Amazon ECS,<br />
+see <a href="docs/aws-ecs.md">AWS ECS</a>.</p>
+<h3>Nix</h3>
+<p>The flake installs the desktop app from the latest release on x64 or arm64 Linux and on Apple silicon:</p>
+<pre><code class="language-bash">nix run github:nightly-labs/openbot
+nix profile install github:nightly-labs/openbot
+</code></pre>
+<p><code>overlays.default</code> adds <code>pkgs.openbot</code>. OpenBot is not free software, so your nixpkgs must allow it,<br />
+for example with <code>nixpkgs.config.allowUnfreePredicate = pkg: lib.getName pkg == "openbot";</code>.<br />
+Nix installs OpenBot updates. OpenBot does not update itself from the Nix store. On Linux, the Nix<br />
+package does not include the remote desktop runtime, because nixpkgs does not have a library that it<br />
+needs.</p>
+<blockquote>
+<p>[!IMPORTANT]<br />
+Windows releases are signed by <code>SYNTHETIFY LABS SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ</code>. Older<br />
+releases are not code-signed. SmartScreen can still warn about a new release. Check the release<br />
+checksum or GitHub build attestation before you run the installer.</p>
+</blockquote>
+<h3>Agent setup</h3>
+<p>OpenBot can download a supported provider runtime when you select <code>Download</code> in onboarding,<br />
+Settings, agent setup, or the model picker. OpenBot prefers its managed CLI. Explicit <code>OPENBOT_*_PATH</code> overrides take precedence; a compatible<br />
+system CLI is used when no managed copy is available. OpenBot checks for a newer provider CLI<br />
+release at startup and every hour, and <code>Check for updates</code> in a provider's actions menu checks at<br />
+once. Updates install the latest upstream release without changing the user’s system CLI; the<br />
+version in <code>native-runtime.lock.json</code> is only the first-install fallback.</p>
+<p>You can also install a CLI yourself.</p>
+<p>Codex CLI on macOS:</p>
+<pre><code class="language-bash">curl -fsSL https://chatgpt.com/codex/install.sh | sh
+</code></pre>
+<p>Claude CLI on macOS:</p>
+<p>```bash<br />
+curl -fsSL https://claude.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/nightly-labs/openbot#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Panniantong /</span>
+          <a href="https://github.com/Panniantong/Agent-Reach" target="_blank" rel="noopener">Agent-Reach</a>
+        </div>
+        <div class="repo-desc">Give your AI agent eyes to see the entire internet. Read &amp; search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 103,997</span>
+      <span class="meta-item">🍴 9,223</span>
+      <span class="stars-today">⭐ 746 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">👁️ Agent Reach</h1>
+
+<p align="center">
+  <strong>让 AI Agent 够得着它自己上不去的互联网</strong>
+</p>
+
+<p align="center">
+  登录墙后的平台、视频里的内容、中文平台、干净的结构化数据，一条命令拿到
+</p>
+
+<p align="center">
+  <a href="https://trendshift.io/repositories/24387"><img src="https://trendshift.io/api/badge/repositories/24387" alt="Trendshift GitHub Trending #1 Repository of the Day"></a>
+  <a href="https://star-history.com/#Panniantong/Agent-Reach&Date"><img src="https://api.star-history.com/badge?repo=Panniantong/Agent-Reach" alt="Star History Rank" width="196" height="55"></a>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10+-green.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+"></a>
+  <a href="https://github.com/Panniantong/agent-reach/stargazers"><img src="https://img.shields.io/github/stars/Panniantong/agent-reach?style=for-the-badge" alt="GitHub Stars"></a>
+</p>
+
+<p align="center">
+  <a href="#快速上手">快速开始</a> · <a href="docs/README_en.md">English</a>
+</p>
+
+<p align="center">
+  <a href="https://discord.gg/NSZz22R39"><img src="https://img.shields.io/badge/Discord-加入社区-5865F2?style=for-the-badge&amp;logo=discord&amp;logoColor=white" alt="加入 Agent Reach Discord 社区"></a>
+</p>
+
+<p align="center">
+  💬 有问题、想要新平台、或者想看看别人怎么用？来 <a href="https://discord.gg/NSZz22R39">Discord</a> 聊聊。
+</p>
+
+<hr />
+<h2>❤️赞助商</h2>
+<blockquote>
+<p><a href="mailto:pnt01@foxmail.com">想出现在这里？</a></p>
+</blockquote>
+<details>
+<summary>点击展开</summary>
+
+<table>
+<tr>
+<td width="180" align="center"><a href="https://get.brightdata.com/bdenai"><img src="docs/assets/sponsors/brightdata.png" alt="Bright Data 亮数据" width="150"></a></td>
+<td><a href="https://get.brightdata.com/bdenai">Bright Data 亮数据</a> | 全球领先的数据采集基础设施。Scraper Studio 智能爬取器让你用自然语言一键生成爬虫，无需写代码；Unlocker 网站解锁器自动绕过反爬虫机制，轻松采集 Amazon、Google、LinkedIn、TikTok 等复杂网站数据。内置 350+ 现成 API 集成，覆盖电商、社交、搜索、地图等全品类数据源，直接调用开箱即用。1.5 亿+ 全球真实住宅 IP 保障采集稳定性。每月免费 5,000 次请求，<a href="https://get.brightdata.com/bdenai">立即免费注册</a>。</td>
+</tr>
+<tr>
+<td width="180" align="center"><a href="https://www.rapidproxy.io/?ref=pann"><img src="docs/assets/sponsors/rapidproxy.png" alt="Rapidproxy" width="150"></a></td>
+<td><a href="https://www.rapidproxy.io/?ref=pann">RapidProxy</a> 是专为开发者打造的数据采集代理解决方案，提供稳定可靠的住宅代理服务。拥有 9000 万+ 全球住宅 IP，覆盖 200+ 国家和地区，支持智能轮换与精准地理定位，可用于网页抓取、AI 数据采集与训练、SEO 监控、电商数据分析等场景，帮助提升数据采集效率与稳定性。支持 Playwright、Selenium、Puppeteer 等主流自动化框架，流量永久有效，价格低至 $0.55/GB，<a href="https://www.rapidproxy.io/?ref=pann">支持免费测试</a>。</td>
+</tr>
+<tr>
+<td width="180" align="center"><a href="https://www.browseract.ai/Agent"><img src="docs/assets/sponsors/browseract.png" alt="BrowserAct" width="150"></a></td>
+<td><a href="https://www.browseract.ai/Agent">BrowserAct</a> 支持从 Amazon、LinkedIn、X、Google Maps 等复杂网站提取你需要的任意数据。你只需用自然语言描述抓取需求，Agent 就会基于真实浏览器自动探索并测试页面流程，生成可靠、可复用的数据采集 Bot，并返回结构化结果。无需手动构建爬虫，无需编写代码。BrowserAct 内置隐身浏览、验证码处理和高质量住宅代理，帮助你更稳定地完成复杂网页数据采集。新用户注册即送 1000 积分，<a href="https://www.browseract.ai/Agent">立即免费试用</a>。</td>
+</tr>
+<tr>
+<td width="180" align="center"><a href="https://www.tencentcloud.com/act/pro/intl-openclaw?referral_code=G76Y819A&amp;lang=zh&amp;pg="><img src="docs/assets/sponsors/tencent-cloud.svg" alt="腾讯云 OpenClaw" width="150"></a></td>
+<td>在腾讯云 Lighthouse 秒级部署 OpenClaw 全能助手，可通过对话丝滑接入 Agent Reach，给你的 OpenClaw 一键装上互联网能力。</td>
+</tr>
+<tr>
+<td width="180" align="center"><a href="https://www.coreclaw.com/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=Reach&amp;utm_term=Reach&amp;utm_id=Reach"><img src="docs/assets/sponsors/coreclaw.png" alt="CoreClaw" width="150"></a></td>
+<td><a href="https://www.coreclaw.com/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=Reach&amp;utm_term=Reach&amp;utm_id=Reach">CoreClaw</a> | 网页抓取平台与现成数据采集工具，CoreClaw 提供 100+ 现成数据采集工具，支持 Amazon、TikTok、Google Maps、Instagram、Facebook、YouTube 等平台，无需代码，支持 JSON/CSV 导出，仅对成功结果计费。<a href="https://www.coreclaw.com/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=Reach&amp;utm_term=Reach&amp;utm_id=Reach">免费$3测试！</a></td>
+</tr>
+<tr>
+<td width="180" align="center"><a href="https://www.ucloud.cn/site/active/astraflow?ytag=geo_waituo_Agent"><img src="docs/assets/sponsors/astraflow.png" alt="星图 AstraFlow" width="150"></a></td>
+<td><a href="https://www.ucloud.cn/site/active/astraflow?ytag=geo_waituo_Agent">优刻得星图astraflow大模型</a>，支持200+模型一键调用：内置 Kimi K3、DeepSeek V4/V3、Qwen 3、GLM5.2、happyhorse等全球领先开源大模型，无需自训，开箱即用</td>
+</tr>
+</table>
+
+</details>
+
+<hr />
+<h2>为什么需要 Agent Reach？</h2>
+<p><strong>Agent Reach 让你的 Agent 真正连上互联网，用上它自己够不着的平台和能力。</strong></p>
+<p>Claude Code、Codex、Hermes Agent、OpenClaw 这类 CLI Agent 自带搜索和网页读取，但下面这些它们基本够不着：</p>
+<ul>
+<li><strong>要登录才能用的功能</strong>：在小红书搜笔记、在 X 查账号动态、读职位详情等。</li>
+<li><strong>视频里的内容</strong>：B站和 YouTube 的字幕，以及 YouTube 视频、小宇宙播客的语音转文字。</li>
+<li><strong>中文平台</strong>：B站、小红书、V2EX、雪球，通用搜索覆盖很差。</li>
+<li><strong>干净的结构化数据</strong>：雪球行情、V2EX 帖子和回复、GitHub 仓库和 issue，拿到的是整理好的内容。</li>
+</ul>
+<p>Agent Reach 把这些平台背后的工具替你装好、测好，Agent 一条命令就能用：</p>
+<pre><code class="language-bash">agent-reach channels                          # 有哪些渠道、每个渠道能做什么
+agent-reach bilibili search &quot;大模型&quot;           # agent-reach &lt;渠道&gt; &lt;动作&gt; [参数]
+agent-reach read https://www.v2ex.com/t/123   # 按链接自动选渠道
+</code></pre>
+<h3>✅ 在你用之前，你可能想知道</h3>
+<ul>
+<li><strong>适用于哪些 Agent？</strong> 一切 Agent 都能用。</li>
+<li><strong>会碰我的浏览器和账号吗？</strong> 要登录的平台用 Agent Reach 自己的专用浏览器，在后台运行、不弹窗。第一次用某个网站时，会把你 Chrome 里这个网站的登录复制一份过去，原浏览器不变，不读密码库。复制过来的通常是主账号，建议换成小号，做法见下面的"安全性"。详见<a href="agent_reach/skill/references/sessions.md">会话配置</a>。</li>
+</ul>
+<hr />
+<h2>支持的平台</h2>
+<p>下表是当前版本的情况。</p>
+<table>
+<thead>
+<tr>
+<th>渠道</th>
+<th>等级</th>
+<th>能做什么</th>
+<th>需要什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bilibili</td>
+<td>默认</td>
+<td>搜索、视频信息、热门、字幕</td>
+<td>无；字幕需要登录（扫码）</td>
+</tr>
+<tr>
+<td>v2ex</td>
+<td>默认</td>
+<td>热门、节点、帖子和回复、用户</td>
+<td>无</td>
+</tr>
+<tr>
+<td>github</td>
+<td>默认</td>
+<td>搜仓库、读仓库/README、读 issue 和 PR（含评论）</td>
+<td>无</td>
+</tr>
+<tr>
+<td>youtube</td>
+<td>默认</td>
+<td>视频信息、搜索、字幕、语音转文字</td>
+<td>无；转文字需要 Groq 或 OpenAI Key</td>
+</tr>
+<tr>
+<td>web</td>
+<td>默认</td>
+<td>网页搜索、网页阅读（保底）</td>
+<td>无</td>
+</tr>
+<tr>
+<td>xiaohongshu</td>
+<td>可选</td>
+<td>搜笔记、读正文、看评论</td>
+<td>登录</td>
+</tr>
+<tr>
+<td>xueqiu</td>
+<td>可选</td>
+<td>实时行情、搜股票、热帖、热股</td>
+<td>行情不用登录；热帖、热股要登录</td>
+</tr>
+<tr>
+<td>boss</td>
+<td>可选</td>
+<td>搜职位和 JD</td>
+<td>登录</td>
+</tr>
+<tr>
+<td>xiaoyuzhou</td>
+<td>可选</td>
+<td>播客转文字</td>
+<td>Groq Key</td>
+</tr>
+<tr>
+<td>linkedin</td>
+<td>可选</td>
+<td>搜职位、读职位详情</td>
+<td>公开职位不用登录；站内搜索要登录</td>
+</tr>
+<tr>
+<td>reddit</td>
+<td>可选</td>
+<td>搜帖子、读正文、看评论、看版块</td>
+<td>登录</td>
+</tr>
+<tr>
+<td>twitter</td>
+<td>实验</td>
+<td>搜推文、用户资料、用户推文、读推文串</td>
+<td>登录</td>
+</tr>
+<tr>
+<td>facebook</td>
+<td>实验</td>
+<td>搜索、主页资料</td>
+<td>登录</td>
+</tr>
+<tr>
+<td>instagram</td>
+<td>实验</td>
+<td>搜用户、主页资料、用户帖子</td>
+<td>登录</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>默认</strong>：装好就能用；不想要也可以去掉，以后更新不会再加回来。</li>
+<li><strong>可选</strong>：说一句"帮我加上 XX"就开启，需要的软件会自动装好。</li>
+<li><strong>实验</strong>：能用，但平台反爬更严，可能随时失效。</li>
+</ul>
+<hr />
+<h2>快速上手</h2>
+<p>把这句话发给你的 Agent：</p>
+<pre><code>帮我安装 Agent Reach：https://raw.githubusercontent.com/Panniantong/Agent-Reach/main/docs/install.md
+</code></pre>
+<p>无论是安装还是升级，都只需要这一条命令就行了。</p>
+<p>剩下的 Agent 自己做完。过程中你可能会被问到：</p>
+<ul>
+<li><strong>允许它执行命令</strong>：如果 Agent 说自己不能运行命令，去它的设置里打开"允许执行命令"。</li>
+<li><strong>装 uv</strong>：uv 是一个安装命令行程序的小工具，不需要管理员密码。电脑上没有的话 Agent 会先装它，会跟你说一声。</li>
+<li><strong>要不要加可选渠道</strong>：装完后 Agent 会告诉你哪些已经能用（B站、V2EX、GitHub、YouTube、网页），以及还能加哪些。你选了再加，也可以以后随时说"帮我加上小红书"，一条命令就装好。</li>
+</ul>
+<p>关于登录：部分平台会直接复用你电脑上已有的登录。想换成某个特定账号（比如小号），跟 Agent 说一声就行。Agent 从不替你登录，也不会要你的密码。</p>
+<blockquote>
+<p>⚠️ PyPI 上叫 <code>agent-reach</code> 的包不是本项目，请勿从 PyPI 安装，只用 install.md 里的 GitHub 地址。</p>
+</blockquote>
+<hr />
+<h2>装好之后怎么管</h2>
+<p>Agent Reach 装的所有东西（各渠道的工具、登录、设置）都放在你电脑上同一个文件夹里（<code>~/.agent-reach/</code>），不散落到别处。所以升级、管理、删除都很省事，一句话就行。</p>
+<p>直接用大白话跟 Agent 说：</p>
+<table>
+<thead>
+<tr>
+<th>你说</th>
+<th>它会做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"看看 Agent Reach 状态"</td>
+<td>告诉你每个渠道现在能不能用，哪些是上次还好、现在坏了</td>
+</tr>
+<tr>
+<td>"加上小红书" / "去掉小红书"</td>
+<td>开启并装好它需要的一切 / 关掉它，清掉它的登录和专用工具</td>
+</tr>
+<tr>
+<td>"小红书登录过期了" / "换个账号" / "退出登录"</td>
+<td>打开登录窗口，由你本人登录 / 清掉这个网站的登录</td>
+</tr>
+<tr>
+<td>"升级 Agent Reach"</td>
+<td>一次更新程序和各渠道的工具，并告诉你还需要做什么</td>
+</tr>
+<tr>
+<td>"卸载 Agent Reach"</td>
+<td>先列出要删的东西，你确认后再删</td>
+</tr>
+<tr>
+<td>"让另一个 AI 也能用"</td>
+<td>给那个 AI 也放一份使用说明</td>
+</tr>
+</tbody>
+</table>
+<p>出了问题，Agent 会告诉你是哪个平台、什么原因、下一步怎么做。常见问题见 <a href="docs/troubleshooting.md">troubleshooting.md</a>。</p>
+<hr />
+<h2>设计理念</h2>
+<h3>🔌 每个平台 = 首选 + 备选的有序工具列表</h3>
+<p>每个平台的每个动作都有一个按顺序尝试的工具列表。比如读 B站视频先用 bili-cli，失败了自动换 B站公开接口；读网页先用 Jina Reader，再用 Exa。</p>
+<pre><code class="language-mermaid">flowchart LR
+    A[Agent] --&gt;|agent-reach 渠道 动作| B[Agent Reach]
+    B --&gt; C{按顺序尝试}
+    C --&gt;|首选| D[上游工具 1]
+    C --&gt;|失败时备选| E[上游工具 2]
+    D --&gt; F[结果]
+    E --&gt; F
+    F --&gt; A
+</code></pre>
+<p>平台改版、工具失效是常态。换工具只是调整这个列表，Agent 的用法不变。</p>
+<hr />
+<h2>安全性</h2>
+<ul>
+<li><strong>只读</strong>：只搜索和读取，不发帖、不评论、不点赞、不私信。</li>
+<li><strong>从不替你登录，也不要你的密码。</strong> 部分平台会复用你电脑上已有的登录（只复制这一个网站，原浏览器不变）；确实需要重新登录时才打开专用窗口，由你本人完成。</li>
+<li><strong>专用浏览器只对你这台电脑开放</strong>，别的电脑连不上它。</li>
+<li><strong>建议用小号登录。</strong> 复用过来的通常是主账号，而平台可能限制自动访问的账号。想换成小号，跟 Agent 说一声就行。</li>
+<li><strong>Key 不要发在聊天里</strong>：在你自己的终端里运行 <code>agent-reach configure groq-key</code> 填写。</li>
+</ul>
+<h3>🗑️ 卸载</h3>
+<p>跟 Agent 说"卸载 Agent Reach"。它会先列出要删的东西，你确认后再删。只删 Agent Reach 自己装的东西，你的其他文件和浏览器都不动。最</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Panniantong/Agent-Reach#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">debpalash /</span>
+          <a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">VoiceStudio</a>
+        </div>
+        <div class="repo-desc">VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription &amp; audiobook creation in 646 languages.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 89,736</span>
+      <span class="meta-item">🍴 9,888</span>
+      <span class="stars-today">⭐ 2,297 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+  <img src="docs/logo.png" alt="VoiceStudio" width="88" />
+  <h1>VoiceStudio</h1>
+  <p>
+    <a href="https://trendshift.io/repositories/28176?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-28176" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/28176" alt="VoiceStudio ranking on Trendshift" width="220" height="48" /></a>
+  </p>
+  <p><strong>Open-source voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.</strong></p>
+  <p>
+    <a href="https://voicestudio.sh/?utm_source=github&utm_medium=readme&utm_campaign=project">Website</a> ·
+    <a href="https://github.com/debpalash/VoiceStudio/releases/latest">Download</a> ·
+    <a href="#get-started">Get started</a> ·
+    <a href="#documentation">Docs</a> ·
+    <a href="https://discord.gg/bzQavDfVV9">Discord</a> ·
+    <a href="docs/readme/README_CN.md">简体中文</a> ·
+    <a href="docs/readme/README_JA.md">日本語</a>
+  </p>
+  <p>
+    <a href="https://github.com/debpalash/VoiceStudio/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/debpalash/VoiceStudio/ci.yml?branch=main" alt="CI" /></a>
+    <a href="https://github.com/debpalash/VoiceStudio/releases/latest"><img src="https://img.shields.io/github/v/release/debpalash/VoiceStudio" alt="Latest release" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="AGPL-3.0" /></a>
+    <a href="https://supermetry.com"><img src="https://app.supermetry.com/px/zfjiv7psp4ed.svg?c=VoiceStudio&style=stats" alt="views" /></a>
+  </p>
+</div>
+
+<p><img alt="A tour of the Electron app: voice cloning, voice design, dubbing, and model management" src="docs/media/electron/voicestudio.gif" /></p>
+<h2>Your voice. Your workflow.</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Create</th>
+<th style="text-align: left;">Produce</th>
+<th style="text-align: left;">Connect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Clone a voice or design your own</td>
+<td style="text-align: left;">Dub videos with timed speech</td>
+<td style="text-align: left;">Local API &amp; MCP for agents</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dictate with a floating widget</td>
+<td style="text-align: left;">Stories, audiobooks &amp; batch jobs</td>
+<td style="text-align: left;">Reusable recipes &amp; watch folders</td>
+</tr>
+</tbody>
+</table>
+<p>Start with <strong>VoiceStudio</strong> (default, powered by k2-fsa/OmniVoice), or choose another engine. <a href="docs/feature-catalog.md">Features &amp; engine catalog</a>.</p>
+<p>Local workflows run on your hardware. Remote services are optional; usage analytics requires consent.</p>
+<details>
+<summary><strong>Explore the workspaces</strong> · Clone, dub, design & models</summary>
+
+<table>
+  <tr>
+    <td><img src="docs/media/electron/voice-cloning.png" alt="Electron voice cloning workspace with the bundled demo voice" width="100%" /></td>
+    <td><img src="docs/media/electron/dubbing.png" alt="Electron video dubbing workspace" width="100%" /></td>
+  </tr>
+  <tr><td align="center">Voice cloning</td><td align="center">Video dubbing</td></tr>
+  <tr>
+    <td><img src="docs/media/electron/voice-design.png" alt="Describe a voice in the Electron voice design workspace" width="100%" /></td>
+    <td><img src="docs/media/electron/models.png" alt="Install and manage local speech models" width="100%" /></td>
+  </tr>
+  <tr><td align="center">Voice design</td><td align="center">Local models</td></tr>
+</table>
+
+<img width="2628" height="1950" alt="VoiceStudio desktop workspace" src="https://github.com/user-attachments/assets/b474497d-a453-49a3-a2dd-f023ec6b7659" />
+
+</details>
+
+<p>OmniVoice GGUF source builds can optionally use Vulkan on Windows and Linux;<br />
+see the <a href="docs/engines/omnivoice-gguf.md#optional-vulkan-acceleration">native engine guide</a><br />
+for build requirements, CPU fallback, and device overrides.</p>
+<h2>Get started</h2>
+<h3>One-command install (macOS / Linux)</h3>
+<pre><code class="language-sh"># Latest Electron release
+curl -fsSL https://voicestudio.sh/install | sh
+
+# A specific published Electron release (replace X.Y.Z)
+curl -fsSL https://voicestudio.sh/install | sh -s -- --version X.Y.Z
+
+# Build current main and install the desktop app
+curl -fsSL https://voicestudio.sh/install | sh -s -- --main
+
+# Uninstall the app, keeping your data
+curl -fsSL https://voicestudio.sh/install | sh -s -- --uninstall
+</code></pre>
+<p>On Windows, run <code>irm https://voicestudio.sh/install | iex</code> in PowerShell.</p>
+<p>If <code>voicestudio.sh/install</code> is unreachable or returns 404, run the same script<br />
+straight from the repository, or clone it and run <code>scripts/install.sh</code>:</p>
+<pre><code class="language-bash">curl -fsSL https://raw.githubusercontent.com/debpalash/VoiceStudio/main/scripts/install.sh | sh
+</code></pre>
+<p>Release downloads require curl and a SHA-256 tool. <code>--main</code> requires Git,<br />
+Node.js 22+, Bun, Rust/Cargo, and platform build tools; see<br />
+<a href="docs/install/script.md">installer prerequisites and behavior</a>.<br />
+The installer preserves your settings, projects, and models. Older versions<br />
+must contain Electron packages; it never falls back to archived Tauri builds.</p>
+<p>Or download from <a href="https://github.com/debpalash/VoiceStudio/releases/latest">Releases</a> (macOS <code>.dmg</code>, Windows <code>.exe</code>, Linux <code>.AppImage</code> or <code>.deb</code>, Android <code>.apk</code>, iPhone <code>.ipa</code>; or <code>sudo snap install voicestudio</code> on Linux) and follow your platform guide:</p>
+<p><strong><a href="docs/install/macos.md">macOS</a> · <a href="docs/install/windows.md">Windows</a> · <a href="docs/install/linux.md">Linux</a> · <a href="docs/install/docker.md">Docker</a> · <a href="docs/mobile.md#install">Android and iPhone</a></strong></p>
+<table>
+<thead>
+<tr>
+<th>Hardware</th>
+<th>Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NVIDIA GPU (Windows / Linux)</td>
+<td>CUDA acceleration</td>
+</tr>
+<tr>
+<td>AMD Radeon / supported Ryzen AI (Windows)</td>
+<td>CPU by default; <a href="docs/install/windows-rocm.md">opt-in Windows ROCm setup</a> for AMD's Windows 11 hardware matrix. Setup distinguishes package repair from host failures; install the VC++ runtime manually first. Optional engines have separate limits; Vulkan engines retain their own runtime.</td>
+</tr>
+<tr>
+<td>Apple Silicon (M1–M5)</td>
+<td>Metal (MPS) acceleration</td>
+</tr>
+<tr>
+<td>AMD GPU</td>
+<td>Opt-in native CosyVoice GGUF can use Vulkan when the community runtime is built with Vulkan; verified on RX 6700 XT (<a href="docs/engines/cosyvoice-gguf.md">setup</a>)</td>
+</tr>
+<tr>
+<td>No dedicated GPU (Intel/AMD integrated graphics, older PCs)</td>
+<td>Fully usable on the CPU, slower; setup installs the small CPU build of PyTorch (about 5 GB free disk)</td>
+</tr>
+<tr>
+<td>Windows on ARM (Snapdragon X etc.)</td>
+<td><strong>Experimental</strong>, validation pending: native ARM64 app, x64 Python backend under emulation, CPU only</td>
+</tr>
+<tr>
+<td>Intel Mac</td>
+<td>App UI only; connect to a remote backend (<a href="docs/install/macos.md">why</a>)</td>
+</tr>
+<tr>
+<td>Android phones (Android 10+)</td>
+<td><strong>Preview</strong>: models run on the phone, offline once downloaded (<a href="docs/mobile.md#install">install</a>)</td>
+</tr>
+<tr>
+<td>iPhone and iPad (iOS 17+)</td>
+<td><strong>Preview</strong>: models run on the device; sideload the IPA with your Apple ID (<a href="docs/mobile.md#install">install</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Open <strong>Voice cloning</strong>, choose a voice or add a clean reference recording, enter your text, and generate. Install the required model when prompted. Hardware needs vary by engine; see <a href="docs/performance.md">performance</a>.</p>
+<h3>Install with prompt</h3>
+<p>Paste into your coding agent (Claude Code, Codex, Cursor, …):</p>
+<pre><code class="language-text">Install the VoiceStudio Electron app on this device and verify it works, following
+https://github.com/debpalash/VoiceStudio/blob/main/docs/install/agent.md
+</code></pre>
+<p>The <a href="docs/install/agent.md">agent guide</a> covers hardware detection, reusing existing<br />
+data, asking before model downloads, and a test generation. Agents that support skills<br />
+can also run <code>npx skills add debpalash/VoiceStudio</code>.</p>
+<details>
+<summary><strong>Run the Electron preview from source</strong></summary>
+
+
+<pre><code class="language-bash">git clone https://github.com/debpalash/VoiceStudio.git
+cd VoiceStudio
+bun install
+bun run setup:api  # prepare Python dependencies before starting Electron
+bun run dev
+</code></pre>
+
+
+See [Electron setup](electron/README.md) for prerequisites and backend configuration.
+
+Use `bun run smoke-test` to build and launch an isolated packaged Electron app.
+Add `-- --install` for the networked managed-runtime installation check.
+
+</details>
+
+<blockquote>
+<p><strong>Electron is the only desktop app and web UI.</strong> Version 0.5.3 was the final Tauri release. Existing Tauri users must <a href="docs/electron-migration.md">install Electron separately</a>. The retired Tauri shell and legacy UI entry points have been removed.</p>
+</blockquote>
+<h2>Documentation</h2>
+<p>| Need | </p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/debpalash/VoiceStudio#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#12</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">gitroomhq /</span>
+          <a href="https://github.com/gitroomhq/postiz-app" target="_blank" rel="noopener">postiz-app</a>
+        </div>
+        <div class="repo-desc">📨 The ultimate agentic social media scheduling tool 🤖</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 38,628</span>
+      <span class="meta-item">🍴 7,464</span>
+      <span class="stars-today">⭐ 188 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <a href="https://postiz.com/" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/765e9d72-3ee7-4a56-9d59-a2c9befe2311">
+    <img alt="Postiz Logo" src="https://github.com/user-attachments/assets/f0d30d70-dddb-4142-8876-e9aa6ed1cb99" width="280"/>
+  </picture>
+  </a>
+</p>
+
+<p align="center">
+<a href="https://opensource.org/license/agpl-v3">
+  <img src="https://img.shields.io/badge/License-AGPL%203.0-blue.svg" alt="License">
+</a>
+</p>
+
+<div align="center">
+  <strong>
+    <a href="https://postiz.com">Postiz</a> is a social media management platform for scheduling, automating, and analyzing your content.
+
+  Use Postiz Cloud for a fully managed experience, or deploy the open-source edition on your own infrastructure.
+  </strong>
+</div>
+
+<p align="center">
+  <br />
+  <a href="https://docs.postiz.com" rel="dofollow"><strong>Explore the docs »</strong></a>
+  <br />
+
+  <br />
+  <a href="https://youtube.com/@postizofficial" rel="dofollow"><strong>Watch the YouTube Tutorials»</strong></a>
+  <br />
+</p>
+
+<p align="center">
+  <a href="https://platform.postiz.com">Register</a>
+  ·
+  <a href="https://discord.postiz.com">Join Our Discord (devs only)</a>
+  ·
+  <a href="https://docs.postiz.com/public-api">Public API</a><br />
+</p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/@postiz/node">NodeJS SDK</a>
+  ·
+  <a href="https://www.npmjs.com/package/n8n-nodes-postiz">N8N custom node</a>
+  ·
+  <a href="https://apps.make.com/postiz">Make.com integration</a>
+</p>
+
+<p><br /></p>
+<p align="center"><strong>Schedule posts to:</strong></p>
+<div class="flex" align="center">
+  <img alt="Instagram" src="https://postiz.com/svgs/socials/Instagram.svg" width="32">
+  <img alt="Youtube" src="https://postiz.com/svgs/socials/Youtube.svg" width="32">
+  <img alt="Dribbble" src="https://postiz.com/svgs/socials/Dribbble.svg" width="32">
+  <img alt="Linkedin" src="https://postiz.com/svgs/socials/Linkedin.svg" width="32">
+  <img alt="Reddit" src="https://postiz.com/svgs/socials/Reddit.svg" width="32">
+  <img alt="TikTok" src="https://postiz.com/svgs/socials/TikTok.svg" width="32">
+  <img alt="Facebook" src="https://postiz.com/svgs/socials/Facebook.svg" width="32">
+  <img alt="Pinterest" src="https://postiz.com/svgs/socials/Pinterest.svg" width="32">
+  <img alt="Threads" src="https://postiz.com/svgs/socials/Threads.svg" width="32">
+  <img alt="X" src="https://postiz.com/svgs/socials/X.svg" width="32">
+  <img alt="Slack" src="https://postiz.com/svgs/socials/Slack.svg" width="32">
+  <img alt="Discord" src="https://postiz.com/svgs/socials/Discord.svg" width="32">
+  <img alt="Mastodon" src="https://postiz.com/svgs/socials/Mastodon.svg" width="32">
+  <img alt="Bluesky" src="https://postiz.com/svgs/socials/Bluesky.svg" width="32">
+</div>
+
+<p align="center"><strong>With your favorite AI agent:</strong></p>
+<div class="flex" align="center">
+  <a href="https://postiz.com/chatgpt" title="ChatGPT"><img alt="ChatGPT" src=".github/agents/chatgpt.svg" width="32"></a>
+  <a href="https://postiz.com/claude" title="Claude"><img alt="Claude" src=".github/agents/claude.svg" width="32"></a>
+  <a href="https://postiz.com/claude-code" title="Claude Code"><img alt="Claude Code" src=".github/agents/claude-code.svg" width="32"></a>
+  <a href="https://postiz.com/codex" title="Codex"><img alt="Codex" src=".github/agents/codex.svg" width="32"></a>
+  <a href="https://postiz.com/cursor" title="Cursor"><img alt="Cursor" src=".github/agents/cursor.svg" width="32"></a>
+  <a href="https://postiz.com/openclaw" title="OpenClaw"><img alt="OpenClaw" src=".github/agents/openclaw.svg" width="32"></a>
+  <a href="https://postiz.com/hermes" title="Hermes Agent"><img alt="Hermes Agent" src=".github/agents/hermes-agent.svg" width="32"></a>
+  <a href="https://postiz.com/grok-bot" title="Grok Bot"><img alt="Grok Bot" src=".github/agents/grok-bot.svg" width="32"></a>
+  <a href="https://postiz.com/grok-build" title="Grok Build"><img alt="Grok Build" src=".github/agents/grok-build.svg" width="32"></a>
+  <a href="https://postiz.com/muse" title="Muse"><img alt="Muse" src=".github/agents/muse.svg" width="32"></a>
+  <a href="https://postiz.com/perplexity-computer" title="Perplexity Computer"><img alt="Perplexity Computer" src=".github/agents/perplexity-computer.svg" width="32"></a>
+  <a href="https://postiz.com/nanoclaw" title="nanoclaw"><img alt="nanoclaw" src=".github/agents/nanoclaw.svg" width="32"></a>
+  <a href="https://postiz.com/paperclip" title="Paperclip"><img alt="Paperclip" src=".github/agents/paperclip.svg" width="32"></a>
+  <a href="https://postiz.com/mcp" title="MCP Server"><img alt="MCP Server" src=".github/agents/mcp-server.svg" width="32"></a>
+  <a href="https://postiz.com/agent" title="AI Agents CLI"><img alt="AI Agents CLI" src=".github/agents/ai-agents-cli.svg" width="32"></a>
+</div>
+
+<p><br /></p>
+<h2>🔌 See the leading Postiz features</h2>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=BdsCVvEYgHU" target="_blank">
+    <img alt="Postiz" src="https://github.com/user-attachments/assets/8b9b7939-da1a-4be5-95be-42c6fce772de" />
+  </a>
+</p>
+
+<h2>✨ Features</h2>
+<table>
+<thead>
+<tr>
+<th><img alt="Image 1" src="https://github.com/user-attachments/assets/a27ee220-beb7-4c7e-8c1b-2c44301f82ef" /></th>
+<th><img alt="Image 2" src="https://github.com/user-attachments/assets/eb5f5f15-ed90-47fc-811c-03ccba6fa8a2" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Image 3" src="https://github.com/user-attachments/assets/d51786ee-ddd8-4ef8-8138-5192e9cfe7c3" /></td>
+<td><img alt="Image 4" src="https://github.com/user-attachments/assets/91f83c89-22f6-43d6-b7aa-d2d3378289fb" /></td>
+</tr>
+</tbody>
+</table>
+<h3>Our Sponsors</h3>
+<table>
+<thead>
+<tr>
+<th>Sponsor</th>
+<th style="text-align: center;">Logo</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.hostinger.com/vps/docker/postiz?ref=postiz">Hostinger</a></td>
+<td style="text-align: center;"><img src=".github/sponsors/hostinger.png" alt="Hostinger" width="500"/></td>
+<td>Hostinger is on a mission to make online success possible for anyone – from developers to aspiring bloggers and business owners</td>
+</tr>
+<tr>
+<td><a href="https://dev.virlo.ai/?ref=postiz">Virlo</a></td>
+<td style="text-align: center;"><img src="https://github.com/user-attachments/assets/25182598-5344-45fc-b9cd-e4cfa16aabfd" alt="Virlo" width="500"/></td>
+<td>Virlo is the #1 social media trend spotting and all-in-one GTM tool for teams leveraging short-form video</td>
+</tr>
+<tr>
+<td><a href="https://chatbotx.io/?ref=postiz">ChatbotX</a></td>
+<td style="text-align: center;"><img src="https://github.com/user-attachments/assets/0aa6b058-9a64-46d3-bc26-337abc51737d" alt="ChatbotX" width="500"/></td>
+<td>The ManyChat alternative that you can self-host, white-label, and resell to your clients. Bring your own OpenClaw, Hermes, or Claude agents!</td>
+</tr>
+<tr>
+<td><a href="https://www.rapidproxy.io/?ref=postiz">RapidProxy</a></td>
+<td style="text-align: center;"><img width="700" height="412" alt="WP-PROXY-THUMBNAIL-41" src="https://github.com/user-attachments/assets/6cf5b2c9-2687-4181-8964-2e7b90eace4f" /></td>
+<td>RapidProxy provides 90M+ residential IPs for social media, browser automation, and AI workflows, with smart rotation and stable sessions. From $0.55/GB; use RAPID10 for 10% off.</td>
+</tr>
+</tbody>
+</table>
+<h1>Intro</h1>
+<ul>
+<li>Schedule all your social media posts (many AI features)</li>
+<li>Measure your work with analytics.</li>
+<li>Collaborate with other team members to exchange or buy posts.</li>
+<li>Invite your team members to collaborate, comment, and schedule posts.</li>
+<li>Perfect for automation (API) with platforms like N8N, Make.com, Zapier, etc.</li>
+</ul>
+<h2>Tech Stack</h2>
+<ul>
+<li>Pnpm workspaces (Monorepo)</li>
+<li>NextJS (React)</li>
+<li>NestJS</li>
+<li>Prisma (Default to PostgreSQL)</li>
+<li>Temporal</li>
+<li>Resend (email notifications)</li>
+</ul>
+<h2>Quick Start</h2>
+<p>To have the project up and running, please follow the <a href="https://docs.postiz.com/quickstart">Quick Start Guide</a></p>
+<h2>Sponsor Postiz</h2>
+<p>We now offer a few options to sponsor Postiz:<br />
+- Just a donation: You like what we are building, and want to buy us some coffee so we can build faster.<br />
+- Main re</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/gitroomhq/postiz-app#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#13</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">alchaincyf /</span>
+          <a href="https://github.com/alchaincyf/huashu-design" target="_blank" rel="noopener">huashu-design</a>
+        </div>
+        <div class="repo-desc">Huashu Design 3.0 · 在 agent 里打一句话，拿回能交付的设计：网页 / App 原型 / 可编辑 PPTX / 动画 / 信息图 · 六个候选挑三个方向 · 84 种带样张的风格库 · 越用越懂你的外观账本与设计体检 · HTML-native design skill for Claude Code, Codex, Cursor &amp; any agent</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#e34c26"></span>HTML</span>
+      <span class="meta-item">⭐ 27,175</span>
+      <span class="meta-item">🍴 2,984</span>
+      <span class="stars-today">⭐ 251 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p><sub>🌐 <b>中文</b> · <a href="README.en.md">English</a></sub></p>
+<div align="center">
+
+# Huashu Design
+
+> *「打字。回车。一份能交付的设计。」*
+> *"Type. Hit enter. A finished design lands in your lap."*
+
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Agent-Agnostic](https://img.shields.io/badge/Agent-Agnostic-blueviolet)](https://skills.sh)
+[![Skills](https://img.shields.io/badge/skills.sh-Compatible-green)](https://skills.sh)
+
+<br>
+
+**在你的 agent 里打一句话，拿回一份能交付的设计。**
+
+<br>
+
+3 到 30 分钟，你能 ship 一段**产品发布动画**、一个能点击的 App 原型、一套能编辑的 PPT、一份印刷级的信息图。
+
+不是「AI 做的还行」那种水平——是看起来像大厂设计团队做的。给 skill 你的品牌资产（logo、色板、UI 截图），它会读懂你的品牌气质；什么都不给，**六张缩略图里挑出的三个真实方向 + 84 种带样张的风格库**也能兜底到不出 AI slop。
+
+**你看到这篇 README 里的每一页设计，都是 huashu-design 自己做的。** 不是 Figma，不是 AE，就是一句话 prompt + skill 跑通。下次产品发布要做宣传片？现在你也能做。
+
+
+<pre><code>npx skills add alchaincyf/huashu-design
+</code></pre>
+
+
+跨 agent 通用——Claude Code、Cursor、Codex、OpenClaw、Hermes 都能装。
+
+> 📣 **已改为 MIT 协议。** 自 2026-05-14 起本 skill 完全开源（[MIT License](LICENSE)），个人和**商用都免费**，无需事先授权。原「个人使用免费、企业商用需授权」的条款已作废。([查看变更](#license))
+
+> 🆕 **3.0：三个方向更敢，项目之间也不再长一个样。** 先出六张缩略图再挑三版做成真稿；风格库扩到 84 种（新增 App、中文与东亚两个分区），每种都有样张；参照作品先截图再动手；带一个只量事实的设计体检，和一本记住你做过什么样子的外观账本。[详见核心机制](#核心机制)
+
+[看效果](#30-案例) · [安装](#装上就能用) · [能做什么](#能做什么) · [核心机制](#核心机制) · [和 Claude Design 的关系](#和-claude-design-的关系)
+
+</div>
+
+<hr />
+<p align="center">
+  <img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/launch-3.0.gif" alt="huashu-design 3.0 发布片" width="100%">
+</p>
+
+<p align="center"><sub>
+  ▲ 3.0 发布片 · 32 秒 · 片里每一页设计都是 3.0 自己做的，剪辑用的是 <a href="https://github.com/alchaincyf/huashu-motion">huashu-motion</a><br>
+  👉 <a href="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/launch-3.0.mp4">下载 MP4（1080p · 含配乐 · 24MB）</a> ·
+  <a href="https://www.huasheng.ai/huashu-design-hero/">2.0 的带音效 HTML 互动版</a>
+</sub></p>
+
+<hr />
+<h2>3.0 案例</h2>
+<p>下面这些都是 3.0 跑出来的。前五个是从发布时新跑的 6 道题里挑的，每道只给一句话需求，方向是 agent 自己挑的，作者没插手；后两个一个是第三轮盲选赢下来的那版，一个是发布后作者拿它做的真实项目。</p>
+<h3>网页 · 《富岳三十六景》线上展</h3>
+<blockquote>
+<p>「给葛饰北斋的《富岳三十六景》做一个线上展览网站」</p>
+</blockquote>
+<p>三版分别是 Rijksmuseum 官网式的暗场展厅、田中一光式的三角窗、民国书衣式的题签框。设计体检报过一次撞车：两版首屏都用了《神奈川冲浪里》，它就把暗场那版换成了《山下白雨》。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-hokusai-hero.jpg" width="100%" alt="富岳三十六景线上展首屏：暗场满屏《山下白雨》"></p>
+
+<p>往下一章讲普鲁士蓝，依据是大都会博物馆的光谱研究；全 46 幅都来自芝加哥艺术博物馆和大都会的开放馆藏。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-hokusai-prussian-blue.jpg" width="100%" alt="一种进口的蓝：普鲁士蓝章节"></p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-hokusai-all-46.jpg" width="60%" alt="全四十六幅作品墙"></p>
+
+<h3>App · 鸣迹（观鸟记录）</h3>
+<blockquote>
+<p>「做一个观鸟记录 App 的原型」</p>
+</blockquote>
+<p>现实参照找的是拿了 2025 年苹果设计奖的 CapWords，<code>ref_board.py</code> 先把它截成参考板，agent 亲眼看过再动手。借来的是「从照片里撕下一张贴纸」：每只鸟都从 Wikimedia 的真实照片里分割出来，贴进一年的本子里，叫声波形是拿真实录音算的。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-mingji-birding-app.jpg" width="75%" alt="鸣迹：听到一只鸟，撕下一张贴纸"></p>
+
+<h3>App · 今晚吃啥（家常菜谱）</h3>
+<blockquote>
+<p>「做一个家常菜谱 App」</p>
+</blockquote>
+<p>秒数轮盘恰好抽到吕敬人书籍设计，最后做成了一本菜谱：一道菜一页方子，切口旁边留一条旁注栏，写「擦干再煎才不溅油」「老抽只要几滴」，朱砂只给「开做」这一方印。外观账本看到最近 6 个交付里 5 个是无衬线标题，这一版挑了宋体。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-recipe-app.jpg" width="75%" alt="今晚吃啥：一道菜一页方子"></p>
+
+<h3>PPT · 《千里江山图》讲座</h3>
+<p>走的是最佳设计师 Abbott Miller 式的暗场展柜，暗底取的是绢地最暗处的颜色。封面底下那条细长的位置条就是整卷缩略图，框出这一页在 11.9 米长卷的哪一段。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-qianli-cover.jpg" width="100%" alt="千里江山图讲座封面"></p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-qianli-pages.jpg" width="100%" alt="一张多大的画、希孟年十八岁、小如豆、颜色来自石头"></p>
+
+<h3>PPT · 黑洞的照片是怎么拍出来的</h3>
+<p>现实参照是 Jonathan Corum 的讲座幻灯片：黑底、照片做主角、标注直接写在图上。每页都标了出处，事实先过核查再上页面。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-blackhole-pages.jpg" width="100%" alt="黑洞科普 PPT 四页"></p>
+
+<h3>App · 绿拇指（第三轮盲选赢的那版）</h3>
+<p>把植物当成会呼吸的生命体征来读。App 原型做成一张有构图的展示板，几台手机错落排开。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-plant-health-app.jpg" width="75%" alt="绿拇指：把植物当成会呼吸的生命体征来读"></p>
+
+<h3>网页 · 旅居档案（作者自己的项目）</h3>
+<p>三年里所有旅行照片的地图。选的是葛西薰式的白纸明朝体长卷，开头一张卫星地图串起所有旅程，往下一段旅程一章。选完作者顺口说了句「尽量不要遗漏」，它就记进了经验：个人回忆类档案照片要全，而且注明只适用于照片档案，不外溢到产品界面。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v3.0.0/case-travel-archive.jpg" width="100%" alt="旅居档案"></p>
+
+<hr />
+<h2>📺 新手教程（花叔亲录）</h2>
+<p>不知道怎么用？看花叔录的 huashu-design 上手教程：</p>
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=m-_BlUdcIvw"><img src="https://img.youtube.com/vi/m-_BlUdcIvw/maxresdefault.jpg" alt="huashu-design 使用教程" width="70%"></a>
+</p>
+
+<p align="center"><sub>👉 <a href="https://www.youtube.com/watch?v=m-_BlUdcIvw">在 YouTube 观看完整教程</a></sub></p>
+
+<hr />
+<h2>装上就能用</h2>
+<pre><code class="language-bash">npx skills add alchaincyf/huashu-design
+</code></pre>
+<blockquote>
+<p><strong>装完先自检</strong>：这个 skill 不只是 SKILL.md 一个文件，<code>references/</code>、<code>assets/</code>、<code>scripts/</code>、<code>demos/</code> 四个子目录里有 99 处被引用的配方、脚本、素材，缺一不可。装完看一眼安装目录（如 <code>~/.claude/skills/huashu-design/</code>），如果只有 SKILL.md、没有那几个子目录，说明你的 <code>skills</code> CLI 版本太旧（≤1.5.15 有个只同步单文件的 bug，已在 1.5.19 修复）。升级后再装一次即可：</p>
+<p><code>bash
+npm i -g skills@latest        # 或 npx skills@latest add alchaincyf/huashu-design</code></p>
+<p>升级后仍异常，就用 <code>git clone</code> 兜底安装，把仓库克隆到任意 skills 目录即可：</p>
+<p><code>bash
+git clone https://github.com/alchaincyf/huashu-design.git ~/.claude/skills/huashu-design</code></p>
+</blockquote>
+<p>然后在 Claude Code / Codex / Cursor 等任意支持 skills 的 agent 里直接说话：</p>
+<pre><code>「做一份 AI 心理学的演讲 PPT，推荐 3 个风格方向让我选」
+「做个 AI 番茄钟 iOS 原型，4 个核心屏幕要真能点击」
+「把这段逻辑做成 60 秒动画，导出 MP4 和 GIF」
+「帮我对这个设计做一个 5 维度评审」
+</code></pre>
+<p>没有按钮、没有面板、没有 Figma 插件。</p>
+<hr />
+<h2>Star 趋势</h2>
+<p align="center">
+  <a href="https://star-history.com/#alchaincyf/huashu-design&Date">
+    <img src="https://api.star-history.com/svg?repos=alchaincyf/huashu-design&type=Date" alt="huashu-design Star History" width="80%">
+  </a>
+</p>
+
+<hr />
+<h2>能做什么</h2>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>交付物</th>
+<th>典型耗时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交互原型（App / Web）</td>
+<td>单文件 HTML · 真 iPhone bezel · 可点击 · Playwright 验证</td>
+<td>10–15 min</td>
+</tr>
+<tr>
+<td>演讲幻灯片</td>
+<td>HTML deck（浏览器演讲）+ 可编辑 PPTX（文本框保留）</td>
+<td>15–25 min</td>
+</tr>
+<tr>
+<td>时间轴动画</td>
+<td>MP4（25fps / 60fps 插帧）+ GIF（palette 优化）+ BGM</td>
+<td>8–12 min</td>
+</tr>
+<tr>
+<td>设计变体</td>
+<td>3+ 并排对比 · Tweaks 实时调参 · 跨维度探索</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>信息图 / 可视化</td>
+<td>印刷级排版 · 可导 PDF/PNG/SVG</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>设计方向顾问</td>
+<td><strong>三套逻辑各出两个候选</strong>（最佳设计师 + 同媒介获奖作品 + 秒数轮盘）· 六张缩略图挑三版真实视觉，另三张作备选</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>5 维度专家评审</td>
+<td>雷达图 + Keep/Fix/Quick Wins · 可操作修复清单</td>
+<td>3 min</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Demo 画廊</h2>
+<h3>设计方向顾问</h3>
+<p>模糊需求时的 fallback：<strong>三套互补逻辑各出两个候选</strong>——最佳设计师（预算无上限时最适合的设计师）+ 现实参照（同媒介的获奖作品，先截图亲眼看）+ 秒数轮盘（从风格库随机抽，打破惯性）。六个候选先画成一页缩略图，挑最强、最不一样的三版做成<strong>真实视觉</strong>让你看着选，另外三张作为备选一起给你。背后是 <strong>84 种 HTML 原生风格库</strong>（网页 20 + PPT 20 + 信息图 20 + App 12 + 中文与东亚 12，纯 CSS 无需生图），每种都有一张样张。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v2.0/w3-fallback-advisor.gif" width="100%"></p>
+<p align="center"><sub>动图为 2.0 流程（三套逻辑直接各出一版）</sub></p>
+
+<p>3.0 新增的两个分区，每格都是一张样张（全部纯 HTML/CSS，题材与数字虚构）：</p>
+<p align="center"><img src="assets/style-specimens/sheet-east.jpg" width="100%" alt="中文与东亚设计 12 种：吕敬人书籍设计、宋刻本版式、民国书衣、上海摩登、中文实验字体、香港街招、传统色节气、杉浦康平、田中一光、服部一成、佐藤可士和、日式杂志密排"></p>
+<p align="center"><img src="assets/style-specimens/sheet-app.jpg" width="100%" alt="App 风格 12 种：硬件面板、液态玻璃、玩味 3D、友好金融、专业相机、户外地形、内容瀑布流、命令面板、健康数据、原生精修、柔和鼓励、编辑式阅读"></p>
+
+<h3>iOS App 原型</h3>
+<p>iPhone 15 Pro 精确机身（灵动岛 / 状态栏 / Home Indicator）· 状态驱动多屏切换 · 真图从 Wikimedia/Met/Unsplash 取 · Playwright 自动点击测试。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v2.0/c1-ios-prototype.gif" width="100%"></p>
+
+<h3>Motion Design 引擎</h3>
+<p>Stage + Sprite 时间片段模型 · <code>useTime</code> / <code>useSprite</code> / <code>interpolate</code> / <code>Easing</code> 四 API 覆盖所有动画需求 · 一条命令导出 MP4 / GIF / 60fps 插帧 / 带 BGM 的成片。</p>
+<p align="center"><img src="https://github.com/alchaincyf/huashu-design/releases/download/v2.0/c3-motion-design.gif" width="100%"></p>
+
+<h3>HTML Slides → 可编辑 PPTX</h3>
+<p>HTML deck 浏览器演讲 · <code>html2pptx.js</code> 读 DOM 的 computedStyle 逐元素翻译成 PowerPoint 对象 · 导出的是<strong>真文本框</strong>，PPT 里双击即可编辑。</p>
+<p align="center"><img src="https://github.
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/alchaincyf/huashu-design#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#14</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">multica-ai /</span>
+          <a href="https://github.com/multica-ai/andrej-karpathy-skills" target="_blank" rel="noopener">andrej-karpathy-skills</a>
+        </div>
+        <div class="repo-desc">A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy&#x27;s observations on LLM coding pitfalls.</div>
+      </div>
+    </div>
+    <div class="meta">
+      
+      <span class="meta-item">⭐ 224,860</span>
+      <span class="meta-item">🍴 22,490</span>
+      <span class="stars-today">⭐ 638 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>Karpathy-Inspired Claude Code Guidelines</h1>
+<blockquote>
+<p>Check out my new project <a href="https://github.com/multica-ai/multica">Multica</a> — an open-source platform for running and managing coding agents with reusable skills.</p>
+<p>Follow me on X: <a href="https://x.com/jiayuan_jy">https://x.com/jiayuan_jy</a></p>
+</blockquote>
+<p>A single <code>CLAUDE.md</code> file to improve Claude Code behavior, derived from <a href="https://x.com/karpathy/status/2015883857489522876">Andrej Karpathy's observations</a> on LLM coding pitfalls.</p>
+<p>English | <a href="./README.zh.md">简体中文</a></p>
+<h2>The Problems</h2>
+<p>From Andrej's post:</p>
+<blockquote>
+<p>"The models make wrong assumptions on your behalf and just run along with them without checking. They don't manage their confusion, don't seek clarifications, don't surface inconsistencies, don't present tradeoffs, don't push back when they should."</p>
+<p>"They really like to overcomplicate code and APIs, bloat abstractions, don't clean up dead code... implement a bloated construction over 1000 lines when 100 would do."</p>
+<p>"They still sometimes change/remove comments and code they don't sufficiently understand as side effects, even if orthogonal to the task."</p>
+</blockquote>
+<h2>The Solution</h2>
+<p>Four principles in one file that directly address these issues:</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Addresses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Think Before Coding</strong></td>
+<td>Wrong assumptions, hidden confusion, missing tradeoffs</td>
+</tr>
+<tr>
+<td><strong>Simplicity First</strong></td>
+<td>Overcomplication, bloated abstractions</td>
+</tr>
+<tr>
+<td><strong>Surgical Changes</strong></td>
+<td>Orthogonal edits, touching code you shouldn't</td>
+</tr>
+<tr>
+<td><strong>Goal-Driven Execution</strong></td>
+<td>Leverage through tests-first, verifiable success criteria</td>
+</tr>
+</tbody>
+</table>
+<h2>The Four Principles in Detail</h2>
+<h3>1. Think Before Coding</h3>
+<p><strong>Don't assume. Don't hide confusion. Surface tradeoffs.</strong></p>
+<p>LLMs often pick an interpretation silently and run with it. This principle forces explicit reasoning:</p>
+<ul>
+<li><strong>State assumptions explicitly</strong> — If uncertain, ask rather than guess</li>
+<li><strong>Present multiple interpretations</strong> — Don't pick silently when ambiguity exists</li>
+<li><strong>Push back when warranted</strong> — If a simpler approach exists, say so</li>
+<li><strong>Stop when confused</strong> — Name what's unclear and ask for clarification</li>
+</ul>
+<h3>2. Simplicity First</h3>
+<p><strong>Minimum code that solves the problem. Nothing speculative.</strong></p>
+<p>Combat the tendency toward overengineering:</p>
+<ul>
+<li>No features beyond what was asked</li>
+<li>No abstractions for single-use code</li>
+<li>No "flexibility" or "configurability" that wasn't requested</li>
+<li>No error handling for impossible scenarios</li>
+<li>If 200 lines could be 50, rewrite it</li>
+</ul>
+<p><strong>The test:</strong> Would a senior engineer say this is overcomplicated? If yes, simplify.</p>
+<h3>3. Surgical Changes</h3>
+<p><strong>Touch only what you must. Clean up only your own mess.</strong></p>
+<p>When editing existing code:</p>
+<ul>
+<li>Don't "improve" adjacent code, comments, or formatting</li>
+<li>Don't refactor things that aren't broken</li>
+<li>Match existing style, even if you'd do it differently</li>
+<li>If you notice unrelated dead code, mention it — don't delete it</li>
+</ul>
+<p>When your changes create orphans:</p>
+<ul>
+<li>Remove imports/variables/functions that YOUR changes made unused</li>
+<li>Don't remove pre-existing dead code unless asked</li>
+</ul>
+<p><strong>The test:</strong> Every changed line should trace directly to the user's request.</p>
+<h3>4. Goal-Driven Execution</h3>
+<p><strong>Define success criteria. Loop until verified.</strong></p>
+<p>Transform imperative tasks into verifiable goals:</p>
+<table>
+<thead>
+<tr>
+<th>Instead of...</th>
+<th>Transform to...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Add validation"</td>
+<td>"Write tests for invalid inputs, then make them pass"</td>
+</tr>
+<tr>
+<td>"Fix the bug"</td>
+<td>"Write a test that reproduces it, then make it pass"</td>
+</tr>
+<tr>
+<td>"Refactor X"</td>
+<td>"Ensure tests pass before and after"</td>
+</tr>
+</tbody>
+</table>
+<p>For multi-step tasks, state a brief plan:</p>
+<pre><code>1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+</code></pre>
+<p>Strong success criteria let the LLM loop independently. Weak criteria ("make it work") require constant clarification.</p>
+<h2>Install</h2>
+<p><strong>Option A: Claude Code Plugin (recommended)</strong></p>
+<p>From within Claude Code, first add the marketplace:</p>
+<pre><code>/plugin marketplace add forrestchang/andrej-karpathy-skills
+</code></pre>
+<p>Then install the plugin:</p>
+<pre><code>/plugin install andrej-karpathy-skills@karpathy-skills
+</code></pre>
+<p>This installs the guidelines as a Claude Code plugin, making the skill available across all your projects.</p>
+<p><strong>Option B: CLAUDE.md (per-project)</strong></p>
+<p>New project:</p>
+<pre><code class="language-bash">curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md
+</code></pre>
+<p>Existing project (append):</p>
+<pre><code class="language-bash">echo &quot;&quot; &gt;&gt; CLAUDE.md
+curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md &gt;&gt; CLAUDE.md
+</code></pre>
+<h2>Using with Cursor</h2>
+<p>This repository includes a committed Cursor project rule (<a href=".cursor/rules/karpathy-guidelines.mdc"><code>.cursor/rules/karpathy-guidelines.mdc</code></a>) so the same guidelines apply when you open the project in Cursor. See <strong><a href="CURSOR.md">CURSOR.md</a></strong> for setup, using the rule in other projects, and how this relates to Claude Code.</p>
+<h2>Key Insight</h2>
+<p>From Andrej:</p>
+<blockquote>
+<p>"LLMs are exceptionally good at looping until they meet specific goals... Don't tell it what to do, give it success criteria and watch it go."</p>
+</blockquote>
+<p>The "Goal-Driven Execution" principle captures this: transform imperative instructions into declarative goals with verification loops.</p>
+<h2>How to Know It's Working</h2>
+<p>These guidelines are working if you see:</p>
+<ul>
+<li><strong>Fewer unnecessary changes in diffs</strong> — Only requested changes appear</li>
+<li><strong>Fewer rewrites due to overcomplication</strong> — Code is simple the first time</li>
+<li><strong>Clarifying questions come before implementation</strong> — Not after mistakes</li>
+<li><strong>Clean, minimal PRs</strong> — No drive-by refactoring or "improvements"</li>
+</ul>
+<h2>Customization</h2>
+<p>These guidelines are designed to be merged with project-specific instructions. Add them to your existing <code>CLAUDE.md</code> or create a new one.</p>
+<p>For project-specific rules, add sections like:</p>
+<pre><code class="language-markdown">## Project-Specific Guidelines
+
+- Use TypeScript strict mode
+- All API endpoints must have tests
+- Follow the existing error handling patterns in `src/utils/errors.ts`
+</code></pre>
+<h2>Tradeoff Note</h2>
+<p>These guidelines bias toward <strong>caution over speed</strong>. For trivial tasks (simple typo fixes, obvious one-liners), use judgment — not every change needs the full rigor.</p>
+<p>The goal is reducing costly mistakes on non-trivial work, not slowing down simple tasks.</p>
+<h2>License</h2>
+<p>MIT</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/multica-ai/andrej-karpathy-skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on October 27, 2026  05:42 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
