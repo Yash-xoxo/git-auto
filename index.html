@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GitHub Trending — November 02, 2026  17:09</title>
+  <title>GitHub Trending — November 03, 2026  08:12</title>
   <style>
     /* ── reset & tokens ───────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -245,7 +245,7 @@
     <span class="badge">Today</span>
   </a>
   <div class="subtitle">
-    Auto-generated on November 02, 2026  17:09 &nbsp;·&nbsp; 15 trending repositories
+    Auto-generated on November 03, 2026  08:12 &nbsp;·&nbsp; 15 trending repositories
   </div>
 </header>
 
@@ -259,14 +259,14 @@
           <span class="repo-owner">vercel-labs /</span>
           <a href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="noopener">agent-desktop</a>
         </div>
-        <div class="repo-desc">Agent Desktop gives any agent reliable computer use on the desktop. Built with Rust, it sees any app&#x27;s real UI structure through OS accessibility trees and operates it — refs stay stable and actions stay safe to retry, instead of guessing from pixels.</div>
+        <div class="repo-desc">Computer use CLI for AI agents</div>
       </div>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
-      <span class="meta-item">⭐ 8,737</span>
-      <span class="meta-item">🍴 606</span>
-      <span class="stars-today">⭐ 2,243 stars today</span>
+      <span class="meta-item">⭐ 11,000</span>
+      <span class="meta-item">🍴 749</span>
+      <span class="stars-today">⭐ 2,275 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -281,7 +281,7 @@
 </p>
 
 <p>A CLI and C library for macOS, Windows and Linux. A snapshot returns JSON with a ref for every element an agent can act on. The agent acts on a ref and snapshots again to check, with no pixel matching; the loop stays in your agent.</p>
-<p>On macOS, CLI calls reuse a private command host for each snapshot namespace and binary build. It retains native accessibility objects so a removed row cannot silently resolve to a surviving row with the same identifier. The host exits after 15 idle minutes. <code>TMPDIR</code> must be owned by the current user with mode <code>0700</code>; the standard macOS per-user temporary directory satisfies this requirement. Headless calls still prohibit foreground activation and synthesized input.</p>
+<p>Every CLI call runs in its own process. Headless calls still prohibit foreground activation and synthesized input.</p>
 <p>Snapshots, clipboard reads, screenshots, command output and debug artifacts can contain private desktop content. Keep them out of public logs and uploads. The optional <a href="skills/jev-desktop/SKILL.md">JEV helper</a> sends screen descriptions to a configured model provider; it is separate from the native CLI. See <a href="docs/faq.md#what-data-can-contain-private-information">privacy and data handling</a>.</p>
 <h2>Installation</h2>
 <p>Install on macOS, Windows or Linux with npm:</p>
@@ -307,7 +307,7 @@ agent-desktop click @s8f3k2p9:e8            # act on a ref from that snapshot
 agent-desktop snapshot --app Finder -i      # observe again to verify
 </code></pre>
 <pre><code class="language-json">{
-  &quot;version&quot;: &quot;2.5&quot;,
+  &quot;version&quot;: &quot;2.6&quot;,
   &quot;ok&quot;: true,
   &quot;command&quot;: &quot;snapshot&quot;,
   &quot;data&quot;: {
@@ -454,7 +454,7 @@ agent-desktop &lt;command&gt; --help        # flags for one command
 </tr>
 <tr>
 <td>Shell surfaces (<code>open-system-surface</code>)</td>
-<td style="text-align: center;">Planned</td>
+<td style="text-align: center;">Dock, menu bar extras</td>
 <td style="text-align: center;">Yes</td>
 <td style="text-align: center;">GNOME tray, Action Center</td>
 </tr>
@@ -463,7 +463,13 @@ agent-desktop &lt;command&gt; --help        # flags for one command
 <p>The Windows surface and <code>launch</code> notes and the Linux X11 and Wayland notes are in <a href="docs/install.md#platform-notes">docs/install.md</a>.</p>
 <p><code>agent-desktop skills get platform</code> prints the full capability table for the OS you run on.</p>
 <h2>Language bindings</h2>
-<p>Each release also ships <code>libagent_desktop_ffi</code> for macOS, Linux and Windows, so a program can call the tool in process instead of starting the CLI for each command. `agent-desktop skills get</p>
+<p>Each release also ships <code>libagent_desktop_ffi</code> for macOS, Linux and Windows, so a program can call the tool in process instead of starting the CLI for each command. <code>agent-desktop skills get ffi</code> covers the entry points, memory ownership and threading rules.</p>
+<p>```python<br />
+import ctypes<br />
+lib = ctypes.CDLL("./lib/libagent_desktop_ffi.dylib")<br />
+lib.ad_adapter_create.restype = ctypes.c_void_p<br />
+lib.ad_adapter_destroy.argtypes = [ctypes.c_void_p]<br />
+assert lib.ad_init(7) == 0  # AD_RESULT_OK when the header's AD_ABI_VERSION_MAJOR matches the </p>
     <p class="readme-truncated">(Preview — first 8 000 chars.
      <a href="https://github.com/vercel-labs/agent-desktop#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
   </div>
@@ -484,9 +490,9 @@ agent-desktop &lt;command&gt; --help        # flags for one command
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 110,455</span>
-      <span class="meta-item">🍴 9,640</span>
-      <span class="stars-today">⭐ 1,799 stars today</span>
+      <span class="meta-item">⭐ 111,107</span>
+      <span class="meta-item">🍴 9,683</span>
+      <span class="stars-today">⭐ 1,803 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -552,7 +558,7 @@ agent-desktop &lt;command&gt; --help        # flags for one command
     <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
   </a>
   <a href="package.json">
-    <img src="https://img.shields.io/badge/version-15.8.3-green.svg" alt="Version">
+    <img src="https://img.shields.io/badge/version-15.9.0-green.svg" alt="Version">
   </a>
   <a href="package.json">
     <img src="https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg" alt="Node">
@@ -658,9 +664,9 @@ agent-desktop &lt;command&gt; --help        # flags for one command
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 92,498</span>
-      <span class="meta-item">🍴 9,756</span>
-      <span class="stars-today">⭐ 858 stars today</span>
+      <span class="meta-item">⭐ 93,459</span>
+      <span class="meta-item">🍴 9,827</span>
+      <span class="stars-today">⭐ 706 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -788,9 +794,9 @@ result.items.to_json(&quot;quotes.json&quot;)
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
-      <span class="meta-item">⭐ 39,761</span>
-      <span class="meta-item">🍴 2,147</span>
-      <span class="stars-today">⭐ 508 stars today</span>
+      <span class="meta-item">⭐ 40,109</span>
+      <span class="meta-item">🍴 2,160</span>
+      <span class="stars-today">⭐ 509 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -921,9 +927,9 @@ easy IPC, much more QoL stuff than other compositors and more...
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
-      <span class="meta-item">⭐ 33,252</span>
-      <span class="meta-item">🍴 4,499</span>
-      <span class="stars-today">⭐ 1,380 stars today</span>
+      <span class="meta-item">⭐ 33,949</span>
+      <span class="meta-item">🍴 4,548</span>
+      <span class="stars-today">⭐ 1,379 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1144,9 +1150,9 @@ waived but the look i</p>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 15,885</span>
-      <span class="meta-item">🍴 1,576</span>
-      <span class="stars-today">⭐ 654 stars today</span>
+      <span class="meta-item">⭐ 16,316</span>
+      <span class="meta-item">🍴 1,601</span>
+      <span class="stars-today">⭐ 653 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1237,9 +1243,9 @@ learned the design and reused code from the following projects:<br />
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 40,869</span>
-      <span class="meta-item">🍴 9,043</span>
-      <span class="stars-today">⭐ 3,216 stars today</span>
+      <span class="meta-item">⭐ 42,649</span>
+      <span class="meta-item">🍴 9,145</span>
+      <span class="stars-today">⭐ 3,229 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1357,9 +1363,9 @@ See <a href="./docs/user/install.md#nix-nixpkgs">Nix installation</a> for NixOS 
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 45,865</span>
-      <span class="meta-item">🍴 7,567</span>
-      <span class="stars-today">⭐ 855 stars today</span>
+      <span class="meta-item">⭐ 46,144</span>
+      <span class="meta-item">🍴 7,605</span>
+      <span class="stars-today">⭐ 857 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1558,8 +1564,8 @@ For efficient processing of multiple time series, Kronos provides a `predict_bat
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 12,054</span>
-      <span class="meta-item">🍴 1,485</span>
+      <span class="meta-item">⭐ 12,245</span>
+      <span class="meta-item">🍴 1,503</span>
       <span class="stars-today">⭐ 412 stars today</span>
     </div>
     <details>
@@ -1695,9 +1701,9 @@ Leverage pre-trained AI models optimized for a variety of vision tasks, all with
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#555555"></span>C</span>
-      <span class="meta-item">⭐ 46,341</span>
-      <span class="meta-item">🍴 5,358</span>
-      <span class="stars-today">⭐ 655 stars today</span>
+      <span class="meta-item">⭐ 46,805</span>
+      <span class="meta-item">🍴 5,404</span>
+      <span class="stars-today">⭐ 675 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -1913,9 +1919,9 @@ to detect the hardware, recommend a model, install, start, stop and check it<br 
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
-      <span class="meta-item">⭐ 309,964</span>
-      <span class="meta-item">🍴 26,079</span>
-      <span class="stars-today">⭐ 970 stars today</span>
+      <span class="meta-item">⭐ 310,592</span>
+      <span class="meta-item">🍴 26,129</span>
+      <span class="stars-today">⭐ 858 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -2100,9 +2106,9 @@ A shared language has many other benefits than reducing verbosity:</p>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
-      <span class="meta-item">⭐ 9,913</span>
-      <span class="meta-item">🍴 355</span>
-      <span class="stars-today">⭐ 136 stars today</span>
+      <span class="meta-item">⭐ 10,175</span>
+      <span class="meta-item">🍴 368</span>
+      <span class="stars-today">⭐ 77 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -2234,9 +2240,9 @@ git branch -d feat</code></pre></td>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
-      <span class="meta-item">⭐ 110,225</span>
-      <span class="meta-item">🍴 18,264</span>
-      <span class="stars-today">⭐ 451 stars today</span>
+      <span class="meta-item">⭐ 110,600</span>
+      <span class="meta-item">🍴 18,303</span>
+      <span class="stars-today">⭐ 412 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -2397,9 +2403,9 @@ git branch -d feat</code></pre></td>
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 59,725</span>
-      <span class="meta-item">🍴 8,397</span>
-      <span class="stars-today">⭐ 325 stars today</span>
+      <span class="meta-item">⭐ 60,067</span>
+      <span class="meta-item">🍴 8,425</span>
+      <span class="stars-today">⭐ 321 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -2575,9 +2581,9 @@ Where every hue seems to sing a story.<br><br />
     </div>
     <div class="meta">
       <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
-      <span class="meta-item">⭐ 37,903</span>
-      <span class="meta-item">🍴 4,313</span>
-      <span class="stars-today">⭐ 404 stars today</span>
+      <span class="meta-item">⭐ 38,314</span>
+      <span class="meta-item">🍴 4,340</span>
+      <span class="stars-today">⭐ 420 stars today</span>
     </div>
     <details>
   <summary>📖 README</summary>
@@ -2721,7 +2727,7 @@ when passed to the modifier, minimize or maximize a set of configurable scores o
 </main>
 
 <footer>
-  Generated by <strong>scrape_github_trending.py</strong> on November 02, 2026  17:09 &nbsp;·&nbsp;
+  Generated by <strong>scrape_github_trending.py</strong> on November 03, 2026  08:12 &nbsp;·&nbsp;
   Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
 </footer>
 
