@@ -1,0 +1,2735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Trending — November 03, 2026  08:17</title>
+  <style>
+    /* ── reset & tokens ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #21262d;
+      --border:    #30363d;
+      --accent:    #238636;
+      --accent2:   #1f6feb;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --red:       #f85149;
+      --yellow:    #d29922;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.4), 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── header ───────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 22px;
+      text-align: center;
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .logo {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 22px; font-weight: 700; color: var(--text);
+      text-decoration: none;
+    }
+    header .logo svg { width: 32px; height: 32px; fill: var(--text); }
+    header .subtitle {
+      color: var(--muted); font-size: 13px; margin-top: 6px;
+    }
+    header .badge {
+      display: inline-block; background: var(--accent2); color: #fff;
+      font-size: 11px; font-weight: 600; border-radius: 12px;
+      padding: 2px 9px; margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── layout ───────────────────────────────────── */
+    main {
+      max-width: 1060px; margin: 36px auto; padding: 0 20px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    /* ── rank ─────────────────────────────────────── */
+    .rank-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    /* ── card ─────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
+    }
+    .card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      display: flex; flex-wrap: wrap;
+      align-items: flex-start; gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header-left { flex: 1; min-width: 0; }
+
+    .repo-name {
+      font-size: 18px; font-weight: 700;
+      display: flex; align-items: center; flex-wrap: wrap; gap: 6px;
+    }
+    .repo-name a {
+      color: var(--accent2); text-decoration: none;
+      word-break: break-word;
+    }
+    .repo-name a:hover { text-decoration: underline; }
+    .repo-owner {
+      color: var(--muted); font-weight: 400; font-size: 16px;
+    }
+
+    .repo-desc {
+      color: var(--muted); font-size: 13.5px; margin-top: 6px;
+      max-width: 720px;
+    }
+
+    /* ── meta chips ───────────────────────────────── */
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      padding: 10px 24px;
+      background: var(--surface2);
+      font-size: 13px; color: var(--muted);
+    }
+    .meta-item { display: flex; align-items: center; gap: 5px; }
+    .lang-dot {
+      display: inline-block; width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .stars-today {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff; font-size: 11px; font-weight: 700;
+      border-radius: 12px; padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    /* ── readme section ───────────────────────────── */
+    details { border-top: 1px solid var(--border); }
+    summary {
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600; color: var(--muted);
+      user-select: none;
+      list-style: none;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: "▶"; font-size: 9px;
+      transition: transform .2s;
+      display: inline-block;
+    }
+    details[open] summary::before { transform: rotate(90deg); }
+    summary:hover { color: var(--text); }
+
+    .readme-body {
+      padding: 24px 28px 28px;
+      background: var(--bg);
+      overflow-x: auto;
+    }
+
+    /* ── markdown styles ─────────────────────────── */
+    .readme-body h1,
+    .readme-body h2,
+    .readme-body h3,
+    .readme-body h4 {
+      color: var(--text); margin: 20px 0 10px;
+      border-bottom: 1px solid var(--border); padding-bottom: 6px;
+    }
+    .readme-body h1 { font-size: 1.6em; }
+    .readme-body h2 { font-size: 1.3em; }
+    .readme-body h3 { font-size: 1.1em; border: none; }
+    .readme-body p  { color: #cdd9e5; margin: 10px 0; }
+    .readme-body a  { color: var(--accent2); }
+    .readme-body a:hover { text-decoration: underline; }
+    .readme-body ul,
+    .readme-body ol { padding-left: 20px; margin: 10px 0; color: #cdd9e5; }
+    .readme-body li { margin: 4px 0; }
+    .readme-body code {
+      background: var(--surface2); color: #e3b341;
+      border-radius: 4px; padding: 2px 6px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 13px;
+    }
+    .readme-body pre {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 16px; overflow-x: auto; margin: 14px 0;
+    }
+    .readme-body pre code {
+      background: none; padding: 0; color: #e6edf3; font-size: 13px;
+    }
+    .readme-body table {
+      border-collapse: collapse; width: 100%; margin: 14px 0;
+      font-size: 13px;
+    }
+    .readme-body th,
+    .readme-body td {
+      border: 1px solid var(--border);
+      padding: 8px 12px; text-align: left;
+    }
+    .readme-body th { background: var(--surface2); color: var(--text); }
+    .readme-body td { color: #cdd9e5; }
+    .readme-body blockquote {
+      border-left: 4px solid var(--accent2); padding: 6px 14px;
+      margin: 12px 0; color: var(--muted);
+      background: var(--surface2); border-radius: 0 6px 6px 0;
+    }
+    .readme-body img {
+      max-width: 100%; border-radius: 6px; margin: 8px 0;
+    }
+    .readme-truncated {
+      color: var(--muted); font-size: 12px; margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── footer ───────────────────────────────────── */
+    footer {
+      text-align: center; color: var(--muted); font-size: 12.5px;
+      padding: 36px 20px; border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    footer a { color: var(--accent2); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── no-readme placeholder ────────────────────── */
+    .no-readme {
+      padding: 20px 24px; color: var(--muted); font-style: italic;
+      font-size: 13px; text-align: center;
+    }
+
+    /* ── responsive ───────────────────────────────── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .stars-today { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://github.com/trending" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+               0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+               -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+               .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+               -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+               1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+               1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+               1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    GitHub Trending
+    <span class="badge">Today</span>
+  </a>
+  <div class="subtitle">
+    Auto-generated on November 03, 2026  08:17 &nbsp;·&nbsp; 15 trending repositories
+  </div>
+</header>
+
+<main>
+<div>
+  <div class="rank-label">#1</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">vercel-labs /</span>
+          <a href="https://github.com/vercel-labs/agent-desktop" target="_blank" rel="noopener">agent-desktop</a>
+        </div>
+        <div class="repo-desc">Computer use CLI for AI agents</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 11,029</span>
+      <span class="meta-item">🍴 756</span>
+      <span class="stars-today">⭐ 2,275 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>agent-desktop</h1>
+<p>Computer use for AI agents: read and operate desktop apps through the OS accessibility tree.</p>
+<p>
+  <a href="https://vercel.com/labs#labs-products"><img alt="Vercel Labs Product" src="https://img.shields.io/badge/LABS-PRODUCT-0a0a0a.svg?style=for-the-badge&amp;logo=Vercel&amp;labelColor=000000" height="28"></a>
+  <a href="https://www.npmjs.com/package/agent-desktop"><img alt="npm version: agent-desktop" src="https://img.shields.io/npm/v/agent-desktop.svg?style=for-the-badge&amp;labelColor=000000" height="28"></a>
+  <a href="https://github.com/vercel-labs/agent-desktop/blob/main/LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/github/license/vercel-labs/agent-desktop.svg?style=for-the-badge&amp;labelColor=000000" height="28"></a>
+  <a href="https://www.npmjs.com/package/agent-desktop"><img alt="npm downloads per month: agent-desktop" src="https://img.shields.io/npm/dm/agent-desktop.svg?style=for-the-badge&amp;labelColor=000000&amp;label=npm%20downloads" height="28"></a>
+</p>
+
+<p>A CLI and C library for macOS, Windows and Linux. A snapshot returns JSON with a ref for every element an agent can act on. The agent acts on a ref and snapshots again to check, with no pixel matching; the loop stays in your agent.</p>
+<p>Every CLI call runs in its own process. Headless calls still prohibit foreground activation and synthesized input.</p>
+<p>Snapshots, clipboard reads, screenshots, command output and debug artifacts can contain private desktop content. Keep them out of public logs and uploads. The optional <a href="skills/jev-desktop/SKILL.md">JEV helper</a> sends screen descriptions to a configured model provider; it is separate from the native CLI. See <a href="docs/faq.md#what-data-can-contain-private-information">privacy and data handling</a>.</p>
+<h2>Installation</h2>
+<p>Install on macOS, Windows or Linux with npm:</p>
+<pre><code class="language-bash">npm install -g agent-desktop
+agent-desktop version
+</code></pre>
+<p>Bun, Yarn and pnpm can install the same package. It includes native binaries and platform helpers for x64 and ARM64.<br />
+For direct execution without a JavaScript launcher, download the matching native archive from<br />
+<a href="https://github.com/vercel-labs/agent-desktop/releases">GitHub Releases</a> and keep its helper beside the executable.</p>
+<p>Official Homebrew and Scoop packages are being submitted; they are not yet available in the default catalogs.<br />
+The repository no longer maintains a custom Homebrew tap or Scoop bucket.</p>
+<ul>
+<li><strong>macOS</strong> needs Accessibility permission: <code>agent-desktop permissions --guide</code>.</li>
+<li><strong>Windows</strong> needs no grant for apps at your terminal's integrity level.</li>
+<li><strong>Linux</strong> needs the user's graphical session with <code>at-spi2-core</code>.</li>
+</ul>
+<p>See <a href="docs/install.md">installation and permissions</a> for package-manager behavior, release archives, and building from source.</p>
+<h2>Quick start</h2>
+<p>Observe, act on a ref, observe again. Any app name from <code>agent-desktop list-apps</code> works; Finder is the macOS example.<br />
+Each command prints one JSON envelope; a trimmed snapshot follows the commands.</p>
+<pre><code class="language-bash">agent-desktop snapshot --app Finder -i      # interactive elements, each with a ref
+agent-desktop click @s8f3k2p9:e8            # act on a ref from that snapshot
+agent-desktop snapshot --app Finder -i      # observe again to verify
+</code></pre>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;2.6&quot;,
+  &quot;ok&quot;: true,
+  &quot;command&quot;: &quot;snapshot&quot;,
+  &quot;data&quot;: {
+    &quot;app&quot;: &quot;Finder&quot;,
+    &quot;window&quot;: { &quot;id&quot;: &quot;w-204749&quot;, &quot;title&quot;: &quot;Downloads&quot; },
+    &quot;snapshot_id&quot;: &quot;s8f3k2p9&quot;,
+    &quot;ref_count&quot;: 59,
+    &quot;complete&quot;: true,
+    &quot;tree&quot;: {
+      &quot;role&quot;: &quot;window&quot;,
+      &quot;name&quot;: &quot;Downloads&quot;,
+      &quot;children&quot;: [
+        { &quot;role&quot;: &quot;treeitem&quot;, &quot;name&quot;: &quot;Documents&quot;, &quot;ref_id&quot;: &quot;@s8f3k2p9:e8&quot;, &quot;available_actions&quot;: [&quot;Click&quot;] }
+      ]
+    }
+  }
+}
+</code></pre>
+<ul>
+<li><strong>Refs belong to their snapshot.</strong> A bare <code>@e8</code> is rejected with <code>INVALID_ARGS</code>. When the UI changes, an action<br />
+  returns <code>STALE_REF</code> or <code>AMBIGUOUS_TARGET</code>: take a new snapshot and use its refs.</li>
+<li><strong>Several windows</strong> give <code>AMBIGUOUS_TARGET</code>; <code>snapshot</code> lists the candidate window ids in <code>error.details</code>. Pass one<br />
+  with <code>--window-id</code>.</li>
+<li><strong>Dense apps:</strong> map first with <code>snapshot --skeleton --app Slack -i --compact</code>, then drill into one region with<br />
+<code>snapshot --root @s8f3k2p9:e3 -i --compact</code>.</li>
+<li><strong>Headless by default.</strong> Ref actions go through the accessibility API without moving the pointer or taking focus.<br />
+  The global <code>--headed</code> flag allows physical input.</li>
+<li><strong>PowerShell.</strong> Quote every ref (<code>'@s8f3k2p9:e8'</code>), because a bare <code>@token</code> is the splatting operator.</li>
+</ul>
+<h2>For AI agents</h2>
+<p>The binary carries its own docs, matched to its version:</p>
+<pre><code class="language-bash">agent-desktop skills get desktop      # the loop, refs, verification and retry rules
+agent-desktop skills get platform     # what differs on the OS you run on
+agent-desktop &lt;command&gt; --help        # flags for one command
+</code></pre>
+<p>Install the skill into an agent harness from <a href="https://skills.sh/vercel-labs/agent-desktop/agent-desktop">skills.sh</a>:</p>
+<pre><code class="language-bash">npx skills add https://github.com/vercel-labs/agent-desktop --skill agent-desktop
+</code></pre>
+<p>Or add this to your <code>AGENTS.md</code>:</p>
+<pre><code class="language-markdown">Use `agent-desktop` to see and operate desktop apps. Before the first use, run
+`agent-desktop skills get desktop` and `agent-desktop skills get platform`, and follow them.
+</code></pre>
+<p>Every command prints one envelope with <code>ok</code> and either <code>data</code> or <code>error</code>. An error carries a <code>code</code>, a <code>disposition</code> and usually a <code>suggestion</code>; retry only when <code>error.disposition.retry</code> is <code>safe</code>. The contract, error codes and exit codes are in <a href="docs/json-output.md">docs/json-output.md</a>.</p>
+<h2>Commands</h2>
+<p>It ships 60 command names, 56 operational commands. The other four (<code>key-down</code>, <code>key-up</code>, <code>mouse-down</code>, <code>mouse-up</code>) refuse to run until a daemon can release a held key or button.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Commands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Observe</td>
+<td><code>snapshot</code>, <code>find</code>, <code>get</code>, <code>is</code>, <code>screenshot</code>, <code>list-surfaces</code></td>
+</tr>
+<tr>
+<td>Act on a ref</td>
+<td><code>click</code>, <code>double-click</code>, <code>triple-click</code>, <code>right-click</code>, <code>type</code>, <code>set-value</code>, <code>clear</code>, <code>focus</code>, <code>select</code>, <code>toggle</code>, <code>check</code>, <code>uncheck</code>, <code>expand</code>, <code>collapse</code>, <code>scroll</code>, <code>scroll-to</code></td>
+</tr>
+<tr>
+<td>Keyboard and mouse</td>
+<td><code>press</code>, <code>hover</code>, <code>drag</code>, <code>mouse-move</code>, <code>mouse-click</code>, <code>mouse-wheel</code>, <code>key-down</code>, <code>key-up</code>, <code>mouse-down</code>, <code>mouse-up</code></td>
+</tr>
+<tr>
+<td>Apps and windows</td>
+<td><code>launch</code>, <code>close-app</code>, <code>list-apps</code>, <code>list-windows</code>, <code>list-displays</code>, <code>focus-window</code>, <code>resize-window</code>, <code>move-window</code>, <code>minimize</code>, <code>maximize</code>, <code>restore</code>, <code>open-system-surface</code></td>
+</tr>
+<tr>
+<td>Notifications</td>
+<td><code>list-notifications</code>, <code>dismiss-notification</code>, <code>dismiss-all-notifications</code>, <code>notification-action</code></td>
+</tr>
+<tr>
+<td>Clipboard</td>
+<td><code>clipboard-get</code>, <code>clipboard-set</code>, <code>clipboard-clear</code></td>
+</tr>
+<tr>
+<td>Wait</td>
+<td><code>wait</code></td>
+</tr>
+<tr>
+<td>Sessions</td>
+<td><code>session</code>, <code>trace</code>, <code>cursor-overlay</code></td>
+</tr>
+<tr>
+<td>System</td>
+<td><code>status</code>, <code>permissions</code>, <code>version</code>, <code>batch</code>, <code>skills</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Platform support</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: center;">macOS</th>
+<th style="text-align: center;">Windows</th>
+<th style="text-align: center;">Linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accessibility tree</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes (AT-SPI)</td>
+</tr>
+<tr>
+<td>Click / type / keyboard</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">AT-SPI; X11 / GNOME keys</td>
+</tr>
+<tr>
+<td>Mouse input</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">X11, <code>--headed</code></td>
+</tr>
+<tr>
+<td>Screenshot</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">X11 windows; Wayland portal</td>
+</tr>
+<tr>
+<td>Clipboard</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes; Wayland needs <code>wl-clipboard</code></td>
+</tr>
+<tr>
+<td>App &amp; window management</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Launch/list; X11 window control</td>
+</tr>
+<tr>
+<td>Notifications</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">GNOME Shell</td>
+</tr>
+<tr>
+<td>Shell surfaces (<code>open-system-surface</code>)</td>
+<td style="text-align: center;">Dock, menu bar extras</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">GNOME tray, Action Center</td>
+</tr>
+</tbody>
+</table>
+<p>The Windows surface and <code>launch</code> notes and the Linux X11 and Wayland notes are in <a href="docs/install.md#platform-notes">docs/install.md</a>.</p>
+<p><code>agent-desktop skills get platform</code> prints the full capability table for the OS you run on.</p>
+<h2>Language bindings</h2>
+<p>Each release also ships <code>libagent_desktop_ffi</code> for macOS, Linux and Windows, so a program can call the tool in process instead of starting the CLI for each command. <code>agent-desktop skills get ffi</code> covers the entry points, memory ownership and threading rules.</p>
+<p>```python<br />
+import ctypes<br />
+lib = ctypes.CDLL("./lib/libagent_desktop_ffi.dylib")<br />
+lib.ad_adapter_create.restype = ctypes.c_void_p<br />
+lib.ad_adapter_destroy.argtypes = [ctypes.c_void_p]<br />
+assert lib.ad_init(7) == 0  # AD_RESULT_OK when the header's AD_ABI_VERSION_MAJOR matches the </p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/vercel-labs/agent-desktop#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#2</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">thedotmack /</span>
+          <a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener">claude-mem</a>
+        </div>
+        <div class="repo-desc">Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 111,112</span>
+      <span class="meta-item">🍴 9,683</span>
+      <span class="stars-today">⭐ 1,803 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1 align="center">
+  <br>
+  <a href="https://github.com/thedotmack/claude-mem">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/public/claude-mem-logo-for-dark-mode.webp">
+      <source media="(prefers-color-scheme: light)" srcset="docs/public/claude-mem-logo-for-light-mode.webp">
+      <img src="docs/public/claude-mem-logo-for-light-mode.webp" alt="Claude-Mem" width="400">
+    </picture>
+  </a>
+</h1>
+
+<p align="center">
+  <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge-2026.svg" height="24" />
+  &nbsp;&nbsp;&nbsp;
+  <img alt="Greptile" src="docs/public/greptile-wordmark-green.svg" height="24" />
+  &nbsp;&nbsp;&nbsp;
+  <img alt="SerpApi" src="docs/public/serpapi-logo-with-wordmark-gradient.svg" height="24" />
+</p>
+
+<p align="center">
+  <a href="docs/i18n/README.zh.md">🇨🇳 中文</a> •
+  <a href="docs/i18n/README.zh-tw.md">🇹🇼 繁體中文</a> •
+  <a href="docs/i18n/README.ja.md">🇯🇵 日本語</a> •
+  <a href="docs/i18n/README.pt.md">🇵🇹 Português</a> •
+  <a href="docs/i18n/README.pt-br.md">🇧🇷 Português</a> •
+  <a href="docs/i18n/README.ko.md">🇰🇷 한국어</a> •
+  <a href="docs/i18n/README.es.md">🇪🇸 Español</a> •
+  <a href="docs/i18n/README.de.md">🇩🇪 Deutsch</a> •
+  <a href="docs/i18n/README.fr.md">🇫🇷 Français</a> •
+  <a href="docs/i18n/README.he.md">🇮🇱 עברית</a> •
+  <a href="docs/i18n/README.ar.md">🇸🇦 العربية</a> •
+  <a href="docs/i18n/README.ru.md">🇷🇺 Русский</a> •
+  <a href="docs/i18n/README.pl.md">🇵🇱 Polski</a> •
+  <a href="docs/i18n/README.cs.md">🇨🇿 Čeština</a> •
+  <a href="docs/i18n/README.nl.md">🇳🇱 Nederlands</a> •
+  <a href="docs/i18n/README.tr.md">🇹🇷 Türkçe</a> •
+  <a href="docs/i18n/README.uk.md">🇺🇦 Українська</a> •
+  <a href="docs/i18n/README.vi.md">🇻🇳 Tiếng Việt</a> •
+  <a href="docs/i18n/README.tl.md">🇵🇭 Tagalog</a> •
+  <a href="docs/i18n/README.id.md">🇮🇩 Indonesia</a> •
+  <a href="docs/i18n/README.th.md">🇹🇭 ไทย</a> •
+  <a href="docs/i18n/README.hi.md">🇮🇳 हिन्दी</a> •
+  <a href="docs/i18n/README.bn.md">🇧🇩 বাংলা</a> •
+  <a href="docs/i18n/README.ur.md">🇵🇰 اردو</a> •
+  <a href="docs/i18n/README.ro.md">🇷🇴 Română</a> •
+  <a href="docs/i18n/README.sv.md">🇸🇪 Svenska</a> •
+  <a href="docs/i18n/README.it.md">🇮🇹 Italiano</a> •
+  <a href="docs/i18n/README.el.md">🇬🇷 Ελληνικά</a> •
+  <a href="docs/i18n/README.hu.md">🇭🇺 Magyar</a> •
+  <a href="docs/i18n/README.fi.md">🇫🇮 Suomi</a> •
+  <a href="docs/i18n/README.da.md">🇩🇰 Dansk</a> •
+  <a href="docs/i18n/README.no.md">🇳🇴 Norsk</a>
+</p>
+
+<h4 align="center">Persistent memory compression system built for <a href="https://claude.com/claude-code" target="_blank">Claude Code</a>.</h4>
+
+<p align="center">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License">
+  </a>
+  <a href="package.json">
+    <img src="https://img.shields.io/badge/version-15.9.0-green.svg" alt="Version">
+  </a>
+  <a href="package.json">
+    <img src="https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg" alt="Node">
+  </a>
+  <a href="https://github.com/thedotmack/awesome-claude-code">
+    <img src="https://awesome.re/mentioned-badge.svg" alt="Mentioned in Awesome Claude Code">
+  </a>
+</p>
+
+<p align="center">
+ <a href="https://www.star-history.com/thedotmack/claude-mem">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=thedotmack/claude-mem&type=rank&theme=dark" /><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=thedotmack/claude-mem&type=rank" /><img alt="Star History Rank" src="https://api.star-history.com/badge?repo=thedotmack/claude-mem&type=rank" /></picture> <picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=thedotmack/claude-mem&type=trending&theme=dark" /><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=thedotmack/claude-mem&type=trending" /><img alt="GitHub Trending Repository of the Day" src="https://api.star-history.com/badge?repo=thedotmack/claude-mem&type=trending" /></picture>
+ </a>
+</p>
+
+<p><br></p>
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/thedotmack/claude-mem">
+        <picture>
+          <img
+            src="https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/cm-preview.gif"
+            alt="Claude-Mem Preview"
+            width="500"
+          >
+        </picture>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.star-history.com/#thedotmack/claude-mem&Date">
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&theme=dark&legend=top-left"
+          />
+          <source
+            media="(prefers-color-scheme: light)"
+            srcset="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+          />
+          <img
+            alt="Star History Chart"
+            src="https://api.star-history.com/image?repos=thedotmack/claude-mem&type=date&legend=top-left"
+            width="500"
+          />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#how-it-works">How It Works</a> •
+  <a href="#mcp-search-tools">Search Tools</a> •
+  <a href="#documentation">Documentation</a> •
+  <a href="#configuration">Configuration</a> •
+  <a href="#troubleshooting">Troubleshooting</a> •
+  <a href="#license">License</a>
+</p>
+
+<p align="center">
+  Claude-Mem seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic summaries, and making them available to future sessions. This enables Claude to maintain continuity of knowledge about projects even after sessions end or reconnect.
+</p>
+
+<hr />
+<h2>Quick Start</h2>
+<p>Install claude-mem for Grok Bot:</p>
+<pre><code class="language-bash">npx claude-mem install --ide grok-bot
+</code></pre>
+<p>Grok Bot has no host hooks, so we watch the chat log files. Default is CMEM Pro, the hosted memory. Local observer is opt-in: <code>--provider host</code>. Installing this plugin does not install Cursor.</p>
+<p><strong>Awareness push pilot (LFG + Orifice):</strong> needle observations (<code>decision</code>, <code>bugfix</code>, <code>security_alert</code>, <code>sensitive</code>) are appended as dated <code>- YYYY-MM-DD [awareness] …</code> lines into that bot's <code>memory/log/YYYY-MM.md</code>. Grok Bot already re-reads the log from disk. This does not write <code>profile.md</code>, user-memory, or project memory. Disable with <code>CLAUDE_MEM_GROK_BOT_AWARENESS_ENABLED=false</code>.</p>
+<p>Install with a single command:</p>
+<pre><code class="language-bash">npx claude-mem install
+</code></pre>
+<p>The installer sets everything up first, then asks you to sign in to claude-mem in your browser (email magic link — no card required). Signing in provisions a memory key for your account and unlocks the <strong>claude-mem observer</strong> with a <strong>30 Day Free Trial</strong>: memory runs off-plan, so you get up to 100% more usage from your plan. When the free trial ends, memory automatically falls back to your Anthropic plan unless you subscribe. After sign-in you pick your memory provider — the claude-mem observer, your own OpenRouter or Gemini key, or your Anthropic plan.</p>
+<p>Prefer to skip the sign-in? Pass an explicit <code>--provider</code> flag, set <code>CLAUDE_MEM_ONLINE_OPTIN=false</code>, or run in CI/non-interactive shells — the installer completes without any account interaction.</p>
+<p>Or install for OpenCode:</p>
+<pre><code class="language-bash">npx claude-mem install --ide opencode
+</code></pre>
+<p>This works with OpenCode 1.3.4 or later, including OpenCode 2. Restart OpenCode after installing.</p>
+<p>Or install for <strong>T3 Code</strong> (Codex and Claude Code providers):</p>
+<pre><code class="language-bash">npx claude-mem install --ide t3code
+</code></pre>
+<p>The installer discovers T3 Code's enabled providers, registers native Claude-Mem plugins in their configured homes, and supports T3-managed Codex. Restart T3 Code, trust the provider's hooks when prompted, and start a new thread. See the <a href="https://docs.claude-mem.ai/t3code-integration">T3 Code integration guide</a> for custom server settings,</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/thedotmack/claude-mem#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#3</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">D4Vinci /</span>
+          <a href="https://github.com/D4Vinci/Scrapling" target="_blank" rel="noopener">Scrapling</a>
+        </div>
+        <div class="repo-desc">🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don&#x27;t be shy, join here:https://discord.gg/EMgGbDceNQand follow here for daily tips and tricks:https://x.com/Scrapling_dev</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 93,466</span>
+      <span class="meta-item">🍴 9,827</span>
+      <span class="stars-today">⭐ 706 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!-- mcp-name: io.github.D4Vinci/Scrapling -->
+
+<h1 align="center">
+    <a href="https://scrapling.readthedocs.io">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/D4Vinci/Scrapling/main/docs/assets/cover_dark.svg?sanitize=true">
+          <img alt="Scrapling Poster" src="https://raw.githubusercontent.com/D4Vinci/Scrapling/main/docs/assets/cover_light.svg?sanitize=true">
+        </picture>
+    </a>
+    <br>
+    <small>Effortless Web Scraping for the Modern Web</small>
+</h1>
+
+<p align="center">
+    <a href="https://trendshift.io/repositories/14244" target="_blank"><img src="https://trendshift.io/api/badge/repositories/14244" alt="D4Vinci%2FScrapling | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+    <a href="https://www.star-history.com/d4vinci/scrapling"><img src="https://api.star-history.com/badge?repo=D4Vinci/Scrapling&type=rank" alt="Star History Rank" style="height: 55px;" height="55"/></a>
+    <br/>
+    <a href="https://github.com/D4Vinci/Scrapling/blob/main/docs/README_AR.md"><img alt="README بالعربية" title="README بالعربية" src="https://img.shields.io/badge/Arabic-DFE0E5"></a>
+    <a href="https://github.com/D4Vinci/Scrapling/blob/main/docs/README_ES.md"><img alt="README en Español" src="https://img.shields.io/badge/Español-DFE0E5"></a>
+    <a href="https://github.com/D4Vinci/Scrapling/blob/main/docs/README_PT_BR.md"><img alt="README em Português (Brasil)" src="https://img.shields.io/badge/Português%20(Brasil)-DFE0E5"></a>
+    <a href="https://github.com/D4Vinci/Scrapling/blob/main/docs/README_FR.md"><img alt="README en Français" src="https://img.shields.io/badge/Français-DFE0E5"></a>
+    <a href="https://github.com/D4Vinci/Scrapling/blob/main/docs/README_DE.md"><img alt="README auf Deutsch" src="https://img.shields.io/badge/Deutsch-DFE0E5"></a>
+    <a href="https://github.com/D4Vinci/Scrapling/blob/main/docs/README_CN.md"><img alt="简体中文版自述文件" src="https://img.shields.io/badge/简体中文-DFE0E5"></a>
+    <a href="https://github.com/D4Vinci/Scrapling/blob/main/docs/README_JP.md"><img alt="日本語のREADME" src="https://img.shields.io/badge/日本語-DFE0E5"></a>
+    <a href="https://github.com/D4Vinci/Scrapling/blob/main/docs/README_RU.md"><img alt="Русская версия README" src="https://img.shields.io/badge/Русский-DFE0E5"></a>
+    <a href="https://github.com/D4Vinci/Scrapling/blob/main/docs/README_KR.md"><img alt="한국어 README" src="https://img.shields.io/badge/한국어-DFE0E5"></a>
+    <br/>
+    <a href="https://github.com/D4Vinci/Scrapling/actions/workflows/tests.yml" alt="Tests">
+        <img alt="Tests" src="https://github.com/D4Vinci/Scrapling/actions/workflows/tests.yml/badge.svg"></a>
+    <a href="https://badge.fury.io/py/Scrapling" alt="PyPI version">
+        <img alt="PyPI version" src="https://badge.fury.io/py/Scrapling.svg"></a>
+    <a href="https://hub.docker.com/r/pyd4vinci/scrapling" target="_blank">
+        <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/pyd4vinci/scrapling?labelColor=%20%23FDB062&logo=Docker&labelColor=%20%23528bff"></a>
+    <a href="https://clickpy.clickhouse.com/dashboard/scrapling" rel="nofollow"><img src="https://img.shields.io/pypi/dm/scrapling" alt="PyPI package downloads"></a>
+    <a href="https://scrapling.readthedocs.io/en/latest/ai/agent-skill.html" alt="AI Agent Skill">
+        <img alt="Static Badge" src="https://img.shields.io/badge/Skill-black?style=flat&label=Agent&link=https%3A%2F%2Fscrapling.readthedocs.io%2Fen%2Flatest%2Fai%2Fagent-skill.html"></a>
+    <a href="https://clawhub.ai/D4Vinci/scrapling-official" alt="OpenClaw Skill">
+        <img alt="OpenClaw Skill" src="https://img.shields.io/badge/Clawhub-darkred?style=flat&label=OpenClaw&link=https%3A%2F%2Fclawhub.ai%2FD4Vinci%2Fscrapling-official"></a>
+    <br/>
+    <a href="https://discord.gg/EMgGbDceNQ" alt="Discord" target="_blank">
+      <img alt="Discord" src="https://img.shields.io/discord/1360786381042880532?style=social&logo=discord&link=https%3A%2F%2Fdiscord.gg%2FEMgGbDceNQ">
+    </a>
+    <a href="https://x.com/Scrapling_dev" alt="X (formerly Twitter)">
+      <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/Scrapling_dev?style=social&logo=x&link=https%3A%2F%2Fx.com%2FScrapling_dev">
+    </a>
+    <br/>
+    <a href="https://pypi.org/project/scrapling/" alt="Supported Python versions">
+        <img alt="Supported Python versions" src="https://img.shields.io/pypi/pyversions/scrapling.svg"></a>
+</p>
+
+<p align="center">
+    <a href="https://scrapling.readthedocs.io/en/latest/parsing/selection.html"><strong>Selection methods</strong></a>
+    &middot;
+    <a href="https://scrapling.readthedocs.io/en/latest/fetching/choosing.html"><strong>Fetchers</strong></a>
+    &middot;
+    <a href="https://scrapling.readthedocs.io/en/latest/spiders/architecture.html"><strong>Spiders</strong></a>
+    &middot;
+    <a href="https://scrapling.readthedocs.io/en/latest/spiders/proxy-blocking.html"><strong>Proxy Rotation</strong></a>
+    &middot;
+    <a href="https://scrapling.readthedocs.io/en/latest/cli/overview.html"><strong>CLI</strong></a>
+    &middot;
+    <a href="https://scrapling.readthedocs.io/en/latest/ai/mcp-server.html"><strong>MCP</strong></a>
+</p>
+
+<p>Scrapling is a Python Web Scraping framework that brings fast HTTP requests, stealth browsers, powerful parsing, and concurrent crawling into one library.</p>
+<p>Scrape static pages, render JavaScript, interact with websites, and extract data from the API calls behind them. Build crawlers with reusable sessions, proxy rotation, automatic retries, pause/resume, and built-in data exports.</p>
+<p>Use it from Python, the terminal, or your AI agent through its MCP server and Agent Skill. From extracting a few fields to collecting a whole website as clean Markdown, Scrapling covers the full scraping workflow.</p>
+<h2>What you can do with Scrapling</h2>
+<ul>
+<li><strong><a href="https://scrapling.readthedocs.io/en/latest/fetching/choosing.html">Fetch &amp; interact</a></strong>: Fast HTTP requests, stealth browsers, JavaScript rendering, Cloudflare Turnstile/Interstitial handling, persistent sessions, and background API capture.</li>
+<li><strong><a href="https://scrapling.readthedocs.io/en/latest/parsing/selection.html">Parse &amp; extract</a></strong>: CSS, XPath, text and regex search, adaptive element tracking, similar-element matching, and clean Markdown output.</li>
+<li><strong><a href="https://scrapling.readthedocs.io/en/latest/spiders/getting-started.html">Crawl &amp; export</a></strong>: Concurrent spiders, proxy rotation, retries, AutoThrottle, pause/resume, streaming, ready-made templates, and JSON/JSONL/CSV/XML exports.</li>
+<li><strong><a href="https://scrapling.readthedocs.io/en/latest/ai/mcp-server.html">Scrape with AI or from your terminal</a></strong>: An MCP server for AI agents to browse and extract data, an Agent Skill, CLI commands, and an interactive shell.</li>
+</ul>
+<p>Start with a single page:</p>
+<pre><code class="language-python">from scrapling.fetchers import Fetcher
+
+page = Fetcher.get('https://quotes.toscrape.com/')
+quotes = page.css('.quote .text::text').getall()
+print(quotes)
+</code></pre>
+<p>Or scale up with a spider:</p>
+<pre><code class="language-python">from scrapling.spiders import Spider, Response
+
+class QuotesSpider(Spider):
+    name = &quot;quotes&quot;
+    start_urls = [&quot;https://quotes.toscrape.com/&quot;]
+
+    async def parse(self, response: Response):
+        for quote in response.css('.quote'):
+            yield {
+                &quot;text&quot;: quote.css('.text::text').get(),
+                &quot;author&quot;: quote.css('.author::text').get(),
+            }
+
+result = QuotesSpider().start()
+print(len(result.items))
+result.items.to_json(&quot;quotes.json&quot;)
+</code></pre>
+<p>This prints <code>10</code> and saves the quotes and authors to <code>quotes.json</code>.</p>
+<p align="center">
+    <a href="https://dataimpulse.com/?utm_source=scrapling&utm_medium=banner&utm_campaign=scrapling" target="_blank" style="display:flex; justify-content:center; padding:4px 0;">
+        <img src="https://raw.githubusercontent.com/D4Vinci/Scrapling/main/images/DataImpulse.png" alt="At DataImpulse, we specialize in developing custom proxy services for your business. Make re
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/D4Vinci/Scrapling#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#4</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">hyprwm /</span>
+          <a href="https://github.com/hyprwm/Hyprland" target="_blank" rel="noopener">Hyprland</a>
+        </div>
+        <div class="repo-desc">Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn&#x27;t sacrifice on its looks.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#f34b7d"></span>C++</span>
+      <span class="meta-item">⭐ 40,110</span>
+      <span class="meta-item">🍴 2,160</span>
+      <span class="stars-today">⭐ 509 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align = center>
+
+<img src="https://raw.githubusercontent.com/hyprwm/Hyprland/main/assets/header.svg" width="750" height="300" alt="banner">
+
+<br>
+
+[![Badge Workflow]][Workflow]
+[![Badge License]][License] 
+![Badge Language] 
+[![Badge Pull Requests]][Pull Requests] 
+[![Badge Issues]][Issues] 
+![Badge Hi Mom]<br>
+
+<br>
+
+Hyprland is a 100% independent, dynamic tiling Wayland compositor that doesn't sacrifice on its looks.
+
+It provides the latest Wayland features, is highly customizable, has all the eyecandy, the most powerful plugins,
+easy IPC, much more QoL stuff than other compositors and more...
+<br>
+<br>
+
+---
+
+**[<kbd> <br> Install <br> </kbd>][Install]** 
+**[<kbd> <br> Quick Start <br> </kbd>][Quick Start]** 
+**[<kbd> <br> Configure <br> </kbd>][Configure]** 
+**[<kbd> <br> Contribute <br> </kbd>][Contribute]**
+
+---
+
+<br>
+
+</div>
+
+<h1>Features</h1>
+<ul>
+<li>All of the eyecandy: gradient borders, many types of blur, animations, glow, shadows and much more</li>
+<li>A lot of customization</li>
+<li>100% independent, no wlroots, no libweston, no kwin, no mutter.</li>
+<li>Custom bezier and spring curves for the best animations</li>
+<li>Powerful plugin support</li>
+<li>Built-in plugin manager</li>
+<li>Tearing support for better gaming performance</li>
+<li>Easily expandable and readable codebase</li>
+<li>Fast and active development</li>
+<li>Not afraid to provide bleeding-edge features</li>
+<li>Config reloaded instantly upon saving</li>
+<li>Global keybinds passed to your apps of choice</li>
+<li>Tiling/pseudotiling/floating/fullscreen windows</li>
+<li>Special workspaces (scratchpads)</li>
+<li>Window groups (tabbed mode)</li>
+<li>Powerful window/monitor/layer rules</li>
+<li>Socket-based IPC</li>
+<li>Native IME and Input Panels Support</li>
+<li>Fully dynamic workspaces</li>
+<li>Extensive layout support<ul>
+<li>Dwindle</li>
+<li>Scrolling</li>
+<li>Master</li>
+<li>Monocle</li>
+<li>Custom layout with Lua</li>
+<li>Custom layouts with plugins</li>
+</ul>
+</li>
+<li>Per Workspace Layouts</li>
+<li>and much more...</li>
+</ul>
+<p><br><br />
+<br></p>
+<div align = center>
+
+# Gallery
+
+<br>
+
+![Preview A]
+
+<br>
+
+![Preview B]
+
+<br>
+
+![Preview C]
+
+<br>
+<br>
+
+</div>
+
+<h1>Special Thanks</h1>
+<p><br></p>
+<p><strong><a href="https://gitlab.freedesktop.org/wlroots/wlroots">wlroots</a></strong> - <em>For powering Hyprland in the past</em></p>
+<p><strong><a href="https://gitlab.freedesktop.org/wlroots/wlroots/-/blob/master/tinywl/tinywl.c">tinywl</a></strong> - <em>For showing how 2 do stuff</em></p>
+<p><strong><a href="https://github.com/swaywm/sway">Sway</a></strong> - <em>For showing how 2 do stuff the overkill way</em></p>
+<p><strong><a href="https://github.com/inclement/vivarium">Vivarium</a></strong> - <em>For showing how 2 do stuff the simple way</em></p>
+<p><strong><a href="https://codeberg.org/dwl/dwl">dwl</a></strong> - <em>For showing how 2 do stuff the hacky way</em></p>
+<p><strong><a href="https://github.com/WayfireWM/wayfire">Wayfire</a></strong> - <em>For showing how 2 do some graphics stuff</em></p>
+<!----------------------------------------------------------------------------->
+
+<!----------------------------------{ Thanks }--------------------------------->
+
+<!----------------------------------{ Images }--------------------------------->
+
+<!----------------------------------{ Badges }--------------------------------->
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/hyprwm/Hyprland#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#5</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">Donchitos /</span>
+          <a href="https://github.com/Donchitos/Claude-Code-Game-Studios" target="_blank" rel="noopener">Claude-Code-Game-Studios</a>
+        </div>
+        <div class="repo-desc">Turn Claude Code into a full game dev studio — 49 AI agents, 72 workflow skills, and a complete coordination system mirroring real studio hierarchy.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 33,956</span>
+      <span class="meta-item">🍴 4,550</span>
+      <span class="stars-today">⭐ 1,379 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <h1 align="center">Claude Code Game Studios</h1>
+  <p align="center">
+    Turn a single Claude Code session into a full game development studio.
+    <br />
+    49 agents. 74 skills. One coordinated AI team.
+  </p>
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+  <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 Agents"></a>
+  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-74-green" alt="74 Skills"></a>
+  <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-15-orange" alt="15 Hooks"></a>
+  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-14-red" alt="14 Rules"></a>
+  <a href="https://code.claude.com/docs"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
+  <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20this%20project-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee"></a>
+  <a href="https://github.com/sponsors/Donchitos"><img src="https://img.shields.io/badge/GitHub%20Sponsors-Support%20this%20project-ea4aaa?logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"></a>
+</p>
+
+<hr />
+<h2>Why This Exists</h2>
+<p>Building a game solo with AI is powerful — but a single chat session has no structure. No one stops you from hardcoding magic numbers, skipping design docs, or writing spaghetti code. There's no QA pass, no design review, no one asking "does this actually fit the game's vision?"</p>
+<p><strong>Claude Code Game Studios</strong> solves this by giving your AI session the structure of a real studio. Instead of one general-purpose assistant, you get 49 specialized agents organized into a studio hierarchy — directors who guard the vision, department leads who own their domains, and specialists who do the hands-on work. Each agent has defined responsibilities, escalation paths, and quality gates.</p>
+<p>The result: you still make every decision, but now you have a team that asks the right questions, catches mistakes early, and keeps your project organized from first brainstorm to launch.</p>
+<hr />
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#whats-included">What's Included</a></li>
+<li><a href="#studio-hierarchy">Studio Hierarchy</a></li>
+<li><a href="#slash-commands">Slash Commands</a></li>
+<li><a href="#does-it-produce-games-or-documents">Does it produce games, or documents?</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#upgrading">Upgrading</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#how-it-works">How It Works</a></li>
+<li><a href="#design-philosophy">Design Philosophy</a></li>
+<li><a href="#customization">Customization</a></li>
+<li><a href="#platform-support">Platform Support</a></li>
+<li><a href="#community">Community</a></li>
+<li><a href="#supporting-this-project">Supporting This Project</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<hr />
+<h2>What's Included</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Count</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agents</strong></td>
+<td>49</td>
+<td>Specialized subagents across design, programming, art, audio, narrative, QA, and production</td>
+</tr>
+<tr>
+<td><strong>Skills</strong></td>
+<td>74</td>
+<td>Slash commands for every workflow phase (<code>/start</code>, <code>/design-system</code>, <code>/create-epics</code>, <code>/create-stories</code>, <code>/dev-story</code>, <code>/story-done</code>, etc.)</td>
+</tr>
+<tr>
+<td><strong>Hooks</strong></td>
+<td>15</td>
+<td>Automated validation on commits, pushes, asset changes, design-doc reads, writes and registries, session lifecycle, agent audit trail, and gap detection</td>
+</tr>
+<tr>
+<td><strong>Rules</strong></td>
+<td>14</td>
+<td>Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, scene and asset files, and more</td>
+</tr>
+<tr>
+<td><strong>Templates</strong></td>
+<td>62</td>
+<td>Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more</td>
+</tr>
+</tbody>
+</table>
+<h2>Studio Hierarchy</h2>
+<p>Agents are organized into three tiers, matching how real studios operate:</p>
+<pre><code>Tier 1 — Directors
+  creative-director    technical-director    producer
+
+Tier 2 — Department Leads
+  game-designer        lead-programmer       art-director
+  audio-director       narrative-director    qa-lead
+  release-manager      localization-lead
+
+Tier 3 — Specialists
+  gameplay-programmer  engine-programmer     ai-programmer
+  network-programmer   tools-programmer      ui-programmer
+  systems-designer     level-designer        economy-designer
+  technical-artist     sound-designer        writer
+  world-builder        ux-designer           prototyper
+  performance-analyst  devops-engineer       analytics-engineer
+  security-engineer    qa-tester             accessibility-specialist
+  live-ops-designer    community-manager
+</code></pre>
+<p>Each agent declares a model in its frontmatter: the three directors ask for<br />
+Opus, <code>lead-programmer</code> and fifteen specialists name Sonnet, and the remaining thirty<br />
+<strong>inherit your session's model</strong>. Treat the tiers as seniority of role, not as<br />
+a billing plan — most of the studio runs on whatever model you are already using.</p>
+<h3>Engine Specialists</h3>
+<p>The template includes agent sets for all three major engines. Use the set that matches your project:</p>
+<table>
+<thead>
+<tr>
+<th>Engine</th>
+<th>Lead Agent</th>
+<th>Sub-Specialists</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Godot 4</strong></td>
+<td><code>godot-specialist</code></td>
+<td>GDScript, Shaders, GDExtension</td>
+</tr>
+<tr>
+<td><strong>Unity</strong></td>
+<td><code>unity-specialist</code></td>
+<td>DOTS/ECS, Shaders/VFX, Addressables, UI Toolkit</td>
+</tr>
+<tr>
+<td><strong>Unreal Engine 5</strong></td>
+<td><code>unreal-specialist</code></td>
+<td>GAS, Blueprints, Replication, UMG/CommonUI</td>
+</tr>
+</tbody>
+</table>
+<h2>Slash Commands</h2>
+<p>Type <code>/</code> in Claude Code to access all 74 skills:</p>
+<p><strong>Onboarding &amp; Navigation</strong><br />
+<code>/start</code> <code>/help</code> <code>/project-stage-detect</code> <code>/setup-engine</code> <code>/adopt</code> <code>/settings</code></p>
+<p><strong>Game Design</strong><br />
+<code>/brainstorm</code> <code>/map-systems</code> <code>/design-system</code> <code>/quick-design</code> <code>/review-all-gdds</code> <code>/propagate-design-change</code></p>
+<p><strong>Art &amp; Assets</strong><br />
+<code>/art-bible</code> <code>/asset-spec</code> <code>/asset-audit</code></p>
+<p><strong>UX &amp; Interface Design</strong><br />
+<code>/ux-design</code> <code>/ux-review</code></p>
+<p><strong>Architecture</strong><br />
+<code>/create-architecture</code> <code>/architecture-decision</code> <code>/architecture-review</code> <code>/create-control-manifest</code></p>
+<p><strong>Stories &amp; Sprints</strong><br />
+<code>/create-epics</code> <code>/create-stories</code> <code>/dev-story</code> <code>/sprint-plan</code> <code>/sprint-status</code> <code>/story-readiness</code> <code>/story-done</code> <code>/estimate</code></p>
+<p><strong>Reviews &amp; Analysis</strong><br />
+<code>/design-review</code> <code>/code-review</code> <code>/balance-check</code> <code>/content-audit</code> <code>/scope-check</code> <code>/perf-profile</code> <code>/tech-debt</code> <code>/gate-check</code> <code>/consistency-check</code> <code>/security-audit</code></p>
+<p><strong>QA &amp; Testing</strong><br />
+<code>/qa-plan</code> <code>/smoke-check</code> <code>/soak-test</code> <code>/regression-suite</code> <code>/test-setup</code> <code>/test-helpers</code> <code>/test-evidence-review</code> <code>/test-flakiness</code> <code>/skill-test</code> <code>/skill-improve</code></p>
+<p><strong>Production</strong><br />
+<code>/milestone-review</code> <code>/retrospective</code> <code>/bug-report</code> <code>/bug-triage</code> <code>/reverse-document</code> <code>/playtest-report</code></p>
+<p><strong>Release</strong><br />
+<code>/release-checklist</code> <code>/launch-checklist</code> <code>/changelog</code> <code>/patch-notes</code> <code>/hotfix</code> <code>/day-one-patch</code></p>
+<p><strong>Creative &amp; Content</strong><br />
+<code>/prototype</code> <code>/vertical-slice</code> <code>/onboard</code> <code>/localize</code></p>
+<p><strong>Team Orchestration</strong> (coordinate multiple agents on a single feature)<br />
+<code>/team-combat</code> <code>/team-narrative</code> <code>/team-ui</code> <code>/team-release</code> <code>/team-polish</code> <code>/team-audio</code> <code>/team-level</code> <code>/team-live-ops</code> <code>/team-qa</code></p>
+<h2>Does it produce games, or documents?</h2>
+<p>A fair question, and the answer is a measurement rather than a sample project.<br />
+Four games were built from one brief at different <code>modes.rigor</code> levels and the<br />
+documents each wrote <strong>before its first line of game code</strong> were counted:</p>
+<table>
+<thead>
+<tr>
+<th><code>modes.rigor</code></th>
+<th style="text-align: right;">Docs before first line of game code</th>
+<th style="text-align: right;">Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>minimal</code></td>
+<td style="text-align: right;"><strong>1</strong> (the one-page brief)</td>
+<td style="text-align: right;">0 min</td>
+</tr>
+<tr>
+<td><code>standard</code></td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">58 min</td>
+</tr>
+</tbody>
+</table>
+<p>All of them produced a running, tested game. Two blind reviewers and a human<br />
+playtest then ranked the <code>standard</code> build <strong>last</strong> — the extra 29 documents<br />
+bought traceability, not a better game.</p>
+<h3>It runs the game and looks at it</h3>
+<p>The measurement above is about cost. The other half is whether the thing works,<br />
+and for a game that means someone has to <em>look</em> at it — a passing test says<br />
+nothing about a menu drawn off-screen. So a story that changes anything the<br />
+player sees is not closed until the game has been launched, observed, and a<br />
+screenshot retained in <code>production/qa/evidence/</code>. A parse check is not a run.<br />
+This holds at every rigor level, including <code>minimal</code>, where automated tests are<br />
+waived but the look i</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/Donchitos/Claude-Code-Game-Studios#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#6</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">FlashML-org /</span>
+          <a href="https://github.com/FlashML-org/FreeToken" target="_blank" rel="noopener">FreeToken</a>
+        </div>
+        <div class="repo-desc">FreeToken brings datacenter-scale model serving to your desktop. Run massive models locally, fast and efficiently.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 16,319</span>
+      <span class="meta-item">🍴 1,601</span>
+      <span class="stars-today">⭐ 653 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/FlashML-org/FreeToken/main/assets/freetoken-logo-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/FlashML-org/FreeToken/main/assets/freetoken-logo-light.svg">
+    <img alt="FreeToken" src="https://raw.githubusercontent.com/FlashML-org/FreeToken/main/assets/freetoken-logo.svg" width=65%>
+  </picture>
+</div>
+
+<p align="center">
+| <a href="https://www.flashml.ai/"><b>Download</b></a> | <a href="https://arxiv.org/abs/2608.16157"><b>Paper</b></a> | <a href="https://join.slack.com/t/flashml/shared_invite/zt-3zpdh5j10-9dwTXrgLiqpVxizhA9KVbA"><b>Developer Slack</b></a> | <a href="https://discord.gg/MsA277cJzZ"><b>Community Discord</b></a> | <a href="https://github.com/FlashML-org/FreeToken/issues/482"><b>Community WeChat</b></a> |
+</p>
+
+<p>Unlock datacenter-class intelligence on the hardware you already own — Run 290B+ frontier MoE models locally on your gaming PC at blistering interactive speeds.</p>
+<h2>About</h2>
+<p>FreeToken is an edge-native Mixture-of-Experts (MoE) serving engine designed for running frontier-scale open-weight models on personal and consumer hardware. It treats heterogeneous edge resources—GPUs, CPUs, host memory, and interconnects—as a unified, elastic inference platform. Its core features include:  </p>
+<ul>
+<li><strong>Fast Edge-Native Runtime</strong>: Provides efficient MoE serving with bandwidth-adaptive CPU–GPU co-execution ($q^\star$ policy), full-layer double-buffered prefill streaming, global LRU expert caching, graph-compatible execution, and the FTW fast weight format.  </li>
+<li><strong>Semantic-Aware Caching</strong>: Features semantic anchor checkpoints for recurrent state and KV caches, allowing agentic context edits (e.g., tool calls, thinking blocks) to avoid redundant context recomputation.  </li>
+<li><strong>Elastic Memory Management</strong>: Supports dynamic, runtime VRAM re-allocation between expert caches and KV memory without engine restarts or weight reloading.  </li>
+<li><strong>Broad MoE &amp; Ecosystem Support</strong>: Supports frontier open-weight MoE models (e.g., DeepSeek-V4-Flash, Qwen3.6-35B-A3B, GLM-5.2) across various parameter scales and quantization formats (e.g., MXFP4, NVFP4, FP8, BF16), with Anthropic/OpenAI-compatible APIs for seamless integration with real-world coding and tool-calling agents (e.g., Codex, Claude Code, OpenCode, OpenClaw, DeepSeek Harness). </li>
+<li><strong>Diverse Consumer Hardware</strong>: Scales across consumer laptops, gaming desktops, and workstation GPUs, with native support for NVIDIA RTX 30, RTX 40, and RTX 50 series GPUs.  </li>
+</ul>
+<h2>Getting Started</h2>
+<h3>Desktop app</h3>
+<p>Download FreeToken for Windows or Linux at <a href="https://www.flashml.ai/">flashml.ai</a>. It sets the engine up for you and gives you a GUI for running models, chatting, and tuning the engine.</p>
+<div align="center">
+  <img alt="FreeToken Desktop" src="https://raw.githubusercontent.com/FlashML-org/FreeToken/main/assets/desktop-console.png" width=92%>
+</div>
+
+<h3>CLI</h3>
+<p>Install FreeToken with <a href="https://docs.astral.sh/uv/">uv</a> (recommended) or pip:</p>
+<pre><code class="language-bash">uv pip install &quot;freetoken[accel]&quot;
+</code></pre>
+<p>Or build from source:</p>
+<pre><code class="language-bash">git clone https://github.com/FlashML-org/FreeToken.git &amp;&amp; cd FreeToken
+uv venv &amp;&amp; source .venv/bin/activate
+uv pip install -e &quot;.[accel]&quot;
+</code></pre>
+<p>For More details:</p>
+<ul>
+<li><a href="https://github.com/FlashML-org/FreeToken/blob/main/docs/install.md">Install FreeToken</a></li>
+<li><a href="https://github.com/FlashML-org/FreeToken/blob/main/docs/quickstart.md">Quick start</a></li>
+<li><a href="https://github.com/FlashML-org/FreeToken/blob/main/docs/models.md">Supported models</a></li>
+<li><a href="https://github.com/FlashML-org/FreeToken/blob/main/docs/cli.md">CLI reference</a></li>
+<li><a href="https://github.com/FlashML-org/FreeToken/blob/main/docs/ftw-hotfix.md">Repairing old FTW checkpoints</a></li>
+<li><a href="https://github.com/FlashML-org/FreeToken/blob/main/scripts/checkpoint_diagnose/README.md">Diagnosing a checkpoint that fails to load</a></li>
+</ul>
+<h2>Citation</h2>
+<p>If you use FreeToken for your research, please cite our <a href="https://arxiv.org/abs/2608.16157">paper</a>:</p>
+<pre><code class="language-bibtex">@article{yang2026freetoken,
+  title={FreeToken: Efficient Edge-Native MoE Serving with Bandwidth-Adaptive Execution},
+  author={Yang, Shuo and Fan, Xiaoze and Pan, Melissa and Xi, Haocheng and Wang, Zhe and Sun, Shanlin and Keutzer, Kurt and Han, Song and Zaharia, Matei and Xu, Chenfeng and Stoica, Ion},
+  journal={arXiv preprint arXiv:2608.16157},
+  year={2026}
+}
+</code></pre>
+<h2>Acknowledgment</h2>
+<p>FreeToken was deeply inspired by <a href="https://github.com/sgl-project/mini-sglang">mini-sglang</a>, and<br />
+learned the design and reused code from the following projects:<br />
+<a href="https://github.com/sgl-project/sglang">SGLang</a>,<br />
+<a href="https://github.com/vllm-project/vllm">vLLM</a>,<br />
+<a href="https://github.com/flashinfer-ai/flashinfer">FlashInfer</a>,<br />
+<a href="https://github.com/fla-org/flash-linear-attention">flash-linear-attention</a>,<br />
+<a href="https://github.com/ModelTC/lightllm">LightLLM</a> and <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a>.</p>
+<h2>License</h2>
+<p><a href="https://github.com/FlashML-org/FreeToken/blob/main/LICENSE">Apache License 2.0</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/FlashML-org/FreeToken#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#7</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">pingdotgg /</span>
+          <a href="https://github.com/pingdotgg/t3code" target="_blank" rel="noopener">t3code</a>
+        </div>
+        <div class="repo-desc"><em style="color:var(--muted)">No description provided.</em></div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 42,659</span>
+      <span class="meta-item">🍴 9,146</span>
+      <span class="stars-today">⭐ 3,229 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>T3 Code</h1>
+<p>T3 Code is an "agent harness control surface". It enables control of the agents on your machine with a best-in-class mobile app (<a href="https://apps.apple.com/us/app/t3-code-remote-claude-more/id6787819824">iOS</a>, <a href="https://play.google.com/store/apps/details?id=com.t3tools.t3code">Android</a>), <a href="https://app.t3.codes">web app</a> and <a href="https://t3.codes">Electron-based desktop app</a>.</p>
+<p>Works with your subscriptions on Claude Code, Codex, Cursor, Grok Build, OpenCode, Google Antigravity, and fx. If they're set up on your computer, T3 Code can control them.</p>
+<h2>"Wait, what are you selling me?"</h2>
+<p>Nothing. We built T3 Code because we wanted the best possible development experience with agents. We were inspired by existing solutions like the Codex desktop app, Conductor, Claude Desktop and Cursor Glass, but none met our bar.</p>
+<p>We wanted something performant, remote-ready, and truly open. If we ever go the wrong direction, we want you to have everything you need to fork and build the editor that you want.</p>
+<h2>Installation</h2>
+<blockquote>
+<p>[!WARNING]<br />
+T3 Code currently supports Codex, Claude, Cursor, Grok Build, OpenCode, Antigravity, and fx. Install and authenticate at least one provider before use:</p>
+<ul>
+<li>Codex: install <a href="https://developers.openai.com/codex/cli">Codex CLI</a> and run <code>codex login</code></li>
+<li>Claude: install <a href="https://claude.com/product/claude-code">Claude Code</a> and run <code>claude auth login</code></li>
+<li>Cursor: install <a href="https://cursor.com/cli">Cursor CLI</a> and run <code>agent login</code></li>
+<li>Grok Build: install <a href="https://x.ai/cli">Grok Build CLI</a> and run <code>grok login</code></li>
+<li>OpenCode: install <a href="https://opencode.ai">OpenCode</a> and run <code>opencode auth login</code></li>
+<li>Antigravity: enable it in Settings, then use <strong>Install Antigravity</strong> and <strong>Sign in with Google</strong>. No CLI is required.</li>
+<li>fx: install <a href="https://fx.sh">fx</a> and run <code>fx login</code> on the machine running the T3 Code server (<a href="./docs/user/providers-fx.md">setup guide</a>)</li>
+</ul>
+</blockquote>
+<h3>Command line</h3>
+<pre><code class="language-bash">curl -fsSL https://t3.codes/install.sh | sh
+</code></pre>
+<p>On Windows, in PowerShell:</p>
+<pre><code class="language-powershell">irm https://t3.codes/install.ps1 | iex
+</code></pre>
+<p>Then run <code>t3</code> to start the server and open the local web app. <code>t3 service install</code> keeps it running in the background, <code>t3 update</code> moves to a newer release, and <code>t3 --help</code> has the full reference.</p>
+<p>To try it once without installing, run <code>npx t3@latest</code> instead.</p>
+<h3>Desktop app</h3>
+<p>Install the latest version of the desktop app from <a href="https://github.com/pingdotgg/t3code/releases">GitHub Releases</a>, or from your favorite package registry:</p>
+<h4>Windows (<code>winget</code>)</h4>
+<pre><code class="language-bash">winget install T3Tools.T3Code
+</code></pre>
+<h4>Windows (<code>scoop</code>)</h4>
+<pre><code class="language-bash">scoop install extras/t3code
+</code></pre>
+<h4>macOS (Homebrew)</h4>
+<pre><code class="language-bash">brew install --cask t3-code
+</code></pre>
+<h4>Debian, Ubuntu (<code>.deb</code>)</h4>
+<p>Download the <code>.deb</code> from <a href="https://github.com/pingdotgg/t3code/releases">GitHub Releases</a>, then:</p>
+<pre><code class="language-bash">sudo apt install ./T3-Code-*.deb
+</code></pre>
+<h4>Arch Linux (AUR)</h4>
+<p>Stable:</p>
+<pre><code class="language-bash">yay -S t3code-bin
+</code></pre>
+<p>Nightly:</p>
+<pre><code class="language-bash">yay -S t3code-nightly-bin
+</code></pre>
+<p>The AUR packaging is maintained in this repository under <a href="./packaging/aur"><code>packaging/aur</code></a>.</p>
+<h4>Nix (nixpkgs)</h4>
+<pre><code class="language-bash">nix profile add github:NixOS/nixpkgs/nixos-unstable#t3code
+</code></pre>
+<p>The package is maintained in <a href="https://github.com/NixOS/nixpkgs/tree/nixos-unstable/pkgs/by-name/t3/t3code">nixpkgs</a><br />
+and includes the desktop app (<code>t3code-desktop</code>) and the <code>t3</code> command.<br />
+See <a href="./docs/user/install.md#nix-nixpkgs">Nix installation</a> for NixOS configuration and updates.</p>
+<h2>Some notes</h2>
+<p>We are very very early in this project. Expect bugs.</p>
+<p>We are (mostly) not accepting contributions yet. Small fixes may be considered. Big features will not be.</p>
+<h2>Documentation</h2>
+<p>Full docs live in <a href="./docs">docs/</a>. There's no docs site yet.</p>
+<ul>
+<li><a href="./docs/user/faq.md">FAQ</a></li>
+<li><a href="./docs/user/install.md">Install and first run</a></li>
+<li><a href="./docs/user/permission-modes.md">Permission modes</a></li>
+<li><a href="./docs/user/keybindings.md">Keyboard shortcuts</a></li>
+<li><a href="./docs/user/project-settings.md">Project settings</a></li>
+<li><a href="./docs/user/appearance.md">Appearance preferences</a></li>
+<li><a href="./docs/user/remote-access.md">Remote access from a phone or another machine</a></li>
+<li><a href="./docs/user/outside-agents.md">Connect Claude Code, Codex, ChatGPT and other agents over MCP</a></li>
+<li><a href="./docs/user/updating.md">Keeping app and server in sync</a></li>
+<li><a href="./docs/user/source-control.md">Source control integrations</a></li>
+<li>Multiple accounts: <a href="./docs/user/providers-codex.md">Codex</a> · <a href="./docs/user/providers-claude.md">Claude</a></li>
+<li><a href="./docs/user/background-service.md">Run T3 Code as a background service</a></li>
+</ul>
+<p>Building from source? Start at <a href="./docs/internals/overview.md">docs/internals/overview.md</a>.</p>
+<h2>If you REALLY want to contribute still.... read this first</h2>
+<h3>Install <code>vp</code></h3>
+<p>T3 Code uses Vite+ so you'll need to install the global <code>vp</code> command-line tool.</p>
+<h4>macOS / Linux</h4>
+<pre><code class="language-bash">curl -fsSL https://vite.plus | bash
+</code></pre>
+<h4>Windows</h4>
+<pre><code class="language-bash">irm https://vite.plus/ps1 | iex
+</code></pre>
+<p>Checkout their getting started guide for more information: https://viteplus.dev/guide/</p>
+<h3>Install dependencies</h3>
+<pre><code class="language-bash">vp i
+</code></pre>
+<p>Read <a href="./CONTRIBUTING.md">CONTRIBUTING.md</a> before reporting a bug or opening a PR.</p>
+<p>Have a feature request? Start an <a href="https://github.com/pingdotgg/t3code/discussions/categories/ideas">Ideas discussion</a>.</p>
+<p>Need support? Join the <a href="https://discord.gg/jn4EGJjrvv">Discord</a>.</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/pingdotgg/t3code#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#8</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">shiyu-coder /</span>
+          <a href="https://github.com/shiyu-coder/Kronos" target="_blank" rel="noopener">Kronos</a>
+        </div>
+        <div class="repo-desc">Kronos: A Foundation Model for the Language of Financial Markets</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 46,147</span>
+      <span class="meta-item">🍴 7,605</span>
+      <span class="stars-today">⭐ 857 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+  <h2><b>Kronos: A Foundation Model for the Language of Financial Markets </b></h2>
+</div>
+
+<div align="center">
+
+</a> 
+<a href="https://huggingface.co/NeoQuasar"> 
+<img src="https://img.shields.io/badge/🤗-Hugging_Face-yellow" alt="Hugging Face"> 
+</a> 
+<a href="https://shiyu-coder.github.io/Kronos-demo/"> <img src="https://img.shields.io/badge/🚀-Live_Demo-brightgreen" alt="Live Demo"> </a>
+<a href="https://github.com/shiyu-coder/Kronos/graphs/commit-activity"> 
+<img src="https://img.shields.io/github/last-commit/shiyu-coder/Kronos?color=blue" alt="Last Commit"> 
+</a> 
+<a href="https://github.com/shiyu-coder/Kronos/stargazers"> 
+<img src="https://img.shields.io/github/stars/shiyu-coder/Kronos?color=lightblue" alt="GitHub Stars"> 
+</a> 
+<a href="https://github.com/shiyu-coder/Kronos/network/members"> 
+<img src="https://img.shields.io/github/forks/shiyu-coder/Kronos?color=yellow" alt="GitHub Forks"> 
+</a> 
+<a href="./LICENSE"> 
+<img src="https://img.shields.io/github/license/shiyu-coder/Kronos?color=green" alt="License"> 
+</a>
+
+</div>
+
+<div align="center">
+  <!-- Keep these links. Translations will automatically update with the README. -->
+  <a href="https://zdoc.app/de/shiyu-coder/Kronos">Deutsch</a> | 
+  <a href="https://zdoc.app/es/shiyu-coder/Kronos">Español</a> | 
+  <a href="https://zdoc.app/fr/shiyu-coder/Kronos">Français</a> | 
+  <a href="https://zdoc.app/ja/shiyu-coder/Kronos">日本語</a> | 
+  <a href="https://zdoc.app/ko/shiyu-coder/Kronos">한국어</a> | 
+  <a href="https://zdoc.app/pt/shiyu-coder/Kronos">Português</a> | 
+  <a href="https://zdoc.app/ru/shiyu-coder/Kronos">Русский</a> | 
+  <a href="https://zdoc.app/zh/shiyu-coder/Kronos">中文</a>
+</div>
+
+<p align="center">
+
+<img src="./figures/logo.png" width="100">
+
+</p>
+
+<blockquote>
+<p>Kronos is the <strong>first open-source foundation model</strong> for financial candlesticks (K-lines), <br />
+trained on data from over <strong>45 global exchanges</strong>.</p>
+</blockquote>
+</div>
+<h2>📰 News</h2>
+<ul>
+<li>🚩 <strong>[2025.11.10]</strong> Kronos has been accpeted by AAAI 2026.</li>
+<li>🚩 <strong>[2025.08.17]</strong> We have released the scripts for fine-tuning! Check them out to adapt Kronos to your own tasks.</li>
+<li>🚩 <strong>[2025.08.02]</strong> Our paper is now available on <a href="https://arxiv.org/abs/2508.02739">arXiv</a>!</li>
+</ul>
+<p align="center">
+
+## 📜 Introduction
+
+**Kronos** is a family of decoder-only foundation models, pre-trained specifically for the "language" of financial markets—K-line sequences. Unlike general-purpose TSFMs, Kronos is designed to handle the unique, high-noise characteristics of financial data. It leverages a novel two-stage framework: 
+1. A specialized tokenizer first quantizes continuous, multi-dimensional K-line data (OHLCV) into **hierarchical discrete tokens**. 
+2. A large, autoregressive Transformer is then pre-trained on these tokens, enabling it to serve as a unified model for diverse quantitative tasks.
+
+<p align="center">
+    <img src="figures/overview.png" alt="" align="center" width="700px" />
+</p>
+
+## ✨ Live Demo 
+We have set up a live demo to visualize Kronos's forecasting results. The webpage showcases a forecast for the **BTC/USDT** trading pair over the next 24 hours. 
+
+**👉 [Access the Live Demo Here](https://shiyu-coder.github.io/Kronos-demo/)** 
+
+## 📦 Model Zoo 
+We release a family of pre-trained models with varying capacities to suit different computational and application needs. All models are readily accessible from the Hugging Face Hub.
+
+| Model        | Tokenizer                                                                       | Context length | Params  | Open-source                                                               |
+|--------------|---------------------------------------------------------------------------------| -------------- | ------ |---------------------------------------------------------------------------|
+| Kronos-mini  | [Kronos-Tokenizer-2k](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-2k)     | 2048           | 4.1M   | ✅ [NeoQuasar/Kronos-mini](https://huggingface.co/NeoQuasar/Kronos-mini)  |
+| Kronos-small | [Kronos-Tokenizer-base](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-base) | 512            | 24.7M  | ✅ [NeoQuasar/Kronos-small](https://huggingface.co/NeoQuasar/Kronos-small) |
+| Kronos-base  | [Kronos-Tokenizer-base](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-base) | 512            | 102.3M | ✅ [NeoQuasar/Kronos-base](https://huggingface.co/NeoQuasar/Kronos-base)   |
+| Kronos-large | [Kronos-Tokenizer-base](https://huggingface.co/NeoQuasar/Kronos-Tokenizer-base) | 512            | 499.2M | ❌                                                                         |
+
+
+## 🚀 Getting Started
+
+### Installation
+
+1. Install Python 3.10+, and then install the dependencies:
+
+
+<pre><code class="language-shell">pip install -r requirements.txt
+</code></pre>
+
+
+### 📈 Making Forecasts
+
+Forecasting with Kronos is straightforward using the `KronosPredictor` class. It handles data preprocessing, normalization, prediction, and inverse normalization, allowing you to get from raw data to forecasts in just a few lines of code.
+
+**Important Note**: The `max_context` for `Kronos-small` and `Kronos-base` is **512**. This is the maximum sequence length the model can process. For optimal performance, it is recommended that your input data length (i.e., `lookback`) does not exceed this limit. The `KronosPredictor` will automatically handle truncation for longer contexts.
+
+Here is a step-by-step guide to making your first forecast.
+
+#### 1. Load the Tokenizer and Model
+
+First, load a pre-trained Kronos model and its corresponding tokenizer from the Hugging Face Hub.
+
+
+<pre><code class="language-python">from model import Kronos, KronosTokenizer, KronosPredictor
+
+# Load from Hugging Face Hub
+tokenizer = KronosTokenizer.from_pretrained(&quot;NeoQuasar/Kronos-Tokenizer-base&quot;)
+model = Kronos.from_pretrained(&quot;NeoQuasar/Kronos-small&quot;)
+</code></pre>
+
+
+#### 2. Instantiate the Predictor
+
+Create an instance of `KronosPredictor`, passing the model, tokenizer, and desired device.
+
+
+<pre><code class="language-python"># Initialize the predictor
+predictor = KronosPredictor(model, tokenizer, max_context=512)
+</code></pre>
+
+
+#### 3. Prepare Input Data
+
+The `predict` method requires three main inputs:
+-   `df`: A pandas DataFrame containing the historical K-line data. It must include columns `['open', 'high', 'low', 'close']`. `volume` and `amount` are optional.
+-   `x_timestamp`: A pandas Series of timestamps corresponding to the historical data in `df`.
+-   `y_timestamp`: A pandas Series of timestamps for the future periods you want to predict.
+
+
+<pre><code class="language-python">import pandas as pd
+
+# Load your data
+df = pd.read_csv(&quot;./data/XSHG_5min_600977.csv&quot;)
+df['timestamps'] = pd.to_datetime(df['timestamps'])
+
+# Define context window and prediction length
+lookback = 400
+pred_len = 120
+
+# Prepare inputs for the predictor
+x_df = df.loc[:lookback-1, ['open', 'high', 'low', 'close', 'volume', 'amount']]
+x_timestamp = df.loc[:lookback-1, 'timestamps']
+y_timestamp = df.loc[lookback:lookback+pred_len-1, 'timestamps']
+</code></pre>
+
+
+#### 4. Generate Forecasts 
+
+Call the `predict` method to generate forecasts. You can control the sampling process with parameters like `T`, `top_p`, and `sample_count` for probabilistic forecasting.
+
+
+<pre><code class="language-python"># Generate predictions
+pred_df = predictor.predict(
+    df=x_df,
+    x_timestamp=x_timestamp,
+    y_timestamp=y_timestamp,
+    pred_len=pred_len,
+    T=1.0,          # Temperature for sampling
+    top_p=0.9,      # Nucleus sampling probability
+    sample_count=1  # Number of forecast paths to generate and average
+)
+
+print(&quot;Forecasted Data Head:&quot;)
+print(pred_df.head())
+</code></pre>
+
+
+The `predict` method returns a pandas DataFrame containing the forecasted values for `open`, `high`, `low`, `close`, `volume`, and `amount`, indexed by the `y_timestamp` you provided.
+
+For efficient processing of multiple time series, Kronos provides a `predict_batch` method that enables parallel prediction on multiple dat
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/shiyu-coder/Kronos#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#9</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">kornia /</span>
+          <a href="https://github.com/kornia/kornia" target="_blank" rel="noopener">kornia</a>
+        </div>
+        <div class="repo-desc">🐍 Geometric Computer Vision Library for Spatial AI</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 12,247</span>
+      <span class="meta-item">🍴 1,503</span>
+      <span class="stars-today">⭐ 412 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+<p align="center">
+  <img width="55%" src="https://github.com/kornia/data/raw/main/kornia_banner_pixie.png" />
+</p>
+
+---
+
+English | [简体中文](README_zh-CN.md)
+
+<p align="center">
+  <a href="https://www.kornia.org/playground/"><img alt="Try in your browser" src="https://img.shields.io/badge/%E2%96%B6%20Try%20in%20your%20browser-F5B301?style=for-the-badge&labelColor=F5B301"></a>
+  <a href="https://www.kornia.org"><img alt="Website" src="https://img.shields.io/badge/Website-0B1A2B?style=for-the-badge"></a>
+  <a href="https://kornia.readthedocs.io"><img alt="Docs" src="https://img.shields.io/badge/Docs-0B1A2B?style=for-the-badge"></a>
+</p>
+
+<!-- prettier-ignore -->
+<a href="https://kornia.readthedocs.io">Docs</a> •
+<a href="https://colab.sandbox.google.com/github/kornia/tutorials/blob/master/nbs/hello_world_tutorial.ipynb">Try it Now</a> •
+<a href="https://www.kornia.org/tutorials/">Tutorials</a> •
+<a href="https://github.com/kornia/kornia-examples">Examples</a> •
+<a href="https://www.kornia.org/kornia-blog/">Blog</a> •
+<a href="https://discord.gg/HfnywwpBnD">Community</a>
+
+[![PyPI version](https://badge.fury.io/py/kornia.svg)](https://pypi.org/project/kornia)
+[![Downloads](https://static.pepy.tech/badge/kornia)](https://pepy.tech/project/kornia)
+[![star](https://gitcode.com/kornia/kornia/star/badge.svg)](https://gitcode.com/kornia/kornia)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=white)](https://discord.gg/HfnywwpBnD)
+[![Twitter](https://img.shields.io/twitter/follow/kornia_foss?style=social)](https://twitter.com/kornia_foss)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+
+</p>
+</div>
+
+<p><strong>Kornia</strong> is a differentiable computer vision library that provides a rich set of differentiable image processing and geometric vision algorithms. Built on top of <a href="https://pytorch.org">PyTorch</a>, Kornia integrates seamlessly into existing AI workflows, allowing you to leverage powerful <a href="https://kornia.readthedocs.io/en/latest/get-started/gpu-acceleration.html">batch transformations</a>, <a href="https://kornia.readthedocs.io/en/latest/get-started/differentiability.html">auto-differentiation</a> and <a href="https://kornia.readthedocs.io/en/latest/get-started/gpu-acceleration.html">GPU acceleration</a>. Whether you're working on image transformations, augmentations, or AI-driven image processing, Kornia equips you with the tools you need to bring your ideas to life.</p>
+<blockquote>
+<p><strong>📢 Direction</strong>: Kornia is becoming the <strong>reference implementation and executable specification</strong> for differentiable computer vision and geometry in the PyTorch ecosystem — explicit conventions, conformance tests, and honest benchmarks over API growth. Read the <a href="ROADMAP.md">Roadmap</a>.</p>
+</blockquote>
+<h2>When to use Kornia</h2>
+<p>Kornia pays off where a hand-written version gets long or fragile, or where the alternatives leave the GPU:</p>
+<ul>
+<li><strong>Breadth.</strong> 1,200+ public operators, most with no torchvision equivalent: camera models and<br />
+  epipolar geometry, minimal solvers and RANSAC, feature detection, description and matching, edge detection,<br />
+  morphology, Lab and Bayer color, image losses and metrics. torchvision overlaps mainly on resizing, cropping,<br />
+  flipping, color jitter and blur.</li>
+<li><strong>Per-sample parameters in one batched call.</strong> <code>gaussian_blur2d(x, (9, 9), sigma)</code> takes a <code>(B, 2)</code> <code>sigma</code>;<br />
+<code>rotate</code> takes a <code>(B,)</code> angle, <code>warp_affine</code> / <code>warp_perspective</code> take <code>(B, 2, 3)</code> / <code>(B, 3, 3)</code> matrices and<br />
+<code>adjust_brightness</code> a <code>(B,)</code> factor. torchvision's functional ops apply one parameter per call. From Kornia 0.9.1,<br />
+  a <code>sigma</code> tensor and the enhancement value checks (gamma, contrast, solarize) are validated on the device, so a<br />
+  CUDA call, or an MPS call on PyTorch ≥ 2.13, needs no host synchronization for them.</li>
+<li><strong>Batched minimal solvers and robust estimation.</strong> <code>find_fundamental(x1, x2, method="7POINT")</code> solves <code>(B, 7, 2)</code><br />
+  samples and returns all real solutions in <code>(B, 3, 3, 3)</code>, with zero matrices in the unused slots; the 8-point,<br />
+  5-point essential (<code>find_essential</code>), DLT homography and PnP (<code>solve_pnp_dlt</code>) solvers are there too. <code>RANSAC</code><br />
+  (homography, fundamental and essential models) samples and scores hypotheses on the device; by default its<br />
+  refinement and final selection run on the host in float64, and <code>compile=True</code> (PyTorch ≥ 2.14, CPU and CUDA) runs<br />
+  the whole estimation as one compiled graph on the device.</li>
+<li><strong>Differentiable geometry.</strong> Depth to 3D and back (<code>depth_to_3d_v2</code>, <code>unproject_points</code>, <code>project_points</code>),<br />
+<code>warp_frame_depth</code>, <code>remap</code>, camera models with Brown–Conrady and Kannala–Brandt distortion, and Lie groups (<code>So3</code>,<br />
+<code>Se3</code>) keep gradients with respect to depth, pose and camera parameters.</li>
+<li><strong>Annotated augmentation.</strong> <code>AugmentationSequential</code> applies one sampled transform to images, masks, boxes and<br />
+  keypoints together and can invert it, in 2D; the 3D augmentations transform volumes, without annotations or an<br />
+  inverse. On CUDA, augmentations move their sampled parameters to the<br />
+  GPU without blocking it, and a sync-guard test keeps every public augmentation free of avoidable host<br />
+  synchronizations.</li>
+<li><strong>Local features on the GPU.</strong> SIFT and HardNet, DISK, ALIKED, XFeat, DeDoDe, LoFTR and LightGlue, with<br />
+  mutual-nearest-neighbour and ratio-test matchers.</li>
+<li><strong>Morphology</strong> with arbitrary structuring elements on batched tensors.</li>
+<li><strong>Compiles and exports.</strong> Nearly all probed operator configurations run under <code>torch.compile</code> and match eager,<br />
+  and over 1,000 export to ONNX; the result for every operator is on the<br />
+<a href="https://kornia.readthedocs.io/en/latest/get-started/export-support.html">export support page</a>.</li>
+<li><strong>Fast where it is designed to be: batched tensors on a GPU.</strong> In the published 0.9.0 flagship benchmarks (RTX 4090,<br />
+  batch 32), many filters, warps, feature-matching steps and image metrics run about 10× to 70× faster in eager mode<br />
+  than per-image OpenCV or scikit-image on the CPU, and <code>torch.compile</code> takes several of them past 100×. On the small<br />
+  overlap with torchvision on the same GPU, eager Kornia is slower; compiled Kornia is faster for hue, color jitter<br />
+  and Gaussian blur and still slower for flips, crops and brightness. OpenCV wins single-image <code>uint8</code> CPU work.<br />
+  Results vary with hardware and workload; every number, win and loss is published on the<br />
+<a href="https://kornia.readthedocs.io/en/latest/get-started/performance.html">performance page</a>.</li>
+</ul>
+<p>These operators run on the input's device with no NumPy round trip, and most are differentiable; robust estimation<br />
+(<code>RANSAC</code>) and the extraction methods of learned features such as DeDoDe and XFeat run without gradients. For a<br />
+single fixed-parameter operation, such as one blur or one resize, a few lines of PyTorch or torchvision are just as<br />
+good.</p>
+<h2>Key Components</h2>
+<ol>
+<li><strong>Differentiable Image Processing</strong><br><br />
+  Kornia provides a comprehensive suite of image processing operators, all differentiable and ready to integrate into deep learning pipelines.<ul>
+<li><strong>Filters</strong>: Gaussian, Sobel, Median, Box Blur, etc.</li>
+<li><strong>Transformations</strong>: Affine, Homography, Perspective, etc.</li>
+<li><strong>Enhancements</strong>: Histogram Equalization, CLAHE, Gamma Correction, etc.</li>
+<li><strong>Edge Detection</strong>: Canny, Laplacian, Sobel, etc.</li>
+<li>... check our <a href="https://kornia.readthedocs.io">docs</a> for more.</li>
+</ul>
+</li>
+<li><strong>Advanced Augmentations</strong><br><br />
+Perform powerful data augmentation with Kornia’s built-in functions, ideal for training AI models with complex augmentation pipelines.<ul>
+<li><strong>Augmentation Pipeline</strong>: AugmentationSequential, PatchSequential, VideoSequential, etc.</li>
+<li><strong>Automatic Augmentation</strong>: AutoAugment, RandAugment, TrivialAugment.</li>
+</ul>
+</li>
+<li><strong>AI Models</strong><br><br />
+Leverage pre-trained AI models optimized for a variety of vision tasks, all within the Kornia ecosystem.<ul>
+<li><strong>Face Detection</strong>: YuNet</li>
+<li><strong>Feature Matching</strong>: LoFTR, LightGlue</li>
+<li><strong>Feature Descriptor</strong>: DISK, DeDoDe, SOLD2</li>
+<li><strong>Segmentation</strong>: SAM</li>
+<li><strong>Classification</strong>: MobileViT, VisionTransformer.</li>
+</ul>
+</li>
+</ol>
+<details>
+<summary>See here for some of the
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/kornia/kornia#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#10</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">JustVugg /</span>
+          <a href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener">colibri</a>
+        </div>
+        <div class="repo-desc">Run frontier MoE models on hardware you already own — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#555555"></span>C</span>
+      <span class="meta-item">⭐ 46,807</span>
+      <span class="meta-item">🍴 5,404</span>
+      <span class="stars-today">⭐ 675 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="assets/colibri-logo.svg" width="560" alt="colibrì: tiny engine, immense model">
+</p>
+
+<p align="center">
+  <a href="https://justvugg.github.io/colibri"><img src="https://img.shields.io/badge/website-justvugg.github.io%2Fcolibri-1f6feb" alt="Website"></a>
+  <a href="https://github.com/JustVugg/colibri/releases"><img src="https://img.shields.io/github/v/release/JustVugg/colibri?color=2ea043" alt="Latest release"></a>
+</p>
+
+<p align="center">
+  <a href="https://justvugg.github.io/colibri"><b>Website</b></a> ·
+  <a href="https://discord.gg/RXV83nSZdk"><b>Discord</b></a> ·
+  English · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a> · <a href="README.it.md">Italiano</a> · <a href="README.ja.md">日本語</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.pt-BR.md">Português (Brasil)</a>
+</p>
+
+<p><strong>Tiny engine, immense model.</strong> colibri runs very large open models on the<br />
+machine you already have. A mixture-of-experts model of hundreds of billions of<br />
+parameters uses only a small part of itself for each token, so colibri keeps<br />
+that part in RAM and reads the rest, the experts, from the disk when the model<br />
+asks for them. Pure C, one file per model family, no GPU required.</p>
+<p>Thirteen engines run today. Ten are for language models: <strong>GLM-5.2/5.3</strong> (which<br />
+also runs <strong>Mistral-Large-4</strong>), <strong>GLM-5.3-Flash</strong>, <strong>Inkling</strong>, <strong>Kimi K3</strong>,<br />
+<strong>DeepSeek V4 Flash</strong>, <strong>DeepSeek V4.1 Flash</strong>, <strong>MiMo-V2.6 Flash</strong> (and Pro),<br />
+<strong>Qwen3.8-Flash-Next</strong>, <strong>Qwen3.6</strong> (which also runs Qwen3-Coder, the dense<br />
+Qwen3.8-27B, <strong>Flint</strong>, <strong>Muse Spark Open</strong> and <strong>LFM3-VL</strong>) and <strong>OLMoE</strong>. One<br />
+draws pictures: <strong>Qwen-Image-2.1</strong>. Two answer decisions: <strong>Laya</strong> and<br />
+<strong>GLiNER2.5-Decide</strong>, with a third decision model, <strong>Clef</strong>, on the Qwen3.6<br />
+engine. The language models also run from the GGUF files already published,<br />
+read as they are (<a href="docs/gguf.md">GGUF</a>), on the CPU, on any GPU through Vulkan<br />
+and on NVIDIA cards through CUDA. <a href="#which-model-for-my-machine">Which one for my machine</a></p>
+<pre><code>$ ./coli chat
+  colibri v2.1.0 · GLM-5.2 · 744B MoE · int4 · streaming CPU
+  ✓ ready in 32s · resident 9.9 GB
+  › ciao!
+  ◆ Ciao! Come posso aiutarti oggi?
+</code></pre>
+<p align="center">
+  <a href="https://www.buymeacoffee.com/justvugg"><img src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=justvugg&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" alt="Buy me a coffee" height="40"></a>
+  <br>
+  <sub>colibri is free and open source. If it has earned a place on your machine, a coffee helps pay for the next engine and the next speedup.</sub>
+</p>
+
+<p><a id="get-started"></a><br />
+<a id="the-one-step-way"></a></p>
+<h2>Get started in one step</h2>
+<p>You need a computer with <strong>8 GB of RAM</strong> at the very least (16 GB or more is<br />
+better), <strong>22 GB free on the disk</strong> for the smallest model, and an internet<br />
+connection. A graphics card is optional.</p>
+<p><strong>Windows</strong></p>
+<ol>
+<li>On this page click <strong>Code</strong>, then <strong>Download ZIP</strong>, and unzip it.</li>
+<li>Double-click <strong><code>START-HERE.bat</code></strong> in the unzipped folder. If Python is<br />
+   missing, it offers to install it for you.</li>
+</ol>
+<p><strong>Linux</strong> (Ubuntu and Debian; other distributions have the same packages under<br />
+their own names)</p>
+<pre><code class="language-bash">sudo apt install git python3 build-essential
+git clone https://github.com/JustVugg/colibri
+cd colibri
+./start-here.sh
+</code></pre>
+<p><strong>macOS</strong> (with <a href="https://brew.sh">Homebrew</a>)</p>
+<pre><code class="language-bash">xcode-select --install
+brew install libomp git python
+git clone https://github.com/JustVugg/colibri
+cd colibri
+./start-here.sh
+</code></pre>
+<p>You answer one question, which model, and Enter takes the recommendation. Then<br />
+the setup:</p>
+<ol>
+<li><strong>looks at your machine</strong>: RAM, free disk, CPU and GPUs;</li>
+<li><strong>recommends a model that fits</strong>: the part of the model that always stays in<br />
+   RAM, plus a minimum cache of experts, must fit in your RAM, and the download<br />
+   on your disk;</li>
+<li><strong>gets the engine</strong>: it builds it for your machine when a compiler is there,<br />
+   otherwise it downloads the prebuilt one, which runs on the CPU and, on Linux<br />
+   and Windows, on a Vulkan GPU too. It builds<br />
+   for your GPU when that pays: CUDA for an NVIDIA card on Linux when the CUDA toolkit is installed,<br />
+   otherwise Vulkan. On a discrete GPU it always does; on an integrated GPU,<br />
+   which shares the CPU's RAM, only for the models measured faster there<br />
+   (Qwen3.6, Qwen3-Coder and Qwen3.8-Flash-Next). If a package is missing it<br />
+   prints the exact command to install it and carries on with the CPU; run the<br />
+   setup again afterwards and it rebuilds for the GPU;</li>
+<li><strong>downloads the model</strong> with progress and resume: stop it whenever you like,<br />
+   run it again and it continues where it stopped;</li>
+<li><strong>starts colibri and opens the dashboard</strong> in your browser, and prints the<br />
+   addresses other apps can use:</li>
+</ol>
+<pre><code>Starting colibri
+  Browser:             http://127.0.0.1:8000/
+  OpenAI base URL:     http://127.0.0.1:8000/v1
+  Anthropic base URL:  http://127.0.0.1:8000
+  stop: press Ctrl+C here (or close this window)
+</code></pre>
+<p><strong>Next time</strong>, run <code>START-HERE.bat</code> or <code>./start-here.sh</code> again: colibri starts<br />
+straight away, with no download and no build. <code>c/coli status</code> shows what is<br />
+installed and whether it runs, <code>c/coli stop</code> stops it (<code>c\coli.cmd status</code> and<br />
+<code>c\coli.cmd stop</code> on Windows).</p>
+<p>Options go after <code>./start-here.sh</code> or <code>START-HERE.bat</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--list</code></td>
+<td>every model against this machine, and why one does not fit</td>
+</tr>
+<tr>
+<td><code>--model ID</code></td>
+<td>install that model (the ids are in <a href="#which-model-for-my-machine">the tables below</a>)</td>
+</tr>
+<tr>
+<td><code>--yes</code></td>
+<td>no questions: take the recommendation</td>
+</tr>
+<tr>
+<td><code>--dir DIR</code></td>
+<td>put the models on another disk (default <code>~/colibri-models</code>)</td>
+</tr>
+<tr>
+<td><code>--backend vulkan</code>, <code>cuda</code> or <code>cpu</code></td>
+<td>choose the engine build yourself; <code>--no-gpu</code> is <code>--backend cpu</code></td>
+</tr>
+<tr>
+<td><code>--model-dir DIR</code></td>
+<td>use a model you already downloaded</td>
+</tr>
+<tr>
+<td><code>--reconfigure</code></td>
+<td>choose another model</td>
+</tr>
+</tbody>
+</table>
+<p>What each step does, in detail: <a href="docs/quickstart.md#the-one-step-way">docs/quickstart.md</a>.</p>
+<h3>If something goes wrong</h3>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>it stopped during the download</td>
+<td>run the same command again: it resumes from the bytes already on disk</td>
+</tr>
+<tr>
+<td><code>to use the GPU through ..., first run: &lt;command&gt;</code></td>
+<td>run that command, then the setup again: it rebuilds for the GPU and does not download again</td>
+</tr>
+<tr>
+<td><code>the ... build failed</code>, for example <code>Unsupported gpu architecture</code> when the installed CUDA toolkit no longer supports the card</td>
+<td>the setup checks the toolkit against the card first and picks Vulkan by itself, saying why; if a build still fails it offers the next one (Vulkan, then the CPU). <code>./start-here.sh --backend vulkan</code> forces Vulkan; <code>--no-gpu</code> stays on the CPU</td>
+</tr>
+<tr>
+<td><code>needs N GB free for the download</code></td>
+<td><code>--dir</code> with a folder on a bigger disk</td>
+</tr>
+<tr>
+<td>on WSL, the model folder is under <code>/mnt/c</code></td>
+<td>keep it on the Linux disk (the default, <code>~/colibri-models</code>): <code>/mnt/c</code> is many times slower</td>
+</tr>
+<tr>
+<td>you updated the checkout (<code>git pull</code>)</td>
+<td>run <code>./start-here.sh</code> again: it rebuilds the engine when the sources changed, then starts it</td>
+</tr>
+<tr>
+<td>anything else</td>
+<td><code>c/coli logs -n 50</code> shows the log of a server started in the background (one started in the foreground prints to its own terminal) and <code>c/coli logs --install</code> the setup's; open an <a href="https://github.com/JustVugg/colibri/issues">issue</a> with the last lines the setup printed</td>
+</tr>
+</tbody>
+</table>
+<h3>Let your AI assistant set it up</h3>
+<p>If you use an AI coding assistant, it can do all of this for you. Ask it:</p>
+<blockquote>
+<p>Set up colibri on this machine following docs/AI_SETUP.md from https://github.com/JustVugg/colibri</p>
+</blockquote>
+<p><a href="docs/AI_SETUP.md">docs/AI_SETUP.md</a> gives the assistant every step as a<br />
+command with a machine-readable result, and tells it to ask you before it<br />
+downloads a model or installs a system package. Assistants that speak the Model<br />
+Context Protocol can use colibri's MCP server instead: <code>coli mcp</code> offers tools<br />
+to detect the hardware, recommend a model, install, start, stop and check it<br />
+(<a href="docs/MCP_SERVER.md">docs/MCP_SERVER.md</a>).</p>
+<h3>Or by hand</h3>
+<p>To choose each</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/JustVugg/colibri#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#11</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">mattpocock /</span>
+          <a href="https://github.com/mattpocock/skills" target="_blank" rel="noopener">skills</a>
+        </div>
+        <div class="repo-desc">Skills for Real Engineers. Straight from my .agents directory.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#89e051"></span>Shell</span>
+      <span class="meta-item">⭐ 310,597</span>
+      <span class="meta-item">🍴 26,129</span>
+      <span class="stars-today">⭐ 858 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p>
+  <a href="https://www.aihero.dev/s/skills-newsletter">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skills-repo-dark_2x.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png">
+      <img alt="Skills" src="https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png" width="369">
+    </picture>
+  </a>
+</p>
+
+<h1>Skills For Real Engineers</h1>
+<p><a href="https://skills.sh/mattpocock/skills"><img alt="skills.sh" src="https://skills.sh/b/mattpocock/skills" /></a></p>
+<p>My agent skills that I use every day to do real engineering - not vibe coding.</p>
+<p>Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.</p>
+<p>These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.</p>
+<p>If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:</p>
+<p><a href="https://www.aihero.dev/s/skills-newsletter">Sign Up To The Newsletter</a></p>
+<h2>Installation (30-second setup)</h2>
+<p>A plugin updates itself. <a href="https://skills.sh/mattpocock/skills">skills.sh</a> copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.</p>
+<h3>1. Get the skills</h3>
+<details>
+<summary><strong>Claude Code</strong></summary>
+
+
+<pre><code class="language-bash">claude plugin install mattpocock-skills@claude-plugins-official
+</code></pre>
+
+
+Updates itself by default.
+
+</details>
+
+<details>
+<summary><strong>Codex</strong></summary>
+
+
+<pre><code class="language-bash">codex plugin marketplace add mattpocock/skills
+codex plugin add mattpocock-skills@mattpocock
+</code></pre>
+
+
+Updates itself at startup.
+
+</details>
+
+<details>
+<summary><strong>GitHub Copilot</strong> (CLI and VS Code)</summary>
+
+
+<pre><code class="language-bash">copilot plugin marketplace add mattpocock/skills
+copilot plugin install mattpocock-skills@mattpocock
+</code></pre>
+
+
+Then, once, add to `~/.copilot/settings.json`:
+
+
+<pre><code class="language-json">{
+  &quot;extraKnownMarketplaces&quot;: {
+    &quot;mattpocock&quot;: { &quot;source&quot;: { &quot;source&quot;: &quot;github&quot;, &quot;repo&quot;: &quot;mattpocock/skills&quot; }, &quot;autoUpdate&quot;: true }
+  }
+}
+</code></pre>
+
+
+In VS Code, run **Chat: Install Plugin From Source** and enter `https://github.com/mattpocock/skills`. It updates daily.
+
+</details>
+
+<details>
+<summary><strong>Gemini CLI</strong> (manual updates)</summary>
+
+
+<pre><code class="language-bash">gemini skills install https://github.com/mattpocock/skills.git --path skills/engineering
+gemini skills install https://github.com/mattpocock/skills.git --path skills/productivity
+</code></pre>
+
+
+Re-run both commands to update.
+
+</details>
+
+<details>
+<summary><strong>Any other agent, or editable files</strong> (manual updates)</summary>
+
+
+<pre><code class="language-bash">npx skills@latest add mattpocock/skills -a &lt;agent&gt;  # cursor, opencode, devin, windsurf, amp, pi; omit -a to choose
+</code></pre>
+
+
+When the installer asks which skills to take, include `setup-matt-pocock-skills`. To update, run `npx skills@latest update`, and re-run `add` to pick up new skills.
+
+</details>
+
+<h3>2. Run <code>/setup-matt-pocock-skills</code></h3>
+<p>In your agent, run it once per repo. It will:</p>
+<ul>
+<li>Ask you which issue tracker you want to use (GitHub, GitLab, local files, or anything else you describe)</li>
+<li>Ask you what labels you apply to tickets when you triage them (<code>/triage</code> uses labels)</li>
+<li>Ask you where you want to save any docs we create</li>
+</ul>
+<h3>3. Bam - you're ready to go.</h3>
+<h2>Why These Skills Exist</h2>
+<p>I built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.</p>
+<h3>#1: The Agent Didn't Do What I Want</h3>
+<blockquote>
+<p>"No-one knows exactly what they want"</p>
+<p>David Thomas &amp; Andrew Hunt, <a href="https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V">The Pragmatic Programmer</a></p>
+</blockquote>
+<p><strong>The Problem</strong>. The most common failure mode in software development is misalignment. You think the dev knows what you want. Then you see what they've built - and you realize it didn't understand you at all.</p>
+<p>This is just the same in the AI age. There is a communication gap between you and the agent. The fix for this is a <strong>grilling session</strong> - getting the agent to ask you detailed questions about what you're building.</p>
+<p><strong>The Fix</strong> is to use:</p>
+<ul>
+<li><a href="./skills/productivity/grill-me/SKILL.md"><code>/grill-me</code></a> - for non-code uses</li>
+<li><a href="./skills/engineering/grill-with-docs/SKILL.md"><code>/grill-with-docs</code></a> - same as <a href="./skills/productivity/grill-me/SKILL.md"><code>/grill-me</code></a>, but adds more goodies (see below)</li>
+</ul>
+<p>These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them <em>every</em> time you want to make a change.</p>
+<h3>#2: The Agent Is Way Too Verbose</h3>
+<blockquote>
+<p>With a ubiquitous language, conversations among developers and expressions of the code are all derived from the same domain model.</p>
+<p>Eric Evans, <a href="https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">Domain-Driven-Design</a></p>
+</blockquote>
+<p><strong>The Problem</strong>: At the start of a project, devs and the people they're building the software for (the domain experts) are usually speaking different languages.</p>
+<p>I felt the same tension with my agents. Agents are usually dropped into a project and asked to figure out the jargon as they go. So they use 20 words where 1 will do.</p>
+<p><strong>The Fix</strong> for this is a shared language. It's a document that helps agents decode the jargon used in the project.</p>
+<details>
+<summary>
+Example
+</summary>
+
+Here's an example [glossary](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md) (still named `CONTEXT.md` at that pinned commit, from before the skills renamed the convention), from my `course-video-manager` repo. Which one is easier to read?
+
+- **BEFORE**: "There's a problem when a lesson inside a section of a course is made 'real' (i.e. given a spot in the file system)"
+- **AFTER**: "There's a problem with the materialization cascade"
+
+This concision pays off session after session.
+
+</details>
+
+<p>This is built into <a href="./skills/engineering/grill-with-docs/SKILL.md"><code>/grill-with-docs</code></a>. It's a grilling session, but that helps you build a shared language with the AI, and document hard-to-explain decisions in ADR's.</p>
+<p>It's hard to explain how powerful this is. It might be the single coolest technique in this repo. Try it, and see.</p>
+<blockquote>
+<p>[!TIP]<br />
+A shared language has many other benefits than reducing verbosity:</p>
+<ul>
+<li><strong>Variables, functions and files are named consistently</strong>, using the shared language</li>
+<li>As a result, the <strong>codebase is easier to navigate</strong> for the agent</li>
+<li>The agent also <strong>spends fewer tokens on thinking</strong>, because it has access to a more concise language</li>
+</ul>
+</blockquote>
+<h3>#3: The Code Doesn't Work</h3>
+<blockquote>
+<p>"Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big."</p>
+<p>David Thomas &amp; Andrew Hunt, <a href="https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V">The Pragmatic Programmer</a></p>
+</blockquote>
+<p><strong>The Problem</strong>: Let's say that you and the agent are aligned on what to build. What happens when the agent <em>still</em> produces crap?</p>
+<p>It's time to look at your feedback loops. Without feedback on how the code it produces actually runs, the agent will be flying blind.</p>
+<p><strong>The Fix</strong>: You need the usual tranche of feedback loops: static types, browser access, and automated tests.</p>
+<p>For automated tests, a red-green-refactor loop is critical. This is where the agent writes a failing test first, then fixes the test. This helps give the agent a consistent level of feedback that results in far better code.</p>
+<p>I've built a <strong><a href="./skills/engineering/tdd/SKILL.md"><code>/tdd</code></a> skill</strong> you can slot into any project. It encourages red-green-refactor and gives the agent plenty of guidance on what ma</p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/mattpocock/skills#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#12</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">max-sixty /</span>
+          <a href="https://github.com/max-sixty/worktrunk" target="_blank" rel="noopener">worktrunk</a>
+        </div>
+        <div class="repo-desc">Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#dea584"></span>Rust</span>
+      <span class="meta-item">⭐ 10,177</span>
+      <span class="meta-item">🍴 368</span>
+      <span class="stars-today">⭐ 77 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <!-- markdownlint-disable MD033 -->
+
+<h1><img src="docs/public/logo.png" alt="Worktrunk logo" width="50" align="absmiddle">&nbsp;&nbsp;Worktrunk</h1>
+
+<!-- Crates.io badge below disabled while shields.io is rate-limited by crates.io
+     (renders "CRATES.IO: INVALID"). Tracking: badges/shields#11879. Restore once fixed.
+     [![Crates.io](https://img.shields.io/crates/v/worktrunk?style=for-the-badge&logo=rust)](https://crates.io/crates/worktrunk)
+-->
+<p><a href="https://worktrunk.dev"><img alt="Docs" src="https://img.shields.io/badge/docs-worktrunk.dev-blue?style=for-the-badge&amp;logo=gitbook" /></a><br />
+<a href="https://opensource.org/licenses/MIT"><img alt="License: MIT OR Apache-2.0" src="https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue?style=for-the-badge" /></a><br />
+<a href="https://github.com/max-sixty/worktrunk/actions?query=branch%3Amain+workflow%3Aci"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/max-sixty/worktrunk/ci.yaml?event=push&amp;branch=main&amp;style=for-the-badge&amp;logo=github" /></a><br />
+<a href="https://codecov.io/gh/max-sixty/worktrunk"><img alt="Codecov" src="https://img.shields.io/codecov/c/github/max-sixty/worktrunk?style=for-the-badge&amp;logo=codecov" /></a><br />
+<a href="https://github.com/max-sixty/worktrunk/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/max-sixty/worktrunk?style=for-the-badge&amp;logo=github" /></a><br />
+<a href="https://github.com/max-sixty/tend"><img alt="maintained with tend" src="https://img.shields.io/badge/maintained_with-tend-bba580?style=for-the-badge&amp;logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwxNikgc2NhbGUoMC4wMTI1LC0wLjAxMjUpIiBmaWxsPSIjZmZmIiBzdHJva2U9Im5vbmUiPjxwYXRoIGQ9Ik02ODAgMTEyOCBjNjIgLTk2IDY5IC0xNzggMjAgLTI0MSAtMTcgLTIyIC0yMCAtNDAgLTIwIC0xMzQgbDEgLTEwOCAyMSAyOCBjMTEgMTYgMzAgNDcgNDIgNzAgMTIgMjIgMzIgNDkgNDYgNTkgMzcgMjcgMTE0IDM4IDE4NCAyNyA5MyAtMTUgOTQgLTE4IDQ0IC03OSAtNzIgLTg4IC0xMDkgLTExMyAtMTc2IC0xMTcgLTMxIC0yIC02NCAxIC03MiA2IC0yMyAxNSAyMSA1NiAxMDcgOTggNDAgMjAgNzEgMzggNjkgNDAgLTYgNyAtODggLTE3IC0xMjYgLTM3IC00OSAtMjUgLTEwMCAtNzggLTEyMSAtMTI1IC0xNSAtMzMgLTE5IC02NiAtMTkgLTE4OCAwIC0xNTcgOCAtMTk1IDUwIC0yMzIgMTcgLTE2IDM2IC0yMCA4NSAtMTkgNjIgMSA2MyAxIDczIC0zMiA5IC0zMiA5IC0zMyAtMjIgLTQwIC01MCAtMTIgLTEzMiAtNyAtMTY0IDEwIC00MCAyMSAtNzkgNjkgLTkyIDExNCAtNSAyMCAtMTAgMTAyIC0xMCAxODIgMCA4MCAtNSAxNjIgLTExIDE4NCAtMjIgNzkgLTEzNSAxNjYgLTIzNCAxODEgLTM3IDYgLTM1IDMgMzAgLTI4IDc4IC0zOSAxNDQgLTkxIDEzMiAtMTA0IC01IC00IC0zNyAtOCAtNzEgLTggLTc3IDAgLTExNyAyNCAtMTgyIDEwOSAtNTIgNjggLTUxIDcwIDQyIDg1IDcxIDExIDE0MyAwIDE4MyAtMjkgMTYgLTExIDQwIC00MyA1NCAtNzMgMTMgLTI5IDMyIC01OSA0MSAtNjYgMTQgLTEyIDE2IC03IDE2IDU4IDAgNTkgNCA3NyAyMyAxMDIgMTkgMjYgMjMgNDYgMjUgMTMwIDMgNjcgMCA5OSAtNyA5OSAtNyAwIC0xMSAtMjMgLTEyIC01NyAwIC0zMiAtNiAtNzYgLTEyIC05NyBsLTEyIC00MCAtMjcgMzIgYy0zNCA0MSAtNDMgOTYgLTI0IDE1MSAxNCA0MSA3NSAxNDEgODYgMTQxIDMgMCAyMSAtMjQgNDAgLTUyeiIvPjwvZz48L3N2Zz4K" /></a></p>
+<blockquote>
+<p><strong>November 2026</strong>: Worktrunk was <a href="https://x.com/max_sixty/status/2006077845391724739?s=20">released</a> at the start of the year, and has quickly become the most popular git worktree manager. It's built with love (there's no slop!). Please let me know any frictions at all; I'm intensely focused on continuing to make Worktrunk excellent, and the biggest help is folks posting problems they perceive.</p>
+</blockquote>
+<p>Worktrunk is a CLI for git worktree management, designed for running AI agents in parallel.</p>
+<p>Worktrunk's three core commands make worktrees as easy as branches. Plus, Worktrunk has a bunch of quality-of-life features to simplify working with many parallel changes, including hooks to automate local workflows &amp; copy-on-write build caches.</p>
+<p>A quick demo:</p>
+<p><img alt="Worktrunk Demo" src="https://cdn.jsdelivr.net/gh/max-sixty/worktrunk-assets@main/assets/docs/light/wt-core.gif" /></p>
+<blockquote>
+<h3>📚 Full documentation at <a href="https://worktrunk.dev">worktrunk.dev</a> 📚</h3>
+</blockquote>
+<!-- ⚠️ AUTO-GENERATED from docs/src/content/docs/worktrunk.md#context-git-worktrees..worktrunk-makes-git-worktrees-as-easy-as-branches — edit source to update -->
+
+<h2>Context: git worktrees</h2>
+<p>AI agents like Claude Code and Codex can handle longer tasks without<br />
+supervision, such that it's possible to manage 5-10+ in parallel. Git's native<br />
+worktree feature gives each agent its own working directory, so they don't step<br />
+on each other's changes.</p>
+<p>But the git worktree UX is clunky. Even a task as small as starting a new<br />
+worktree requires typing the branch name three times: <code>git worktree add -b feat
+../repo.feat</code>, then <code>cd ../repo.feat</code>.</p>
+<h2>Worktrunk makes git worktrees as easy as branches</h2>
+<p>Worktrees are addressed by branch name; paths are computed from a configurable template. Commands that take a branch also accept the path of the worktree it is checked out in.</p>
+<p class="workflow-stage">Start with the core commands</p>
+
+<p><strong>Core commands:</strong></p>
+<table class="cmd-compare">
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Worktrunk</th>
+      <th>Plain git</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Switch worktrees</td>
+      <td data-label="Worktrunk"><code>wt switch feat</code></td>
+      <td data-label="Plain git"><code>cd ../repo.feat</code></td>
+    </tr>
+    <tr>
+      <td>Create + start Claude</td>
+      <td data-label="Worktrunk"><code>wt switch -c -x claude feat</code></td>
+      <td data-label="Plain git"><pre><code>git worktree add -b feat ../repo.feat && \
+cd ../repo.feat && \
+claude</code></pre></td>
+    </tr>
+    <tr>
+      <td>Clean up</td>
+      <td data-label="Worktrunk"><code>wt remove</code></td>
+      <td data-label="Plain git"><pre><code>cd ../repo && \
+git worktree remove ../repo.feat && \
+git branch -d feat</code></pre></td>
+    </tr>
+    <tr>
+      <td>List with status</td>
+      <td data-label="Worktrunk"><code>wt list</code></td>
+      <td data-label="Plain git"><span class="cmd-compare-value"><code>git worktree list</code> (paths only)</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="workflow-stage">Expand into the more advanced commands as needed</p>
+
+<p class="workflow-heading"><strong>Workflow automation:</strong></p>
+
+<ul>
+<li><strong><a href="https://worktrunk.dev/hook/">Hooks</a></strong> — run commands on create, pre-merge, post-merge, etc</li>
+<li><strong><a href="https://worktrunk.dev/llm-commits/">LLM commit messages</a></strong> — generate commit messages from diffs</li>
+<li><strong><a href="https://worktrunk.dev/merge/">Merge workflow</a></strong> — squash, rebase, merge, clean up in one command</li>
+<li><strong><a href="https://worktrunk.dev/switch/#interactive-picker">Interactive picker</a></strong> — browse worktrees with streaming CI status and diff, log, PR and comment previews</li>
+<li><strong><a href="https://worktrunk.dev/step/#wt-step-copy-ignored">Share build caches</a></strong> — ten worktrees get <code>target/</code>, <code>node_modules/</code>, etc without building or copying them (on APFS, btrfs, and XFS)</li>
+<li><strong><a href="https://worktrunk.dev/list/#full-mode"><code>wt list --full</code></a></strong> — <a href="https://worktrunk.dev/list/#ci-status">CI status</a> and <a href="https://worktrunk.dev/list/#llm-summaries">AI-generated summaries</a> per branch</li>
+<li><strong><a href="https://worktrunk.dev/switch/#pull-requests-and-merge-requests">PR checkout</a></strong> — <code>wt switch pr:123</code> to jump straight to a PR's branch</li>
+<li><strong><a href="https://worktrunk.dev/tips-patterns/#dev-server-per-worktree">Dev server per worktree</a></strong> — <code>hash_port</code> template filter gives each worktree a unique port</li>
+<li><strong><a href="https://worktrunk.dev/extending/#aliases">Aliases</a> &amp; <a href="https://worktrunk.dev/config/#wt-config-state-vars">per-branch variables</a></strong> — custom <code>wt &lt;name&gt;</code> commands and branch-scoped state for hook templates</li>
+<li>...and <strong><a href="#next-steps">lots more</a></strong></li>
+</ul>
+<p>Multiple parallel agents, same simple commands:</p>
+<p><img alt="Worktrunk omnibus demo: multiple Claude agents in Zellij tabs with hooks, LLM commits, and merge workflow" src="https://raw.githubusercontent.com/max-sixty/worktrunk-assets/main/assets/docs/light/wt-zellij-omnibus.gif" /></p>
+<!-- END AUTO-GENERATED -->
+
+<!-- ⚠️ AUTO-GENERATED from docs/src/content/docs/worktrunk.md#install..next-steps — edit source to update -->
+
+<h2>Install</h2>
+<p><strong>Homebrew (macOS &amp; Linux):</strong></p>
+<pre><code class="language-bash">brew install worktrunk &amp;&amp; wt config shell install
+</code></pre>
+<p>Shell integration allows commands to change directories.</p>
+<p><strong>Cargo:</strong></p>
+<pre><code class="language-bash">cargo install worktrunk &amp;&amp; wt config shell install
+</code></pre>
+<details>
+<summary><strong>Window
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/max-sixty/worktrunk#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#13</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">paperclipai /</span>
+          <a href="https://github.com/paperclipai/paperclip" target="_blank" rel="noopener">paperclip</a>
+        </div>
+        <div class="repo-desc">The open-source app everyone uses to manage agents at work</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#2b7489"></span>TypeScript</span>
+      <span class="meta-item">⭐ 110,603</span>
+      <span class="meta-item">🍴 18,304</span>
+      <span class="stars-today">⭐ 412 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <p align="center">
+  <img src="doc/assets/banner.jpg" alt="Paperclip is the app people use to manage AI agents for work." width="720" />
+</p>
+
+<p align="center">
+  <a href="#quickstart"><strong>Quickstart</strong></a> &middot;
+  <a href="https://docs.paperclip.ing"><strong>Docs</strong></a> &middot;
+  <a href="https://github.com/paperclipai/paperclip"><strong>GitHub</strong></a> &middot;
+  <a href="https://discord.gg/paperclipai"><strong>Discord</strong></a> &middot;
+  <a href="https://x.com/papercliping"><strong>Twitter</strong></a> &middot;
+  <a href="https://paperclip.ing"><strong>Website</strong></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/paperclipai/paperclip/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" /></a>
+  <a href="https://github.com/paperclipai/paperclip/stargazers"><img src="https://img.shields.io/github/stars/paperclipai/paperclip?style=flat" alt="Stars" /></a>
+  <a href="https://discord.gg/paperclipai"><img src="https://img.shields.io/badge/discord-join-7289da" alt="Discord" /></a>
+  <a href="https://superagent.sh"><picture><source media="(prefers-color-scheme: dark)" srcset="https://www.superagent.sh/api/badge/paperclipai/paperclip/shield.svg?theme=dark&accent=teal&variant=scanned" /><img src="https://www.superagent.sh/api/badge/paperclipai/paperclip/shield.svg?theme=light&accent=teal&variant=scanned" alt="Security posture verified by Superagent" /></picture></a>
+</p>
+
+<p align="center">
+  <a href="https://www.star-history.com/paperclipai/paperclip"><img src="https://api.star-history.com/badge?repo=paperclipai/paperclip" alt="Star History Rank" /></a>
+</p>
+
+<p><br/></p>
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/773bdfb2-6d1e-4e30-8c5f-3487d5b70c8f" width="600" controls></video>
+</div>
+
+<p align="center">
+  <a href="https://paperclip.ing/waitlist/"><strong>Sign up for the Paperclip Cloud waitlist →</strong></a>
+</p>
+
+<p><br/></p>
+<h1>Paperclip is the app people use to manage AI agents for work.</h1>
+<p>Open-source orchestration for teams of AI agents.</p>
+<p><strong>If OpenClaw is an <em>employee</em>, Paperclip is the <em>company</em>.</strong></p>
+<p>Paperclip is a Node.js server and React UI that orchestrates a team of AI agents to run a business. Bring your own agents, assign goals, and track work and costs from one dashboard. Choose models and harnesses per agent while keeping your team's tasks, skills, permissions, and history in one place.</p>
+<p>It looks like a task manager. Under the hood: org charts, budgets, governance, goal alignment, and agent coordination.</p>
+<p><strong>Manage business goals, not pull requests.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Step</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>01</strong></td>
+<td>Define the goal</td>
+<td><em>"Build the #1 AI note-taking app to $1M MRR."</em></td>
+</tr>
+<tr>
+<td><strong>02</strong></td>
+<td>Hire the team</td>
+<td>CEO, CTO, engineers, designers, marketers — any bot, any provider.</td>
+</tr>
+<tr>
+<td><strong>03</strong></td>
+<td>Approve and run</td>
+<td>Review strategy. Set budgets. Hit go. Monitor from the dashboard.</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<div align="center">
+<table>
+  <tr>
+    <td align="center" rowspan="2"><strong>Works<br/>with</strong></td>
+    <td align="center" valign="top"><img src="doc/assets/logos/openclaw.svg" width="32" height="32" alt="OpenClaw" /><br/><sub>OpenClaw</sub></td>
+    <td align="center" valign="top"><img src="doc/assets/logos/claude.svg" width="32" height="32" alt="Claude Code" /><br/><sub>Claude Code</sub></td>
+    <td align="center" valign="top"><img src="ui/public/brands/codex-color.svg" width="32" height="32" alt="Codex" /><br/><sub>Codex</sub></td>
+    <td align="center" valign="top"><picture><source media="(prefers-color-scheme: dark)" srcset="ui/public/brands/adapters/cursor-dark.svg" /><img src="ui/public/brands/adapters/cursor.svg" width="32" height="32" alt="Cursor and Cursor Cloud" /></picture><br/><sub>Cursor<br/>+ Cloud</sub></td>
+    <td align="center" valign="top"><img src="ui/public/brands/adapters/gemini-color.svg" width="32" height="32" alt="Gemini CLI" /><br/><sub>Gemini CLI</sub></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top"><picture><source media="(prefers-color-scheme: dark)" srcset="ui/public/brands/opencode-logo-dark-square.svg" /><img src="ui/public/brands/opencode-logo-light-square.svg" width="32" height="32" alt="OpenCode" /></picture><br/><sub>OpenCode</sub></td>
+    <td align="center" valign="top"><picture><source media="(prefers-color-scheme: dark)" srcset="ui/public/brands/adapters/pi-dark.svg" /><img src="ui/public/brands/adapters/pi.svg" width="32" height="32" alt="Pi" /></picture><br/><sub>Pi</sub></td>
+    <td align="center" valign="top"><picture><source media="(prefers-color-scheme: dark)" srcset="ui/public/brands/adapters/hermesagent-dark.svg" /><img src="ui/public/brands/adapters/hermesagent.svg" width="32" height="32" alt="Hermes and Hermes Gateway" /></picture><br/><sub>Hermes<br/>+ Gateway</sub></td>
+    <td align="center" valign="top"><picture><source media="(prefers-color-scheme: dark)" srcset="ui/public/brands/adapters/grok-dark.svg" /><img src="ui/public/brands/adapters/grok.svg" width="32" height="32" alt="Grok Build" /></picture><br/><sub>Grok Build</sub></td>
+    <td align="center" valign="top"><picture><source media="(prefers-color-scheme: dark)" srcset="ui/public/brands/adapters/kimi-color.svg" /><img src="ui/public/brands/adapters/kimi-color-light.svg" width="32" height="32" alt="Kimi Code" /></picture><br/><sub>Kimi Code</sub></td>
+  </tr>
+</table>
+
+<em>If it can receive a heartbeat, it's hired.</em>
+
+</div>
+
+<p>Custom processes, HTTP endpoints, and external adapter packages extend the roster. See the <a href="https://docs.paperclip.ing/reference/adapters/overview/">adapter overview</a> for setup and capabilities.</p>
+<p><br/></p>
+<h2>Paperclip is right for you if</h2>
+<ul>
+<li>✅ You want to build <strong>autonomous AI organizations</strong></li>
+<li>✅ You <strong>coordinate many different agents</strong> (OpenClaw, Codex, Claude, Cursor) toward a common goal</li>
+<li>✅ You have <strong>20 simultaneous Claude Code terminals</strong> open and lose track of what everyone is doing</li>
+<li>✅ You want agents running <strong>autonomously 24/7</strong>, but still want to audit work and chime in when needed</li>
+<li>✅ You want to <strong>monitor costs</strong> and enforce budgets</li>
+<li>✅ You want a process for managing agents that <strong>feels like using a task manager</strong></li>
+<li>✅ You want to manage your autonomous businesses <strong>from your phone</strong></li>
+</ul>
+<p><br/></p>
+<h2>The four pillars</h2>
+<p>Four things have to work for an organization of AI agents to actually produce: the tasks, the org, the training, and the infrastructure. Paperclip is built around exactly those four pillars.</p>
+<p><picture><br />
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/paperclipai/paperclip/1ec33ffd8b597f7e36aac3e2fbb4665b8c42dc3c/doc/assets/four-pillars-dark.png"><br />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/paperclipai/paperclip/1ec33ffd8b597f7e36aac3e2fbb4665b8c42dc3c/doc/assets/four-pillars-light.png"><br />
+  <img src="https://raw.githubusercontent.com/paperclipai/paperclip/1ec33ffd8b597f7e36aac3e2fbb4665b8c42dc3c/doc/assets/four-pillars-light.png" alt="The four pillars of Paperclip"><br />
+</picture></p>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Built for</th>
+<th>What it covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agentic Task Manager</strong> — Declare intent. Agents work. You verify the output.</td>
+<td>Everyone, daily</td>
+<td>Tasks, approvals &amp; review gates · proactive agent coworkers · auditable routines &amp; workflows · verify from diffs, screenshots &amp; tests</td>
+</tr>
+<tr>
+<td><strong>Org Chart for Agents</strong> — Roles, permissions &amp; boundaries for humans and agents.</td>
+<td>Managers</td>
+<td>Mixed human + agent org chart · responsibilities, delegation, specialization · governance: who can do what · scoped secrets &amp; company boundaries · connection permissions &amp; responsible-user identities</td>
+</tr>
+<tr>
+<td><strong>Agent Employee Training</strong> — Design, train &amp; evaluate your AI employees.</td>
+<td>Enablers</td>
+<td>Skill Studio &amp; shared org-wide skills · evals &amp; saved test runs · active learning loops &amp; qu</td>
+</tr>
+</tbody>
+</table>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/paperclipai/paperclip#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#14</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">karpathy /</span>
+          <a href="https://github.com/karpathy/nanochat" target="_blank" rel="noopener">nanochat</a>
+        </div>
+        <div class="repo-desc">The best ChatGPT that $100 can buy.</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 60,068</span>
+      <span class="meta-item">🍴 8,425</span>
+      <span class="stars-today">⭐ 321 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <h1>nanochat</h1>
+<p><img alt="nanochat logo" src="dev/nanochat.png" /><br />
+<img alt="scaling laws" src="dev/scaling_laws_jan26.png" /></p>
+<p>nanochat is the simplest experimental harness for training LLMs. It is designed to run on a single GPU node, the code is minimal/hackable, and it covers all major LLM stages including tokenization, pretraining, finetuning, evaluation, and inference. For example, you can train your own GPT-2 capability LLM (which cost ~$43,000 to train in 2019) for only $48 (~2 hours of 8XH100 GPU node) and then talk to it over a simple CLI. On a spot instance, the total cost can be closer to ~$15. More generally, nanochat is configured out of the box to train an entire miniseries of compute-optimal models by setting one single complexity dial: <code>--depth</code>, the number of layers in the GPT transformer model (GPT-2 capability happens to be approximately depth 26). All other hyperparameters (the width of the transformer, number of heads, learning rate adjustments, training horizons, weight decays, ...) are calculated automatically in an optimal way.</p>
+<p>For questions about the repo, I recommend either using <a href="https://deepwiki.com/karpathy/nanochat">DeepWiki</a> from Devin/Cognition to ask questions about the repo, or use the <a href="https://github.com/karpathy/nanochat/discussions">Discussions tab</a>, or come by the <a href="https://discord.com/channels/1020383067459821711/1427295580895314031">#nanochat</a> channel on Discord.</p>
+<h2>Time-to-GPT-2 Leaderboard</h2>
+<p>Presently, the main focus of development is on tuning the pretraining stage, which takes the most amount of compute. Inspired by the modded-nanogpt repo and to incentivise progress and community collaboration, nanochat maintains a leaderboard for a "GPT-2 speedrun", which is the wall-clock time required to train a nanochat model to GPT-2 grade capability, as measured by the DCLM CORE score. The <a href="runs/speedrun.sh">runs/speedrun.sh</a> script always reflects the reference way to train GPT-2 grade model and talk to it. The current leaderboard looks as follows:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>time</th>
+<th>val_bpb</th>
+<th>CORE</th>
+<th>Description</th>
+<th>Date</th>
+<th>Commit</th>
+<th>Contributors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>168 hours</td>
+<td>-</td>
+<td>0.2565</td>
+<td>Original OpenAI GPT-2 checkpoint</td>
+<td>2019</td>
+<td>-</td>
+<td>OpenAI</td>
+</tr>
+<tr>
+<td>1</td>
+<td>3.04</td>
+<td>0.74833</td>
+<td>0.2585</td>
+<td>d24 baseline, slightly overtrained</td>
+<td>Jan 29 2026</td>
+<td>348fbb3</td>
+<td>@karpathy</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2.91</td>
+<td>0.74504</td>
+<td>0.2578</td>
+<td>d26 slightly undertrained <strong>+fp8</strong></td>
+<td>Feb 2 2026</td>
+<td>a67eba3</td>
+<td>@karpathy</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2.76</td>
+<td>0.74645</td>
+<td>0.2602</td>
+<td>bump total batch size to 1M tokens</td>
+<td>Feb 5 2026</td>
+<td>2c062aa</td>
+<td>@karpathy</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2.02</td>
+<td>0.71854</td>
+<td>0.2571</td>
+<td>change dataset to NVIDIA ClimbMix</td>
+<td>Mar 4 2026</td>
+<td>324e69c</td>
+<td>@ddudek @karpathy</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1.80</td>
+<td>0.71808</td>
+<td>0.2690</td>
+<td>autoresearch <a href="https://x.com/karpathy/status/2031135152349524125">round 1</a></td>
+<td>Mar 9 2026</td>
+<td>6ed7d1d</td>
+<td>@karpathy</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1.65</td>
+<td>0.71800</td>
+<td>0.2626</td>
+<td>autoresearch round 2</td>
+<td>Mar 14 2026</td>
+<td>a825e63</td>
+<td>@karpathy</td>
+</tr>
+</tbody>
+</table>
+<p>The primary metric we care about is "time to GPT-2" - the wall clock time needed to outperform the GPT-2 (1.6B) CORE metric on an 8XH100 GPU node. The GPT-2 CORE score is 0.256525. In 2019, the training of GPT-2 cost approximately $43,000 so it is incredible that due to many advances over 7 years across the stack, we can now do so much faster and for well below $100 (e.g. at the current ~$3/GPU/hr, an 8XH100 node is ~$24/hr, so 2 hours is ~$48).</p>
+<p>See <a href="dev/LEADERBOARD.md">dev/LEADERBOARD.md</a> for more docs on how to interpret and contribute to the leaderboard.</p>
+<h2>Getting started</h2>
+<h3>Setup</h3>
+<p>nanochat uses <a href="https://docs.astral.sh/uv/">uv</a> for dependency management. To install:</p>
+<pre><code class="language-bash">uv sync --extra gpu    # Use for CUDA (A100/H100/etc.)
+uv sync --extra cpu    # (or) Use for CPU-only / MPS
+source .venv/bin/activate
+</code></pre>
+<p>For development (adds pytest, matplotlib, ipykernel, transformers, etc.):</p>
+<pre><code class="language-bash">uv sync --extra gpu --group dev
+</code></pre>
+<h3>Reproduce and talk to GPT-2</h3>
+<p>The most fun you can have is to train your own GPT-2 and talk to it. The entire pipeline to do so is contained in the single file <a href="runs/speedrun.sh">runs/speedrun.sh</a>, which is designed to be run on an 8XH100 GPU node. Boot up a new 8XH100 GPU box from your favorite provider (e.g. I use and like <a href="https://lambda.ai/service/gpu-cloud">Lambda</a>), and kick off the training script:</p>
+<pre><code class="language-bash">bash runs/speedrun.sh
+</code></pre>
+<p>You may wish to do so in a screen session as this will take ~1.5 hours to run. Once it's done, you can talk to your model over the CLI. Make sure again that your local uv virtual environment is active (run <code>source .venv/bin/activate</code>), and chat:</p>
+<pre><code class="language-bash">python -m scripts.chat_cli
+</code></pre>
+<p>Get it to write stories or poems. Ask it to tell you who you are to see a hallucination. Ask it why the sky is blue. Or why it's green. The speedrun is a 4e19 FLOPs capability model so it's a bit like talking to a kindergartener :). An example conversation with a speedrun model:</p>
+<blockquote>
+<p><strong>User:</strong> Hello whats up?</p>
+<p><strong>Assistant:</strong> Hello! How can I help you today?</p>
+<p><strong>User:</strong> Why is the sky blue?</p>
+<p><strong>Assistant:</strong> The sky is blue due to an optical illusion called the Rayleigh Scattering of Light, which occurs when sunlight passes through tiny particles in the air. These particles are made up of tiny blue and violet particles that cause the light to bend in a particular way.</p>
+<p><strong>User:</strong> That's cool. Write a poem about it.</p>
+<p><strong>Assistant:</strong> In the twilight's glow, the sky is blue,<br><br />
+A canvas of shimmering blue, where skies unfold,<br><br />
+A world of blue, where blue and more blue,<br><br />
+Are woven together in a tapestry so fine,<br><br />
+Where every hue seems to sing a story.<br><br />
+...</p>
+</blockquote>
+<p>A few more notes:</p>
+<ul>
+<li>The code will run just fine on the Ampere 8XA100 GPU node as well, but a bit slower.</li>
+<li>All code will run just fine on even a single GPU by omitting <code>torchrun</code>, and will produce ~identical results (code will automatically switch to gradient accumulation), but you'll have to wait 8 times longer.</li>
+<li>If your GPU(s) have less than 80GB, you'll have to tune some of the hyperparameters or you will OOM / run out of VRAM. Look for <code>--device-batch-size</code> in the scripts and reduce it until things fit. E.g. from 32 (default) to 16, 8, 4, 2, or even 1. Less than that you'll have to know a bit more what you're doing and get more creative.</li>
+<li>Most of the code is fairly vanilla PyTorch so it should run on anything that supports that - xpu, mps, or etc, but I haven't personally exercised all of these code paths so there might be sharp edges.</li>
+</ul>
+<h2>Research</h2>
+<p>If you are a researcher and wish to help improve nanochat, two scripts of interest are <a href="runs/scaling_laws.sh">runs/scaling_laws.sh</a> and <a href="runs/miniseries.sh">runs/miniseries.sh</a>. See <a href="https://github.com/karpathy/nanochat/discussions/420">Jan 7 miniseries v1</a> for related documentation. For quick experimentation (~5 min pretraining runs) my favorite scale is to train a 12-layer model (GPT-1 sized), e.g. like this:</p>
+<pre><code>OMP_NUM_THREADS=1 torchrun --standalone --nproc_per_node=8 -m scripts.base_train -- \
+    --depth=12 \
+    --run=&quot;d12&quot; \
+    --model-tag=&quot;d12&quot; \
+    --core-metric-every=999999 \
+    --sample-every=-1 \
+    --save-every=-1 \
+</code></pre>
+<p>This uses wandb (run name "d12"), only runs the CORE metric on last step, and it doesn't sample and save intermediate checkpoints. I like to change something in the code, re-run a d12 (or a d16 etc) and see if it helped, in an iteration loop. To see if a run helps, I like to monitor the wandb plots for:</p>
+<ol>
+<li><code>val_bpb</code> (validation loss in vocab-size-invariant units of bits per byte) as a function of <code>step</code>, <code>total_training_time</code> and <code>total_training_flops</code>.</li>
+<li><code>core_metric</code> (the DCLM CORE score)</li>
+<li>VRAM utilization, <code>train/mfu</code> (Model FLOPS utilization), <code>train/tok_per_sec</code> (training throughput)</li>
+</ol>
+<p>See an example <a href="https://github.com/karpathy/nanochat/pull/498#issuecomment-3850720044">here</a>.</p>
+<p>The important thing to note is that nanochat is written and configured around one single dial of complexity - the depth of the transformer. This single integer automatically determines all other hyperparameters (the </p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/karpathy/nanochat#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+<div>
+  <div class="rank-label">#15</div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="repo-name">
+          <span class="repo-owner">p-e-w /</span>
+          <a href="https://github.com/p-e-w/heretic" target="_blank" rel="noopener">heretic</a>
+        </div>
+        <div class="repo-desc">Training-free language model modification: Remove censorship, suppress slop, reduce sycophancy, and more</div>
+      </div>
+    </div>
+    <div class="meta">
+      <span class="meta-item"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      <span class="meta-item">⭐ 38,317</span>
+      <span class="meta-item">🍴 4,340</span>
+      <span class="stars-today">⭐ 420 stars today</span>
+    </div>
+    <details>
+  <summary>📖 README</summary>
+  <div class="readme-body">
+    <div align="center">
+
+<img width="128" alt="Heretic logo" src="https://github.com/user-attachments/assets/df5f2840-2f92-4991-aa57-252747d7182e" />
+
+# Heretic
+
+### Training-free language model modification
+
+**Remove censorship**, suppress slop, reduce sycophancy, and more.<br>
+All in an afternoon, on your gaming PC.
+
+[![Discord](https://img.shields.io/discord/1447831134212984903?color=5865F2&label=discord&labelColor=black&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/gdXc48gSyT)&nbsp;&nbsp;&nbsp;&nbsp;
+[![Matrix](https://img.shields.io/badge/Matrix-black?logo=matrix&style=for-the-badge)](https://matrix.to/#/#heretic:matrix.org)&nbsp;&nbsp;&nbsp;
+[![Follow us on Hugging Face](https://huggingface.co/datasets/huggingface/badges/resolve/main/follow-us-on-hf-md-dark.svg)](https://huggingface.co/heretic-org)&nbsp;&nbsp;&nbsp;
+[![Codeberg mirror](https://img.shields.io/badge/Codeberg%20mirror-black?logo=codeberg&style=for-the-badge)](https://codeberg.org/p-e-w/heretic)
+
+</div>
+
+<hr />
+<p>&nbsp;</p>
+<p><a href="https://trendshift.io/repositories/20538"><img alt="#1 Repository of the Day" src="https://trendshift.io/api/badge/repositories/20538" /></a>&nbsp;&nbsp;&nbsp;&nbsp;<br />
+<a href="https://heretic.sdad.pro/"><img alt="Model and download statistics" src="https://github.com/user-attachments/assets/c9b5a660-7ef9-43c7-991c-fd9d63ea8bd8" /></a></p>
+<h2>Modify any LLM that you can run on your hardware[^1]</h2>
+<p>[^1]: Heretic supports on-the-fly 4-bit model quantization with bitsandbytes,<br />
+which can reduce the amount of VRAM required to process a model to the same amount<br />
+that is used to run a typical quantized version of it, at a slight accuracy cost.<br />
+Set the <code>quantization</code> option to <code>bnb_4bit</code> to enable this.</p>
+<p>Heretic is a unique tool that lets you do what only corporations with access<br />
+to massive computing power usually do: <em>Modify,</em> rather than merely run,<br />
+language models. It does not perform expensive training; rather, it uses<br />
+a collection of mathematical techniques to steer behavior based on contrasting<br />
+example prompts and matching scorers.</p>
+<p>Heretic can, depending on the configuration:</p>
+<ul>
+<li><strong>Suppress refusals/remove censorship</strong> (this is the <a href="/config.default.toml">default action</a>)</li>
+<li>Reduce slop (<a href="/config.noslop.toml"><code>config.noslop.toml</code></a>)</li>
+<li>Reduce humor (<a href="/config.nohumor.toml"><code>config.nohumor.toml</code></a>)</li>
+<li>Reduce sycophancy (<a href="/config.nosyco.toml"><code>config.nosyco.toml</code></a>)</li>
+<li>Alter emotional alignment (<a href="/config.emotions.toml"><code>config.emotions.toml</code></a>)</li>
+</ul>
+<p>and many, many other things.</p>
+<h3>:bangbang: Using Heretic does NOT require understanding how language models work internally :bangbang:</h3>
+<p>In fact, you can go from zero to removing censorship from your first model<br />
+<a href="#usage">in a matter of seconds</a>. Heretic supports most dense models, including<br />
+many multimodal models, several different MoE architectures, and many modern<br />
+hybrid models.</p>
+<p>The community has created and published<br />
+<a href="https://huggingface.co/models?other=heretic">thousands</a><br />
+of models with Heretic.<br />
+Heretic models have been independently benchmarked using standard metrics<br />
+like MMLU and GSM8K, and have been found to compare favorably against models<br />
+produced with competing abliteration tools.<a href="https://old.reddit.com/r/LocalLLaMA/comments/1sy18lx/abliterlitics_benchmarks_and_tensor_comparison/">^2</a></p>
+<p>&nbsp;</p>
+<p><img width="600" alt="Heretic screenshot" src="https://github.com/user-attachments/assets/a030f595-67ef-49a6-9d9a-779fdf752b58" /></p>
+<p>&nbsp;</p>
+<h2>Usage</h2>
+<p>Prepare a Python 3.10+ environment with PyTorch 2.6+ installed as appropriate<br />
+for your hardware. Then run:</p>
+<pre><code class="language-sh">pip install -U heretic-llm
+heretic Qwen/Qwen3-4B-Instruct-2507
+</code></pre>
+<p>Replace <code>Qwen/Qwen3-4B-Instruct-2507</code> with whatever model you want to process.<br />
+<strong>By default, Heretic performs censorship removal (refusal suppression).</strong><br />
+If you want to do something else, choose one of the configuration files linked<br />
+above, or write your own. See <a href="/config.default.toml"><code>config.default.toml</code></a><br />
+for available configuration options.</p>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>Configuration files made for Heretic 1.x are <strong>not</strong> compatible with Heretic 2.x!<br />
+See the <a href="/docs/migration_v1_to_v2.md">migration guide</a> for what you need to change<br />
+in order to make your old configurations work.</p>
+</blockquote>
+<p>At the start of a program run, Heretic benchmarks the system to determine<br />
+the optimal batch size to make the most of the available hardware.<br />
+On an RTX 3090, with the default configuration, processing<br />
+<a href="https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507">Qwen3-4B-Instruct-2507</a><br />
+takes about 30-40 minutes.</p>
+<p>After Heretic has finished processing a model, you are given the choice to<br />
+save the model, upload it to Hugging Face, chat with it to test how well it works,<br />
+run standard benchmarks on it, or any combination of those actions.</p>
+<h2>Controlling what Heretic does using scorer plugins</h2>
+<p>Heretic steers model behavior by optimizing one or multiple scores. Scores are<br />
+computed by scorer plugins. You can easily write your own scorers to get full<br />
+control over what Heretic does to models.</p>
+<p>The <code>Scorer</code> interface (abstract base class) your scorer needs to inherit from<br />
+is defined in <a href="/src/heretic/scorer.py"><code>scorer.py</code></a>. The only required method<br />
+is <code>get_score</code>, but there is more machinery (such as settings management)<br />
+available when you need it.</p>
+<p>By default, Heretic scores models by refusal rate (implemented in<br />
+<a href="/src/heretic/scorers/keyword_rate.py"><code>keyword_rate.py</code></a>) and KL divergence<br />
+(implemented in <a href="/src/heretic/scorers/kl_divergence.py"><code>kl_divergence.py</code></a>).<br />
+Additional scorers are available in the <a href="/src/heretic/scorers/"><code>scorers</code> directory</a>.<br />
+These scorers can serve as examples for your own implementations, and can easily<br />
+be adapted to your needs.</p>
+<p>Scorers are configured through the <a href="/config.default.toml">main configuration file</a>.<br />
+Which scorer plugins are active is determined by the <code>scorers</code> setting, which<br />
+also controls whether a scorer's score should be minimized or maximized during<br />
+optimization. Any number of scorers can be used simultaneously, and their scores<br />
+will be co-optimized. Multiple instances of the same scorer can be configured<br />
+with different settings. See the configuration file for the full documentation<br />
+of this mechanism.</p>
+<p>The path to a scorer plugin can be specified either as a fully qualified import<br />
+path (<code>fully.qualified.module.MyScorerClass</code>) or as a file path followed by<br />
+a class name (<code>path/to/plugin.py:MyScorerClass</code>). You do <strong>not</strong> have to modify<br />
+the Heretic package code in order to use your own plugins.</p>
+<p>Heretic also has modifier plugins, which are described in<br />
+<a href="#how-heretic-works">the next section</a>.</p>
+<h2>How Heretic works</h2>
+<p>Heretic combines a pluggable modifier (interface in<br />
+<a href="/src/heretic/modifier.py"><code>modifier.py</code></a>) with a TPE-based hyperparameter optimizer<br />
+powered by <a href="https://optuna.org/">Optuna</a>. The optimizer finds a set of parameters that,<br />
+when passed to the modifier, minimize or maximize a set of configurable scores on the resulting model (<a href="#controlling-what-heretic-does-using-scorer-plugins">see above</a>).</p>
+<p>Heretic ships with two modifiers:</p>
+<ul>
+<li>
+<p><strong>Arbitrary-Rank Ablation (ARA)</strong>[^4]: This is the default modifier, and was<br />
+  specifically developed for use in Heretic. You can find an overview of how ARA<br />
+  works in <a href="https://github.com/p-e-w/heretic/pull/211">the original pull request</a>,<br />
+  and see the precise implementation in <a href="/src/heretic/modifiers/ara.py"><code>ara.py</code></a>.</p>
+</li>
+<li>
+<p><strong>Directional ablation aka "abliteration"</strong>[^5]: The classic method for refusal<br />
+  suppression. Heretic's implementation uses a flexible ablation weight kernel over<br />
+  the layers, and supports both projected abliteration[^6] and norm preservation (MPOA)<a href="*[Lai">^7</a>.<br />
+  The complete code is in <a href="/src/heretic/modifiers/abliteration.py"><code>abliteration.py</code></a>.</p>
+</li>
+</ul>
+<p>[^4]: <em>Weidmann 2026.</em> A preprint explaining the technique will be available soon.<br />
+[^5]: <em><a href="https://arxiv.org/abs/2406.11717">Arditi et al. 2024</a></em><br />
+[^6]: <em><a href="https://huggingface.co/blog/grimjim/projected-abliteration">Lai 2025 (1)</a></em></p>
+    <p class="readme-truncated">(Preview — first 8 000 chars.
+     <a href="https://github.com/p-e-w/heretic#readme" target="_blank" rel="noopener">View full README ↗</a>)</p>
+  </div>
+</details>
+  </div>
+</div>
+</main>
+
+<footer>
+  Generated by <strong>scrape_github_trending.py</strong> on November 03, 2026  08:17 &nbsp;·&nbsp;
+  Data sourced from <a href="https://github.com/trending" target="_blank">github.com/trending</a>
+</footer>
+
+</body>
+</html>
